@@ -2,7 +2,7 @@
 
 # CoreCoder
 
-**The nanoGPT of coding agents. A 1.3k-line engine inside 2,595 readable lines of pure Python: understand how a coding agent actually works, then fork your own.**
+**The nanoGPT of coding agents. A 1.3k-line engine inside 2,638 readable lines of pure Python: understand how a coding agent actually works, then fork your own.**
 
 *learn from it · fork it · ship something better*
 
@@ -12,7 +12,7 @@
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Tests](https://github.com/Marshall0214/CoreCoder/actions/workflows/ci.yml/badge.svg)](https://github.com/Marshall0214/CoreCoder/actions)
-[![engine](https://img.shields.io/badge/engine-1308_LoC-blue)](article/00-index_EN.md)
+[![engine](https://img.shields.io/badge/engine-1346_LoC-blue)](article/00-index_EN.md)
 [![essays](https://img.shields.io/badge/source--reading-8_bilingual-orange)](article/00-index_EN.md)
 
 </div>
@@ -25,7 +25,7 @@
 
 | | CoreCoder | Claude Code | aider | nanoGPT |
 |---|---|---|---|---|
-| Lines of code | ~1,308 engine / 2,595 total | hundreds of thousands (closed) | tens of thousands of Python | ~600 (two files) |
+| Lines of code | ~1,346 engine / 2,638 total | hundreds of thousands (closed) | tens of thousands of Python | ~600 (two files) |
 | Time to read it all | one afternoon | can't (closed) | a few days of slogging | one afternoon |
 | Breakpoint, change, rerun? | yes, every line | no | yes, but there's a lot | yes |
 | What it's for | understand one, then fork your own | production coding assistant | terminal pair-programming | minimal GPT for teaching |
@@ -36,9 +36,9 @@ The nanoGPT column is there as a reference point: minimal, readable, but it teac
 
 I've always felt coding agents get talked about as if they were arcane. Strip a tool like Claude Code or Cursor all the way down and the core is a `while` loop wrapped around a large model, plus seven or eight tools that let it actually do things. The hard part was never the loop; it's everything the loop has to cope with once it meets the real world. CoreCoder is the minimal version that writes that core out honestly.
 
-The engine (loop, model interface, context, tools, sessions) is 1,308 lines once you drop blank lines and comments. Counting the outer CLI, config and packaging too, the whole package is 24 files: 2,595 physical lines, 2,089 net, every one short enough to read in a single sitting. The growth since the original 1,161-line snapshot went into visible features: plan mode, hooks and checkpoints, each documented below.
+The engine (loop, model interface, context, tools, sessions) is 1,346 lines once you drop blank lines and comments. Counting the outer CLI, config and packaging too, the whole package is 25 files: 2,638 physical lines, 2,127 net, every one short enough to read in a single sitting. The growth since the original 1,161-line snapshot went into visible features: plan mode, hooks and checkpoints, each documented below.
 
-And it really runs: reads and writes files, executes shell, spawns sub-agents, compacts context in three tiers, and tells you the tokens and dollars a run burned whenever you ask. Anything that would mutate your disk or run a command stops for your consent first. 178 tests, all green. But the point of it running isn't to become your daily driver. It runs so the walkthrough can't lie: a reference that shows how an agent works has to actually work.
+And it really runs: reads and writes files, executes shell, spawns sub-agents, compacts context in three tiers, and tells you the tokens and dollars a run burned whenever you ask. Anything that would mutate your disk or run a command stops for your consent first. 179 tests, all green. But the point of it running isn't to become your daily driver. It runs so the walkthrough can't lie: a reference that shows how an agent works has to actually work.
 
 The code came out of a public teardown: open analyses have already exposed a lot of the load-bearing architecture inside production agents like Claude Code. I took the most essential layer and rewrote it honestly, in as little code as I could. So reading CoreCoder is roughly like reading a runnable, annotated take on how that kind of agent works, except it's only a minimal reimplementation, sitting right there on your machine for you to take apart and change.
 
@@ -89,7 +89,7 @@ Laid out flat, the whole project is this big. Skim it before you clone and you'l
 corecoder/
 ├── agent.py        agent loop + parallel tool exec       240 lines   ← start here
 ├── llm.py          streaming client + retry + cost        331 lines
-├── context.py      three-tier context compaction          220 lines
+├── context.py      three-tier context compaction          221 lines
 ├── session.py      save / resume + path-traversal guard    97 lines
 ├── permissions.py  consent for mutating tools              48 lines
 ├── hooks.py        Pre/PostToolUse shell hooks             85 lines
@@ -100,20 +100,21 @@ corecoder/
 ├── checkpoints.py  /undo snapshot and restore                44 lines
 ├── demo.py         offline end-to-end demo                 100 lines
 └── tools/
-    ├── bash.py       shell + dangerous-command gate + cd  189 lines
-    ├── edit.py       unique-match search/replace + diff    96 lines
+    ├── bash.py       shell + dangerous-command gate + cd  203 lines
+    ├── edit.py       unique-match search/replace + diff    99 lines
     ├── grep.py       content search                        93 lines
     ├── glob_tool.py  filename matching                     52 lines
     ├── read.py       file read                             56 lines
-    ├── write.py      file write                            43 lines
+    ├── write.py      file write                            46 lines
     ├── todo.py       agent-maintained task checklist       79 lines
-    ├── agent.py      sub-agent spawning                    64 lines
-    └── base.py       tool base class                       27 lines
+    ├── agent.py      sub-agent spawning                    72 lines
+    ├── fetch.py      fetch a URL as text                   41 lines
+    └── base.py       tool base class                       32 lines
 examples/
 └── plan_hooks_demo.py  offline plan mode + hooks demo (no API key)
 ```
 
-Eight tools: `bash`, `read_file`, `write_file`, `edit_file`, `glob`, `grep`, `todo_write` (a task checklist the agent maintains for itself), and `agent` (which spawns a sub-agent). Everything else is the CLI shell, config, and packaging wrapped around that engine core. If `~/.corecoder/mcp.json` exists, its MCP servers join the eight as extra `mcp__*` tools; the MCP section below covers it.
+Nine tools: `bash`, `read_file`, `write_file`, `edit_file`, `glob`, `grep`, `todo_write` (a task checklist the agent maintains for itself), `agent` (which spawns a sub-agent), and `fetch_url` (which reads an http(s) URL as text). Everything else is the CLI shell, config, and packaging wrapped around that engine core. If `~/.corecoder/mcp.json` exists, its MCP servers join the nine as extra `mcp__*` tools; the MCP section below covers it.
 
 ## A `while` loop is the whole agent
 
@@ -164,8 +165,8 @@ I also wrote a bilingual source-reading series, one intro plus eight parts, each
 
 Once you understand it, the natural next step is to fork. Getting started doesn't take much:
 
-- **Swap in a model you actually use.** It's the two env vars from above; `llm.py` (267 lines) is the entry point for all provider adaptation.
-- **Add a tool of your own.** Write a new file against the tool base class in `tools/base.py` (27 lines): run tests, fetch a page, call an LSP, whatever. The end of the second essay walks you through your first one by hand.
+- **Swap in a model you actually use.** It's the two env vars from above; `llm.py` (331 lines) is the entry point for all provider adaptation.
+- **Add a tool of your own.** Write a new file against the tool base class in `tools/base.py` (32 lines): run tests, fetch a page, call an LSP, whatever. The end of the second essay walks you through your first one by hand.
 - **Rewrite the system prompt.** `prompt.py` is all of 41 lines; change one line and you'll watch the agent's temperament shift. It's the cheapest "change one thing, see a result" in the whole project.
 - **Import it as a library.** The top level exports `Agent`, `LLM`, and `Config`, ready to embed in your own program:
 
@@ -204,7 +205,7 @@ Session IDs are sanitized to safe characters before they become filenames, every
 
 ## Permissions
 
-Read-only tools (`read_file`, `glob`, `grep`, `todo_write`) run the moment the model asks. The mutating ones (`edit_file`, `write_file`, `bash`, and spawning a sub-agent) stop for consent first, and the REPL banner shows which mode you're in:
+Read-only tools (`read_file`, `glob`, `grep`, `todo_write`, `fetch_url`) run the moment the model asks. The mutating ones (`edit_file`, `write_file`, `bash`, and spawning a sub-agent) stop for consent first, and the REPL banner shows which mode you're in:
 
 - In the REPL you get one prompt per call: allow once, always allow this tool, or deny. "Always" is remembered per tool for the rest of the session, and a sub-agent inherits the same layer, so consent follows the work wherever it happens.
 - In one-shot mode (`-p`) there is nobody to ask, so a mutating call is refused on the spot and the refusal goes back to the model as an ordinary tool result: the loop never hangs on input that can't arrive. Pass `--yes` to approve everything up front (scripts, CI).
@@ -278,7 +279,7 @@ If working through CoreCoder was useful, here are a few other tools I've built a
 
 ## Contributing / License
 
-Before you send anything, run `pytest tests/ -q` (178 tests), `ruff check`, and `compileall`, and make sure they're green. MIT licensed: fork it, learn from it, ship something better. A mention of this project is appreciated.
+Before you send anything, run `pytest tests/ -q` (179 tests), `ruff check`, and `compileall`, and make sure they're green. MIT licensed: fork it, learn from it, ship something better. A mention of this project is appreciated.
 
 ---
 

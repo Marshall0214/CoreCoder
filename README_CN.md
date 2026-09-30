@@ -2,7 +2,7 @@
 
 # CoreCoder
 
-**编程 agent 里的 nanoGPT。1.3k 行引擎、整包 2595 行纯 Python 全部一口气可读，读懂一个 coding agent 到底怎么运作，再 fork 出你自己的。**
+**编程 agent 里的 nanoGPT。1.3k 行引擎、整包 2638 行纯 Python 全部一口气可读，读懂一个 coding agent 到底怎么运作，再 fork 出你自己的。**
 
 *learn from it · fork it · ship something better*
 
@@ -12,7 +12,7 @@
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Tests](https://github.com/Marshall0214/CoreCoder/actions/workflows/ci.yml/badge.svg)](https://github.com/Marshall0214/CoreCoder/actions)
-[![engine](https://img.shields.io/badge/engine-1308_LoC-blue)](article/)
+[![engine](https://img.shields.io/badge/engine-1346_LoC-blue)](article/)
 [![源码导读](https://img.shields.io/badge/源码导读-8篇双语-orange)](article/)
 
 </div>
@@ -25,7 +25,7 @@
 
 | | CoreCoder | Claude Code | aider | nanoGPT |
 |---|---|---|---|---|
-| 代码量 | 引擎约 1308 行 / 整包 2595 行 | 几十万行（闭源） | 数万行 Python | 约 600 行（两个文件） |
+| 代码量 | 引擎约 1346 行 / 整包 2638 行 | 几十万行（闭源） | 数万行 Python | 约 600 行（两个文件） |
 | 读完要多久 | 一个下午 | 读不了（闭源） | 得啃几天 | 一个下午 |
 | 能不能下断点改了再跑 | 能，每一行 | 不能 | 能，但量大 | 能 |
 | 定位 | 读懂并 fork 出你自己的 agent | 生产级编程助手 | 终端结对编程 | 教学用最小 GPT |
@@ -36,9 +36,9 @@ nanoGPT 那一列是拿来对照的：它最小、可读，但教的是训一个
 
 我一直觉得 coding agent 被讲得太玄了。把 Claude Code、Cursor 这类工具扒到底，核心是一个 while 循环套着一个大模型，外加七八个让它能真正动手的工具。难的从来不是这个循环，而是循环跑进真实世界以后要兜的那些底。CoreCoder 就是把这个核心老老实实写出来的最小版本。
 
-引擎部分（循环、模型接口、上下文、工具、会话）去掉空行和注释是 1308 行。连最外层的 CLI、配置、打包一起算，整个包 24 个文件、物理 2595 行、净 2089 行，每个文件都短到能一口气读完。自 1161 行快照之后的增长都花在了看得见的功能上：plan mode、hooks、checkpoints，下文各有交代。
+引擎部分（循环、模型接口、上下文、工具、会话）去掉空行和注释是 1346 行。连最外层的 CLI、配置、打包一起算，整个包 25 个文件、物理 2638 行、净 2127 行，每个文件都短到能一口气读完。自 1161 行快照之后的增长都花在了看得见的功能上：plan mode、hooks、checkpoints，下文各有交代。
 
-它真能跑：读写文件、执行 shell、派子 agent、分三层压上下文，还能随时把这趟烧掉的 token 和美元数报给你。任何要动你磁盘、要跑命令的调用，都会先停下来等你点头，178 个测试是绿的。但能跑不是为了劝你拿去日用，而是为了让这份「注释」不撒谎：一个解释 agent 怎么运作的范例，自己得真能运作。
+它真能跑：读写文件、执行 shell、派子 agent、分三层压上下文，还能随时把这趟烧掉的 token 和美元数报给你。任何要动你磁盘、要跑命令的调用，都会先停下来等你点头，179 个测试是绿的。但能跑不是为了劝你拿去日用，而是为了让这份「注释」不撒谎：一个解释 agent 怎么运作的范例，自己得真能运作。
 
 代码来自一次公开拆解。公开的源码分析里，Claude Code 这类生产级 agent 暴露出不少关键架构，我挑出最核心的一层，用尽量少的代码诚实地复写了一遍。所以读 CoreCoder，约等于读一份基于公开源码分析的「可运行注释版」：讲的是这类 agent 的核心思路，而它本身只是最小复写，就摆在你机器上，随你拆、随你改。
 
@@ -89,7 +89,7 @@ corecoder -p "给 parse_config() 加错误处理"   # 一次性模式，干完�
 corecoder/
 ├── agent.py        agent 主循环 + 并行工具执行       240 行   ← 从这里开始读
 ├── llm.py          流式客户端 + 重试 + 成本统计       331 行
-├── context.py      三层上下文压缩                     220 行
+├── context.py      三层上下文压缩                     221 行
 ├── session.py      会话存盘 / 续聊 + 路径穿越防护      97 行
 ├── permissions.py  改动类工具的用户授权                48 行
 ├── hooks.py        工具调用前后的用户 shell 钩子        85 行
@@ -100,20 +100,21 @@ corecoder/
 ├── checkpoints.py  /undo 快照与回滚                      44 行
 ├── demo.py         离线端到端演示                       100 行
 └── tools/
-    ├── bash.py       shell + 危险命令闸 + cd 追踪      189 行
-    ├── edit.py       唯一匹配搜索替换 + diff            96 行
+    ├── bash.py       shell + 危险命令闸 + cd 追踪      203 行
+    ├── edit.py       唯一匹配搜索替换 + diff            99 行
     ├── grep.py       内容搜索                           93 行
     ├── glob_tool.py  文件名匹配                         52 行
     ├── read.py       文件读取                           56 行
-    ├── write.py      文件写入                           43 行
+    ├── write.py      文件写入                           46 行
     ├── todo.py       agent 自维护的任务清单             79 行
-    ├── agent.py      子 agent 派生                      64 行
-    └── base.py       工具基类                           27 行
+    ├── agent.py      子 agent 派生                      72 行
+    ├── fetch.py      抓取 URL 文本                      41 行
+    └── base.py       工具基类                           32 行
 examples/
 └── plan_hooks_demo.py  离线 plan mode + hooks 演示（免 API key）
 ```
 
-八个工具：`bash`、`read_file`、`write_file`、`edit_file`、`glob`、`grep`、`todo_write`（agent 自己维护的任务清单）、`agent`（派子 agent）。其余都是包在引擎核心外面的 CLI 外壳、配置和打包。存在 `~/.corecoder/mcp.json` 时，里面的 MCP 服务器会以 `mcp__*` 工具的身份并进这八件里，下面有专门一节讲。
+九个工具：`bash`、`read_file`、`write_file`、`edit_file`、`glob`、`grep`、`todo_write`（agent 自己维护的任务清单）、`agent`（派子 agent）、`fetch_url`（把一个 http(s) URL 抓成文本）。其余都是包在引擎核心外面的 CLI 外壳、配置和打包。存在 `~/.corecoder/mcp.json` 时，里面的 MCP 服务器会以 `mcp__*` 工具的身份并进这九件里，下面有专门一节讲。
 
 ## 一个 while 循环就是 agent 的本体
 
@@ -165,7 +166,7 @@ def chat(self, user_input):
 读懂之后，最自然的下一步就是 fork。起手不用伤筋动骨：
 
 - **换个你常用的模型。** 就是上面那两个环境变量，`llm.py`（331 行）是所有 provider 适配的入口。
-- **加一件你自己的工具。** 照 `tools/base.py`（27 行）的工具基类写个新文件，跑测试、抓网页、调 LSP 都行，第二篇文章末尾手把手带你写第一个。
+- **加一件你自己的工具。** 照 `tools/base.py`（32 行）的工具基类写个新文件，跑测试、抓网页、调 LSP 都行，第二篇文章末尾手把手带你写第一个。
 - **改系统提示词。** `prompt.py` 才 41 行，改一句就能看到 agent 的脾气变了，是门槛最低的「改一处就有反馈」。
 - **直接当库 import。** 顶层导出了 `Agent`、`LLM`、`Config`，能嵌进你自己的程序：
 
@@ -204,7 +205,7 @@ quit / exit      退出（Ctrl+C 取消当前回合）
 
 ## 权限
 
-只读工具（`read_file`、`glob`、`grep`、`todo_write`）模型一调就跑。会动手的那些（`edit_file`、`write_file`、`bash`，以及派生子 agent）先停下来等你点头，REPL 启动横幅里能看到当前是哪种模式：
+只读工具（`read_file`、`glob`、`grep`、`todo_write`、`fetch_url`）模型一调就跑。会动手的那些（`edit_file`、`write_file`、`bash`，以及派生子 agent）先停下来等你点头，REPL 启动横幅里能看到当前是哪种模式：
 
 - REPL 里每次调用问一次：允许这一次、本工具本次会话都允许、或者拒绝。「都允许」按工具记到会话结束；子 agent 继承同一层授权，活走到哪，许可跟到哪。
 - 一次性模式（`-p`）没人可问，改动类调用当场被拒，拒绝理由作为普通工具结果回给模型：循环绝不会卡在等一个永远不会来的输入上。要全部预授权就加 `--yes`（脚本、CI 场景）。
@@ -277,7 +278,7 @@ REPL 里 `/plan` 开关计划模式。开着的时候，提示符变成 `(plan)`
 
 ## 贡献 / License
 
-动手之前先跑一遍 `pytest tests/ -q`（178 个测试）、`ruff check` 和 `compileall`，绿了再提。MIT License，欢迎 fork 拿去造更好的东西，能在 README 里留一句出处就更好。
+动手之前先跑一遍 `pytest tests/ -q`（179 个测试）、`ruff check` 和 `compileall`，绿了再提。MIT License，欢迎 fork 拿去造更好的东西，能在 README 里留一句出处就更好。
 
 ---
 
