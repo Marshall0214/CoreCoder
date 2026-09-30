@@ -53,6 +53,7 @@ class ContextManager:
         self._summarize_at = int(max_tokens * 0.70)  # 70% -> LLM summarize
         self._collapse_at = int(max_tokens * 0.90)   # 90% -> hard collapse
 
+    # TODO: _summarize_old 和 _hard_collapse 都依赖 llm，但这里没检查 llm is None。 如果调用方不传 llm 又超过了阈值，会怎样？可能在函数内部处理，也可能直接崩——值得看这两个函数的实现。
     def maybe_compress(self, messages: list[dict], llm: LLM | None = None) -> bool:
         """Apply compression layers as needed. Returns True if any compression happened."""
         current = estimate_tokens(messages)

@@ -1,6 +1,7 @@
 """Tests for core modules: config, context, session, imports."""
 
 import re
+import sys
 from pathlib import Path
 from typing import ClassVar
 from unittest import mock
@@ -241,8 +242,8 @@ def test_parallel_bash_calls_inherit_and_merge_session_cwd(tmp_path):
     from corecoder.tools.bash import get_tracked_cwd, set_tracked_cwd
 
     def norm_dir(s: str) -> str:
-        # pwd prints the shell's own form: git-bash gives /c/Users/... where
-        # Python gives C:\Users\...; compare both in one canonical shape
+        # a shell prints its own form: git-bash gives /c/Users/... where Python
+        # gives C:\Users\...; compare both in one canonical shape
         s = s.strip().replace("\\", "/").rstrip("/").lower()
         if len(s) >= 3 and s[0] == "/" and s[2] == "/" and s[1].isalpha():
             s = s[1] + ":/" + s[3:]
@@ -254,6 +255,12 @@ def test_parallel_bash_calls_inherit_and_merge_session_cwd(tmp_path):
     target.mkdir()
     (tmp_path / "marker.txt").write_text("x")
 
+    # `pwd` and `ls` only exist where a POSIX toolkit sits on PATH (CI's Windows
+    # image ships one, a stock Git-for-Windows install does not), so the probes
+    # are python one-liners: the same answer under cmd.exe and /bin/sh.
+    pwd = f'{sys.executable} -c "import os; print(os.getcwd())"'
+    ls = f'{sys.executable} -c "import os; print(*os.listdir())"'
+
     class _TC:
         def __init__(self, i, cmd):
             self.name, self.id, self.arguments = "bash", str(i), {"command": cmd}
@@ -261,13 +268,13 @@ def test_parallel_bash_calls_inherit_and_merge_session_cwd(tmp_path):
     prev = get_tracked_cwd()
     set_tracked_cwd(str(tmp_path))
     try:
-        results = agent._exec_tools_parallel([_TC(1, "pwd"), _TC(2, "ls marker.txt")])
+        results = agent._exec_tools_parallel([_TC(1, pwd), _TC(2, ls)])
         assert norm_dir(str(tmp_path)) in norm_dir(results[0])
         assert "marker.txt" in results[1]
 
         # a cd in the batch lands on the session afterwards; siblings in the
         # same batch still start from the pre-batch cwd (parallel, not serial)
-        results = agent._exec_tools_parallel([_TC(3, f"cd {target}"), _TC(4, "pwd")])
+        results = agent._exec_tools_parallel([_TC(3, f"cd {target}"), _TC(4, pwd)])
         assert get_tracked_cwd() == str(target)
         assert norm_dir(str(tmp_path)) in norm_dir(results[1])
     finally:

@@ -1,6 +1,7 @@
 """Pre/PostToolUse shell hooks: loading, matching, blocking, failing open."""
 
 import logging
+import sys
 
 from corecoder import Agent
 from corecoder.demo import ScriptedLLM
@@ -28,13 +29,36 @@ def _agent(tmp_path, hooks, permission=None):
     )
 
 
+def _py(code, *args):
+    """A hook command that means the same thing under cmd.exe and /bin/sh.
+
+    Hooks run through the platform shell, so `sh`, `cat`, `sleep` and `true`
+    only resolve on a lane that happens to have a POSIX toolkit on PATH (CI's
+    Windows image does, a stock Git-for-Windows install does not). `python -c`
+    keeps every fixture here honest on Windows, macOS and Linux alike.
+    """
+    tail = "".join(f' "{a}"' for a in args)
+    return f'{sys.executable} -c "{code}"{tail}'
+
+
+def _blocker(reason):
+    """A pre hook that vetoes with exit 2 and its reason on stderr."""
+    return _py(f"import sys; sys.stderr.write({reason!r}); sys.exit(2)")
+
+
+def _appender(path):
+    """A hook that appends the stdin payload to `path`, cat >> in any shell."""
+    return _py(
+        "import sys; open(sys.argv[1], 'a', encoding='utf-8').write(sys.stdin.read())",
+        path,
+    )
+
+
 def test_pre_hook_blocks_with_reason_and_the_tool_never_runs(tmp_path):
-    blocker = tmp_path / "blocker.sh"
-    blocker.write_text("#!/bin/sh\necho 'writes are frozen today' >&2\nexit 2\n")
     asked = []
     agent = _agent(
         tmp_path,
-        Hooks(pre=[{"matcher": "*", "command": f"sh {blocker}"}], post=[]),
+        Hooks(pre=[{"matcher": "*", "command": _blocker("writes are frozen today")}], post=[]),
         permission=Permission(ask=lambda n, a: asked.append(n) or "once"),
     )
 
@@ -47,7 +71,7 @@ def test_pre_hook_blocks_with_reason_and_the_tool_never_runs(tmp_path):
 
 
 def test_pre_hook_passing_lets_the_call_through(tmp_path):
-    agent = _agent(tmp_path, Hooks(pre=[{"matcher": "", "command": "true"}], post=[]))
+    agent = _agent(tmp_path, Hooks(pre=[{"matcher": "", "command": "exit 0"}], post=[]))
 
     assert agent.chat("go") == "done"
     assert (tmp_path / "a.txt").exists()
@@ -55,7 +79,7 @@ def test_pre_hook_passing_lets_the_call_through(tmp_path):
 
 def test_post_hook_observes_the_finished_call(tmp_path):
     marker = tmp_path / "seen.jsonl"
-    agent = _agent(tmp_path, Hooks(pre=[], post=[{"matcher": "*", "command": f"cat >> {marker}"}]))
+    agent = _agent(tmp_path, Hooks(pre=[], post=[{"matcher": "*", "command": _appender(marker)}]))
 
     assert agent.chat("go") == "done"
     seen = marker.read_text()
@@ -65,8 +89,7 @@ def test_post_hook_observes_the_finished_call(tmp_path):
 
 def test_matcher_scopes_a_hook_to_one_tool(tmp_path):
     # a bash-only veto must not touch a write_file call
-    cmd = "echo blocked >&2; exit 2"
-    agent = _agent(tmp_path, Hooks(pre=[{"matcher": "bash", "command": cmd}], post=[]))
+    agent = _agent(tmp_path, Hooks(pre=[{"matcher": "bash", "command": _blocker("blocked")}], post=[]))
 
     assert agent.chat("go") == "done"
     assert (tmp_path / "a.txt").exists()
@@ -99,7 +122,7 @@ def test_failing_hook_is_skipped_with_a_warning(tmp_path, caplog):
 
 def test_slow_hook_times_out_and_is_skipped(tmp_path, caplog, monkeypatch):
     monkeypatch.setattr("corecoder.hooks.TIMEOUT", 0.3)
-    agent = _agent(tmp_path, Hooks(pre=[{"matcher": "*", "command": "sleep 5"}], post=[]))
+    agent = _agent(tmp_path, Hooks(pre=[{"matcher": "*", "command": _py("import time; time.sleep(2)")}], post=[]))
     with caplog.at_level(logging.WARNING):
         assert agent.chat("go") == "done"
     assert (tmp_path / "a.txt").exists()
@@ -117,8 +140,8 @@ def test_hooks_gate_each_call_of_a_parallel_batch(tmp_path):
         llm=ScriptedLLM([LLMResponse(tool_calls=calls), LLMResponse(content="done")]),
         tools=[WriteFileTool()],
         hooks=Hooks(
-            pre=[{"matcher": "*", "command": f"cat >> {pre_log}"}],
-            post=[{"matcher": "*", "command": f"cat >> {post_log}"}],
+            pre=[{"matcher": "*", "command": _appender(pre_log)}],
+            post=[{"matcher": "*", "command": _appender(post_log)}],
         ),
     )
 
@@ -138,7 +161,7 @@ def test_sub_agent_inherits_the_hooks(tmp_path):
             LLMResponse(content="parent done"),
         ]),
         tools=[AgentTool(), WriteFileTool()],
-        hooks=Hooks(pre=[{"matcher": "write_file", "command": "sh -c 'echo no >&2; exit 2'"}], post=[]),
+        hooks=Hooks(pre=[{"matcher": "write_file", "command": _blocker("no")}], post=[]),
     )
 
     assert agent.chat("go") == "parent done"

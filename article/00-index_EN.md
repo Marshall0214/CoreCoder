@@ -38,7 +38,7 @@ You don't have to read in order. Want to understand how it dares to run commands
 Before you read, let it run once on your machine, so the code that follows has a feel to it.
 
 ```bash
-git clone https://github.com/he-yufeng/CoreCoder
+git clone https://github.com/Marshall0214/CoreCoder
 cd CoreCoder
 pip install -e .
 ```

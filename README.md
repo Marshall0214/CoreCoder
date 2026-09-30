@@ -2,7 +2,7 @@
 
 # CoreCoder
 
-**The nanoGPT of coding agents. A 1.3k-line engine inside 2,594 readable lines of pure Python: understand how a coding agent actually works, then fork your own.**
+**The nanoGPT of coding agents. A 1.3k-line engine inside 2,595 readable lines of pure Python: understand how a coding agent actually works, then fork your own.**
 
 *learn from it · fork it · ship something better*
 
@@ -11,7 +11,7 @@
 [![PyPI](https://img.shields.io/pypi/v/corecoder)](https://pypi.org/project/corecoder/)
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Tests](https://github.com/he-yufeng/CoreCoder/actions/workflows/ci.yml/badge.svg)](https://github.com/he-yufeng/CoreCoder/actions)
+[![Tests](https://github.com/Marshall0214/CoreCoder/actions/workflows/ci.yml/badge.svg)](https://github.com/Marshall0214/CoreCoder/actions)
 [![engine](https://img.shields.io/badge/engine-1308_LoC-blue)](article/00-index_EN.md)
 [![essays](https://img.shields.io/badge/source--reading-8_bilingual-orange)](article/00-index_EN.md)
 
@@ -25,7 +25,7 @@
 
 | | CoreCoder | Claude Code | aider | nanoGPT |
 |---|---|---|---|---|
-| Lines of code | ~1,308 engine / 2,594 total | hundreds of thousands (closed) | tens of thousands of Python | ~600 (two files) |
+| Lines of code | ~1,308 engine / 2,595 total | hundreds of thousands (closed) | tens of thousands of Python | ~600 (two files) |
 | Time to read it all | one afternoon | can't (closed) | a few days of slogging | one afternoon |
 | Breakpoint, change, rerun? | yes, every line | no | yes, but there's a lot | yes |
 | What it's for | understand one, then fork your own | production coding assistant | terminal pair-programming | minimal GPT for teaching |
@@ -36,14 +36,14 @@ The nanoGPT column is there as a reference point: minimal, readable, but it teac
 
 I've always felt coding agents get talked about as if they were arcane. Strip a tool like Claude Code or Cursor all the way down and the core is a `while` loop wrapped around a large model, plus seven or eight tools that let it actually do things. The hard part was never the loop; it's everything the loop has to cope with once it meets the real world. CoreCoder is the minimal version that writes that core out honestly.
 
-The engine (loop, model interface, context, tools, sessions) is 1,308 lines once you drop blank lines and comments. Counting the outer CLI, config and packaging too, the whole package is 24 files: 2,594 physical lines, 2,089 net, every one short enough to read in a single sitting. The growth since the original 1,161-line snapshot went into visible features: plan mode, hooks and checkpoints, each documented below.
+The engine (loop, model interface, context, tools, sessions) is 1,308 lines once you drop blank lines and comments. Counting the outer CLI, config and packaging too, the whole package is 24 files: 2,595 physical lines, 2,089 net, every one short enough to read in a single sitting. The growth since the original 1,161-line snapshot went into visible features: plan mode, hooks and checkpoints, each documented below.
 
-And it really runs: reads and writes files, executes shell, spawns sub-agents, compacts context in three tiers, and tells you the tokens and dollars a run burned whenever you ask. Anything that would mutate your disk or run a command stops for your consent first. 171 tests, all green. But the point of it running isn't to become your daily driver. It runs so the walkthrough can't lie: a reference that shows how an agent works has to actually work.
+And it really runs: reads and writes files, executes shell, spawns sub-agents, compacts context in three tiers, and tells you the tokens and dollars a run burned whenever you ask. Anything that would mutate your disk or run a command stops for your consent first. 178 tests, all green. But the point of it running isn't to become your daily driver. It runs so the walkthrough can't lie: a reference that shows how an agent works has to actually work.
 
 The code came out of a public teardown: open analyses have already exposed a lot of the load-bearing architecture inside production agents like Claude Code. I took the most essential layer and rewrote it honestly, in as little code as I could. So reading CoreCoder is roughly like reading a runnable, annotated take on how that kind of agent works, except it's only a minimal reimplementation, sitting right there on your machine for you to take apart and change.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/he-yufeng/CoreCoder/main/assets/demo-plan-hooks.gif" width="760"
+  <img src="https://raw.githubusercontent.com/Marshall0214/CoreCoder/main/assets/demo-plan-hooks.gif" width="760"
        alt="Plan mode in action: the agent reads fib.py, gets its edit refused while plan mode is on, presents a plan, and only after approval edits, tests, and reports — with Pre/PostToolUse hooks firing around every call.">
 </p>
 
@@ -56,7 +56,7 @@ This README follows the same arc: the first half helps you **read it** (the code
 Before you read the source, get it running on your machine once to build some intuition. It's a foundation meant for forking, so the recommended path is to clone it and install editable, reading and changing as you go:
 
 ```bash
-git clone https://github.com/he-yufeng/CoreCoder
+git clone https://github.com/Marshall0214/CoreCoder
 cd CoreCoder
 pip install -e .
 ```
@@ -278,7 +278,7 @@ If working through CoreCoder was useful, here are a few other tools I've built a
 
 ## Contributing / License
 
-Before you send anything, run `pytest tests/ -q` (171 tests), `ruff check`, and `compileall`, and make sure they're green. MIT licensed: fork it, learn from it, ship something better. A mention of this project is appreciated.
+Before you send anything, run `pytest tests/ -q` (178 tests), `ruff check`, and `compileall`, and make sure they're green. MIT licensed: fork it, learn from it, ship something better. A mention of this project is appreciated.
 
 ---
 

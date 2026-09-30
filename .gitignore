@@ -15,3 +15,5 @@ venv/
 .DS_Store
 .pytest_cache/
 .tmp/
+tests/.pytest_tmp/
+学习笔记.md

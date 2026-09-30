@@ -38,7 +38,7 @@ CoreCoder 做的事，是把这套骨架压到一千行出头的纯 Python。准
 读之前先让它在你机器上活一次，后面所有代码你才有体感。
 
 ```bash
-git clone https://github.com/he-yufeng/CoreCoder
+git clone https://github.com/Marshall0214/CoreCoder
 cd CoreCoder
 pip install -e .
 ```
