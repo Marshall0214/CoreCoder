@@ -52,3 +52,6 @@ Issues = "https://github.com/Marshall0214/CoreCoder/issues"
 [tool.ruff]
 line-length = 130
 target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

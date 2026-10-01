@@ -1,0 +1,7 @@
+[
+  {
+    "file": "options.py",
+    "old": "overrides.items() if value}",
+    "new": "overrides.items() if value is not None}"
+  }
+]

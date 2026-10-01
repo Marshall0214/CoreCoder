@@ -1,0 +1,12 @@
+{
+  "task_id": "inclusive-date",
+  "title": "日期查询结束日包含",
+  "description": "query_dates 的公开接口约定起止日期都包含，但底层筛选使用左闭右开区间，导致结束日数据丢失。请检查日期窗口转换，包含结束日，同时排除结束日之后的数据。",
+  "allowed_files": [
+    "date_utils.py",
+    "window.py",
+    "service.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}

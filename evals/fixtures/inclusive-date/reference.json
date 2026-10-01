@@ -1,0 +1,7 @@
+[
+  {
+    "file": "window.py",
+    "old": "return date.fromisoformat(start), date.fromisoformat(end)",
+    "new": "return date.fromisoformat(start), next_day(end)"
+  }
+]

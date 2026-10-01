@@ -1,0 +1,7 @@
+[
+  {
+    "file": "worker.py",
+    "old": "    if status_code >= 400:",
+    "new": "    if is_retryable(status_code):"
+  }
+]

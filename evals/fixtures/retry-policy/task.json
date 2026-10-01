@@ -1,0 +1,12 @@
+{
+  "task_id": "retry-policy",
+  "title": "错误响应重试策略",
+  "description": "handle_response 对所有 4xx 响应都安排重试，与项目的重试策略不一致。请按 policy.py 中的策略决定：429 和 5xx 重试，其他错误停止，成功响应仍返回 done。",
+  "allowed_files": [
+    "policy.py",
+    "worker.py",
+    "service.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}

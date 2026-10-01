@@ -1,0 +1,12 @@
+{
+  "task_id": "timeout-units",
+  "title": "请求超时单位转换",
+  "description": "build_request 的 timeout_ms 错把配置中的秒数当作毫秒传递。请追踪配置解析到请求构建的调用链，正确转换秒到整数毫秒，包括零和小数秒；保留默认配置行为。",
+  "allowed_files": [
+    "settings.py",
+    "transport.py",
+    "service.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}

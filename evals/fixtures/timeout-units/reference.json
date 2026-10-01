@@ -1,0 +1,7 @@
+[
+  {
+    "file": "transport.py",
+    "old": "\"timeout_ms\": settings.timeout_seconds",
+    "new": "\"timeout_ms\": int(settings.timeout_seconds * 1000)"
+  }
+]

@@ -1,0 +1,7 @@
+[
+  {
+    "file": "keys.py",
+    "old": "    return user_id",
+    "new": "    return (tenant_id, user_id)"
+  }
+]

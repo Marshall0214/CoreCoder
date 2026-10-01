@@ -1,0 +1,12 @@
+{
+  "task_id": "tenant-cache",
+  "title": "租户缓存键隔离",
+  "description": "不同租户使用相同 user_id 时，会互相覆盖会话缓存。请检查键生成和存取调用链，让缓存同时按 tenant_id 与 user_id 隔离；标识中可能包含冒号，不能引入拼接碰撞。",
+  "allowed_files": [
+    "keys.py",
+    "store.py",
+    "service.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}

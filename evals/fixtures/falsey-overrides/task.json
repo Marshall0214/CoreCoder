@@ -1,0 +1,12 @@
+{
+  "task_id": "falsey-overrides",
+  "title": "显式零值与布尔配置",
+  "description": "effective_options 丢弃了用户显式设置的 0 和 False，误用了默认值。请检查配置覆盖链路，只把 None 当作未提供；零、False 与空字符串都应保留，未提供的键继续使用默认值。",
+  "allowed_files": [
+    "defaults.py",
+    "options.py",
+    "service.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}
