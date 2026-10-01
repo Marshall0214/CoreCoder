@@ -1,0 +1,12 @@
+[
+  {
+    "file": "query.py",
+    "old": "    return [row for row in ordered if row[\"created\"] > after[0]]",
+    "new": "    return [row for row in ordered if (row[\"created\"], row[\"id\"]) > after]"
+  },
+  {
+    "file": "paging.py",
+    "old": "    next_cursor = encode_cursor(selected[-1]) if len(selected) > limit else None",
+    "new": "    next_cursor = encode_cursor(items[-1]) if len(selected) > limit else None"
+  }
+]

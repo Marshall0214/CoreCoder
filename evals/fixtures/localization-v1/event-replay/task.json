@@ -1,0 +1,16 @@
+{
+  "task_id": "event-replay",
+  "title": "事件重放后的投影不完整",
+  "description": "通过 replay_batch 导入历史事件后，有时部分租户的计数未更新，有时追加的一批记录只更新了一部分。请按照项目事件契约修复，并保留已有重放接口及离线导出行为。",
+  "allowed_files": [
+    "audit.py",
+    "event_keys.py",
+    "export_keys.py",
+    "gateway.py",
+    "notifications.py",
+    "projector.py",
+    "snapshot.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}

@@ -1,0 +1,17 @@
+{
+  "suite": "localization-v1",
+  "purpose": "development",
+  "source": "synthetic",
+  "relevant_files": [
+    "gateway.py",
+    "event_keys.py",
+    "projector.py",
+    "docs/events.md"
+  ],
+  "reference_changed_files": [
+    "event_keys.py",
+    "projector.py"
+  ],
+  "annotation_level": "file",
+  "notes": "Parent-side diagnostic labels only. Do not copy into agent workspace or retrieval index. Difficulty is unmeasured; reference edits are not the only acceptable repairs."
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "file": "event_keys.py",
+    "old": "    return event[\"event_id\"]",
+    "new": "    return (event[\"tenant\"], event[\"event_id\"])"
+  },
+  {
+    "file": "projector.py",
+    "old": "        if identity in seen:\n            return state",
+    "new": "        if identity in seen:\n            continue"
+  }
+]

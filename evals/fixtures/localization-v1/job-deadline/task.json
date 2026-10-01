@@ -1,0 +1,16 @@
+{
+  "task_id": "job-deadline",
+  "title": "失败任务超过约定执行期限",
+  "description": "run_job 在外部服务持续失败时，实际消耗时间有时超过调用者给定的总期限。请依据仓库执行契约修复。测试使用虚拟时钟，请保留现有返回结构、尝试次数含义和独立退避预览行为。",
+  "allowed_files": [
+    "backoff_preview.py",
+    "budget.py",
+    "clock.py",
+    "execution.py",
+    "health.py",
+    "jobs.py",
+    "retry.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}

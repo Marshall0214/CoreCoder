@@ -1,0 +1,16 @@
+{
+  "task_id": "checkout-rounding",
+  "title": "结算金额与账单不一致",
+  "description": "调用 submit_order 后，部分包含小数单价或优惠的订单，其 payable_minor 与业务账单不一致。请保持公开返回结构，按照仓库中的结算契约修复，确保普通订单和旧报表行为仍兼容。",
+  "allowed_files": [
+    "catalog.py",
+    "checkout.py",
+    "display.py",
+    "fees.py",
+    "legacy_report.py",
+    "pricing.py",
+    "shipping.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}

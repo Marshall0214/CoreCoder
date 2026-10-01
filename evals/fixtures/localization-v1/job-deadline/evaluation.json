@@ -1,0 +1,19 @@
+{
+  "suite": "localization-v1",
+  "purpose": "development",
+  "source": "synthetic",
+  "relevant_files": [
+    "jobs.py",
+    "execution.py",
+    "budget.py",
+    "retry.py",
+    "clock.py",
+    "docs/execution.md"
+  ],
+  "reference_changed_files": [
+    "budget.py",
+    "retry.py"
+  ],
+  "annotation_level": "file",
+  "notes": "Parent-side diagnostic labels only. Do not copy into agent workspace or retrieval index. Difficulty is unmeasured; reference edits are not the only acceptable repairs."
+}

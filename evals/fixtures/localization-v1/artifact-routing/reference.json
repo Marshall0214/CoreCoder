@@ -1,0 +1,12 @@
+[
+  {
+    "file": "matching.py",
+    "old": "    return fnmatchcase(path, canonical_path(rule.pattern))",
+    "new": "    return fnmatchcase(canonical_path(path), canonical_path(rule.pattern))"
+  },
+  {
+    "file": "routing.py",
+    "old": "    return matches[0].destination",
+    "new": "    return max(matches, key=lambda rule: rule.priority).destination"
+  }
+]

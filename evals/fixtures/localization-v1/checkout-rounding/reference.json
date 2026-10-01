@@ -1,0 +1,12 @@
+[
+  {
+    "file": "pricing.py",
+    "old": "    return int(amount)",
+    "new": "    return int(amount.quantize(Decimal(\"1\"), rounding=ROUND_HALF_UP))"
+  },
+  {
+    "file": "fees.py",
+    "old": "    return int(amount)",
+    "new": "    return int(amount.quantize(Decimal(\"1\"), rounding=ROUND_HALF_UP))"
+  }
+]

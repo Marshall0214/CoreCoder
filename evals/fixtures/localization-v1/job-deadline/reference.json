@@ -1,0 +1,12 @@
+[
+  {
+    "file": "budget.py",
+    "old": "    return requested",
+    "new": "    return min(requested, remaining)"
+  },
+  {
+    "file": "retry.py",
+    "old": "    clock.advance(delay)",
+    "new": "    clock.advance(min(delay, max(0.0, deadline - clock.now())))"
+  }
+]

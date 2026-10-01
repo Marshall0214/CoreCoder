@@ -1,0 +1,18 @@
+{
+  "suite": "localization-v1",
+  "purpose": "development",
+  "source": "synthetic",
+  "relevant_files": [
+    "api.py",
+    "cursor_codec.py",
+    "query.py",
+    "paging.py",
+    "docs/paging.md"
+  ],
+  "reference_changed_files": [
+    "query.py",
+    "paging.py"
+  ],
+  "annotation_level": "file",
+  "notes": "Parent-side diagnostic labels only. Do not copy into agent workspace or retrieval index. Difficulty is unmeasured; reference edits are not the only acceptable repairs."
+}

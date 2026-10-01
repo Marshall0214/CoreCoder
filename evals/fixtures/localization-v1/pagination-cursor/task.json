@@ -1,0 +1,16 @@
+{
+  "task_id": "pagination-cursor",
+  "title": "分页浏览记录时出现遗漏",
+  "description": "使用 browse_records 连续浏览数据时，返回结果偶尔遗漏记录，尤其是在同一时间写入多条数据的情况下。请按照仓库分页契约修复，使不同页大小下的遍历均完整，保持游标为不透明字符串。",
+  "allowed_files": [
+    "api.py",
+    "cursor_codec.py",
+    "feed.py",
+    "offset_paging.py",
+    "paging.py",
+    "query.py",
+    "search.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}
