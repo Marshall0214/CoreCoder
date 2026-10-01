@@ -15,6 +15,7 @@ from corecoder.tools.edit import EditFileTool
 from corecoder.tools.glob_tool import GlobTool
 from corecoder.tools.grep import GrepTool
 from corecoder.tools.read import ReadFileTool
+from corecoder.tools.search_code import SearchCodeTool
 from corecoder.tools.todo import TodoWriteTool
 from corecoder.tools.write import WriteFileTool
 
@@ -114,10 +115,15 @@ class ScopedTool(Tool):
         return output
 
 
-def make_tools(workspace: Path, allowed_files: list[str], events: Events, timeout: int) -> list[Tool]:
+def make_tools(workspace: Path, allowed_files: list[str], events: Events, timeout: int,
+               config: RunConfig | None = None) -> list[Tool]:
     # Construct instances, never mutate the module-level ALL_TOOLS collection.
-    return [ScopedTool(cls(), workspace, allowed_files, events, timeout)
-            for cls in (ReadFileTool, GlobTool, GrepTool, EditFileTool, WriteFileTool, TodoWriteTool, BashTool)]
+    tools = [ScopedTool(cls(), workspace, allowed_files, events, timeout)
+             for cls in (ReadFileTool, GlobTool, GrepTool, EditFileTool, WriteFileTool, TodoWriteTool, BashTool)]
+    if config is not None and config.search_backend != "off":
+        search = SearchCodeTool(workspace, allowed_files, config.search_backend, config.search_max_chars, events.emit)
+        tools.append(ScopedTool(search, workspace, allowed_files, events, timeout))
+    return tools
 
 
 class BudgetLLM:

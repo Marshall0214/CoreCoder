@@ -2,7 +2,7 @@
 
 # CoreCoder
 
-**编程 agent 里的 nanoGPT。1.3k 行引擎、整包 2638 行纯 Python 全部一口气可读，读懂一个 coding agent 到底怎么运作，再 fork 出你自己的。**
+**编程 agent 里的 nanoGPT。1.4k 行引擎、整包 2844 行纯 Python，读懂一个 coding agent 到底怎么运作，再 fork 出你自己的。**
 
 *learn from it · fork it · ship something better*
 
@@ -12,7 +12,7 @@
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Tests](https://github.com/Marshall0214/CoreCoder/actions/workflows/ci.yml/badge.svg)](https://github.com/Marshall0214/CoreCoder/actions)
-[![engine](https://img.shields.io/badge/engine-1346_LoC-blue)](article/)
+[![engine](https://img.shields.io/badge/engine-1420_LoC-blue)](article/)
 [![源码导读](https://img.shields.io/badge/源码导读-8篇双语-orange)](article/)
 
 </div>
@@ -25,7 +25,7 @@
 
 | | CoreCoder | Claude Code | aider | nanoGPT |
 |---|---|---|---|---|
-| 代码量 | 引擎约 1346 行 / 整包 2638 行 | 几十万行（闭源） | 数万行 Python | 约 600 行（两个文件） |
+| 代码量 | 引擎约 1420 行 / 整包 2844 行 | 几十万行（闭源） | 数万行 Python | 约 600 行（两个文件） |
 | 读完要多久 | 一个下午 | 读不了（闭源） | 得啃几天 | 一个下午 |
 | 能不能下断点改了再跑 | 能，每一行 | 不能 | 能，但量大 | 能 |
 | 定位 | 读懂并 fork 出你自己的 agent | 生产级编程助手 | 终端结对编程 | 教学用最小 GPT |
@@ -36,7 +36,7 @@ nanoGPT 那一列是拿来对照的：它最小、可读，但教的是训一个
 
 我一直觉得 coding agent 被讲得太玄了。把 Claude Code、Cursor 这类工具扒到底，核心是一个 while 循环套着一个大模型，外加七八个让它能真正动手的工具。难的从来不是这个循环，而是循环跑进真实世界以后要兜的那些底。CoreCoder 就是把这个核心老老实实写出来的最小版本。
 
-引擎部分（循环、模型接口、上下文、工具、会话）去掉空行和注释是 1346 行。连最外层的 CLI、配置、打包一起算，整个包 25 个文件、物理 2638 行、净 2127 行，每个文件都短到能一口气读完。自 1161 行快照之后的增长都花在了看得见的功能上：plan mode、hooks、checkpoints，下文各有交代。
+引擎部分（循环、模型接口、上下文、工具、会话）去掉空行和注释是 1420 行。连最外层的 CLI、配置和检索模块一起算，整个包 28 个文件、物理 2844 行、净 2310 行。自 1161 行快照之后新增了 plan mode、hooks、checkpoints 和可选证据检索工具。检索工具通过评测器启用，未加入普通 CLI 的默认工具集合。包外的评测代码与任务样例不计入这些行数，详见 [search_code 与评测协议](docs/p0-2-search-code.md)。
 
 它真能跑：读写文件、执行 shell、派子 agent、分三层压上下文，还能随时把这趟烧掉的 token 和美元数报给你。任何要动你磁盘、要跑命令的调用，都会先停下来等你点头，179 个测试是绿的。但能跑不是为了劝你拿去日用，而是为了让这份「注释」不撒谎：一个解释 agent 怎么运作的范例，自己得真能运作。
 
@@ -99,7 +99,11 @@ corecoder/
 ├── config.py       环境变量配置                        55 行
 ├── checkpoints.py  /undo 快照与回滚                      44 行
 ├── demo.py         离线端到端演示                       100 行
+├── retrieval/
+│   ├── __init__.py  检索包入口                            1 行
+│   └── keyword.py   内存 BM25 证据索引                  121 行
 └── tools/
+    ├── search_code.py 评测器可选检索工具                  84 行
     ├── bash.py       shell + 危险命令闸 + cd 追踪      203 行
     ├── edit.py       唯一匹配搜索替换 + diff            99 行
     ├── grep.py       内容搜索                           93 行

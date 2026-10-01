@@ -61,10 +61,16 @@ class RunConfig:
     test_timeout: int = 15
     temperature: float = 0.0
     reasoning_effort: str | None = None
+    search_backend: str = "off"
+    search_max_chars: int = 6000
 
     def __post_init__(self):
         if self.mode not in {"unchanged", "reference", "scripted", "live"}:
             raise ValueError("Unknown run mode")
+        if self.search_backend not in {"off", "none", "keyword"}:
+            raise ValueError("search_backend must be off, none or keyword")
+        if not isinstance(self.search_max_chars, int) or isinstance(self.search_max_chars, bool) or not 256 <= self.search_max_chars <= 20000:
+            raise ValueError("search_max_chars must be between 256 and 20000")
         for name in ("max_rounds", "token_budget", "max_output_tokens", "context_tokens", "wall_timeout", "test_timeout"):
             if not isinstance(getattr(self, name), int) or isinstance(getattr(self, name), bool) or getattr(self, name) < 1:
                 raise ValueError(f"{name} must be a positive integer")

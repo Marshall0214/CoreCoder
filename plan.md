@@ -104,7 +104,7 @@
 
 - [x] localization-v1 开发集：用户验收 16 项新增测试、219 项完整回归通过，离线缺陷/参考/工具修复分别 0/5、5/5、5/5；真实基线主验收 0/15，失败分析见 [docs/localization-v1-baseline.md](docs/localization-v1-baseline.md)。
 
-- [ ] 解析 Python/Markdown，建立版本化索引及 `search_code`。
+- [x] Python/Markdown 的 search_code 与内存 BM25 索引已实现并验收；完整回归 236 passed、1 skipped，30 次共同协议对照 none 0/15、keyword 1/15，结果见 [docs/search-code-v1-results.md](docs/search-code-v1-results.md)。
 - [ ] 关键词检索起步，加入 Embedding 与向量索引，再按开发集结果增加融合和重排。
 - [ ] 实现直接拼接、去重及预算分配，记录每轮选择/丢弃的证据。
 - [ ] 比较固定长度与 AST 分块，再验证反馈驱动的证据更新。
@@ -174,4 +174,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**下一步：提交已验收任务与失败基线文档 → 开发覆盖 Python/Markdown 契约的统一 `search_code` → 在共同接口和预算下建立控制与关键词检索对照。**
+**下一步：提交 search_code 实现与完整对照结果 → 单独定义上下文去重/开销干预或预算敏感性诊断 → 在共同协议下继续实验。**

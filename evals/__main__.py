@@ -24,13 +24,15 @@ def main() -> int:
     parser.add_argument("--test-timeout", type=int, default=15)
     parser.add_argument("--reasoning-effort", default=None)
     parser.add_argument("--temperature", type=float, default=0.0)
+    parser.add_argument("--search-backend", choices=("off", "none", "keyword"), default="off")
+    parser.add_argument("--search-max-chars", type=int, default=6000)
     args = parser.parse_args()
     if args.repeat < 1:
         parser.error("--repeat must be positive")
     try:
         config = RunConfig(**{key: getattr(args, key) for key in (
             "mode", "model", "base_url", "max_rounds", "token_budget", "max_output_tokens", "context_tokens",
-            "wall_timeout", "test_timeout", "reasoning_effort", "temperature")})
+            "wall_timeout", "test_timeout", "reasoning_effort", "temperature", "search_backend", "search_max_chars")})
         tasks = load_suite(args.suite, args.task)
     except (ValueError, KeyError) as exc:
         parser.error(str(exc))

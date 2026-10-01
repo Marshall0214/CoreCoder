@@ -1,8 +1,10 @@
 # P0-1：任务与独立验证闭环
 
-当前实现只负责验证修复闭环，尚未开发 RAG、新上下文策略或服务端。复用上游 CoreCoder 的 Agent 循环、文件工具、LLM 接口与上下文压缩；新增任务协议、受限工具适配、独立 Worker、预算、验证器和证据记录。
+当前实现包括独立修复验证闭环及可选关键词证据工具，尚未开发向量检索、新上下文策略或服务端。复用上游 CoreCoder 的 Agent 循环、文件工具、LLM 接口与上下文压缩；新增任务协议、受限工具适配、独立 Worker、预算、验证器和证据记录。
 
-P0-2 新增的 5 项人工开发任务独立放在 `fixtures/localization-v1/`，需要显式传入 `--suite evals/fixtures/localization-v1`，默认命令仍运行原来的 5 项回归任务。设计和验收步骤见 [开发任务说明](../docs/p0-2-localization-tasks.md)。新增任务尚待用户验收。
+P0-2 新增的 5 项人工开发任务独立放在 `fixtures/localization-v1/`，需要显式传入 `--suite evals/fixtures/localization-v1`，默认命令仍运行原来的 5 项回归任务。设计和验收步骤见 [开发任务说明](../docs/p0-2-localization-tasks.md)。任务已完成用户离线验收，历史真实模型结果单独保留。
+
+`--search-backend off|none|keyword` 可选择不添加搜索工具、空证据控制或关键词证据。off 为兼容默认；none/keyword 使用相同 Schema 和提示。实现、限制及用户验收命令见 [search_code 说明](../docs/p0-2-search-code.md)。搜索代码尚未执行测试或模型验证。
 
 ## 快速运行
 

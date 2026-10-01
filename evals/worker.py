@@ -75,6 +75,8 @@ class FixtureAgent(Agent):
 def scripted_llm(job: dict) -> ScriptedLLM:
     # Deliberately oracle-assisted harness test, NEVER a model benchmark.
     turns = []
+    if job["config"].get("search_backend", "off") != "off":
+        turns.append(LLMResponse(tool_calls=[ToolCall("search", "search_code", {"query": "contract contracts", "top_k": 3})]))
     for i, edit in enumerate(job["oracle_edits"]):
         turns.append(LLMResponse(tool_calls=[ToolCall(f"read-{i}", "read_file", {"file_path": edit["file"]})]))
         turns.append(LLMResponse(tool_calls=[ToolCall(f"edit-{i}", "edit_file", {
@@ -95,7 +97,7 @@ def main(job_path: Path) -> int:
     try:
         workspace = Path(job["workspace"]).resolve()
         os.chdir(workspace)
-        tools = make_tools(workspace, job["allowed_files"], events, config.test_timeout)
+        tools = make_tools(workspace, job["allowed_files"], events, config.test_timeout, config)
         events.emit("worker_started", mode=config.mode, model=config.model)
         if config.mode == "scripted":
             llm = scripted_llm(job)
@@ -119,7 +121,13 @@ def main(job_path: Path) -> int:
                   f"Read related modules before editing. Do not modify tests or create files. "
                   f"The only permitted shell command is: {VISIBLE_COMMAND}. "
                   "Fix the implementation; passing visible tests alone is not final acceptance.")
+        if config.search_backend != "off":
+            prompt += (" Use search_code first to locate relevant code and documented contracts. "
+                       "Check cross-module behavior and use read_file for full context before editing. "
+                       "Search may return no evidence; existing read/glob/grep remain available.")
         result["prompt_hash"] = hashlib.sha256((agent._system + "\n" + prompt).encode()).hexdigest()
+        normalized_prompt = (agent._system + "\n" + prompt).replace(str(workspace), "<TASK_WORKSPACE>")
+        result["protocol_prompt_hash"] = hashlib.sha256(normalized_prompt.encode()).hexdigest()
         result["tool_schema_hash"] = hashlib.sha256(json.dumps(agent._tool_schemas(), sort_keys=True).encode()).hexdigest()
         answer = agent.chat(prompt)
         result.update(status="round_limit" if answer == "(reached maximum tool-call rounds)" else "completed",
