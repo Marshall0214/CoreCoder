@@ -2,7 +2,7 @@
 
 # CoreCoder
 
-**The nanoGPT of coding agents. A 1.4k-line engine inside 2,844 readable lines of pure Python: understand how a coding agent actually works, then fork your own.**
+**The nanoGPT of coding agents. A 1.4k-line engine inside 2,872 readable lines of pure Python: understand how a coding agent actually works, then fork your own.**
 
 *learn from it · fork it · ship something better*
 
@@ -12,7 +12,7 @@
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Tests](https://github.com/Marshall0214/CoreCoder/actions/workflows/ci.yml/badge.svg)](https://github.com/Marshall0214/CoreCoder/actions)
-[![engine](https://img.shields.io/badge/engine-1420_LoC-blue)](article/00-index_EN.md)
+[![engine](https://img.shields.io/badge/engine-1446_LoC-blue)](article/00-index_EN.md)
 [![essays](https://img.shields.io/badge/source--reading-8_bilingual-orange)](article/00-index_EN.md)
 
 </div>
@@ -25,7 +25,7 @@
 
 | | CoreCoder | Claude Code | aider | nanoGPT |
 |---|---|---|---|---|
-| Lines of code | ~1,420 engine / 2,844 total | hundreds of thousands (closed) | tens of thousands of Python | ~600 (two files) |
+| Lines of code | ~1,446 engine / 2,872 total | hundreds of thousands (closed) | tens of thousands of Python | ~600 (two files) |
 | Time to read it all | one afternoon | can't (closed) | a few days of slogging | one afternoon |
 | Breakpoint, change, rerun? | yes, every line | no | yes, but there's a lot | yes |
 | What it's for | understand one, then fork your own | production coding assistant | terminal pair-programming | minimal GPT for teaching |
@@ -36,7 +36,7 @@ The nanoGPT column is there as a reference point: minimal, readable, but it teac
 
 I've always felt coding agents get talked about as if they were arcane. Strip a tool like Claude Code or Cursor all the way down and the core is a `while` loop wrapped around a large model, plus seven or eight tools that let it actually do things. The hard part was never the loop; it's everything the loop has to cope with once it meets the real world. CoreCoder is the minimal version that writes that core out honestly.
 
-The engine (loop, model interface, context, tools, sessions) is 1,420 lines once you drop blank lines and comments. Counting the outer CLI, config and retrieval modules too, the whole package is 28 files: 2,844 physical lines, 2,310 net. The growth since the original 1,161-line snapshot includes plan mode, hooks, checkpoints and an optional evidence search tool. The search tool is enabled through the evaluation harness; it is not part of the default CLI tool set. Evaluation code and task fixtures outside the package are excluded from these counts. See [search_code and its evaluation protocol](docs/p0-2-search-code.md).
+The engine (loop, model interface, context, tools, sessions) is 1,446 lines once you drop blank lines and comments. Counting the outer CLI, config and retrieval modules too, the whole package is 28 files: 2,872 physical lines, 2,336 net. The growth since the original 1,161-line snapshot includes plan mode, hooks, checkpoints and an optional evidence search tool. The search tool is enabled through the evaluation harness; it is not part of the default CLI tool set. Evaluation code and task fixtures outside the package are excluded from these counts. See [search_code and its evaluation protocol](docs/p0-2-search-code.md).
 
 And it really runs: reads and writes files, executes shell, spawns sub-agents, compacts context in three tiers, and tells you the tokens and dollars a run burned whenever you ask. Anything that would mutate your disk or run a command stops for your consent first. 179 tests, all green. But the point of it running isn't to become your daily driver. It runs so the walkthrough can't lie: a reference that shows how an agent works has to actually work.
 
@@ -103,7 +103,7 @@ corecoder/
 │   ├── __init__.py  retrieval package                        1 line
 │   └── keyword.py   in-memory BM25 evidence index          121 lines
 └── tools/
-    ├── search_code.py optional evaluation search tool       84 lines
+    ├── search_code.py optional evaluation search tool       112 lines
     ├── bash.py       shell + dangerous-command gate + cd  203 lines
     ├── edit.py       unique-match search/replace + diff    99 lines
     ├── grep.py       content search                        93 lines

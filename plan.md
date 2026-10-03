@@ -98,15 +98,16 @@
 
 **验收：**一条命令复跑任务；成功、错误、超时均有报告；任务无状态串扰；受限文件工具不暴露目标测试或参考修复。本版人工任务在宿主运行，不构成恶意代码沙箱；外部仓库评测前建立容器隔离。
 
-**当前进度：**P0-1 已由用户验收，受限 Qwen 基线冻结，结果见 [docs/baseline-v1.md](docs/baseline-v1.md)。后续仅编写代码、提供测试步骤，由用户执行。复跑说明见 [docs/p0-1-testing.md](docs/p0-1-testing.md)，协议与限制见 [evals/README.md](evals/README.md)。
+**当前进度：**P0-1 已由用户验收，受限 Qwen 基线冻结，结果见 [docs/baseline-v1.md](docs/baseline-v1.md)。用户现已授权开发者执行代码验证和真实实验。复跑说明见 [docs/p0-1-testing.md](docs/p0-1-testing.md)，协议与限制见 [evals/README.md](evals/README.md)。
 
 ### P0-2：检索与上下文实验
 
 - [x] localization-v1 开发集：用户验收 16 项新增测试、219 项完整回归通过，离线缺陷/参考/工具修复分别 0/5、5/5、5/5；真实基线主验收 0/15，失败分析见 [docs/localization-v1-baseline.md](docs/localization-v1-baseline.md)。
 
 - [x] Python/Markdown 的 search_code 与内存 BM25 索引已实现并验收；完整回归 236 passed、1 skipped，30 次共同协议对照 none 0/15、keyword 1/15，结果见 [docs/search-code-v1-results.md](docs/search-code-v1-results.md)。
+- [x] 实现可选跨轮搜索证据去重，按文件版本和保留历史失效；全量回归 248 passed、1 skipped。共同版本 30 次对照 full 2/15、deduplicate 1/15，实际去重命中 0，不能估计修复收益；固定重复查询机制诊断通过，见 [docs/search-history-v1.md](docs/search-history-v1.md)。
 - [ ] 关键词检索起步，加入 Embedding 与向量索引，再按开发集结果增加融合和重排。
-- [ ] 实现直接拼接、去重及预算分配，记录每轮选择/丢弃的证据。
+- [ ] 继续研究上下文预算分配与消息开销；当前去重仅覆盖重复 search_code 正文，尚未处理 read_file 或历史消息重组。
 - [ ] 比较固定长度与 AST 分块，再验证反馈驱动的证据更新。
 - [ ] 处理内容哈希增量索引、删除及变更；保存有效和无效实验。
 
@@ -174,4 +175,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**下一步：提交 search_code 实现与完整对照结果 → 单独定义上下文去重/开销干预或预算敏感性诊断 → 在共同协议下继续实验。**
+**下一步：提交跨轮去重实现与未触发干预的实验结果 → 从预算预检和消息增长定义开销诊断 → 冻结单项干预后继续共同协议对照。**

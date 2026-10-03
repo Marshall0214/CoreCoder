@@ -121,7 +121,8 @@ def make_tools(workspace: Path, allowed_files: list[str], events: Events, timeou
     tools = [ScopedTool(cls(), workspace, allowed_files, events, timeout)
              for cls in (ReadFileTool, GlobTool, GrepTool, EditFileTool, WriteFileTool, TodoWriteTool, BashTool)]
     if config is not None and config.search_backend != "off":
-        search = SearchCodeTool(workspace, allowed_files, config.search_backend, config.search_max_chars, events.emit)
+        search = SearchCodeTool(workspace, allowed_files, config.search_backend, config.search_max_chars, events.emit,
+                                deduplicate_history=config.search_history == "deduplicate")
         tools.append(ScopedTool(search, workspace, allowed_files, events, timeout))
     return tools
 

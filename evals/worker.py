@@ -59,6 +59,13 @@ class TracedLLM(LLM):
 class FixtureAgent(Agent):
     """Keep side effects in call order, including read/edit/test combinations."""
 
+    def _full_messages(self):
+        for tool in self.tools:
+            inner = getattr(tool, "inner", tool)
+            if tool.name == "search_code":
+                inner.sync_history(self.messages)
+        return super()._full_messages()
+
     def _exec_tools_parallel(self, tool_calls, on_tool=None):
         results = []
         for tc in tool_calls:

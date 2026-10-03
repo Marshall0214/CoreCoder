@@ -63,12 +63,17 @@ class RunConfig:
     reasoning_effort: str | None = None
     search_backend: str = "off"
     search_max_chars: int = 6000
+    search_history: str = "full"
 
     def __post_init__(self):
         if self.mode not in {"unchanged", "reference", "scripted", "live"}:
             raise ValueError("Unknown run mode")
         if self.search_backend not in {"off", "none", "keyword"}:
             raise ValueError("search_backend must be off, none or keyword")
+        if self.search_history not in {"full", "deduplicate"}:
+            raise ValueError("search_history must be full or deduplicate")
+        if self.search_history == "deduplicate" and self.search_backend != "keyword":
+            raise ValueError("History deduplication requires keyword search")
         if not isinstance(self.search_max_chars, int) or isinstance(self.search_max_chars, bool) or not 256 <= self.search_max_chars <= 20000:
             raise ValueError("search_max_chars must be between 256 and 20000")
         for name in ("max_rounds", "token_budget", "max_output_tokens", "context_tokens", "wall_timeout", "test_timeout"):
