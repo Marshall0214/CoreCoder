@@ -1,0 +1,22 @@
+{
+  "purpose": "development",
+  "source": "synthetic",
+  "hypothesis": "Different lifecycle queries may retrieve overlapping shared lease contracts; natural repeated retrieval is not guaranteed.",
+  "relevant_files": [
+    "acquire.py",
+    "lookup.py",
+    "renew.py",
+    "expiry.py",
+    "cleanup.py",
+    "store.py",
+    "docs/leases.md",
+    "docs/acquisition.md",
+    "docs/renewal.md",
+    "docs/cleanup.md"
+  ],
+  "reference_changed_files": [
+    "acquire.py",
+    "lookup.py",
+    "expiry.py"
+  ]
+}

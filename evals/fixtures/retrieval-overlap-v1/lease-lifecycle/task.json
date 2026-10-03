@@ -1,0 +1,19 @@
+{
+  "task_id": "lease-lifecycle",
+  "title": "租约生命周期在多个入口表现不一致",
+  "description": "任务租约服务出现三类现象：新建租约的实际有效时长异常；不同租户使用同名任务和同名 worker 时，续租影响了其他租户；清理接口与续租接口在到期边界的判断不一致。请按仓库契约修复 acquire、renew、sweep 的完整生命周期，保持既有监控和历史报告兼容。",
+  "allowed_files": [
+    "acquire.py",
+    "cleanup.py",
+    "expiry.py",
+    "identity.py",
+    "legacy.py",
+    "lookup.py",
+    "models.py",
+    "monitor.py",
+    "renew.py",
+    "store.py"
+  ],
+  "source": "synthetic",
+  "version": 1
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "file": "acquire.py",
+    "old": "now + ttl_ms)",
+    "new": "now + ttl_ms / 1000.0)"
+  },
+  {
+    "file": "lookup.py",
+    "old": "    return next((row for row in store.all() if row.job == job), None)",
+    "new": "    return store.get(tenant, job)"
+  },
+  {
+    "file": "expiry.py",
+    "old": "    return lease.expires_at < now",
+    "new": "    return lease.expires_at <= now"
+  }
+]
