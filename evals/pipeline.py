@@ -2,6 +2,7 @@
 
 import ast
 import hashlib
+import json
 from pathlib import Path
 
 from corecoder.retrieval.keyword import KeywordIndex
@@ -80,7 +81,26 @@ def bounded_evidence(workspace: Path, description: str, allowed_files, config, e
     return files
 
 
+def ordered_evidence(evidence, policy, events):
+    """Reorder only after selection and budgeting; preserve every selected byte."""
+    if policy not in {"selection", "path"}:
+        raise ValueError("Unknown evidence order")
+    ordered = sorted(evidence, key=lambda item: item["path"]) if policy == "path" else list(evidence)
+    canonical = sorted(evidence, key=lambda item: item["path"])
+
+    def digest(items):
+        return hashlib.sha256(json.dumps(items, ensure_ascii=False, sort_keys=True,
+                                         separators=(",", ":")).encode("utf-8")).hexdigest()
+
+    events.emit("pipeline_evidence_ordered", policy=policy,
+                selection_paths=[item["path"] for item in evidence],
+                request_paths=[item["path"] for item in ordered],
+                evidence_set_hash=digest(canonical), ordered_evidence_hash=digest(ordered))
+    return ordered
+
+
 def run_pipeline(llm, workspace, description, allowed_files, config, events):
     evidence = bounded_evidence(workspace, description, allowed_files, config, events)
+    evidence = ordered_evidence(evidence, config.evidence_order, events)
     return generate_patch(llm, workspace, description, allowed_files, events, evidence,
                           protocol="bounded-pipeline-v1", response_name="pipeline-response.txt")

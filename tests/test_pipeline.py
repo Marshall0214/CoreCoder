@@ -6,7 +6,7 @@ import pytest
 from corecoder.demo import ScriptedLLM
 from corecoder.llm import LLMResponse
 from evals.fixed_evidence import apply_patch_json
-from evals.pipeline import bounded_evidence, local_imports
+from evals.pipeline import bounded_evidence, local_imports, ordered_evidence
 from evals.runner import DEFAULT_SUITE, reference_edits, run_task, write_summary
 from evals.runtime import Events
 from evals.schema import RunConfig, load_suite
@@ -67,6 +67,28 @@ def test_relative_imports_are_static_and_external_imports_are_ignored():
                          ["pkg/middle.py", "pkg/entry.py"]) == ["pkg/middle.py"]
 
 
+def test_order_changes_only_packing_and_preserves_selection_under_budget(tmp_path):
+    allowed, events = fixture(tmp_path)
+    config = RunConfig(mode="pipeline", search_backend="keyword", evidence_top_k=1)
+    evidence = bounded_evidence(tmp_path, "needle", allowed, config, events)
+    original = json.dumps(evidence)
+    selection = ordered_evidence(evidence, "selection", events)
+    paths = ordered_evidence(evidence, "path", events)
+    assert json.dumps(evidence) == original
+    assert selection == evidence
+    assert paths == sorted(evidence, key=lambda item: item["path"])
+    assert selection != paths
+    records = [json.loads(line) for line in events.path.read_text(encoding="utf-8").splitlines()]
+    assert records[-2]["evidence_set_hash"] == records[-1]["evidence_set_hash"]
+    assert records[-2]["ordered_evidence_hash"] != records[-1]["ordered_evidence_hash"]
+
+
+@pytest.mark.parametrize("options", [{"evidence_order": "unknown"}, {"mode": "live", "evidence_order": "path"}])
+def test_invalid_or_unused_order_is_rejected(options):
+    with pytest.raises(ValueError):
+        RunConfig(**options)
+
+
 @pytest.mark.parametrize("options", [{"search_backend": "off"}, {"search_backend": "keyword", "evidence_top_k": 0},
                                     {"search_backend": "keyword", "evidence_dependency_depth": 4},
                                     {"search_backend": "keyword", "prompt_policy": "contract-check"}])
@@ -75,7 +97,8 @@ def test_pipeline_config_cannot_silently_change_protocol(options):
         RunConfig(mode="pipeline", **options)
 
 
-def test_worker_and_parent_use_pipeline_evidence_and_original_grader(tmp_path, monkeypatch):
+@pytest.mark.parametrize("order", ["selection", "path"])
+def test_worker_and_parent_use_pipeline_evidence_and_original_grader(tmp_path, monkeypatch, order):
     from evals import runner, worker
 
     task = load_suite(DEFAULT_SUITE / "localization-v1", ["pagination-cursor"])[0]
@@ -94,11 +117,18 @@ def test_worker_and_parent_use_pipeline_evidence_and_original_grader(tmp_path, m
 
     monkeypatch.setattr(runner, "run_process", invoke)
     report = run_task(task, RunConfig(mode="pipeline", search_backend="keyword",
-                                     base_url="http://localhost:11434/v1"), tmp_path)
+                                     base_url="http://localhost:11434/v1", evidence_order=order), tmp_path)
     assert report["accepted"], report
     assert report["evaluation_protocol"] == "bounded-pipeline-v1"
     assert report["metrics"]["llm_calls"] == 1
     assert report["benchmark_eligible"]
+    paths = [item["path"] for item in report["worker"]["evidence_manifest"]]
+    if order == "path":
+        assert paths == sorted(paths)
+    records = [json.loads(line) for line in (tmp_path / report["run_id"] / "trace.jsonl").read_text(encoding="utf-8").splitlines()]
+    ordering = next(item for item in records if item["event"] == "pipeline_evidence_ordered")
+    assert ordering["policy"] == order
+    assert ordering["request_paths"] == paths
     job = json.loads((tmp_path / report["run_id"] / "job.json").read_text(encoding="utf-8"))
     assert "oracle_edits" not in job
     mixed = [report, {**report, "evaluation_protocol": "agent-loop-v1"}]

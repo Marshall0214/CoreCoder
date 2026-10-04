@@ -68,8 +68,13 @@ class RunConfig:
     prompt_policy: str = "baseline"
     evidence_top_k: int = 5
     evidence_dependency_depth: int = 2
+    evidence_order: str = "selection"
 
     def __post_init__(self):
+        if self.evidence_order not in {"selection", "path"}:
+            raise ValueError("evidence_order must be selection or path")
+        if self.mode != "pipeline" and self.evidence_order != "selection":
+            raise ValueError("Evidence ordering requires pipeline mode")
         if self.mode not in {"unchanged", "reference", "scripted", "live", "fixed-evidence", "pipeline"}:
             raise ValueError("Unknown run mode")
         if self.search_backend not in {"off", "none", "keyword"}:

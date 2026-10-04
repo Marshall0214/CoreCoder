@@ -79,6 +79,8 @@ summary-<unique-id>.json/md
 
 `--mode pipeline --search-backend keyword` 按缺陷描述检索，再沿静态依赖构建完整文件证据，单次生成 JSON 补丁并独立验收。`--evidence-top-k` 默认 5、`--evidence-dependency-depth` 默认 2，正文上限由 `--search-max-chars` 设置（默认 6,000）。仅允许默认 baseline 提示、context-policy=none、search-history=full；协议标为 bounded-pipeline-v1，同协议可做策略对照，与旧 Agent 混合汇总不标为共同基准。六次 pilot、实现边界和复跑命令见 [bounded-pipeline-v1](../docs/bounded-pipeline-v1.md)。
 
+管线的 `--evidence-order selection|path` 在预算裁剪后保留选择顺序或按路径排序，文件内容及集合不变。Trace 保存顺序无关证据哈希与实际请求顺序；实现、交错复跑及结果见 [evidence-order-v1](../docs/evidence-order-v1.md)。
+
 `--mode fixed-evidence` 一次性提供允许源码与公开契约，无工具循环，请求 JSON 补丁并使用同一独立验证器。报告 benchmark_eligible=false；不可混用 Agent 策略，不能与 Agent 或 RAG 策略直接归因比较。模式、边界、六次运行与换行重放见 [fixed-evidence-v1](../docs/fixed-evidence-v1.md)。
 
 修复提示支持 `--prompt-policy baseline|contract-check`，默认 baseline 保持原文；检查组追加通用症状/契约/验证覆盖要求，属于单独 Prompt 干预，尚无可靠收益。实现与 pilot 见 [contract-check-v1](../docs/contract-check-v1.md)。
