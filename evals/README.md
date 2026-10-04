@@ -81,6 +81,8 @@ summary-<unique-id>.json/md
 
 管线的 `--evidence-order selection|path` 在预算裁剪后保留选择顺序或按路径排序，文件内容及集合不变。Trace 保存顺序无关证据哈希与实际请求顺序；实现、交错复跑及结果见 [evidence-order-v1](../docs/evidence-order-v1.md)。
 
+pipeline_evidence_built 另记录 ranked_chunks、candidate_files、seed_count，区别请求 K、正分候选与实际种子数量；增加 K 不保证扩大证据集合。K5/K10 的干预检查与六次租约对照见 [evidence-width-v1](../docs/evidence-width-v1.md)。
+
 `--mode fixed-evidence` 一次性提供允许源码与公开契约，无工具循环，请求 JSON 补丁并使用同一独立验证器。报告 benchmark_eligible=false；不可混用 Agent 策略，不能与 Agent 或 RAG 策略直接归因比较。模式、边界、六次运行与换行重放见 [fixed-evidence-v1](../docs/fixed-evidence-v1.md)。
 
 修复提示支持 `--prompt-policy baseline|contract-check`，默认 baseline 保持原文；检查组追加通用症状/契约/验证覆盖要求，属于单独 Prompt 干预，尚无可靠收益。实现与 pilot 见 [contract-check-v1](../docs/contract-check-v1.md)。

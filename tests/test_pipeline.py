@@ -67,6 +67,27 @@ def test_relative_imports_are_static_and_external_imports_are_ignored():
                          ["pkg/middle.py", "pkg/entry.py"]) == ["pkg/middle.py"]
 
 
+@pytest.mark.parametrize("suite,task_id,changed", [("localization-v1", "pagination-cursor", False),
+                                                 ("retrieval-overlap-v1", "lease-lifecycle", True)])
+def test_width_intervention_is_checked_before_model_calls(tmp_path, suite, task_id, changed):
+    task = load_suite(DEFAULT_SUITE / suite, [task_id])[0]
+    evidence = []
+    events = Events(tmp_path / "trace.jsonl", "width-test")
+    for top_k in (5, 10):
+        config = RunConfig(mode="pipeline", search_backend="keyword", evidence_top_k=top_k,
+                           evidence_order="path")
+        files = bounded_evidence(task.root / "workspace", task.description, task.allowed_files, config, events)
+        evidence.append({item["path"]: item for item in files})
+        assert sum(len(item["content"]) for item in files) <= config.search_max_chars
+    assert (evidence[0] != evidence[1]) == changed
+    assert evidence[0].keys() <= evidence[1].keys()
+    assert all(item == evidence[1][path] for path, item in evidence[0].items())
+    records = [json.loads(line) for line in events.path.read_text(encoding="utf-8").splitlines()]
+    for record, top_k in zip(records, (5, 10)):
+        assert record["seed_count"] == min(record["candidate_files"], top_k)
+        assert record["ranked_chunks"] >= record["candidate_files"]
+
+
 def test_order_changes_only_packing_and_preserves_selection_under_budget(tmp_path):
     allowed, events = fixture(tmp_path)
     config = RunConfig(mode="pipeline", search_backend="keyword", evidence_top_k=1)

@@ -41,6 +41,7 @@ def bounded_evidence(workspace: Path, description: str, allowed_files, config, e
     versions = {chunk.path: chunk.content_hash for chunk in index.chunks}
     query = description + " contract contracts"
     ranked = index.rank(query)
+    candidate_files = len({chunk.path for _, chunk in ranked})
     seeds, seen = [], set()
     for score, chunk in ranked:
         if chunk.path not in seen:
@@ -77,7 +78,8 @@ def bounded_evidence(workspace: Path, description: str, allowed_files, config, e
     events.emit("pipeline_evidence_built", query=query, index=metadata, seeds=seeds,
                 selected=selected, discarded=discarded, evidence_chars=chars,
                 max_chars=config.search_max_chars, top_k=config.evidence_top_k,
-                dependency_depth=config.evidence_dependency_depth)
+                dependency_depth=config.evidence_dependency_depth,
+                ranked_chunks=len(ranked), candidate_files=candidate_files, seed_count=len(seeds))
     return files
 
 
