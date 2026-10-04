@@ -66,9 +66,11 @@ class RunConfig:
     search_history: str = "full"
     context_policy: str = "none"
     prompt_policy: str = "baseline"
+    evidence_top_k: int = 5
+    evidence_dependency_depth: int = 2
 
     def __post_init__(self):
-        if self.mode not in {"unchanged", "reference", "scripted", "live", "fixed-evidence"}:
+        if self.mode not in {"unchanged", "reference", "scripted", "live", "fixed-evidence", "pipeline"}:
             raise ValueError("Unknown run mode")
         if self.search_backend not in {"off", "none", "keyword"}:
             raise ValueError("search_backend must be off, none or keyword")
@@ -85,6 +87,13 @@ class RunConfig:
         if self.mode == "fixed-evidence" and (self.search_backend != "off" or self.context_policy != "none"
                                              or self.search_history != "full" or self.prompt_policy != "baseline"):
             raise ValueError("fixed-evidence has a separate protocol; Agent policies must use defaults")
+        if self.mode == "pipeline" and (self.search_backend != "keyword" or self.context_policy != "none"
+                                        or self.search_history != "full" or self.prompt_policy != "baseline"):
+            raise ValueError("pipeline requires keyword, full search history and baseline Agent policies")
+        for name, lower, upper in (("evidence_top_k", 1, 20), ("evidence_dependency_depth", 0, 3)):
+            value = getattr(self, name)
+            if not isinstance(value, int) or isinstance(value, bool) or not lower <= value <= upper:
+                raise ValueError(f"{name} must be between {lower} and {upper}")
         if not isinstance(self.search_max_chars, int) or isinstance(self.search_max_chars, bool) or not 256 <= self.search_max_chars <= 20000:
             raise ValueError("search_max_chars must be between 256 and 20000")
         for name in ("max_rounds", "token_budget", "max_output_tokens", "context_tokens", "wall_timeout", "test_timeout"):

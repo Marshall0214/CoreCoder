@@ -56,6 +56,8 @@ def apply_patch_json(content: str, workspace: Path, allowed_files, evidence) -> 
         name = relative_path(edit["file"])
         if name not in allowed_files:
             raise ValueError("Edit outside allowed source files")
+        if name not in hashes:
+            raise ValueError("Edit source was not supplied as evidence")
         raw_path = workspace / name
         path = raw_path.resolve()
         if not path.is_relative_to(workspace) or any(part.is_symlink() for part in (raw_path, *raw_path.parents)):
@@ -78,14 +80,20 @@ def apply_patch_json(content: str, workspace: Path, allowed_files, evidence) -> 
 
 def diagnose(llm, workspace: Path, description: str, allowed_files, events) -> dict:
     evidence = public_evidence(workspace, allowed_files)
+    return generate_patch(llm, workspace, description, allowed_files, events, evidence)
+
+
+def generate_patch(llm, workspace, description, allowed_files, events, evidence,
+                   protocol="fixed-evidence-v1", response_name="diagnostic-response.txt"):
     payload = json.dumps({"description": description, "allowed_files": list(allowed_files),
                           "files": evidence}, ensure_ascii=False)
     messages = [{"role": "system", "content": SYSTEM}, {"role": "user", "content": payload}]
     manifest = [{key: value for key, value in item.items() if key != "content"} for item in evidence]
-    events.emit("fixed_evidence_prepared", files=manifest, chars=sum(len(item["content"]) for item in evidence))
+    events.emit("fixed_evidence_prepared" if protocol == "fixed-evidence-v1" else "pipeline_patch_request",
+                files=manifest, chars=sum(len(item["content"]) for item in evidence))
     response = llm.chat(messages, tools=[])
-    (events.path.parent / "diagnostic-response.txt").write_text(events.clean(response.content), encoding="utf-8")
-    result = {"protocol": "fixed-evidence-v1", "evidence_manifest": manifest,
+    (events.path.parent / response_name).write_text(events.clean(response.content), encoding="utf-8")
+    result = {"protocol": protocol, "evidence_manifest": manifest,
               "prompt_hash": hashlib.sha256((SYSTEM + "\n" + payload).encode()).hexdigest(),
               "tool_schema_hash": hashlib.sha256(b"[]").hexdigest(), "final_message": response.content}
     result["protocol_prompt_hash"] = result["prompt_hash"]  # No workspace path in this protocol.
@@ -93,9 +101,11 @@ def diagnose(llm, workspace: Path, description: str, allowed_files, events) -> d
         if response.tool_calls:
             raise ValueError("Tool calls are not supported by the fixed-evidence protocol")
         edited = apply_patch_json(response.content, workspace, allowed_files, evidence)
-        events.emit("diagnostic_patch_applied", files=edited)
+        events.emit("diagnostic_patch_applied" if protocol == "fixed-evidence-v1" else "pipeline_patch_applied",
+                    files=edited)
         result.update(status="completed", edited_files=edited)
     except (ValueError, TypeError, KeyError, OSError) as exc:
-        events.emit("diagnostic_patch_rejected", error=f"{type(exc).__name__}: {exc}")
+        events.emit("diagnostic_patch_rejected" if protocol == "fixed-evidence-v1" else "pipeline_patch_rejected",
+                    error=f"{type(exc).__name__}: {exc}")
         result.update(status="invalid_patch", error=f"{type(exc).__name__}: {exc}")
     return result

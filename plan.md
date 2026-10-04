@@ -111,6 +111,7 @@
 - [x] 增加首次编辑前阶段诊断；271 passed、1 skipped。30k/60k 四次共同协议 pilot 均未验收通过：分页两组遗漏续页游标，租约 60k 修复两处后预算终止，30k 未编辑。预算提高不替代原失败结果，见 [docs/budget-sensitivity-v1.md](docs/budget-sensitivity-v1.md)。
 - [x] 新增可选契约覆盖提示，baseline 原文保留；276 passed、1 skipped。四次 30k pilot 两组均 0/2，检查组计划调用减少但未完整修复，仅分页修改一处；无可靠覆盖行为或效果收益证据，见 [docs/contract-check-v1.md](docs/contract-check-v1.md)。
 - [x] 新增固定公开证据补丁诊断（不计 Agent 基准），分页/租约各三次均独立通过，单请求分别 1,594/2,729 Token；修正 CRLF 写入并离线重放六份输出仍通过。289 passed、1 skipped；不同协议不能作为检索收益对照，见 [docs/fixed-evidence-v1.md](docs/fixed-evidence-v1.md)。
+- [x] 实现 BM25 种子、静态依赖扩展、完整文件限额与单次结构化补丁管线，协议与旧 Agent 分开记录；299 passed、1 skipped。六次 pilot：分页 0/3、租约 3/3，分页两处缺陷文件已提供但只修复一处；见 [docs/bounded-pipeline-v1.md](docs/bounded-pipeline-v1.md)。
 - [ ] 关键词检索起步，加入 Embedding 与向量索引，再按开发集结果增加融合和重排。
 - [ ] 继续研究上下文预算分配与消息开销；当前去重仅覆盖重复 search_code 正文，尚未处理 read_file 或历史消息重组。
 - [ ] 比较固定长度与 AST 分块，再验证反馈驱动的证据更新。
@@ -180,4 +181,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**下一步：实现有界证据构建 → 结构化补丁生成 → 独立验收管线；固定协议后在管线内比较检索/上下文策略。旧 Agent 对照单列为整体系统实验；固定证据诊断不作 RAG 收益或泛化结论。**
+**下一步：在共同管线版本下固定选中文件、正文、生成提示和预算，仅比较排名/依赖顺序与稳定路径顺序，验证上下文组织对完整修复的影响。旧 Agent 对照单列为整体系统实验；固定证据诊断不作 RAG 收益或泛化结论。**

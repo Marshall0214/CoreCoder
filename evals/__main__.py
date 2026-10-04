@@ -1,4 +1,4 @@
-"""Run with python -m evals. Only live and fixed-evidence call a real model."""
+"""Run with python -m evals. Live, pipeline and fixed-evidence call a real model."""
 
 import argparse
 from pathlib import Path
@@ -11,7 +11,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--suite", type=Path, default=DEFAULT_SUITE)
     parser.add_argument("--task", action="append", help="Task ID; repeat flag to select several")
-    parser.add_argument("--mode", choices=("unchanged", "reference", "scripted", "live", "fixed-evidence"), default="unchanged")
+    parser.add_argument("--mode", choices=("unchanged", "reference", "scripted", "live", "fixed-evidence", "pipeline"), default="unchanged")
     parser.add_argument("--output", type=Path, default=Path(".tmp/evals"))
     parser.add_argument("--repeat", type=int, default=1)
     parser.add_argument("--model", default="deepseek-flash")
@@ -29,6 +29,8 @@ def main() -> int:
     parser.add_argument("--search-history", choices=("full", "deduplicate"), default="full")
     parser.add_argument("--context-policy", choices=("none", "read-cover"), default="none")
     parser.add_argument("--prompt-policy", choices=("baseline", "contract-check"), default="baseline")
+    parser.add_argument("--evidence-top-k", type=int, default=5)
+    parser.add_argument("--evidence-dependency-depth", type=int, default=2)
     args = parser.parse_args()
     if args.repeat < 1:
         parser.error("--repeat must be positive")
@@ -36,11 +38,11 @@ def main() -> int:
         config = RunConfig(**{key: getattr(args, key) for key in (
             "mode", "model", "base_url", "max_rounds", "token_budget", "max_output_tokens", "context_tokens",
             "wall_timeout", "test_timeout", "reasoning_effort", "temperature", "search_backend", "search_max_chars",
-            "search_history", "context_policy", "prompt_policy")})
+            "search_history", "context_policy", "prompt_policy", "evidence_top_k", "evidence_dependency_depth")})
         tasks = load_suite(args.suite, args.task)
     except (ValueError, KeyError) as exc:
         parser.error(str(exc))
-    if config.mode in {"live", "fixed-evidence"}:
+    if config.mode in {"live", "fixed-evidence", "pipeline"}:
         from corecoder.config import _load_dotenv
 
         _load_dotenv()

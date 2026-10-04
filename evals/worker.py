@@ -15,6 +15,7 @@ from corecoder.permissions import Permission
 
 from .context_policy import covered_search_view
 from .fixed_evidence import diagnose
+from .pipeline import run_pipeline
 from .prompts import repair_prompt
 from .runtime import VISIBLE_COMMAND, BudgetExceeded, BudgetLLM, Events, make_tools
 from .schema import RunConfig
@@ -131,6 +132,9 @@ def main(job_path: Path) -> int:
             llm = counted
         if config.mode == "fixed-evidence":
             result.update(diagnose(llm, workspace, job["description"], job["allowed_files"], events))
+            return 0
+        if config.mode == "pipeline":
+            result.update(run_pipeline(llm, workspace, job["description"], job["allowed_files"], config, events))
             return 0
         agent = FixtureAgent(llm=llm, tools=tools, permission=Permission(allow_all=True),
                       max_rounds=config.max_rounds, max_context_tokens=config.context_tokens)

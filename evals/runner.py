@@ -116,12 +116,16 @@ def run_task(task: Task, config: RunConfig, output: Path, repetition: int = 1) -
     run_root.mkdir(parents=True, exist_ok=False)
     events = Events(run_root / "trace.jsonl", run_id)
     report = {"schema_version": 1, "run_id": run_id, "task_id": task.task_id, "source": "synthetic",
-              "repetition": repetition, "mode": config.mode, "benchmark_eligible": config.mode == "live",
+              "repetition": repetition, "mode": config.mode, "benchmark_eligible": config.mode in {"live", "pipeline"},
               "config": config.to_dict(), "status": "infrastructure_error", "accepted": False,
               "python": platform.python_version(), "platform": platform.platform(), "metrics": None,
               "verification": None, "artifacts": str(run_root)}
     if config.mode == "fixed-evidence":
         report["evaluation_protocol"] = "fixed-evidence-v1 diagnostic; not an Agent benchmark"
+    elif config.mode == "pipeline":
+        report["evaluation_protocol"] = "bounded-pipeline-v1"
+    elif config.mode == "live":
+        report["evaluation_protocol"] = "agent-loop-v1"
     started = time.perf_counter()
     try:
         workspace = run_root / "workspace"
@@ -196,11 +200,14 @@ def run_task(task: Task, config: RunConfig, output: Path, repetition: int = 1) -
 
 def write_summary(reports: list[dict], output: Path) -> Path:
     path = output / f"summary-{uuid.uuid4().hex[:10]}"
+    protocols = sorted({r.get("evaluation_protocol", r["mode"]) for r in reports})
     summary = {"runs": len(reports), "accepted": sum(r["accepted"] for r in reports),
-               "benchmark_eligible": all(r["benchmark_eligible"] for r in reports), "reports": reports}
+               "benchmark_eligible": len(protocols) == 1 and all(r["benchmark_eligible"] for r in reports),
+               "evaluation_protocols": protocols, "reports": reports}
     path.with_suffix(".json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     lines = ["# Repair evaluation", "", f"Accepted: {summary['accepted']}/{summary['runs']}",
              f"Model benchmark eligible: {summary['benchmark_eligible']}", "",
+             f"Evaluation protocols: {', '.join(protocols)}", "",
              "| Task | Mode | Status | Target | Regression | Seconds |", "| --- | --- | --- | --- | --- | --- |"]
     for report in reports:
         verification = report.get("verification") or {}
