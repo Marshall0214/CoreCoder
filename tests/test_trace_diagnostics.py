@@ -1,6 +1,6 @@
 import json
 
-from evals.diagnostics import analyze_trace
+from evals.diagnostics import analyze_trace, before_edit_diagnostics
 
 
 def test_trace_repeats_and_estimates_are_measured_without_token_claims(tmp_path):
@@ -46,3 +46,33 @@ def test_search_read_overlap_is_path_scoped_and_counts_text_once(tmp_path):
     result = analyze_trace(path)
     assert result["reads_containing_prior_search_text"] == 1
     assert result["prior_search_text_chars_in_reads"] == 11
+
+
+def test_first_edit_attempt_excludes_later_usage_even_when_edit_fails():
+    result = before_edit_diagnostics([
+        {"event": "llm_started"},
+        {"event": "llm_finished", "usage_known": True, "prompt_tokens": 90, "completion_tokens": 10},
+        {"event": "tool_started", "tool": "read_file"},
+        {"event": "tool_started", "tool": "edit_file"},
+        {"event": "tool_finished", "tool": "edit_file", "result": "Error: not matched"},
+        {"event": "llm_started"},
+        {"event": "llm_finished", "usage_known": True, "prompt_tokens": 190, "completion_tokens": 10},
+    ])
+    assert result["first_edit_attempted"]
+    assert result["llm_calls_before_first_edit_attempt"] == 1
+    assert result["tokens_before_first_edit_attempt"] == 100
+    assert result["tool_calls_before_first_edit_attempt"] == {"read_file": 1}
+
+
+def test_no_edit_and_missing_usage_are_not_reported_as_zero_cost():
+    result = before_edit_diagnostics([
+        {"event": "llm_started"},
+        {"event": "llm_finished", "usage_known": False, "prompt_tokens": None, "completion_tokens": None},
+        {"event": "llm_started"},
+        {"event": "llm_failed"},
+        {"event": "budget_blocked", "reason": "cumulative_preflight", "remaining": 10},
+    ])
+    assert not result["first_edit_attempted"]
+    assert result["tokens_before_first_edit_attempt"] is None
+    assert result["unknown_usage_calls_before_first_edit_attempt"] == 2
+    assert result["budget_blocks"] == [{"reason": "cumulative_preflight", "remaining": 10}]

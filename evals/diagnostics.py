@@ -6,6 +6,34 @@ from collections import Counter
 from pathlib import Path
 
 
+def before_edit_diagnostics(events: list[dict]) -> dict:
+    """Measure before the first write attempt, not before a proven successful repair."""
+    boundary = next((index for index, event in enumerate(events)
+                     if event["event"] == "tool_started" and event.get("tool") in {"edit_file", "write_file"}),
+                    len(events))
+    before = events[:boundary]
+    calls = sum(event["event"] == "llm_started" for event in before)
+    finished = [event for event in before if event["event"] == "llm_finished"]
+    known = [event for event in finished if event.get("usage_known") is True]
+    known_tokens = sum(event["prompt_tokens"] + event["completion_tokens"] for event in known)
+    unknown = max(0, calls - len(known))
+    return {
+        "first_edit_attempted": boundary < len(events),
+        "llm_calls_before_first_edit_attempt": calls,
+        "known_tokens_before_first_edit_attempt": known_tokens,
+        "tokens_before_first_edit_attempt": None if unknown else known_tokens,
+        "unknown_usage_calls_before_first_edit_attempt": unknown,
+        "tool_calls_before_first_edit_attempt": dict(Counter(
+            event["tool"] for event in before if event["event"] == "tool_started")),
+        "preflights": [{key: event.get(key) for key in (
+            "next_call", "message_estimates", "schema_estimate", "request_estimate", "spent", "remaining", "reservation")}
+            for event in events if event["event"] == "request_preflight"],
+        "budget_blocks": [{key: value for key, value in event.items()
+                           if key not in {"run_id", "sequence", "time", "event"}}
+                          for event in events if event["event"] == "budget_blocked"],
+    }
+
+
 def analyze_trace(path: Path) -> dict:
     events = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
     searches = [event for event in events if event["event"] == "search_completed"]
@@ -62,6 +90,7 @@ def analyze_trace(path: Path) -> dict:
         "first_request_estimate": estimates[0] if estimates else None,
         "last_request_estimate": estimates[-1] if estimates else None,
         "max_request_estimate": max(estimates) if estimates else None,
+        **before_edit_diagnostics(events),
     }
 
 
