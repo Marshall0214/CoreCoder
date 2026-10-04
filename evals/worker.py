@@ -14,6 +14,7 @@ from corecoder.llm import LLMResponse, ToolCall
 from corecoder.permissions import Permission
 
 from .context_policy import covered_search_view
+from .fixed_evidence import diagnose
 from .prompts import repair_prompt
 from .runtime import VISIBLE_COMMAND, BudgetExceeded, BudgetLLM, Events, make_tools
 from .schema import RunConfig
@@ -128,6 +129,9 @@ def main(job_path: Path) -> int:
             result["ollama_before"] = ollama_metadata(config)
             counted = BudgetLLM(TracedLLM(config.model, key, config.base_url, events=events, **extra), config, events)
             llm = counted
+        if config.mode == "fixed-evidence":
+            result.update(diagnose(llm, workspace, job["description"], job["allowed_files"], events))
+            return 0
         agent = FixtureAgent(llm=llm, tools=tools, permission=Permission(allow_all=True),
                       max_rounds=config.max_rounds, max_context_tokens=config.context_tokens)
         agent.evidence_policy, agent.evidence_workspace, agent.context_events = config.context_policy, workspace, events

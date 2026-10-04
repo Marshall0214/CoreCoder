@@ -68,7 +68,7 @@ class RunConfig:
     prompt_policy: str = "baseline"
 
     def __post_init__(self):
-        if self.mode not in {"unchanged", "reference", "scripted", "live"}:
+        if self.mode not in {"unchanged", "reference", "scripted", "live", "fixed-evidence"}:
             raise ValueError("Unknown run mode")
         if self.search_backend not in {"off", "none", "keyword"}:
             raise ValueError("search_backend must be off, none or keyword")
@@ -82,6 +82,9 @@ class RunConfig:
             raise ValueError("read-cover requires keyword search and full search history")
         if self.prompt_policy not in {"baseline", "contract-check"}:
             raise ValueError("prompt_policy must be baseline or contract-check")
+        if self.mode == "fixed-evidence" and (self.search_backend != "off" or self.context_policy != "none"
+                                             or self.search_history != "full" or self.prompt_policy != "baseline"):
+            raise ValueError("fixed-evidence has a separate protocol; Agent policies must use defaults")
         if not isinstance(self.search_max_chars, int) or isinstance(self.search_max_chars, bool) or not 256 <= self.search_max_chars <= 20000:
             raise ValueError("search_max_chars must be between 256 and 20000")
         for name in ("max_rounds", "token_budget", "max_output_tokens", "context_tokens", "wall_timeout", "test_timeout"):

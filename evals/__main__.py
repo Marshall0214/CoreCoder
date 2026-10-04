@@ -1,4 +1,4 @@
-"""Run with python -m evals. Nothing calls a model unless --mode live is selected."""
+"""Run with python -m evals. Only live and fixed-evidence call a real model."""
 
 import argparse
 from pathlib import Path
@@ -11,7 +11,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--suite", type=Path, default=DEFAULT_SUITE)
     parser.add_argument("--task", action="append", help="Task ID; repeat flag to select several")
-    parser.add_argument("--mode", choices=("unchanged", "reference", "scripted", "live"), default="unchanged")
+    parser.add_argument("--mode", choices=("unchanged", "reference", "scripted", "live", "fixed-evidence"), default="unchanged")
     parser.add_argument("--output", type=Path, default=Path(".tmp/evals"))
     parser.add_argument("--repeat", type=int, default=1)
     parser.add_argument("--model", default="deepseek-flash")
@@ -40,7 +40,7 @@ def main() -> int:
         tasks = load_suite(args.suite, args.task)
     except (ValueError, KeyError) as exc:
         parser.error(str(exc))
-    if config.mode == "live":
+    if config.mode in {"live", "fixed-evidence"}:
         from corecoder.config import _load_dotenv
 
         _load_dotenv()

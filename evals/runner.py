@@ -120,6 +120,8 @@ def run_task(task: Task, config: RunConfig, output: Path, repetition: int = 1) -
               "config": config.to_dict(), "status": "infrastructure_error", "accepted": False,
               "python": platform.python_version(), "platform": platform.platform(), "metrics": None,
               "verification": None, "artifacts": str(run_root)}
+    if config.mode == "fixed-evidence":
+        report["evaluation_protocol"] = "fixed-evidence-v1 diagnostic; not an Agent benchmark"
     started = time.perf_counter()
     try:
         workspace = run_root / "workspace"

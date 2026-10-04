@@ -1,10 +1,10 @@
 # P0-1：任务与独立验证闭环
 
-当前实现包括独立修复验证闭环及可选关键词证据工具，尚未开发向量检索、新上下文策略或服务端。复用上游 CoreCoder 的 Agent 循环、文件工具、LLM 接口与上下文压缩；新增任务协议、受限工具适配、独立 Worker、预算、验证器和证据记录。
+当前实现包括独立修复验证闭环、关键词证据工具、可选上下文/提示实验和固定公开证据补丁诊断，尚未开发向量检索或服务端。复用上游 CoreCoder 的 Agent 循环、文件工具、LLM 接口与上下文压缩；新增任务协议、受限工具适配、独立 Worker、预算、验证器和证据记录。
 
 P0-2 新增的 5 项人工开发任务独立放在 `fixtures/localization-v1/`，需要显式传入 `--suite evals/fixtures/localization-v1`，默认命令仍运行原来的 5 项回归任务。设计和验收步骤见 [开发任务说明](../docs/p0-2-localization-tasks.md)。任务已完成用户离线验收，历史真实模型结果单独保留。
 
-`--search-backend off|none|keyword` 可选择不添加搜索工具、空证据控制或关键词证据。off 为兼容默认；none/keyword 使用相同 Schema 和提示。实现、限制及用户验收命令见 [search_code 说明](../docs/p0-2-search-code.md)。搜索代码尚未执行测试或模型验证。
+`--search-backend off|none|keyword` 可选择不添加搜索工具、空证据控制或关键词证据。off 为兼容默认；none/keyword 使用相同 Schema 和提示。实现、限制及用户验收命令见 [search_code 说明](../docs/p0-2-search-code.md)，已执行的对照见 [实验结果](../docs/search-code-v1-results.md)。
 
 ## 快速运行
 
@@ -18,7 +18,7 @@ conda run -n corecoder python -m evals --mode live --model qwen3.5:27b --base-ur
 conda run -n corecoder python -m pytest
 ```
 
-`unchanged` 预期 5 项全部失败，退出码为 1；`reference` 与 `scripted` 预期全部通过，退出码为 0。这三种模式不调用模型。`live` 才是模型真实执行；存在未通过任务时退出码为 1，取消返回 130。
+`unchanged` 预期 5 项全部失败，退出码为 1；`reference` 与 `scripted` 预期全部通过，退出码为 0。这三种模式不调用模型。`live` 是 Agent 模型执行；`fixed-evidence` 也调用模型，但为单请求补丁诊断，不计 Agent 基准。存在未通过任务时退出码为 1，取消返回 130。
 
 可用 `--task timeout-units` 选择单项，重复 `--task` 选择多项，`--repeat 3` 从干净工作区重复运行。`--output .tmp/evals/my-run` 指定产物位置，每次运行使用独立目录。模型别名、量化、实际上下文长度和运行日期需要一起保存；Ollama 元数据记录在报告中。`--context-tokens` 是评测侧估算限制，不会修改 Ollama 服务端窗口。
 
@@ -76,6 +76,8 @@ summary-<unique-id>.json/md
 报告记录源码哈希、Git 基点/状态、依赖版本、任务/目标测试哈希；Worker 保存 Prompt 与工具 Schema 哈希。工作区产物默认在已忽略的 `.tmp/`，共享报告前仍应检查其中的数据。保留所有失败，不能只保留成功记录。
 
 ## 当前边界与下一步
+
+`--mode fixed-evidence` 一次性提供允许源码与公开契约，无工具循环，请求 JSON 补丁并使用同一独立验证器。报告 benchmark_eligible=false；不可混用 Agent 策略，不能与 Agent 或 RAG 策略直接归因比较。模式、边界、六次运行与换行重放见 [fixed-evidence-v1](../docs/fixed-evidence-v1.md)。
 
 修复提示支持 `--prompt-policy baseline|contract-check`，默认 baseline 保持原文；检查组追加通用症状/契约/验证覆盖要求，属于单独 Prompt 干预，尚无可靠收益。实现与 pilot 见 [contract-check-v1](../docs/contract-check-v1.md)。
 
