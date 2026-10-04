@@ -77,6 +77,8 @@ summary-<unique-id>.json/md
 
 ## 当前边界与下一步
 
+修复提示支持 `--prompt-policy baseline|contract-check`，默认 baseline 保持原文；检查组追加通用症状/契约/验证覆盖要求，属于单独 Prompt 干预，尚无可靠收益。实现与 pilot 见 [contract-check-v1](../docs/contract-check-v1.md)。
+
 上下文实验支持 `--context-policy none|read-cover`（默认 none；read-cover 要求 keyword 与 search-history=full）。完整读取在同版本、同路径且保留在历史时，可在下一轮请求视图中覆盖旧搜索正文，原历史保留；详见 [read-cover-v1](../docs/read-cover-v1.md)。Trace 追加每轮角色/工具消息估算、Schema 估算、剩余预算及阻断原因；估算与实际 usage 分开解释。
 
 本版适用于自行审查过的人工任务。路径约束和独立评分不等于操作系统沙箱：测试会在宿主机运行候选 Python，恶意代码仍可能访问其他宿主资源；目标测试在验证阶段才加入工作区，但没有针对恶意代码建立保密边界。引入外部历史仓库前需增加容器隔离，再做完整的环境和数据纳入检查。

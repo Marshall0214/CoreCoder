@@ -28,6 +28,7 @@ def main() -> int:
     parser.add_argument("--search-max-chars", type=int, default=6000)
     parser.add_argument("--search-history", choices=("full", "deduplicate"), default="full")
     parser.add_argument("--context-policy", choices=("none", "read-cover"), default="none")
+    parser.add_argument("--prompt-policy", choices=("baseline", "contract-check"), default="baseline")
     args = parser.parse_args()
     if args.repeat < 1:
         parser.error("--repeat must be positive")
@@ -35,7 +36,7 @@ def main() -> int:
         config = RunConfig(**{key: getattr(args, key) for key in (
             "mode", "model", "base_url", "max_rounds", "token_budget", "max_output_tokens", "context_tokens",
             "wall_timeout", "test_timeout", "reasoning_effort", "temperature", "search_backend", "search_max_chars",
-            "search_history", "context_policy")})
+            "search_history", "context_policy", "prompt_policy")})
         tasks = load_suite(args.suite, args.task)
     except (ValueError, KeyError) as exc:
         parser.error(str(exc))

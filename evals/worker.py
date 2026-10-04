@@ -14,6 +14,7 @@ from corecoder.llm import LLMResponse, ToolCall
 from corecoder.permissions import Permission
 
 from .context_policy import covered_search_view
+from .prompts import repair_prompt
 from .runtime import VISIBLE_COMMAND, BudgetExceeded, BudgetLLM, Events, make_tools
 from .schema import RunConfig
 
@@ -131,14 +132,7 @@ def main(job_path: Path) -> int:
                       max_rounds=config.max_rounds, max_context_tokens=config.context_tokens)
         agent.evidence_policy, agent.evidence_workspace, agent.context_events = config.context_policy, workspace, events
         agent._todo = next(tool.inner for tool in tools if tool.name == "todo_write")
-        prompt = (f"{job['description']}\n\nAllowed source files: {', '.join(job['allowed_files'])}. "
-                  f"Read related modules before editing. Do not modify tests or create files. "
-                  f"The only permitted shell command is: {VISIBLE_COMMAND}. "
-                  "Fix the implementation; passing visible tests alone is not final acceptance.")
-        if config.search_backend != "off":
-            prompt += (" Use search_code first to locate relevant code and documented contracts. "
-                       "Check cross-module behavior and use read_file for full context before editing. "
-                       "Search may return no evidence; existing read/glob/grep remain available.")
+        prompt = repair_prompt(job["description"], job["allowed_files"], config.search_backend, config.prompt_policy)
         result["prompt_hash"] = hashlib.sha256((agent._system + "\n" + prompt).encode()).hexdigest()
         normalized_prompt = (agent._system + "\n" + prompt).replace(str(workspace), "<TASK_WORKSPACE>")
         result["protocol_prompt_hash"] = hashlib.sha256(normalized_prompt.encode()).hexdigest()
