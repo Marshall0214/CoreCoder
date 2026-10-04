@@ -13,6 +13,7 @@ from corecoder.demo import ScriptedLLM
 from corecoder.llm import LLMResponse, ToolCall
 from corecoder.permissions import Permission
 
+from .context_policy import covered_search_view
 from .runtime import VISIBLE_COMMAND, BudgetExceeded, BudgetLLM, Events, make_tools
 from .schema import RunConfig
 
@@ -64,7 +65,12 @@ class FixtureAgent(Agent):
             inner = getattr(tool, "inner", tool)
             if tool.name == "search_code":
                 inner.sync_history(self.messages)
-        return super()._full_messages()
+        messages = super()._full_messages()
+        if getattr(self, "evidence_policy", "none") == "read-cover":
+            receipts = [receipt for tool in self.tools for receipt in getattr(tool, "read_receipts", [])]
+            messages, stats = covered_search_view(messages, self.evidence_workspace, receipts)
+            self.context_events.emit("context_organized", policy="read-cover", **stats)
+        return messages
 
     def _exec_tools_parallel(self, tool_calls, on_tool=None):
         results = []
@@ -123,6 +129,7 @@ def main(job_path: Path) -> int:
             llm = counted
         agent = FixtureAgent(llm=llm, tools=tools, permission=Permission(allow_all=True),
                       max_rounds=config.max_rounds, max_context_tokens=config.context_tokens)
+        agent.evidence_policy, agent.evidence_workspace, agent.context_events = config.context_policy, workspace, events
         agent._todo = next(tool.inner for tool in tools if tool.name == "todo_write")
         prompt = (f"{job['description']}\n\nAllowed source files: {', '.join(job['allowed_files'])}. "
                   f"Read related modules before editing. Do not modify tests or create files. "

@@ -1,5 +1,6 @@
 """Fresh task tools, redacted events and a budgeted CoreCoder LLM adapter."""
 
+import hashlib
 import inspect
 import json
 import os
@@ -8,7 +9,6 @@ import time
 import uuid
 from pathlib import Path
 
-from corecoder.context import estimate_tokens
 from corecoder.tools.base import Tool
 from corecoder.tools.bash import BashTool
 from corecoder.tools.edit import EditFileTool
@@ -19,6 +19,7 @@ from corecoder.tools.search_code import SearchCodeTool
 from corecoder.tools.todo import TodoWriteTool
 from corecoder.tools.write import WriteFileTool
 
+from .context_policy import request_breakdown
 from .process import run_tests
 from .schema import RunConfig
 
@@ -75,6 +76,7 @@ class ScopedTool(Tool):
         self.inner, self.workspace = inner, workspace.resolve()
         self.allowed_files, self.events, self.test_timeout = set(allowed_files), events, test_timeout
         self.name, self.description, self.parameters = inner.name, inner.description, inner.parameters
+        self.read_receipts = []
 
     def execute(self, **kwargs) -> str:
         started = time.perf_counter()
@@ -111,6 +113,17 @@ class ScopedTool(Tool):
         except Exception as exc:  # noqa: BLE001 - tool failures are returned to the agent
             output = f"Error: {type(exc).__name__}: {exc}"
         output = self.events.clean(output)
+        if self.name == "read_file" and not output.startswith("Error:"):
+            try:
+                data = target.read_bytes()
+                lines = data.decode("utf-8").splitlines()
+                full = "\n".join(f"{index + 1}\t{line}" for index, line in enumerate(lines)) or "(empty file)"
+                if output == full and kwargs.get("offset", 1) == 1:
+                    self.read_receipts.append({"path": target.relative_to(self.workspace).as_posix(),
+                                               "content_hash": hashlib.sha256(data).hexdigest(),
+                                               "response": output, "lines": lines})
+            except (OSError, UnicodeError):
+                pass  # A failed or changed read cannot authorize context replacement.
         self.events.emit("tool_finished", tool=self.name, result=output, seconds=round(time.perf_counter() - started, 4))
         return output
 
@@ -138,11 +151,19 @@ class BudgetLLM:
         self.missing_usage = 0
 
     def chat(self, messages, tools=None, **kwargs):
-        request_estimate = estimate_tokens(messages) + max(0, len(json.dumps(tools or [])) // 3)
+        breakdown = request_breakdown(messages, tools)
+        request_estimate = breakdown["request_estimate"]
         reservation = request_estimate + self.config.max_output_tokens
+        self.events.emit("request_preflight", next_call=self.calls + 1, **breakdown,
+                         spent=self.spent, reservation=reservation, remaining=self.config.token_budget - self.spent,
+                         token_budget=self.config.token_budget, context_tokens=self.config.context_tokens)
         if self.spent + reservation > self.config.token_budget:
+            self.events.emit("budget_blocked", reason="cumulative_preflight", request_estimate=request_estimate,
+                             reservation=reservation, remaining=self.config.token_budget - self.spent)
             raise BudgetExceeded("Insufficient estimated token budget for another request")
         if reservation > self.config.context_tokens:
+            self.events.emit("budget_blocked", reason="context_preflight", request_estimate=request_estimate,
+                             reservation=reservation, context_tokens=self.config.context_tokens)
             raise BudgetExceeded("Estimated request plus output reservation exceeds context window")
         self.calls += 1
         call_id = f"llm-{self.calls}"
@@ -167,6 +188,8 @@ class BudgetLLM:
                          completion_tokens=response.completion_tokens if known else None,
                          tools=[tc.name for tc in response.tool_calls])
         if self.spent > self.config.token_budget:
+            self.events.emit("budget_blocked", reason="returned_usage", spent=self.spent,
+                             token_budget=self.config.token_budget)
             raise BudgetExceeded("Returned usage exceeds task budget; no further tool execution")
         return response
 

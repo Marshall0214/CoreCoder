@@ -64,6 +64,7 @@ class RunConfig:
     search_backend: str = "off"
     search_max_chars: int = 6000
     search_history: str = "full"
+    context_policy: str = "none"
 
     def __post_init__(self):
         if self.mode not in {"unchanged", "reference", "scripted", "live"}:
@@ -74,6 +75,10 @@ class RunConfig:
             raise ValueError("search_history must be full or deduplicate")
         if self.search_history == "deduplicate" and self.search_backend != "keyword":
             raise ValueError("History deduplication requires keyword search")
+        if self.context_policy not in {"none", "read-cover"}:
+            raise ValueError("context_policy must be none or read-cover")
+        if self.context_policy == "read-cover" and (self.search_backend != "keyword" or self.search_history != "full"):
+            raise ValueError("read-cover requires keyword search and full search history")
         if not isinstance(self.search_max_chars, int) or isinstance(self.search_max_chars, bool) or not 256 <= self.search_max_chars <= 20000:
             raise ValueError("search_max_chars must be between 256 and 20000")
         for name in ("max_rounds", "token_budget", "max_output_tokens", "context_tokens", "wall_timeout", "test_timeout"):

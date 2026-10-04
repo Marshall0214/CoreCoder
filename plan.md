@@ -107,6 +107,7 @@
 - [x] Python/Markdown 的 search_code 与内存 BM25 索引已实现并验收；完整回归 236 passed、1 skipped，30 次共同协议对照 none 0/15、keyword 1/15，结果见 [docs/search-code-v1-results.md](docs/search-code-v1-results.md)。
 - [x] 实现可选跨轮搜索证据去重，按文件版本和保留历史失效；全量回归 248 passed、1 skipped。共同版本 30 次对照 full 2/15、deduplicate 1/15，实际去重命中 0，不能估计修复收益；固定重复查询机制诊断通过，见 [docs/search-history-v1.md](docs/search-history-v1.md)。
 - [x] 增加租约生命周期多入口任务和 Trace 诊断；两次自然检索 pilot 仍仅搜索一次，未扩大实验。旧 30 次运行的 196 次读取中，144 次包含此前同路径搜索正文；下一步转向搜索与读取之间的历史开销，见 [docs/retrieval-overlap-v1.md](docs/retrieval-overlap-v1.md)。
+- [x] 实现可选 read-cover 请求视图及每轮开销/预算阻断日志；269 passed、1 skipped。四次 pilot 中两个覆盖组均触发，已发送请求估算分别累计减少 926、604，但主验收两组均 0/2、实际累计 Token 未下降，见 [docs/read-cover-v1.md](docs/read-cover-v1.md)。
 - [ ] 关键词检索起步，加入 Embedding 与向量索引，再按开发集结果增加融合和重排。
 - [ ] 继续研究上下文预算分配与消息开销；当前去重仅覆盖重复 search_code 正文，尚未处理 read_file 或历史消息重组。
 - [ ] 比较固定长度与 AST 分块，再验证反馈驱动的证据更新。
@@ -176,4 +177,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**下一步：补充每轮消息/证据开销及历史保留观测 → 定义完整文件读取覆盖搜索片段时的历史替换干预 → 小样本确认触发后冻结并开展对照。跨搜索去重保持可选，不继续无触发的重复实验。**
+**下一步：分析修改前计划、检索和历史携带开销 → 冻结一个单项干预或独立预算敏感性诊断 → 小样本确认收益信号后再扩大对照。read-cover 保持可选，已触发但尚无修复或累计 Token 收益证据。**
