@@ -77,6 +77,8 @@ summary-<unique-id>.json/md
 
 ## 当前边界与下一步
 
+`python -m evals.retrieval_eval` 离线评测默认 11 个任务的文件级种子 Recall@K、MRR、无预算静态依赖闭包与实际限额证据覆盖，不调用模型。默认 K=1/3/5/10；`--suite` 可重复指定套件，`--dependency-depth` / `--max-chars` 控制依赖和证据预算。标签来自参考修改文件，仅供评分，不进入索引或查询；完整口径、44 份观察与复跑见 [retrieval-quality-v1](../docs/retrieval-quality-v1.md)。
+
 `--mode pipeline --search-backend keyword` 按缺陷描述检索，再沿静态依赖构建完整文件证据，单次生成 JSON 补丁并独立验收。`--evidence-top-k` 默认 5、`--evidence-dependency-depth` 默认 2，正文上限由 `--search-max-chars` 设置（默认 6,000）。仅允许默认 baseline 提示、context-policy=none、search-history=full；协议标为 bounded-pipeline-v1，同协议可做策略对照，与旧 Agent 混合汇总不标为共同基准。六次 pilot、实现边界和复跑命令见 [bounded-pipeline-v1](../docs/bounded-pipeline-v1.md)。
 
 管线的 `--evidence-order selection|path` 在预算裁剪后保留选择顺序或按路径排序，文件内容及集合不变。Trace 保存顺序无关证据哈希与实际请求顺序；实现、交错复跑及结果见 [evidence-order-v1](../docs/evidence-order-v1.md)。
