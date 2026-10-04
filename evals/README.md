@@ -87,6 +87,8 @@ pipeline_evidence_built 另记录 ranked_chunks、candidate_files、seed_count�
 
 有界管线的完整 localization-v1 开发集基线为3/15：目标源码均在证据中，四类任务仍遗漏另一处契约行为；全部可见回归通过不代表独立目标通过。冻结配置、逐项结果与失败分析见 [localization-pipeline-baseline-v1](../docs/localization-pipeline-baseline-v1.md)。
 
+`--patch-policy baseline|contract-coverage` 仅用于pipeline。覆盖组单请求输出公开契约清单和补丁；清单引用/范围错误记录为诊断，不阻断合法补丁，不代表语义覆盖验证。补丁和父进程评分仍严格，默认baseline提示保留。两批pilot、初版阻断修正与最终1/5对4/5的小样本结果见 [patch-coverage-v1](../docs/patch-coverage-v1.md)，不能作为稳定收益或检索效果结论。
+
 `--mode fixed-evidence` 一次性提供允许源码与公开契约，无工具循环，请求 JSON 补丁并使用同一独立验证器。报告 benchmark_eligible=false；不可混用 Agent 策略，不能与 Agent 或 RAG 策略直接归因比较。模式、边界、六次运行与换行重放见 [fixed-evidence-v1](../docs/fixed-evidence-v1.md)。
 
 修复提示支持 `--prompt-policy baseline|contract-check`，默认 baseline 保持原文；检查组追加通用症状/契约/验证覆盖要求，属于单独 Prompt 干预，尚无可靠收益。实现与 pilot 见 [contract-check-v1](../docs/contract-check-v1.md)。

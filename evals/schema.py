@@ -69,8 +69,13 @@ class RunConfig:
     evidence_top_k: int = 5
     evidence_dependency_depth: int = 2
     evidence_order: str = "selection"
+    patch_policy: str = "baseline"
 
     def __post_init__(self):
+        if self.patch_policy not in {"baseline", "contract-coverage"}:
+            raise ValueError("patch_policy must be baseline or contract-coverage")
+        if self.mode != "pipeline" and self.patch_policy != "baseline":
+            raise ValueError("Patch coverage requires pipeline mode")
         if self.evidence_order not in {"selection", "path"}:
             raise ValueError("evidence_order must be selection or path")
         if self.mode != "pipeline" and self.evidence_order != "selection":

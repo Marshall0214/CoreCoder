@@ -105,4 +105,4 @@ def run_pipeline(llm, workspace, description, allowed_files, config, events):
     evidence = bounded_evidence(workspace, description, allowed_files, config, events)
     evidence = ordered_evidence(evidence, config.evidence_order, events)
     return generate_patch(llm, workspace, description, allowed_files, events, evidence,
-                          protocol="bounded-pipeline-v1", response_name="pipeline-response.txt")
+                          protocol="bounded-pipeline-v1", response_name="pipeline-response.txt", policy=config.patch_policy)

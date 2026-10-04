@@ -4,6 +4,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from .patch_coverage import SYSTEM as COVERAGE_SYSTEM
+from .patch_coverage import validate_coverage
 from .schema import relative_path
 
 SYSTEM = (
@@ -84,23 +86,41 @@ def diagnose(llm, workspace: Path, description: str, allowed_files, events) -> d
 
 
 def generate_patch(llm, workspace, description, allowed_files, events, evidence,
-                   protocol="fixed-evidence-v1", response_name="diagnostic-response.txt"):
+                   protocol="fixed-evidence-v1", response_name="diagnostic-response.txt", policy="baseline"):
+    if policy not in {"baseline", "contract-coverage"} or (policy != "baseline" and protocol != "bounded-pipeline-v1"):
+        raise ValueError("Invalid patch policy for protocol")
+    system = SYSTEM if policy == "baseline" else COVERAGE_SYSTEM
     payload = json.dumps({"description": description, "allowed_files": list(allowed_files),
                           "files": evidence}, ensure_ascii=False)
-    messages = [{"role": "system", "content": SYSTEM}, {"role": "user", "content": payload}]
+    messages = [{"role": "system", "content": system}, {"role": "user", "content": payload}]
     manifest = [{key: value for key, value in item.items() if key != "content"} for item in evidence]
     events.emit("fixed_evidence_prepared" if protocol == "fixed-evidence-v1" else "pipeline_patch_request",
                 files=manifest, chars=sum(len(item["content"]) for item in evidence))
     response = llm.chat(messages, tools=[])
     (events.path.parent / response_name).write_text(events.clean(response.content), encoding="utf-8")
-    result = {"protocol": protocol, "evidence_manifest": manifest,
-              "prompt_hash": hashlib.sha256((SYSTEM + "\n" + payload).encode()).hexdigest(),
+    result = {"protocol": protocol, "patch_policy": policy, "evidence_manifest": manifest,
+              "prompt_hash": hashlib.sha256((system + "\n" + payload).encode()).hexdigest(),
               "tool_schema_hash": hashlib.sha256(b"[]").hexdigest(), "final_message": response.content}
     result["protocol_prompt_hash"] = result["prompt_hash"]  # No workspace path in this protocol.
     try:
         if response.tool_calls:
             raise ValueError("Tool calls are not supported by the fixed-evidence protocol")
-        edited = apply_patch_json(response.content, workspace, allowed_files, evidence)
+        patch = response.content
+        if policy == "contract-coverage":
+            parsed = json.loads(response.content)
+            if not isinstance(parsed, dict) or set(parsed) != {"coverage", "edits"}:
+                raise ValueError("Expected exactly coverage and edits")
+            try:
+                claims = validate_coverage(parsed, description, evidence, allowed_files)
+            except ValueError as exc:
+                # Auxiliary claims cannot veto an independently valid, scoped patch.
+                result.update(coverage_status="invalid", coverage_error=str(exc))
+                events.emit("pipeline_coverage_rejected", error=str(exc), semantic_coverage_verified=False)
+            else:
+                result.update(coverage_status="valid", coverage_claims=claims)
+                events.emit("pipeline_coverage_validated", entries=claims, semantic_coverage_verified=False)
+            patch = json.dumps({"edits": parsed["edits"]}, ensure_ascii=False)
+        edited = apply_patch_json(patch, workspace, allowed_files, evidence)
         events.emit("diagnostic_patch_applied" if protocol == "fixed-evidence-v1" else "pipeline_patch_applied",
                     files=edited)
         result.update(status="completed", edited_files=edited)
