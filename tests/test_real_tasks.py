@@ -57,7 +57,8 @@ def test_real_protocol_original_and_oracle_controls(tmp_path, real_case, mode, a
         assert VISIBLE in trace
 
 
-def test_live_job_has_no_oracle_or_target(tmp_path, real_case, monkeypatch):
+@pytest.mark.parametrize('workflow', ['agent-loop', 'symbol-patch'])
+def test_live_job_has_no_oracle_or_target(tmp_path, real_case, monkeypatch, workflow):
     captured = {}
 
     def worker(command, cwd, timeout, stdout, stderr, env):
@@ -67,12 +68,15 @@ def test_live_job_has_no_oracle_or_target(tmp_path, real_case, monkeypatch):
         return {'timed_out': False, 'returncode': 0, 'seconds': 0}
 
     monkeypatch.setattr('evals.real_tasks.run_process', worker)
-    report = run_real(*real_case, RunConfig(mode='live'), tmp_path / 'runs')
+    report = run_real(*real_case, RunConfig(mode='live'), tmp_path / 'runs', workflow=workflow)
     assert report['status'] == 'failed_verification'
     assert captured['description'] == real_case[0]['public_problem']
     assert 'oracle_edits' not in captured and 'changed_source_files' not in captured
     assert 'test_hidden_requirement' not in json.dumps(captured)
     assert 'before_commit' not in captured and 'after_commit' not in captured
+    assert captured['workflow'] == workflow
+    assert report['evaluation_protocol'] == ('symbol-patch-development-v1' if workflow == 'symbol-patch'
+                                             else 'real-agent-loop-development-v1')
 
 
 def test_grading_rejects_visible_test_tampering(tmp_path, real_case):
@@ -90,6 +94,35 @@ def test_grading_rejects_visible_test_tampering(tmp_path, real_case):
     result = verify(case, source, checks, workspace, original, ['src/click/core.py'], root, environment['executable'])
     assert not result['passed'] and result['scope_violations'] == ['tests/test_fake.py']
     assert not (root / 'grading').exists()
+
+
+def test_symbol_patch_is_independently_graded_in_a_fresh_copy(tmp_path, real_case, monkeypatch):
+    from corecoder.demo import ScriptedLLM
+    from corecoder.llm import LLMResponse
+    from evals.symbol_patch import run_symbol_patch
+
+    case, row, checks, source, environment = real_case
+    case = {**case, 'public_problem': 'Repair FIXED behavior.'}
+
+    def worker(command, cwd, timeout, stdout, stderr, env):
+        job_path = Path(command[-1])
+        job = json.loads(job_path.read_text())
+        assert job['workflow'] == 'symbol-patch' and 'oracle_edits' not in job
+        # Deterministic harness acceptance, not a model success measurement.
+        llm = ScriptedLLM([LLMResponse(content=json.dumps({'edits': [
+            {'file': 'src/click/core.py', 'old': 'FIXED = False', 'new': 'FIXED = True'}]}))])
+        result = run_symbol_patch(llm, Path(job['workspace']), job['description'], job['allowed_files'],
+                                   RunConfig(**job['config']), Events(job_path.parent / 'trace.jsonl', job['run_id']))
+        (job_path.parent / 'worker-result.json').write_text(json.dumps(result))
+        return {'timed_out': False, 'returncode': 0, 'seconds': 0}
+
+    monkeypatch.setattr('evals.real_tasks.run_process', worker)
+    report = run_real(case, row, checks, source, environment, RunConfig(mode='live'), tmp_path / 'runs',
+                      workflow='symbol-patch')
+    assert report['accepted'] and report['verification']['passed']
+    root = Path(report['artifacts'])
+    assert (root / 'grading/src/click/core.py').read_text() == 'FIXED = True\n'
+    assert (source / 'before/src/click/core.py').read_text() == 'FIXED = False\n'
 
 
 def test_real_visible_tool_blocks_other_shell_commands(tmp_path, real_case):

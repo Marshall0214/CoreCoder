@@ -159,6 +159,13 @@ def main(job_path: Path) -> int:
         if config.mode == "contract-feedback":
             result.update(run_contract_feedback(llm, workspace, job["description"], job["allowed_files"], config, events))
             return 0
+        if job.get("workflow") == "symbol-patch":
+            from .symbol_patch import run_symbol_patch
+
+            if config.mode != "live":
+                raise ValueError("Symbol patch worker requires live mode")
+            result.update(run_symbol_patch(llm, workspace, job["description"], job["allowed_files"], config, events))
+            return 0
         agent = FixtureAgent(llm=llm, tools=tools, permission=Permission(allow_all=True),
                       max_rounds=config.max_rounds, max_context_tokens=config.context_tokens)
         agent.evidence_policy, agent.evidence_workspace, agent.context_events = config.context_policy, workspace, events

@@ -75,7 +75,12 @@ def verify(case, source_root, checks, workspace, original, allowed, root, python
             'regression_scope': 'public Controls only; not the full upstream suite'}
 
 
-def run_real(case, row, checks, source_root, environment, config, output):
+def run_real(case, row, checks, source_root, environment, config, output, workflow='agent-loop'):
+    if workflow not in {'agent-loop', 'symbol-patch'} or (workflow == 'symbol-patch' and config.mode != 'live'):
+        raise ValueError('Symbol patch workflow requires live mode; unknown workflows are rejected')
+    if workflow == 'symbol-patch' and (config.search_backend != 'off' or config.search_history != 'full'
+                                      or config.context_policy != 'none' or config.prompt_policy != 'baseline'):
+        raise ValueError('Symbol patch is a separate protocol; Agent policies must use defaults')
     if config.mode not in {'unchanged', 'reference', 'scripted', 'live'}:
         raise ValueError('Real development tasks currently support unchanged/reference/scripted/live only')
     if output.resolve().is_relative_to(source_root.resolve()) or output.resolve().is_relative_to(checks.resolve()):
@@ -84,7 +89,9 @@ def run_real(case, row, checks, source_root, environment, config, output):
     root.mkdir(parents=True, exist_ok=False)
     events = Events(root / 'trace.jsonl', root.name)
     report = {'run_id': root.name, 'task_id': case['case_id'], 'source': 'real-upstream', 'mode': config.mode,
-              'evaluation_protocol': 'real-agent-loop-development-v1', 'benchmark_eligible': False,
+              'evaluation_protocol': ('symbol-patch-development-v1' if workflow == 'symbol-patch'
+                                      else 'real-agent-loop-development-v1'), 'workflow': workflow,
+              'benchmark_eligible': False,
               'accepted': False, 'status': 'infrastructure_error', 'config': config.to_dict(),
               'metrics': None, 'verification': None, 'artifacts': str(root),
               'provenance': case, 'admission_checks_hash': row['checks_hash'], 'test_environment': environment,
@@ -116,6 +123,7 @@ def run_real(case, row, checks, source_root, environment, config, output):
             worker = {'status': 'completed', 'metrics': None}
         else:
             job = {'run_id': root.name, 'workspace': str(workspace), 'description': case['public_problem'],
+                   'workflow': workflow,
                    'allowed_files': allowed, 'config': config.to_dict(), 'visible_command': VISIBLE,
                    'real_visible_python': str(python)}
             if config.mode == 'scripted':
@@ -166,6 +174,7 @@ def main():
     parser.add_argument('--catalog', type=Path, default=DATA / 'crossfile-candidates.json')
     parser.add_argument('--task', default='click-flag-envvar')
     parser.add_argument('--mode', choices=('unchanged', 'reference', 'scripted', 'live'), default='unchanged')
+    parser.add_argument('--workflow', choices=('agent-loop', 'symbol-patch'), default='agent-loop')
     parser.add_argument('--output', type=Path, default=Path('.tmp/real-defects/repair'))
     parser.add_argument('--model', default='qwen3.5:27b')
     parser.add_argument('--base-url', default='http://localhost:11434/v1')
@@ -173,6 +182,8 @@ def main():
     parser.add_argument('--search-history', choices=('full', 'deduplicate'), default='full')
     parser.add_argument('--search-max-chars', type=int, default=6000)
     parser.add_argument('--reasoning-effort', default='none')
+    parser.add_argument('--evidence-top-k', type=int, default=5)
+    parser.add_argument('--evidence-dependency-depth', type=int)
     for flag, default in (('max-rounds', 12), ('token-budget', 30000), ('max-output-tokens', 2048),
                           ('context-tokens', 16000), ('wall-timeout', 180), ('test-timeout', 15)):
         parser.add_argument('--' + flag, type=int, default=default)
@@ -181,6 +192,9 @@ def main():
     config = RunConfig(mode=args.mode, model=args.model, base_url=args.base_url,
                        search_backend=args.search_backend, search_history=args.search_history,
                        search_max_chars=args.search_max_chars,
+                       evidence_top_k=args.evidence_top_k,
+                       evidence_dependency_depth=(args.evidence_dependency_depth if args.evidence_dependency_depth is not None
+                                                  else (1 if args.workflow == 'symbol-patch' else 2)),
                        reasoning_effort=args.reasoning_effort,
                        **{name: getattr(args, name) for name in ('max_rounds', 'token_budget', 'max_output_tokens',
                                                                'context_tokens', 'wall_timeout', 'test_timeout')})
@@ -188,7 +202,7 @@ def main():
         from corecoder.config import _load_dotenv
 
         _load_dotenv()
-    report = run_real(case, row, checks, source, environment, config, args.output)
+    report = run_real(case, row, checks, source, environment, config, args.output, workflow=args.workflow)
     print(f"{case['case_id']}: {report['status']}")
     print(write_summary([report], args.output.resolve()))
     return 0 if report['accepted'] else 1
