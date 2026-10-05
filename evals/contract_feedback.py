@@ -10,6 +10,10 @@ import json
 import re
 import shutil
 
+from .check_arithmetic import numeric_assertions
+from .check_review import PROTOCOL as REVIEW_PROTOCOL
+from .check_review import SYSTEM as REVIEW_SYSTEM
+from .check_review import reviewed_checks, test_methods
 from .fixed_evidence import generate_patch
 from .pipeline import bounded_evidence, ordered_evidence
 from .process import run_tests
@@ -98,6 +102,7 @@ def refreshed_evidence(workspace, evidence):
 
 
 def run_contract_feedback(llm, workspace, description, allowed_files, config, events):
+    protocol = REVIEW_PROTOCOL if config.public_check_policy == "reviewed" else PROTOCOL
     evidence = ordered_evidence(bounded_evidence(workspace, description, allowed_files, config, events),
                                 config.evidence_order, events)
     payload = json.dumps({"description": description, "allowed_files": list(allowed_files), "files": evidence},
@@ -111,16 +116,43 @@ def run_contract_feedback(llm, workspace, description, allowed_files, config, ev
         if response.tool_calls:
             raise ValueError("Check generation cannot call tools")
         code = validate_checks(response.content, allowed_files)
-        (root / "public-contract-checks.py").write_bytes(code.encode("utf-8"))
-        checks.update(generation_status="valid", code_hash=hashlib.sha256(code.encode()).hexdigest())
-        events.emit("public_contract_frozen", **checks)
-        checks["original"], _ = check_candidate(workspace, code, config, events, "original")
+        checks["generation_status"] = "valid"
+        if config.public_check_policy == "reviewed":
+            (root / "public-contract-generated.py").write_bytes(code.encode("utf-8"))
+            checks["generated_code_hash"] = hashlib.sha256(code.encode()).hexdigest()
+            review_payload = json.dumps({"description": description, "files": evidence, "code": code,
+                                         "tests": test_methods(code), "numeric_assertions": numeric_assertions(code)}, ensure_ascii=False)
+            checks["review_prompt_hash"] = hashlib.sha256((REVIEW_SYSTEM + "\n" + review_payload).encode()).hexdigest()
+            events.emit("public_contract_review_requested", generated_code_hash=checks["generated_code_hash"])
+            reviewed = llm.chat([{"role": "system", "content": REVIEW_SYSTEM},
+                                 {"role": "user", "content": review_payload}], tools=[])
+            (root / "public-check-review-response.txt").write_text(events.clean(reviewed.content), encoding="utf-8")
+            try:
+                if reviewed.tool_calls:
+                    raise ValueError("Check review cannot call tools")
+                code, reviews = reviewed_checks(reviewed.content, code, description, evidence)
+                checks.update(review_status="valid", reviews=reviews,
+                              accepted_tests=[r["test"] for r in reviews if r["verdict"] == "accept"],
+                              semantic_correctness_verified=False)
+                events.emit("public_contract_reviewed", **checks)
+            except (ValueError, SyntaxError) as exc:
+                code = None
+                checks.update(review_status="invalid", review_error=str(exc))
+                events.emit("public_contract_review_rejected", **checks)
+        if code is None:
+            checks["feedback_disabled_reason"] = "No review-accepted checks"
+        else:
+            validate_checks(json.dumps({"code": code}), allowed_files)
+            (root / "public-contract-checks.py").write_bytes(code.encode("utf-8"))
+            checks.update(code_hash=hashlib.sha256(code.encode()).hexdigest())
+            events.emit("public_contract_frozen", **checks)
+            checks["original"], _ = check_candidate(workspace, code, config, events, "original")
     except (ValueError, SyntaxError) as exc:
         code = None
         checks.update(generation_status="invalid", error=str(exc))
         events.emit("public_contract_generation_rejected", **checks)
     first = generate_patch(llm, workspace, description, allowed_files, events, evidence,
-                           protocol=PROTOCOL, response_name="initial-patch-response.txt", policy=config.patch_policy)
+                           protocol=protocol, response_name="initial-patch-response.txt", policy=config.patch_policy)
     stages = [first]
     result = dict(first)
     result.update(public_checks=checks, feedback_attempts=0, patch_stages=stages)
@@ -129,7 +161,7 @@ def run_contract_feedback(llm, workspace, description, allowed_files, config, ev
         if checks["original"]["assertion_failure"] and checks["candidate"]["assertion_failure"]:
             events.emit("public_contract_feedback_requested", code_hash=checks["code_hash"], max_attempts=1)
             final = generate_patch(llm, workspace, description, allowed_files, events,
-                                   refreshed_evidence(workspace, evidence), protocol=PROTOCOL,
+                                   refreshed_evidence(workspace, evidence), protocol=protocol,
                                    response_name="feedback-patch-response.txt", policy=config.patch_policy,
                                    feedback={"frozen_test_code": code, "output": output,
                                              "instruction": "Repair source to satisfy the public contract; tests are frozen. "

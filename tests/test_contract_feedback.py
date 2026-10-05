@@ -22,7 +22,7 @@ class RecordingLLM:
         return LLMResponse(content=json.dumps(self.answers.pop(0)))
 
 
-def setup_run(tmp_path, answers, source="def value():\n    return 1\n"):
+def setup_run(tmp_path, answers, source="def value():\n    return 1\n", public_check_policy="generated"):
     workspace = tmp_path / "workspace"
     workspace.mkdir()
     (workspace / "value.py").write_text(source, encoding="utf-8")
@@ -30,7 +30,7 @@ def setup_run(tmp_path, answers, source="def value():\n    return 1\n"):
     (workspace / "docs" / "contract.md").write_text("value contract: value() must return 3", encoding="utf-8")
     llm = RecordingLLM(answers)
     result = run_contract_feedback(llm, workspace, "value() must return 3", ["value.py"],
-                                   RunConfig(mode="contract-feedback", search_backend="keyword"),
+                                   RunConfig(mode="contract-feedback", search_backend="keyword", public_check_policy=public_check_policy),
                                    Events(tmp_path / "trace.jsonl", "test"))
     return result, llm, workspace
 

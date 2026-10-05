@@ -123,7 +123,8 @@ def run_task(task: Task, config: RunConfig, output: Path, repetition: int = 1) -
     if config.mode == "fixed-evidence":
         report["evaluation_protocol"] = "fixed-evidence-v1 diagnostic; not an Agent benchmark"
     elif config.mode == "contract-feedback":
-        report["evaluation_protocol"] = "public-contract-feedback-v1"
+        report["evaluation_protocol"] = ("public-contract-feedback-v2-review" if config.public_check_policy == "reviewed"
+                                         else "public-contract-feedback-v1")
     elif config.mode == "pipeline":
         report["evaluation_protocol"] = "bounded-pipeline-v1"
     elif config.mode == "live":

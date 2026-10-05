@@ -70,8 +70,13 @@ class RunConfig:
     evidence_dependency_depth: int = 2
     evidence_order: str = "selection"
     patch_policy: str = "baseline"
+    public_check_policy: str = "generated"
 
     def __post_init__(self):
+        if self.public_check_policy not in {"generated", "reviewed"}:
+            raise ValueError("public_check_policy must be generated or reviewed")
+        if self.public_check_policy != "generated" and self.mode != "contract-feedback":
+            raise ValueError("Check review requires contract-feedback mode")
         if self.patch_policy not in {"baseline", "contract-coverage"}:
             raise ValueError("patch_policy must be baseline or contract-coverage")
         if self.mode not in {"pipeline", "contract-feedback"} and self.patch_policy != "baseline":
