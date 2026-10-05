@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "suite_id": "click-development-v1",
+  "split": "development",
+  "purpose": "Mixed development baseline only; no held-out or cross-repository claims",
+  "repeat": 3,
+  "config": {
+    "mode": "live",
+    "model": "qwen3.5:27b",
+    "base_url": "http://localhost:11434/v1",
+    "max_rounds": 12,
+    "token_budget": 30000,
+    "max_output_tokens": 2048,
+    "context_tokens": 16000,
+    "wall_timeout": 180,
+    "test_timeout": 15,
+    "temperature": 0.0,
+    "reasoning_effort": "none",
+    "search_backend": "off",
+    "search_max_chars": 6000,
+    "search_history": "full",
+    "context_policy": "none",
+    "prompt_policy": "baseline",
+    "evidence_top_k": 5,
+    "evidence_dependency_depth": 2,
+    "evidence_order": "selection",
+    "patch_policy": "baseline",
+    "public_check_policy": "generated"
+  },
+  "sources": [
+    {
+      "name": "original",
+      "catalog": "candidates.json",
+      "catalog_sha256": "12802fbf3e874c0b6bfe9bd5c55fb30a0c5b066bed575b5b1fd6b4c59dda4a90",
+      "tasks": [
+        "click-help-eagerness",
+        "click-flag-default-map",
+        "click-resource-exception"
+      ]
+    },
+    {
+      "name": "crossfile",
+      "catalog": "crossfile-candidates.json",
+      "catalog_sha256": "b02b54868f259825821828c4539aec8d89be2619b3fa94f09c4a5a8039ed0983",
+      "tasks": [
+        "click-flag-envvar"
+      ]
+    },
+    {
+      "name": "expansion",
+      "catalog": "expansion-candidates-v1.json",
+      "catalog_sha256": "afd53fe118f4b544329c6dfc20daad47ad648b07f8a2e582bd990e66b7b7b3c6",
+      "tasks": [
+        "click-prompt-suffix",
+        "click-invoke-missing",
+        "click-shared-default"
+      ]
+    }
+  ]
+}
