@@ -15,12 +15,13 @@ CONTRACT_CHECK = (
 )
 
 
-def repair_prompt(description: str, allowed_files, search_backend: str, policy: str = "baseline") -> str:
+def repair_prompt(description: str, allowed_files, search_backend: str, policy: str = "baseline",
+                  visible_command: str = VISIBLE_COMMAND) -> str:
     if policy not in {"baseline", "contract-check"}:
         raise ValueError("Unknown repair prompt policy")
     prompt = (f"{description}\n\nAllowed source files: {', '.join(allowed_files)}. "
               f"Read related modules before editing. Do not modify tests or create files. "
-              f"The only permitted shell command is: {VISIBLE_COMMAND}. "
+              f"The only permitted shell command is: {visible_command}. "
               "Fix the implementation; passing visible tests alone is not final acceptance.")
     if search_backend != "off":
         prompt += (" Use search_code first to locate relevant code and documented contracts. "

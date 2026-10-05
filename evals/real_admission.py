@@ -90,11 +90,11 @@ def load_cases(catalog=None):
     return cases
 
 
-def execute(source, checks, group, output, python=None):
+def execute(source, checks, group, output, python=None, timeout=30):
     output.mkdir(parents=True, exist_ok=True)
     outcome = run_process([str(python or sys.executable), '-I', '-B', '-c', BOOTSTRAP,
                            str((source / 'src').resolve()), str(checks.resolve()), group],
-                          source, 30, output / (group + '.stdout.txt'), output / (group + '.stderr.txt'),
+                          source, timeout, output / (group + '.stdout.txt'), output / (group + '.stderr.txt'),
                           test_environment(source))
     text = (output / (group + '.stderr.txt')).read_text(encoding='utf-8', errors='replace')
     count = re.search(r'Ran (\d+) tests?', text)
@@ -106,9 +106,9 @@ def execute(source, checks, group, output, python=None):
     return outcome
 
 
-def checked_groups(source, checks, logs, python=None):
+def checked_groups(source, checks, logs, python=None, timeout=30):
     source_hash, checks_hash = digest(snapshot(source)), digest(snapshot(checks))
-    groups = {group: execute(source, checks, group, logs, python) for group in ('Target', 'Controls')}
+    groups = {group: execute(source, checks, group, logs, python, timeout) for group in ('Target', 'Controls')}
     if source_hash != digest(snapshot(source)) or checks_hash != digest(snapshot(checks)):
         raise ValueError('Source snapshot or admission tests changed during execution')
     return groups

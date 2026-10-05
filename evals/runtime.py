@@ -77,6 +77,7 @@ class ScopedTool(Tool):
         self.allowed_files, self.events, self.test_timeout = set(allowed_files), events, test_timeout
         self.name, self.description, self.parameters = inner.name, inner.description, inner.parameters
         self.read_receipts = []
+        self.visible_command, self.visible_runner = VISIBLE_COMMAND, None
 
     def execute(self, **kwargs) -> str:
         started = time.perf_counter()
@@ -84,12 +85,13 @@ class ScopedTool(Tool):
         try:
             inspect.signature(self.inner.execute).bind(**kwargs)
             if self.name == "bash":
-                if kwargs["command"].strip() != VISIBLE_COMMAND:
-                    raise ValueError(f"Only the declared visible-test command is permitted: {VISIBLE_COMMAND}")
+                if kwargs["command"].strip() != self.visible_command:
+                    raise ValueError(f"Only the declared visible-test command is permitted: {self.visible_command}")
                 folder = self.workspace / ".eval-logs"
                 folder.mkdir(exist_ok=True)
-                result = run_tests(self.workspace, "tests", min(self.test_timeout, max(1, int(kwargs.get("timeout", 120)))),
-                                   folder, f"visible-{uuid.uuid4().hex[:10]}")
+                result = (self.visible_runner(folder) if self.visible_runner else
+                          run_tests(self.workspace, "tests", min(self.test_timeout, max(1, int(kwargs.get("timeout", 120)))),
+                                    folder, f"visible-{uuid.uuid4().hex[:10]}"))
                 output = (folder / result["stdout"]).read_text(encoding="utf-8", errors="replace")
                 output += (folder / result["stderr"]).read_text(encoding="utf-8", errors="replace")
                 output = output[:12000] + f"\n[exit code: {result['returncode']}; timed_out: {result['timed_out']}]"

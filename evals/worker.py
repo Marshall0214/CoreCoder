@@ -113,7 +113,8 @@ def scripted_llm(job: dict) -> ScriptedLLM:
         turns.append(LLMResponse(tool_calls=[ToolCall(f"edit-{i}", "edit_file", {
             "file_path": edit["file"], "old_string": edit["old"], "new_string": edit["new"],
         })]))
-    turns.append(LLMResponse(tool_calls=[ToolCall("test", "bash", {"command": VISIBLE_COMMAND})]))
+    turns.append(LLMResponse(tool_calls=[ToolCall("test", "bash", {
+        "command": job.get("visible_command", VISIBLE_COMMAND)})]))
     turns.append(LLMResponse(content="Scripted oracle repair completed; independent verification is still required."))
     return ScriptedLLM(turns, model="scripted-oracle")
 
@@ -129,6 +130,10 @@ def main(job_path: Path) -> int:
         workspace = Path(job["workspace"]).resolve()
         os.chdir(workspace)
         tools = make_tools(workspace, job["allowed_files"], events, config.test_timeout, config)
+        if "real_visible_python" in job:
+            from .real_tasks import configure_visible_tools
+
+            configure_visible_tools(tools, workspace, job["real_visible_python"])
         events.emit("worker_started", mode=config.mode, model=config.model)
         if config.mode == "scripted":
             llm = scripted_llm(job)
@@ -158,7 +163,8 @@ def main(job_path: Path) -> int:
                       max_rounds=config.max_rounds, max_context_tokens=config.context_tokens)
         agent.evidence_policy, agent.evidence_workspace, agent.context_events = config.context_policy, workspace, events
         agent._todo = next(tool.inner for tool in tools if tool.name == "todo_write")
-        prompt = repair_prompt(job["description"], job["allowed_files"], config.search_backend, config.prompt_policy)
+        prompt = repair_prompt(job["description"], job["allowed_files"], config.search_backend, config.prompt_policy,
+                               job.get("visible_command", VISIBLE_COMMAND))
         result["prompt_hash"] = hashlib.sha256((agent._system + "\n" + prompt).encode()).hexdigest()
         normalized_prompt = (agent._system + "\n" + prompt).replace(str(workspace), "<TASK_WORKSPACE>")
         result["protocol_prompt_hash"] = hashlib.sha256(normalized_prompt.encode()).hexdigest()
