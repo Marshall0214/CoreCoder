@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "purpose": "development admission only; not a frozen held-out benchmark",
+  "cases": [
+    {
+      "case_id": "click-flag-envvar",
+      "repo": "pallets/click",
+      "issue_url": "https://github.com/pallets/click/issues/2952",
+      "fix_url": "https://github.com/pallets/click/pull/2956",
+      "before_commit": "5c1239b0116b66492cdd0848144ab3c78a04495a",
+      "after_commit": "565f36d5bc4a15d304337b749e113fb4477b1843",
+      "merged_at": "2025-07-01T14:46:39Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": ["src/click/core.py", "src/click/types.py"],
+      "repair_scope": "two-source-file upstream behavioral repair; development candidate",
+      "partial_repair_diagnostics": true,
+      "test_directory": "click-flag-envvar",
+      "public_problem": "Environment-variable flag values must distinguish activation from deactivation. False-like values must not activate non-boolean flags; true-like values and the exact flag_value activate them. Boolean flag values containing only whitespace represent false. Preserve explicit command-line activation and normal argument conversion."
+    }
+  ]
+}

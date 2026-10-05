@@ -3,7 +3,7 @@ import zipfile
 
 import pytest
 
-from evals.real_admission import execute, extract_archive, load_cases
+from evals.real_admission import DATA, execute, extract_archive, load_cases, partial_repairs
 from evals.runner import digest, snapshot
 
 
@@ -78,3 +78,33 @@ def test_candidate_catalog_is_development_only():
     cases = load_cases()
     assert len(cases) == 3
     assert all('not a cross-file' in case['repair_scope'] for case in cases)
+
+
+def test_crossfile_catalog_pins_two_behavioral_source_files():
+    cases = load_cases(DATA / 'crossfile-candidates.json')
+    assert len(cases) == 1
+    assert cases[0]['partial_repair_diagnostics'] is True
+    assert set(cases[0]['changed_source_files']) == {'src/click/core.py', 'src/click/types.py'}
+
+
+def test_partial_repairs_overlay_one_file_and_preserve_originals(tmp_path, monkeypatch):
+    files = ['src/click/core.py', 'src/click/types.py']
+    for label in ('before', 'after'):
+        for name in files:
+            path = tmp_path / label / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(label + name, encoding='utf-8')
+        (tmp_path / label / 'LICENSE.txt').write_text('retained license', encoding='utf-8')
+    original = {label: digest(snapshot(tmp_path / label)) for label in ('before', 'after')}
+    seen = []
+
+    def groups(source, checks, logs, python):
+        seen.append([name for name in files if (source / name).read_bytes() == (tmp_path / 'after' / name).read_bytes()])
+        assert (source / 'LICENSE.txt').read_text() == 'retained license'
+        return {'Target': {'passed': False}, 'Controls': {'passed': True}}
+
+    monkeypatch.setattr('evals.real_admission.checked_groups', groups)
+    rows = partial_repairs({'changed_source_files': files}, tmp_path, tmp_path / 'checks')
+    assert seen == [[files[0]], [files[1]]]
+    assert [row['applied_files'] for row in rows] == seen
+    assert {label: digest(snapshot(tmp_path / label)) for label in original} == original

@@ -2,10 +2,10 @@
 
 import argparse
 import hashlib
-import importlib.metadata
 import io
 import json
 import re
+import shutil
 import sys
 import urllib.request
 import zipfile
@@ -73,8 +73,8 @@ def extract_archive(data, destination):
             target.write_bytes(archive.read(entry))
 
 
-def load_cases():
-    cases = json.loads((DATA / 'candidates.json').read_text(encoding='utf-8'))['cases']
+def load_cases(catalog=None):
+    cases = json.loads((catalog or DATA / 'candidates.json').read_text(encoding='utf-8'))['cases']
     ids = set()
     for case in cases:
         if (not re.fullmatch(r'[a-z0-9-]+', case['case_id']) or case['case_id'] in ids
@@ -83,12 +83,16 @@ def load_cases():
         ids.add(case['case_id'])
         if not all(re.fullmatch('[0-9a-f]{40}', case[field]) for field in ('before_commit', 'after_commit')):
             raise ValueError('Candidate must pin full commit hashes')
+        changed = case['changed_source_files']
+        if (not changed or len(set(changed)) != len(changed)
+                or any(not re.fullmatch(r'src/click/[a-z_]+\.py', name) for name in changed)):
+            raise ValueError('Invalid pinned source repair scope')
     return cases
 
 
-def execute(source, checks, group, output):
+def execute(source, checks, group, output, python=None):
     output.mkdir(parents=True, exist_ok=True)
-    outcome = run_process([sys.executable, '-I', '-B', '-c', BOOTSTRAP,
+    outcome = run_process([str(python or sys.executable), '-I', '-B', '-c', BOOTSTRAP,
                            str((source / 'src').resolve()), str(checks.resolve()), group],
                           source, 30, output / (group + '.stdout.txt'), output / (group + '.stderr.txt'),
                           test_environment(source))
@@ -102,14 +106,34 @@ def execute(source, checks, group, output):
     return outcome
 
 
-def admit(case, root):
+def checked_groups(source, checks, logs, python=None):
+    source_hash, checks_hash = digest(snapshot(source)), digest(snapshot(checks))
+    groups = {group: execute(source, checks, group, logs, python) for group in ('Target', 'Controls')}
+    if source_hash != digest(snapshot(source)) or checks_hash != digest(snapshot(checks)):
+        raise ValueError('Source snapshot or admission tests changed during execution')
+    return groups
+
+
+def partial_repairs(case, directory, checks, python=None):
+    """Diagnostic of the known upstream patch, not proof of a minimal repair."""
+    results = []
+    for index, name in enumerate(case['changed_source_files']):
+        source = directory / f'partial-{index + 1}'
+        shutil.copytree(directory / 'before', source)
+        (source / name).write_bytes((directory / 'after' / name).read_bytes())
+        results.append({'applied_files': [name], 'tree_hash': digest(snapshot(source)),
+                        'groups': checked_groups(source, checks, directory / f'partial-{index + 1}-logs', python)})
+    return results
+
+
+def admit(case, root, python=None):
     directory = root / case['case_id']
     directory.mkdir()
     metadata = json.loads(fetch(f"https://api.github.com/repos/{case['repo']}/commits/{case['after_commit']}"))
     if metadata['sha'] != case['after_commit'] or metadata['parents'][0]['sha'] != case['before_commit']:
         raise ValueError('Pinned fix is not a direct child of the original commit')
     changed = [f['filename'] for f in metadata['files'] if f['filename'].startswith('src/') and f['filename'].endswith('.py')]
-    if changed != case['changed_source_files']:
+    if sorted(changed) != sorted(case['changed_source_files']):
         raise ValueError('Source repair scope differs from catalog')
     (directory / 'commit-metadata.json').write_text(json.dumps(metadata, indent=2), encoding='utf-8')
     checks = DATA / 'checks' / case['test_directory']
@@ -125,7 +149,7 @@ def admit(case, root):
         if not all(part in ' '.join(license_text.split()) for part in ('Copyright', 'Redistribution', '3. Neither')):
             raise ValueError('License text requires review')
         tree_hash = digest(snapshot(revision))
-        groups = {group: execute(revision, checks, group, directory / (label + '-logs')) for group in ('Target', 'Controls')}
+        groups = checked_groups(revision, checks, directory / (label + '-logs'), python)
         if tree_hash != digest(snapshot(revision)) or row['checks_hash'] != digest(snapshot(checks)):
             raise ValueError('Source snapshot or admission tests changed during execution')
         row['revisions'][label] = {'archive_sha256': hashlib.sha256(archive).hexdigest(),
@@ -136,29 +160,43 @@ def admit(case, root):
     row['admitted'] = (not target['passed'] and target['assertion_failure'] and not target['execution_error']
                        and not target['timed_out'] and target['tests_run'] > 0
                        and before['Controls']['passed'] and after['Target']['passed'] and after['Controls']['passed'])
+    if case.get('partial_repair_diagnostics'):
+        row['partial_repairs'] = partial_repairs(case, directory, checks, python)
     return row
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True, help='New directory for source snapshots and evidence')
+    parser.add_argument('--catalog', type=Path, default=DATA / 'candidates.json')
+    parser.add_argument('--python', type=Path, help='Explicit test interpreter, e.g. a dedicated dependency-free venv')
     args = parser.parse_args()
-    cases = load_cases()
+    cases = load_cases(args.catalog)
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     report = {'purpose': 'development admission; not model repair or held-out performance',
               'python': sys.version, 'platform': sys.platform,
-              'catalog_hash': hashlib.sha256((DATA / 'candidates.json').read_bytes()).hexdigest(),
+              'catalog_hash': hashlib.sha256(args.catalog.read_bytes()).hexdigest(),
               'admission_code_hash': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               'environment_installations': [], 'dependency_versions': {}, 'cases': []}
-    for name in ('colorama', 'typing_extensions'):
-        try:
-            report['dependency_versions'][name] = importlib.metadata.version(name)
-        except importlib.metadata.PackageNotFoundError:
-            report['dependency_versions'][name] = None
+    python = args.python.resolve() if args.python else Path(sys.executable)
+    metadata_code = '''import importlib.metadata, json, sys
+versions = {}
+for name in ("colorama", "typing_extensions"):
+    try: versions[name] = importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError: versions[name] = None
+print(json.dumps(dict(python=sys.version, executable=sys.executable, prefix=sys.prefix,
+                     base_prefix=sys.base_prefix, dependency_versions=versions)))
+'''
+    info = run_process([str(python), '-I', '-B', '-c', metadata_code], output, 15,
+                       output / 'environment.json', output / 'environment.stderr.txt', test_environment(output))
+    if info['returncode'] != 0 or info['timed_out']:
+        raise ValueError('Cannot inspect test interpreter; see environment.stderr.txt')
+    report['test_environment'] = json.loads((output / 'environment.json').read_text(encoding='utf-8'))
+    report['dependency_versions'] = report['test_environment']['dependency_versions']
     for case in cases:
         try:
-            row = admit(case, output)
+            row = admit(case, output, python)
         except Exception as exc:  # noqa: BLE001 - preserve failed admission evidence, not a repair score
             row = dict(case, admitted=False, admission_error=str(exc))
         report['cases'].append(row)
