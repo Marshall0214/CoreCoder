@@ -104,11 +104,13 @@ def dependency_refs(info, start, end, symbol):
 
 
 def symbol_evidence(workspace, description, allowed_files, events, max_chars=6000, top_k=5, depth=1,
-                    index_mode='legacy-lines', query_policy='plain'):
+                    index_mode='legacy-lines', query_policy='plain', packing_policy='seed-first'):
     from .symbol_index import PythonCodeIndex, expand_query
 
     if index_mode not in {'legacy-lines', 'lines', 'symbols'}:
         raise ValueError('Unknown symbol context index mode')
+    if packing_policy not in {'seed-first', 'dependency-reserve'}:
+        raise ValueError('Unknown symbol context packing policy')
     if (not isinstance(max_chars, int) or isinstance(max_chars, bool) or not 256 <= max_chars <= 20000
             or not isinstance(top_k, int) or isinstance(top_k, bool) or not 1 <= top_k <= 20
             or not isinstance(depth, int) or isinstance(depth, bool) or not 0 <= depth <= 3):
@@ -157,7 +159,9 @@ def symbol_evidence(workspace, description, allowed_files, events, max_chars=600
         queue.append((chunk.path, name, start, end, 0, 'keyword', fallback))
         if len(seeds) >= top_k:
             break
+    seed_limit = max_chars // 2 if packing_policy == 'dependency-reserve' and depth else max_chars
     selected, discarded, edges, visited, used = [], [], [], set(), 0
+    seed_chars = 0
     while queue:
         path, symbol, start, end, level, reason, fallback = queue.pop(0)
         key = (path, start, end)
@@ -168,21 +172,25 @@ def symbol_evidence(workspace, description, allowed_files, events, max_chars=600
         original_range = [start, end]
         complete = symbol != '<line-window>'
         content = ''.join(info['lines'][start - 1:end])
-        if len(content) > max_chars - used and fallback is not None:
+        available = min(max_chars - used, seed_limit - seed_chars) if level == 0 else max_chars - used
+        if len(content) > available and fallback is not None:
             start, end = max(start, fallback[0]), min(end, fallback[1])
             content = ''.join(info['lines'][start - 1:end])
             complete = False
         if any(row['path'] == path and row['start_line'] <= end and start <= row['end_line'] for row in selected):
             discarded.append({'path': path, 'symbol': symbol, 'reason': 'overlap'})
             continue
-        if not content.strip() or len(selected) >= 20 or used + len(content) > max_chars:
-            discarded.append({'path': path, 'symbol': symbol, 'reason': 'budget', 'chars': len(content)})
+        if not content.strip() or len(selected) >= 20 or len(content) > available:
+            discarded.append({'path': path, 'symbol': symbol, 'reason': 'budget', 'chars': len(content),
+                              'available_chars': available, 'depth': level})
             continue
         selected.append({'path': path, 'symbol': symbol, 'start_line': start, 'end_line': end,
                          'symbol_range': original_range, 'complete_symbol': complete,
                          'content_hash': versions[path], 'content': content, 'depth': level, 'reason': reason,
                          'parse_status': 'valid' if info['tree'] else 'syntax-error-window'})
         used += len(content)
+        if level == 0:
+            seed_chars += len(content)
         if level >= depth:
             continue
         for other, target in sorted(dependency_refs(info, start, end, symbol)):
@@ -199,6 +207,8 @@ def symbol_evidence(workspace, description, allowed_files, events, max_chars=600
             queue.append((other, resolved, a, b, level + 1, 'static-reference', None))
     events.emit('symbol_evidence_built', query=query, public_description=description,
                 index_mode=index_mode, query_policy=query_policy, index=metadata, max_chars=max_chars,
+                packing_policy=packing_policy, seed_limit=seed_limit, seed_chars=seed_chars,
+                dependency_chars=used - seed_chars,
                 top_k=top_k, dependency_depth=depth, evidence_chars=used, seeds=seeds,
                 selected=[{k: v for k, v in row.items() if k != 'content'} for row in selected],
                 discarded=discarded, dependency_edges=edges)
@@ -232,6 +242,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--index-mode', choices=('legacy-lines', 'lines', 'symbols'), default='legacy-lines')
     parser.add_argument('--query-policy', choices=('plain', 'aliases', 'identifiers'), default='plain')
+    parser.add_argument('--packing-policy', choices=('seed-first', 'dependency-reserve'), default='seed-first')
     args = parser.parse_args()
     case, _, checks, source, _ = admitted_case(args.admission.resolve(), args.catalog, args.task)
     output = args.output.resolve()
@@ -243,13 +254,15 @@ def main():
                      for path in (source / 'before/src/click').rglob('*.py'))
     evidence = symbol_evidence(source / 'before', case['public_problem'], allowed,
                                Events(output / 'trace.jsonl', 'symbol-context-offline'),
-                               index_mode=args.index_mode, query_policy=args.query_policy)
+                               index_mode=args.index_mode, query_policy=args.query_policy,
+                               packing_policy=args.packing_policy)
     if digest(snapshot(source / 'before')) != original:
         raise ValueError('Evidence construction mutated upstream source')
     report = {'protocol': 'symbol-context-offline-v1', 'source_hash': original,
               'implementation': implementation_metadata(),
               'config': {'max_chars': 6000, 'top_k': 5, 'dependency_depth': 1,
-                         'index_mode': args.index_mode, 'query_policy': args.query_policy},
+                         'index_mode': args.index_mode, 'query_policy': args.query_policy,
+                         'packing_policy': args.packing_policy},
               'model_calls': 0, 'evidence_chars': sum(len(row['content']) for row in evidence),
               'evidence': evidence, 'scope': 'development selection diagnostic; not model repair'}
     (output / 'evidence.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
