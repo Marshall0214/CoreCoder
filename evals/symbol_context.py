@@ -103,7 +103,12 @@ def dependency_refs(info, start, end, symbol):
     return refs
 
 
-def symbol_evidence(workspace, description, allowed_files, events, max_chars=6000, top_k=5, depth=1):
+def symbol_evidence(workspace, description, allowed_files, events, max_chars=6000, top_k=5, depth=1,
+                    index_mode='legacy-lines', query_policy='plain'):
+    from .symbol_index import PythonCodeIndex, expand_query
+
+    if index_mode not in {'legacy-lines', 'lines', 'symbols'}:
+        raise ValueError('Unknown symbol context index mode')
     if (not isinstance(max_chars, int) or isinstance(max_chars, bool) or not 256 <= max_chars <= 20000
             or not isinstance(top_k, int) or isinstance(top_k, bool) or not 1 <= top_k <= 20
             or not isinstance(depth, int) or isinstance(depth, bool) or not 0 <= depth <= 3):
@@ -111,10 +116,12 @@ def symbol_evidence(workspace, description, allowed_files, events, max_chars=600
     workspace = workspace.resolve()
     allowed = {relative_path(name) for name in allowed_files}
     modules = {module_name(name): name for name in sorted(allowed)}
-    index = KeywordIndex(workspace, allowed)
+    index = (KeywordIndex(workspace, allowed) if index_mode == 'legacy-lines'
+             else PythonCodeIndex(workspace, allowed, index_mode))
     metadata = index.refresh()
     versions = {chunk.path: chunk.content_hash for chunk in index.chunks}
-    ranked = index.rank(description)
+    query = expand_query(description, query_policy)
+    ranked = index.rank(query)
     cache, queue, seeds = {}, [], []
 
     def source(name):
@@ -128,7 +135,7 @@ def symbol_evidence(workspace, description, allowed_files, events, max_chars=600
             cache[name] = parse_source(name, data, modules)
         return cache[name]
 
-    query_terms = set(terms(description))
+    query_terms = set(terms(query))
     for score, chunk in ranked:
         if chunk.path not in allowed or not chunk.path.endswith('.py'):
             continue
@@ -145,7 +152,9 @@ def symbol_evidence(workspace, description, allowed_files, events, max_chars=600
         if any(seed['key'] == key for seed in seeds):
             continue
         seeds.append({'key': key, 'score': round(score, 6)})
-        queue.append((chunk.path, name, start, end, 0, 'keyword', (chunk.start_line, chunk.end_line)))
+        fallback = ((chunk.start_line, chunk.end_line) if index_mode != 'symbols'
+                    else (max(start, anchor - 19), min(end, anchor + 20)))
+        queue.append((chunk.path, name, start, end, 0, 'keyword', fallback))
         if len(seeds) >= top_k:
             break
     selected, discarded, edges, visited, used = [], [], [], set(), 0
@@ -188,7 +197,8 @@ def symbol_evidence(workspace, description, allowed_files, events, max_chars=600
             a, b, _ = target_info['symbols'][resolved]
             edges.append({'from': [path, symbol], 'to': [other, resolved], 'reason': 'static-reference'})
             queue.append((other, resolved, a, b, level + 1, 'static-reference', None))
-    events.emit('symbol_evidence_built', query=description, index=metadata, max_chars=max_chars,
+    events.emit('symbol_evidence_built', query=query, public_description=description,
+                index_mode=index_mode, query_policy=query_policy, index=metadata, max_chars=max_chars,
                 top_k=top_k, dependency_depth=depth, evidence_chars=used, seeds=seeds,
                 selected=[{k: v for k, v in row.items() if k != 'content'} for row in selected],
                 discarded=discarded, dependency_edges=edges)
@@ -220,6 +230,8 @@ def main():
     parser.add_argument('--catalog', type=Path, default=DATA / 'crossfile-candidates.json')
     parser.add_argument('--task', default='click-flag-envvar')
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--index-mode', choices=('legacy-lines', 'lines', 'symbols'), default='legacy-lines')
+    parser.add_argument('--query-policy', choices=('plain', 'aliases', 'identifiers'), default='plain')
     args = parser.parse_args()
     case, _, checks, source, _ = admitted_case(args.admission.resolve(), args.catalog, args.task)
     output = args.output.resolve()
@@ -230,12 +242,14 @@ def main():
     allowed = sorted(path.relative_to(source / 'before').as_posix()
                      for path in (source / 'before/src/click').rglob('*.py'))
     evidence = symbol_evidence(source / 'before', case['public_problem'], allowed,
-                               Events(output / 'trace.jsonl', 'symbol-context-offline'))
+                               Events(output / 'trace.jsonl', 'symbol-context-offline'),
+                               index_mode=args.index_mode, query_policy=args.query_policy)
     if digest(snapshot(source / 'before')) != original:
         raise ValueError('Evidence construction mutated upstream source')
     report = {'protocol': 'symbol-context-offline-v1', 'source_hash': original,
               'implementation': implementation_metadata(),
-              'config': {'max_chars': 6000, 'top_k': 5, 'dependency_depth': 1},
+              'config': {'max_chars': 6000, 'top_k': 5, 'dependency_depth': 1,
+                         'index_mode': args.index_mode, 'query_policy': args.query_policy},
               'model_calls': 0, 'evidence_chars': sum(len(row['content']) for row in evidence),
               'evidence': evidence, 'scope': 'development selection diagnostic; not model repair'}
     (output / 'evidence.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
