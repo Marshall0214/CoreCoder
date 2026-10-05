@@ -73,7 +73,7 @@ class RunConfig:
     public_check_policy: str = "generated"
 
     def __post_init__(self):
-        if self.public_check_policy not in {"generated", "reviewed", "contract-only", "contract-schema", "contract-surface", "contract-scenarios"}:
+        if self.public_check_policy not in {"generated", "reviewed", "contract-only", "contract-schema", "contract-surface", "contract-scenarios", "contract-manifest"}:
             raise ValueError("Unknown public_check_policy")
         if self.public_check_policy != "generated" and self.mode != "contract-feedback":
             raise ValueError("Check review requires contract-feedback mode")

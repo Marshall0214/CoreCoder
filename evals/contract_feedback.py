@@ -25,6 +25,11 @@ from .pipeline import bounded_evidence, ordered_evidence
 from .process import run_tests
 from .review_schema import PROTOCOL as SCHEMA_PROTOCOL
 from .review_schema import review_response_format, validate_pure_expressions
+from .scenario_manifest import PROTOCOL as MANIFEST_PROTOCOL
+from .scenario_manifest import RULES as MANIFEST_RULES
+from .scenario_manifest import diagnose as diagnose_scenarios
+from .scenario_manifest import parse_manifest
+from .scenario_manifest import response_format as manifest_format
 
 PROTOCOL = "public-contract-feedback-v1"
 CHECK_SYSTEM = (
@@ -112,15 +117,27 @@ def refreshed_evidence(workspace, evidence):
 def run_contract_feedback(llm, workspace, description, allowed_files, config, events):
     protocol = {"generated": PROTOCOL, "reviewed": REVIEW_PROTOCOL,
                 "contract-only": CONTRACT_PROTOCOL, "contract-schema": SCHEMA_PROTOCOL,
-                "contract-surface": SURFACE_PROTOCOL, "contract-scenarios": SCENARIO_PROTOCOL}[config.public_check_policy]
+                "contract-surface": SURFACE_PROTOCOL, "contract-scenarios": SCENARIO_PROTOCOL,
+                "contract-manifest": MANIFEST_PROTOCOL}[config.public_check_policy]
     evidence = ordered_evidence(bounded_evidence(workspace, description, allowed_files, config, events),
                                 config.evidence_order, events)
     payload = json.dumps({"description": description, "allowed_files": list(allowed_files), "files": evidence},
                          ensure_ascii=False)
-    check_system = CHECK_SYSTEM + (GENERATION_RULES if config.public_check_policy in {"contract-surface", "contract-scenarios"} else "")
-    if config.public_check_policy == "contract-scenarios":
+    check_system = CHECK_SYSTEM + (GENERATION_RULES if config.public_check_policy in {"contract-surface", "contract-scenarios", "contract-manifest"} else "")
+    if config.public_check_policy in {"contract-scenarios", "contract-manifest"}:
         check_system += SCENARIO_RULES
-    response = llm.chat([{"role": "system", "content": check_system}, {"role": "user", "content": payload}], tools=[])
+    generation_options = {}
+    manifest_catalog = None
+    if config.public_check_policy == "contract-manifest":
+        manifest_catalog = contract_catalog(description, evidence)
+        payload = json.dumps({"description": description, "allowed_files": list(allowed_files), "files": evidence,
+                              "contract_catalog": manifest_catalog}, ensure_ascii=False)
+        check_system = check_system.replace('Return exactly {"code": "Python unittest source"}. ', '') + MANIFEST_RULES
+        generation_options["response_format"] = manifest_format(manifest_catalog)
+        (events.path.parent / "public-check-generation-input.json").write_text(events.clean(payload), encoding="utf-8")
+        (events.path.parent / "public-check-generation-format.json").write_text(
+            json.dumps(generation_options["response_format"], sort_keys=True), encoding="utf-8")
+    response = llm.chat([{"role": "system", "content": check_system}, {"role": "user", "content": payload}], tools=[], **generation_options)
     root = events.path.parent
     (root / "public-check-response.txt").write_text(events.clean(response.content), encoding="utf-8")
     checks = {"generation_prompt_hash": hashlib.sha256((check_system + "\n" + payload).encode()).hexdigest()}
@@ -128,19 +145,26 @@ def run_contract_feedback(llm, workspace, description, allowed_files, config, ev
     try:
         if response.tool_calls:
             raise ValueError("Check generation cannot call tools")
-        code = validate_checks(response.content, allowed_files)
+        content = response.content
+        if manifest_catalog is not None:
+            source, scenarios = parse_manifest(content, manifest_catalog)
+            content = json.dumps({"code": source})
+            checks.update(scenario_manifest=scenarios, generation_response_format=generation_options["response_format"])
+        code = validate_checks(content, allowed_files)
+        if manifest_catalog is not None:
+            checks["generated_scenario_diagnostics"] = diagnose_scenarios(code, scenarios)
         checks["generation_status"] = "valid"
         if config.public_check_policy != "generated":
             (root / "public-contract-generated.py").write_bytes(code.encode("utf-8"))
             checks["generated_code_hash"] = hashlib.sha256(code.encode()).hexdigest()
-            catalog = contract_catalog(description, evidence) if config.public_check_policy in {"contract-only", "contract-schema", "contract-surface", "contract-scenarios"} else None
+            catalog = contract_catalog(description, evidence) if config.public_check_policy in {"contract-only", "contract-schema", "contract-surface", "contract-scenarios", "contract-manifest"} else None
             data = ({"contract_catalog": catalog, "interfaces": public_interfaces(evidence)} if catalog is not None
                     else {"description": description, "files": evidence})
             data.update(code=code, tests=test_methods(code), numeric_assertions=numeric_assertions(code))
             review_payload = json.dumps(data, ensure_ascii=False)
             review_system = CONTRACT_SYSTEM if catalog is not None else REVIEW_SYSTEM
             options = {}
-            if config.public_check_policy in {"contract-schema", "contract-surface", "contract-scenarios"}:
+            if config.public_check_policy in {"contract-schema", "contract-surface", "contract-scenarios", "contract-manifest"}:
                 options["response_format"] = review_response_format(code, catalog)
                 review_system += (' The provider schema requires pure arithmetic expressions: no equals signs, '
                                   'no prose, no variables and no intermediate derivation chains. '
@@ -158,10 +182,10 @@ def run_contract_feedback(llm, workspace, description, allowed_files, config, ev
             try:
                 if reviewed.tool_calls:
                     raise ValueError("Check review cannot call tools")
-                if config.public_check_policy in {"contract-schema", "contract-surface", "contract-scenarios"}:
+                if config.public_check_policy in {"contract-schema", "contract-surface", "contract-scenarios", "contract-manifest"}:
                     validate_pure_expressions(reviewed.content)
                 code, reviews = reviewed_checks(reviewed.content, code, description, evidence, catalog=catalog)
-                if config.public_check_policy in {"contract-surface", "contract-scenarios"}:
+                if config.public_check_policy in {"contract-surface", "contract-scenarios", "contract-manifest"}:
                     code, rejected = filter_surface_checks(code, reviews)
                     checks.update(surface_policy="exclude-caller-state", surface_rejected_tests=rejected)
                 checks.update(review_status="valid", reviews=reviews,
@@ -172,6 +196,9 @@ def run_contract_feedback(llm, workspace, description, allowed_files, config, ev
                 code = None
                 checks.update(review_status="invalid", review_error=str(exc))
                 events.emit("public_contract_review_rejected", **checks)
+        if manifest_catalog is not None:
+            checks["retained_scenario_diagnostics"] = diagnose_scenarios(code, checks["scenario_manifest"])
+            events.emit("public_scenario_diagnosed", diagnostics=checks["retained_scenario_diagnostics"])
         if code is None:
             checks["feedback_disabled_reason"] = "No review-accepted checks"
         else:
