@@ -39,7 +39,8 @@ def test_reserved_budget_admits_dependency_and_preserves_partial_patch_guard(tmp
     assert (tmp_path / 'entry.py').read_bytes() == before
 
 
-def test_dependency_beyond_displayed_window_is_not_discovered(tmp_path):
+@pytest.mark.parametrize('scope', ['displayed', 'full-seed'])
+def test_dependency_discovery_scope_does_not_expand_edit_permission(tmp_path, scope):
     files = {'entry.py': 'from helper import normalize\ndef needle(value):\n'
              + '    value = value\n' * 60 + '    return normalize(value)\n',
              'helper.py': 'def normalize(value):\n    return bool(value)\n'}
@@ -47,11 +48,34 @@ def test_dependency_beyond_displayed_window_is_not_discovered(tmp_path):
         (tmp_path / name).write_text(text)
     events = Events(tmp_path / 'trace.jsonl', 'partial')
     rows = symbol_evidence(tmp_path, 'needle', list(files), events, max_chars=1400, top_k=1,
-                           index_mode='symbols', packing_policy='dependency-reserve')
+                           index_mode='symbols', packing_policy='dependency-reserve', dependency_scope=scope)
     assert rows and not rows[0]['complete_symbol']
     assert 'normalize(value)' not in rows[0]['content']
-    assert not any(row['symbol'] == 'normalize' for row in rows)
-    assert json.loads(events.path.read_text())['dependency_edges'] == []
+    edges = json.loads(events.path.read_text())['dependency_edges']
+    if scope == 'displayed':
+        assert not any(row['symbol'] == 'normalize' for row in rows)
+        assert edges == []
+    else:
+        assert any(row['symbol'] == 'normalize' for row in rows)
+        assert edges[0]['reference_in_displayed_range'] is False
+        assert edges[0]['discovery_range'] == rows[0]['symbol_range']
+        assert edges[0]['displayed_range'] == [rows[0]['start_line'], rows[0]['end_line']]
+        before = (tmp_path / 'entry.py').read_bytes()
+        patch = json.dumps({'edits': [{'file': 'entry.py', 'old': 'return normalize(value)', 'new': 'return value'}]})
+        with pytest.raises(ValueError, match='not supplied'):
+            apply_symbol_patch(patch, tmp_path, list(files), rows)
+        assert (tmp_path / 'entry.py').read_bytes() == before
+
+
+def test_full_seed_discovery_respects_allowed_files_and_depth(tmp_path):
+    (tmp_path / 'entry.py').write_text('from helper import normalize\ndef needle(value):\n    return normalize(value)\n')
+    (tmp_path / 'helper.py').write_text('raise RuntimeError("never import")\ndef normalize(value):\n    return value\n')
+    for allowed, depth in [(['entry.py'], 1), (['entry.py', 'helper.py'], 0)]:
+        events = Events(tmp_path / f'trace-{depth}.jsonl', 'limits')
+        rows = symbol_evidence(tmp_path, 'needle', allowed, events, top_k=1, depth=depth,
+                               dependency_scope='full-seed')
+        assert [row['symbol'] for row in rows] == ['needle']
+        assert json.loads(events.path.read_text())['dependency_edges'] == []
 
 
 def test_seed_first_retains_original_budget_and_depth_zero_disables_reserve(tmp_path):
@@ -71,3 +95,5 @@ def test_policy_validation_and_unused_reserve_is_not_backfilled(tmp_path):
     assert len(rows) == 1 and trace['seed_limit'] == 128 and trace['dependency_chars'] == 0
     with pytest.raises(ValueError, match='packing policy'):
         symbol_evidence(tmp_path, 'needle', ['a.py'], events, packing_policy='unknown')
+    with pytest.raises(ValueError, match='discovery scope'):
+        symbol_evidence(tmp_path, 'needle', ['a.py'], events, dependency_scope='unknown')

@@ -17,6 +17,7 @@ def main():
     parser.add_argument('--catalog', type=Path, default=DATA / 'crossfile-candidates.json')
     parser.add_argument('--task', default='click-flag-envvar')
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--comparison', choices=('packing', 'discovery'), default='packing')
     args = parser.parse_args()
     case, _, checks, source, _ = admitted_case(args.admission.resolve(), args.catalog, args.task)
     output = args.output.resolve()
@@ -26,20 +27,24 @@ def main():
     workspace = source / 'before'
     original = digest(snapshot(workspace))
     allowed = sorted(path.relative_to(workspace).as_posix() for path in (workspace / 'src/click').rglob('*.py'))
-    report = {'protocol': 'symbol-packing-offline-v1', 'implementation': implementation_metadata(),
+    report = {'protocol': 'symbol-' + args.comparison + '-offline-v1', 'implementation': implementation_metadata(),
               'source_hash': original, 'description': case['public_problem'], 'model_calls': 0,
               'config': {'max_chars': 6000, 'top_k': 5, 'dependency_depth': 1,
                          'index_mode': 'symbols', 'query_policy': 'identifiers',
                          'reserve_fraction': 0.5, 'unused_seed_budget': 'available to dependencies',
                          'unused_dependency_budget': 'not returned to seeds'},
               'scope': 'development relevance diagnostic, not formal recall or model repair', 'arms': {}}
-    for policy in ('seed-first', 'dependency-reserve'):
+    arms = ([(policy, policy, 'displayed') for policy in ('seed-first', 'dependency-reserve')]
+            if args.comparison == 'packing' else
+            [(scope, 'dependency-reserve', scope) for scope in ('displayed', 'full-seed')])
+    for arm, policy, scope in arms:
         evidence = symbol_evidence(workspace, case['public_problem'], allowed,
-                                   Events(output / (policy + '.jsonl'), policy),
-                                   index_mode='symbols', query_policy='identifiers', packing_policy=policy)
+                                   Events(output / (arm + '.jsonl'), arm), index_mode='symbols',
+                                   query_policy='identifiers', packing_policy=policy, dependency_scope=scope)
         if digest(snapshot(workspace)) != original:
             raise ValueError('Source changed during offline comparison')
-        report['arms'][policy] = {'evidence_chars': sum(len(row['content']) for row in evidence), 'evidence': evidence}
+        report['arms'][arm] = {'packing_policy': policy, 'dependency_scope': scope,
+                               'evidence_chars': sum(len(row['content']) for row in evidence), 'evidence': evidence}
         (output / 'comparison.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
     print(output / 'comparison.json')
     return 0

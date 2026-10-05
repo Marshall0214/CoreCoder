@@ -104,13 +104,16 @@ def dependency_refs(info, start, end, symbol):
 
 
 def symbol_evidence(workspace, description, allowed_files, events, max_chars=6000, top_k=5, depth=1,
-                    index_mode='legacy-lines', query_policy='plain', packing_policy='seed-first'):
+                    index_mode='legacy-lines', query_policy='plain', packing_policy='seed-first',
+                    dependency_scope='displayed'):
     from .symbol_index import PythonCodeIndex, expand_query
 
     if index_mode not in {'legacy-lines', 'lines', 'symbols'}:
         raise ValueError('Unknown symbol context index mode')
     if packing_policy not in {'seed-first', 'dependency-reserve'}:
         raise ValueError('Unknown symbol context packing policy')
+    if dependency_scope not in {'displayed', 'full-seed'}:
+        raise ValueError('Unknown dependency discovery scope')
     if (not isinstance(max_chars, int) or isinstance(max_chars, bool) or not 256 <= max_chars <= 20000
             or not isinstance(top_k, int) or isinstance(top_k, bool) or not 1 <= top_k <= 20
             or not isinstance(depth, int) or isinstance(depth, bool) or not 0 <= depth <= 3):
@@ -193,7 +196,13 @@ def symbol_evidence(workspace, description, allowed_files, events, max_chars=600
             seed_chars += len(content)
         if level >= depth:
             continue
-        for other, target in sorted(dependency_refs(info, start, end, symbol)):
+        displayed_refs = dependency_refs(info, start, end, symbol)
+        discovery_range = (original_range if dependency_scope == 'full-seed' and level == 0
+                           and symbol != '<line-window>' else [start, end])
+        refs = (displayed_refs if discovery_range == [start, end]
+                else dependency_refs(info, *discovery_range, symbol))
+        for other, target in sorted(refs):
+            in_displayed = (other, target) in displayed_refs
             other = other or path
             if other not in versions:
                 continue
@@ -203,11 +212,14 @@ def symbol_evidence(workspace, description, allowed_files, events, max_chars=600
                 continue
             resolved = max(names, key=len)
             a, b, _ = target_info['symbols'][resolved]
-            edges.append({'from': [path, symbol], 'to': [other, resolved], 'reason': 'static-reference'})
+            edges.append({'from': [path, symbol], 'to': [other, resolved], 'reason': 'static-reference',
+                          'discovery_range': discovery_range, 'displayed_range': [start, end],
+                          'reference_in_displayed_range': in_displayed})
             queue.append((other, resolved, a, b, level + 1, 'static-reference', None))
     events.emit('symbol_evidence_built', query=query, public_description=description,
                 index_mode=index_mode, query_policy=query_policy, index=metadata, max_chars=max_chars,
                 packing_policy=packing_policy, seed_limit=seed_limit, seed_chars=seed_chars,
+                dependency_scope=dependency_scope,
                 dependency_chars=used - seed_chars,
                 top_k=top_k, dependency_depth=depth, evidence_chars=used, seeds=seeds,
                 selected=[{k: v for k, v in row.items() if k != 'content'} for row in selected],
@@ -243,6 +255,7 @@ def main():
     parser.add_argument('--index-mode', choices=('legacy-lines', 'lines', 'symbols'), default='legacy-lines')
     parser.add_argument('--query-policy', choices=('plain', 'aliases', 'identifiers'), default='plain')
     parser.add_argument('--packing-policy', choices=('seed-first', 'dependency-reserve'), default='seed-first')
+    parser.add_argument('--dependency-scope', choices=('displayed', 'full-seed'), default='displayed')
     args = parser.parse_args()
     case, _, checks, source, _ = admitted_case(args.admission.resolve(), args.catalog, args.task)
     output = args.output.resolve()
@@ -255,14 +268,14 @@ def main():
     evidence = symbol_evidence(source / 'before', case['public_problem'], allowed,
                                Events(output / 'trace.jsonl', 'symbol-context-offline'),
                                index_mode=args.index_mode, query_policy=args.query_policy,
-                               packing_policy=args.packing_policy)
+                               packing_policy=args.packing_policy, dependency_scope=args.dependency_scope)
     if digest(snapshot(source / 'before')) != original:
         raise ValueError('Evidence construction mutated upstream source')
     report = {'protocol': 'symbol-context-offline-v1', 'source_hash': original,
               'implementation': implementation_metadata(),
               'config': {'max_chars': 6000, 'top_k': 5, 'dependency_depth': 1,
                          'index_mode': args.index_mode, 'query_policy': args.query_policy,
-                         'packing_policy': args.packing_policy},
+                         'packing_policy': args.packing_policy, 'dependency_scope': args.dependency_scope},
               'model_calls': 0, 'evidence_chars': sum(len(row['content']) for row in evidence),
               'evidence': evidence, 'scope': 'development selection diagnostic; not model repair'}
     (output / 'evidence.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
