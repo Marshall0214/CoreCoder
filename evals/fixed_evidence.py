@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 from .patch_coverage import SYSTEM as COVERAGE_SYSTEM
-from .patch_coverage import validate_coverage
+from .patch_coverage import edit_consistency, validate_coverage
 from .schema import relative_path
 
 SYSTEM = (
@@ -107,6 +107,8 @@ def generate_patch(llm, workspace, description, allowed_files, events, evidence,
             raise ValueError("Tool calls are not supported by the fixed-evidence protocol")
         patch = response.content
         if policy == "contract-coverage":
+            result["coverage_protocol"] = "contract-coverage-v2.1"
+            result["coverage_citation_policy"] = "whitespace-layout-v1"
             parsed = json.loads(response.content)
             if not isinstance(parsed, dict) or set(parsed) != {"coverage", "edits"}:
                 raise ValueError("Expected exactly coverage and edits")
@@ -124,6 +126,10 @@ def generate_patch(llm, workspace, description, allowed_files, events, evidence,
         events.emit("diagnostic_patch_applied" if protocol == "fixed-evidence-v1" else "pipeline_patch_applied",
                     files=edited)
         result.update(status="completed", edited_files=edited)
+        if policy == "contract-coverage" and result.get("coverage_status") == "valid":
+            consistency = edit_consistency(result["coverage_claims"], edited)
+            result["coverage_edit_consistency"] = consistency
+            events.emit("pipeline_coverage_edit_consistency", **consistency)
     except (ValueError, TypeError, KeyError, OSError) as exc:
         events.emit("diagnostic_patch_rejected" if protocol == "fixed-evidence-v1" else "pipeline_patch_rejected",
                     error=f"{type(exc).__name__}: {exc}")

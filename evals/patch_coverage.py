@@ -7,10 +7,19 @@ SYSTEM = (
     'Then repair all violated behaviors. Return only JSON with exactly two keys, coverage and edits: '
     '{"coverage":[{"behavior":"short behavior statement","evidence_file":"supplied path or description",'
     '"evidence_quote":"exact nonempty substring, preferably one line",'
-    '"code_files":["supplied allowed source.py"],"action":"edit or preserve"}],'
+    '"code_files":["supplied allowed source.py"],"action":"edit, preserve or unverified"}],'
     '"edits":[{"file":"relative/path.py","old":"exact unique existing text","new":"replacement text"}]}. '
     'Use 1 to 16 concise coverage entries, supported only by the description or supplied file contents. '
-    'Citations and code files must exist in the supplied evidence. Use only allowed source files for edits. '
+    'Cite an exact short substring from one line whenever possible; do not paraphrase quotations. '
+    'For a behavior whose implementation cannot be verified from supplied evidence, use action unverified. '
+    'Its code_files may be empty or contain names from allowed_files as explicitly unverified associations, '
+    'even when their contents were not supplied. Never guess names outside allowed_files or claim verification. '
+    'Its public description still needs a citation. '
+    'For edit, code_files must list only supplied allowed files that receive a non-noop edit. '
+    'For preserve, code_files must list inspected supplied allowed files. '
+    'Before returning, reconcile every edit declaration with the edits array; include all required changes and '
+    'ensure every actual edited file has an edit declaration. Do not drop a planned repair. '
+    'Use only supplied allowed source files for edits. '
     'No Markdown, tool calls or additional keys. Tests run independently afterward; coverage claims do not count as success.'
 )
 
@@ -31,14 +40,37 @@ def validate_coverage(parsed, description, evidence, allowed_files):
             value = entry[field]
             if not isinstance(value, str) or not value.strip() or len(value) > limit:
                 raise ValueError("Invalid coverage text")
-        if entry["action"] not in {"edit", "preserve"}:
+        if entry["action"] not in {"edit", "preserve", "unverified"}:
             raise ValueError("Invalid coverage action")
         source = sources.get(entry["evidence_file"])
-        if source is None or entry["evidence_quote"] not in source:
+        if source is None or not citation_matches(entry["evidence_quote"], source):
             raise ValueError("Unsupported coverage citation")
         files = entry["code_files"]
-        if not isinstance(files, list) or not 1 <= len(files) <= 8 or not all(isinstance(path, str) for path in files):
+        if not isinstance(files, list) or len(files) > 8 or not all(isinstance(path, str) for path in files):
             raise ValueError("Invalid coverage code files")
-        if len(set(files)) != len(files) or not set(files) <= supplied_code:
+        if entry["action"] == "unverified":
+            if not set(files) <= set(allowed_files):
+                raise ValueError("Unverified associations must stay inside allowed source names")
+        elif not files:
+            raise ValueError("Inspected behavior requires supplied code files")
+        if len(set(files)) != len(files):
+            raise ValueError("Duplicate coverage code files")
+        if entry["action"] != "unverified" and not set(files) <= supplied_code:
             raise ValueError("Coverage code files must be supplied allowed source")
     return entries
+
+
+def citation_matches(quote, source):
+    """Ignore whitespace layout only; never remove words, punctuation or case."""
+    if not quote.strip():
+        return False
+    return quote in source or " ".join(quote.split()) in " ".join(source.split())
+
+
+def edit_consistency(claims, edited_files):
+    declared = {path for claim in claims if claim["action"] == "edit" for path in claim["code_files"]}
+    actual = set(edited_files)
+    return {"declared_edit_files": sorted(declared), "actual_changed_files": sorted(actual),
+            "declared_without_change": sorted(declared - actual),
+            "changed_without_declaration": sorted(actual - declared),
+            "file_sets_consistent": declared == actual, "semantic_coverage_verified": False}

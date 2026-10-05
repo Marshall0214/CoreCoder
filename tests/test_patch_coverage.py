@@ -7,6 +7,7 @@ import pytest
 from corecoder.demo import ScriptedLLM
 from corecoder.llm import LLMResponse
 from evals.fixed_evidence import SYSTEM, generate_patch, public_evidence
+from evals.patch_coverage import citation_matches, edit_consistency, validate_coverage
 from evals.runner import DEFAULT_SUITE, run_task
 from evals.runtime import Events
 from evals.schema import RunConfig, load_suite
@@ -34,10 +35,62 @@ def test_grounded_coverage_applies_patch_and_preserves_crlf(tmp_path):
     result = invoke(tmp_path, evidence, payload)
     assert result["status"] == "completed"
     assert result["coverage_claims"] == payload["coverage"]
+    assert result["coverage_edit_consistency"]["file_sets_consistent"]
     assert (tmp_path / "code.py").read_bytes() == b"x = 3\r\n"
     records = [json.loads(line) for line in (tmp_path / "trace.jsonl").read_text(encoding="utf-8").splitlines()]
     validation = next(row for row in records if row["event"] == "pipeline_coverage_validated")
     assert validation["semantic_coverage_verified"] is False
+
+
+def test_unobserved_implementation_can_be_explicitly_unverified(tmp_path):
+    evidence, payload = sample(tmp_path)
+    payload["coverage"].append({"behavior": "Unknown implementation", "evidence_file": "description",
+                                "evidence_quote": "fix x", "code_files": [], "action": "unverified"})
+    result = invoke(tmp_path, evidence, payload)
+    assert result["coverage_status"] == "valid"
+    assert result["coverage_claims"][-1]["action"] == "unverified"
+    payload["coverage"][-1]["code_files"] = ["not-allowed.py"]
+    assert invoke(tmp_path, evidence, payload)["coverage_status"] == "invalid"
+
+
+def test_unverified_association_does_not_grant_inspection_or_edit_permission(tmp_path):
+    evidence, payload = sample(tmp_path)
+    entry = payload["coverage"][0]
+    entry.update(action="unverified", code_files=["unprovided.py"])
+    assert validate_coverage(payload, "fix x", evidence, ["code.py", "unprovided.py"]) == [entry]
+    entry["action"] = "preserve"
+    with pytest.raises(ValueError, match="supplied"):
+        validate_coverage(payload, "fix x", evidence, ["code.py", "unprovided.py"])
+    entry["action"] = "edit"
+    with pytest.raises(ValueError, match="supplied"):
+        validate_coverage(payload, "fix x", evidence, ["code.py", "unprovided.py"])
+
+
+def test_citation_layout_tolerance_does_not_accept_paraphrases():
+    source = "Timeout includes attempts\r\n  and waits."
+    assert citation_matches("Timeout includes attempts and waits.", source)
+    assert not citation_matches("Timeout includes attempts and sleeps.", source)
+    assert not citation_matches("Timeout attempts and waits.", source)
+    assert not citation_matches("timeout includes attempts and waits.", source)
+    assert not citation_matches(" \n", source)
+
+
+def test_noop_edit_cannot_fulfil_edit_declaration(tmp_path):
+    evidence, payload = sample(tmp_path)
+    payload["edits"][0]["new"] = payload["edits"][0]["old"]
+    result = invoke(tmp_path, evidence, payload)
+    assert result["coverage_edit_consistency"]["declared_without_change"] == ["code.py"]
+    assert not result["coverage_edit_consistency"]["file_sets_consistent"]
+    assert result["status"] == "completed"
+
+
+def test_consistency_is_file_level_and_preserve_can_share_an_edited_file():
+    claims = [{"action": "edit", "code_files": ["a.py", "b.py"]},
+              {"action": "preserve", "code_files": ["a.py"]}]
+    result = edit_consistency(claims, ["a.py", "c.py"])
+    assert result["declared_without_change"] == ["b.py"]
+    assert result["changed_without_declaration"] == ["c.py"]
+    assert not result["semantic_coverage_verified"]
 
 
 @pytest.mark.parametrize("change", [
