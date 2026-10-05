@@ -10,12 +10,14 @@ from .runner import digest, implementation_metadata, run_task, snapshot, write_s
 from .schema import RunConfig, load_suite
 
 
-def schedule(tasks, repeat):
+def schedule(tasks, repeat, arm_names=("single-patch", "schema-feedback")):
     if not tasks or repeat < 1:
         raise ValueError("Comparison needs tasks and positive repetitions")
+    if len(arm_names) != 2 or len(set(arm_names)) != 2:
+        raise ValueError("Comparison requires two distinct arms")
     for repetition in range(1, repeat + 1):
         for index, task in enumerate(tasks):
-            arms = ("single-patch", "schema-feedback")
+            arms = tuple(arm_names)
             if (repetition + index) % 2 == 0:
                 arms = tuple(reversed(arms))
             for arm in arms:
@@ -45,7 +47,7 @@ def aggregate(reports):
 
 
 def run_comparison(tasks, configs, output, repeat=3):
-    items = list(schedule(tasks, repeat))
+    items = list(schedule(tasks, repeat, tuple(configs)))
     output = output.resolve()
     output.mkdir(parents=True, exist_ok=False)  # Never overwrite or selectively resume a batch.
     source = implementation_metadata()

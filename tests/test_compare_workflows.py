@@ -26,6 +26,18 @@ def test_interleaving_pairs_all_tasks_and_rotates_first_arm(tmp_path):
     assert len(set(rows)) == 12
 
 
+def test_custom_policy_labels_keep_interleaved_order(tmp_path):
+    rows = [(rep, task.task_id, arm) for rep, task, arm in schedule(tasks(tmp_path), 2, ('v5', 'v6'))]
+    assert rows[:4] == [(1, 'a', 'v5'), (1, 'a', 'v6'), (1, 'b', 'v6'), (1, 'b', 'v5')]
+    assert rows[4][2] == 'v6'
+
+
+@pytest.mark.parametrize('arms', [(), ('v5',), ('v5', 'v5'), ('v4', 'v5', 'v6')])
+def test_comparison_rejects_invalid_arm_sets(tmp_path, arms):
+    with pytest.raises(ValueError, match='two distinct arms'):
+        list(schedule(tasks(tmp_path), 1, arms))
+
+
 def report(task, status="failed_verification", metrics=None):
     return {"run_id": "test-" + task.task_id, "task_id": task.task_id, "status": status,
             "accepted": status == "passed", "seconds": 2.0, "mode": "pipeline", "benchmark_eligible": True,
