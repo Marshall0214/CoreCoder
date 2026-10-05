@@ -102,3 +102,17 @@ def test_real_visible_tool_blocks_other_shell_commands(tmp_path, real_case):
     bash = next(tool for tool in tools if tool.name == 'bash')
     assert 'Error:' in bash.execute(command='python -m unittest discover -s tests -v')
     assert 'exit code: 0' in bash.execute(command=VISIBLE)
+
+
+def test_real_cli_passes_search_history_to_worker(tmp_path, real_case, monkeypatch):
+    from evals.real_tasks import main
+
+    monkeypatch.setattr('evals.real_tasks.admitted_case', lambda *args: real_case)
+    output = tmp_path / 'cli-run'
+    monkeypatch.setattr(sys, 'argv', ['real_tasks', '--admission', 'unused.json', '--mode', 'scripted',
+                                    '--search-backend', 'keyword', '--search-history', 'deduplicate',
+                                    '--output', str(output)])
+    assert main() == 0
+    job = json.loads(next(output.glob('*/job.json')).read_text(encoding='utf-8'))
+    assert job['config']['search_history'] == 'deduplicate'
+    assert job['config']['search_backend'] == 'keyword'
