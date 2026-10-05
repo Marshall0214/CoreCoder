@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "purpose": "development admission only; no held-out or model results",
+  "cases": [
+    {
+      "case_id": "click-prompt-suffix",
+      "repo": "pallets/click",
+      "issue_url": "https://github.com/pallets/click/issues/3019",
+      "fix_url": "https://github.com/pallets/click/pull/3021",
+      "before_commit": "5f86603a84e12bdec1584c15c9f982740e613c45",
+      "after_commit": "8533c966b84783718e74286aa7b098f3ff1e9221",
+      "merged_at": "2025-10-02T05:56:42Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": [
+        "src/click/termui.py"
+      ],
+      "repair_scope": "single-source-file; not a cross-file repair benchmark",
+      "test_directory": "click-prompt-suffix",
+      "public_problem": "Empty prompt_suffix must not append a space to prompt or confirm. Preserve normal suffix rendering and input conversion.",
+      "provenance": "Public issue and upstream fix reviewed during task construction; development only."
+    },
+    {
+      "case_id": "click-invoke-missing",
+      "repo": "pallets/click",
+      "issue_url": "https://github.com/pallets/click/issues/3066",
+      "fix_url": "https://github.com/pallets/click/pull/3068",
+      "before_commit": "7d7183604158f064390539d83d4a19a978c6b08a",
+      "after_commit": "6a1c0d077311f180b356965914e2de5b9e0fdb44",
+      "merged_at": "2025-09-24T13:35:05Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": [
+        "src/click/core.py"
+      ],
+      "repair_scope": "single-source-file; not a cross-file repair benchmark",
+      "test_directory": "click-invoke-missing",
+      "public_problem": "Context.invoke must pass None for an omitted optional value, not an internal sentinel. Preserve default type conversion and explicit arguments.",
+      "provenance": "Public issue and upstream fix reviewed during task construction; development only."
+    },
+    {
+      "case_id": "click-shared-default",
+      "repo": "pallets/click",
+      "issue_url": "https://github.com/pallets/click/issues/3071",
+      "fix_url": "https://github.com/pallets/click/pull/3079",
+      "before_commit": "2ed395b0b5ac4d56553ff715335f456f812cdc78",
+      "after_commit": "27aaed3fe5bcd6adedd6e91de234914af9859cf1",
+      "merged_at": "2025-09-24T17:07:42Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": [
+        "src/click/core.py"
+      ],
+      "repair_scope": "single-source-file; not a cross-file repair benchmark",
+      "test_directory": "click-shared-default",
+      "public_problem": "Flags sharing one parameter name must select the configured default regardless of declaration order. Explicit flags must override the default.",
+      "provenance": "Public issue and upstream fix reviewed during task construction; development only."
+    }
+  ]
+}

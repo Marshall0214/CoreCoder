@@ -87,6 +87,25 @@ def test_crossfile_catalog_pins_two_behavioral_source_files():
     assert set(cases[0]['changed_source_files']) == {'src/click/core.py', 'src/click/types.py'}
 
 
+def test_expansion_catalog_has_disjoint_complete_development_checks():
+    import ast
+    import json
+
+    catalog = DATA / 'expansion-candidates-v1.json'
+    assert 'development admission only' in json.loads(catalog.read_text())['purpose']
+    existing = load_cases() + load_cases(DATA / 'crossfile-candidates.json')
+    cases = load_cases(catalog)
+    assert not ({case['case_id'] for case in cases} & {case['case_id'] for case in existing})
+    for case in cases:
+        assert 'development only' in case['provenance']
+        assert 'not a cross-file' in case['repair_scope']
+        tree = ast.parse((DATA / 'checks' / case['test_directory'] / 'test_admission.py').read_text())
+        groups = {node.name: node for node in tree.body if isinstance(node, ast.ClassDef)}
+        for name in ('Target', 'Controls'):
+            assert any(isinstance(node, ast.FunctionDef) and node.name.startswith('test_')
+                       for node in groups[name].body)
+
+
 def test_partial_repairs_overlay_one_file_and_preserve_originals(tmp_path, monkeypatch):
     files = ['src/click/core.py', 'src/click/types.py']
     for label in ('before', 'after'):
