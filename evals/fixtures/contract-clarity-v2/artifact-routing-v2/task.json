@@ -1,0 +1,16 @@
+{
+  "task_id": "artifact-routing-v2",
+  "title": "归档目的地与规则配置不一致",
+  "description": "通过 archive_plan 规划归档时，部分构建机的文件没有进入配置的目的地，另一些文件进入了低优先级目的地。请遵循仓库中的归档契约修复，不改变预览接口和通知规则。",
+  "allowed_files": [
+    "archive.py",
+    "matching.py",
+    "notifications.py",
+    "paths.py",
+    "preview.py",
+    "routing.py",
+    "rules.py"
+  ],
+  "source": "synthetic",
+  "version": 2
+}

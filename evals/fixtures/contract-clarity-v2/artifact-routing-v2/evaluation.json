@@ -1,0 +1,19 @@
+{
+  "suite": "contract-clarity-v2",
+  "purpose": "development",
+  "source": "synthetic",
+  "relevant_files": [
+    "archive.py",
+    "rules.py",
+    "paths.py",
+    "matching.py",
+    "routing.py",
+    "docs/archive.md"
+  ],
+  "reference_changed_files": [
+    "matching.py",
+    "routing.py"
+  ],
+  "annotation_level": "file",
+  "notes": "Parent-side diagnostic labels only. Do not copy into agent workspace or retrieval index. Difficulty is unmeasured; reference edits are not the only acceptable repairs."
+}
