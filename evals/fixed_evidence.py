@@ -87,9 +87,9 @@ def diagnose(llm, workspace: Path, description: str, allowed_files, events) -> d
 
 def generate_patch(llm, workspace, description, allowed_files, events, evidence,
                    protocol="fixed-evidence-v1", response_name="diagnostic-response.txt", policy="baseline", feedback=None):
-    if policy not in {"baseline", "contract-coverage"} or (policy != "baseline" and protocol not in {"bounded-pipeline-v1", "public-contract-feedback-v1", "public-contract-feedback-v2-review", "public-contract-feedback-v3-contract-only"}):
+    if policy not in {"baseline", "contract-coverage"} or (policy != "baseline" and protocol not in {"bounded-pipeline-v1", "public-contract-feedback-v1", "public-contract-feedback-v2-review", "public-contract-feedback-v3-contract-only", "public-contract-feedback-v4-schema"}):
         raise ValueError("Invalid patch policy for protocol")
-    if feedback is not None and protocol not in {"public-contract-feedback-v1", "public-contract-feedback-v2-review", "public-contract-feedback-v3-contract-only"}:
+    if feedback is not None and protocol not in {"public-contract-feedback-v1", "public-contract-feedback-v2-review", "public-contract-feedback-v3-contract-only", "public-contract-feedback-v4-schema"}:
         raise ValueError("Feedback requires its separate workflow protocol")
     system = SYSTEM if policy == "baseline" else COVERAGE_SYSTEM
     data = {"description": description, "allowed_files": list(allowed_files), "files": evidence}

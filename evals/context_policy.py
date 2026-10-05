@@ -13,7 +13,7 @@ def call_names(messages):
             for call in message.get("tool_calls", [])}
 
 
-def request_breakdown(messages, tools):
+def request_breakdown(messages, tools, response_format=None):
     names, categories = call_names(messages), {}
     for message in messages:
         category = message.get("role", "unknown")
@@ -22,8 +22,12 @@ def request_breakdown(messages, tools):
             category = name if name in {"search_code", "read_file"} else "other_tool"
         categories[category] = categories.get(category, 0) + estimate_tokens([message])
     schema = max(0, len(json.dumps(tools or [])) // 3)
-    return {"message_estimates": categories, "schema_estimate": schema,
-            "request_estimate": sum(categories.values()) + schema}
+    result = {"message_estimates": categories, "schema_estimate": schema,
+              "request_estimate": sum(categories.values()) + schema}
+    if response_format is not None:
+        result["response_format_estimate"] = max(0, len(json.dumps(response_format)) // 3)
+        result["request_estimate"] += result["response_format_estimate"]
+    return result
 
 
 def covered_search_view(messages, workspace: Path, receipts):

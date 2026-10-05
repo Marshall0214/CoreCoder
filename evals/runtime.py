@@ -151,7 +151,7 @@ class BudgetLLM:
         self.missing_usage = 0
 
     def chat(self, messages, tools=None, **kwargs):
-        breakdown = request_breakdown(messages, tools)
+        breakdown = request_breakdown(messages, tools, response_format=kwargs.get("response_format"))
         request_estimate = breakdown["request_estimate"]
         reservation = request_estimate + self.config.max_output_tokens
         self.events.emit("request_preflight", next_call=self.calls + 1, **breakdown,

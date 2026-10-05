@@ -48,6 +48,16 @@ class TracedLLM(LLM):
         self.events = events
         self.client.max_retries = 0  # retain only CoreCoder's declared retry layer
 
+    def chat(self, messages, tools=None, on_token=None, on_reasoning=None, response_format=None):
+        # A worker makes sequential calls; scope the format to this request only.
+        previous = self.extra
+        if response_format is not None:
+            self.extra = {**previous, "response_format": response_format}
+        try:
+            return super().chat(messages, tools=tools, on_token=on_token, on_reasoning=on_reasoning)
+        finally:
+            self.extra = previous
+
     def _drain(self, stream, on_token, on_reasoning):
         def observe():
             seen = set()
@@ -56,6 +66,10 @@ class TracedLLM(LLM):
                 if model and model not in seen:
                     seen.add(model)
                     self.events.emit("provider_model", model=model)
+                for choice in getattr(chunk, "choices", []):
+                    reason = getattr(choice, "finish_reason", None)
+                    if reason:
+                        self.events.emit("provider_finish_reason", reason=reason)
                 yield chunk
 
         return super()._drain(observe(), on_token, on_reasoning)

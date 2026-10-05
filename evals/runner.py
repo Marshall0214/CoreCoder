@@ -125,7 +125,8 @@ def run_task(task: Task, config: RunConfig, output: Path, repetition: int = 1) -
     elif config.mode == "contract-feedback":
         report["evaluation_protocol"] = {"generated": "public-contract-feedback-v1",
                                          "reviewed": "public-contract-feedback-v2-review",
-                                         "contract-only": "public-contract-feedback-v3-contract-only"}[config.public_check_policy]
+                                         "contract-only": "public-contract-feedback-v3-contract-only",
+                                         "contract-schema": "public-contract-feedback-v4-schema"}[config.public_check_policy]
     elif config.mode == "pipeline":
         report["evaluation_protocol"] = "bounded-pipeline-v1"
     elif config.mode == "live":

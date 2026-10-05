@@ -33,7 +33,7 @@ def main() -> int:
     parser.add_argument("--evidence-dependency-depth", type=int, default=2)
     parser.add_argument("--evidence-order", choices=("selection", "path"), default="selection")
     parser.add_argument("--patch-policy", choices=("baseline", "contract-coverage"), default="baseline")
-    parser.add_argument("--public-check-policy", choices=("generated", "reviewed", "contract-only"), default="generated")
+    parser.add_argument("--public-check-policy", choices=("generated", "reviewed", "contract-only", "contract-schema"), default="generated")
     args = parser.parse_args()
     if args.repeat < 1:
         parser.error("--repeat must be positive")

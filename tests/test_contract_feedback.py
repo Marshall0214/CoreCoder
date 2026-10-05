@@ -14,11 +14,12 @@ CODE = "import unittest\nfrom value import value\nclass Public(unittest.TestCase
 
 class RecordingLLM:
     def __init__(self, answers):
-        self.answers, self.messages = list(answers), []
+        self.answers, self.messages, self.options = list(answers), [], []
 
-    def chat(self, messages, tools):
+    def chat(self, messages, tools, **kwargs):
         assert tools == []
         self.messages.append(messages)
+        self.options.append(kwargs)
         return LLMResponse(content=json.dumps(self.answers.pop(0)))
 
 
