@@ -14,6 +14,8 @@ from .check_arithmetic import numeric_assertions
 from .check_review import CONTRACT_SYSTEM, reviewed_checks, test_methods
 from .check_review import PROTOCOL as REVIEW_PROTOCOL
 from .check_review import SYSTEM as REVIEW_SYSTEM
+from .check_surface import GENERATION_RULES, filter_surface_checks
+from .check_surface import PROTOCOL as SURFACE_PROTOCOL
 from .contract_catalog import PROTOCOL as CONTRACT_PROTOCOL
 from .contract_catalog import contract_catalog, public_interfaces
 from .fixed_evidence import generate_patch
@@ -107,15 +109,17 @@ def refreshed_evidence(workspace, evidence):
 
 def run_contract_feedback(llm, workspace, description, allowed_files, config, events):
     protocol = {"generated": PROTOCOL, "reviewed": REVIEW_PROTOCOL,
-                "contract-only": CONTRACT_PROTOCOL, "contract-schema": SCHEMA_PROTOCOL}[config.public_check_policy]
+                "contract-only": CONTRACT_PROTOCOL, "contract-schema": SCHEMA_PROTOCOL,
+                "contract-surface": SURFACE_PROTOCOL}[config.public_check_policy]
     evidence = ordered_evidence(bounded_evidence(workspace, description, allowed_files, config, events),
                                 config.evidence_order, events)
     payload = json.dumps({"description": description, "allowed_files": list(allowed_files), "files": evidence},
                          ensure_ascii=False)
-    response = llm.chat([{"role": "system", "content": CHECK_SYSTEM}, {"role": "user", "content": payload}], tools=[])
+    check_system = CHECK_SYSTEM + (GENERATION_RULES if config.public_check_policy == "contract-surface" else "")
+    response = llm.chat([{"role": "system", "content": check_system}, {"role": "user", "content": payload}], tools=[])
     root = events.path.parent
     (root / "public-check-response.txt").write_text(events.clean(response.content), encoding="utf-8")
-    checks = {"generation_prompt_hash": hashlib.sha256((CHECK_SYSTEM + "\n" + payload).encode()).hexdigest()}
+    checks = {"generation_prompt_hash": hashlib.sha256((check_system + "\n" + payload).encode()).hexdigest()}
     code = None
     try:
         if response.tool_calls:
@@ -125,14 +129,14 @@ def run_contract_feedback(llm, workspace, description, allowed_files, config, ev
         if config.public_check_policy != "generated":
             (root / "public-contract-generated.py").write_bytes(code.encode("utf-8"))
             checks["generated_code_hash"] = hashlib.sha256(code.encode()).hexdigest()
-            catalog = contract_catalog(description, evidence) if config.public_check_policy in {"contract-only", "contract-schema"} else None
+            catalog = contract_catalog(description, evidence) if config.public_check_policy in {"contract-only", "contract-schema", "contract-surface"} else None
             data = ({"contract_catalog": catalog, "interfaces": public_interfaces(evidence)} if catalog is not None
                     else {"description": description, "files": evidence})
             data.update(code=code, tests=test_methods(code), numeric_assertions=numeric_assertions(code))
             review_payload = json.dumps(data, ensure_ascii=False)
             review_system = CONTRACT_SYSTEM if catalog is not None else REVIEW_SYSTEM
             options = {}
-            if config.public_check_policy == "contract-schema":
+            if config.public_check_policy in {"contract-schema", "contract-surface"}:
                 options["response_format"] = review_response_format(code, catalog)
                 review_system += (' The provider schema requires pure arithmetic expressions: no equals signs, '
                                   'no prose, no variables and no intermediate derivation chains. '
@@ -150,9 +154,12 @@ def run_contract_feedback(llm, workspace, description, allowed_files, config, ev
             try:
                 if reviewed.tool_calls:
                     raise ValueError("Check review cannot call tools")
-                if config.public_check_policy == "contract-schema":
+                if config.public_check_policy in {"contract-schema", "contract-surface"}:
                     validate_pure_expressions(reviewed.content)
                 code, reviews = reviewed_checks(reviewed.content, code, description, evidence, catalog=catalog)
+                if config.public_check_policy == "contract-surface":
+                    code, rejected = filter_surface_checks(code, reviews)
+                    checks.update(surface_policy="exclude-caller-state", surface_rejected_tests=rejected)
                 checks.update(review_status="valid", reviews=reviews,
                               accepted_tests=[r["test"] for r in reviews if r["verdict"] == "accept"],
                               semantic_correctness_verified=False)
