@@ -74,13 +74,13 @@ class RunConfig:
     def __post_init__(self):
         if self.patch_policy not in {"baseline", "contract-coverage"}:
             raise ValueError("patch_policy must be baseline or contract-coverage")
-        if self.mode != "pipeline" and self.patch_policy != "baseline":
+        if self.mode not in {"pipeline", "contract-feedback"} and self.patch_policy != "baseline":
             raise ValueError("Patch coverage requires pipeline mode")
         if self.evidence_order not in {"selection", "path"}:
             raise ValueError("evidence_order must be selection or path")
-        if self.mode != "pipeline" and self.evidence_order != "selection":
+        if self.mode not in {"pipeline", "contract-feedback"} and self.evidence_order != "selection":
             raise ValueError("Evidence ordering requires pipeline mode")
-        if self.mode not in {"unchanged", "reference", "scripted", "live", "fixed-evidence", "pipeline"}:
+        if self.mode not in {"unchanged", "reference", "scripted", "live", "fixed-evidence", "pipeline", "contract-feedback"}:
             raise ValueError("Unknown run mode")
         if self.search_backend not in {"off", "none", "keyword"}:
             raise ValueError("search_backend must be off, none or keyword")
@@ -97,7 +97,7 @@ class RunConfig:
         if self.mode == "fixed-evidence" and (self.search_backend != "off" or self.context_policy != "none"
                                              or self.search_history != "full" or self.prompt_policy != "baseline"):
             raise ValueError("fixed-evidence has a separate protocol; Agent policies must use defaults")
-        if self.mode == "pipeline" and (self.search_backend != "keyword" or self.context_policy != "none"
+        if self.mode in {"pipeline", "contract-feedback"} and (self.search_backend != "keyword" or self.context_policy != "none"
                                         or self.search_history != "full" or self.prompt_policy != "baseline"):
             raise ValueError("pipeline requires keyword, full search history and baseline Agent policies")
         for name, lower, upper in (("evidence_top_k", 1, 20), ("evidence_dependency_depth", 0, 3)):

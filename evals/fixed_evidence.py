@@ -86,12 +86,16 @@ def diagnose(llm, workspace: Path, description: str, allowed_files, events) -> d
 
 
 def generate_patch(llm, workspace, description, allowed_files, events, evidence,
-                   protocol="fixed-evidence-v1", response_name="diagnostic-response.txt", policy="baseline"):
-    if policy not in {"baseline", "contract-coverage"} or (policy != "baseline" and protocol != "bounded-pipeline-v1"):
+                   protocol="fixed-evidence-v1", response_name="diagnostic-response.txt", policy="baseline", feedback=None):
+    if policy not in {"baseline", "contract-coverage"} or (policy != "baseline" and protocol not in {"bounded-pipeline-v1", "public-contract-feedback-v1"}):
         raise ValueError("Invalid patch policy for protocol")
+    if feedback is not None and protocol != "public-contract-feedback-v1":
+        raise ValueError("Feedback requires its separate workflow protocol")
     system = SYSTEM if policy == "baseline" else COVERAGE_SYSTEM
-    payload = json.dumps({"description": description, "allowed_files": list(allowed_files),
-                          "files": evidence}, ensure_ascii=False)
+    data = {"description": description, "allowed_files": list(allowed_files), "files": evidence}
+    if feedback is not None:
+        data["public_check_feedback"] = feedback
+    payload = json.dumps(data, ensure_ascii=False)
     messages = [{"role": "system", "content": system}, {"role": "user", "content": payload}]
     manifest = [{key: value for key, value in item.items() if key != "content"} for item in evidence]
     events.emit("fixed_evidence_prepared" if protocol == "fixed-evidence-v1" else "pipeline_patch_request",
