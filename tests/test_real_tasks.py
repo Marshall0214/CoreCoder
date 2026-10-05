@@ -111,8 +111,10 @@ def test_real_cli_passes_search_history_to_worker(tmp_path, real_case, monkeypat
     output = tmp_path / 'cli-run'
     monkeypatch.setattr(sys, 'argv', ['real_tasks', '--admission', 'unused.json', '--mode', 'scripted',
                                     '--search-backend', 'keyword', '--search-history', 'deduplicate',
+                                    '--search-max-chars', '3000',
                                     '--output', str(output)])
     assert main() == 0
     job = json.loads(next(output.glob('*/job.json')).read_text(encoding='utf-8'))
     assert job['config']['search_history'] == 'deduplicate'
     assert job['config']['search_backend'] == 'keyword'
+    assert job['config']['search_max_chars'] == 3000

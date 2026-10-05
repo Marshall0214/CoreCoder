@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from evals.compare_real_history import compare
+from evals.compare_real_history import compare, trace_metrics
 from evals.schema import RunConfig
 
 
@@ -64,3 +64,34 @@ def test_changed_model_stops_and_preserves_partial_batch(tmp_path, comparison_se
     assert 'model changed' in state['stop_reason']
     assert len(calls) == 2
     assert json.loads((tmp_path / 'batch/comparison.json').read_text())['completed'] is False
+
+
+def test_width_comparison_changes_only_character_budget(tmp_path, comparison_setup, monkeypatch):
+    calls, worker = comparison_setup
+    widths = []
+
+    def capture(*args):
+        widths.append(args[-2].search_max_chars)
+        return worker(*args)
+
+    monkeypatch.setattr('evals.compare_real_history.run_real', capture)
+    state = compare(Path('admission'), Path('catalog'), 'example', tmp_path / 'batch',
+                    RunConfig(mode='live', search_backend='keyword'), axis='search-width')
+    assert state['completed']
+    assert widths == [6000, 3000, 3000, 6000, 6000, 3000]
+    assert calls == ['full'] * 6
+    freeze = json.loads((tmp_path / 'batch/freeze.json').read_text())
+    a, b = freeze['configs'].values()
+    assert {key for key in a if a[key] != b[key]} == {'search_max_chars'}
+
+
+def test_width_diagnostics_keep_selected_and_discarded_evidence(tmp_path):
+    event = {'event': 'search_completed', 'query': 'envvar', 'max_chars': 3000,
+             'evidence_chars': 3000, 'response_chars': 3400,
+             'selected': [{'path': 'src/click/core.py', 'start_line': 2500, 'truncated': True}],
+             'discarded': [{'path': 'src/click/types.py', 'reason': 'evidence_limit'}]}
+    (tmp_path / 'trace.jsonl').write_text(json.dumps(event) + '\n')
+    result = trace_metrics({'artifacts': str(tmp_path)})
+    assert result['evidence_chars'] == 3000 and result['response_chars'] == 3400
+    assert result['truncated_chunks'] == 1
+    assert result['searches'][0]['discarded'][0]['path'] == 'src/click/types.py'

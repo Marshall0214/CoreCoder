@@ -1,4 +1,4 @@
-"""Interleaved full/deduplicated search history on one admitted real development task."""
+"""Interleaved search-history or evidence-width comparisons on an admitted development task."""
 
 import argparse
 import json
@@ -18,28 +18,39 @@ def trace_metrics(report):
     tools = [record for record in records if record['event'] == 'tool_started']
     return {'search_calls': len(searches), 'reference_hits': sum(row.get('reference_hits', 0) for row in searches),
             'omitted_chars': sum(row.get('omitted_chars', 0) for row in searches),
+            'evidence_chars': sum(row.get('evidence_chars', 0) for row in searches),
+            'response_chars': sum(row.get('response_chars', 0) for row in searches),
+            'truncated_chunks': sum(bool(item.get('truncated')) for row in searches for item in row.get('selected', [])),
+            'searches': [{'query': row['query'], 'max_chars': row['max_chars'],
+                          'selected': row.get('selected', []), 'discarded': row.get('discarded', [])}
+                         for row in searches if 'query' in row],
             'edit_calls': sum(row['tool'] in {'edit_file', 'write_file'} for row in tools),
             'visible_test_calls': sum(row['tool'] == 'bash' for row in tools),
             'changed_files': (report.get('verification') or {}).get('changed_files', []),
             'budget_blocks': [row for row in records if row['event'] == 'budget_blocked']}
 
 
-def compare(admission, catalog, task_id, output, config, repeat=3):
+def compare(admission, catalog, task_id, output, config, repeat=3, axis='history'):
     if config.mode != 'live' or config.search_backend != 'keyword' or config.search_history != 'full':
         raise ValueError('Comparison needs live keyword/full as its base configuration')
+    if axis == 'history':
+        configs = {'full': config, 'deduplicate': replace(config, search_history='deduplicate')}
+    elif axis == 'search-width' and config.search_max_chars == 6000:
+        configs = {'chars-6000': config, 'chars-3000': replace(config, search_max_chars=3000)}
+    else:
+        raise ValueError('Unknown axis or search-width base is not 6000 characters')
+    planned = list(schedule([task_id], repeat, tuple(configs)))
     inputs = admitted_case(admission, catalog, task_id)
     output = output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     source = implementation_metadata()
-    configs = {'full': config, 'deduplicate': replace(config, search_history='deduplicate')}
-    planned = list(schedule([task_id], repeat, tuple(configs)))
-    freeze = {'implementation': source, 'case': inputs[0], 'checks_hash': inputs[1]['checks_hash'],
+    freeze = {'axis': axis, 'implementation': source, 'case': inputs[0], 'checks_hash': inputs[1]['checks_hash'],
               'revisions': inputs[1]['revisions'], 'test_environment': inputs[4],
               'configs': {arm: value.to_dict() for arm, value in configs.items()},
               'schedule': [{'repetition': rep, 'arm': arm} for rep, _, arm in planned]}
     (output / 'freeze.json').write_text(json.dumps(freeze, ensure_ascii=False, indent=2), encoding='utf-8')
     rows = {arm: [] for arm in configs}
-    state = {'completed': False, 'planned_runs': len(planned), 'stop_reason': None,
+    state = {'axis': axis, 'completed': False, 'planned_runs': len(planned), 'stop_reason': None,
              'scope': 'single real development task; not held-out performance', 'benchmark_eligible': False}
 
     def unchanged():
@@ -101,13 +112,14 @@ def main():
     parser.add_argument('--task', default='click-flag-envvar')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--repeat', type=int, default=3)
+    parser.add_argument('--axis', choices=('history', 'search-width'), default='history')
     args = parser.parse_args()
     from corecoder.config import _load_dotenv
 
     _load_dotenv()
     config = RunConfig(mode='live', model='qwen3.5:27b', base_url='http://localhost:11434/v1',
                        reasoning_effort='none', search_backend='keyword')
-    state = compare(args.admission.resolve(), args.catalog, args.task, args.output, config, args.repeat)
+    state = compare(args.admission.resolve(), args.catalog, args.task, args.output, config, args.repeat, args.axis)
     print(args.output.resolve() / 'comparison.json', flush=True)
     return 0 if state['completed'] else 1
 

@@ -171,6 +171,7 @@ def main():
     parser.add_argument('--base-url', default='http://localhost:11434/v1')
     parser.add_argument('--search-backend', choices=('off', 'none', 'keyword'), default='off')
     parser.add_argument('--search-history', choices=('full', 'deduplicate'), default='full')
+    parser.add_argument('--search-max-chars', type=int, default=6000)
     parser.add_argument('--reasoning-effort', default='none')
     for flag, default in (('max-rounds', 12), ('token-budget', 30000), ('max-output-tokens', 2048),
                           ('context-tokens', 16000), ('wall-timeout', 180), ('test-timeout', 15)):
@@ -179,6 +180,7 @@ def main():
     case, row, checks, source, environment = admitted_case(args.admission.resolve(), args.catalog, args.task)
     config = RunConfig(mode=args.mode, model=args.model, base_url=args.base_url,
                        search_backend=args.search_backend, search_history=args.search_history,
+                       search_max_chars=args.search_max_chars,
                        reasoning_effort=args.reasoning_effort,
                        **{name: getattr(args, name) for name in ('max_rounds', 'token_budget', 'max_output_tokens',
                                                                'context_tokens', 'wall_timeout', 'test_timeout')})
