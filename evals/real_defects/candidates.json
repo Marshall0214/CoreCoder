@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "purpose": "development admission only; no held-out or model results",
+  "cases": [
+    {
+      "case_id": "click-help-eagerness",
+      "repo": "pallets/click",
+      "issue_url": "https://github.com/pallets/click/pull/2811",
+      "fix_url": "https://github.com/pallets/click/pull/2811",
+      "before_commit": "273fb90106726daa16e1033eca0d677de76345eb",
+      "after_commit": "70c673d37eb91ba42a129be9037caf3ebed62f3e",
+      "merged_at": "2024-11-30T00:45:29Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": ["src/click/core.py"],
+      "repair_scope": "single-source-file; not a cross-file repair benchmark",
+      "test_directory": "click-help-eagerness",
+      "public_problem": "A custom help flag and another eager option should follow invocation order. Invoking the help flag first must display help without running the later eager callback."
+    },
+    {
+      "case_id": "click-flag-default-map",
+      "repo": "pallets/click",
+      "issue_url": "https://github.com/pallets/click/issues/2632",
+      "fix_url": "https://github.com/pallets/click/pull/2730",
+      "before_commit": "5b1624bf09947d6f10eaffd63d6fb737dfe7656a",
+      "after_commit": "bc16dbf788861266177661b576291a1b264fb5de",
+      "merged_at": "2024-05-22T21:13:00Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": ["src/click/core.py"],
+      "repair_scope": "single-source-file; not a cross-file repair benchmark",
+      "test_directory": "click-flag-default-map",
+      "public_problem": "When default_map overrides a dual boolean flag, help output must display the effective default flag rather than the decorator default. Actual invocation and help must agree."
+    },
+    {
+      "case_id": "click-resource-exception",
+      "repo": "pallets/click",
+      "issue_url": "https://github.com/pallets/click/issues/2447",
+      "fix_url": "https://github.com/pallets/click/pull/3058",
+      "before_commit": "16fe802a3f96c4c8fa3cd382f1a7577fda0c5321",
+      "after_commit": "36deba8a95a2585de1a2aa4475b7f054f52830ac",
+      "merged_at": "2025-09-12T17:16:56Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": ["src/click/core.py"],
+      "repair_scope": "single-source-file; not a cross-file repair benchmark",
+      "test_directory": "click-resource-exception",
+      "public_problem": "Context-managed resources registered with with_resource must receive the real exception type, value and traceback on exit, and their exception suppression behavior must be respected."
+    }
+  ]
+}
