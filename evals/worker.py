@@ -164,11 +164,17 @@ def main(job_path: Path) -> int:
         if config.mode == "contract-feedback":
             result.update(run_contract_feedback(llm, workspace, job["description"], job["allowed_files"], config, events))
             return 0
-        if job.get("workflow") == "symbol-patch":
+        if job.get("workflow") in {"symbol-patch", "symbol-feedback"}:
             from .symbol_patch import run_symbol_patch
 
             if config.mode != "live":
                 raise ValueError("Symbol patch worker requires live mode")
+            if job["workflow"] == "symbol-feedback":
+                from .symbol_feedback import run_symbol_feedback
+
+                result.update(run_symbol_feedback(llm, workspace, job["description"], job["allowed_files"],
+                                                   config, events, job["real_visible_python"]))
+                return 0
             result.update(run_symbol_patch(llm, workspace, job["description"], job["allowed_files"], config, events,
                                             prompt_policy=job.get("symbol_prompt_policy", "baseline")))
             return 0

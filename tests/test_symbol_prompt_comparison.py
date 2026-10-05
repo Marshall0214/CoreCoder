@@ -7,7 +7,8 @@ from evals.schema import RunConfig
 
 
 @pytest.mark.parametrize('mismatch', [False, True])
-def test_comparison_freezes_schedule_and_rejects_changed_evidence(tmp_path, monkeypatch, mismatch):
+@pytest.mark.parametrize('axis', ['symbol-prompt', 'public-feedback'])
+def test_comparison_freezes_schedule_and_rejects_changed_evidence(tmp_path, monkeypatch, mismatch, axis):
     inputs = ({'case_id': 'fake'}, {'checks_hash': 'checks', 'revisions': {}},
               tmp_path / 'checks', tmp_path / 'source', {})
     monkeypatch.setattr('evals.compare_symbol_prompts.admitted_case', lambda *args: inputs)
@@ -17,7 +18,7 @@ def test_comparison_freezes_schedule_and_rejects_changed_evidence(tmp_path, monk
     calls = []
 
     def run(*args, workflow, symbol_prompt_policy):
-        calls.append(symbol_prompt_policy)
+        calls.append('public-feedback' if workflow == 'symbol-feedback' else symbol_prompt_policy)
         phase = {'loaded': {'models': []},
                  'identity': {'models': [{'name': 'local-model', 'digest': 'fixed-model'}]}}
         return {'implementation': metadata, 'worker': {
@@ -30,10 +31,11 @@ def test_comparison_freezes_schedule_and_rejects_changed_evidence(tmp_path, monk
     monkeypatch.setattr('evals.compare_symbol_prompts.run_real', run)
     output = tmp_path / 'comparison'
     state = compare(tmp_path / 'admission', tmp_path / 'catalog', 'fake', output,
-                     RunConfig(mode='live', model='local-model'), repeat=3)
+                     RunConfig(mode='live', model='local-model'), repeat=3, axis=axis)
     freeze = json.loads((output / 'freeze.json').read_text())
+    variant = 'behavior-check' if axis == 'symbol-prompt' else 'public-feedback'
     assert [row['arm'] for row in freeze['schedule']] == [
-        'baseline', 'behavior-check', 'behavior-check', 'baseline', 'baseline', 'behavior-check']
+        'baseline', variant, variant, 'baseline', 'baseline', variant]
     assert state['completed'] is not mismatch
     if mismatch:
         assert len(calls) == 2 and 'Evidence' in state['stop_reason']

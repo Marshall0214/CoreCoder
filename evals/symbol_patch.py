@@ -38,7 +38,8 @@ def public_requirements(description):
     return rows
 
 
-def run_symbol_patch(llm, workspace, description, allowed_files, config, events, prompt_policy='baseline'):
+def run_symbol_patch(llm, workspace, description, allowed_files, config, events, prompt_policy='baseline',
+                     feedback=None, response_name='symbol-patch-response.txt'):
     if prompt_policy not in {'baseline', 'behavior-check'}:
         raise ValueError('Unknown symbol patch prompt policy')
     evidence = symbol_evidence(workspace, description, allowed_files, events,
@@ -62,6 +63,12 @@ def run_symbol_patch(llm, workspace, description, allowed_files, config, events,
         system += BEHAVIOR_CHECK
         events.emit('symbol_public_requirements', requirements=data['public_requirements'],
                     source='public_description', semantic_coverage_verified=False)
+    if feedback is not None:
+        data['public_check_feedback'] = feedback
+        system += (' These are frozen provisional public checks, not the final grader. '
+                   'Check their expectations against the public description and repair source only. '
+                   'Do not modify tests. Source fragments reflect the current candidate version.')
+        result['protocol'] = 'symbol-feedback-development-v1'
     payload = json.dumps(data, ensure_ascii=False)
     messages = [{'role': 'system', 'content': system}, {'role': 'user', 'content': payload}]
     result['prompt_hash'] = hashlib.sha256((system + '\n' + payload).encode()).hexdigest()
@@ -70,7 +77,7 @@ def run_symbol_patch(llm, workspace, description, allowed_files, config, events,
     events.emit('symbol_patch_request', protocol=PROTOCOL, prompt_policy=prompt_policy,
                 files=manifest, chars=result['evidence_chars'])
     response = llm.chat(messages, tools=[])
-    (events.path.parent / 'symbol-patch-response.txt').write_text(events.clean(response.content), encoding='utf-8')
+    (events.path.parent / response_name).write_text(events.clean(response.content), encoding='utf-8')
     result['final_message'] = response.content
     try:
         if response.tool_calls:

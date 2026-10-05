@@ -11,11 +11,12 @@ from .runner import implementation_metadata, write_summary
 from .schema import RunConfig
 
 
-def compare(admission, catalog, task_id, output, config, repeat=3):
+def compare(admission, catalog, task_id, output, config, repeat=3, axis='symbol-prompt'):
     if config.mode != 'live' or config.search_backend != 'off' or config.search_history != 'full':
         raise ValueError('Comparison needs live/off/full as its base configuration')
-    axis = 'symbol-prompt'
-    configs = {'baseline': config, 'behavior-check': config}
+    if axis not in {'symbol-prompt', 'public-feedback'}:
+        raise ValueError('Unknown symbol comparison axis')
+    configs = {'baseline': config, ('behavior-check' if axis == 'symbol-prompt' else 'public-feedback'): config}
     planned = list(schedule([task_id], repeat, tuple(configs)))
     inputs = admitted_case(admission, catalog, task_id)
     output = output.resolve()
@@ -46,7 +47,9 @@ def compare(admission, catalog, task_id, output, config, repeat=3):
     try:
         for rep, _, arm in planned:
             unchanged()
-            report = run_real(*inputs, configs[arm], output / arm, workflow='symbol-patch', symbol_prompt_policy=arm)
+            report = run_real(*inputs, configs[arm], output / arm,
+                              workflow='symbol-feedback' if arm == 'public-feedback' else 'symbol-patch',
+                              symbol_prompt_policy=arm if axis == 'symbol-prompt' else 'baseline')
             report.update(repetition=rep, comparison_arm=arm)
             rows[arm].append(report)
             persist()
@@ -58,12 +61,15 @@ def compare(admission, catalog, task_id, output, config, repeat=3):
                 raise ValueError('Run did not complete the comparison protocol')
             workers = [row['worker'] for reports in rows.values() for row in reports]
             for key in ('evidence_hash', 'tool_schema_hash'):
-                if len({worker.get(key) for worker in workers}) != 1 or workers[0].get(key) is None:
+                values = {worker.get('initial_evidence_hash', worker.get(key)) if key == 'evidence_hash'
+                          else worker.get(key) for worker in workers}
+                if len(values) != 1 or None in values:
                     raise ValueError('Evidence or tool schema differs between comparison runs')
             for reports in rows.values():
                 if not reports:
                     continue
-                hashes = {row['worker'].get('protocol_prompt_hash') for row in reports}
+                hashes = {row['worker'].get('initial_prompt_hash', row['worker'].get('protocol_prompt_hash'))
+                          for row in reports}
                 if None in hashes or len(hashes) != 1:
                     raise ValueError('Prompt changed within a comparison arm')
             digests = set()
@@ -99,13 +105,14 @@ def main():
     parser.add_argument('--task', default='click-flag-envvar')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--repeat', type=int, default=3)
+    parser.add_argument('--axis', choices=('symbol-prompt', 'public-feedback'), default='symbol-prompt')
     args = parser.parse_args()
     from corecoder.config import _load_dotenv
 
     _load_dotenv()
     config = RunConfig(mode='live', model='qwen3.5:27b', base_url='http://localhost:11434/v1',
                        reasoning_effort='none', evidence_dependency_depth=1)
-    state = compare(args.admission.resolve(), args.catalog, args.task, args.output, config, args.repeat)
+    state = compare(args.admission.resolve(), args.catalog, args.task, args.output, config, args.repeat, args.axis)
     print(args.output.resolve() / 'comparison.json', flush=True)
     return 0 if state['completed'] else 1
 
