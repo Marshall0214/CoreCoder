@@ -120,6 +120,7 @@
 - [x] 修正未验证关联与引用排版协议，增加声明/实际修改文件诊断；335 passed、1 skipped。v2十次pilot为1/5对4/5；最终v2.1三项实跑清单均有效、声明一致，事件/截止时间通过、分页仍误判应保留。各版本与schema复核分开，见 [docs/patch-coverage-v2.md](docs/patch-coverage-v2.md)。
 - [x] 实现公开契约测试生成、修复前冻结、候选执行及最多一次反馈，单列新协议；348 passed、1 skipped。最终两个pilot独立验收均通过，分页公开检查经反馈通过，金额检查期望错误造成多余反馈，仍保留公开检查失败；共13144 Token，不宣称稳定收益，见 [docs/public-contract-feedback-v1.md](docs/public-contract-feedback-v1.md)。
 - [x] 增加可选逐项期望审查、公开契约引用与确定性 Decimal 算术校验；380 passed、1 skipped。最终金额错误检查被排除、无多余反馈并独立通过；分页误拒全部检查，关闭反馈并验收失败。两个pilot共13250 Token，审查仅供实验，见 [docs/public-check-review-v1.md](docs/public-check-review-v1.md)。
+- [x] 新增契约目录 ID 与不含实现体的接口审查，补齐受限 min/max 和等式计算；396 passed、1 skipped。最终分页保留5项检查、一次反馈后独立通过；金额独立通过但审查JSON无效。共同版本合计15906 Token，未推广默认，见 [docs/contract-only-review-v1.md](docs/contract-only-review-v1.md)。
 - [ ] 关键词检索起步，加入 Embedding 与向量索引，再按开发集结果增加融合和重排。
 - [ ] 继续研究上下文预算分配与消息开销；当前去重仅覆盖重复 search_code 正文，尚未处理 read_file 或历史消息重组。
 - [ ] 比较固定长度与 AST 分块，再验证反馈驱动的证据更新。
@@ -189,4 +190,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**下一步：隔离审查输入中的实现细节，避免把缺陷源码当作预期行为；采用已提取契约引用标识减少引文改写与有效测试误拒。随后冻结共同版本进行审查及有/无反馈对照；隐藏验收不反馈模型，当前不推广 reviewed 策略、不修改单调用基线。**
+**下一步：约束审查输出结构与表达式格式，减少无效JSON及推导链造成的检查丢失；随后冻结共同版本扩大审查及有/无反馈对照。隐藏验收不反馈模型，当前不推广 reviewed/contract-only 策略、不修改单调用基线。**

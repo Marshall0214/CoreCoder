@@ -7,6 +7,14 @@ from decimal import ROUND_HALF_UP, Decimal, DecimalException, localcontext
 def calculate(expression):
     if not isinstance(expression, str) or not 1 <= len(expression) <= 300:
         raise ValueError("Arithmetic expression exceeds bounds")
+    if "=" in expression:
+        if expression.count("=") != 1:
+            raise ValueError("Only a single arithmetic equality is supported")
+        left, right = expression.split("=")
+        value = calculate(left.strip())
+        if value != calculate(right.strip()):
+            raise ValueError("Arithmetic equality is inconsistent")
+        return value
     tree = ast.parse(expression, mode="eval")
     if len(list(ast.walk(tree))) > 80:
         raise ValueError("Arithmetic expression is too complex")
@@ -29,6 +37,10 @@ def calculate(expression):
         elif (isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
               and node.func.id == "round_half_up" and len(node.args) == 1 and not node.keywords):
             value = visit(node.args[0]).quantize(Decimal(1), rounding=ROUND_HALF_UP)
+        elif (isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
+              and node.func.id in {"min", "max"} and 2 <= len(node.args) <= 8 and not node.keywords):
+            values = [visit(arg) for arg in node.args]
+            value = min(values) if node.func.id == "min" else max(values)
         else:
             raise ValueError("Unsupported arithmetic syntax")
         if not value.is_finite() or abs(value) > Decimal("1e12"):

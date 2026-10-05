@@ -11,9 +11,11 @@ import re
 import shutil
 
 from .check_arithmetic import numeric_assertions
+from .check_review import CONTRACT_SYSTEM, reviewed_checks, test_methods
 from .check_review import PROTOCOL as REVIEW_PROTOCOL
 from .check_review import SYSTEM as REVIEW_SYSTEM
-from .check_review import reviewed_checks, test_methods
+from .contract_catalog import PROTOCOL as CONTRACT_PROTOCOL
+from .contract_catalog import contract_catalog, public_interfaces
 from .fixed_evidence import generate_patch
 from .pipeline import bounded_evidence, ordered_evidence
 from .process import run_tests
@@ -102,7 +104,8 @@ def refreshed_evidence(workspace, evidence):
 
 
 def run_contract_feedback(llm, workspace, description, allowed_files, config, events):
-    protocol = REVIEW_PROTOCOL if config.public_check_policy == "reviewed" else PROTOCOL
+    protocol = {"generated": PROTOCOL, "reviewed": REVIEW_PROTOCOL,
+                "contract-only": CONTRACT_PROTOCOL}[config.public_check_policy]
     evidence = ordered_evidence(bounded_evidence(workspace, description, allowed_files, config, events),
                                 config.evidence_order, events)
     payload = json.dumps({"description": description, "allowed_files": list(allowed_files), "files": evidence},
@@ -117,20 +120,26 @@ def run_contract_feedback(llm, workspace, description, allowed_files, config, ev
             raise ValueError("Check generation cannot call tools")
         code = validate_checks(response.content, allowed_files)
         checks["generation_status"] = "valid"
-        if config.public_check_policy == "reviewed":
+        if config.public_check_policy != "generated":
             (root / "public-contract-generated.py").write_bytes(code.encode("utf-8"))
             checks["generated_code_hash"] = hashlib.sha256(code.encode()).hexdigest()
-            review_payload = json.dumps({"description": description, "files": evidence, "code": code,
-                                         "tests": test_methods(code), "numeric_assertions": numeric_assertions(code)}, ensure_ascii=False)
-            checks["review_prompt_hash"] = hashlib.sha256((REVIEW_SYSTEM + "\n" + review_payload).encode()).hexdigest()
+            catalog = contract_catalog(description, evidence) if config.public_check_policy == "contract-only" else None
+            data = ({"contract_catalog": catalog, "interfaces": public_interfaces(evidence)} if catalog is not None
+                    else {"description": description, "files": evidence})
+            data.update(code=code, tests=test_methods(code), numeric_assertions=numeric_assertions(code))
+            review_payload = json.dumps(data, ensure_ascii=False)
+            review_system = CONTRACT_SYSTEM if catalog is not None else REVIEW_SYSTEM
+            (root / "public-check-review-input.json").write_text(events.clean(review_payload), encoding="utf-8")
+            checks["review_prompt_hash"] = hashlib.sha256((review_system + "\n" + review_payload).encode()).hexdigest()
+            checks["review_input_policy"] = config.public_check_policy
             events.emit("public_contract_review_requested", generated_code_hash=checks["generated_code_hash"])
-            reviewed = llm.chat([{"role": "system", "content": REVIEW_SYSTEM},
+            reviewed = llm.chat([{"role": "system", "content": review_system},
                                  {"role": "user", "content": review_payload}], tools=[])
             (root / "public-check-review-response.txt").write_text(events.clean(reviewed.content), encoding="utf-8")
             try:
                 if reviewed.tool_calls:
                     raise ValueError("Check review cannot call tools")
-                code, reviews = reviewed_checks(reviewed.content, code, description, evidence)
+                code, reviews = reviewed_checks(reviewed.content, code, description, evidence, catalog=catalog)
                 checks.update(review_status="valid", reviews=reviews,
                               accepted_tests=[r["test"] for r in reviews if r["verdict"] == "accept"],
                               semantic_correctness_verified=False)

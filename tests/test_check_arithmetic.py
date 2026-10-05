@@ -11,13 +11,16 @@ from evals.check_arithmetic import calculate, numeric_assertions, validate_numer
     ("round_half_up(1.005 * 1 * 100)", "101"),
     ("round_half_up(100 * 50 / 10000)", "1"),
     ("-2 + +3 * 4 / 2", "4"),
+    ("min(3,2)=2", "2"),
+    ("max(0,3-2) = 1", "1"),
 ])
 def test_bounded_decimal_arithmetic(expression, expected):
     assert calculate(expression) == Decimal(expected)
 
 
 @pytest.mark.parametrize("expression", ["1 / 0", "2 ** 99", "open('x')", "__import__('os')",
-                                         "x + 1", "round_half_up(1, 2)", "1e999", "True", "[1][0]"])
+                                         "x + 1", "round_half_up(1, 2)", "1e999", "True", "[1][0]",
+                                         "min(3,2)=3", "1==1", "min([3,2])", "max(x,1)"])
 def test_unsupported_or_invalid_arithmetic(expression):
     with pytest.raises(ValueError):
         calculate(expression)
