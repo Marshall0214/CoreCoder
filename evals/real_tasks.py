@@ -75,7 +75,11 @@ def verify(case, source_root, checks, workspace, original, allowed, root, python
             'regression_scope': 'public Controls only; not the full upstream suite'}
 
 
-def run_real(case, row, checks, source_root, environment, config, output, workflow='agent-loop'):
+def run_real(case, row, checks, source_root, environment, config, output, workflow='agent-loop',
+             symbol_prompt_policy='baseline'):
+    if symbol_prompt_policy not in {'baseline', 'behavior-check'} or (symbol_prompt_policy != 'baseline'
+                                                                     and workflow != 'symbol-patch'):
+        raise ValueError('Behavior check requires the symbol patch workflow')
     if workflow not in {'agent-loop', 'symbol-patch'} or (workflow == 'symbol-patch' and config.mode != 'live'):
         raise ValueError('Symbol patch workflow requires live mode; unknown workflows are rejected')
     if workflow == 'symbol-patch' and (config.search_backend != 'off' or config.search_history != 'full'
@@ -92,6 +96,7 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
               'evaluation_protocol': ('symbol-patch-development-v1' if workflow == 'symbol-patch'
                                       else 'real-agent-loop-development-v1'), 'workflow': workflow,
               'benchmark_eligible': False,
+              'symbol_prompt_policy': symbol_prompt_policy,
               'accepted': False, 'status': 'infrastructure_error', 'config': config.to_dict(),
               'metrics': None, 'verification': None, 'artifacts': str(root),
               'provenance': case, 'admission_checks_hash': row['checks_hash'], 'test_environment': environment,
@@ -124,6 +129,7 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
         else:
             job = {'run_id': root.name, 'workspace': str(workspace), 'description': case['public_problem'],
                    'workflow': workflow,
+                   'symbol_prompt_policy': symbol_prompt_policy,
                    'allowed_files': allowed, 'config': config.to_dict(), 'visible_command': VISIBLE,
                    'real_visible_python': str(python)}
             if config.mode == 'scripted':
@@ -175,6 +181,7 @@ def main():
     parser.add_argument('--task', default='click-flag-envvar')
     parser.add_argument('--mode', choices=('unchanged', 'reference', 'scripted', 'live'), default='unchanged')
     parser.add_argument('--workflow', choices=('agent-loop', 'symbol-patch'), default='agent-loop')
+    parser.add_argument('--symbol-prompt-policy', choices=('baseline', 'behavior-check'), default='baseline')
     parser.add_argument('--output', type=Path, default=Path('.tmp/real-defects/repair'))
     parser.add_argument('--model', default='qwen3.5:27b')
     parser.add_argument('--base-url', default='http://localhost:11434/v1')
@@ -202,7 +209,8 @@ def main():
         from corecoder.config import _load_dotenv
 
         _load_dotenv()
-    report = run_real(case, row, checks, source, environment, config, args.output, workflow=args.workflow)
+    report = run_real(case, row, checks, source, environment, config, args.output, workflow=args.workflow,
+                      symbol_prompt_policy=args.symbol_prompt_policy)
     print(f"{case['case_id']}: {report['status']}")
     print(write_summary([report], args.output.resolve()))
     return 0 if report['accepted'] else 1

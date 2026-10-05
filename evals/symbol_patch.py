@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import re
 
 from .fixed_evidence import SYSTEM
 from .symbol_context import apply_symbol_patch, symbol_evidence
@@ -14,29 +15,60 @@ SYMBOL_SYSTEM = SYSTEM + (
     'Do not edit omitted source, reconstruct whole files, or assume partial symbols are complete. '
     'If the evidence is insufficient, return {"edits": []}.'
 )
+BEHAVIOR_CHECK = (
+    ' Before returning edits, check the proposed behavior against every public requirement. '
+    'Cover positive, negative and boundary cases explicitly stated in the description, including '
+    'whitespace, exact matching and preserved behavior when mentioned. '
+    'Distinguish activation decisions from ordinary value conversion when the requirement makes that distinction; '
+    'a converted value being nonempty does not itself prove the activation condition is satisfied. '
+    'Inspect all supplied fragments that implement those behaviors rather than fixing only the first match. '
+    'Return the same edits-only JSON schema; do not output explanations or a checklist.'
+)
 
 
-def run_symbol_patch(llm, workspace, description, allowed_files, config, events):
+def public_requirements(description):
+    """Verbatim sentence spans only; no task-specific examples, labels or inferred answers."""
+    rows = []
+    for match in re.finditer(r'[^.!?\n]+(?:[.!?]+|(?=\n|$))', description):
+        raw = match.group()
+        text = raw.strip()
+        if text:
+            start = match.start() + len(raw) - len(raw.lstrip())
+            rows.append({'text': text, 'span': [start, start + len(text)]})
+    return rows
+
+
+def run_symbol_patch(llm, workspace, description, allowed_files, config, events, prompt_policy='baseline'):
+    if prompt_policy not in {'baseline', 'behavior-check'}:
+        raise ValueError('Unknown symbol patch prompt policy')
     evidence = symbol_evidence(workspace, description, allowed_files, events,
                                max_chars=config.search_max_chars, top_k=config.evidence_top_k,
                                depth=config.evidence_dependency_depth, index_mode='symbols',
                                query_policy='identifiers', packing_policy='dependency-reserve',
                                dependency_scope='full-seed')
     manifest = [{key: value for key, value in row.items() if key != 'content'} for row in evidence]
-    result = {'protocol': PROTOCOL, 'evidence_manifest': manifest,
+    result = {'protocol': PROTOCOL, 'prompt_policy': prompt_policy, 'evidence_manifest': manifest,
+              'evidence_hash': hashlib.sha256(json.dumps(evidence, ensure_ascii=False, sort_keys=True).encode()).hexdigest(),
               'evidence_chars': sum(len(row['content']) for row in evidence),
               'selection': {'index_mode': 'symbols', 'query_policy': 'identifiers',
                             'packing_policy': 'dependency-reserve', 'dependency_scope': 'full-seed'}}
     if not evidence:
         events.emit('symbol_patch_skipped', reason='no_evidence')
         return {**result, 'status': 'no_evidence', 'edited_files': []}
-    payload = json.dumps({'description': description, 'allowed_files': list(allowed_files),
-                          'fragments': evidence}, ensure_ascii=False)
-    messages = [{'role': 'system', 'content': SYMBOL_SYSTEM}, {'role': 'user', 'content': payload}]
-    result['prompt_hash'] = hashlib.sha256((SYMBOL_SYSTEM + '\n' + payload).encode()).hexdigest()
+    data = {'description': description, 'allowed_files': list(allowed_files), 'fragments': evidence}
+    system = SYMBOL_SYSTEM
+    if prompt_policy == 'behavior-check':
+        data['public_requirements'] = public_requirements(description)
+        system += BEHAVIOR_CHECK
+        events.emit('symbol_public_requirements', requirements=data['public_requirements'],
+                    source='public_description', semantic_coverage_verified=False)
+    payload = json.dumps(data, ensure_ascii=False)
+    messages = [{'role': 'system', 'content': system}, {'role': 'user', 'content': payload}]
+    result['prompt_hash'] = hashlib.sha256((system + '\n' + payload).encode()).hexdigest()
     result['protocol_prompt_hash'] = result['prompt_hash']
     result['tool_schema_hash'] = hashlib.sha256(b'[]').hexdigest()
-    events.emit('symbol_patch_request', protocol=PROTOCOL, files=manifest, chars=result['evidence_chars'])
+    events.emit('symbol_patch_request', protocol=PROTOCOL, prompt_policy=prompt_policy,
+                files=manifest, chars=result['evidence_chars'])
     response = llm.chat(messages, tools=[])
     (events.path.parent / 'symbol-patch-response.txt').write_text(events.clean(response.content), encoding='utf-8')
     result['final_message'] = response.content

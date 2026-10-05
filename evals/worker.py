@@ -29,13 +29,18 @@ def ollama_metadata(config: RunConfig) -> dict | None:
     base = f"{endpoint.scheme}://{endpoint.netloc}"
     result = {}
     for name, route, data in (("version", "/api/version", None),
-                              ("model", "/api/show", {"model": config.model}), ("loaded", "/api/ps", None)):
+                              ("model", "/api/show", {"model": config.model}),
+                              ("identity", "/api/tags", None), ("loaded", "/api/ps", None)):
         try:
             body = json.dumps(data).encode() if data else None
             with urlopen(Request(base + route, data=body, headers={"Content-Type": "application/json"}), timeout=5) as stream:
                 info = json.load(stream)
             if name == "model":
                 info = {key: info.get(key) for key in ("details", "capabilities", "parameters")}
+            elif name == "identity":
+                info = {'models': [{'name': model.get('name'), 'digest': model.get('digest')}
+                                   for model in info.get('models', [])
+                                   if model.get('name', model.get('model')) == config.model]}
             result[name] = info
         except Exception as exc:  # noqa: BLE001 - optional runtime metadata cannot abort a task
             result[name] = {"error_type": type(exc).__name__}
@@ -164,7 +169,8 @@ def main(job_path: Path) -> int:
 
             if config.mode != "live":
                 raise ValueError("Symbol patch worker requires live mode")
-            result.update(run_symbol_patch(llm, workspace, job["description"], job["allowed_files"], config, events))
+            result.update(run_symbol_patch(llm, workspace, job["description"], job["allowed_files"], config, events,
+                                            prompt_policy=job.get("symbol_prompt_policy", "baseline")))
             return 0
         agent = FixtureAgent(llm=llm, tools=tools, permission=Permission(allow_all=True),
                       max_rounds=config.max_rounds, max_context_tokens=config.context_tokens)
