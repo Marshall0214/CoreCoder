@@ -77,5 +77,6 @@ def attribute_assignments(info, start, end):
         for target in targets:
             if isinstance(target, ast.Attribute):
                 result.append({'attribute': dotted(target), 'start_line': node.lineno, 'end_line': node.end_lineno,
+                               'value_is_call': isinstance(node.value, ast.Call),
                                'expression': ast.unparse(node.value)})
     return sorted(result, key=lambda row: (row['start_line'], row['attribute']))

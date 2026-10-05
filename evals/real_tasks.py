@@ -76,7 +76,9 @@ def verify(case, source_root, checks, workspace, original, allowed, root, python
 
 
 def run_real(case, row, checks, source_root, environment, config, output, workflow='agent-loop',
-             symbol_prompt_policy='baseline'):
+             symbol_prompt_policy='baseline', symbol_context_policy='base'):
+    if symbol_context_policy not in {'base', 'linked'} or (symbol_context_policy == 'linked' and workflow != 'symbol-patch'):
+        raise ValueError('Linked context requires the single symbol patch workflow')
     if symbol_prompt_policy not in {'baseline', 'behavior-check'} or (symbol_prompt_policy != 'baseline'
                                                                      and workflow != 'symbol-patch'):
         raise ValueError('Behavior check requires the symbol patch workflow')
@@ -95,11 +97,13 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
     root.mkdir(parents=True, exist_ok=False)
     events = Events(root / 'trace.jsonl', root.name)
     report = {'run_id': root.name, 'task_id': case['case_id'], 'source': 'real-upstream', 'mode': config.mode,
-              'evaluation_protocol': {'symbol-patch': 'symbol-patch-development-v1',
+              'evaluation_protocol': {'symbol-patch': ('symbol-linked-patch-development-v1'
+                                                       if symbol_context_policy == 'linked' else 'symbol-patch-development-v1'),
                                       'symbol-feedback': 'symbol-feedback-development-v1',
                                       'agent-loop': 'real-agent-loop-development-v1'}[workflow], 'workflow': workflow,
               'benchmark_eligible': False,
               'symbol_prompt_policy': symbol_prompt_policy,
+              'symbol_context_policy': symbol_context_policy,
               'accepted': False, 'status': 'infrastructure_error', 'config': config.to_dict(),
               'metrics': None, 'verification': None, 'artifacts': str(root),
               'provenance': case, 'admission_checks_hash': row['checks_hash'], 'test_environment': environment,
@@ -133,6 +137,7 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
             job = {'run_id': root.name, 'workspace': str(workspace), 'description': case['public_problem'],
                    'workflow': workflow,
                    'symbol_prompt_policy': symbol_prompt_policy,
+                   'symbol_context_policy': symbol_context_policy,
                    'allowed_files': allowed, 'config': config.to_dict(), 'visible_command': VISIBLE,
                    'real_visible_python': str(python)}
             if config.mode == 'scripted':
@@ -185,6 +190,7 @@ def main():
     parser.add_argument('--mode', choices=('unchanged', 'reference', 'scripted', 'live'), default='unchanged')
     parser.add_argument('--workflow', choices=('agent-loop', 'symbol-patch', 'symbol-feedback'), default='agent-loop')
     parser.add_argument('--symbol-prompt-policy', choices=('baseline', 'behavior-check'), default='baseline')
+    parser.add_argument('--symbol-context-policy', choices=('base', 'linked'), default='base')
     parser.add_argument('--output', type=Path, default=Path('.tmp/real-defects/repair'))
     parser.add_argument('--model', default='qwen3.5:27b')
     parser.add_argument('--base-url', default='http://localhost:11434/v1')
@@ -213,7 +219,7 @@ def main():
 
         _load_dotenv()
     report = run_real(case, row, checks, source, environment, config, args.output, workflow=args.workflow,
-                      symbol_prompt_policy=args.symbol_prompt_policy)
+                      symbol_prompt_policy=args.symbol_prompt_policy, symbol_context_policy=args.symbol_context_policy)
     print(f"{case['case_id']}: {report['status']}")
     print(write_summary([report], args.output.resolve()))
     return 0 if report['accepted'] else 1

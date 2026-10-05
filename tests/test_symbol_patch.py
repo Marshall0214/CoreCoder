@@ -98,3 +98,16 @@ def test_requirements_and_prompt_policy_validation(tmp_path):
         'First requirement', 'Second requirement']
     with pytest.raises(ValueError, match='prompt policy'):
         invoke(tmp_path, LLMResponse(content='unused'), policy='unknown')
+
+
+def test_linked_context_is_optional_and_cannot_enable_feedback(tmp_path):
+    llm = FakeLLM(LLMResponse(content='{"edits": []}'))
+    (tmp_path / 'entry.py').write_text('def envvar(value):\n    return value\n')
+    events = Events(tmp_path / 'linked.jsonl', 'linked')
+    result = run_symbol_patch(llm, tmp_path, 'envvar', ['entry.py'], RunConfig(mode='live'), events,
+                              context_policy='linked')
+    assert result['status'] == 'completed' and result['protocol'] == 'symbol-linked-patch-development-v1'
+    assert result['context_policy'] == 'linked' and len(llm.calls) == 1
+    with pytest.raises(ValueError, match='single-patch'):
+        run_symbol_patch(llm, tmp_path, 'envvar', ['entry.py'], RunConfig(mode='live'), events,
+                          context_policy='linked', feedback={})

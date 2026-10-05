@@ -176,7 +176,8 @@ def main(job_path: Path) -> int:
                                                    config, events, job["real_visible_python"]))
                 return 0
             result.update(run_symbol_patch(llm, workspace, job["description"], job["allowed_files"], config, events,
-                                            prompt_policy=job.get("symbol_prompt_policy", "baseline")))
+                                            prompt_policy=job.get("symbol_prompt_policy", "baseline"),
+                                            context_policy=job.get("symbol_context_policy", "base")))
             return 0
         agent = FixtureAgent(llm=llm, tools=tools, permission=Permission(allow_all=True),
                       max_rounds=config.max_rounds, max_context_tokens=config.context_tokens)

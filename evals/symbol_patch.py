@@ -39,16 +39,25 @@ def public_requirements(description):
 
 
 def run_symbol_patch(llm, workspace, description, allowed_files, config, events, prompt_policy='baseline',
-                     feedback=None, response_name='symbol-patch-response.txt'):
+                     feedback=None, response_name='symbol-patch-response.txt', context_policy='base'):
     if prompt_policy not in {'baseline', 'behavior-check'}:
         raise ValueError('Unknown symbol patch prompt policy')
+    if context_policy not in {'base', 'linked'}:
+        raise ValueError('Unknown symbol patch context policy')
+    if context_policy == 'linked' and feedback is not None:
+        raise ValueError('Linked context currently supports single-patch diagnostics only')
     evidence = symbol_evidence(workspace, description, allowed_files, events,
                                max_chars=config.search_max_chars, top_k=config.evidence_top_k,
                                depth=config.evidence_dependency_depth, index_mode='symbols',
                                query_policy='identifiers', packing_policy='dependency-reserve',
                                dependency_scope='full-seed')
+    if context_policy == 'linked':
+        from .linked_context import repack
+
+        evidence = repack(workspace, description, allowed_files, evidence, events, config.search_max_chars)
     manifest = [{key: value for key, value in row.items() if key != 'content'} for row in evidence]
-    result = {'protocol': PROTOCOL, 'prompt_policy': prompt_policy, 'evidence_manifest': manifest,
+    result = {'protocol': ('symbol-linked-patch-development-v1' if context_policy == 'linked' else PROTOCOL),
+              'context_policy': context_policy, 'prompt_policy': prompt_policy, 'evidence_manifest': manifest,
               'evidence_hash': hashlib.sha256(json.dumps(evidence, ensure_ascii=False, sort_keys=True).encode()).hexdigest(),
               'evidence_chars': sum(len(row['content']) for row in evidence),
               'selection': {'index_mode': 'symbols', 'query_policy': 'identifiers',
@@ -74,7 +83,7 @@ def run_symbol_patch(llm, workspace, description, allowed_files, config, events,
     result['prompt_hash'] = hashlib.sha256((system + '\n' + payload).encode()).hexdigest()
     result['protocol_prompt_hash'] = result['prompt_hash']
     result['tool_schema_hash'] = hashlib.sha256(b'[]').hexdigest()
-    events.emit('symbol_patch_request', protocol=PROTOCOL, prompt_policy=prompt_policy,
+    events.emit('symbol_patch_request', protocol=result['protocol'], prompt_policy=prompt_policy,
                 files=manifest, chars=result['evidence_chars'])
     response = llm.chat(messages, tools=[])
     (events.path.parent / response_name).write_text(events.clean(response.content), encoding='utf-8')
