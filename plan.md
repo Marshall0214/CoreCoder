@@ -165,7 +165,7 @@
 - [ ] LangGraph + Pydantic：结构化计划、执行、验证、有限反思、审批和取消；通过适配层保留实验执行方式。
 - [ ] PostgreSQL 保存任务/检查点/审计；独立进程 Worker 执行，Redis 用于队列、限流和缓存。实现调用幂等、恢复及取消清理。
 - [ ] 区分任务内记忆与带来源/版本的仓库记忆；核心评测禁用跨任务答案记忆。
-- [ ] 自建代码知识 MCP Server，验证现有 Client 与官方 SDK Client 互操作、分页、结构化结果、超时及错误。
+- [x] 代码知识 MCP stdio Server 首版：复用 BM25，提供搜索/按行读取/文件分页；官方 SDK Client 与既有 Client 互操作、结构化输出、错误及超时已验证，见 `docs/mcp-code-knowledge-v1.md`。远程 MCP、资源与权限扩展另行推进。
 - [ ] FastAPI：任务创建/查询、SSE、审批、取消；权限贯穿 API、检索和工具。
 - [ ] 围绕修复接入文档 API、只读数据库元数据及测试工具。
 - [ ] Linux/Docker Compose 部署；任务容器限制挂载、网络、CPU、内存和时间，不携带宿主凭据。
@@ -214,4 +214,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**当前：FastAPI MVP 已完成任务提交/查询、SSE、取消、独立 Worker 及产物下载；真实 HTTP Ollama 验收成功。已补齐 SQLite 事务持久化、幂等提交、排队恢复、运行中断清理及默认 100 个终态查询历史，见 docs/service-persistence-v2.md；仅单进程本地服务，幂等键墓碑与磁盘产物仍需归档管理。PostgreSQL/Redis、鉴权与 Docker/Linux 尚未完成。下一步优先交付代码知识 MCP Server，复用已有检索并验证 Client/Server 互操作；当前检索批次不再扩充。**
+**当前：FastAPI MVP、SQLite 持久化/幂等/恢复、代码知识 MCP stdio Server 已完成，见 docs/service-persistence-v2.md 与 docs/mcp-code-knowledge-v1.md。MCP 复用既有检索，官方 SDK Client 与现有 Client 的互操作已验证，不改变冻结实验。PostgreSQL/Redis、LangGraph、鉴权与 Docker/Linux 尚未完成。下一步优先完成容器化部署和故障验收，形成可复现的完整演示；当前检索批次不再扩充。**
