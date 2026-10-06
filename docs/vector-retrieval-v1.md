@@ -71,4 +71,6 @@ python -m docs.experiments.vector_retrieval_eval_v1 --output .tmp/retrieval/vect
 
 后续完成：[单次补丁对照 v1](vector-repair-v1.md)，33 次独立修复得到 BM25 4/11、Dense/Hybrid 5/11；只增加 pagination-cursor 一个成功案例，暂不改变默认策略。
 
+进一步复测：[BM25/Dense 三轮对照](vector-repair-repeat-v1.md) 为 14/33 对 12/33，单次修复收益未复现。上述离线召回表继续有效，但不能据此声称修复成功率提升。
+
 接口与模型资料：[Ollama Embed API](https://docs.ollama.com/api/embed)、[Ollama Qwen3 Embedding 模型](https://ollama.com/library/qwen3-embedding)、[Qwen 官方实现](https://github.com/QwenLM/Qwen3-Embedding)。

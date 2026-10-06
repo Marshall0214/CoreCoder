@@ -85,6 +85,8 @@ Dense 比 BM25 多 438 个修复 Token（4.50%），Hybrid 多 582 个（5.98%�
 
 验证：全量测试 702 passed、1 skipped；随后新增“未完成批次不读取评分标签”测试，当前修复模块 6 项全部通过；Ruff 与 diff whitespace 检查通过。模型结果与测试结果分别记录，代码测试通过不等于缺陷任务通过。
 
+后续修正：[三轮配对复测](vector-repair-repeat-v1.md) 已完成 66 次新修复，BM25 14/33、Dense 12/33，pagination-cursor 的 Dense 通过未复现。以上单轮 5/11 只保留为探索结果，不能用作稳定提升声明；维持默认策略。
+
 ## 复跑
 
 在项目根目录的 corecoder 环境中执行，输出目录必须不存在：
