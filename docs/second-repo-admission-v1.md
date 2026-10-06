@@ -60,6 +60,8 @@ python -m docs.experiments.second_repo_admission_v1 --output .tmp/real-defects/s
 
 ## 下一步
 
+后续：六次新修复对照已完成，两组均通过 2/3，独立报告与当前实验阶段收束见 [second-repo-repair-v1.md](second-repo-repair-v1.md)。冻结准入清单保留准入时状态，未覆盖。
+
 验证结果：相关测试 **11 passed**；最终全量回归 **789 passed、1 skipped（72.13 秒）**。新增适配器、检查与测试 Ruff 通过；Git diff 空白检查通过。首次全量 787 passed 后新增了两个冻结清单/公开投影校验，最终全量包含全部新增测试。
 
 校验冻结清单，从公开投影构造相同 Python 行块与完整函数证据，先记录检索结果，再按同模型、证据预算和单次补丁协议执行六次新对照。现有 Click 准入/评分代码有包名约束，须在实验适配层提供 ItsDangerous 的公开投影与验证桥接，不能绕过包来源或检查一致性校验。全部三项保留；不得用 after 修改位置选择证据。与 Click 结果按仓库分列，不立即合并宣称泛化收益。
