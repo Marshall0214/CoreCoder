@@ -67,7 +67,7 @@ def prepare(entries, admissions):
     return prepared
 
 
-def run_suite(manifest, admissions, output, mode, repeat=None):
+def run_suite(manifest, admissions, output, mode, repeat=None, diagnostic_overrides=None):
     data, entries = load_manifest(manifest)
     if mode not in {'unchanged', 'reference', 'scripted', 'live'}:
         raise ValueError('Unsupported suite mode')
@@ -75,7 +75,10 @@ def run_suite(manifest, admissions, output, mode, repeat=None):
     if type(repeat) is not int or not 1 <= repeat <= 10:
         raise ValueError('Repeat must be between 1 and 10')
     prepared = prepare(entries, admissions)  # Validate every snapshot before starting any run.
-    config = RunConfig(**dict(data['config'], mode=mode))
+    overrides = diagnostic_overrides or {}
+    if set(overrides) - {'token_budget', 'max_rounds', 'wall_timeout'}:
+        raise ValueError('Only budget, rounds and timeout may vary in diagnostic runs')
+    config = RunConfig(**dict(data['config'], mode=mode, **overrides))
     output = output.resolve()
     for case in prepared:
         for protected in (case[2], case[3]):
@@ -87,6 +90,7 @@ def run_suite(manifest, admissions, output, mode, repeat=None):
               'admissions': {name: {'path': str(path.resolve()), 'sha256': file_hash(path)}
                              for name, path in admissions.items()},
               'config': config.to_dict(), 'workflow': 'agent-loop', 'repeat': repeat,
+              'diagnostic_overrides': overrides,
               'expected_runs': len(entries) * repeat, 'complete': False, 'runs': [],
               'implementation': implementation_metadata()}
 

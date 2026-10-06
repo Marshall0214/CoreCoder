@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "purpose": "development-budget-diagnosis",
+  "suite": "development-suite-v1.json",
+  "suite_sha256": "b32d2a5e938d9ea65596f99d23e02872f023b846ef0443efec2f7411c097efa7",
+  "budgets": [
+    30000,
+    60000,
+    100000
+  ],
+  "repeat": 1,
+  "max_rounds": 32,
+  "wall_timeout": 600
+}

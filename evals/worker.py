@@ -87,6 +87,9 @@ class FixtureAgent(Agent):
     """Keep side effects in call order, including read/edit/test combinations."""
 
     def _full_messages(self):
+        if getattr(self, 'context_events', None) is not None:
+            self.task_round = getattr(self, 'task_round', 0) + 1
+            self.context_events.emit('agent_round', round=self.task_round)
         for tool in self.tools:
             inner = getattr(tool, "inner", tool)
             if tool.name == "search_code":

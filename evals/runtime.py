@@ -83,6 +83,7 @@ class ScopedTool(Tool):
 
     def execute(self, **kwargs) -> str:
         started = time.perf_counter()
+        tracked_source, original_bytes = None, None
         self.events.emit("tool_started", tool=self.name, arguments=kwargs)
         try:
             inspect.signature(self.inner.execute).bind(**kwargs)
@@ -113,10 +114,20 @@ class ScopedTool(Tool):
                     if any(p.is_symlink() for p in self.workspace.rglob("*")):
                         raise ValueError("Symlinks are not supported in fixture workspaces")
                     args[key] = str(target)
+                    if self.name in {'edit_file', 'write_file'}:
+                        original_bytes = target.read_bytes() if target.exists() else None
+                        tracked_source = target
                 output = self.inner.execute(**args)
         except Exception as exc:  # noqa: BLE001 - tool failures are returned to the agent
             output = f"Error: {type(exc).__name__}: {exc}"
         output = self.events.clean(output)
+        if tracked_source is not None:
+            current_bytes = tracked_source.read_bytes() if tracked_source.exists() else None
+            if current_bytes != original_bytes:
+                self.events.emit('source_changed', tool=self.name,
+                                 path=tracked_source.relative_to(self.workspace).as_posix(),
+                                 before_sha256=hashlib.sha256(original_bytes).hexdigest() if original_bytes is not None else None,
+                                 after_sha256=hashlib.sha256(current_bytes).hexdigest() if current_bytes is not None else None)
         if self.name == "read_file" and not output.startswith("Error:"):
             try:
                 data = target.read_bytes()
