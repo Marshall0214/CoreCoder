@@ -1,0 +1,18 @@
+{
+  "protocol": "validation-scoring-v2",
+  "v1_manifest_sha256": "3dbed44448ed8af27f27f1a8f9569efba1af0343c2b237d3d7901cfadbf0dc8a",
+  "source_report_sha256": "2837bd3d04c7257d33e5f0f23b0d30393997db071d988bae312cc4bf7d7d8d1b",
+  "observations_sha256": "b2d85c1e307213b9a02b61c2b636328bc718778bff6986dbd94110ff1f6dedec",
+  "corrected_task": "click-style-color-validation",
+  "updated_checks": "validation_checks_v2/click-style-color-validation",
+  "updated_checks_sha256": "a3d5d8b86f1b704ad2e8ac0a6c24641b0a3a19c7995e6d07f005c67db4096444",
+  "change": "Remove unpublished Unknown color message substring assertion; retain ValueError type, invalid inputs, palette-zero and regression checks. All six original patches rescored; no new model calls. Post-hoc correction, not a prospective frozen result.",
+  "candidate_hashes": {
+    "click-usage-empty/python-line-chunks": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+    "click-usage-empty/direct-functions": "937cec15ec11f6da2be7dafe98d63a15f984c57112abe1f0c2238b61d74d6a44",
+    "click-echo-empty-bytes/direct-functions": "2a586e2ad500421fc400ec660d665b467c51bdb0ebf1c16e2cc19779bc88edbb",
+    "click-echo-empty-bytes/python-line-chunks": "e5c0d93af0af66ec9c2cb8e02c1503ad4801107a596123d35a880e8af9a5b5d5",
+    "click-style-color-validation/python-line-chunks": "afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+    "click-style-color-validation/direct-functions": "39432c81a4c4c61d4ce9c666a88614887c79b424378101b7f276ba5617fcf73a"
+  }
+}
