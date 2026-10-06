@@ -1,0 +1,71 @@
+{
+  "catalog_sha256": "9490adfb4fafbd54936940d58a7db0f2851eed1bbaf9070dfd157b2bd69001e8",
+  "checks_sha256": "42b76a7dccd241cb549cd69a91e3351aabe3e7111eff13912299744592d5e56d",
+  "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "adapter_sha256": "87a17a95c77243e4aa4a9a5b7a2a1c1b6421830b788522a107502ef8f8161a46",
+  "protocol": "second-repository-suite-v1",
+  "unique_tasks": 3,
+  "repository": "pallets/itsdangerous",
+  "status": "admitted; no model repairs run",
+  "catalog": "second-repo-candidates-v1.json",
+  "checks_root": "second_repo_checks_v1",
+  "public_tasks": "second-repo-public-tasks-v1.json",
+  "public_tasks_sha256": "23f775bf5a65d971c7cbe85273e4a0abd61e698e356f963a0852804879c5e644",
+  "recorded_admission": ".tmp/real-defects/second-repo-admission-v1-final/admission.json",
+  "recorded_admission_sha256": "532adccb5b9c6bc7a83229da2af8704de146378c8a4f054f4528a468eead9dec",
+  "cases": [
+    {
+      "task_id": "itsdangerous-none-salt",
+      "before_commit": "15a2e0d9b4bdaa38144c947a9aa04ffd49826700",
+      "after_commit": "41ec419632aae3533ff12838044eeddd9cd1311f",
+      "before_tree_hash": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+      "after_tree_hash": "d27a75fbb7956e8a87710a3df77f228467ab838023b845da0e2e4c79dad0349f",
+      "checks_hash": "a59f229cdd5d2ff20f4bd12f3252154d1235475051e5a264a6200422e5c8c08d",
+      "changed_source_files": [
+        "src/itsdangerous/serializer.py",
+        "src/itsdangerous/signer.py"
+      ],
+      "partial_results": [
+        {
+          "applied_files": [
+            "src/itsdangerous/serializer.py"
+          ],
+          "target_passed": false,
+          "controls_passed": true
+        },
+        {
+          "applied_files": [
+            "src/itsdangerous/signer.py"
+          ],
+          "target_passed": true,
+          "controls_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "itsdangerous-future-age",
+      "before_commit": "1a9b8d1f9968eb248bda69f39d373a6330b692ba",
+      "after_commit": "c30678d19e37011890e2374cca04f7789e101793",
+      "before_tree_hash": "2f608833f29fa4b68d77a3667c4095b7efbae16cf583ffc1782e37356a03f204",
+      "after_tree_hash": "9b44d7dd2ab6eadf4156ca72edfd88d1aa97673d932fdb29651d13e32286f63b",
+      "checks_hash": "eabc861330a3338fcdaccd17a5cd8bcdd5462581b316ed8bce4fc52bce3af253",
+      "changed_source_files": [
+        "src/itsdangerous/timed.py"
+      ],
+      "partial_results": []
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "before_commit": "3b762645dab2250933311f8612989a4075100659",
+      "after_commit": "25494a8b4d0968b8fe92877435a62abd1aa54c47",
+      "before_tree_hash": "afa63ea45c30fcb0cf92159676b04d9253cdd6ed73cc1b91db5dd2ca9c277967",
+      "after_tree_hash": "d24e92bcde085ca6e393cede7d9c62100ed1feb95756edcb6044e29b0afabb98",
+      "checks_hash": "c51a33dce0476e0d46d6bbb780e44b41e8924fbd22b73ccde3410d0e2cf3485d",
+      "changed_source_files": [
+        "src/itsdangerous/timed.py"
+      ],
+      "partial_results": []
+    }
+  ],
+  "limitations": "Second repository within Pallets ecosystem; purposive old tasks; constructor reviewed fixes; pretraining contamination unknown; cross-module behavior does not establish necessary multi-file repair; no model performance claims."
+}

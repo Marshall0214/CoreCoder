@@ -1,0 +1,54 @@
+{
+  "tasks": [
+    {
+      "task_id": "itsdangerous-none-salt",
+      "repo": "pallets/itsdangerous",
+      "before_commit": "15a2e0d9b4bdaa38144c947a9aa04ffd49826700",
+      "description": "Serializer and Signer must accept salt=None, using the Signer default salt rather than the Serializer default. Signed values must round-trip, Serializer salt=None signatures must match explicit itsdangerous.Signer salt, and Signer salt=None must match its default. Preserve explicit string and bytes salts, the Serializer default salt, wrong-salt rejection and tamper detection.",
+      "allowed_files": [
+        "src/itsdangerous/__init__.py",
+        "src/itsdangerous/_json.py",
+        "src/itsdangerous/encoding.py",
+        "src/itsdangerous/exc.py",
+        "src/itsdangerous/jws.py",
+        "src/itsdangerous/serializer.py",
+        "src/itsdangerous/signer.py",
+        "src/itsdangerous/timed.py",
+        "src/itsdangerous/url_safe.py"
+      ]
+    },
+    {
+      "task_id": "itsdangerous-future-age",
+      "repo": "pallets/itsdangerous",
+      "before_commit": "1a9b8d1f9968eb248bda69f39d373a6330b692ba",
+      "description": "TimestampSigner and TimedSerializer must reject a correctly signed timestamp in the future with SignatureExpired when max_age is specified. validate must return False. Preserve acceptance for ages 0 and max_age inclusive, rejection for older timestamps, and existing behavior when max_age is None. Preserve payload and UTC date_signed metadata on expiry, ordinary round-trips and tamper rejection.",
+      "allowed_files": [
+        "src/itsdangerous/__init__.py",
+        "src/itsdangerous/_json.py",
+        "src/itsdangerous/encoding.py",
+        "src/itsdangerous/exc.py",
+        "src/itsdangerous/jws.py",
+        "src/itsdangerous/serializer.py",
+        "src/itsdangerous/signer.py",
+        "src/itsdangerous/timed.py",
+        "src/itsdangerous/url_safe.py"
+      ]
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "repo": "pallets/itsdangerous",
+      "before_commit": "3b762645dab2250933311f8612989a4075100659",
+      "description": "TimestampSigner and TimedSerializer must normalize an invalid-signature token with an out-of-range timestamp to BadTimeSignature instead of leaking ValueError or OSError from datetime conversion. Preserve decoded payload metadata and date_signed=None for this malformed timestamp; validate must return False and loads_unsafe must report invalid while recovering a decodable payload. Preserve ordinary timed round-trips, normal invalid-signature timestamp metadata and age expiry. No particular exception message is required.",
+      "allowed_files": [
+        "src/itsdangerous/__init__.py",
+        "src/itsdangerous/_json.py",
+        "src/itsdangerous/encoding.py",
+        "src/itsdangerous/exc.py",
+        "src/itsdangerous/serializer.py",
+        "src/itsdangerous/signer.py",
+        "src/itsdangerous/timed.py",
+        "src/itsdangerous/url_safe.py"
+      ]
+    }
+  ]
+}

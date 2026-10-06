@@ -53,4 +53,6 @@ python -m docs.experiments.validation_repeat_v2 --output .tmp/real-defects/valid
 
 ## 下一步
 
+后续进展：ItsDangerous 三项历史行为任务已完成第二仓库准入和冻结，见 [second-repo-admission-v1.md](second-repo-admission-v1.md)。单文件诊断表明 none-salt 并非必须多文件修复；本轮未追加模型运行。
+
 结束本批重复运行，保留函数策略为可选实验分支。下一步补充另一个 Python 仓库中未参与策略设计的历史缺陷，先建立公开需求及 before/after/Controls 独立准入，再按相同冻结协议比较；优先补足跨文件行为链任务，分别报告单文件与跨文件结果。候选无法准入时记录原因，不根据模型修复结果筛选。本批 usage 失败保留为开发诊断材料，不据此修改新验证任务的上下文或评分。
