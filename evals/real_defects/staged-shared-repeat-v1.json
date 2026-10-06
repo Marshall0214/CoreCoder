@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "purpose": "development-frozen-checkpoint-repeat-v1",
+  "benchmark_eligible": false,
+  "repeat": 3,
+  "expected_patch_runs": 42,
+  "expected_new_localizations": 0,
+  "manifest": "staged-suite-v1.json",
+  "manifest_sha256": "f04e7eee5be75ef89dccbedae38759eb38042bbe8b4c1d6f553823031831ba96",
+  "implementation_sha256": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "previous_experiment_sha256": "6275688e0010ee48890edac9a3ebf760c16129b3257432b9af382761b44bf57c",
+  "checkpoints": {
+    "click-help-eagerness": {
+      "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-help-eagerness-6e13dc408d/localization-checkpoint.json",
+      "sha256": "85e4e032098f741da627685243b3de21b09ece8573c45dfc542b17c179b9fad5",
+      "checkpoint_hash": "7bc16721ae8b8d71bd8a5321642c8b26bc3ac534803554199e006e1e28127eac",
+      "candidate_pool_hash": "f9690b24dbcb9a069c7a8369bf26e7a06fede545070425421d37aad66b63f493",
+      "shared_tokens": 10694
+    },
+    "click-flag-default-map": {
+      "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-flag-default-map-d8933486f2/localization-checkpoint.json",
+      "sha256": "6df877f123e5b297e5c39c413e6114196b46ef2e324b1d8af8778422952b543c",
+      "checkpoint_hash": "bbb649ba91b40107da30185ea1c992845fc11a68fb9ff23c697dd7c958d6e75f",
+      "candidate_pool_hash": "cbc385f4c0b55013abac36a1ba284eaf4c70607cdbff2cca4e276baa041044cc",
+      "shared_tokens": 6742
+    },
+    "click-resource-exception": {
+      "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-resource-exception-2e13f971d0/localization-checkpoint.json",
+      "sha256": "f5625f317863539fd27fc1c7a27bedb5a5ef94ff87ed1b3f6ad6c92b613f5bc8",
+      "checkpoint_hash": "a9f2c7900e538d725e5a10872d8488853f23f9a9a6df08db9b44f339c82f94a4",
+      "candidate_pool_hash": "bb2488c1f5523c6b4fe905e12c63fbef3a6d37def02b806caee79826b6280ab8",
+      "shared_tokens": 11540
+    },
+    "click-flag-envvar": {
+      "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-flag-envvar-2d037ecc0d/localization-checkpoint.json",
+      "sha256": "60977ec7ddc3df8b81fa186f4e5ebaac1b92a6919f71d2985ff3e44479278142",
+      "checkpoint_hash": "b0f3e69a929adfeffe65923fe7a0ec33f9248462ddbb4267f01c6c0e01a98cd9",
+      "candidate_pool_hash": "042894d2d8b8d773445c8fc14f1f16b28783235d058ee4b965a709767b42ad41",
+      "shared_tokens": 8085
+    },
+    "click-prompt-suffix": {
+      "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-prompt-suffix-ab41ed846d/localization-checkpoint.json",
+      "sha256": "47b5fabc8bbe3ebb442ab2550085b6278e5703985518c663beca8f9efe281e35",
+      "checkpoint_hash": "e336b23593af264428a6879d5bb9055d31ac175a9e9a5a4e3196ba23e6bf2e7b",
+      "candidate_pool_hash": "b22747ea026b0b2fda8961085ef49579d94be432ea75a67349a6a184cc47f4bf",
+      "shared_tokens": 11686
+    },
+    "click-invoke-missing": {
+      "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-invoke-missing-fe39c8a761/localization-checkpoint.json",
+      "sha256": "7789821afa67d494c4e0fa52fee602b4dcfc34c6cf194e046b190aef85e9a906",
+      "checkpoint_hash": "358f42ea13a5c1a43d6b13360f32c9e2b1ebd76cfd172a6b9e6d472ea8602fb9",
+      "candidate_pool_hash": "737e3213cfb8bb05ef3c50784db22d7510e356885c55c6e48242f714cc839fdf",
+      "shared_tokens": 7743
+    },
+    "click-shared-default": {
+      "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-shared-default-728e0c7f2f/localization-checkpoint.json",
+      "sha256": "6684105aa90d5e54e6c5dc5b1bf908b60bc51edd634b51fee6ffc92700e66ff4",
+      "checkpoint_hash": "9b75e6868c51399763e9dff80ca1a82915d40ba9a72642ec6f0c6340a21c3046",
+      "candidate_pool_hash": "889697d1c76430c6423ac0baa1dfba34f6aa5bc1f27acfd295ec6c17a63b528e",
+      "shared_tokens": 6823
+    }
+  },
+  "order": [
+    {
+      "repetition": 1,
+      "task_id": "click-help-eagerness",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 1,
+      "task_id": "click-flag-default-map",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 1,
+      "task_id": "click-resource-exception",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 1,
+      "task_id": "click-flag-envvar",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 1,
+      "task_id": "click-prompt-suffix",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 1,
+      "task_id": "click-invoke-missing",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 1,
+      "task_id": "click-shared-default",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 2,
+      "task_id": "click-help-eagerness",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 2,
+      "task_id": "click-flag-default-map",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 2,
+      "task_id": "click-resource-exception",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 2,
+      "task_id": "click-flag-envvar",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 2,
+      "task_id": "click-prompt-suffix",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 2,
+      "task_id": "click-invoke-missing",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 2,
+      "task_id": "click-shared-default",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 3,
+      "task_id": "click-help-eagerness",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 3,
+      "task_id": "click-flag-default-map",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 3,
+      "task_id": "click-resource-exception",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 3,
+      "task_id": "click-flag-envvar",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 3,
+      "task_id": "click-prompt-suffix",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    },
+    {
+      "repetition": 3,
+      "task_id": "click-invoke-missing",
+      "policies": [
+        "seed-first",
+        "read-first"
+      ]
+    },
+    {
+      "repetition": 3,
+      "task_id": "click-shared-default",
+      "policies": [
+        "read-first",
+        "seed-first"
+      ]
+    }
+  ],
+  "historical_patch_runs_included": false
+}
