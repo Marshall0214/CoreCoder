@@ -69,4 +69,6 @@ python -m docs.experiments.vector_retrieval_eval_v1 --output .tmp/retrieval/vect
 
 向量检索在小语料中呈现召回收益，保留 Dense/Hybrid 为候选策略；默认修复策略不变。下一步采用固定 read-first 装填和同模型/预算，对这 11 项做 BM25/Dense/Hybrid 修复对照，独立核验补丁并单列检索、Embedding 与修复成本。先验证召回收益能否传递到修复成功，再扩展真实仓库与留出集，不按当前评分继续调参数。
 
+后续完成：[单次补丁对照 v1](vector-repair-v1.md)，33 次独立修复得到 BM25 4/11、Dense/Hybrid 5/11；只增加 pagination-cursor 一个成功案例，暂不改变默认策略。
+
 接口与模型资料：[Ollama Embed API](https://docs.ollama.com/api/embed)、[Ollama Qwen3 Embedding 模型](https://ollama.com/library/qwen3-embedding)、[Qwen 官方实现](https://github.com/QwenLM/Qwen3-Embedding)。
