@@ -75,6 +75,8 @@ observations:      095f4b7f601de2db7b4036aed23f7737a0178acb227fbf67be6c18fd63da5
 
 这次工作确认了迁移失败的具体位置，避免先调用修复模型再把失败归因于模型能力。结论范围限于这七个 Click 开发任务。
 
+后续已完成候选到函数证据及真实修复对照，见 [retrieved-functions-v1.md](retrieved-functions-v1.md)。原始 chunk 通过 1/7，函数加一层依赖通过 0/7；本轮未发现可提升为默认策略的收益。
+
 验证：22 项相关测试通过；全量 720 passed、1 skipped；Ruff 检查通过。所有 before 快照在检索前后摘要一致。
 
 ## 复跑与产物
