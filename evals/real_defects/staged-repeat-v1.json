@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "purpose": "development-staged-repeat-diagnosis",
+  "benchmark_eligible": false,
+  "repeat": 3,
+  "expected_runs": 42,
+  "implementation_sha256": "8a51f3addc335c708674d77d8e29df87e1e4da16ded591cdb702059f3a0738d1",
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "profiles": {
+    "agent-loop": {
+      "manifest": "staged-control-suite-v1.json",
+      "sha256": "6801089d52645308da73176acacf4b552ac4a5229b391cc22f296cb33735cb58"
+    },
+    "staged": {
+      "manifest": "staged-suite-v1.json",
+      "sha256": "f04e7eee5be75ef89dccbedae38759eb38042bbe8b4c1d6f553823031831ba96"
+    }
+  },
+  "block_order": [
+    [
+      1,
+      "agent-loop"
+    ],
+    [
+      1,
+      "staged"
+    ],
+    [
+      2,
+      "staged"
+    ],
+    [
+      2,
+      "agent-loop"
+    ],
+    [
+      3,
+      "agent-loop"
+    ],
+    [
+      3,
+      "staged"
+    ]
+  ],
+  "prior_pilot_included": false
+}

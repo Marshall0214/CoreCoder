@@ -68,3 +68,5 @@ python -m evals.real_suite --suite evals/real_defects/staged-suite-v1.json --mod
 对照报告：`.tmp/real-defects/staged-control-live-v1/suite-report.json`。两个目录均保存 `analysis.json`，由 Trace 汇总首次修改及停止原因。所有调用用量已知；此次 staged 更少消耗 Token，但累计耗时略高，不能宣称执行速度提升。回归检查仅覆盖已发布 Controls，不是完整上游测试套件。
 
 当前证据支持“这套组合流程让模型在预算内更早开始修改，且部分任务首次修复通过”。不能证明稳定提升、单项因果或跨仓库收益。下一步保持实现不变，进行同配置双方各 3 次重复，再在固定工作流内消融证据选择；不立即按失败任务答案调整策略。
+
+三轮复验已完成，结果与运行协议见 [staged-repeat-v1.md](staged-repeat-v1.md)。本页保留首次试跑记录，复验不与试跑混合统计。
