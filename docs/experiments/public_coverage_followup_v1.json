@@ -1,0 +1,53 @@
+{
+  "purpose": "offline-public-coverage-followup-v1",
+  "benchmark_eligible": false,
+  "model_calls": 0,
+  "anchor_policy": "Explicit underscore/dotted identifiers plus manually declared bare names occurring verbatim in public problem; same anchor policy as previous audit.",
+  "cases": [
+    {
+      "label": "prompt-baseline",
+      "task_id": "click-prompt-suffix",
+      "checkpoint": ".tmp/real-defects/definition-localization-v1/baseline/localization-checkpoint.json",
+      "workspace": ".tmp/real-defects/expansion-admission-v1/click-prompt-suffix/before",
+      "description": "Empty prompt_suffix must not append a space to prompt or confirm. Preserve normal suffix rendering and input conversion.",
+      "bare_names": [
+        "prompt",
+        "confirm"
+      ],
+      "patch_request": ".tmp/real-defects/definition-patch-v1/baseline/click-prompt-suffix-b85c60521f/patch-request.json"
+    },
+    {
+      "label": "prompt-definition",
+      "task_id": "click-prompt-suffix",
+      "checkpoint": ".tmp/real-defects/definition-localization-v1/definition/localization-checkpoint.json",
+      "workspace": ".tmp/real-defects/expansion-admission-v1/click-prompt-suffix/before",
+      "description": "Empty prompt_suffix must not append a space to prompt or confirm. Preserve normal suffix rendering and input conversion.",
+      "bare_names": [
+        "prompt",
+        "confirm"
+      ],
+      "patch_request": ".tmp/real-defects/definition-patch-v1/definition/click-prompt-suffix-6ebcfec5e1/patch-request.json"
+    },
+    {
+      "label": "crossfile-historical-baseline",
+      "task_id": "click-flag-envvar",
+      "checkpoint": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-flag-envvar-2d037ecc0d/localization-checkpoint.json",
+      "workspace": ".tmp/real-defects/crossfile-admission-v2/click-flag-envvar/before",
+      "description": "Environment-variable flag values must distinguish activation from deactivation. False-like values must not activate non-boolean flags; true-like values and the exact flag_value activate them. Boolean flag values containing only whitespace represent false. Preserve explicit command-line activation and normal argument conversion.",
+      "bare_names": []
+    }
+  ],
+  "frozen_files": {
+    ".tmp/real-defects/definition-localization-v1/baseline/localization-checkpoint.json": "b2632e5540a29805c4577138614f333ea083b171f6a0398faf1612b55f063a0a",
+    ".tmp/real-defects/definition-patch-v1/baseline/click-prompt-suffix-b85c60521f/patch-request.json": "33bfb67a08e7b38eb39b5b49477c858ae80d89567b43c1b01ed93660bbbc3970",
+    ".tmp/real-defects/definition-localization-v1/definition/localization-checkpoint.json": "fb51ccd20c4e56109a095186724d2d8fe44a1533816da8fedf811be9a4c9d633",
+    ".tmp/real-defects/definition-patch-v1/definition/click-prompt-suffix-6ebcfec5e1/patch-request.json": "bbf5a9e3fc752d1aa4d65b80fc83f2a9dbac1b7660c6833458cb3fee1c91ae5a",
+    ".tmp/real-defects/staged-shared-replay-v1/localizations/click-flag-envvar-2d037ecc0d/localization-checkpoint.json": "60977ec7ddc3df8b81fa186f4e5ebaac1b92a6919f71d2985ff3e44479278142",
+    "docs/experiments/public_coverage_followup_v1.py": "d5c072f779067f0db22c58c87fae8bd276ffe40ff6dd842f4f2e78a43d12f211",
+    "docs/experiments/staged_evidence_coverage_v1.py": "d5bdd683640abe0a5cb68331cf0ad9beacd5081d223e5c136760b015589420f4",
+    ".tmp/real-defects/definition-patch-v1/experiment.json": "f77a817686ce7eba327ee0543da3c5ada9916dfc81249891a0f8633c2c1343f6",
+    "docs/experiments/definition_patch_v1.json": "2b16b40a2cd6ce57cc44bd3ebae08876db133856ed18d27019308cb2e22dbf06",
+    "evals/real_defects/crossfile-candidates.json": "b02b54868f259825821828c4539aec8d89be2619b3fa94f09c4a5a8039ed0983"
+  },
+  "limitations": "Diagnostic audit, not repair relevance labels. Crossfile baseline is historical, not paired with the new definition pilot."
+}

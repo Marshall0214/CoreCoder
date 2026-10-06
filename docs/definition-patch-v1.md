@@ -57,3 +57,5 @@ python -m pytest tests/test_definition_patch.py tests/test_staged_compact_live.p
 ```
 
 输出须为新目录。新增四项输入校验测试及相关回归共 **35 passed**，Ruff 通过；真实运行前后均核对冻结输入和模型。未重跑全量测试，未提交 Git commit。
+
+后续覆盖诊断明确：confirm 完整实现已在两组候选池，只是在装填时被排除。见 [public-coverage-followup-v1.md](public-coverage-followup-v1.md)，应区分获取与最终可见证据。
