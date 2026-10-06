@@ -50,3 +50,5 @@ python docs/experiments/definition_localization_v1.py --workspace .tmp/real-defe
 python -m docs.experiments.definition_localization_analysis_v1 --run .tmp/real-defects/definition-localization-v1-rerun
 python -m pytest tests/test_definition_localization.py tests/test_definition_read.py tests/test_staged_repair.py -q
 ```
+
+后续相同 read-first 补丁与独立验收已执行，结果见 [definition-patch-v1.md](definition-patch-v1.md)：两组均未通过 Target，不能将定位覆盖提升解释为修复成功。
