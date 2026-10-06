@@ -14,6 +14,19 @@ def test_frozen_manifest_covers_all_seven_tasks():
     assert data['repeat'] == 3
 
 
+def test_staged_and_control_manifests_freeze_identical_tasks_and_total_budgets():
+    staged, tasks = load_manifest(DATA / 'staged-suite-v1.json')
+    control, control_tasks = load_manifest(DATA / 'staged-control-suite-v1.json')
+    assert tasks == control_tasks and len(tasks) == 7
+    assert staged['config'] == control['config']
+    assert staged['workflow'] == 'staged' and control['workflow'] == 'agent-loop'
+
+
+def test_staged_manifest_rejects_oracle_modes(tmp_path):
+    with pytest.raises(ValueError, match='live mode'):
+        run_suite(DATA / 'staged-suite-v1.json', {}, tmp_path / 'runs', 'scripted')
+
+
 @pytest.mark.parametrize('mutation', ['catalog', 'order', 'config', 'split'])
 def test_manifest_rejects_drift(tmp_path, mutation):
     path = DATA / 'development-suite-v1.json'

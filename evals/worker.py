@@ -177,6 +177,16 @@ def main(job_path: Path) -> int:
         if config.mode == "contract-feedback":
             result.update(run_contract_feedback(llm, workspace, job["description"], job["allowed_files"], config, events))
             return 0
+        if job.get("workflow") == "staged":
+            from .real_admission import execute
+            from .staged_repair import run_staged
+
+            if config.mode != "live":
+                raise ValueError("Staged repair requires live mode")
+            result.update(run_staged(llm, workspace, job["description"], job["allowed_files"], config, events,
+                                     lambda logs: execute(workspace, workspace / ".real-visible", "Controls", logs,
+                                                          Path(job["real_visible_python"]), config.test_timeout)))
+            return 0
         if job.get("workflow") in {"symbol-patch", "symbol-feedback"}:
             from .symbol_patch import run_symbol_patch
 

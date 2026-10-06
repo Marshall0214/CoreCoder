@@ -82,7 +82,7 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
     if symbol_prompt_policy not in {'baseline', 'behavior-check'} or (symbol_prompt_policy != 'baseline'
                                                                      and workflow != 'symbol-patch'):
         raise ValueError('Behavior check requires the symbol patch workflow')
-    if workflow not in {'agent-loop', 'symbol-patch', 'symbol-feedback'} or (workflow != 'agent-loop' and config.mode != 'live'):
+    if workflow not in {'agent-loop', 'symbol-patch', 'symbol-feedback', 'staged'} or (workflow != 'agent-loop' and config.mode != 'live'):
         raise ValueError('Symbol patch workflow requires live mode; unknown workflows are rejected')
     if workflow == 'symbol-feedback' and case['case_id'] != 'click-flag-envvar':
         raise ValueError('Public symbol feedback checks currently support click-flag-envvar only')
@@ -100,6 +100,7 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
               'evaluation_protocol': {'symbol-patch': ('symbol-linked-patch-development-v1'
                                                        if symbol_context_policy == 'linked' else 'symbol-patch-development-v1'),
                                       'symbol-feedback': 'symbol-feedback-development-v1',
+                                      'staged': 'staged-real-repair-development-v1',
                                       'agent-loop': 'real-agent-loop-development-v1'}[workflow], 'workflow': workflow,
               'benchmark_eligible': False,
               'symbol_prompt_policy': symbol_prompt_policy,
@@ -188,7 +189,7 @@ def main():
     parser.add_argument('--catalog', type=Path, default=DATA / 'crossfile-candidates.json')
     parser.add_argument('--task', default='click-flag-envvar')
     parser.add_argument('--mode', choices=('unchanged', 'reference', 'scripted', 'live'), default='unchanged')
-    parser.add_argument('--workflow', choices=('agent-loop', 'symbol-patch', 'symbol-feedback'), default='agent-loop')
+    parser.add_argument('--workflow', choices=('agent-loop', 'symbol-patch', 'symbol-feedback', 'staged'), default='agent-loop')
     parser.add_argument('--symbol-prompt-policy', choices=('baseline', 'behavior-check'), default='baseline')
     parser.add_argument('--symbol-context-policy', choices=('base', 'linked'), default='base')
     parser.add_argument('--output', type=Path, default=Path('.tmp/real-defects/repair'))
@@ -213,7 +214,7 @@ def main():
                        search_max_chars=args.search_max_chars,
                        evidence_top_k=args.evidence_top_k,
                        evidence_dependency_depth=(args.evidence_dependency_depth if args.evidence_dependency_depth is not None
-                                                  else (2 if args.workflow == 'agent-loop' else 1)),
+                                                  else (2 if args.workflow in {'agent-loop', 'staged'} else 1)),
                        reasoning_effort=args.reasoning_effort, output_policy=args.output_policy,
                        read_policy=args.read_policy, context_policy=args.context_policy,
                        **{name: getattr(args, name) for name in ('max_rounds', 'token_budget', 'max_output_tokens',

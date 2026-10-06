@@ -22,6 +22,8 @@ def load_manifest(path):
     if (data.get('schema_version') != 1 or data.get('split') != 'development'
             or not re.fullmatch(r'[a-z0-9-]+', data.get('suite_id', ''))):
         raise ValueError('Expected a versioned development suite')
+    if data.get('workflow', 'agent-loop') not in {'agent-loop', 'staged'}:
+        raise ValueError('Unsupported suite workflow')
     repeat = data.get('repeat')
     if type(repeat) is not int or not 1 <= repeat <= 10:
         raise ValueError('Repeat must be between 1 and 10')
@@ -32,6 +34,8 @@ def load_manifest(path):
             data['suite_id'] == 'click-development-v1' and set(data['config']) == legacy):
         raise ValueError('Suite must explicitly freeze every RunConfig field')
     config = RunConfig(**data['config'])
+    if data.get('workflow') == 'staged' and config.context_policy != 'none':
+        raise ValueError('Staged workflow organizes its own context')
     if (config.mode != 'live' or config.search_backend != 'off' or config.context_policy not in {'none', 'read-dedup', 'read-window'}
             or config.prompt_policy != 'baseline' or config.search_history != 'full'):
         raise ValueError('This suite supports the default or budget-aware agent-loop protocol only')
@@ -74,6 +78,9 @@ def run_suite(manifest, admissions, output, mode, repeat=None, diagnostic_overri
     repeat = data['repeat'] if repeat is None else repeat
     if type(repeat) is not int or not 1 <= repeat <= 10:
         raise ValueError('Repeat must be between 1 and 10')
+    workflow = data.get('workflow', 'agent-loop')
+    if workflow == 'staged' and mode != 'live':
+        raise ValueError('Staged suite requires live mode')
     prepared = prepare(entries, admissions)  # Validate every snapshot before starting any run.
     overrides = diagnostic_overrides or {}
     if set(overrides) - {'token_budget', 'max_rounds', 'wall_timeout'}:
@@ -89,7 +96,7 @@ def run_suite(manifest, admissions, output, mode, repeat=None, diagnostic_overri
               'manifest_sha256': file_hash(manifest), 'manifest': data,
               'admissions': {name: {'path': str(path.resolve()), 'sha256': file_hash(path)}
                              for name, path in admissions.items()},
-              'config': config.to_dict(), 'workflow': 'agent-loop', 'repeat': repeat,
+              'config': config.to_dict(), 'workflow': workflow, 'repeat': repeat,
               'diagnostic_overrides': overrides,
               'expected_runs': len(entries) * repeat, 'complete': False, 'runs': [],
               'implementation': implementation_metadata()}
@@ -103,7 +110,8 @@ def run_suite(manifest, admissions, output, mode, repeat=None, diagnostic_overri
     save()
     for repetition in range(1, repeat + 1):
         for case in prepared:
-            row = run_real(*case, config, output / 'runs')
+            options = {'workflow': workflow} if workflow != 'agent-loop' else {}
+            row = run_real(*case, config, output / 'runs', **options)
             row['repetition'] = repetition
             report['runs'].append(row)
             save()  # Failed runs remain in the denominator; preserve progress on interruption.
