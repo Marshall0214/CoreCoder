@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "purpose": "development-staged-patch-evidence-packing-pilot",
+  "benchmark_eligible": false,
+  "repeat": 1,
+  "expected_runs": 14,
+  "factor": "patch evidence candidate priority only",
+  "order": [
+    "read-first",
+    "seed-first"
+  ],
+  "implementation_sha256": "462cda3e4eda5c32aa0de943e86262157697ab96e725cea7c680838a5b106b37",
+  "profiles": {
+    "read-first": {
+      "manifest": "staged-read-first-suite-v1.json",
+      "sha256": "347123ef49e8012093ce8bc599568f676ea55f51678c07f22239a4ff424e1083"
+    },
+    "seed-first": {
+      "manifest": "staged-seed-first-suite-v1.json",
+      "sha256": "17d1e1bdb5c1c83f2f169ab7c9dec25ba85a2aaeeae1b446562eee78381d79f0"
+    }
+  },
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "historical_runs_included": false,
+  "localization_replayed": false
+}

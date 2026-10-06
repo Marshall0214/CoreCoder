@@ -49,7 +49,16 @@ def pack_fragments(rows, max_chars):
     return selected
 
 
-def run_staged(llm, workspace, description, allowed_files, config, events, public_runner):
+def select_evidence(reads, seeds, max_chars, policy='read-first'):
+    if policy not in {'read-first', 'seed-first'}:
+        raise ValueError('Unknown staged evidence policy')
+    return pack_fragments(reads + seeds if policy == 'read-first' else seeds + reads, max_chars)
+
+
+def run_staged(llm, workspace, description, allowed_files, config, events, public_runner,
+               evidence_policy='read-first'):
+    if evidence_policy not in {'read-first', 'seed-first'}:
+        raise ValueError('Unknown staged evidence policy')
     original_config = llm.config
     total = config.token_budget
     if total < 10:
@@ -57,7 +66,8 @@ def run_staged(llm, workspace, description, allowed_files, config, events, publi
     verify_reserve = max(1, total // 10)
     explore_limit = max(1, total * 4 // 10)
     patch_limit = max(1, total - verify_reserve - explore_limit)
-    result = {'protocol': PROTOCOL, 'stage_limits': {'explore': explore_limit, 'patch': patch_limit,
+    result = {'protocol': PROTOCOL, 'evidence_policy': evidence_policy,
+              'stage_limits': {'explore': explore_limit, 'patch': patch_limit,
                                                     'verification_reserve': verify_reserve}, 'stages': []}
     tools = {tool.name: tool for tool in make_tools(workspace, allowed_files, events, config.test_timeout,
                                                     replace(config, read_policy='bounded'))
@@ -103,7 +113,16 @@ def run_staged(llm, workspace, description, allowed_files, config, events, publi
                              'calls': calls, 'reason': explore_reason})
     events.emit('stage_finished', **result['stages'][-1])
     receipts = [receipt for tool in tools.values() for receipt in tool.fragment_receipts]
-    evidence = pack_fragments(read_fragments(workspace, allowed_files, receipts) + seeds, config.search_max_chars)
+    reads = read_fragments(workspace, allowed_files, receipts)
+    pool = {'reads': reads, 'seeds': seeds}
+    result['candidate_pool_hash'] = hashlib.sha256(json.dumps(pool, sort_keys=True).encode()).hexdigest()
+    (events.path.parent / 'staged-evidence-pool.json').write_text(
+        json.dumps(events.clean(pool), ensure_ascii=False, indent=2), encoding='utf-8')
+    evidence = select_evidence(reads, seeds, config.search_max_chars, evidence_policy)
+    events.emit('staged_evidence_selected', policy=evidence_policy,
+                candidate_pool_hash=result['candidate_pool_hash'], read_candidates=len(reads), seed_candidates=len(seeds),
+                max_chars=config.search_max_chars, selected=[{k: v for k, v in row.items() if k != 'content'}
+                                                          for row in evidence])
     result['evidence_manifest'] = [{key: value for key, value in row.items() if key != 'content'} for row in evidence]
     result['evidence_chars'] = sum(len(row['content']) for row in evidence)
     result['evidence_hash'] = hashlib.sha256(json.dumps(evidence, sort_keys=True).encode()).hexdigest()

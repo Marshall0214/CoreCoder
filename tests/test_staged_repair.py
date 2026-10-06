@@ -6,7 +6,7 @@ import pytest
 from corecoder.llm import LLMResponse, ToolCall
 from evals.runtime import BudgetExceeded, BudgetLLM, Events
 from evals.schema import RunConfig
-from evals.staged_repair import pack_fragments, read_fragments, run_staged
+from evals.staged_repair import pack_fragments, read_fragments, run_staged, select_evidence
 
 
 class Provider:
@@ -25,7 +25,8 @@ class Provider:
         return answer
 
 
-def invoke(tmp_path, turns):
+def invoke(tmp_path, turns, policy='read-first'):
+    tmp_path.mkdir(parents=True, exist_ok=True)
     source = tmp_path / 'entry.py'
     source.write_text('def envvar(value):\n    return value\n', encoding='utf-8')
     config = RunConfig(mode='live', token_budget=10000)
@@ -38,7 +39,7 @@ def invoke(tmp_path, turns):
         checks.append((logs, source.read_text()))
         return {'passed': True}
 
-    result = run_staged(llm, tmp_path, 'envvar', ['entry.py'], config, events, verify)
+    result = run_staged(llm, tmp_path, 'envvar', ['entry.py'], config, events, verify, evidence_policy=policy)
     assert llm.config is config
     return result, provider, checks
 
@@ -85,3 +86,32 @@ def test_receipts_reject_stale_or_forged_source_and_pack_whole_fragments(tmp_pat
     assert read_fragments(tmp_path, ['entry.py'], [{**receipt, 'response': '1\tforged'}]) == []
     (tmp_path / 'entry.py').write_bytes(b'changed')
     assert read_fragments(tmp_path, ['entry.py'], [receipt]) == []
+
+
+def test_selection_priority_changes_which_whole_fragment_fits():
+    read = {'path': 'a.py', 'start_line': 1, 'end_line': 1, 'content_hash': 'a', 'content': 'reader'}
+    seed = {'path': 'b.py', 'start_line': 1, 'end_line': 1, 'content_hash': 'b', 'content': 'symbol'}
+    assert select_evidence([read], [seed], 6) == [read]
+    assert select_evidence([read], [seed], 6, 'seed-first') == [seed]
+    assert select_evidence([read], [read], 12, 'seed-first') == [read]
+    with pytest.raises(ValueError, match='policy'):
+        select_evidence([read], [seed], 6, 'unknown')
+
+
+def test_only_patch_evidence_changes_between_policies(tmp_path):
+    def turns():
+        return [LLMResponse(tool_calls=[ToolCall('read', 'read_file', {'file_path': 'entry.py'})]),
+                LLMResponse(content='located'), LLMResponse(content='{"edits": []}')]
+
+    control, a, _ = invoke(tmp_path / 'control', turns())
+    variant, b, _ = invoke(tmp_path / 'variant', turns(), 'seed-first')
+    assert a.requests[:2] == b.requests[:2]
+    assert control['localization_prompt_hash'] == variant['localization_prompt_hash']
+    assert control['tool_schema_hash'] == variant['tool_schema_hash']
+    assert control['candidate_pool_hash'] == variant['candidate_pool_hash']
+    assert control['stage_limits'] == variant['stage_limits']
+    left, right = (json.loads(provider.requests[-1][0][1]['content']) for provider in (a, b))
+    assert left.pop('fragments') != right.pop('fragments')
+    assert left == right and a.requests[-1][0][0] == b.requests[-1][0][0]
+    assert control['evidence_hash'] != variant['evidence_hash']
+    assert (tmp_path / 'control/staged-evidence-pool.json').exists()

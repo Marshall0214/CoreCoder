@@ -76,7 +76,10 @@ def verify(case, source_root, checks, workspace, original, allowed, root, python
 
 
 def run_real(case, row, checks, source_root, environment, config, output, workflow='agent-loop',
-             symbol_prompt_policy='baseline', symbol_context_policy='base'):
+             symbol_prompt_policy='baseline', symbol_context_policy='base', staged_evidence_policy='read-first'):
+    if staged_evidence_policy not in {'read-first', 'seed-first'} or (
+            workflow != 'staged' and staged_evidence_policy != 'read-first'):
+        raise ValueError('Staged evidence selection requires staged workflow')
     if symbol_context_policy not in {'base', 'linked'} or (symbol_context_policy == 'linked' and workflow != 'symbol-patch'):
         raise ValueError('Linked context requires the single symbol patch workflow')
     if symbol_prompt_policy not in {'baseline', 'behavior-check'} or (symbol_prompt_policy != 'baseline'
@@ -102,7 +105,7 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
                                       'symbol-feedback': 'symbol-feedback-development-v1',
                                       'staged': 'staged-real-repair-development-v1',
                                       'agent-loop': 'real-agent-loop-development-v1'}[workflow], 'workflow': workflow,
-              'benchmark_eligible': False,
+              'benchmark_eligible': False, 'staged_evidence_policy': staged_evidence_policy,
               'symbol_prompt_policy': symbol_prompt_policy,
               'symbol_context_policy': symbol_context_policy,
               'accepted': False, 'status': 'infrastructure_error', 'config': config.to_dict(),
@@ -136,7 +139,7 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
             worker = {'status': 'completed', 'metrics': None}
         else:
             job = {'run_id': root.name, 'workspace': str(workspace), 'description': case['public_problem'],
-                   'workflow': workflow,
+                   'workflow': workflow, 'staged_evidence_policy': staged_evidence_policy,
                    'symbol_prompt_policy': symbol_prompt_policy,
                    'symbol_context_policy': symbol_context_policy,
                    'allowed_files': allowed, 'config': config.to_dict(), 'visible_command': VISIBLE,
@@ -190,6 +193,7 @@ def main():
     parser.add_argument('--task', default='click-flag-envvar')
     parser.add_argument('--mode', choices=('unchanged', 'reference', 'scripted', 'live'), default='unchanged')
     parser.add_argument('--workflow', choices=('agent-loop', 'symbol-patch', 'symbol-feedback', 'staged'), default='agent-loop')
+    parser.add_argument('--staged-evidence-policy', choices=('read-first', 'seed-first'), default='read-first')
     parser.add_argument('--symbol-prompt-policy', choices=('baseline', 'behavior-check'), default='baseline')
     parser.add_argument('--symbol-context-policy', choices=('base', 'linked'), default='base')
     parser.add_argument('--output', type=Path, default=Path('.tmp/real-defects/repair'))
@@ -224,7 +228,8 @@ def main():
 
         _load_dotenv()
     report = run_real(case, row, checks, source, environment, config, args.output, workflow=args.workflow,
-                      symbol_prompt_policy=args.symbol_prompt_policy, symbol_context_policy=args.symbol_context_policy)
+                      symbol_prompt_policy=args.symbol_prompt_policy, symbol_context_policy=args.symbol_context_policy,
+                      staged_evidence_policy=args.staged_evidence_policy)
     print(f"{case['case_id']}: {report['status']}")
     print(write_summary([report], args.output.resolve()))
     return 0 if report['accepted'] else 1

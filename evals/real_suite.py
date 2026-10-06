@@ -24,6 +24,10 @@ def load_manifest(path):
         raise ValueError('Expected a versioned development suite')
     if data.get('workflow', 'agent-loop') not in {'agent-loop', 'staged'}:
         raise ValueError('Unsupported suite workflow')
+    evidence_policy = data.get('staged_evidence_policy', 'read-first')
+    if evidence_policy not in {'read-first', 'seed-first'} or (
+            evidence_policy != 'read-first' and data.get('workflow') != 'staged'):
+        raise ValueError('Unsupported staged evidence policy')
     repeat = data.get('repeat')
     if type(repeat) is not int or not 1 <= repeat <= 10:
         raise ValueError('Repeat must be between 1 and 10')
@@ -97,6 +101,7 @@ def run_suite(manifest, admissions, output, mode, repeat=None, diagnostic_overri
               'admissions': {name: {'path': str(path.resolve()), 'sha256': file_hash(path)}
                              for name, path in admissions.items()},
               'config': config.to_dict(), 'workflow': workflow, 'repeat': repeat,
+              'staged_evidence_policy': data.get('staged_evidence_policy', 'read-first'),
               'diagnostic_overrides': overrides,
               'expected_runs': len(entries) * repeat, 'complete': False, 'runs': [],
               'implementation': implementation_metadata()}
@@ -111,6 +116,8 @@ def run_suite(manifest, admissions, output, mode, repeat=None, diagnostic_overri
     for repetition in range(1, repeat + 1):
         for case in prepared:
             options = {'workflow': workflow} if workflow != 'agent-loop' else {}
+            if workflow == 'staged':
+                options['staged_evidence_policy'] = data.get('staged_evidence_policy', 'read-first')
             row = run_real(*case, config, output / 'runs', **options)
             row['repetition'] = repetition
             report['runs'].append(row)

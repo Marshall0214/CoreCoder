@@ -185,7 +185,8 @@ def main(job_path: Path) -> int:
                 raise ValueError("Staged repair requires live mode")
             result.update(run_staged(llm, workspace, job["description"], job["allowed_files"], config, events,
                                      lambda logs: execute(workspace, workspace / ".real-visible", "Controls", logs,
-                                                          Path(job["real_visible_python"]), config.test_timeout)))
+                                                          Path(job["real_visible_python"]), config.test_timeout),
+                                     evidence_policy=job.get("staged_evidence_policy", "read-first")))
             return 0
         if job.get("workflow") in {"symbol-patch", "symbol-feedback"}:
             from .symbol_patch import run_symbol_patch

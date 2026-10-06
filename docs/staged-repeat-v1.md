@@ -77,3 +77,5 @@ staged 的公开检查通过 17/21：resource-exception 三次均破坏正常行
 ## 验证记录
 
 相关现有测试 `tests/test_real_suite.py`、`tests/test_staged_repair.py`：15 passed。实验编排脚本的 Ruff、验证模式及正式六个批次均通过。未改动修复实现，未重新重复执行上轮已通过的 590 项全量测试。
+
+后续证据优先级试跑与候选池一致性检查见 [staged-evidence-pilot-v1.md](staged-evidence-pilot-v1.md)，本页仍保留冻结的三轮复验记录。

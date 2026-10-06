@@ -27,6 +27,16 @@ def test_staged_manifest_rejects_oracle_modes(tmp_path):
         run_suite(DATA / 'staged-suite-v1.json', {}, tmp_path / 'runs', 'scripted')
 
 
+def test_evidence_packing_manifests_change_only_policy_and_identity():
+    a, tasks = load_manifest(DATA / 'staged-read-first-suite-v1.json')
+    b, other_tasks = load_manifest(DATA / 'staged-seed-first-suite-v1.json')
+    assert tasks == other_tasks and a['config'] == b['config']
+    assert a['staged_evidence_policy'] == 'read-first'
+    assert b['staged_evidence_policy'] == 'seed-first'
+    assert {key: value for key, value in a.items() if key not in {'suite_id', 'staged_evidence_policy'}} == {
+        key: value for key, value in b.items() if key not in {'suite_id', 'staged_evidence_policy'}}
+
+
 @pytest.mark.parametrize('mutation', ['catalog', 'order', 'config', 'split'])
 def test_manifest_rejects_drift(tmp_path, mutation):
     path = DATA / 'development-suite-v1.json'
