@@ -65,3 +65,5 @@ python -m pytest tests/test_balanced_crossfile.py tests/test_balanced_intervals.
 ```
 
 输出须为新目录。selection-audit.json 是对实际请求的附加离线检查；核心结果、成本与片段范围可通过上述运行及分析入口复现。
+
+剩余五任务的固定批次及七案例适用性矩阵已完成，见 [balanced-transfer-batch-v1.md](balanced-transfer-batch-v1.md)。均衡策略未显示整体收益，read-first 保持默认。
