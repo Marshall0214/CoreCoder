@@ -71,8 +71,12 @@ class RunConfig:
     evidence_order: str = "selection"
     patch_policy: str = "baseline"
     public_check_policy: str = "generated"
+    output_policy: str = "fixed"
+    read_policy: str = "full"
 
     def __post_init__(self):
+        if self.output_policy not in {'fixed', 'remaining'} or self.read_policy not in {'full', 'bounded'}:
+            raise ValueError('Unknown output or read policy')
         if self.public_check_policy not in {"generated", "reviewed", "contract-only", "contract-schema", "contract-surface", "contract-scenarios", "contract-manifest"}:
             raise ValueError("Unknown public_check_policy")
         if self.public_check_policy != "generated" and self.mode != "contract-feedback":
@@ -93,8 +97,8 @@ class RunConfig:
             raise ValueError("search_history must be full or deduplicate")
         if self.search_history == "deduplicate" and self.search_backend != "keyword":
             raise ValueError("History deduplication requires keyword search")
-        if self.context_policy not in {"none", "read-cover"}:
-            raise ValueError("context_policy must be none or read-cover")
+        if self.context_policy not in {"none", "read-cover", "read-dedup", "read-window"}:
+            raise ValueError("Unknown context_policy")
         if self.context_policy == "read-cover" and (self.search_backend != "keyword" or self.search_history != "full"):
             raise ValueError("read-cover requires keyword search and full search history")
         if self.prompt_policy not in {"baseline", "contract-check"}:

@@ -21,6 +21,7 @@ from corecoder.tools.write import WriteFileTool
 
 from .context_policy import request_breakdown
 from .process import run_tests
+from .read_policy import BoundedReadTool
 from .schema import RunConfig
 
 VISIBLE_COMMAND = "python -m unittest discover -s tests -v"
@@ -77,6 +78,7 @@ class ScopedTool(Tool):
         self.allowed_files, self.events, self.test_timeout = set(allowed_files), events, test_timeout
         self.name, self.description, self.parameters = inner.name, inner.description, inner.parameters
         self.read_receipts = []
+        self.fragment_receipts = []
         self.visible_command, self.visible_runner = VISIBLE_COMMAND, None
 
     def execute(self, **kwargs) -> str:
@@ -120,10 +122,13 @@ class ScopedTool(Tool):
                 data = target.read_bytes()
                 lines = data.decode("utf-8").splitlines()
                 full = "\n".join(f"{index + 1}\t{line}" for index, line in enumerate(lines)) or "(empty file)"
-                if output == full and kwargs.get("offset", 1) == 1:
-                    self.read_receipts.append({"path": target.relative_to(self.workspace).as_posix(),
-                                               "content_hash": hashlib.sha256(data).hexdigest(),
-                                               "response": output, "lines": lines})
+                receipt = {"path": target.relative_to(self.workspace).as_posix(),
+                           "content_hash": hashlib.sha256(data).hexdigest(),
+                           "response": output, "lines": lines,
+                           "full_read": output == full and kwargs.get('offset', 1) == 1}
+                self.fragment_receipts.append(receipt)
+                if receipt['full_read']:
+                    self.read_receipts.append(receipt)
             except (OSError, UnicodeError):
                 pass  # A failed or changed read cannot authorize context replacement.
         self.events.emit("tool_finished", tool=self.name, result=output, seconds=round(time.perf_counter() - started, 4))
@@ -134,7 +139,8 @@ def make_tools(workspace: Path, allowed_files: list[str], events: Events, timeou
                config: RunConfig | None = None) -> list[Tool]:
     # Construct instances, never mutate the module-level ALL_TOOLS collection.
     tools = [ScopedTool(cls(), workspace, allowed_files, events, timeout)
-             for cls in (ReadFileTool, GlobTool, GrepTool, EditFileTool, WriteFileTool, TodoWriteTool, BashTool)]
+             for cls in ((BoundedReadTool if config and config.read_policy == 'bounded' else ReadFileTool),
+                         GlobTool, GrepTool, EditFileTool, WriteFileTool, TodoWriteTool, BashTool)]
     if config is not None and config.search_backend != "off":
         search = SearchCodeTool(workspace, allowed_files, config.search_backend, config.search_max_chars, events.emit,
                                 deduplicate_history=config.search_history == "deduplicate")
@@ -155,10 +161,22 @@ class BudgetLLM:
     def chat(self, messages, tools=None, **kwargs):
         breakdown = request_breakdown(messages, tools, response_format=kwargs.get("response_format"))
         request_estimate = breakdown["request_estimate"]
-        reservation = request_estimate + self.config.max_output_tokens
+        output_limit = self.config.max_output_tokens
+        if self.config.output_policy == 'remaining':
+            room = min(self.config.token_budget - self.spent, self.config.context_tokens) - request_estimate
+            floor = min(256, output_limit)
+            if room < floor:
+                self.events.emit('budget_blocked', reason='minimum_output_preflight',
+                                 request_estimate=request_estimate, remaining=self.config.token_budget - self.spent,
+                                 minimum_output_tokens=floor, context_tokens=self.config.context_tokens)
+                raise BudgetExceeded('Insufficient estimated space for a usable response')
+            output_limit = min(output_limit, room)
+            kwargs['max_tokens'] = output_limit
+        reservation = request_estimate + output_limit
         self.events.emit("request_preflight", next_call=self.calls + 1, **breakdown,
                          spent=self.spent, reservation=reservation, remaining=self.config.token_budget - self.spent,
-                         token_budget=self.config.token_budget, context_tokens=self.config.context_tokens)
+                         token_budget=self.config.token_budget, context_tokens=self.config.context_tokens,
+                         output_policy=self.config.output_policy, effective_max_output_tokens=output_limit)
         if self.spent + reservation > self.config.token_budget:
             self.events.emit("budget_blocked", reason="cumulative_preflight", request_estimate=request_estimate,
                              reservation=reservation, remaining=self.config.token_budget - self.spent)

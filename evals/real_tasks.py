@@ -198,6 +198,9 @@ def main():
     parser.add_argument('--search-history', choices=('full', 'deduplicate'), default='full')
     parser.add_argument('--search-max-chars', type=int, default=6000)
     parser.add_argument('--reasoning-effort', default='none')
+    parser.add_argument('--output-policy', choices=('fixed', 'remaining'), default='fixed')
+    parser.add_argument('--read-policy', choices=('full', 'bounded'), default='full')
+    parser.add_argument('--context-policy', choices=('none', 'read-cover', 'read-dedup', 'read-window'), default='none')
     parser.add_argument('--evidence-top-k', type=int, default=5)
     parser.add_argument('--evidence-dependency-depth', type=int)
     for flag, default in (('max-rounds', 12), ('token-budget', 30000), ('max-output-tokens', 2048),
@@ -211,7 +214,8 @@ def main():
                        evidence_top_k=args.evidence_top_k,
                        evidence_dependency_depth=(args.evidence_dependency_depth if args.evidence_dependency_depth is not None
                                                   else (2 if args.workflow == 'agent-loop' else 1)),
-                       reasoning_effort=args.reasoning_effort,
+                       reasoning_effort=args.reasoning_effort, output_policy=args.output_policy,
+                       read_policy=args.read_policy, context_policy=args.context_policy,
                        **{name: getattr(args, name) for name in ('max_rounds', 'token_budget', 'max_output_tokens',
                                                                'context_tokens', 'wall_timeout', 'test_timeout')})
     if config.mode == 'live':

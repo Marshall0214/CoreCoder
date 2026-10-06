@@ -25,12 +25,16 @@ def load_manifest(path):
     repeat = data.get('repeat')
     if type(repeat) is not int or not 1 <= repeat <= 10:
         raise ValueError('Repeat must be between 1 and 10')
-    if set(data['config']) != {field.name for field in fields(RunConfig)}:
+    expected = {field.name for field in fields(RunConfig)}
+    # Preserve the historical v1 manifest: these newly introduced policies were fixed/full there.
+    legacy = expected - {'output_policy', 'read_policy'}
+    if set(data['config']) != expected and not (
+            data['suite_id'] == 'click-development-v1' and set(data['config']) == legacy):
         raise ValueError('Suite must explicitly freeze every RunConfig field')
     config = RunConfig(**data['config'])
-    if (config.mode != 'live' or config.search_backend != 'off' or config.context_policy != 'none'
+    if (config.mode != 'live' or config.search_backend != 'off' or config.context_policy not in {'none', 'read-dedup', 'read-window'}
             or config.prompt_policy != 'baseline' or config.search_history != 'full'):
-        raise ValueError('This suite freezes the default agent-loop baseline only')
+        raise ValueError('This suite supports the default or budget-aware agent-loop protocol only')
     entries, groups, ids = [], set(), set()
     for source in data['sources']:
         name = source['name']

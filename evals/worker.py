@@ -13,7 +13,7 @@ from corecoder.demo import ScriptedLLM
 from corecoder.llm import LLMResponse, ToolCall
 from corecoder.permissions import Permission
 
-from .context_policy import covered_search_view
+from .context_policy import covered_search_view, duplicate_read_view, windowed_read_view
 from .contract_feedback import run_contract_feedback
 from .fixed_evidence import diagnose
 from .pipeline import run_pipeline
@@ -53,11 +53,14 @@ class TracedLLM(LLM):
         self.events = events
         self.client.max_retries = 0  # retain only CoreCoder's declared retry layer
 
-    def chat(self, messages, tools=None, on_token=None, on_reasoning=None, response_format=None):
+    def chat(self, messages, tools=None, on_token=None, on_reasoning=None, response_format=None, max_tokens=None):
         # A worker makes sequential calls; scope the format to this request only.
         previous = self.extra
         if response_format is not None:
             self.extra = {**previous, "response_format": response_format}
+        if max_tokens is not None:
+            self.extra = {**self.extra, 'max_tokens': max_tokens}
+            self.extra.pop('max_completion_tokens', None)
         try:
             return super().chat(messages, tools=tools, on_token=on_token, on_reasoning=on_reasoning)
         finally:
@@ -93,6 +96,13 @@ class FixtureAgent(Agent):
             receipts = [receipt for tool in self.tools for receipt in getattr(tool, "read_receipts", [])]
             messages, stats = covered_search_view(messages, self.evidence_workspace, receipts)
             self.context_events.emit("context_organized", policy="read-cover", **stats)
+        if getattr(self, 'evidence_policy', 'none') == 'read-dedup':
+            receipts = [receipt for tool in self.tools for receipt in getattr(tool, 'fragment_receipts', [])]
+            messages, stats = duplicate_read_view(messages, self.evidence_workspace, receipts)
+            self.context_events.emit('context_organized', policy='read-dedup', **stats)
+        if getattr(self, 'evidence_policy', 'none') == 'read-window':
+            messages, stats = windowed_read_view(messages)
+            self.context_events.emit('context_organized', policy='read-window', **stats)
         return messages
 
     def _exec_tools_parallel(self, tool_calls, on_tool=None):
