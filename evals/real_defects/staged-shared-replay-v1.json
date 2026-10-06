@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "purpose": "development-shared-localization-replay-v1",
+  "benchmark_eligible": false,
+  "manifest": "staged-suite-v1.json",
+  "manifest_sha256": "f04e7eee5be75ef89dccbedae38759eb38042bbe8b4c1d6f553823031831ba96",
+  "expected_localizations": 7,
+  "expected_patch_runs": 14,
+  "implementation_sha256": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "policy_order_by_task": {
+    "click-help-eagerness": [
+      "read-first",
+      "seed-first"
+    ],
+    "click-flag-default-map": [
+      "seed-first",
+      "read-first"
+    ],
+    "click-resource-exception": [
+      "read-first",
+      "seed-first"
+    ],
+    "click-flag-envvar": [
+      "seed-first",
+      "read-first"
+    ],
+    "click-prompt-suffix": [
+      "read-first",
+      "seed-first"
+    ],
+    "click-invoke-missing": [
+      "seed-first",
+      "read-first"
+    ],
+    "click-shared-default": [
+      "read-first",
+      "seed-first"
+    ]
+  },
+  "historical_runs_included": false
+}

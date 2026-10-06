@@ -177,12 +177,24 @@ def main(job_path: Path) -> int:
         if config.mode == "contract-feedback":
             result.update(run_contract_feedback(llm, workspace, job["description"], job["allowed_files"], config, events))
             return 0
-        if job.get("workflow") == "staged":
+        if job.get("workflow") in {"staged", "staged-localize", "staged-replay"}:
             from .real_admission import execute
-            from .staged_repair import run_staged
+            from .staged_repair import localize_staged, patch_staged, run_staged
 
             if config.mode != "live":
                 raise ValueError("Staged repair requires live mode")
+            if job["workflow"] == "staged-localize":
+                checkpoint = localize_staged(llm, workspace, job["description"], job["allowed_files"], config, events)
+                result.update(status="localized", localization_checkpoint_hash=checkpoint["checkpoint_hash"],
+                              candidate_pool_hash=checkpoint["localization_result"]["candidate_pool_hash"])
+                return 0
+            if job["workflow"] == "staged-replay":
+                result.update(patch_staged(llm, workspace, job["description"], job["allowed_files"], config, events,
+                                           lambda logs: execute(workspace, workspace / ".real-visible", "Controls", logs,
+                                                                Path(job["real_visible_python"]), config.test_timeout),
+                                           job["localization_checkpoint"],
+                                           evidence_policy=job.get("staged_evidence_policy", "read-first"), replay=True))
+                return 0
             result.update(run_staged(llm, workspace, job["description"], job["allowed_files"], config, events,
                                      lambda logs: execute(workspace, workspace / ".real-visible", "Controls", logs,
                                                           Path(job["real_visible_python"]), config.test_timeout),

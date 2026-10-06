@@ -72,3 +72,5 @@ read-first 再次修复 flag-default-map 和 invoke-missing；seed-first 没有�
 原始产物：`.tmp/real-defects/staged-evidence-read-first-v1/`、`.tmp/real-defects/staged-evidence-seed-first-v1/`；汇总及逐任务核对：`.tmp/real-defects/staged-evidence-pilot-v1-analysis.json`。目录被 Git 忽略，需保留原始产物；本文保存统计摘要。
 
 验证：相关测试 28 passed，全量测试 593 passed、1 skipped，改动文件 Ruff 通过。本轮全部任务为开发集；不合并历史成功率、不外推跨仓库能力，隐藏验收未进入模型输入。
+
+共享定位重放已完成，见 [staged-shared-replay-v1.md](staged-shared-replay-v1.md)。本页保留独立定位试跑记录，不与重放混合统计。

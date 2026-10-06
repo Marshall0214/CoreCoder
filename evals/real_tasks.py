@@ -76,16 +76,20 @@ def verify(case, source_root, checks, workspace, original, allowed, root, python
 
 
 def run_real(case, row, checks, source_root, environment, config, output, workflow='agent-loop',
-             symbol_prompt_policy='baseline', symbol_context_policy='base', staged_evidence_policy='read-first'):
+             symbol_prompt_policy='baseline', symbol_context_policy='base', staged_evidence_policy='read-first',
+             localization_checkpoint=None):
+    staged_workflows = {'staged', 'staged-localize', 'staged-replay'}
+    if (workflow == 'staged-replay') != (localization_checkpoint is not None):
+        raise ValueError('Replay requires a localization checkpoint; other workflows reject it')
     if staged_evidence_policy not in {'read-first', 'seed-first'} or (
-            workflow != 'staged' and staged_evidence_policy != 'read-first'):
+            workflow not in staged_workflows and staged_evidence_policy != 'read-first'):
         raise ValueError('Staged evidence selection requires staged workflow')
     if symbol_context_policy not in {'base', 'linked'} or (symbol_context_policy == 'linked' and workflow != 'symbol-patch'):
         raise ValueError('Linked context requires the single symbol patch workflow')
     if symbol_prompt_policy not in {'baseline', 'behavior-check'} or (symbol_prompt_policy != 'baseline'
                                                                      and workflow != 'symbol-patch'):
         raise ValueError('Behavior check requires the symbol patch workflow')
-    if workflow not in {'agent-loop', 'symbol-patch', 'symbol-feedback', 'staged'} or (workflow != 'agent-loop' and config.mode != 'live'):
+    if workflow not in {'agent-loop', 'symbol-patch', 'symbol-feedback'} | staged_workflows or (workflow != 'agent-loop' and config.mode != 'live'):
         raise ValueError('Symbol patch workflow requires live mode; unknown workflows are rejected')
     if workflow == 'symbol-feedback' and case['case_id'] != 'click-flag-envvar':
         raise ValueError('Public symbol feedback checks currently support click-flag-envvar only')
@@ -104,6 +108,8 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
                                                        if symbol_context_policy == 'linked' else 'symbol-patch-development-v1'),
                                       'symbol-feedback': 'symbol-feedback-development-v1',
                                       'staged': 'staged-real-repair-development-v1',
+                                      'staged-localize': 'staged-localization-only-v1',
+                                      'staged-replay': 'staged-shared-localization-replay-v1',
                                       'agent-loop': 'real-agent-loop-development-v1'}[workflow], 'workflow': workflow,
               'benchmark_eligible': False, 'staged_evidence_policy': staged_evidence_policy,
               'symbol_prompt_policy': symbol_prompt_policy,
@@ -144,6 +150,13 @@ def run_real(case, row, checks, source_root, environment, config, output, workfl
                    'symbol_context_policy': symbol_context_policy,
                    'allowed_files': allowed, 'config': config.to_dict(), 'visible_command': VISIBLE,
                    'real_visible_python': str(python)}
+            if localization_checkpoint is not None:
+                from .staged_repair import validate_localization
+
+                checkpoint = json.loads(Path(localization_checkpoint).read_text(encoding='utf-8'))
+                validate_localization(checkpoint, workspace, case['public_problem'], allowed, config)
+                job['localization_checkpoint'] = checkpoint
+                report['localization_checkpoint_hash'] = checkpoint['checkpoint_hash']
             if config.mode == 'scripted':
                 job['oracle_edits'] = [{'file': name,
                                         'old': (source_root / 'before' / name).read_text(encoding='utf-8'),
@@ -192,7 +205,9 @@ def main():
     parser.add_argument('--catalog', type=Path, default=DATA / 'crossfile-candidates.json')
     parser.add_argument('--task', default='click-flag-envvar')
     parser.add_argument('--mode', choices=('unchanged', 'reference', 'scripted', 'live'), default='unchanged')
-    parser.add_argument('--workflow', choices=('agent-loop', 'symbol-patch', 'symbol-feedback', 'staged'), default='agent-loop')
+    parser.add_argument('--workflow', choices=('agent-loop', 'symbol-patch', 'symbol-feedback', 'staged',
+                                             'staged-localize', 'staged-replay'), default='agent-loop')
+    parser.add_argument('--localization-checkpoint', type=Path)
     parser.add_argument('--staged-evidence-policy', choices=('read-first', 'seed-first'), default='read-first')
     parser.add_argument('--symbol-prompt-policy', choices=('baseline', 'behavior-check'), default='baseline')
     parser.add_argument('--symbol-context-policy', choices=('base', 'linked'), default='base')
@@ -218,7 +233,8 @@ def main():
                        search_max_chars=args.search_max_chars,
                        evidence_top_k=args.evidence_top_k,
                        evidence_dependency_depth=(args.evidence_dependency_depth if args.evidence_dependency_depth is not None
-                                                  else (2 if args.workflow in {'agent-loop', 'staged'} else 1)),
+                                                  else (2 if args.workflow in {'agent-loop', 'staged', 'staged-localize',
+                                                                              'staged-replay'} else 1)),
                        reasoning_effort=args.reasoning_effort, output_policy=args.output_policy,
                        read_policy=args.read_policy, context_policy=args.context_policy,
                        **{name: getattr(args, name) for name in ('max_rounds', 'token_budget', 'max_output_tokens',
@@ -229,10 +245,11 @@ def main():
         _load_dotenv()
     report = run_real(case, row, checks, source, environment, config, args.output, workflow=args.workflow,
                       symbol_prompt_policy=args.symbol_prompt_policy, symbol_context_policy=args.symbol_context_policy,
-                      staged_evidence_policy=args.staged_evidence_policy)
+                      staged_evidence_policy=args.staged_evidence_policy,
+                      localization_checkpoint=args.localization_checkpoint)
     print(f"{case['case_id']}: {report['status']}")
     print(write_summary([report], args.output.resolve()))
-    return 0 if report['accepted'] else 1
+    return 0 if report['accepted'] or report['status'] == 'localized' else 1
 
 
 if __name__ == '__main__':

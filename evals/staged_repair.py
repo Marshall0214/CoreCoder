@@ -4,11 +4,62 @@ import hashlib
 import json
 from dataclasses import replace
 
+from .runner import implementation_metadata
 from .runtime import BudgetExceeded, make_tools
+from .schema import relative_path
 from .symbol_context import apply_symbol_patch, symbol_evidence
 from .symbol_patch import SYMBOL_SYSTEM
 
 PROTOCOL = 'staged-real-repair-development-v1'
+
+
+def object_hash(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True).encode()).hexdigest()
+
+
+def source_versions(workspace, allowed_files):
+    result = {}
+    for name in allowed_files:
+        path = workspace / relative_path(name)
+        if not path.resolve().is_relative_to(workspace.resolve()):
+            raise ValueError('Source escapes workspace')
+        result[name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return result
+
+
+def validate_localization(checkpoint, workspace, description, allowed_files, config):
+    unhashed = {key: value for key, value in checkpoint.items() if key != 'checkpoint_hash'}
+    if (checkpoint.get('schema_version') != 1 or checkpoint.get('purpose') != 'staged-localization-checkpoint-v1'
+            or checkpoint.get('checkpoint_hash') != object_hash(unhashed)):
+        raise ValueError('Invalid localization checkpoint checksum')
+    if (checkpoint['description'] != description or checkpoint['allowed_files'] != allowed_files
+            or checkpoint['config'] != config.to_dict()
+            or checkpoint['implementation_sha256'] != implementation_metadata()['source_hash']):
+        raise ValueError('Localization task, scope, configuration or implementation changed')
+    versions = source_versions(workspace, allowed_files)
+    if versions != checkpoint['source_hashes']:
+        raise ValueError('Localization source version changed')
+    pool, result = checkpoint['pool'], checkpoint['localization_result']
+    if set(pool) != {'reads', 'seeds'} or result['candidate_pool_hash'] != object_hash(pool):
+        raise ValueError('Candidate pool checksum changed')
+    limits = {'explore': max(1, config.token_budget * 4 // 10),
+              'verification_reserve': max(1, config.token_budget // 10)}
+    limits['patch'] = max(1, config.token_budget - limits['explore'] - limits['verification_reserve'])
+    metrics = checkpoint['metrics']
+    spent = metrics['budget_accounted_tokens']
+    if (type(spent) is not int or spent < 0 or result['stage_limits'] != limits
+            or result['stages'][0]['spent'] != spent):
+        raise ValueError('Invalid shared localization budget')
+    for group in pool.values():
+        for row in group:
+            if row['path'] not in versions or row['content_hash'] != versions[row['path']]:
+                raise ValueError('Evidence outside allowed source version')
+            start, end = row['start_line'], row['end_line']
+            lines = (workspace / row['path']).read_bytes().decode('utf-8').splitlines(keepends=True)
+            if (type(start) is not int or type(end) is not int or not 1 <= start <= end <= len(lines)
+                    or row['content'] not in {''.join(lines[start - 1:end]),
+                                             '\n'.join(line.rstrip('\r\n') for line in lines[start - 1:end])}):
+                raise ValueError('Evidence content does not match source lines')
 
 
 def read_fragments(workspace, allowed_files, receipts):
@@ -55,10 +106,10 @@ def select_evidence(reads, seeds, max_chars, policy='read-first'):
     return pack_fragments(reads + seeds if policy == 'read-first' else seeds + reads, max_chars)
 
 
-def run_staged(llm, workspace, description, allowed_files, config, events, public_runner,
-               evidence_policy='read-first'):
-    if evidence_policy not in {'read-first', 'seed-first'}:
-        raise ValueError('Unknown staged evidence policy')
+def localize_staged(llm, workspace, description, allowed_files, config, events):
+    if llm.spent:
+        raise ValueError('Localization requires a fresh budget counter')
+    source_hashes = source_versions(workspace, allowed_files)
     original_config = llm.config
     total = config.token_budget
     if total < 10:
@@ -66,7 +117,7 @@ def run_staged(llm, workspace, description, allowed_files, config, events, publi
     verify_reserve = max(1, total // 10)
     explore_limit = max(1, total * 4 // 10)
     patch_limit = max(1, total - verify_reserve - explore_limit)
-    result = {'protocol': PROTOCOL, 'evidence_policy': evidence_policy,
+    result = {'protocol': PROTOCOL,
               'stage_limits': {'explore': explore_limit, 'patch': patch_limit,
                                                     'verification_reserve': verify_reserve}, 'stages': []}
     tools = {tool.name: tool for tool in make_tools(workspace, allowed_files, events, config.test_timeout,
@@ -118,6 +169,44 @@ def run_staged(llm, workspace, description, allowed_files, config, events, publi
     result['candidate_pool_hash'] = hashlib.sha256(json.dumps(pool, sort_keys=True).encode()).hexdigest()
     (events.path.parent / 'staged-evidence-pool.json').write_text(
         json.dumps(events.clean(pool), ensure_ascii=False, indent=2), encoding='utf-8')
+    if source_versions(workspace, allowed_files) != source_hashes:
+        raise ValueError('Read-only localization changed source')
+    checkpoint = {'schema_version': 1, 'purpose': 'staged-localization-checkpoint-v1',
+                  'description': description, 'allowed_files': allowed_files,
+                  'source_hashes': source_hashes, 'config': config.to_dict(),
+                  'implementation_sha256': implementation_metadata()['source_hash'],
+                  'pool': pool, 'localization_result': result, 'metrics': llm.metrics()}
+    checkpoint['checkpoint_hash'] = object_hash(checkpoint)
+    validate_localization(checkpoint, workspace, description, allowed_files, config)
+    (events.path.parent / 'localization-checkpoint.json').write_text(
+        json.dumps(events.clean(checkpoint), ensure_ascii=False, indent=2), encoding='utf-8')
+    return checkpoint
+
+
+def patch_staged(llm, workspace, description, allowed_files, config, events, public_runner,
+                 checkpoint, evidence_policy='read-first', replay=False):
+    if evidence_policy not in {'read-first', 'seed-first'}:
+        raise ValueError('Unknown staged evidence policy')
+    validate_localization(checkpoint, workspace, description, allowed_files, config)
+    if replay and llm.spent:
+        raise ValueError('Replay requires a fresh model counter')
+    original_config = llm.config
+    shared = checkpoint['metrics']['budget_accounted_tokens']
+    if not replay and llm.spent != shared:
+        raise ValueError('Live patch counter does not match localization cost')
+    pool = checkpoint['pool']
+    reads, seeds = pool['reads'], pool['seeds']
+    result = json.loads(json.dumps(checkpoint['localization_result']))
+    result.update(evidence_policy=evidence_policy, localization_checkpoint_hash=checkpoint['checkpoint_hash'],
+                  localization_replayed=replay)
+    if replay:
+        result['protocol'] = 'staged-shared-localization-replay-v1'
+        result['stages'][0]['shared_not_executed_here'] = True
+        events.emit('localization_replayed', checkpoint_hash=checkpoint['checkpoint_hash'],
+                    shared_tokens=shared, actual_localization_calls=0)
+    total = config.token_budget
+    patch_limit = result['stage_limits']['patch']
+    verify_reserve = result['stage_limits']['verification_reserve']
     evidence = select_evidence(reads, seeds, config.search_max_chars, evidence_policy)
     events.emit('staged_evidence_selected', policy=evidence_policy,
                 candidate_pool_hash=result['candidate_pool_hash'], read_candidates=len(reads), seed_candidates=len(seeds),
@@ -126,9 +215,12 @@ def run_staged(llm, workspace, description, allowed_files, config, events, publi
     result['evidence_manifest'] = [{key: value for key, value in row.items() if key != 'content'} for row in evidence]
     result['evidence_chars'] = sum(len(row['content']) for row in evidence)
     result['evidence_hash'] = hashlib.sha256(json.dumps(evidence, sort_keys=True).encode()).hexdigest()
+    result['budget_accounting'] = {'actual_worker_tokens': llm.spent, 'shared_localization_tokens': shared,
+                                   'patch_tokens': 0, 'pipeline_equivalent_tokens': shared,
+                                   'shared_localization_executed_here': not replay}
     if not evidence:
         return {**result, 'status': 'no_evidence'}
-    available = min(patch_limit, max(0, total - llm.spent - verify_reserve))
+    available = min(patch_limit, max(0, total - shared - verify_reserve))
     before = {name: (workspace / name).read_bytes() for name in allowed_files}
     events.emit('stage_started', stage='patch', token_limit=available)
     payload = {'description': description, 'allowed_files': allowed_files, 'fragments': evidence,
@@ -138,6 +230,8 @@ def run_staged(llm, workspace, description, allowed_files, config, events, publi
     patch_started = llm.spent
     patch_messages = [{'role': 'system', 'content': SYMBOL_SYSTEM},
                       {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}]
+    result['patch_non_evidence_hash'] = object_hash(
+        {'system': SYMBOL_SYSTEM, 'payload': {k: v for k, v in payload.items() if k != 'fragments'}})
     result['patch_prompt_hash'] = hashlib.sha256(json.dumps(patch_messages, sort_keys=True).encode()).hexdigest()
     try:
         if available < 1:
@@ -164,4 +258,18 @@ def run_staged(llm, workspace, description, allowed_files, config, events, publi
     events.emit('stage_started', stage='public_verification', model_calls=0)
     result['public_verification'] = public_runner(events.path.parent / 'staged-public-logs')
     events.emit('stage_finished', stage='public_verification', passed=result['public_verification']['passed'])
+    result['budget_accounting'] = {'actual_worker_tokens': llm.spent,
+                                   'shared_localization_tokens': shared,
+                                   'patch_tokens': llm.spent - patch_started,
+                                   'pipeline_equivalent_tokens': shared + llm.spent - patch_started,
+                                   'shared_localization_executed_here': not replay}
     return result
+
+
+def run_staged(llm, workspace, description, allowed_files, config, events, public_runner,
+               evidence_policy='read-first'):
+    if evidence_policy not in {'read-first', 'seed-first'}:
+        raise ValueError('Unknown staged evidence policy')
+    checkpoint = localize_staged(llm, workspace, description, allowed_files, config, events)
+    return patch_staged(llm, workspace, description, allowed_files, config, events, public_runner,
+                         checkpoint, evidence_policy)
