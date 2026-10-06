@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "purpose": "balanced-crossfile-patch-development-v1",
+  "benchmark_eligible": false,
+  "task_id": "click-flag-envvar",
+  "order": [
+    "baseline",
+    "balanced"
+  ],
+  "repeat": 1,
+  "expected_patch_runs": 2,
+  "expected_new_localizations": 0,
+  "implementation_sha256": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "admission": ".tmp/real-defects/crossfile-admission-v2/admission.json",
+  "catalog": "crossfile-candidates.json",
+  "checkpoints": {
+    "baseline": {
+      "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-flag-envvar-2d037ecc0d/localization-checkpoint.json",
+      "sha256": "60977ec7ddc3df8b81fa186f4e5ebaac1b92a6919f71d2985ff3e44479278142",
+      "checkpoint_hash": "b0f3e69a929adfeffe65923fe7a0ec33f9248462ddbb4267f01c6c0e01a98cd9",
+      "candidate_pool_hash": "042894d2d8b8d773445c8fc14f1f16b28783235d058ee4b965a709767b42ad41",
+      "localization_tokens": 8085
+    },
+    "balanced": {
+      "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-flag-envvar-2d037ecc0d/localization-checkpoint.json",
+      "sha256": "60977ec7ddc3df8b81fa186f4e5ebaac1b92a6919f71d2985ff3e44479278142",
+      "checkpoint_hash": "b0f3e69a929adfeffe65923fe7a0ec33f9248462ddbb4267f01c6c0e01a98cd9",
+      "candidate_pool_hash": "042894d2d8b8d773445c8fc14f1f16b28783235d058ee4b965a709767b42ad41",
+      "localization_tokens": 8085
+    }
+  },
+  "adapter_files": {
+    "docs/experiments/balanced_interval_live_v1.py": "38af4d39856f5b7c8c55c5da69cfc06b79178317f9ace170343937bdcd875cf2",
+    "docs/experiments/balanced_intervals_v1.py": "754f9784de4d683f46283672c6657dd1380f58b6a5e27978dcd295e91ba69aad",
+    "docs/experiments/staged_compact_live_v1.py": "b56cf5f06b047901d7b0459a40012b14113320fa638cea38182e5f22b255557d",
+    "docs/experiments/staged_compact_packing_v1.py": "19cc95d2cb866e5aaaf4e484200592873a8ff7051bbbea93c42953146be4dd52",
+    "docs/experiments/staged_evidence_coverage_v1.py": "d5bdd683640abe0a5cb68331cf0ad9beacd5081d223e5c136760b015589420f4",
+    "docs/experiments/balanced_crossfile_live_v1.py": "ca3068a9b56ae6e74e1414712366201b7331918e75196d4ff6dea2a328b2a35b"
+  },
+  "input_files": {
+    ".tmp/real-defects/crossfile-admission-v2/admission.json": "a978053d00b17efd51a9a8a0ef72d1f658e7d693c057ffddb5dee5458e19c4aa",
+    "evals/real_defects/crossfile-candidates.json": "b02b54868f259825821828c4539aec8d89be2619b3fa94f09c4a5a8039ed0983",
+    "evals/real_defects/staged-shared-repeat-v1.json": "dfc5d4ea88044f61b4068e470bb5fc8930f318aabd00b4d50b1a6a3ccca78347",
+    "docs/experiments/balanced_interval_live_v1.json": "dc2636e24edd9d5503e59ae9d9348ae1b721c535d0dc1c19aed120f1153b2800"
+  },
+  "patch_policy": "read-first vs public-balanced-v1",
+  "controls": "Identical definition localization checkpoint and candidate pool. Only patch fragments change. Fixed 6000 source characters, 15000 patch tokens, 3000 reserve, same LLM and public description. One patch call per arm. No new localization or hidden feedback.",
+  "cost_accounting": "Two fresh patch calls; historical shared localization 8085 tokens counted once. Branch pipeline equivalents separately reported.",
+  "interpretation": "Transfer to previously registered cross-file development task. Identical historical checkpoint. Algorithm and windows unchanged. No task-specific API hints added.",
+  "bare_names": []
+}

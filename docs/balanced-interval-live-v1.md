@@ -61,3 +61,5 @@ python -m pytest tests/test_balanced_intervals.py tests/test_staged_compact_live
 ```
 
 输出必须是新目录。没有执行 Git commit。
+
+后续跨文件迁移对照已完成，见 [balanced-crossfile-live-v1.md](balanced-crossfile-live-v1.md)：两组均未通过 Target，新策略没有复现本页单任务收益，继续保持可选。
