@@ -54,4 +54,6 @@ python -m docs.experiments.validation_rescore_v2 --output .tmp/real-defects/vali
 
 ## 下一步
 
+后续：已实现调用前冻结的 v2 三轮重复协议，新的模型调用与统计独立记录在 [validation-repeat-v2.md](validation-repeat-v2.md)，不与本轮事后校正结果混合。
+
 冻结公开需求一致的 v2 评分协议，以相同三项任务开展新的交错重复运行，分别报告旧调用的事后校正和新调用的前瞻结果。复用任务只能检查本批稳定性；后续外推仍需更多未参与设计的任务。当前不调检索、不增加修复轮数，也不将函数策略推广默认。
