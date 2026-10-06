@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "purpose": "post-design validation admission; no model results; not cross-repository generalization",
+  "selection": {
+    "frozen_pool": [3434, 3493, 3677],
+    "method": "purposive three-case batch covering usage formatting, binary output and color validation; not random sampling",
+    "eligibility": "merged Click behavioral fix; not among seven development tasks; public reproduction; pinned parent/fix commits; pure Python; standard-library checks on Windows",
+    "retention": "retain every candidate and exclusion reason; do not replace candidates based on repair outcomes",
+    "model_calls_before_freeze": 0,
+    "strategy_freeze": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+    "retrieval_adapter_sha256": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+    "repair_adapter_sha256": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+    "construction": "Constructor reviewed public reports and upstream patches for scoring; no new retrieval or prompt tuning. Model pretraining contamination is unknown."
+  },
+  "cases": [
+    {
+      "case_id": "click-usage-empty",
+      "repo": "pallets/click",
+      "issue_url": "https://github.com/pallets/click/issues/3360",
+      "fix_url": "https://github.com/pallets/click/pull/3434",
+      "before_commit": "63274a79d08fdc5c19220696144489f7144a8547",
+      "after_commit": "3bb230dcd5d751f8605b46e9df5a541639d5fd4e",
+      "merged_at": "2026-05-16T15:53:40Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": ["src/click/formatting.py"],
+      "repair_scope": "single-source-file",
+      "test_directory": "click-usage-empty",
+      "public_problem": "HelpFormatter.write_usage must emit the usage prefix and program name when args is empty, without a trailing separator space or extra blank line. Preserve custom prefixes and normal nonempty argument rendering. Commands with no parameters and empty or None options_metavar must still show their usage line."
+    },
+    {
+      "case_id": "click-echo-empty-bytes",
+      "repo": "pallets/click",
+      "issue_url": "https://github.com/pallets/click/issues/3487",
+      "fix_url": "https://github.com/pallets/click/pull/3493",
+      "before_commit": "d42f15b71757de791a5781fb179fd972da9169f5",
+      "after_commit": "a5f5aa6d4012d256ccca24638f2642fc371e9f77",
+      "merged_at": "2026-05-21T22:46:00Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": ["src/click/utils.py"],
+      "repair_scope": "single-source-file",
+      "test_directory": "click-echo-empty-bytes",
+      "public_problem": "echo must accept empty bytes and bytearray messages with newline enabled on binary output streams, writing a binary newline without TypeError. Preserve nonempty binary output, nl=False, text output, None messages and string conversion of ordinary objects."
+    },
+    {
+      "case_id": "click-style-color-validation",
+      "repo": "pallets/click",
+      "fix_url": "https://github.com/pallets/click/pull/3677",
+      "issue_url": "https://github.com/pallets/click/pull/3677",
+      "before_commit": "8dd4d60eb5ad4532abdd9b2809a7d9e2aa679b87",
+      "after_commit": "8a4ce842564ae94ab050062db8525196ad476c19",
+      "merged_at": "2026-07-08T16:05:23Z",
+      "license": "BSD-3-Clause",
+      "changed_source_files": ["src/click/termui.py"],
+      "repair_scope": "single-source-file",
+      "test_directory": "click-style-color-validation",
+      "public_problem": "style and secho must honor palette index 0 for both foreground and background. Invalid colors must raise ValueError: unknown names, booleans, out-of-range palette indices, and RGB sequences without exactly three non-boolean integer components in 0..255. Preserve named colors, valid palette/RGB colors, reset behavior and plain output when color is disabled."
+    }
+  ]
+}

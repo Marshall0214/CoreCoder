@@ -1,0 +1,80 @@
+{
+  "purpose": "public-only inputs; no repair labels or hidden checks",
+  "tasks": [
+    {
+      "task_id": "click-usage-empty",
+      "repo": "pallets/click",
+      "before_commit": "63274a79d08fdc5c19220696144489f7144a8547",
+      "description": "HelpFormatter.write_usage must emit the usage prefix and program name when args is empty, without a trailing separator space or extra blank line. Preserve custom prefixes and normal nonempty argument rendering. Commands with no parameters and empty or None options_metavar must still show their usage line.",
+      "allowed_files": [
+        "src/click/__init__.py",
+        "src/click/_compat.py",
+        "src/click/_termui_impl.py",
+        "src/click/_textwrap.py",
+        "src/click/_utils.py",
+        "src/click/_winconsole.py",
+        "src/click/core.py",
+        "src/click/decorators.py",
+        "src/click/exceptions.py",
+        "src/click/formatting.py",
+        "src/click/globals.py",
+        "src/click/parser.py",
+        "src/click/shell_completion.py",
+        "src/click/termui.py",
+        "src/click/testing.py",
+        "src/click/types.py",
+        "src/click/utils.py"
+      ]
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "repo": "pallets/click",
+      "before_commit": "d42f15b71757de791a5781fb179fd972da9169f5",
+      "description": "echo must accept empty bytes and bytearray messages with newline enabled on binary output streams, writing a binary newline without TypeError. Preserve nonempty binary output, nl=False, text output, None messages and string conversion of ordinary objects.",
+      "allowed_files": [
+        "src/click/__init__.py",
+        "src/click/_compat.py",
+        "src/click/_termui_impl.py",
+        "src/click/_textwrap.py",
+        "src/click/_utils.py",
+        "src/click/_winconsole.py",
+        "src/click/core.py",
+        "src/click/decorators.py",
+        "src/click/exceptions.py",
+        "src/click/formatting.py",
+        "src/click/globals.py",
+        "src/click/parser.py",
+        "src/click/shell_completion.py",
+        "src/click/termui.py",
+        "src/click/testing.py",
+        "src/click/types.py",
+        "src/click/utils.py"
+      ]
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "repo": "pallets/click",
+      "before_commit": "8dd4d60eb5ad4532abdd9b2809a7d9e2aa679b87",
+      "description": "style and secho must honor palette index 0 for both foreground and background. Invalid colors must raise ValueError: unknown names, booleans, out-of-range palette indices, and RGB sequences without exactly three non-boolean integer components in 0..255. Preserve named colors, valid palette/RGB colors, reset behavior and plain output when color is disabled.",
+      "allowed_files": [
+        "src/click/__init__.py",
+        "src/click/_compat.py",
+        "src/click/_termui_impl.py",
+        "src/click/_textwrap.py",
+        "src/click/_utils.py",
+        "src/click/_winconsole.py",
+        "src/click/core.py",
+        "src/click/decorators.py",
+        "src/click/exceptions.py",
+        "src/click/formatting.py",
+        "src/click/globals.py",
+        "src/click/parser.py",
+        "src/click/shell_completion.py",
+        "src/click/termui.py",
+        "src/click/testing.py",
+        "src/click/types.py",
+        "src/click/utils.py"
+      ]
+    }
+  ]
+}

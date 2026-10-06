@@ -1,0 +1,48 @@
+{
+  "protocol": "post-design-validation-suite-v1",
+  "development_tasks_excluded": 7,
+  "unique_validation_tasks": 3,
+  "status": "admitted; no model repairs run",
+  "catalog": "validation-candidates-v1.json",
+  "catalog_sha256": "9b0a8f75f7b59c144d051d66356447dd9769a15bb072c7cb624be7712a1cb1b2",
+  "checks_root": "validation_checks_v1",
+  "checks_sha256": "378ec821925c9d52b9d26b85c9901987ac37cf233f5b6b8563360938c5d14557",
+  "public_tasks": "validation-public-tasks-v1.json",
+  "public_tasks_sha256": "abf6f27db13704d28fb62e053ffe0638a1e2a53c4af837fdec145c25819f49d8",
+  "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "retrieval_adapter_sha256": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+  "repair_adapter_sha256": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+  "admission_adapter_sha256": "24e95d3ebe5eb1669a94cf38a8ca10dd3bf3cc08e513ddd535d792ef73dafb6b",
+  "recorded_admission": ".tmp/real-defects/validation-admission-v1-final/admission.json",
+  "recorded_admission_sha256": "5a04050f41b0382efc792bdf48173d65c2dd8d7679481a522b1dc93412be91e6",
+  "cases": [
+    {
+      "task_id": "click-usage-empty",
+      "before_commit": "63274a79d08fdc5c19220696144489f7144a8547",
+      "after_commit": "3bb230dcd5d751f8605b46e9df5a541639d5fd4e",
+      "before_tree_hash": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+      "after_tree_hash": "5cb79fea7f2f487b3c2831497073b2ffb6d0e2b96dda8e4b084e9123c4080c30",
+      "checks_hash": "5fc2c1424c4cc61237139e692941f21ad59eab8dc8f0a6ca56bd68e948311b2f",
+      "admitted": true
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "before_commit": "d42f15b71757de791a5781fb179fd972da9169f5",
+      "after_commit": "a5f5aa6d4012d256ccca24638f2642fc371e9f77",
+      "before_tree_hash": "1deab48d56e54d5bf49d922899b4a988d4dd53a288257abdafce37a97012d55b",
+      "after_tree_hash": "ea5d8d043cafeda7917dfe64e779f286892bae225d533741a87cc848934fbf51",
+      "checks_hash": "d31601e2902db4d5b1b4c77912e26986aae42c169e6f8642dc61f8614232739b",
+      "admitted": true
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "before_commit": "8dd4d60eb5ad4532abdd9b2809a7d9e2aa679b87",
+      "after_commit": "8a4ce842564ae94ab050062db8525196ad476c19",
+      "before_tree_hash": "afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+      "after_tree_hash": "f7ce54b4ea0ee3b5674f3f181cee7e4849043569069f8739e03c1bc87bab8e73",
+      "checks_hash": "7074411e39c7fe1414c357f34fe5302cd88c2413311ace716d829a5d2fa6e998",
+      "admitted": true
+    }
+  ],
+  "limitations": "purposive within-Click validation batch; constructor inspected fixes; no retrieval tuning; unknown pretraining exposure; not a cross-file benchmark"
+}
