@@ -2,7 +2,7 @@
 
 > 更新：2026-10-06。目标：形成覆盖主要 AI Agent / LLM Application Engineer JD 的个人工程项目。未勾选内容均为计划，不代表已实现。
 
-**阶段状态：检索与独立评测的最小实验交付已收束，见 docs/second-repo-repair-v1.md。两仓库结果按任务池分列，未证实普遍修复率提升；完整跨文件基准、全部实验和服务工程化仍未完成。为加快交付，当前不再扩充这批实验，下一阶段进入 FastAPI 服务 MVP。**
+**阶段状态：检索与独立评测的最小实验交付已收束，见 docs/second-repo-repair-v1.md。两仓库结果按任务池分列，未证实普遍修复率提升；完整跨文件基准、全部实验和服务工程化仍未完成。为加快交付，当前不再扩充这批实验，FastAPI 本地服务 MVP 已交付（docs/service-mvp-v1.md），服务持久化与恢复仍待完成。**
 
 ## 1. 定位与核心问题
 
@@ -161,6 +161,7 @@
 
 ### P1：工作流、MCP 与服务工程化
 
+- [x] 本地 FastAPI MVP 与 SQLite 持久化：幂等提交、SSE 重放、取消、排队恢复、运行中断清理及有界终态查询历史；见 `docs/service-mvp-v1.md`、`docs/service-persistence-v2.md`，不计 PostgreSQL/Redis 或生产部署。
 - [ ] LangGraph + Pydantic：结构化计划、执行、验证、有限反思、审批和取消；通过适配层保留实验执行方式。
 - [ ] PostgreSQL 保存任务/检查点/审计；独立进程 Worker 执行，Redis 用于队列、限流和缓存。实现调用幂等、恢复及取消清理。
 - [ ] 区分任务内记忆与带来源/版本的仓库记忆；核心评测禁用跨任务答案记忆。
@@ -213,4 +214,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**下一步：ItsDangerous 六次对照完成，行块和完整函数均 2/3，总 Token 8035/7270，无预算超限；none-salt 两组均失败，函数优势未在第二仓库复现。本轮结束最小检索实验交付，不将其等同于整个 JD 项目完成。直接实现 FastAPI 服务 MVP：任务提交、查询、SSE 和取消，独立 Worker/工作区接入现有修复与独立验证，验证并发隔离及端到端演示。随后按明确验收补齐存储、LangGraph、MCP Server 与部署，不再无限重复当前任务池。**
+**当前：FastAPI MVP 已完成任务提交/查询、SSE、取消、独立 Worker 及产物下载；真实 HTTP Ollama 验收成功。已补齐 SQLite 事务持久化、幂等提交、排队恢复、运行中断清理及默认 100 个终态查询历史，见 docs/service-persistence-v2.md；仅单进程本地服务，幂等键墓碑与磁盘产物仍需归档管理。PostgreSQL/Redis、鉴权与 Docker/Linux 尚未完成。下一步优先交付代码知识 MCP Server，复用已有检索并验证 Client/Server 互操作；当前检索批次不再扩充。**
