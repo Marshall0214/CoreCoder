@@ -45,3 +45,5 @@
 python docs/experiments/public_coverage_followup_v1.py --output .tmp/real-defects/public-coverage-followup-v1-rerun
 python -m pytest tests/test_public_coverage_followup.py tests/test_staged_evidence_coverage.py -q
 ```
+
+后续均衡原文区间策略已完成真实对照与独立验收，见 [balanced-interval-live-v1.md](balanced-interval-live-v1.md)：该开发任务上原策略失败，新策略通过；不代表跨任务成功率提升。

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "purpose": "balanced-interval-patch-development-v1",
+  "benchmark_eligible": false,
+  "task_id": "click-prompt-suffix",
+  "order": [
+    "baseline",
+    "balanced"
+  ],
+  "repeat": 1,
+  "expected_patch_runs": 2,
+  "expected_new_localizations": 0,
+  "implementation_sha256": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "admission": ".tmp/real-defects/expansion-admission-v1/admission.json",
+  "catalog": "expansion-candidates-v1.json",
+  "checkpoints": {
+    "baseline": {
+      "path": ".tmp/real-defects/definition-localization-v1/definition/localization-checkpoint.json",
+      "sha256": "fb51ccd20c4e56109a095186724d2d8fe44a1533816da8fedf811be9a4c9d633",
+      "checkpoint_hash": "ce0e0cd91f2788a1bb14930bd17f627c2e84ac8c31c038ffbbf86b32eb657e5b",
+      "candidate_pool_hash": "84a08f5ee90f59782e67cba9faec8f7488f5f86e8a1c1ad68d9bec4b30b5aa76",
+      "localization_tokens": 7537
+    },
+    "balanced": {
+      "path": ".tmp/real-defects/definition-localization-v1/definition/localization-checkpoint.json",
+      "sha256": "fb51ccd20c4e56109a095186724d2d8fe44a1533816da8fedf811be9a4c9d633",
+      "checkpoint_hash": "ce0e0cd91f2788a1bb14930bd17f627c2e84ac8c31c038ffbbf86b32eb657e5b",
+      "candidate_pool_hash": "84a08f5ee90f59782e67cba9faec8f7488f5f86e8a1c1ad68d9bec4b30b5aa76",
+      "localization_tokens": 7537
+    }
+  },
+  "adapter_files": {
+    "docs/experiments/balanced_interval_live_v1.py": "38af4d39856f5b7c8c55c5da69cfc06b79178317f9ace170343937bdcd875cf2",
+    "docs/experiments/balanced_intervals_v1.py": "754f9784de4d683f46283672c6657dd1380f58b6a5e27978dcd295e91ba69aad",
+    "docs/experiments/staged_compact_live_v1.py": "b56cf5f06b047901d7b0459a40012b14113320fa638cea38182e5f22b255557d",
+    "docs/experiments/staged_compact_packing_v1.py": "19cc95d2cb866e5aaaf4e484200592873a8ff7051bbbea93c42953146be4dd52",
+    "docs/experiments/staged_evidence_coverage_v1.py": "d5bdd683640abe0a5cb68331cf0ad9beacd5081d223e5c136760b015589420f4"
+  },
+  "input_files": {
+    ".tmp/real-defects/definition-localization-v1/experiment.json": "3d28578b4537731da4d05e348b4176dec62783cc206d7c174098561e3308c622",
+    "docs/experiments/definition_localization_v1.json": "f66ebb5151ff698aba643c0ec9557a23a2b32766e9f496a59edc558d497b7b01",
+    "docs/experiments/definition_localization_v1.py": "ce5edb215d4a5122b2e85415b2cf6fd68e7d134f6c614170e9cc7df5ca863dc9",
+    "docs/experiments/definition_read_v1.py": "d66ee8a4c52b1305c369e267b62c8ba6b4bbb644b66de046a1b0c2bdfa13d24a",
+    ".tmp/real-defects/expansion-admission-v1/admission.json": "75266c7e0a0ffea60bf7f67c4c2046a5486be7d2c3d9bb64e3e6206c2015cda0",
+    "evals/real_defects/expansion-candidates-v1.json": "afd53fe118f4b544329c6dfc20daad47ad648b07f8a2e582bd990e66b7b7b3c6",
+    "docs/experiments/definition_patch_v1.json": "2b16b40a2cd6ce57cc44bd3ebae08876db133856ed18d27019308cb2e22dbf06"
+  },
+  "patch_policy": "read-first vs public-balanced-v1",
+  "controls": "Identical definition localization checkpoint and candidate pool. Only patch fragments change. Fixed 6000 source characters, 15000 patch tokens, 3000 reserve, same LLM and public description. One patch call per arm. No new localization or hidden feedback.",
+  "cost_accounting": "Actual new cost: two patch calls. One shared historical localization (7537) for experiment total. Each branch pipeline equivalent includes localization once; summing branches duplicates shared cost.",
+  "interpretation": "Post-hoc development packing experiment on one shared pool. Generic public-name round-robin intervals; bare public API names declared as in prior audit. No generalization claim.",
+  "bare_names": [
+    "prompt",
+    "confirm"
+  ]
+}
