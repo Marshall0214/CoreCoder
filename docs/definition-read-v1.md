@@ -49,3 +49,5 @@ python -m pytest tests/test_definition_read.py tests/test_staged_acquisition_aud
 输出必须是源码目录外的新目录。本轮产物 `.tmp/real-defects/definition-read-v1/` 包含 `response.json`、`receipts.json` 和带脚本 SHA 的 `provenance.json`，被 Git 忽略。
 
 17 项新增测试及相关回归共 **71 passed**，Ruff 通过。覆盖装饰器及文档、分页完整性、完整 JSON 字符上限、超长单行、嵌套/异步/重载、歧义和语法错误、范围与类型约束、CRLF/Unicode 和读取时源码漂移。未重跑全量测试。
+
+后续独立定位 pilot 已执行，结果及限制见 [definition-localization-v1.md](definition-localization-v1.md)。

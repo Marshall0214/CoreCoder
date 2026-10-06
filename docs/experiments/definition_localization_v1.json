@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "purpose": "definition-localization-development-v1",
+  "benchmark_eligible": false,
+  "task_id": "click-prompt-suffix",
+  "selection": "Post-hoc development pilot motivated by incomplete function acquisition; no held-out claim",
+  "order": [
+    "baseline",
+    "definition"
+  ],
+  "repeat": 1,
+  "expected_new_localizations": 2,
+  "expected_repair_runs": 0,
+  "implementation_sha256": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "checkpoint": {
+    "path": ".tmp/real-defects/staged-shared-replay-v1/localizations/click-prompt-suffix-ab41ed846d/localization-checkpoint.json",
+    "sha256": "47b5fabc8bbe3ebb442ab2550085b6278e5703985518c663beca8f9efe281e35",
+    "checkpoint_hash": "e336b23593af264428a6879d5bb9055d31ac175a9e9a5a4e3196ba23e6bf2e7b",
+    "candidate_pool_hash": "b22747ea026b0b2fda8961085ef49579d94be432ea75a67349a6a184cc47f4bf",
+    "shared_tokens": 11686
+  },
+  "adapter_files": {
+    "docs/experiments/definition_localization_v1.py": "ce5edb215d4a5122b2e85415b2cf6fd68e7d134f6c614170e9cc7df5ca863dc9",
+    "docs/experiments/definition_read_v1.py": "d66ee8a4c52b1305c369e267b62c8ba6b4bbb644b66de046a1b0c2bdfa13d24a"
+  },
+  "controls": "Same checkpoint description, source hashes, initial seeds, 12000 exploration tokens, four rounds, 120-line and 6000-character tool cap. Definition branch adds one schema and generic prompt guidance. Fresh baseline; historical cost is not reused.",
+  "metrics": [
+    "actual_tokens",
+    "tool_schema_hash",
+    "candidate_pool_hash",
+    "definition_read events with complete_symbol/missing_ranges",
+    "source_unchanged"
+  ],
+  "success_claim": "Localization only; repair success requires later independent parent grading."
+}
