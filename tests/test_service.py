@@ -13,6 +13,31 @@ from service.app import create_app
 from service.manager import TERMINAL
 
 
+def process_stopped(pid):
+    # A child may disappear between PID lookup and status retrieval.
+    try:
+        return psutil.Process(pid).status() == psutil.STATUS_ZOMBIE
+    except psutil.NoSuchProcess:
+        return True
+
+
+@pytest.mark.parametrize('status,stopped', [(psutil.STATUS_ZOMBIE, True), (psutil.STATUS_RUNNING, False)])
+def test_process_stopped_preserves_live_process_assertion(monkeypatch, status, stopped):
+    class Child:
+        def status(self):
+            return status
+    monkeypatch.setattr(psutil, 'Process', lambda pid: Child())
+    assert process_stopped(123) is stopped
+
+
+def test_process_stopped_accepts_child_exiting_during_status_lookup(monkeypatch):
+    class Child:
+        def status(self):
+            raise psutil.NoSuchProcess(123)
+    monkeypatch.setattr(psutil, 'Process', lambda pid: Child())
+    assert process_stopped(123)
+
+
 def wait(client, task_id, predicate=lambda row: row['state'] in TERMINAL, timeout=20):
     end = time.monotonic() + timeout
     while time.monotonic() < end:
@@ -87,7 +112,7 @@ def test_running_and_queued_cancel_and_capacity(tmp_path):
         assert not (tmp_path / queued / 'pids.json').exists()
         assert app.state.manager.jobs[running].process.poll() is not None
         for pid in json.loads((tmp_path / running / 'pids.json').read_text()):
-            assert not psutil.pid_exists(pid) or psutil.Process(pid).status() == psutil.STATUS_ZOMBIE
+            assert process_stopped(pid)
         assert client.post(f'/tasks/{running}/cancel').json()['state'] == 'cancelled'
         assert 'cancelled' in client.get(f'/tasks/{running}/events').text
 

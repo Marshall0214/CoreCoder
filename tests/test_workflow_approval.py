@@ -16,7 +16,7 @@ from evals.schema import RunConfig, load_suite
 from service.app import create_app
 from service.manager import Job
 from service.store import TaskStore
-from tests.test_service import wait
+from tests.test_service import process_stopped, wait
 from workflows.approval import run_approval_workflow
 
 SUITE = Path(__file__).resolve().parent.parent / 'evals/fixtures'
@@ -176,6 +176,6 @@ def test_approved_running_cancel_stops_actual_children(tmp_path):
         pids = json.loads(path.read_text())
         client.post(f'/tasks/{task_id}/cancel')
         assert wait(client, task_id)['state'] == 'cancelled'
-        assert all(not psutil.pid_exists(pid) or psutil.Process(pid).status() == psutil.STATUS_ZOMBIE for pid in pids)
+        assert all(process_stopped(pid) for pid in pids)
         assert (tmp_path / task_id / 'execution-started').exists()
         assert not (tmp_path / task_id / 'result.json').exists()

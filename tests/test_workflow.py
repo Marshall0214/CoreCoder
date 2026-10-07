@@ -13,7 +13,7 @@ from fastapi.testclient import TestClient
 
 from evals.schema import RunConfig, load_suite
 from service.app import create_app
-from tests.test_service import wait
+from tests.test_service import process_stopped, wait
 from workflows.repair import RepairPlan, run_workflow
 
 SUITE = Path(__file__).resolve().parent.parent / 'evals/fixtures'
@@ -134,7 +134,7 @@ def test_running_graph_cancel_stops_children_and_preserves_last_stage(tmp_path):
         assert client.get(f'/tasks/{task_id}/artifacts/workflow.json').json()['stage'] == 'executing'
         client.post(f'/tasks/{task_id}/cancel')
         assert wait(client, task_id)['state'] == 'cancelled'
-        assert all(not psutil.pid_exists(pid) or psutil.Process(pid).status() == psutil.STATUS_ZOMBIE for pid in pids)
+        assert all(process_stopped(pid) for pid in pids)
         partial = client.get(f'/tasks/{task_id}/artifacts/workflow.json').json()
         assert partial['stage'] == 'executing' and partial['outcome'] == 'pending'
         assert not (tmp_path / task_id / 'result.json').exists()

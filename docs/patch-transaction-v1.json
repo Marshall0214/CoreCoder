@@ -1,0 +1,470 @@
+{
+  "protocol": "patch-transaction-audit-v1",
+  "complete": true,
+  "model_calls": 0,
+  "source_hash": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+  "summary": {
+    "historical_rejected": 4,
+    "historical_total": 6,
+    "accepted_but_behavior_failed": 2,
+    "positive_accepted": 9,
+    "positive_total": 9
+  },
+  "historical": [
+    {
+      "repeat": 1,
+      "policy": "checks-only",
+      "transaction": {
+        "accepted": false,
+        "committed": false,
+        "reason": "added_duplicate_definitions",
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "duplicates": [
+          {
+            "scope": "<module>/Serializer",
+            "name": "dumps",
+            "role": "FunctionDef",
+            "before": 1,
+            "after": 2,
+            "file": "src/itsdangerous/serializer.py"
+          },
+          {
+            "scope": "<module>/Serializer",
+            "name": "loads",
+            "role": "FunctionDef",
+            "before": 1,
+            "after": 2,
+            "file": "src/itsdangerous/serializer.py"
+          }
+        ],
+        "import": null,
+        "original_unchanged": true
+      },
+      "public_check": null
+    },
+    {
+      "repeat": 1,
+      "policy": "checks-and-relations",
+      "transaction": {
+        "accepted": false,
+        "committed": false,
+        "reason": "added_duplicate_definitions",
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "duplicates": [
+          {
+            "scope": "<module>/Serializer",
+            "name": "dumps",
+            "role": "FunctionDef",
+            "before": 1,
+            "after": 3,
+            "file": "src/itsdangerous/serializer.py"
+          },
+          {
+            "scope": "<module>/Serializer",
+            "name": "loads",
+            "role": "FunctionDef",
+            "before": 1,
+            "after": 3,
+            "file": "src/itsdangerous/serializer.py"
+          }
+        ],
+        "import": null,
+        "original_unchanged": true
+      },
+      "public_check": null
+    },
+    {
+      "repeat": 2,
+      "policy": "checks-and-relations",
+      "transaction": {
+        "accepted": false,
+        "committed": false,
+        "reason": "added_duplicate_definitions",
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "duplicates": [
+          {
+            "scope": "<module>/Serializer",
+            "name": "dumps",
+            "role": "FunctionDef",
+            "before": 1,
+            "after": 3,
+            "file": "src/itsdangerous/serializer.py"
+          },
+          {
+            "scope": "<module>/Serializer",
+            "name": "loads",
+            "role": "FunctionDef",
+            "before": 1,
+            "after": 3,
+            "file": "src/itsdangerous/serializer.py"
+          }
+        ],
+        "import": null,
+        "original_unchanged": true
+      },
+      "public_check": null
+    },
+    {
+      "repeat": 2,
+      "policy": "checks-only",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0918
+        },
+        "original_unchanged": false
+      },
+      "public_check": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.0997,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      }
+    },
+    {
+      "repeat": 3,
+      "policy": "checks-only",
+      "transaction": {
+        "accepted": false,
+        "committed": false,
+        "reason": "added_duplicate_definitions",
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "duplicates": [
+          {
+            "scope": "<module>/Serializer",
+            "name": "dumps",
+            "role": "FunctionDef",
+            "before": 1,
+            "after": 3,
+            "file": "src/itsdangerous/serializer.py"
+          },
+          {
+            "scope": "<module>/Serializer",
+            "name": "loads",
+            "role": "FunctionDef",
+            "before": 1,
+            "after": 3,
+            "file": "src/itsdangerous/serializer.py"
+          }
+        ],
+        "import": null,
+        "original_unchanged": true
+      },
+      "public_check": null
+    },
+    {
+      "repeat": 3,
+      "policy": "checks-and-relations",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0955
+        },
+        "original_unchanged": false
+      },
+      "public_check": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1074,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      }
+    }
+  ],
+  "positives": [
+    {
+      "task_id": "itsdangerous-none-salt",
+      "kind": "human-certified",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "src/itsdangerous/signer.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0959
+        },
+        "original_unchanged": false
+      },
+      "behavior_passed": true
+    },
+    {
+      "task_id": "unique-falsey",
+      "kind": "synthetic-model",
+      "mode": "off",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "app.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0472
+        },
+        "original_unchanged": false
+      },
+      "behavior_passed": true
+    },
+    {
+      "task_id": "unique-falsey",
+      "kind": "synthetic-model",
+      "mode": "on",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "app.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0489
+        },
+        "original_unchanged": false
+      },
+      "behavior_passed": true
+    },
+    {
+      "task_id": "preserve-methods",
+      "kind": "synthetic-model",
+      "mode": "on",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "app.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0601
+        },
+        "original_unchanged": false
+      },
+      "behavior_passed": true
+    },
+    {
+      "task_id": "preserve-methods",
+      "kind": "synthetic-model",
+      "mode": "off",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "app.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0529
+        },
+        "original_unchanged": false
+      },
+      "behavior_passed": true
+    },
+    {
+      "task_id": "annotation-import",
+      "kind": "synthetic-model",
+      "mode": "off",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "app.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0505
+        },
+        "original_unchanged": false
+      },
+      "behavior_passed": true
+    },
+    {
+      "task_id": "annotation-import",
+      "kind": "synthetic-model",
+      "mode": "on",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "app.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0547
+        },
+        "original_unchanged": false
+      },
+      "behavior_passed": true
+    },
+    {
+      "task_id": "default-none-override",
+      "kind": "synthetic-model",
+      "mode": "on",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "app.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0475
+        },
+        "original_unchanged": false
+      },
+      "behavior_passed": true
+    },
+    {
+      "task_id": "default-none-override",
+      "kind": "synthetic-model",
+      "mode": "off",
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "app.py"
+        ],
+        "duplicates": [],
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0453
+        },
+        "original_unchanged": false
+      },
+      "behavior_passed": true
+    }
+  ],
+  "input_hashes": {
+    ".tmp/real-defects/salt-relations-feedback-v1/experiment.json": "b8e0f14d659213e5eb4524d06fc5144653db419a6c9503e3fcc3e41c47af4878",
+    ".tmp/calibration/thinking-v1-live/experiment.json": "df6fe3b73d8fc852095e086c35350bcc309674d1c8d1f73bc0d1785171b65f00",
+    "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+    "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+    "docs/experiments/patch_transaction_audit_v1.py": "9d7093a7616b0cad28f4e7e6af2f654199c846dd257d20eaff4d77007cfbcc46",
+    "docs/experiments/repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+    "docs/experiments/thinking_calibration_v1.py": "4fd5865933ce8b83d0811654bebb93fdc22906a7245b13c664dd47771d3bb987",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-01/itsdangerous-none-salt/checks-only/job.json": "79a1ae150392b3e6aa5b03dbf19b8ecfc65e77ca00326c87d803e591e2b1aa76",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-01/itsdangerous-none-salt/checks-only/response.txt": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-01/itsdangerous-none-salt/checks-only/feedback-response.txt": "2570c943793d91568643febe160244b23c7416715cab772ad04f75dbede1783f",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-01/itsdangerous-none-salt/checks-and-relations/job.json": "ae6cb1aaa01cfe5bbb50d4e969ce4a340e259dd4b2af68b2513993120bf7ea25",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-01/itsdangerous-none-salt/checks-and-relations/response.txt": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-01/itsdangerous-none-salt/checks-and-relations/feedback-response.txt": "59deae65000fb1927bbbeda074dc6d6d7b20c3109112f7536c6a022f6f0a2326",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-02/itsdangerous-none-salt/checks-and-relations/job.json": "0ca2e78b97ddba5fd8a222983dddadd630379b217319230dbda88bbb43d49173",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-02/itsdangerous-none-salt/checks-and-relations/response.txt": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-02/itsdangerous-none-salt/checks-and-relations/feedback-response.txt": "59deae65000fb1927bbbeda074dc6d6d7b20c3109112f7536c6a022f6f0a2326",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-02/itsdangerous-none-salt/checks-only/job.json": "f73d4dec84b2c4f85d6c758c79ee90b264f90fbe6ac2a4f6030c3761d2c5cd85",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-02/itsdangerous-none-salt/checks-only/response.txt": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-02/itsdangerous-none-salt/checks-only/feedback-response.txt": "c7d9a2b9951e6845b0616fb85a215df40786a03086c2e47c3a5998ec407e6552",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-03/itsdangerous-none-salt/checks-only/job.json": "b01c396e322b94b9fc8a68b53f8bd3c3409ac1dc91bdcf0a1ca3655d162b4656",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-03/itsdangerous-none-salt/checks-only/response.txt": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-03/itsdangerous-none-salt/checks-only/feedback-response.txt": "50a3b35b597cba0fb65145ee11f612a75338cb60fe85ec7510de86f5037dc154",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-03/itsdangerous-none-salt/checks-and-relations/job.json": "06540ae6d821e7229a3c78577c438f3d6495e785f664d9e249c6c73c5c2080a3",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-03/itsdangerous-none-salt/checks-and-relations/response.txt": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+    ".tmp/real-defects/salt-relations-feedback-v1/repeat-03/itsdangerous-none-salt/checks-and-relations/feedback-response.txt": "bbd3e394c24c11024401085d45741ee3f43d7fb5acf7a6c2600f293676e7e549",
+    ".tmp/calibration/thinking-v1-live/repeat-01/unique-falsey/off/response.txt": "e87af736040e2de243f9fedc4ad9f7072873582bc85274f9597f47d4b76fe582",
+    ".tmp/calibration/thinking-v1-live/repeat-01/unique-falsey/on/response.txt": "e87af736040e2de243f9fedc4ad9f7072873582bc85274f9597f47d4b76fe582",
+    ".tmp/calibration/thinking-v1-live/repeat-01/preserve-methods/on/response.txt": "a84211eda4b8394d16cb83dce2e149b0e22fc907e4187f4010f00934108a09d0",
+    ".tmp/calibration/thinking-v1-live/repeat-01/preserve-methods/off/response.txt": "a84211eda4b8394d16cb83dce2e149b0e22fc907e4187f4010f00934108a09d0",
+    ".tmp/calibration/thinking-v1-live/repeat-01/annotation-import/off/response.txt": "326be5ad27b788387606e4ffdb12d7525ee21577ecaeffbc979f1a0def6d1431",
+    ".tmp/calibration/thinking-v1-live/repeat-01/annotation-import/on/response.txt": "326be5ad27b788387606e4ffdb12d7525ee21577ecaeffbc979f1a0def6d1431",
+    ".tmp/calibration/thinking-v1-live/repeat-01/default-none-override/on/response.txt": "0328ee25687a7aba78c5e10209f7b5dfcd3f119b208a3ca2d1e1110d9f281034",
+    ".tmp/calibration/thinking-v1-live/repeat-01/default-none-override/off/response.txt": "55a8bcebe857a402de16d8c73946edb10dd6b341452fc5aa99dd9803836e3a8b"
+  },
+  "raw_artifact": ".tmp/real-defects/patch-transaction-v1-certified/audit.json",
+  "validation": {
+    "transaction_tests": {
+      "passed": 16,
+      "seconds": 0.46
+    },
+    "ruff": "passed",
+    "first_full_run": {
+      "passed": 967,
+      "failed": 1,
+      "skipped": 2,
+      "seconds": 156.61,
+      "failure": "Existing cancellation assertion raced with child exit; psutil.NoSuchProcess during status lookup."
+    },
+    "final_full_run": {
+      "passed": 971,
+      "skipped": 2,
+      "failed": 0,
+      "seconds": 152.58,
+      "command": "python -B -m pytest tests -q -p no:cacheprovider --basetemp .tmp/pytest-patch-transaction-full-v2"
+    },
+    "cancellation_race_fix": "Test-only helper catches NoSuchProcess from status lookup; live processes still fail. Applied to four existing process-termination assertions; three deterministic regressions added.",
+    "tested_file_hashes": {
+      "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+      "docs/experiments/patch_transaction_audit_v1.py": "9d7093a7616b0cad28f4e7e6af2f654199c846dd257d20eaff4d77007cfbcc46",
+      "tests/test_patch_transaction.py": "7ee70e057d8fe63ed87a5754e2aa51a5a7b166440d9a54d7f188090aa9fa4201",
+      "tests/test_service.py": "f0e4ae0f31d7d1f1275a0344d382447fbf24d1f68cd50c2d23f7d05960d08942",
+      "tests/test_service_persistence.py": "e5d4b24cd95005014e5366cfc1f320b8a4a4dddda6129c6c956195c02518038f",
+      "tests/test_workflow.py": "e048c5eece85b07da2fbd00a0022f4a8cfa2b5231cd6d6a754cc31d8e32bdeec",
+      "tests/test_workflow_approval.py": "1ac3d05628fed868177e5ee3c27009947e64742163a291a221aff0c12201672f"
+    }
+  }
+}

@@ -19,7 +19,7 @@ from service.app import SubmitTask, create_app
 from service.launcher import await_approval
 from service.manager import ROOT, Job, stop_tree
 from service.store import TaskStore
-from tests.test_service import submit, wait
+from tests.test_service import process_stopped, submit, wait
 
 BODY = {'task_id': 'timeout-units'}
 STUB = 'tests.service_worker_stub'
@@ -162,7 +162,7 @@ def test_orphan_cleanup_checks_process_identity(tmp_path, matching):
             assert client.get(f'/tasks/{job.id}').json()['state'] == 'interrupted'
             if matching:
                 assert process.poll() is not None
-                assert all(not psutil.pid_exists(pid) or psutil.Process(pid).status() == psutil.STATUS_ZOMBIE for pid in pids)
+                assert all(process_stopped(pid) for pid in pids)
             else:
                 assert process.poll() is None
     finally:
