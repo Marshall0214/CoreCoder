@@ -11,6 +11,7 @@
 | 实验原型 | 公开符号解析、同名消歧、预算装填与三轮新对照 | [符号检索](symbol-directed-retrieval-v1.md)；点名函数覆盖改善，修复率无提升 |
 | 实验原型 | 人工公开检查、离线认证、一次共享预算反馈与新回归 | [公开反馈](repair-public-feedback-v1.md)；两项已知失败 0/6→3/6，Token 2.57 倍，非通用测试生成 |
 | 实验原型 | 点名类构造函数与参数转发片段装填、三轮反馈对照 | [转发上下文](repair-forwarding-feedback-v1.md)；两组均 3/6，新策略有盐值隔离回归，不替换默认 |
+| 实验原型 | 人工盐值关系矩阵、检查 v2 与离线变异验证 | [盐值关系](salt-relations-audit-v1.md)；正例 11/11、6 变异和 6 历史失败均拒绝，无模型调用 |
 | 已完成 | FastAPI 提交/查询、SSE、幂等、取消、SQLite 持久化和进程清理 | [服务](service-mvp-v1.md)、[恢复](service-persistence-v2.md)、`service/` |
 | 已完成 | LangGraph 固定计划、一次执行与独立验证分支 | [有限工作流](langgraph-workflow-v1.md)、`workflows/repair.py` |
 | 已完成 | 人工审批、原生 SQLite 检查点、待审批恢复与防重放 | [审批](workflow-approval-v1.md)、`workflows/approval.py` |
@@ -58,3 +59,5 @@ Memory、Reflection、Multi-Agent 等名称不能只因上游存在工具就算�
 最新 Windows 回归为 919 passed、2 skipped，见 [公开反馈摘要](repair-public-feedback-v1.json)。公开反馈为独立实验模式，不改变固定计划服务的一次修复协议。
 
 转发上下文实验后 Windows 全量 924 passed、2 skipped；两组均 3/6，收益未提高，源码语法启发式不能代替参数语义验证。
+
+盐值关系离线验证后，最新 Windows 全量 934 passed、2 skipped，见 [离线摘要](salt-relations-audit-v1.json)。检查 v2 尚未接入模型反馈或默认服务。

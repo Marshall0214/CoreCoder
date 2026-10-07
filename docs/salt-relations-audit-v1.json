@@ -1,0 +1,438 @@
+{
+  "protocol": "salt-relations-audit-v1",
+  "complete": true,
+  "model_calls": 0,
+  "contract": {
+    "description": "Serializer and Signer must accept salt=None, using the Signer default salt rather than the Serializer default. Signed values must round-trip, Serializer salt=None signatures must match explicit itsdangerous.Signer salt, and Signer salt=None must match its default. Preserve explicit string and bytes salts, the Serializer default salt, wrong-salt rejection and tamper detection.",
+    "description_sha256": "6ab9a5c1ebce76d93f561290d7bf18bb24b7144d6e89f88c92a018607bdfd83e",
+    "clauses": [
+      {
+        "text": "using the Signer default salt rather than the Serializer default",
+        "span": [
+          45,
+          109
+        ]
+      },
+      {
+        "text": "Signed values must round-trip",
+        "span": [
+          111,
+          140
+        ]
+      },
+      {
+        "text": "Preserve explicit string and bytes salts",
+        "span": [
+          265,
+          305
+        ]
+      },
+      {
+        "text": "the Serializer default salt",
+        "span": [
+          307,
+          334
+        ]
+      },
+      {
+        "text": "wrong-salt rejection",
+        "span": [
+          336,
+          356
+        ]
+      },
+      {
+        "text": "tamper detection",
+        "span": [
+          361,
+          377
+        ]
+      }
+    ],
+    "original_api_defaults": {
+      "Serializer": {
+        "salt_utf8": "itsdangerous",
+        "path": "src/itsdangerous/serializer.py",
+        "source_sha256": "c8a55ee36667c1f08affb08deba031d86cac8e43b4a986caae1e3ade5282ed75",
+        "line": 89
+      },
+      "Signer": {
+        "salt_utf8": "itsdangerous.Signer",
+        "path": "src/itsdangerous/signer.py",
+        "source_sha256": "51d73e762a48797071f1358737a9aab3ade3b872ffdef3b40b8ca5fe5abaf419",
+        "line": 120
+      }
+    },
+    "check_sha256": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+    "rules": [
+      {
+        "constructor": "omitted",
+        "method_salt": "omitted or None",
+        "effective": "Serializer original default"
+      },
+      {
+        "constructor": "explicit None",
+        "method_salt": "omitted or None",
+        "effective": "Signer original default"
+      },
+      {
+        "constructor": "explicit str/bytes including empty",
+        "method_salt": "omitted or None",
+        "effective": "instance salt"
+      },
+      {
+        "constructor": "any",
+        "method_salt": "explicit str/bytes including empty",
+        "effective": "method override"
+      }
+    ],
+    "provenance": "Human-authored public-description relations plus preservation of original API parameter forwarding; not hidden grading.",
+    "preservation_source": [
+      "Serializer.make_signer",
+      "Serializer.iter_unsigners",
+      "Serializer.dumps",
+      "Serializer.loads"
+    ],
+    "limits": "11 test methods with subtests, not exhaustive semantics, cryptographic proof or general automatic test generation."
+  },
+  "adapter_hashes": {
+    "docs\\experiments\\salt_relations_audit_v1.py": "94bb64473835d4a9c8f79c7e91a1ea90ec9ac526cfd64b4dc6ea4a91ae7fa1e0",
+    "docs\\experiments\\public_checks_v2\\none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+    "docs\\experiments\\repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+    "docs\\experiments\\repair_public_feedback_worker_v1.py": "ed1c4509ba4fa9f8ac296d17a6a1b5fab2f20062071cfd8b97b3f4f2ba7bdf88",
+    "docs\\experiments\\repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+    ".tmp\\real-defects\\repair-forwarding-feedback-v1\\experiment.json": "727d03910494154609116e977bb0495a478a01894c049835f11497d535a71592"
+  },
+  "source_hash": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+  "original": {
+    "outcome": {
+      "returncode": 1,
+      "timed_out": false,
+      "seconds": 0.1007,
+      "tests_run": 11,
+      "assertion_failure": true,
+      "execution_error": false,
+      "stderr": "PublicContract.stderr.txt",
+      "stdout": "PublicContract.stdout.txt",
+      "passed": false
+    },
+    "failed_methods": [
+      "test_constructor_none_distinct_from_omission",
+      "test_method_salt_override_matrix",
+      "test_serializer_none_matches_explicit_signer",
+      "test_serializer_none_round_trip",
+      "test_signer_none_uses_signer_default"
+    ],
+    "candidate_source_hash": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4"
+  },
+  "positive": {
+    "outcome": {
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 0.0987,
+      "tests_run": 11,
+      "assertion_failure": false,
+      "execution_error": false,
+      "stderr": "PublicContract.stderr.txt",
+      "stdout": "PublicContract.stdout.txt",
+      "passed": true
+    },
+    "failed_methods": [],
+    "candidate_source_hash": "ff2f53066f36c3ff68832489a8508b31353d910a036562167cd0922565a2719a"
+  },
+  "mutants": [
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.0958,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "candidate_source_hash": "dcba6ebe2f30f9836f918bedc5a37a9cc03fbd2600062e5f3b67d1e595244dd0",
+      "name": "serializer_none_wrong_default",
+      "expected_failed_method": "test_serializer_none_matches_explicit_signer",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.0984,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_omitted_default_matches_independent_signer",
+        "test_omitted_serializer_salt_preserved"
+      ],
+      "candidate_source_hash": "1490631acba16f4643437f1fcc2bfb968cf61f59555014845e4652656a92c5cf",
+      "name": "omitted_default_changed",
+      "expected_failed_method": "test_omitted_default_matches_independent_signer",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.0964,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_explicit_constructor_salt_exact_signature",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "candidate_source_hash": "2c7675cea83e5115d6bb4aad48671f50e8e36e1fa6fe6c04ed082cbd02024230",
+      "name": "empty_salt_collapsed",
+      "expected_failed_method": "test_explicit_constructor_salt_exact_signature",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1058,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_explicit_constructor_salt_exact_signature",
+        "test_explicit_string_and_bytes_salts",
+        "test_method_salt_override_matrix",
+        "test_omitted_default_matches_independent_signer"
+      ],
+      "candidate_source_hash": "b0d0f31706d59e0b43e0a8b1d0394cadbd5124c0167477ffa3b42b2c3aaa861b",
+      "name": "instance_salt_ignored",
+      "expected_failed_method": "test_omitted_default_matches_independent_signer",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1102,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_method_salt_override_matrix"
+      ],
+      "candidate_source_hash": "cd5b07f11a151603c05ed65a3aa387b11fadcfe5ef3d6201722576633d357708",
+      "name": "method_override_ignored_signing",
+      "expected_failed_method": "test_method_salt_override_matrix",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1093,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_method_salt_override_matrix"
+      ],
+      "candidate_source_hash": "d883460ec836affccb16dc3023769a543fff9c8d0930571f61b35801667127f7",
+      "name": "method_override_ignored_loading",
+      "expected_failed_method": "test_method_salt_override_matrix",
+      "detected": true
+    }
+  ],
+  "historical_candidates": [
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1103,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_explicit_constructor_salt_exact_signature",
+        "test_method_salt_override_matrix",
+        "test_omitted_default_matches_independent_signer",
+        "test_wrong_salt_rejected"
+      ],
+      "candidate_source_hash": "0ca7324ebf0a6ad7d607cd501a4f3e9017bf4ea1de50175f009438b316f53633",
+      "repeat": 1,
+      "policy": "forwarding-feedback",
+      "initial_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_sha256": "81582f612a5ca65985664c06fd2cc6f95dddc5a04a6a0c63d3ac1bcf29e63f0c",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1188,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "candidate_source_hash": "2c4345c03fa2ca270777b30e701d7d4c763b2150d210d0c0facf97166f597ca9",
+      "repeat": 1,
+      "policy": "public-feedback",
+      "initial_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_sha256": "03babec2111e42371bad1b4a694050a4dfa3a0e65f0ba833d20ae2ae8adbd056",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.0977,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "candidate_source_hash": "2c4345c03fa2ca270777b30e701d7d4c763b2150d210d0c0facf97166f597ca9",
+      "repeat": 2,
+      "policy": "public-feedback",
+      "initial_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_sha256": "03babec2111e42371bad1b4a694050a4dfa3a0e65f0ba833d20ae2ae8adbd056",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1054,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_explicit_constructor_salt_exact_signature",
+        "test_method_salt_override_matrix",
+        "test_omitted_default_matches_independent_signer",
+        "test_wrong_salt_rejected"
+      ],
+      "candidate_source_hash": "0ca7324ebf0a6ad7d607cd501a4f3e9017bf4ea1de50175f009438b316f53633",
+      "repeat": 2,
+      "policy": "forwarding-feedback",
+      "initial_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_sha256": "81582f612a5ca65985664c06fd2cc6f95dddc5a04a6a0c63d3ac1bcf29e63f0c",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.0992,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_explicit_constructor_salt_exact_signature",
+        "test_method_salt_override_matrix",
+        "test_omitted_default_matches_independent_signer",
+        "test_wrong_salt_rejected"
+      ],
+      "candidate_source_hash": "0ca7324ebf0a6ad7d607cd501a4f3e9017bf4ea1de50175f009438b316f53633",
+      "repeat": 3,
+      "policy": "forwarding-feedback",
+      "initial_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_sha256": "81582f612a5ca65985664c06fd2cc6f95dddc5a04a6a0c63d3ac1bcf29e63f0c",
+      "detected": true
+    },
+    {
+      "outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "candidate_source_hash": "2c4345c03fa2ca270777b30e701d7d4c763b2150d210d0c0facf97166f597ca9",
+      "repeat": 3,
+      "policy": "public-feedback",
+      "initial_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_sha256": "03babec2111e42371bad1b4a694050a4dfa3a0e65f0ba833d20ae2ae8adbd056",
+      "detected": true
+    }
+  ],
+  "validation": {
+    "targeted_passed": 33,
+    "ruff": "passed",
+    "linux_container_http_rerun": false,
+    "full_passed": 934,
+    "full_skipped": 2,
+    "full_seconds": 154.17
+  },
+  "raw_audit_sha256": "aed080365d682c89aab20f944cb6c178b6e5e97473e2407e212c6f812a65fbc0"
+}

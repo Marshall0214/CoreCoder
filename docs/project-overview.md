@@ -25,6 +25,7 @@
 | 符号定向检索与三轮修复对照 | [symbol-directed-retrieval-v1.md](symbol-directed-retrieval-v1.md) |
 | 公开检查与一次反馈修复 | [repair-public-feedback-v1.md](repair-public-feedback-v1.md) |
 | 参数转发上下文与反馈对照 | [repair-forwarding-feedback-v1.md](repair-forwarding-feedback-v1.md) |
+| 盐值关系矩阵与离线变异验证 | [salt-relations-audit-v1.md](salt-relations-audit-v1.md) |
 
 ## 架构和个人贡献边界
 
@@ -77,7 +78,7 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新转发上下文实验后 Windows 全量 **924 passed、2 skipped**，见 [上下文报告](repair-forwarding-feedback-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新盐值关系离线验证后 Windows 全量 **934 passed、2 skipped**，见 [关系报告](salt-relations-audit-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -88,3 +89,5 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 公开反馈本轮新增 22 次模型调用（18 次配对实验、4 次单次回归）。只为两项任务提供人工公开检查和一次预算内反馈，未实现通用测试生成或接入服务默认流程。
 
 参数转发上下文本轮另新增 24 次模型调用，两种反馈均 3/6；none-salt 未修复，新的错误盐值隔离行为被公开检查及独立 Controls 拦截。
+
+盐值关系检查 v2 离线验证：人工正例 11/11、六个变异与六个历史失败补丁全部拒绝，0 次模型调用。它验证检查的已知区分能力，尚无模型收益结果，见 [关系验证](salt-relations-audit-v1.md)。
