@@ -83,7 +83,7 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新事务反馈后 Windows 全量 **983 passed、2 skipped**，见 [反馈报告](transaction-feedback-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新统一反馈后 Windows 全量 **999 passed、2 skipped**，见 [统一反馈报告](unified-feedback-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -104,3 +104,5 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 可选编辑事务保护：临时副本唯一匹配、Python 编译、新增重复定义检查及隔离模块加载，通过后才写回；写入异常尝试回滚。6 个历史失败补丁拦截 4 个，剩余 2 个仍被公开语义检查拒绝；9 个正确示例全部通过，0 次模型调用。未接入默认服务，不宣称提升真实修复率或跨进程原子性。另修正四处取消测试的进程退出竞态，服务运行时不变。
 
 事务拒绝原因反馈已完成：最多两次补丁尝试、正常模式最多两次模型请求，共享 Token 预算。三个合成故障注入任务做一次真实恢复反馈，两组均 3/3，6 次新调用；详细诊断 Token 增加约 39.1%，未见准确率收益。该结果不计真实缺陷成功率，不设为默认策略，见 [事务反馈](transaction-feedback-v1.md)。
+
+真实任务统一反馈完成：事务拒绝使用原版本、公开断言失败使用当前候选，最多两次调用且共享预算。六项已查看的真实缺陷两组均 5/6、各 25,837 Token，共 16 次新调用。统一模式拦截 none-salt 第二轮重复定义但仍未修复语义；无成功率收益，保留可选，见 [统一反馈](unified-feedback-v1.md)。

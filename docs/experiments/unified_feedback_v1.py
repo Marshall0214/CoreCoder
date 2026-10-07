@@ -1,0 +1,163 @@
+"""Fresh six-task development comparison; public and private checks remain separate."""
+
+import argparse
+import json
+import os
+import shutil
+import sys
+from pathlib import Path
+
+from docs.experiments import anchored_patch_comparison_v1 as preparation
+from docs.experiments import repair_public_checks_v1 as public
+from docs.experiments import salt_relations_audit_v1 as relations
+from docs.experiments import second_repo_repair_v1 as second
+from docs.experiments import symbol_directed_retrieval_v1 as directed
+from docs.experiments import unified_feedback_worker_v1 as worker
+from evals.process import run_process
+
+repair = public.repair
+ROOT = public.ROOT
+
+
+def summarize(rows):
+    result = {}
+    for policy in worker.POLICIES:
+        values = [dict(row, policy=repair.POLICIES[0]) for row in rows if row['policy'] == policy]
+        result[policy] = repair.summarize(values)[repair.POLICIES[0]]
+        result[policy]['model_calls'] = sum((r['worker'].get('metrics') or {}).get('llm_calls', 0)
+                                           for r in rows if r['policy'] == policy)
+        result[policy]['transaction_rejections'] = sum(
+            not s['transaction']['accepted'] for r in rows if r['policy'] == policy
+            for s in r['worker'].get('stages', []) if 'transaction' in s)
+    return result
+
+
+def run(output, task_ids=None):
+    output = output.resolve()
+    cases, grades = preparation.prepare(output)
+    if task_ids:
+        if len(set(task_ids)) != len(task_ids) or set(task_ids) - {c['task_id'] for c in cases}:
+            raise ValueError('Unknown or duplicate task selection')
+        selected = [(c, g) for c, g in zip(cases, grades) if c['task_id'] in task_ids]
+        cases, grades = [c for c, _ in selected], [g for _, g in selected]
+    # Frozen offline certificates authorize only public development checks.
+    certificates = [ROOT / '.tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json',
+                    ROOT / '.tmp/real-defects/salt-relations-audit-v1-final/audit.json']
+    click, salt = [json.loads(p.read_text(encoding='utf-8')) for p in certificates]
+    if (not click['complete'] or click['model_calls'] != 0 or not salt['complete'] or salt['model_calls'] != 0
+            or click['implementation_sha256'] != repair.audit.sha(Path(public.__file__))
+            or any(repair.audit.sha(ROOT / name) != value for name, value in salt['adapter_hashes'].items())):
+        raise ValueError('Public checks lack current offline certification')
+    for case in cases:
+        if case['task_id'] == relations.TASK:
+            if case['before_hash'] != salt['source_hash'] or relations.contract(case) != salt['contract']:
+                raise ValueError('Salt public certificate differs from source')
+        elif case['task_id'] == public.TARGETS[0]:
+            record = next(c for c in click['tasks'] if c['task_id'] == case['task_id'])
+            if record['source_hash'] != case['before_hash']:
+                raise ValueError('Click public certificate differs from source')
+    repair.check_identity(repair.config())
+    output.mkdir(parents=True, exist_ok=False)
+    harnesses = {}
+    for case in cases:
+        code = worker.canonical_check(case['task_id'])
+        if code is not None:
+            harness = output / 'public-harnesses' / case['task_id']
+            harness.mkdir(parents=True)
+            (harness / 'test_admission.py').write_bytes(code.read_bytes())
+            harnesses[case['task_id']] = (harness, repair.digest(repair.snapshot(harness)))
+    observations = directed.observe_all(cases, output)
+    paths = [Path(__file__), Path(worker.__file__), Path(worker.guard.__file__), Path(worker.context.__file__),
+             Path(public.__file__), Path(relations.__file__), Path(directed.__file__), Path(preparation.__file__),
+             Path(second.__file__), Path(repair.__file__), Path(repair.patcher.__file__),
+             ROOT / 'evals/symbol_context.py', ROOT / 'evals/symbol_index.py', ROOT / 'evals/runtime.py',
+             ROOT / 'evals/process.py', *certificates, *(worker.canonical_check(c['task_id']) for c in cases
+                                                      if worker.canonical_check(c['task_id']) is not None)]
+    hashes = {p.relative_to(ROOT).as_posix(): repair.audit.sha(p) for p in paths}
+    protocol = {'protocol': 'unified-feedback-v1', 'unique_tasks': len(cases), 'repeats': 1,
+                'expected_runs': 2 * len(cases), 'previously_inspected_tasks': True, 'benchmark_eligible': False,
+                'prior_runs_included': False, 'config': repair.config().to_dict(), 'engine_hash': repair.audit.ENGINE,
+                'model_digest': repair.MODEL_DIGEST, 'max_llm_calls_per_branch': 2, 'shared_token_budget': 15000,
+                'tools': [], 'adapter_hashes': hashes,
+                'evidence_policy': 'same initial AST function evidence, 6000 chars, five seeds; same public feedback context refresh',
+                'intervention': 'public-only feedback versus transaction guard plus transaction/public assertion feedback; same initial prompts',
+                'public_check_versions': {c['task_id']: repair.audit.sha(worker.canonical_check(c['task_id'])) for c in cases
+                                          if worker.canonical_check(c['task_id']) is not None},
+                'regression_scope': 'four tasks without certified public checks use single initial repair; unified may retry transaction failure only',
+                'observations_sha256': repair.audit.sha(output / 'observations.json'),
+                'source_hashes': {c['task_id']: c['before_hash'] for c in cases},
+                'scoring': {c['task_id']: g['case']['checks_hash'] for c, g in zip(cases, grades)}}
+    (output / 'protocol.json').write_text(json.dumps(protocol, indent=2), encoding='utf-8')
+    def frozen():
+        repair.check_identity(repair.config())
+        if (any(repair.audit.sha(ROOT / name) != value for name, value in hashes.items())
+                or repair.audit.sha(output / 'observations.json') != protocol['observations_sha256']
+                or any(repair.digest(repair.snapshot(c['before'])) != c['before_hash'] for c in cases)
+                or any(repair.digest(repair.snapshot(g['checks'])) != g['case']['checks_hash'] for g in grades)
+                or any(repair.digest(repair.snapshot(g['source_root'] / 'after')) != g['after_hash'] for g in grades)
+                or any(repair.digest(repair.snapshot(h)) != value for h, value in harnesses.values())):
+            raise ValueError('Frozen inputs changed')
+    # Private before/after admission recheck is parent-owned, never passed to worker jobs.
+    for case, grade in zip(cases, grades):
+        groups = second.admission.checked_groups if case['task_id'].startswith('itsdangerous-') else repair.checked_groups
+        for label in ('before', 'after'):
+            checked = groups(grade['source_root'] / label, grade['checks'], output / 'preflight' / case['task_id'] / label,
+                             grade['python'], 15)
+            valid = (public.valid_failure(checked['Target']) and checked['Controls']['passed']) if label == 'before' else all(
+                value['passed'] for value in checked.values())
+            if not valid:
+                raise ValueError('Admitted defect or controls no longer reproduce')
+    report = {'protocol': protocol, 'complete': False, 'runs': []}
+    def save():
+        report['summary'] = summarize(report['runs'])
+        (output / 'experiment.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+    save()
+    for index, (case, grade, observation) in enumerate(zip(cases, grades, observations)):
+        for policy in (worker.POLICIES if index % 2 else worker.POLICIES[::-1]):
+            frozen()
+            root = output / case['task_id'] / policy
+            workspace = root / 'workspace'
+            shutil.copytree(case['before'], workspace)
+            before = repair.snapshot(workspace)
+            evidence = observation['policies']['direct-functions']['evidence']
+            job = {'workspace': str(workspace.resolve()), 'description': case['description'], 'allowed_files': case['allowed_files'],
+                   'evidence': evidence, 'task_id': case['task_id'], 'policy': policy, 'test_python': str(grade['python'])}
+            package = 'itsdangerous' if case['task_id'].startswith('itsdangerous-') else 'click'
+            job['imports'] = [{'module': package, 'root': 'src', 'path': f'src/{package}/__init__.py'}]
+            if case['task_id'] in harnesses:
+                harness, value = harnesses[case['task_id']]
+                job.update(harness=str(harness.resolve()), harness_hash=value,
+                           check_code_hash=protocol['public_check_versions'][case['task_id']])
+            path = root / 'job.json'
+            path.write_text(json.dumps(job, ensure_ascii=False), encoding='utf-8')
+            process = run_process([sys.executable, '-B', '-m', 'docs.experiments.unified_feedback_worker_v1', '--worker', str(path.resolve())],
+                                  workspace, 600, root / 'worker.stdout.txt', root / 'worker.stderr.txt',
+                                  dict(os.environ, PYTHONPATH=str(ROOT), PYTHONIOENCODING='utf-8', PYTHONDONTWRITEBYTECODE='1'))
+            result_path = root / 'worker-result.json'
+            result = (json.loads(result_path.read_text(encoding='utf-8')) if result_path.exists() and not process['timed_out']
+                      and process['returncode'] == 0 else {'status': 'timeout' if process['timed_out'] else 'agent_error', 'metrics': None})
+            verifier = second.verify if package == 'itsdangerous' else repair.verify
+            verified = verifier(grade['case'], grade['source_root'], grade['checks'], workspace, before,
+                                case['allowed_files'], root, grade['python'], 15)
+            accepted = result['status'] == 'completed' and verified['passed']
+            report['runs'].append({'task_id': case['task_id'], 'policy': policy, 'worker': result, 'verification': verified,
+                                  'accepted': accepted, 'process': process,
+                                  'status': 'passed' if accepted else 'failed_verification' if result['status'] == 'completed' else result['status']})
+            save()
+            print(f"{case['task_id']} {policy}: {report['runs'][-1]['status']}", flush=True)
+    frozen()
+    pairs = {}
+    for row in report['runs']:
+        pairs.setdefault(row['task_id'], []).append(row['worker'].get('prompt_hash'))
+    if any(len(values) != 2 or None in values or values[0] != values[1] for values in pairs.values()):
+        raise ValueError('Initial prompts differ or are missing')
+    report['complete'] = len(report['runs']) == protocol['expected_runs']
+    save()
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--task', action='append')
+    args = parser.parse_args()
+    run(args.output, args.task)
