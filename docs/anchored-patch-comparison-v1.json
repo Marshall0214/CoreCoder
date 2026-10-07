@@ -1,0 +1,559 @@
+{
+  "date": "2026-10-07",
+  "decision": "opt-in experimental adapter only; retain exact-old default",
+  "limitations": [
+    "six previously inspected tasks; one repeat per version; not an unseen benchmark",
+    "boundary fix is prospective; initial failures retained separately",
+    "number annotations add prompt tokens despite identical raw source budget",
+    "worker time includes provider/cache/load effects; no stable latency benefit established",
+    "Target/Controls only, not full upstream regression or a security sandbox",
+    "raw inputs and archived initial implementations live in ignored .tmp"
+  ],
+  "comparisons": [
+    {
+      "label": "initial",
+      "raw_experiment": ".tmp/real-defects/anchored-patch-comparison-v1/experiment.json",
+      "raw_experiment_sha256": "d10d326a4b2fa08df70b5333fc1e66ace7afd10ca05d379fa3e26a08c02bcafd",
+      "protocol": {
+        "protocol": "anchored-patch-comparison-v1",
+        "unique_tasks": 6,
+        "repeats": 1,
+        "expected_runs": 12,
+        "previously_inspected_tasks": true,
+        "benchmark_eligible": false,
+        "prior_runs_included": false,
+        "config": {
+          "mode": "pipeline",
+          "model": "qwen3.5:27b",
+          "base_url": "http://localhost:11434/v1",
+          "max_rounds": 12,
+          "token_budget": 15000,
+          "max_output_tokens": 2048,
+          "context_tokens": 16000,
+          "wall_timeout": 600,
+          "test_timeout": 15,
+          "temperature": 0.0,
+          "reasoning_effort": "none",
+          "search_backend": "keyword",
+          "search_max_chars": 6000,
+          "search_history": "full",
+          "context_policy": "none",
+          "prompt_policy": "baseline",
+          "evidence_top_k": 5,
+          "evidence_dependency_depth": 0,
+          "evidence_order": "selection",
+          "patch_policy": "baseline",
+          "public_check_policy": "generated",
+          "output_policy": "fixed",
+          "read_policy": "full"
+        },
+        "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+        "repair_model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+        "llm_calls_per_branch": 1,
+        "tools": [],
+        "evidence_policy": "python-line-chunks; same raw content and 6000-character cap",
+        "intervention": "patch representation, instructions, fragment IDs and line-number annotation; no new source or retries",
+        "observations_sha256": "5cdb79878027ffa73ef6d3c1c526a4dde46d5ab6cc7b243d0a717f5e3c05becd",
+        "adapter_hashes": {
+          "docs/experiments/anchored_patch_comparison_v1.py": "6d124da4de5e3df20e16fbb1326aaf683ae0e3278221098a01673113727bec84",
+          "docs/experiments/anchored_patch_v1.py": "80fc8be25dcd312d392349bd67b2fffd85512e965fb968789930b57e10342969",
+          "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+          "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+          "docs/experiments/validation_repeat_v2.py": "e7e27c416710567047cc0469b4da4a7f1be84692111cd5cfef18f1cb7969d454",
+          "docs/experiments/validation_repair_v1.py": "2fa46a0be8947c35d66e714d4cb6af342ef01c1595fc7dcebc02096e7aeac3c4",
+          "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+          "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+          "docs/experiments/second_repo_admission_v1.py": "87a17a95c77243e4aa4a9a5b7a2a1c1b6421830b788522a107502ef8f8161a46",
+          "docs/experiments/validation-prospective-v2.json": "6fffda44dac19694af1776a2a82f48330aebcc609122fff84d86ea18f7105b92",
+          "docs/experiments/validation-suite-v1.json": "3dbed44448ed8af27f27f1a8f9569efba1af0343c2b237d3d7901cfadbf0dc8a",
+          "docs/experiments/second-repo-suite-v1.json": "190edb5b580b12380041c2e2916aef5b0ed198fbe80d9341ebda5b011da89ce4"
+        },
+        "scoring": {
+          "click-usage-empty": "5fc2c1424c4cc61237139e692941f21ad59eab8dc8f0a6ca56bd68e948311b2f",
+          "click-echo-empty-bytes": "d31601e2902db4d5b1b4c77912e26986aae42c169e6f8642dc61f8614232739b",
+          "click-style-color-validation": "a3d5d8b86f1b704ad2e8ac0a6c24641b0a3a19c7995e6d07f005c67db4096444",
+          "itsdangerous-none-salt": "a59f229cdd5d2ff20f4bd12f3252154d1235475051e5a264a6200422e5c8c08d",
+          "itsdangerous-future-age": "eabc861330a3338fcdaccd17a5cd8bcdd5462581b316ed8bce4fc52bce3af253",
+          "itsdangerous-malformed-time": "c51a33dce0476e0d46d6bbb780e44b41e8924fbd22b73ccde3410d0e2cf3485d"
+        },
+        "source_hashes": {
+          "click-usage-empty": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+          "click-echo-empty-bytes": "1deab48d56e54d5bf49d922899b4a988d4dd53a288257abdafce37a97012d55b",
+          "click-style-color-validation": "afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+          "itsdangerous-none-salt": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+          "itsdangerous-future-age": "2f608833f29fa4b68d77a3667c4095b7efbae16cf583ffc1782e37356a03f204",
+          "itsdangerous-malformed-time": "afa63ea45c30fcb0cf92159676b04d9253cdd6ed73cc1b91db5dd2ca9c277967"
+        }
+      },
+      "summary": {
+        "exact-old": {
+          "runs": 6,
+          "passed": 3,
+          "statuses": {
+            "invalid_patch": 2,
+            "passed": 3,
+            "failed_verification": 1
+          },
+          "budget_accounted_tokens": 15805,
+          "known_budget_accounted_tokens": 15805,
+          "missing_metrics_runs": 0,
+          "missing_usage_calls": 0,
+          "prompt_tokens": 14012,
+          "completion_tokens": 1793,
+          "worker_seconds": 74.2502
+        },
+        "anchored-lines": {
+          "runs": 6,
+          "passed": 2,
+          "statuses": {
+            "failed_verification": 4,
+            "passed": 2
+          },
+          "budget_accounted_tokens": 18533,
+          "known_budget_accounted_tokens": 18533,
+          "missing_metrics_runs": 0,
+          "missing_usage_calls": 0,
+          "prompt_tokens": 17985,
+          "completion_tokens": 548,
+          "worker_seconds": 31.549
+        },
+        "pairs": {
+          "both_passed": 2,
+          "exact_only": 1,
+          "anchored_only": 0,
+          "both_failed": 3,
+          "incomplete": 0
+        }
+      },
+      "runs": [
+        {
+          "task_id": "click-usage-empty",
+          "policy": "exact-old",
+          "status": "invalid_patch",
+          "accepted": false,
+          "edited_files": null,
+          "worker_error": "ValueError: Edit text was not supplied in local context",
+          "job_sha256": "b45d1c68d14687ee336c0cc37c6bc9f5c37ef0cace4987e39d9019a8f25e4226",
+          "response_sha256": "afe198f8ae49ebe7ffe3a6e7430ab4e26d97a360c44d62d116b8bb5553d33dd9",
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "task_id": "click-usage-empty",
+          "policy": "anchored-lines",
+          "status": "failed_verification",
+          "accepted": false,
+          "edited_files": [],
+          "worker_error": null,
+          "job_sha256": "ea0e4e395d2e5ae537287df68b67fae111969301ee124f36776a09d3ef8d0b44",
+          "response_sha256": "d4455a0831bada2fd4f8c650736d210e98ce297b08225a642ac000e3dfa4b649",
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "task_id": "click-echo-empty-bytes",
+          "policy": "anchored-lines",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/click/utils.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "83c20bfb609a28dbd4d8565b809b45d7e96df5a42e88d52ae052911940a1cb91",
+          "response_sha256": "632450f5b31b6c0094b77f17f50a9fcdac04794997a2732a27dc14bd1bf335fe",
+          "patch_sha256": "5f10e36a9f268af8cc647c0b9cfb81e820febf73fb4c6a83b1a96d766569a382"
+        },
+        {
+          "task_id": "click-echo-empty-bytes",
+          "policy": "exact-old",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/click/utils.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "80b88d4232b34dbbba957869efccc63615e44e7e30e1fa5c6849bcd14a54dc41",
+          "response_sha256": "a0241f0f0a2426f2d13e4555dbfa239b0e56146b4134adf20a69021fb53db9f0",
+          "patch_sha256": "ff184687075324b910bed85331beaf0a87b9b45374f78c5507af4e439164c243"
+        },
+        {
+          "task_id": "click-style-color-validation",
+          "policy": "exact-old",
+          "status": "invalid_patch",
+          "accepted": false,
+          "edited_files": null,
+          "worker_error": "ValueError: Edit text was not supplied in local context",
+          "job_sha256": "15e6e20c6ba03642ef89d618fbae59a6c62e8f1e90911c407dbf971855bc92ab",
+          "response_sha256": "6ae1210e59cf8391542e50c25a3b63129b7f2bf4ea780a001506a85e4a496fad",
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "task_id": "click-style-color-validation",
+          "policy": "anchored-lines",
+          "status": "failed_verification",
+          "accepted": false,
+          "edited_files": [],
+          "worker_error": null,
+          "job_sha256": "5b8d1f2af14b762dcfc963bc18a946ad508dcc4b665a2a30a0483819b5ad8fd8",
+          "response_sha256": "d4455a0831bada2fd4f8c650736d210e98ce297b08225a642ac000e3dfa4b649",
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "task_id": "itsdangerous-none-salt",
+          "policy": "anchored-lines",
+          "status": "failed_verification",
+          "accepted": false,
+          "edited_files": [
+            "src/itsdangerous/serializer.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "3cf65a548eb5d4c2808ddff5a2808016284c0bbf6d3564000dd7e76441443f7c",
+          "response_sha256": "ce62b1d58822e7cfe6edf519d44b5b89a234593cfb07abf6b5d1b945281561b3",
+          "patch_sha256": "136c74d7d557640dd001681958a84891e62b4b15e1799774a704136abe3a8657"
+        },
+        {
+          "task_id": "itsdangerous-none-salt",
+          "policy": "exact-old",
+          "status": "failed_verification",
+          "accepted": false,
+          "edited_files": [
+            "src/itsdangerous/serializer.py",
+            "src/itsdangerous/signer.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "1575c221c29d8e63775206ef5adfb7edac637f9fe1d2b4e6344a713e3a686e54",
+          "response_sha256": "781f2836bf38dddad579ff003d2a66024dc13e56d59e876bd36477223e721842",
+          "patch_sha256": "7809d7e2fa8753d49ca9544ac3b4ecfc0903cc251f485f430bdeb8806cd3c4b9"
+        },
+        {
+          "task_id": "itsdangerous-future-age",
+          "policy": "exact-old",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/itsdangerous/timed.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "7e75f6180b4e72b090b94b4c5dcd72ca332444cd1bc9cb37644b3428a6de33ae",
+          "response_sha256": "ed0500413c61b18a47b656272e26ae019815c67e450c67c91d7221582ae3fdf4",
+          "patch_sha256": "9147ddc148271a09329022a770717d463347dc3f0dbb796d3e5f2694963190e4"
+        },
+        {
+          "task_id": "itsdangerous-future-age",
+          "policy": "anchored-lines",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/itsdangerous/timed.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "93f12399d1056a9be7104d37e6df4a341725de311e83957340e4bf5498e0bbfb",
+          "response_sha256": "76aedc8f7c87035b5e174c0acb47c621abe7e7b8088d335f2a56d2cb2abff8f8",
+          "patch_sha256": "8b2b243258545fd49d9c472c9e20cca66ef6b3b8ea9355e6e63fd43fc02eebd7"
+        },
+        {
+          "task_id": "itsdangerous-malformed-time",
+          "policy": "anchored-lines",
+          "status": "failed_verification",
+          "accepted": false,
+          "edited_files": [
+            "src/itsdangerous/timed.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "6fef5c139b26dc47cc5d285d561d667ec8c9ce23c847ee70ddae42abcc326f7d",
+          "response_sha256": "4cb6527cef0c504318aacbb5b97a34bbe6935fe26429dc1c3c4e5c1fd8bb3f53",
+          "patch_sha256": "0949e7991ea831ad81227cb6bdbce1b3321647dc421cd00534ff3e6f2cf74967"
+        },
+        {
+          "task_id": "itsdangerous-malformed-time",
+          "policy": "exact-old",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/itsdangerous/timed.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "a559c86be7f44dd4dfceafa2d1f6e680fd5239440ef514242d39c6464b80b8a2",
+          "response_sha256": "8e1653cfc1a226bc420ba838847ce6d154564e735d7314bc562686e80501580f",
+          "patch_sha256": "340dea8f0bec2fa9f1fb72f03d9e5cee5719081fdc98d71af65d679e3e03fb7e"
+        }
+      ]
+    },
+    {
+      "label": "boundary-fixed",
+      "raw_experiment": ".tmp/real-defects/anchored-patch-comparison-v1-boundary-fixed/experiment.json",
+      "raw_experiment_sha256": "d10f80234f15686554b0be89eef9d4a8581e18777de94ba00559e3ebc08191bd",
+      "protocol": {
+        "protocol": "anchored-patch-comparison-v1",
+        "unique_tasks": 6,
+        "repeats": 1,
+        "expected_runs": 12,
+        "previously_inspected_tasks": true,
+        "benchmark_eligible": false,
+        "prior_runs_included": false,
+        "config": {
+          "mode": "pipeline",
+          "model": "qwen3.5:27b",
+          "base_url": "http://localhost:11434/v1",
+          "max_rounds": 12,
+          "token_budget": 15000,
+          "max_output_tokens": 2048,
+          "context_tokens": 16000,
+          "wall_timeout": 600,
+          "test_timeout": 15,
+          "temperature": 0.0,
+          "reasoning_effort": "none",
+          "search_backend": "keyword",
+          "search_max_chars": 6000,
+          "search_history": "full",
+          "context_policy": "none",
+          "prompt_policy": "baseline",
+          "evidence_top_k": 5,
+          "evidence_dependency_depth": 0,
+          "evidence_order": "selection",
+          "patch_policy": "baseline",
+          "public_check_policy": "generated",
+          "output_policy": "fixed",
+          "read_policy": "full"
+        },
+        "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+        "repair_model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+        "llm_calls_per_branch": 1,
+        "tools": [],
+        "evidence_policy": "python-line-chunks; same raw content and 6000-character cap",
+        "intervention": "patch representation, instructions, fragment IDs and line-number annotation; no new source or retries",
+        "line_boundary": "retain source line terminator when a nonempty replacement omits it; empty replacement deletes lines",
+        "observations_sha256": "5cdb79878027ffa73ef6d3c1c526a4dde46d5ab6cc7b243d0a717f5e3c05becd",
+        "adapter_hashes": {
+          "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+          "docs/experiments/anchored_patch_v1.py": "a3554e00fdd0e136bbab18ef93465ab2f93fa126c608548c3c892a03fd7ab869",
+          "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+          "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+          "docs/experiments/validation_repeat_v2.py": "e7e27c416710567047cc0469b4da4a7f1be84692111cd5cfef18f1cb7969d454",
+          "docs/experiments/validation_repair_v1.py": "2fa46a0be8947c35d66e714d4cb6af342ef01c1595fc7dcebc02096e7aeac3c4",
+          "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+          "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+          "docs/experiments/second_repo_admission_v1.py": "87a17a95c77243e4aa4a9a5b7a2a1c1b6421830b788522a107502ef8f8161a46",
+          "docs/experiments/validation-prospective-v2.json": "6fffda44dac19694af1776a2a82f48330aebcc609122fff84d86ea18f7105b92",
+          "docs/experiments/validation-suite-v1.json": "3dbed44448ed8af27f27f1a8f9569efba1af0343c2b237d3d7901cfadbf0dc8a",
+          "docs/experiments/second-repo-suite-v1.json": "190edb5b580b12380041c2e2916aef5b0ed198fbe80d9341ebda5b011da89ce4"
+        },
+        "scoring": {
+          "click-usage-empty": "5fc2c1424c4cc61237139e692941f21ad59eab8dc8f0a6ca56bd68e948311b2f",
+          "click-echo-empty-bytes": "d31601e2902db4d5b1b4c77912e26986aae42c169e6f8642dc61f8614232739b",
+          "click-style-color-validation": "a3d5d8b86f1b704ad2e8ac0a6c24641b0a3a19c7995e6d07f005c67db4096444",
+          "itsdangerous-none-salt": "a59f229cdd5d2ff20f4bd12f3252154d1235475051e5a264a6200422e5c8c08d",
+          "itsdangerous-future-age": "eabc861330a3338fcdaccd17a5cd8bcdd5462581b316ed8bce4fc52bce3af253",
+          "itsdangerous-malformed-time": "c51a33dce0476e0d46d6bbb780e44b41e8924fbd22b73ccde3410d0e2cf3485d"
+        },
+        "source_hashes": {
+          "click-usage-empty": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+          "click-echo-empty-bytes": "1deab48d56e54d5bf49d922899b4a988d4dd53a288257abdafce37a97012d55b",
+          "click-style-color-validation": "afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+          "itsdangerous-none-salt": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+          "itsdangerous-future-age": "2f608833f29fa4b68d77a3667c4095b7efbae16cf583ffc1782e37356a03f204",
+          "itsdangerous-malformed-time": "afa63ea45c30fcb0cf92159676b04d9253cdd6ed73cc1b91db5dd2ca9c277967"
+        }
+      },
+      "summary": {
+        "exact-old": {
+          "runs": 6,
+          "passed": 3,
+          "statuses": {
+            "invalid_patch": 2,
+            "passed": 3,
+            "failed_verification": 1
+          },
+          "budget_accounted_tokens": 15805,
+          "known_budget_accounted_tokens": 15805,
+          "missing_metrics_runs": 0,
+          "missing_usage_calls": 0,
+          "prompt_tokens": 14012,
+          "completion_tokens": 1793,
+          "worker_seconds": 52.981
+        },
+        "anchored-lines": {
+          "runs": 6,
+          "passed": 3,
+          "statuses": {
+            "failed_verification": 3,
+            "passed": 3
+          },
+          "budget_accounted_tokens": 18533,
+          "known_budget_accounted_tokens": 18533,
+          "missing_metrics_runs": 0,
+          "missing_usage_calls": 0,
+          "prompt_tokens": 17985,
+          "completion_tokens": 548,
+          "worker_seconds": 24.094
+        },
+        "pairs": {
+          "both_passed": 3,
+          "exact_only": 0,
+          "anchored_only": 0,
+          "both_failed": 3,
+          "incomplete": 0
+        }
+      },
+      "runs": [
+        {
+          "task_id": "click-usage-empty",
+          "policy": "exact-old",
+          "status": "invalid_patch",
+          "accepted": false,
+          "edited_files": null,
+          "worker_error": "ValueError: Edit text was not supplied in local context",
+          "job_sha256": "141bfc347ad43fe26a607063ac13165580e8ca9f5f54899bed4c5a83cc09b89e",
+          "response_sha256": "afe198f8ae49ebe7ffe3a6e7430ab4e26d97a360c44d62d116b8bb5553d33dd9",
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "task_id": "click-usage-empty",
+          "policy": "anchored-lines",
+          "status": "failed_verification",
+          "accepted": false,
+          "edited_files": [],
+          "worker_error": null,
+          "job_sha256": "6d385f3e33f0c752bba33323ad946fe5bf6be06c2c290c09ab44458cb2f20402",
+          "response_sha256": "d4455a0831bada2fd4f8c650736d210e98ce297b08225a642ac000e3dfa4b649",
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "task_id": "click-echo-empty-bytes",
+          "policy": "anchored-lines",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/click/utils.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "e74218d4b7f8d885f3fd1bdfacc6eabe215f08c89ee2f9103b0bf7ab338811f7",
+          "response_sha256": "632450f5b31b6c0094b77f17f50a9fcdac04794997a2732a27dc14bd1bf335fe",
+          "patch_sha256": "7fac407da9201bba232ffbd71304839ea76409b3e111d045939bca512e04680a"
+        },
+        {
+          "task_id": "click-echo-empty-bytes",
+          "policy": "exact-old",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/click/utils.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "3918fc5b2b48fcae718abc3d450658ae6a0eff27b3c2ce8998f517f957c75695",
+          "response_sha256": "a0241f0f0a2426f2d13e4555dbfa239b0e56146b4134adf20a69021fb53db9f0",
+          "patch_sha256": "ff184687075324b910bed85331beaf0a87b9b45374f78c5507af4e439164c243"
+        },
+        {
+          "task_id": "click-style-color-validation",
+          "policy": "exact-old",
+          "status": "invalid_patch",
+          "accepted": false,
+          "edited_files": null,
+          "worker_error": "ValueError: Edit text was not supplied in local context",
+          "job_sha256": "19975f337b0be49dac1a8b0845365e47ca62ddb2204c2498c146f4a675c7095a",
+          "response_sha256": "6ae1210e59cf8391542e50c25a3b63129b7f2bf4ea780a001506a85e4a496fad",
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "task_id": "click-style-color-validation",
+          "policy": "anchored-lines",
+          "status": "failed_verification",
+          "accepted": false,
+          "edited_files": [],
+          "worker_error": null,
+          "job_sha256": "79568ea00efa850a2ffbf1d95b99772f5f1df270c6dd9700601dd1a2501380f9",
+          "response_sha256": "d4455a0831bada2fd4f8c650736d210e98ce297b08225a642ac000e3dfa4b649",
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "task_id": "itsdangerous-none-salt",
+          "policy": "anchored-lines",
+          "status": "failed_verification",
+          "accepted": false,
+          "edited_files": [
+            "src/itsdangerous/serializer.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "ef5741af0dfb256b4a3c40a3d0073cff74651d9bfa74b551f9ea4a9812c77c39",
+          "response_sha256": "ce62b1d58822e7cfe6edf519d44b5b89a234593cfb07abf6b5d1b945281561b3",
+          "patch_sha256": "984942d325f0ca2173c5d7ce612e54e43b22c8d0987ec31717a787bb084df89e"
+        },
+        {
+          "task_id": "itsdangerous-none-salt",
+          "policy": "exact-old",
+          "status": "failed_verification",
+          "accepted": false,
+          "edited_files": [
+            "src/itsdangerous/serializer.py",
+            "src/itsdangerous/signer.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "01a5cdf668b0910f2cd0975b868f94f31c2b060020b9ef278b6966d7f59caf9e",
+          "response_sha256": "781f2836bf38dddad579ff003d2a66024dc13e56d59e876bd36477223e721842",
+          "patch_sha256": "7809d7e2fa8753d49ca9544ac3b4ecfc0903cc251f485f430bdeb8806cd3c4b9"
+        },
+        {
+          "task_id": "itsdangerous-future-age",
+          "policy": "exact-old",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/itsdangerous/timed.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "25018a833cef9435019fdb6ae15d014f06ec26d924f02190a214b94fa7aaf393",
+          "response_sha256": "ed0500413c61b18a47b656272e26ae019815c67e450c67c91d7221582ae3fdf4",
+          "patch_sha256": "9147ddc148271a09329022a770717d463347dc3f0dbb796d3e5f2694963190e4"
+        },
+        {
+          "task_id": "itsdangerous-future-age",
+          "policy": "anchored-lines",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/itsdangerous/timed.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "0320804b8c2217ddbdeaab87dfe1aac49069c0132bb4394ca0a97ea3062960f3",
+          "response_sha256": "76aedc8f7c87035b5e174c0acb47c621abe7e7b8088d335f2a56d2cb2abff8f8",
+          "patch_sha256": "2848c14f8309dc9df3201be5dc9c119b2f5229091d125b07a28a5d229011563b"
+        },
+        {
+          "task_id": "itsdangerous-malformed-time",
+          "policy": "anchored-lines",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/itsdangerous/timed.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "d3e1d20ca6afab9f74f1d1f437023db2e806bce115d8c65a16fc4f08b587d1be",
+          "response_sha256": "4cb6527cef0c504318aacbb5b97a34bbe6935fe26429dc1c3c4e5c1fd8bb3f53",
+          "patch_sha256": "5c1a8b823f9f6f04a40b409d1989e43ad8a121715489feb561a4d60d76030f0f"
+        },
+        {
+          "task_id": "itsdangerous-malformed-time",
+          "policy": "exact-old",
+          "status": "passed",
+          "accepted": true,
+          "edited_files": [
+            "src/itsdangerous/timed.py"
+          ],
+          "worker_error": null,
+          "job_sha256": "d78a8be75bc137d9f29db4a85ad3080a872ad9e21596a30ac70fa18949876dad",
+          "response_sha256": "8e1653cfc1a226bc420ba838847ce6d154564e735d7314bc562686e80501580f",
+          "patch_sha256": "340dea8f0bec2fa9f1fb72f03d9e5cee5719081fdc98d71af65d679e3e03fb7e"
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "targeted_passed": 41,
+    "full_passed": 882,
+    "full_skipped": 2,
+    "full_seconds": 162.85,
+    "ruff": "passed",
+    "git_diff_check": "passed",
+    "modified_docs_local_links": 38,
+    "linux_container_http_rerun": false
+  }
+}

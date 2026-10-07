@@ -1,0 +1,210 @@
+{
+  "scope": "diagnosis only; three different historical pools are not pooled success-rate evidence",
+  "historical_runs": 66,
+  "worker_statuses": {
+    "completed": 54,
+    "invalid_patch": 12
+  },
+  "pools": [
+    {
+      "name": "function-index-repair-repeat-v1",
+      "runs": 42,
+      "worker_statuses": {
+        "completed": 36,
+        "invalid_patch": 6
+      },
+      "experiment_sha256": "590ec54a31bb4343e142c75e5eaf8605fc707d06917adbf72b05c74b0cf11516"
+    },
+    {
+      "name": "validation-repeat-v2",
+      "runs": 18,
+      "worker_statuses": {
+        "invalid_patch": 6,
+        "completed": 12
+      },
+      "experiment_sha256": "4e762eca3e996f814e1a02339631fc3bb6e85de8466267cafaf5cc22295e7ecf"
+    },
+    {
+      "name": "second-repo-repair-v1",
+      "runs": 6,
+      "worker_statuses": {
+        "completed": 6
+      },
+      "experiment_sha256": "1c6bfc41e850f98651d00afcb5119f4385ac1470d40e05edfd742f7ae0b04e9a"
+    }
+  ],
+  "invalid_patches": [
+    {
+      "path": ".tmp/real-defects/function-index-repair-repeat-v1/repeat-01/click-flag-envvar/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "9ec9b3085cb707f72dcf77a2fa6638593ff42cb112d79d4573467a7b80282cdd",
+      "response_sha256": "a84129f6bd6c560860888cab61a2c6f3b7b863b76e7777502f637dd7cca0b8b1",
+      "edits": [
+        {
+          "file": "src/click/types.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/function-index-repair-repeat-v1/repeat-01/click-invoke-missing/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "6ccd07c222b2e6a995b4ffdf8a228d789ef56efc7ae5adab95260baa66e687a9",
+      "response_sha256": "9ab748145b34aba0383eb34e00e357fdeb325f2f2e19a647938bc4a9799773f5",
+      "edits": [
+        {
+          "file": "src/click/core.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/function-index-repair-repeat-v1/repeat-02/click-flag-envvar/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "4bb2a6b69da4a3cd0bc97096f50f64a52b80dd6c43f5ecf9291493abf2c074a1",
+      "response_sha256": "a84129f6bd6c560860888cab61a2c6f3b7b863b76e7777502f637dd7cca0b8b1",
+      "edits": [
+        {
+          "file": "src/click/types.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/function-index-repair-repeat-v1/repeat-02/click-invoke-missing/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "9866ac17515a8d18e5eb945cdbcd1d8d6866c8d640b591f983041802ad6e780c",
+      "response_sha256": "9ab748145b34aba0383eb34e00e357fdeb325f2f2e19a647938bc4a9799773f5",
+      "edits": [
+        {
+          "file": "src/click/core.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/function-index-repair-repeat-v1/repeat-03/click-flag-envvar/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "ee735543e6076f7adc79c83ad4311a98bd7e4010a04990cc0475525fa13ec57d",
+      "response_sha256": "a84129f6bd6c560860888cab61a2c6f3b7b863b76e7777502f637dd7cca0b8b1",
+      "edits": [
+        {
+          "file": "src/click/types.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/function-index-repair-repeat-v1/repeat-03/click-invoke-missing/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "e37be89122dfab9421b955123b3e1319d10d1cfcad05f1bcb58c35ac9a76de7a",
+      "response_sha256": "9ab748145b34aba0383eb34e00e357fdeb325f2f2e19a647938bc4a9799773f5",
+      "edits": [
+        {
+          "file": "src/click/core.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/validation-repeat-v2/repeat-01/click-style-color-validation/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "2a6b08f93fda0e6cc91d75bf68ef876ee08e2f32eb98bab5a1b8a1ed73d7f4d6",
+      "response_sha256": "6ae1210e59cf8391542e50c25a3b63129b7f2bf4ea780a001506a85e4a496fad",
+      "edits": [
+        {
+          "file": "src/click/termui.py",
+          "old_occurrences_in_source": 1,
+          "old_in_supplied_fragment": true
+        },
+        {
+          "file": "src/click/termui.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/validation-repeat-v2/repeat-01/click-usage-empty/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "3228192d073cf2ebdbc7bec12943549dd23bf3184567fc3955c8b826b575ae8d",
+      "response_sha256": "afe198f8ae49ebe7ffe3a6e7430ab4e26d97a360c44d62d116b8bb5553d33dd9",
+      "edits": [
+        {
+          "file": "src/click/formatting.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/validation-repeat-v2/repeat-02/click-style-color-validation/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "082a0a1261967bc648262f9a121ef84c35f32f59dce21955f6fea3c6efa58bbb",
+      "response_sha256": "6ae1210e59cf8391542e50c25a3b63129b7f2bf4ea780a001506a85e4a496fad",
+      "edits": [
+        {
+          "file": "src/click/termui.py",
+          "old_occurrences_in_source": 1,
+          "old_in_supplied_fragment": true
+        },
+        {
+          "file": "src/click/termui.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/validation-repeat-v2/repeat-02/click-usage-empty/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "7310ae7b8314a61f45f6f5186d7bb09417211bf22b5c493017d9b4ee632bd0f0",
+      "response_sha256": "afe198f8ae49ebe7ffe3a6e7430ab4e26d97a360c44d62d116b8bb5553d33dd9",
+      "edits": [
+        {
+          "file": "src/click/formatting.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/validation-repeat-v2/repeat-03/click-style-color-validation/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "d1611781ffa4722eee231bd55d8a4a4845f254bcdbe78173d59cc82d149f7078",
+      "response_sha256": "6ae1210e59cf8391542e50c25a3b63129b7f2bf4ea780a001506a85e4a496fad",
+      "edits": [
+        {
+          "file": "src/click/termui.py",
+          "old_occurrences_in_source": 1,
+          "old_in_supplied_fragment": true
+        },
+        {
+          "file": "src/click/termui.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    },
+    {
+      "path": ".tmp/real-defects/validation-repeat-v2/repeat-03/click-usage-empty/python-line-chunks",
+      "worker_error": "ValueError: Edit text was not supplied in local context",
+      "job_sha256": "49a1f41d3faeef389824ea1bb09a4e6551da79e39c434973397a4e5ea2fe88f0",
+      "response_sha256": "afe198f8ae49ebe7ffe3a6e7430ab4e26d97a360c44d62d116b8bb5553d33dd9",
+      "edits": [
+        {
+          "file": "src/click/formatting.py",
+          "old_occurrences_in_source": 0,
+          "old_in_supplied_fragment": false
+        }
+      ]
+    }
+  ],
+  "invalid_patches_with_absent_old": 12
+}

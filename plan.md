@@ -219,4 +219,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**当前：本阶段实验、服务工程和交付文档已完成。全量 864 passed、2 skipped；Linux 71 passed、22 项容器检查及 18 项真实 HTTP 审批故障检查通过，见 docs/workflow-approval-v1.md。总览、演示、简历与贡献边界见 docs/project-overview.md。下一步由用户演讲/录屏和求职使用；只有岗位明确需要时再选鉴权或工具扩展。动态规划/反思、PostgreSQL/Redis 和每任务沙箱仍未实现。冻结实验不变，无新增模型调用。**
+**当前：实验、服务工程和交付文档已完成。历史工程验收全量 864 passed、2 skipped；Linux 71 passed、22 项容器检查及 18 项真实 HTTP 审批故障检查通过，见 docs/workflow-approval-v1.md。总览和贡献边界见 docs/project-overview.md。最新开展补丁定位优化与换行边界修正，新增两轮共 24 次调用，最终两方案均 3/6；无修复率提升且 Token 增加，保留默认方案，见 docs/anchored-patch-v1.md。后续修复优化优先保证被点名函数实现进入上下文，再固定条件对照；不继续无依据增加预算或补丁格式。动态规划/反思、PostgreSQL/Redis 和每任务沙箱仍未实现。**
