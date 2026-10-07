@@ -1,0 +1,1652 @@
+{
+  "protocol": "semantic-patch-summary-v1",
+  "complete": true,
+  "model_calls": 0,
+  "private_grader_calls": 0,
+  "summary": {
+    "historical_wrong_rejected": 3,
+    "historical_correct_committed": 1,
+    "human_correct_committed": 2
+  },
+  "historical": [
+    {
+      "task_id": "click-usage-empty",
+      "policy": "public-hypotheses",
+      "historical_passed": false,
+      "matched_expected": true,
+      "transaction": {
+        "accepted": false,
+        "committed": false,
+        "reason": "public_check_failed",
+        "changed_files": [
+          "src/click/formatting.py"
+        ],
+        "structural": {
+          "accepted": true,
+          "committed": true,
+          "reason": "committed",
+          "changed_files": [
+            "src/click/formatting.py"
+          ],
+          "duplicates": [],
+          "import": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1849
+          },
+          "original_unchanged": false
+        },
+        "public_check": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1366,
+          "tests_run": 4,
+          "passed": false,
+          "assertion_failure": true,
+          "execution_error": false,
+          "classification": "assertion_failure",
+          "observation": {
+            "version": 1,
+            "complete": true,
+            "phase": "execution",
+            "tests_run": 4,
+            "issues": [
+              {
+                "test": "test_command_empty_and_none_metavar (test_admission.PublicContract.test_command_empty_and_none_metavar) (metavar='')",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'' != 'Usage: demo'\n+ Usage: demo",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 28,
+                    "function": "test_command_empty_and_none_metavar"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_command_empty_and_none_metavar (test_admission.PublicContract.test_command_empty_and_none_metavar) (metavar=None)",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'' != 'Usage: demo'\n+ Usage: demo",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 28,
+                    "function": "test_command_empty_and_none_metavar"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_empty_usage_wide (test_admission.PublicContract.test_empty_usage_wide)",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'\\n' != 'Usage: demo\\n'\n- \n+ Usage: demo\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 623,
+                    "function": "run"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 579,
+                    "function": "_callTestMethod"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 15,
+                    "function": "test_empty_usage_wide"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              }
+            ],
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false
+          },
+          "stderr": "stderr.txt",
+          "stdout": "stdout.txt"
+        },
+        "rollback": null,
+        "original_before_sha256": "751f76f81c42a87525fef0683744bfe20888971bceab22c186112799c3f875dd",
+        "canonical_sha256": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+        "expected_public_tests": 4,
+        "candidate_sha256": "89aa5ca14cc238c517dfde74e68b19a3e2fc0826b267f30ccfcb60f5bc027ef9",
+        "original_unchanged": true,
+        "original_after_sha256": "751f76f81c42a87525fef0683744bfe20888971bceab22c186112799c3f875dd"
+      }
+    },
+    {
+      "task_id": "click-usage-empty",
+      "policy": "patch-only",
+      "historical_passed": true,
+      "matched_expected": true,
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "src/click/core.py",
+          "src/click/formatting.py"
+        ],
+        "structural": {
+          "accepted": true,
+          "committed": true,
+          "reason": "committed",
+          "changed_files": [
+            "src/click/core.py",
+            "src/click/formatting.py"
+          ],
+          "duplicates": [],
+          "import": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1839
+          },
+          "original_unchanged": false
+        },
+        "public_check": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1365,
+          "tests_run": 4,
+          "passed": true,
+          "assertion_failure": false,
+          "execution_error": false,
+          "classification": "passed",
+          "observation": {
+            "version": 1,
+            "complete": true,
+            "phase": "execution",
+            "tests_run": 4,
+            "issues": [],
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true
+          },
+          "stderr": "stderr.txt",
+          "stdout": "stdout.txt"
+        },
+        "rollback": null,
+        "original_before_sha256": "751f76f81c42a87525fef0683744bfe20888971bceab22c186112799c3f875dd",
+        "canonical_sha256": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+        "expected_public_tests": 4,
+        "candidate_sha256": "e36891c94d8e4e750e9da570198aa9ecac089b9526c3f265711e49564e1ea253",
+        "original_unchanged": false,
+        "original_after_sha256": "e36891c94d8e4e750e9da570198aa9ecac089b9526c3f265711e49564e1ea253"
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "patch-only",
+      "historical_passed": false,
+      "matched_expected": true,
+      "transaction": {
+        "accepted": false,
+        "committed": false,
+        "reason": "public_check_failed",
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "structural": {
+          "accepted": true,
+          "committed": true,
+          "reason": "committed",
+          "changed_files": [
+            "src/itsdangerous/serializer.py",
+            "src/itsdangerous/signer.py"
+          ],
+          "duplicates": [],
+          "import": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0964
+          },
+          "original_unchanged": false
+        },
+        "public_check": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1184,
+          "tests_run": 11,
+          "passed": false,
+          "assertion_failure": true,
+          "execution_error": false,
+          "classification": "assertion_failure",
+          "observation": {
+            "version": 1,
+            "complete": true,
+            "phase": "execution",
+            "tests_run": 11,
+            "issues": [
+              {
+                "test": "test_constructor_none_distinct_from_omission (test_admission.PublicContract.test_constructor_none_distinct_from_omission)",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' == '{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM'",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 623,
+                    "function": "run"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 579,
+                    "function": "_callTestMethod"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 74,
+                    "function": "test_constructor_none_distinct_from_omission"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 882,
+                    "function": "assertNotEqual"
+                  }
+                ]
+              },
+              {
+                "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt='public-explicit')",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 80,
+                    "function": "test_explicit_constructor_salt_exact_signature"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'public-explicit')",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 80,
+                    "function": "test_explicit_constructor_salt_exact_signature"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'')",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 80,
+                    "function": "test_explicit_constructor_salt_exact_signature"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={'salt': None})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={'salt': None})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={'salt': None})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_omitted_default_matches_independent_signer (test_admission.PublicContract.test_omitted_default_matches_independent_signer)",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 623,
+                    "function": "run"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 579,
+                    "function": "_callTestMethod"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 70,
+                    "function": "test_omitted_default_matches_independent_signer"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_wrong_salt_rejected (test_admission.PublicContract.test_wrong_salt_rejected)",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "BadSignature not raised",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 623,
+                    "function": "run"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 579,
+                    "function": "_callTestMethod"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 52,
+                    "function": "test_wrong_salt_rejected"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 262,
+                    "function": "__exit__"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 199,
+                    "function": "_raiseFailure"
+                  }
+                ]
+              }
+            ],
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false
+          },
+          "stderr": "stderr.txt",
+          "stdout": "stdout.txt"
+        },
+        "rollback": null,
+        "original_before_sha256": "e54ccd1666654df8815f59b3200344323023e45fe3b3a600d31515defa4d3b68",
+        "canonical_sha256": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+        "expected_public_tests": 11,
+        "candidate_sha256": "37f6eeac1f912ed6d40acbcdd08803f60abc273d934623afdafa44c19d332a8c",
+        "original_unchanged": true,
+        "original_after_sha256": "e54ccd1666654df8815f59b3200344323023e45fe3b3a600d31515defa4d3b68"
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "public-hypotheses",
+      "historical_passed": false,
+      "matched_expected": true,
+      "transaction": {
+        "accepted": false,
+        "committed": false,
+        "reason": "public_check_failed",
+        "changed_files": [
+          "src/itsdangerous/signer.py"
+        ],
+        "structural": {
+          "accepted": true,
+          "committed": true,
+          "reason": "committed",
+          "changed_files": [
+            "src/itsdangerous/signer.py"
+          ],
+          "duplicates": [],
+          "import": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1009
+          },
+          "original_unchanged": false
+        },
+        "public_check": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1161,
+          "tests_run": 11,
+          "passed": false,
+          "assertion_failure": true,
+          "execution_error": false,
+          "classification": "assertion_failure",
+          "observation": {
+            "version": 1,
+            "complete": true,
+            "phase": "execution",
+            "tests_run": 11,
+            "issues": [
+              {
+                "test": "test_constructor_none_distinct_from_omission (test_admission.PublicContract.test_constructor_none_distinct_from_omission)",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' == '{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM'",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 623,
+                    "function": "run"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 579,
+                    "function": "_callTestMethod"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 74,
+                    "function": "test_constructor_none_distinct_from_omission"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 882,
+                    "function": "assertNotEqual"
+                  }
+                ]
+              },
+              {
+                "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt='public-explicit')",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 80,
+                    "function": "test_explicit_constructor_salt_exact_signature"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'public-explicit')",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 80,
+                    "function": "test_explicit_constructor_salt_exact_signature"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'')",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 80,
+                    "function": "test_explicit_constructor_salt_exact_signature"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={'salt': None})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={'salt': None})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={'salt': None})",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 538,
+                    "function": "subTest"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 94,
+                    "function": "test_method_salt_override_matrix"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_omitted_default_matches_independent_signer (test_admission.PublicContract.test_omitted_default_matches_independent_signer)",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 623,
+                    "function": "run"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 579,
+                    "function": "_callTestMethod"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 70,
+                    "function": "test_omitted_default_matches_independent_signer"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 873,
+                    "function": "assertEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 1253,
+                    "function": "assertMultiLineEqual"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 703,
+                    "function": "fail"
+                  }
+                ]
+              },
+              {
+                "test": "test_wrong_salt_rejected (test_admission.PublicContract.test_wrong_salt_rejected)",
+                "kind": "assertion",
+                "origin": "assertion",
+                "exception_type": "AssertionError",
+                "message": "BadSignature not raised",
+                "frames": [
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 57,
+                    "function": "testPartExecutor"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 623,
+                    "function": "run"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 579,
+                    "function": "_callTestMethod"
+                  },
+                  {
+                    "origin": "harness",
+                    "path": "test_admission.py",
+                    "line": 52,
+                    "function": "test_wrong_salt_rejected"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 262,
+                    "function": "__exit__"
+                  },
+                  {
+                    "origin": "unknown",
+                    "path": "<external>",
+                    "line": 199,
+                    "function": "_raiseFailure"
+                  }
+                ]
+              }
+            ],
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false
+          },
+          "stderr": "stderr.txt",
+          "stdout": "stdout.txt"
+        },
+        "rollback": null,
+        "original_before_sha256": "e54ccd1666654df8815f59b3200344323023e45fe3b3a600d31515defa4d3b68",
+        "canonical_sha256": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+        "expected_public_tests": 11,
+        "candidate_sha256": "531a15f2ef8bdde9a31ccdbca81ceb99a7e062f99cc5ebe19a8f6275510a5351",
+        "original_unchanged": true,
+        "original_after_sha256": "e54ccd1666654df8815f59b3200344323023e45fe3b3a600d31515defa4d3b68"
+      }
+    }
+  ],
+  "positive": [
+    {
+      "task_id": "click-usage-empty",
+      "matched_expected": true,
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "src/click/formatting.py"
+        ],
+        "structural": {
+          "accepted": true,
+          "committed": true,
+          "reason": "committed",
+          "changed_files": [
+            "src/click/formatting.py"
+          ],
+          "duplicates": [],
+          "import": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1819
+          },
+          "original_unchanged": false
+        },
+        "public_check": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1421,
+          "tests_run": 4,
+          "passed": true,
+          "assertion_failure": false,
+          "execution_error": false,
+          "classification": "passed",
+          "observation": {
+            "version": 1,
+            "complete": true,
+            "phase": "execution",
+            "tests_run": 4,
+            "issues": [],
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true
+          },
+          "stderr": "stderr.txt",
+          "stdout": "stdout.txt"
+        },
+        "rollback": null,
+        "original_before_sha256": "867bd127b4f23ee230405f7485bd1d95ca6e01410f1624879690fdc3c39c73aa",
+        "canonical_sha256": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+        "expected_public_tests": 4,
+        "candidate_sha256": "11421ecbe3a5fee108cb74e76fe5a07b99dccc2c506c894b012f94da8c2dc7ce",
+        "original_unchanged": false,
+        "original_after_sha256": "11421ecbe3a5fee108cb74e76fe5a07b99dccc2c506c894b012f94da8c2dc7ce"
+      },
+      "evidence_scope": "full changed files for offline human positive only"
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "matched_expected": true,
+      "transaction": {
+        "accepted": true,
+        "committed": true,
+        "reason": "committed",
+        "changed_files": [
+          "src/itsdangerous/signer.py"
+        ],
+        "structural": {
+          "accepted": true,
+          "committed": true,
+          "reason": "committed",
+          "changed_files": [
+            "src/itsdangerous/signer.py"
+          ],
+          "duplicates": [],
+          "import": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0882
+          },
+          "original_unchanged": false
+        },
+        "public_check": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1054,
+          "tests_run": 11,
+          "passed": true,
+          "assertion_failure": false,
+          "execution_error": false,
+          "classification": "passed",
+          "observation": {
+            "version": 1,
+            "complete": true,
+            "phase": "execution",
+            "tests_run": 11,
+            "issues": [],
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true
+          },
+          "stderr": "stderr.txt",
+          "stdout": "stdout.txt"
+        },
+        "rollback": null,
+        "original_before_sha256": "4c96ff54075c6f30286d947a2b1de3490265c3a05f664bb9ac86b62248264f38",
+        "canonical_sha256": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+        "expected_public_tests": 11,
+        "candidate_sha256": "aa548ff5ec87675de06f0c0ec64b55bed5c02ad0663b9b7cf97de75e48ce3aa0",
+        "original_unchanged": false,
+        "original_after_sha256": "aa548ff5ec87675de06f0c0ec64b55bed5c02ad0663b9b7cf97de75e48ce3aa0"
+      },
+      "evidence_scope": "full changed files for offline human positive only"
+    }
+  ],
+  "source_hashes": {
+    "click-usage-empty": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+    "click-echo-empty-bytes": "1deab48d56e54d5bf49d922899b4a988d4dd53a288257abdafce37a97012d55b",
+    "click-style-color-validation": "afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+    "itsdangerous-none-salt": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+    "itsdangerous-future-age": "2f608833f29fa4b68d77a3667c4095b7efbae16cf583ffc1782e37356a03f204",
+    "itsdangerous-malformed-time": "afa63ea45c30fcb0cf92159676b04d9253cdd6ed73cc1b91db5dd2ca9c277967"
+  },
+  "adapter_hashes": {
+    "docs/experiments/semantic_patch_audit_v1.py": "65047ff2e8ff94d293a27c44f75c12bfa5ce2772641276322b7da9c4c1fc0159",
+    "docs/experiments/semantic_patch_transaction_v1.py": "5bb75f565d8592e0927d80a39362c2aaf16a9327093788c078836af659e59c85",
+    "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+    "docs/experiments/runtime_observation_v1.py": "643a052493a0303f27596ee05f84ef962b2e3a989a74da77906aee341862367d",
+    "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+    "evals/process.py": "6a881e9a519e67776fe9a9bacc7b0c176259dceed6fabcac91c8fdc4d7f01b04",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/experiment.json": "68098bc50195b7e85475cd6dcc5c1dd46d5ea69cde1a5cd369ee93041d5a8927",
+    "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+    "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/public-hypotheses/job.json": "720038b183f2986ad6088c16aed98f1773db23841f27f651df723213ce6f0787",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/public-hypotheses/response.txt": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/public-hypotheses/feedback-context.json": "f2c6442a362e0b8bb3cbba6e800e6cf843a7d1092a73ccbddd7e9fe72243b512",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/public-hypotheses/feedback-patch.json": "2045cc013e2bfe929129a0c091fb3d4a87aac4d5c100b66ae814410da24b12da",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/public-hypotheses/worker-result.json": "5c627fcedee1e045fe982f64301d672b7e7b1b7df1c89e38d5b2916d4807dac9",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/patch-only/job.json": "1a950385179e72d5464900dbc679900ade4af2689a17eb896e915ebb8c19c867",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/patch-only/response.txt": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/patch-only/feedback-context.json": "f2c6442a362e0b8bb3cbba6e800e6cf843a7d1092a73ccbddd7e9fe72243b512",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/patch-only/feedback-response.txt": "930046f1f6b13838bad69d82f88089ceb59b1eda05406aa0f9eed4353136bf26",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/click-usage-empty/patch-only/worker-result.json": "99c5fb239fee105529a2221d11120e3a2fad4571a1ba16e2a489993a8cfc7855",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/patch-only/job.json": "80552c29ac436c3041a0e42879da40f989236e00c1220d5e49faee04cc309853",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/patch-only/response.txt": "eb6e386b9f09383a9fbbabacdf7f7a3394cde329af578c063a395435978ba3bb",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/patch-only/feedback-context.json": "06b6bd5b8b25ea19852228a1b34747b792ff2d68efbaa9cb7b630d81f85660bc",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/patch-only/feedback-response.txt": "03babec2111e42371bad1b4a694050a4dfa3a0e65f0ba833d20ae2ae8adbd056",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/patch-only/worker-result.json": "c1a4fbe52ac46911ec132ea5e05f6a4ceb08ebe2edea110f13e1826b0b5fdbd8",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/patch-only/initial-context.json": "e03f72d6b65025032968ca98193c8aee8ad0a2496ef3c96fba1c1d077946205e",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/public-hypotheses/job.json": "421cb7c3581511402801cc75748b3ac2f9038e5b6aa9eac4fcac26effc0e4ad0",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/public-hypotheses/response.txt": "eb6e386b9f09383a9fbbabacdf7f7a3394cde329af578c063a395435978ba3bb",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/public-hypotheses/feedback-context.json": "06b6bd5b8b25ea19852228a1b34747b792ff2d68efbaa9cb7b630d81f85660bc",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/public-hypotheses/feedback-patch.json": "102b863c1470836046ea978163f4369885755ae27db444645148488434796809",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/public-hypotheses/worker-result.json": "2d8f42b3c6fc0b424a9f4d2c1dcb6e56aa97023451d3004b5547782dcc847b09",
+    ".tmp/real-defects/repair-hypothesis-compare-v2/itsdangerous-none-salt/public-hypotheses/initial-context.json": "e03f72d6b65025032968ca98193c8aee8ad0a2496ef3c96fba1c1d077946205e"
+  },
+  "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "validation": {
+    "new_tests": 15,
+    "targeted_passed": 52,
+    "targeted_seconds": 3.5,
+    "ruff": "passed",
+    "windows_passed": 1096,
+    "linux_docker_http_rerun": false,
+    "windows_skipped": 2,
+    "windows_seconds": 167.77,
+    "document_links": 185,
+    "frozen_inputs": "passed",
+    "readme_constraint": "passed"
+  },
+  "raw_artifacts": ".tmp/real-defects/semantic-patch-audit-v1",
+  "decision": "Optional callable semantic transaction validated offline; no default or Worker integration and no new repair-rate evidence."
+}

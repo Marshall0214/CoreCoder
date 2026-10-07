@@ -29,7 +29,7 @@
 
 | 范围 | 已记录结果 | 版本化来源 |
 | --- | --- | --- |
-| 最新 Windows 全量 | 1,081 passed、2 skipped | [修复假设实验摘要](repair-hypothesis-v1.json)；含上游与扩展测试 |
+| 最新 Windows 全量 | 1,096 passed、2 skipped | [语义验收事务摘要](semantic-patch-v1.json)；含上游与扩展测试 |
 | 历史 Linux 专项 | 71 passed | [审批验收](workflow-approval-acceptance-v1.json) |
 | 历史容器端到端 | 22 项检查通过 | 同上，container.checks |
 | 历史真实 HTTP 审批故障 | 18 项检查通过 | 同上，host.http_checks |
@@ -50,3 +50,5 @@
 已编辑函数保留对照：两个丢失方法的完整覆盖 0/2→2/2，但六项独立验收仍均 5/6；不能写为修复率提升。最新模型与 Windows 验收见 [报告](edited-context-v1.md)。
 
 公开修复假设实验：引用与覆盖校验通过不等于语义正确，修正版局部对照原流程 1/2、假设流程 0/2；不采用为默认，不增加简历收益数字。见 [完整报告](repair-hypothesis-v1.md)。
+
+公开语义提交门禁离线验收：3/3 个历史语义错误补丁不写回，历史及人工正确补丁 3/3 提交；0 次模型调用。此为候选提交可靠性证据，未接入默认服务，不增加修复率收益数字，见 [报告](semantic-patch-v1.md)。
