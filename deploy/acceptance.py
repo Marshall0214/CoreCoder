@@ -83,6 +83,7 @@ class Acceptance:
                       'corecoder-local:validation', 'python', '-m', 'pytest', 'tests/test_service.py',
                       'tests/test_service_persistence.py', 'tests/test_code_knowledge_mcp.py', 'tests/test_mcp.py',
                       'tests/test_local_deploy_acceptance.py',
+                      'tests/test_workflow.py',
                       '-q', '-p', 'no:cacheprovider', '--basetemp=/tmp/pytest'], timeout=180)
         self.report['checks']['linux_service_and_mcp_tests'] = True
         self.command(['docker', 'run', '--rm', '--network', 'none', '--read-only', '--tmpfs', '/tmp:rw,mode=1777',
@@ -106,6 +107,12 @@ class Acceptance:
         self.verify('restart_preserves_patch', self.request(f'/tasks/{task_id}/artifacts/patch.diff', raw=True) == patch)
         self.verify('restart_preserves_idempotency', self.request('/tasks', body, key='container-scripted')['id'] == task_id)
         self.verify('sse_persisted', 'id: 3' in self.request(f'/tasks/{task_id}/events', raw=True))
+        graph_body = {'task_id': 'timeout-units', 'mode': 'scripted', 'workflow': 'langgraph-v1'}
+        graph_id = self.request('/tasks', graph_body, key='container-graph')['id']
+        self.verify('graph_independent_verification', self.wait(graph_id)['state'] == 'succeeded')
+        graph_snapshot = self.request(f'/tasks/{graph_id}/artifacts/workflow.json')
+        self.verify('graph_snapshot', graph_snapshot['outcome'] == 'accepted')
+        self.verify('graph_idempotency', self.request('/tasks', graph_body, key='container-graph')['id'] == graph_id)
         self.compose('down')
         self.faults = True
         self.compose('up', '-d', '--wait', '--wait-timeout', '60')

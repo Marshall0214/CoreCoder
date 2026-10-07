@@ -4,6 +4,7 @@ import asyncio
 import json
 import re
 from contextlib import asynccontextmanager
+from importlib.util import find_spec
 from pathlib import Path
 from typing import Literal
 
@@ -22,6 +23,7 @@ class SubmitTask(BaseModel):
     task_id: str = Field(pattern=r'^[a-z0-9][a-z0-9_-]{0,79}$')
     mode: Literal['scripted', 'unchanged', 'reference', 'live'] = 'scripted'
     search_backend: Literal['off', 'none', 'keyword'] = 'off'
+    workflow: Literal['langgraph-v1'] | None = None
 
 
 class TaskView(SubmitTask):
@@ -63,12 +65,14 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
     async def submit(body: SubmitTask, idempotency_key: str | None = Header(default=None)):
         if idempotency_key is not None and not re.fullmatch(r'[A-Za-z0-9._:-]{1,128}', idempotency_key):
             raise HTTPException(400, 'Invalid Idempotency-Key')
+        if body.workflow is not None and find_spec('langgraph') is None:
+            raise HTTPException(503, 'Install the workflow extra to use langgraph-v1')
         try:
             load_suite(SUITES[body.suite], [body.task_id])
         except ValueError as exc:
             raise HTTPException(422, 'Unknown task in the selected suite') from exc
         try:
-            job = app.state.manager.submit(body.model_dump(), idempotency_key)
+            job = app.state.manager.submit(body.model_dump(exclude_none=True), idempotency_key)
         except ValueError as exc:
             raise HTTPException(409, str(exc)) from exc
         except LookupError as exc:
@@ -88,6 +92,11 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
     @app.get('/tasks/{task_id}/artifacts/{name}')
     async def artifact(task_id: str, name: str):
         job = job_or_404(task_id)
+        if name == 'workflow.json':
+            path = job.root / name
+            if not path.is_file() or path.is_symlink():
+                raise HTTPException(404, 'No workflow snapshot available')
+            return FileResponse(path, filename=name, media_type='application/json')
         if name not in {'patch.diff', 'report.json'}:
             raise HTTPException(404, 'Unknown artifact')
         if job.state not in {'succeeded', 'failed'} or job.result is None:

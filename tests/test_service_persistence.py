@@ -27,7 +27,7 @@ STUB = 'tests.service_worker_stub'
 
 def seed(root, state='queued', mode='scripted', key=None, process=None, birth=None):
     root.mkdir(exist_ok=True)
-    job = Job(uuid.uuid4().hex, SubmitTask(task_id='timeout-units', mode=mode).model_dump(), root / uuid.uuid4().hex)
+    job = Job(uuid.uuid4().hex, SubmitTask(task_id='timeout-units', mode=mode).model_dump(exclude_none=True), root / uuid.uuid4().hex)
     job.root = root / job.id
     job.root.mkdir()
     (job.root / 'job.json').write_text(json.dumps({'request': job.request}), encoding='utf-8')

@@ -3,10 +3,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8 PYTHONPA
 WORKDIR /app
 COPY pyproject.toml README.md LICENSE ./
 COPY corecoder ./corecoder
-RUN python -m pip install --no-cache-dir '.[service,mcp-server]'
+RUN python -m pip install --no-cache-dir '.[service,mcp-server,workflow]'
 COPY evals ./evals
 COPY service ./service
 COPY mcp_servers ./mcp_servers
+COPY workflows ./workflows
 COPY deploy/healthcheck.py ./deploy/healthcheck.py
 RUN useradd --uid 10001 --create-home corecoder \
     && mkdir -p /app/.tmp/service \

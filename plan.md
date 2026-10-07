@@ -162,7 +162,8 @@
 ### P1：工作流、MCP 与服务工程化
 
 - [x] 本地 FastAPI MVP 与 SQLite 持久化：幂等提交、SSE 重放、取消、排队恢复、运行中断清理及有界终态查询历史；见 `docs/service-mvp-v1.md`、`docs/service-persistence-v2.md`，不计 PostgreSQL/Redis 或生产部署。
-- [ ] LangGraph + Pydantic：结构化计划、执行、验证、有限反思、审批和取消；通过适配层保留实验执行方式。
+- [ ] LLM 动态计划/任务拆解、有限反馈与反思、人工审批及原生节点检查点/恢复；通过适配层保留实验执行方式。
+- [x] LangGraph 首版有限编排：Pydantic 固定执行计划、一次执行/独立验证、条件接受或拒绝、原子诊断快照及服务级取消；默认旧方式不变，见 `docs/langgraph-workflow-v1.md`。动态计划、反思、审批和原生节点恢复仍待实现。
 - [ ] PostgreSQL 保存任务/检查点/审计；独立进程 Worker 执行，Redis 用于队列、限流和缓存。实现调用幂等、恢复及取消清理。
 - [ ] 区分任务内记忆与带来源/版本的仓库记忆；核心评测禁用跨任务答案记忆。
 - [x] 代码知识 MCP stdio Server 首版：复用 BM25，提供搜索/按行读取/文件分页；官方 SDK Client 与既有 Client 互操作、结构化输出、错误及超时已验证，见 `docs/mcp-code-knowledge-v1.md`。远程 MCP、资源与权限扩展另行推进。
@@ -185,7 +186,7 @@ Multi-Agent、远程 MCP、微调、本地推理优化和开源贡献，主线�
 evals/                   # 任务协议、独立验证器、运行与报告
 corecoder/runtime/       # 任务实例、工具工厂、预算、事件、执行适配
 corecoder/rag/           # 解析、索引、检索、重排、上下文选择
-corecoder/workflows/     # 计划、验证、恢复（P1）
+workflows/               # LangGraph 有限编排、执行/验证适配与诊断快照
 corecoder/service/       # API、Worker、数据库、队列（P1）
 mcp_servers/             # 代码知识 Server（P1）
 deploy/                  # 容器与 Linux 部署（P1）
@@ -216,4 +217,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**当前：FastAPI MVP、SQLite 持久化/幂等/恢复、MCP stdio Server、Windows 故障验收及 Linux 单服务容器部署均完成。Linux 专项 48 passed，13 项容器端到端检查通过，见 docs/container-deployment-v1.md；离线运行，无新增模型调用。下一步实现 LangGraph 结构化、可取消的有限工作流，通过适配层保留冻结实验执行方式。PostgreSQL/Redis、鉴权和每任务独立容器沙箱仍未完成；当前检索批次不再扩充。**
+**当前：FastAPI、SQLite 幂等/恢复、MCP、Linux 容器部署及可取消的 LangGraph 有限编排均完成。图模式显式启用，包含代码生成的结构化计划、一次执行与独立验证、结果分支和诊断快照；默认旧执行及幂等指纹兼容。全量 852 passed、2 skipped；Linux 59 passed、16 项容器检查通过，见 docs/langgraph-workflow-v1.md。下一步补充人工审批及原生节点持久化检查点；动态规划/反思、PostgreSQL/Redis、鉴权和每任务沙箱仍未实现。冻结实验不变，无新增模型调用。**

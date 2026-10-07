@@ -1,5 +1,7 @@
 # 容器部署配置与离线验收
 
+本文保留首轮 48 项 Linux 测试、13 项端到端检查的记录。后续加入 [LangGraph 有限工作流](langgraph-workflow-v1.md) 后，最新容器回归为 **59 passed、16 项端到端检查通过**；新摘要独立保存，不覆盖本轮历史记录。
+
 包含主机 [真实 HTTP 服务故障验收](local-http-acceptance-v1.md) 和本轮 Linux 容器验收，两者独立记录。2026-10-07 Docker/Linux 离线部署验收已通过，摘要见 [container-acceptance-v1.json](container-acceptance-v1.json)。
 
 ## 本轮交付与当前状态
