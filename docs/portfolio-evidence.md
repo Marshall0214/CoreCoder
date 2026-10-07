@@ -30,7 +30,7 @@
 
 | 范围 | 已记录结果 | 版本化来源 |
 | --- | --- | --- |
-| 最新 Windows 全量 | 1,169 passed、2 skipped | [函数替换摘要](function-replace-v1.json)；含上游与扩展测试 |
+| 最新 Windows 全量 | 1,176 passed、2 skipped | [源码重启摘要](restart-feedback-v1.json)；含上游与扩展测试 |
 | 历史 Linux 专项 | 71 passed | [审批验收](workflow-approval-acceptance-v1.json) |
 | 历史容器端到端 | 22 项检查通过 | 同上，container.checks |
 | 历史真实 HTTP 审批故障 | 18 项检查通过 | 同上，host.http_checks |
@@ -64,3 +64,6 @@
 
 
 函数替换实验收尾：程序按已展示函数与文件 SHA256 提取旧文本，防止模型复述漏行；严格兼容单个 JSON 代码块后，两项反馈事务均可执行，但同答案回放最终基线 1/2、候选 0/2。八次本地 Qwen 请求共 34,137 Token；回放零新增推理。Windows 1,169 passed、2 skipped。保留可选原型，不采用、不扩任务、不改服务；下一步重点是修复逻辑的参数语义和行为保持。 见 [实验报告](function-replace-v1.md)。
+
+
+源码重启反馈实验完成：失败观察保留，候选精确恢复到任务起始源码后重新生成补丁。两项全新配对原组 1/2、重启组 0/2，Controls 均 1/2；八次本地 Qwen 调用、35,012 Token，无预算或结构拒绝。回滚可执行，但语义错误仍再次生成。Windows 1,176 passed、2 skipped；不采用、不扩任务、不改服务。 见 [实验报告](restart-feedback-v1.md)。

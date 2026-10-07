@@ -1,0 +1,716 @@
+{
+  "protocol": "restart-feedback-summary-v1",
+  "complete": true,
+  "decision": "not adopted; stop expansion",
+  "source_record": ".tmp/real-defects/restart-feedback-compare-v1/experiment.json",
+  "source_sha256": "8d7c0ab2fcd479aef233c8e88d283644a35c7b75e551a0664945e07b5526634c",
+  "experiment_protocol": {
+    "protocol": "restart-feedback-compare-v1",
+    "unique_tasks": 2,
+    "repeats": 1,
+    "started_at_utc": "2026-10-07T14:05:59.968522+00:00",
+    "ollama_identity": {
+      "version": "0.34.3",
+      "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+      "thinking_metadata": {
+        "values": [
+          false,
+          true
+        ],
+        "default": true
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.8B",
+        "quantization_level": "Q4_K_M"
+      }
+    },
+    "sdk_version": "3.20.0",
+    "expected_runs": 4,
+    "previously_inspected_tasks": true,
+    "benchmark_eligible": false,
+    "prior_runs_included": false,
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+    "qwen_model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "provider": {
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "reasoning_effort": "none"
+    },
+    "feedback_source_policies": [
+      "continue",
+      "restart"
+    ],
+    "retention_policy": "edited-first",
+    "feedback_policy": "runtime-feedback",
+    "context_policy": "source-contract",
+    "sampling": {
+      "temperature": 0,
+      "top_p": 1,
+      "seed": null,
+      "stream": false
+    },
+    "thinking_policy": "explicitly disabled; reject returned reasoning; record absent reasoning token breakdown as unknown",
+    "transport": "OpenAI-compatible SDK, 60-second timeout, zero automatic retries",
+    "max_llm_calls_per_branch": 2,
+    "shared_token_budget": 15000,
+    "tools": [],
+    "adapter_hashes": {
+      "docs/experiments/restart_feedback_compare_v1.py": "0db484adb6f89c777de7429262a805932794d25588783db37d47a43133d8f311",
+      ".tmp/real-defects/function-replace-audit-v1-final/audit.json": "e1cc75c62f78d2edc0feba7e74c3b175030ad786ce06ea4ee8a4d6ccf0d5c26c",
+      "docs/experiments/function_replace_v2.py": "e3e60be2ebe63cc9521cd158a67ce8e78eb0cd77893c8db144f0d8b1fdd3705a",
+      "docs/experiments/tentative_feedback_worker_v1.py": "b83032bbdc44e3ab99e47936afe68521b0dd706cc3dfb9ef2c0d209609923eb0",
+      "docs/experiments/semantic_patch_transaction_v1.py": "5bb75f565d8592e0927d80a39362c2aaf16a9327093788c078836af659e59c85",
+      "docs/experiments/edited_context_v1.py": "bb6ecbc0843cb18690700593d99f8effc425fae0ad8cee7ff859a004753780a7",
+      "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+      "docs/experiments/provider_compare_worker_v1.py": "5673402e02e11f122d3bb67e2a3fada04a532f00745c411bc2eb7171758a18cb",
+      "docs/experiments/restart_feedback_worker_v1.py": "15be43e603d682856ca9c065a4b720f78560c0726dfb2c937601c167272bbdbc",
+      "docs/experiments/source_contract_context_v1.py": "f06bd16db2bebceb74bdf2db9956372cb8c4eca930eff806e1fbb4bffcb41406",
+      "docs/experiments/runtime_observation_v1.py": "643a052493a0303f27596ee05f84ef962b2e3a989a74da77906aee341862367d",
+      "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+      "docs/experiments/repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+      "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+      "docs/experiments/salt_relations_audit_v1.py": "94bb64473835d4a9c8f79c7e91a1ea90ec9ac526cfd64b4dc6ea4a91ae7fa1e0",
+      "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+      "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+      "docs/experiments/thinking_calibration_v1.py": "4fd5865933ce8b83d0811654bebb93fdc22906a7245b13c664dd47771d3bb987",
+      "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+      "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+      "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+      "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+      "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+      "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+      "evals/process.py": "6a881e9a519e67776fe9a9bacc7b0c176259dceed6fabcac91c8fdc4d7f01b04",
+      ".tmp/real-defects/tentative-feedback-audit-v1-final/audit.json": "f9c741776ccd3673ba5dab1c4de9e34be37282300af516fc40751d8e33181dcb",
+      ".tmp/real-defects/edited-context-audit-v1-final/audit.json": "afac19480c252dfbe46d7efb09e4a6f5a70d878d7154914fdeb9c8ed920a4574",
+      ".tmp/real-defects/runtime-observation-audit-v1/audit.json": "615948f936f370b7bdba939a211126e8d47457111e8d3e6d039f93e157c179aa",
+      ".tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+      ".tmp/real-defects/salt-relations-audit-v1-final/audit.json": "aed080365d682c89aab20f944cb6c178b6e5e97473e2407e212c6f812a65fbc0",
+      "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+      "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51"
+    },
+    "evidence_policy": "same source-contract and edited-function retention on none-salt; original retrieval with edited-function retention on click; combined 6000 chars and five seeds",
+    "intervention": "same initial prompt; public failure feedback edits current candidate or exact task-start source; same snippet schema, parser, evidence limits and call budget; no final publication change",
+    "public_check_versions": {
+      "click-usage-empty": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+      "itsdangerous-none-salt": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51"
+    },
+    "regression_scope": "only two previously inspected tasks with certified public checks; no new generalization or success-rate claim",
+    "observations_sha256": "b4e18b46a66f99769a8175b8e75a4a1b1a4a52aec68d6e9e51dc1e84f4b0cd3a",
+    "source_hashes": {
+      "click-usage-empty": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+      "itsdangerous-none-salt": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4"
+    },
+    "scoring": {
+      "click-usage-empty": "5fc2c1424c4cc61237139e692941f21ad59eab8dc8f0a6ca56bd68e948311b2f",
+      "itsdangerous-none-salt": "a59f229cdd5d2ff20f4bd12f3252154d1235475051e5a264a6200422e5c8c08d"
+    }
+  },
+  "summary": {
+    "continue": {
+      "runs": 2,
+      "passed": 1,
+      "statuses": {
+        "passed": 1,
+        "failed_verification": 1
+      },
+      "budget_accounted_tokens": 16903,
+      "known_budget_accounted_tokens": 16903,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 14587,
+      "completion_tokens": 2316,
+      "worker_seconds": 66.7507,
+      "model_calls": 4,
+      "transaction_rejections": 0,
+      "failed_runs_with_source_changes": 1,
+      "failed_runs_preserving_start": 0,
+      "controls_passed": 1,
+      "publication_seconds": null
+    },
+    "restart": {
+      "runs": 2,
+      "passed": 0,
+      "statuses": {
+        "failed_verification": 2
+      },
+      "budget_accounted_tokens": 18109,
+      "known_budget_accounted_tokens": 18109,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 14493,
+      "completion_tokens": 3616,
+      "worker_seconds": 100.3289,
+      "model_calls": 4,
+      "transaction_rejections": 0,
+      "failed_runs_with_source_changes": 2,
+      "failed_runs_preserving_start": 0,
+      "controls_passed": 1,
+      "publication_seconds": null
+    }
+  },
+  "runs": [
+    {
+      "task_id": "click-usage-empty",
+      "policy": "restart",
+      "status": "failed_verification",
+      "target_passed": false,
+      "controls_passed": true,
+      "restart": {
+        "restored": true,
+        "files": [
+          "src/click/formatting.py"
+        ],
+        "task_start_exact": true,
+        "failure_observation_origin": "discarded first candidate"
+      },
+      "stages": [
+        {
+          "stage": "initial",
+          "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+          "status": "completed",
+          "evidence_chars": 5578,
+          "transaction": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/click/formatting.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.188
+            },
+            "original_unchanged": false
+          },
+          "edited_files": [
+            "src/click/formatting.py"
+          ],
+          "edited_symbols": [
+            {
+              "path": "src/click/formatting.py",
+              "symbol": "HelpFormatter.write_usage"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "prompt_hash": "bf11b18978fcbec914adb7a54d3bc5a4da528f8306c5f929ec24e5d9d0aba10b",
+          "status": "completed",
+          "evidence_chars": 5578,
+          "context_metadata": {
+            "strategy": "edited-functions-first",
+            "retained_symbols": [
+              [
+                "src/click/formatting.py",
+                "HelpFormatter.write_usage"
+              ]
+            ],
+            "seed_count": 5,
+            "evidence_chars": 5578,
+            "combined_chars": 5578,
+            "max_chars": 6000,
+            "discarded": [
+              {
+                "path": "src/click/formatting.py",
+                "symbol": "HelpFormatter.write_usage",
+                "reason": "overlap"
+              }
+            ]
+          },
+          "transaction": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/click/core.py",
+              "src/click/formatting.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1816
+            },
+            "original_unchanged": false
+          },
+          "edited_files": [
+            "src/click/core.py",
+            "src/click/formatting.py"
+          ],
+          "edited_symbols": [
+            {
+              "path": "src/click/formatting.py",
+              "symbol": "HelpFormatter.write_usage"
+            },
+            {
+              "path": "src/click/core.py",
+              "symbol": "Command.format_usage"
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5437,
+        "completion_tokens": 1706,
+        "known_prompt_tokens": 5437,
+        "known_completion_tokens": 1706,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7143,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-usage-empty",
+      "policy": "continue",
+      "status": "passed",
+      "target_passed": true,
+      "controls_passed": true,
+      "restart": null,
+      "stages": [
+        {
+          "stage": "initial",
+          "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+          "status": "completed",
+          "evidence_chars": 5578,
+          "transaction": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/click/formatting.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1816
+            },
+            "original_unchanged": false
+          },
+          "edited_files": [
+            "src/click/formatting.py"
+          ],
+          "edited_symbols": [
+            {
+              "path": "src/click/formatting.py",
+              "symbol": "HelpFormatter.write_usage"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "prompt_hash": "88883c80a098c1dea8339490ccb42906337efd720531e7b4474244886577f193",
+          "status": "completed",
+          "evidence_chars": 5676,
+          "context_metadata": {
+            "strategy": "edited-functions-first",
+            "retained_symbols": [
+              [
+                "src/click/formatting.py",
+                "HelpFormatter.write_usage"
+              ]
+            ],
+            "seed_count": 5,
+            "evidence_chars": 5676,
+            "combined_chars": 5676,
+            "max_chars": 6000,
+            "discarded": [
+              {
+                "path": "src/click/formatting.py",
+                "symbol": "HelpFormatter.write_usage",
+                "reason": "overlap"
+              }
+            ]
+          },
+          "transaction": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/click/core.py",
+              "src/click/formatting.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1965
+            },
+            "original_unchanged": false
+          },
+          "edited_files": [
+            "src/click/core.py",
+            "src/click/formatting.py"
+          ],
+          "edited_symbols": [
+            {
+              "path": "src/click/formatting.py",
+              "symbol": "HelpFormatter.write_usage"
+            },
+            {
+              "path": "src/click/core.py",
+              "symbol": "Command.format_usage"
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5412,
+        "completion_tokens": 1746,
+        "known_prompt_tokens": 5412,
+        "known_completion_tokens": 1746,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7158,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "continue",
+      "status": "failed_verification",
+      "target_passed": false,
+      "controls_passed": false,
+      "restart": null,
+      "stages": [
+        {
+          "stage": "initial",
+          "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+          "status": "completed",
+          "evidence_chars": 3945,
+          "context_metadata": {
+            "omitted_fact_rows": [],
+            "inference": "static local facts only; no expected fix or runtime proof",
+            "contract_chars": 1684,
+            "evidence_chars": 3945,
+            "combined_chars": 5629,
+            "max_chars": 6000,
+            "omitted_symbols": [
+              "JSONWebSignatureSerializer.__init__"
+            ],
+            "strategy": "source-facts-plus-constructor-forwarding",
+            "seed_count": 4
+          },
+          "transaction": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/itsdangerous/serializer.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0975
+            },
+            "original_unchanged": false
+          },
+          "edited_files": [
+            "src/itsdangerous/serializer.py"
+          ],
+          "edited_symbols": [
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.make_signer"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.iter_unsigners"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "prompt_hash": "b15e4f72aebf0e41170b3716155cd0ad7c4ddb000bb6152e356674436be19f48",
+          "status": "completed",
+          "evidence_chars": 4297,
+          "context_metadata": {
+            "omitted_fact_rows": [],
+            "inference": "static local facts only; no expected fix or runtime proof",
+            "contract_chars": 1594,
+            "evidence_chars": 4297,
+            "combined_chars": 5891,
+            "max_chars": 6000,
+            "omitted_symbols": [
+              "Serializer.dumps"
+            ],
+            "strategy": "edited-functions-first",
+            "seed_count": 5,
+            "retained_symbols": [
+              [
+                "src/itsdangerous/serializer.py",
+                "Serializer.make_signer"
+              ],
+              [
+                "src/itsdangerous/serializer.py",
+                "Serializer.iter_unsigners"
+              ]
+            ],
+            "discarded": [
+              {
+                "path": "src/itsdangerous/jws.py",
+                "symbol": "JSONWebSignatureSerializer.__init__",
+                "reason": "budget"
+              }
+            ]
+          },
+          "transaction": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/itsdangerous/serializer.py",
+              "src/itsdangerous/signer.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0916
+            },
+            "original_unchanged": false
+          },
+          "edited_files": [
+            "src/itsdangerous/serializer.py",
+            "src/itsdangerous/signer.py"
+          ],
+          "edited_symbols": [
+            {
+              "path": "src/itsdangerous/signer.py",
+              "symbol": "Signer.__init__"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.__init__"
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 9175,
+        "completion_tokens": 570,
+        "known_prompt_tokens": 9175,
+        "known_completion_tokens": 570,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 9745,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "restart",
+      "status": "failed_verification",
+      "target_passed": false,
+      "controls_passed": false,
+      "restart": {
+        "restored": true,
+        "files": [
+          "src/itsdangerous/serializer.py"
+        ],
+        "task_start_exact": true,
+        "failure_observation_origin": "discarded first candidate"
+      },
+      "stages": [
+        {
+          "stage": "initial",
+          "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+          "status": "completed",
+          "evidence_chars": 3945,
+          "context_metadata": {
+            "omitted_fact_rows": [],
+            "inference": "static local facts only; no expected fix or runtime proof",
+            "contract_chars": 1684,
+            "evidence_chars": 3945,
+            "combined_chars": 5629,
+            "max_chars": 6000,
+            "omitted_symbols": [
+              "JSONWebSignatureSerializer.__init__"
+            ],
+            "strategy": "source-facts-plus-constructor-forwarding",
+            "seed_count": 4
+          },
+          "transaction": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/itsdangerous/serializer.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0893
+            },
+            "original_unchanged": false
+          },
+          "edited_files": [
+            "src/itsdangerous/serializer.py"
+          ],
+          "edited_symbols": [
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.make_signer"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.iter_unsigners"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "prompt_hash": "b7c24cd483beb12d3fd79bd4fbf039e6ef88ecd6db2b1eb6db8094dab9276f8a",
+          "status": "completed",
+          "evidence_chars": 3945,
+          "context_metadata": {
+            "omitted_fact_rows": [],
+            "inference": "static local facts only; no expected fix or runtime proof",
+            "contract_chars": 1684,
+            "evidence_chars": 3945,
+            "combined_chars": 5629,
+            "max_chars": 6000,
+            "omitted_symbols": [
+              "JSONWebSignatureSerializer.__init__"
+            ],
+            "strategy": "edited-functions-first",
+            "seed_count": 4,
+            "retained_symbols": [
+              [
+                "src/itsdangerous/serializer.py",
+                "Serializer.make_signer"
+              ],
+              [
+                "src/itsdangerous/serializer.py",
+                "Serializer.iter_unsigners"
+              ]
+            ],
+            "discarded": [
+              {
+                "path": "src/itsdangerous/serializer.py",
+                "symbol": "Serializer.make_signer",
+                "reason": "overlap"
+              },
+              {
+                "path": "src/itsdangerous/serializer.py",
+                "symbol": "Serializer.iter_unsigners",
+                "reason": "overlap"
+              }
+            ]
+          },
+          "transaction": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/itsdangerous/serializer.py",
+              "src/itsdangerous/signer.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0986
+            },
+            "original_unchanged": false
+          },
+          "edited_files": [
+            "src/itsdangerous/serializer.py",
+            "src/itsdangerous/signer.py"
+          ],
+          "edited_symbols": [
+            {
+              "path": "src/itsdangerous/signer.py",
+              "symbol": "Signer.__init__"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.__init__"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.make_signer"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.iter_unsigners"
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 9056,
+        "completion_tokens": 1910,
+        "known_prompt_tokens": 9056,
+        "known_completion_tokens": 1910,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 10966,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    }
+  ],
+  "new_model_calls": 8,
+  "new_model_tokens": 35012,
+  "deepseek_calls": 0,
+  "validation": {
+    "targeted_passed": 7,
+    "targeted_seconds": 1.28,
+    "windows_full_passed": 1176,
+    "windows_full_skipped": 2,
+    "windows_full_seconds": 204.84,
+    "ruff": "passed",
+    "linux_container_http": "not rerun"
+  }
+}
