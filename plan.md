@@ -1,8 +1,8 @@
 # CoreCoder：仓库感知的代码修复 Agent
 
-> 更新：2026-10-06。目标：形成覆盖主要 AI Agent / LLM Application Engineer JD 的个人工程项目。未勾选内容均为计划，不代表已实现。
+> 更新：2026-10-07。目标：形成覆盖主要 AI Agent / LLM Application Engineer JD 的个人工程项目。未勾选内容均为计划，不代表已实现。统一交付入口：docs/project-overview.md。
 
-**阶段状态：检索与独立评测的最小实验交付已收束，见 docs/second-repo-repair-v1.md。两仓库结果按任务池分列，未证实普遍修复率提升；完整跨文件基准、全部实验和服务工程化仍未完成。为加快交付，当前不再扩充这批实验，FastAPI 本地服务 MVP 已交付（docs/service-mvp-v1.md），服务持久化与恢复仍待完成。**
+**阶段状态：本阶段已收敛为可交付的实验与本地服务项目。检索实验冻结，两仓库结果分任务池报告，未证实普遍修复率提升。FastAPI/SQLite、MCP、LangGraph 审批检查点和 Docker/Linux 已完成验收；总览、离线演示、JD 清单及简历说明位于 docs/project-overview.md。完整跨文件基准、动态规划、多用户权限和生产规模仍未完成，不继续为补齐关键词无限扩展。**
 
 ## 1. 定位与核心问题
 
@@ -219,4 +219,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**当前：FastAPI、SQLite 幂等/恢复、MCP、Linux 容器部署、LangGraph 有限编排及可选人工审批/原生 SQLite 检查点均已完成。待审批任务跨服务重启保留，批准恢复原图，重复决定不重跑；执行中崩溃清理后 interrupted，不自动重放。默认旧执行及幂等指纹兼容。全量 864 passed、2 skipped；Linux 71 passed、22 项容器检查及 18 项真实 HTTP 审批故障检查通过，见 docs/workflow-approval-v1.md。下一步收敛演示与交付证据，再按岗位需要选择鉴权或工具扩展；动态规划/反思、PostgreSQL/Redis 和每任务沙箱仍未实现。冻结实验不变，无新增模型调用。**
+**当前：本阶段实验、服务工程和交付文档已完成。全量 864 passed、2 skipped；Linux 71 passed、22 项容器检查及 18 项真实 HTTP 审批故障检查通过，见 docs/workflow-approval-v1.md。总览、演示、简历与贡献边界见 docs/project-overview.md。下一步由用户演讲/录屏和求职使用；只有岗位明确需要时再选鉴权或工具扩展。动态规划/反思、PostgreSQL/Redis 和每任务沙箱仍未实现。冻结实验不变，无新增模型调用。**

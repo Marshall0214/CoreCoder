@@ -17,20 +17,25 @@
 
 </div>
 
+## Fork extensions: repair evaluation and an approval service
+
+This fork adds controlled retrieval/context experiments, independent patch verification, a FastAPI/SQLite task service, a read-only code knowledge MCP server, LangGraph human approval, and Docker/Linux acceptance. It serves trusted fixture tasks locally. Experiments have not established a general repair-rate improvement; arbitrary repository intake and multi-user production deployment remain future work.
+
+Start with the Chinese-language [project overview](docs/project-overview.md), [five-minute offline demo](docs/demo-guide.md), [delivery/JD checklist](docs/delivery-checklist.md), and [resume/interview guide](docs/resume-and-interview.md).
+
+Recorded engineering acceptance: Windows 864 passed and 2 skipped; Linux 71 passed; 22 container checks and 18 HTTP approval fault checks passed. See the [versioned evidence](docs/workflow-approval-acceptance-v1.json). These are software checks, separate from model repair outcomes. The upstream walkthrough and author attribution below are retained; the overview identifies the fork's contributions.
+
 - **Readable end to end.** Read the whole engine in an afternoon, with no magic hidden anywhere you can't follow it.
 - **Hackable.** Set a breakpoint on any line, change it, rerun, all on your own machine. It genuinely works, which makes this a living reference rather than a diagram.
 - **The gaps are the point.** It deliberately keeps only the minimal core; what's missing isn't half-finished, it's where you branch off and make it your own.
 
-## How it compares
+## Three uses of this project
 
-| | CoreCoder | Claude Code | aider | nanoGPT |
-|---|---|---|---|---|
-| Lines of code | ~1,446 engine / 2,872 total | hundreds of thousands (closed) | tens of thousands of Python | ~600 (two files) |
-| Time to read it all | one afternoon | can't (closed) | a few days of slogging | one afternoon |
-| Breakpoint, change, rerun? | yes, every line | no | yes, but there's a lot | yes |
-| What it's for | understand one, then fork your own | production coding assistant | terminal pair-programming | minimal GPT for teaching |
-
-The nanoGPT column is there as a reference point: minimal, readable, but it teaches you to train a GPT. CoreCoder is after the same thing, only the subject is an agent that actually edits code. Sitting it next to Claude Code and aider isn't about competing for their users. CoreCoder is the foundation you stand on while you learn from them and get going; it isn't in the same race.
+| Layer | Purpose | Scope |
+| --- | --- | --- |
+| Upstream minimal engine | Read and understand a coding agent; use it as a fork foundation | Original author attribution retained; line counts cover the corecoder package |
+| Retrieval and repair experiments | Compare evidence strategies with fixed model, budgets, and grading | Exploratory samples; no general improvement or product superiority claim |
+| Local engineering service | Task APIs, independent verification, approval recovery, MCP, and container acceptance | Trusted tasks and one service owner; not an arbitrary-repository production platform |
 
 ## What this is
 
@@ -38,7 +43,7 @@ I've always felt coding agents get talked about as if they were arcane. Strip a 
 
 The engine (loop, model interface, context, tools, sessions) is 1,446 lines once you drop blank lines and comments. Counting the outer CLI, config and retrieval modules too, the whole package is 28 files: 2,872 physical lines, 2,336 net. The growth since the original 1,161-line snapshot includes plan mode, hooks, checkpoints and an optional evidence search tool. The search tool is enabled through the evaluation harness; it is not part of the default CLI tool set. Evaluation code and task fixtures outside the package are excluded from these counts. See [search_code and its evaluation protocol](docs/p0-2-search-code.md).
 
-And it really runs: reads and writes files, executes shell, spawns sub-agents, compacts context in three tiers, and tells you the tokens and dollars a run burned whenever you ask. Anything that would mutate your disk or run a command stops for your consent first. 179 tests, all green. But the point of it running isn't to become your daily driver. It runs so the walkthrough can't lie: a reference that shows how an agent works has to actually work.
+And it really runs: reads and writes files, executes shell, spawns sub-agents, compacts context in three tiers, and tells you the tokens and dollars a run burned whenever you ask. Anything that would mutate your disk or run a command stops for your consent first. The original baseline had 179 tests; current fork acceptance is recorded above. But the point of it running isn't to become your daily driver. It runs so the walkthrough can't lie: a reference that shows how an agent works has to actually work.
 
 The code came out of a public teardown: open analyses have already exposed a lot of the load-bearing architecture inside production agents like Claude Code. I took the most essential layer and rewrote it honestly, in as little code as I could. So reading CoreCoder is roughly like reading a runnable, annotated take on how that kind of agent works, except it's only a minimal reimplementation, sitting right there on your machine for you to take apart and change.
 
@@ -83,7 +88,7 @@ corecoder -p "add error handling to parse_config()"   # one-shot mode, exits whe
 
 ## Read it: the code map
 
-Laid out flat, the whole project is this big. Skim it before you clone and you'll know where everything is. This is the most concrete difference from Claude Code's hundreds of thousands of lines: you can read it like the table of contents of a book. Start from the main loop in `agent.py`; that's the heart of the whole agent.
+The core package below provides a source-reading map. Start from the main loop in `agent.py`; evaluation and service extensions outside the package are mapped in the project overview above.
 
 ```
 corecoder/
@@ -283,7 +288,7 @@ If working through CoreCoder was useful, here are a few other tools I've built a
 
 ## Contributing / License
 
-Before you send anything, run `pytest tests/ -q` (179 tests), `ruff check`, and `compileall`, and make sure they're green. MIT licensed: fork it, learn from it, ship something better. A mention of this project is appreciated.
+Before you send anything, run tests and code checks appropriate to the change. Fork dependencies and D-drive validation commands are documented in the [delivery checklist](docs/delivery-checklist.md) and [approval guide](docs/workflow-approval-v1.md). MIT licensed: fork it, learn from it, ship something better. A mention of this project is appreciated.
 
 ---
 
