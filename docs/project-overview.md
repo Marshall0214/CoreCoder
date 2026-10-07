@@ -33,6 +33,8 @@
 | Qwen 源码契约上下文与回归 | [source-contract-context-v1.md](source-contract-context-v1.md) |
 | 暂存发布真实模型对照 | [tentative-publication-v1.md](tentative-publication-v1.md) |
 | 暂存发布的可选服务审批入口 | [tentative-service-v1.md](tentative-service-v1.md) |
+| 补丁差异反馈结果（未采用） | [patch-delta-v1.md](patch-delta-v1.md) |
+| 当前核心优化与停止条件 | [core-repair-next.md](core-repair-next.md) |
 | 任务级暂存反馈与语义发布（可选 Worker） | [tentative-feedback-v1.md](tentative-feedback-v1.md) |
 | 最终候选公开语义验收事务（离线） | [semantic-patch-v1.md](semantic-patch-v1.md) |
 | 公开修复假设校验与结果追踪（未采用） | [repair-hypothesis-v1.md](repair-hypothesis-v1.md) |
@@ -98,7 +100,7 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新暂存审批服务后 Windows 全量 **1,134 passed、2 skipped**，见 [服务报告](tentative-service-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新补丁差异反馈后 Windows 全量 **1,144 passed、2 skipped**，见 [实验报告](patch-delta-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -139,3 +141,7 @@ Qwen / DeepSeek 固定统一反馈流程对照已完成：六项已查看缺陷�
 真实模型发布对照完成：两项任务两种流程均修复 1/2；直接写入的失败分支留下错误源码，暂存发布拒绝该候选并保持起始字节，控制测试通过分支由 1/2 变为 2/2。正式对照 8 次本地 Qwen 请求、33,842 Token，新增验收发布阶段约 2.84 秒；没有修复率提升。全量 1,118 passed、2 skipped。下一步接入服务可选执行路径，见 [报告](tentative-publication-v1.md)。
 
 可选暂存审批服务完成：两项认证真实缺陷可经 API 提交，审批后执行暂存修复与公开验收发布；拒绝、待审批取消和推理阶段取消不发布源码。16 项新测试覆盖成功/失败、重启、超时、幂等、外部变化、认证篡改及异常脱敏；两项真实快照经 ASGI/真实 Worker 到达待审批并拒绝，0 次模型请求。Windows 全量 1,134 passed、2 skipped；默认工作流不变。仍依赖历史本地产物，下一步生成独立认证任务包并验证批准后的真实 HTTP 推理，见 [报告](tentative-service-v1.md)。
+
+2026-10-07 优先级收敛：暂存审批服务 v1 阶段收尾，独立任务包和更多部署暂缓。当前主线改为核心修复：在固定预算内验证补丁前后差异反馈能否纠正第一轮错误修改，见 [核心方案](core-repair-next.md)。此前 Windows 1,134 passed、2 skipped 为既有验收，本次仅修改计划与文档，没有新增模型实验或运行测试。
+
+补丁差异反馈完成：保持两次调用与原证据预算，历史差异可见且只使用当前片段编辑；两项新配对基线 1/2、候选 0/2。none-salt 恢复两处回退且 Controls 通过，但目标仍失败；Click 因 old 片段漏行被拒绝。8 次本地 Qwen 请求、33,798 Token；全量 1,144 passed、2 skipped。按停止条件冻结，不采用、不扩六项，不改服务；下一项核心工作先解决当前代码编辑锚点复述错误，见 [报告](patch-delta-v1.md)。
