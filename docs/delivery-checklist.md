@@ -69,3 +69,5 @@ Memory、Reflection、Multi-Agent 等名称不能只因上游存在工具就算�
 最新 Windows 回归 952 passed、2 skipped；配置校准未改变默认模型和冻结评分。
 
 编辑事务离线验证完成：历史失败补丁拦截 4/6，其余 2 个事务通过但语义仍失败；正确示例 9/9，模型调用 0。修正取消测试的进程退出竞态后，最终 Windows 全量 **971 passed、2 skipped**，见 [事务摘要](patch-transaction-v1.json)。适配器未接入默认服务，仍需独立语义验收。
+
+事务反馈闭环验收完成：正常模式两调用上限和共享预算有回归验证；6 次真实模型调用验证三个合成故障恢复，两种反馈均 3/3，详细诊断成本增加约 39.1%。最终 Windows **983 passed、2 skipped**，见 [反馈摘要](transaction-feedback-v1.json)。不计真实缺陷成功率，默认服务不变。

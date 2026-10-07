@@ -1,0 +1,741 @@
+{
+  "protocol": {
+    "protocol": "transaction-feedback-probe-v1",
+    "synthetic": true,
+    "fault_injected": true,
+    "benchmark_eligible": false,
+    "unique_tasks": 3,
+    "live": true,
+    "max_attempts": 2,
+    "max_fresh_model_calls_per_branch": 1,
+    "seed_model_calls": 0,
+    "seed_token_charge": 0,
+    "config": {
+      "mode": "unchanged",
+      "model": "qwen3.5:27b",
+      "base_url": "http://127.0.0.1:11434",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 180,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": null,
+      "search_backend": "off",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 2,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "thinking": false,
+    "temperature": 0,
+    "top_p": 0.95,
+    "seed": 17,
+    "model_identity": {
+      "version": "0.34.3",
+      "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+      "thinking_metadata": {
+        "values": [
+          false,
+          true
+        ],
+        "default": true
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.8B",
+        "quantization_level": "Q4_K_M"
+      }
+    },
+    "adapter_hashes": {
+      "docs/experiments/transaction_feedback_probe_v1.py": "586f39b5df307fed038c8f245e5675597acc36c81eacf633d286e68178037a15",
+      "docs/experiments/transaction_feedback_v1.py": "3e5df91dfed19a03bb3fbcd9248a20c55d34a5bcebde0f185830e931e8dd974b",
+      "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+      "docs/experiments/thinking_calibration_cases_v1.py": "ef077f9a2f90b44c7e7bc81b5c7714ee69b27141ec81cdaf0761d7a4ce1cda21",
+      "docs/experiments/thinking_calibration_v1.py": "4fd5865933ce8b83d0811654bebb93fdc22906a7245b13c664dd47771d3bb987",
+      "docs/experiments/thinking_calibration_worker_v1.py": "007ce1b32a2dc904dd9c6af9529e9df9950b41596f277cbd2787e61e6f7711d8",
+      "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+      "evals/fixed_evidence.py": "1287133a1a5e09c6fd29a07627bfd6b8ee45fa68fa01c16402b605c72c8d1d7d",
+      "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+      "evals/process.py": "6a881e9a519e67776fe9a9bacc7b0c176259dceed6fabcac91c8fdc4d7f01b04",
+      "evals/schema.py": "8fde27c0a87507bf40872b5b2802645cff5304893ce15f415165f9fcee683091",
+      "corecoder/llm.py": "ad6207598582504fe1d084723392e107c2ca3016d16ca0e912d07c8da61d67ff"
+    },
+    "intervention": "same rejected seed, unchanged source and guard; feedback differs only by validation diagnostic"
+  },
+  "complete": true,
+  "model_calls": 6,
+  "summary": {
+    "generic": {
+      "transaction_accepted": 3,
+      "behavior_passed": 3,
+      "runs": 3,
+      "total_tokens": 1134
+    },
+    "diagnostic": {
+      "transaction_accepted": 3,
+      "behavior_passed": 3,
+      "runs": 3,
+      "total_tokens": 1577
+    }
+  },
+  "runs": [
+    {
+      "task_id": "unique-falsey",
+      "policy": "generic",
+      "checks_sha256": "893e72f6ec5bd54cb2495bbc56f6da1695ba1611327eb68020fc25263d015f64",
+      "seed_sha256": "229bb718bf65c4c3f545d4cdabeb2ba409f9457d83ca894c3ee4f64756591ce7",
+      "result": {
+        "status": "transaction_accepted",
+        "transaction_accepted": true,
+        "attempts": [
+          {
+            "attempt": 1,
+            "origin": "synthetic-seed",
+            "prompt_sha256": "6a8c2907a159a8785fe27e2babd055f3f566009c67711932c52ee38f9156867e",
+            "status": "invalid_python",
+            "transaction": {
+              "accepted": false,
+              "committed": false,
+              "reason": "invalid_python",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": null,
+              "error": "'(' was never closed (app.py, line 2)",
+              "original_unchanged": true
+            }
+          },
+          {
+            "attempt": 2,
+            "origin": "model",
+            "prompt_sha256": "52f649c2192d4a38d406476c271ce2b0bdee2e2fd256983c822237e49ea50df8",
+            "status": "committed",
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0478
+              },
+              "original_unchanged": false
+            }
+          }
+        ],
+        "feedback_attempts": 1,
+        "seeded": true,
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 289,
+          "completion_tokens": 50,
+          "known_prompt_tokens": 289,
+          "known_completion_tokens": 50,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 339,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0637,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0618,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "native": {
+        "response_received": true,
+        "provider_model": "qwen3.5:27b",
+        "thinking_present": false,
+        "thinking_chars": 0,
+        "content_chars": 201,
+        "tool_calls_present": false,
+        "done": true,
+        "done_reason": "stop",
+        "prompt_tokens": 289,
+        "completion_tokens": 50,
+        "total_duration_ns": 6927644200
+      }
+    },
+    {
+      "task_id": "unique-falsey",
+      "policy": "diagnostic",
+      "checks_sha256": "893e72f6ec5bd54cb2495bbc56f6da1695ba1611327eb68020fc25263d015f64",
+      "seed_sha256": "229bb718bf65c4c3f545d4cdabeb2ba409f9457d83ca894c3ee4f64756591ce7",
+      "result": {
+        "status": "transaction_accepted",
+        "transaction_accepted": true,
+        "attempts": [
+          {
+            "attempt": 1,
+            "origin": "synthetic-seed",
+            "prompt_sha256": "6a8c2907a159a8785fe27e2babd055f3f566009c67711932c52ee38f9156867e",
+            "status": "invalid_python",
+            "transaction": {
+              "accepted": false,
+              "committed": false,
+              "reason": "invalid_python",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": null,
+              "error": "'(' was never closed (app.py, line 2)",
+              "original_unchanged": true
+            }
+          },
+          {
+            "attempt": 2,
+            "origin": "model",
+            "prompt_sha256": "15adef7e2e12d8e5c2f5c1ec765a1be25988153b58b9071dab3773dd79a985d2",
+            "status": "committed",
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0484
+              },
+              "original_unchanged": false
+            }
+          }
+        ],
+        "feedback_attempts": 1,
+        "seeded": true,
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 321,
+          "completion_tokens": 50,
+          "known_prompt_tokens": 321,
+          "known_completion_tokens": 50,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 371,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0684,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0699,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "native": {
+        "response_received": true,
+        "provider_model": "qwen3.5:27b",
+        "thinking_present": false,
+        "thinking_chars": 0,
+        "content_chars": 201,
+        "tool_calls_present": false,
+        "done": true,
+        "done_reason": "stop",
+        "prompt_tokens": 321,
+        "completion_tokens": 50,
+        "total_duration_ns": 1248972000
+      }
+    },
+    {
+      "task_id": "preserve-methods",
+      "policy": "diagnostic",
+      "checks_sha256": "b21a1fbcf6f8fe3130092c043ba653c7eaaa24490866298d3c0999895894f832",
+      "seed_sha256": "1b77476333b55c6c6d8ea0c022801537242c1f3afdc4c425a170993eaeaa7672",
+      "result": {
+        "status": "transaction_accepted",
+        "transaction_accepted": true,
+        "attempts": [
+          {
+            "attempt": 1,
+            "origin": "synthetic-seed",
+            "prompt_sha256": "aa75a96f05feb33a4c721f6656158579468a9ef01625ed9240395546100b5e9d",
+            "status": "added_duplicate_definitions",
+            "transaction": {
+              "accepted": false,
+              "committed": false,
+              "reason": "added_duplicate_definitions",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [
+                {
+                  "scope": "<module>/Formatter",
+                  "name": "render",
+                  "role": "FunctionDef",
+                  "before": 1,
+                  "after": 2,
+                  "file": "app.py"
+                }
+              ],
+              "import": null,
+              "original_unchanged": true
+            }
+          },
+          {
+            "attempt": 2,
+            "origin": "model",
+            "prompt_sha256": "6e2c16c728a91d6e06bab4d18f56942f924ddd31424ce859c394d9c20fb00be7",
+            "status": "committed",
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.049
+              },
+              "original_unchanged": false
+            }
+          }
+        ],
+        "feedback_attempts": 1,
+        "seeded": true,
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 415,
+          "completion_tokens": 63,
+          "known_prompt_tokens": 415,
+          "known_completion_tokens": 63,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 478,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0739,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0661,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "native": {
+        "response_received": true,
+        "provider_model": "qwen3.5:27b",
+        "thinking_present": false,
+        "thinking_chars": 0,
+        "content_chars": 243,
+        "tool_calls_present": false,
+        "done": true,
+        "done_reason": "stop",
+        "prompt_tokens": 415,
+        "completion_tokens": 63,
+        "total_duration_ns": 1860665600
+      }
+    },
+    {
+      "task_id": "preserve-methods",
+      "policy": "generic",
+      "checks_sha256": "b21a1fbcf6f8fe3130092c043ba653c7eaaa24490866298d3c0999895894f832",
+      "seed_sha256": "1b77476333b55c6c6d8ea0c022801537242c1f3afdc4c425a170993eaeaa7672",
+      "result": {
+        "status": "transaction_accepted",
+        "transaction_accepted": true,
+        "attempts": [
+          {
+            "attempt": 1,
+            "origin": "synthetic-seed",
+            "prompt_sha256": "aa75a96f05feb33a4c721f6656158579468a9ef01625ed9240395546100b5e9d",
+            "status": "added_duplicate_definitions",
+            "transaction": {
+              "accepted": false,
+              "committed": false,
+              "reason": "added_duplicate_definitions",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [
+                {
+                  "scope": "<module>/Formatter",
+                  "name": "render",
+                  "role": "FunctionDef",
+                  "before": 1,
+                  "after": 2,
+                  "file": "app.py"
+                }
+              ],
+              "import": null,
+              "original_unchanged": true
+            }
+          },
+          {
+            "attempt": 2,
+            "origin": "model",
+            "prompt_sha256": "53b7c774bb245c801976cf4e110d4943524f9f8b28b1b0dacc2f3d6d8f97e899",
+            "status": "committed",
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0462
+              },
+              "original_unchanged": false
+            }
+          }
+        ],
+        "feedback_attempts": 1,
+        "seeded": true,
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 358,
+          "completion_tokens": 61,
+          "known_prompt_tokens": 358,
+          "known_completion_tokens": 61,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 419,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.064,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0657,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "native": {
+        "response_received": true,
+        "provider_model": "qwen3.5:27b",
+        "thinking_present": false,
+        "thinking_chars": 0,
+        "content_chars": 235,
+        "tool_calls_present": false,
+        "done": true,
+        "done_reason": "stop",
+        "prompt_tokens": 358,
+        "completion_tokens": 61,
+        "total_duration_ns": 1775881300
+      }
+    },
+    {
+      "task_id": "annotation-import",
+      "policy": "generic",
+      "checks_sha256": "1089725ea53949b672e711df377f95968e6c03ae0d0f7cc2325580e4a0fe0b06",
+      "seed_sha256": "7c246771369ebbf157294c8386d582a10180a891c9255b497939de56a4c46e6d",
+      "result": {
+        "status": "transaction_accepted",
+        "transaction_accepted": true,
+        "attempts": [
+          {
+            "attempt": 1,
+            "origin": "synthetic-seed",
+            "prompt_sha256": "4dcacd42cbbb7a62765c40743548b062dbf35c97225e9a2a70682c8c72bfea0c",
+            "status": "import_failed",
+            "transaction": {
+              "accepted": false,
+              "committed": false,
+              "reason": "import_failed",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.0546
+              },
+              "original_unchanged": true
+            }
+          },
+          {
+            "attempt": 2,
+            "origin": "model",
+            "prompt_sha256": "69ea8f52e10d8f6be9019ba3e5ede02cb465262f4b91fc092bca0a659e14fc24",
+            "status": "committed",
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0541
+              },
+              "original_unchanged": false
+            }
+          }
+        ],
+        "feedback_attempts": 1,
+        "seeded": true,
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 332,
+          "completion_tokens": 44,
+          "known_prompt_tokens": 332,
+          "known_completion_tokens": 44,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 376,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0688,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0711,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "native": {
+        "response_received": true,
+        "provider_model": "qwen3.5:27b",
+        "thinking_present": false,
+        "thinking_chars": 0,
+        "content_chars": 143,
+        "tool_calls_present": false,
+        "done": true,
+        "done_reason": "stop",
+        "prompt_tokens": 332,
+        "completion_tokens": 44,
+        "total_duration_ns": 1391072800
+      }
+    },
+    {
+      "task_id": "annotation-import",
+      "policy": "diagnostic",
+      "checks_sha256": "1089725ea53949b672e711df377f95968e6c03ae0d0f7cc2325580e4a0fe0b06",
+      "seed_sha256": "7c246771369ebbf157294c8386d582a10180a891c9255b497939de56a4c46e6d",
+      "result": {
+        "status": "transaction_accepted",
+        "transaction_accepted": true,
+        "attempts": [
+          {
+            "attempt": 1,
+            "origin": "synthetic-seed",
+            "prompt_sha256": "4dcacd42cbbb7a62765c40743548b062dbf35c97225e9a2a70682c8c72bfea0c",
+            "status": "import_failed",
+            "transaction": {
+              "accepted": false,
+              "committed": false,
+              "reason": "import_failed",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.0527
+              },
+              "original_unchanged": true
+            }
+          },
+          {
+            "attempt": 2,
+            "origin": "model",
+            "prompt_sha256": "6d1576868c60901062ccf6fbf7fca3ba87564e6402c93d078f457c35c1462326",
+            "status": "committed",
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "app.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0537
+              },
+              "original_unchanged": false
+            }
+          }
+        ],
+        "feedback_attempts": 1,
+        "seeded": true,
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 660,
+          "completion_tokens": 68,
+          "known_prompt_tokens": 660,
+          "known_completion_tokens": 68,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 728,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0735,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0715,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "native": {
+        "response_received": true,
+        "provider_model": "qwen3.5:27b",
+        "thinking_present": false,
+        "thinking_chars": 0,
+        "content_chars": 185,
+        "tool_calls_present": false,
+        "done": true,
+        "done_reason": "stop",
+        "prompt_tokens": 660,
+        "completion_tokens": 68,
+        "total_duration_ns": 2153261600
+      }
+    }
+  ],
+  "raw_artifact": ".tmp/calibration/transaction-feedback-v1-live/experiment.json",
+  "raw_sha256": "2533894682f8fbd8652c4134f3bcb6c3d0209337dc9dc2277e303522f4fa74e1",
+  "validation": {
+    "targeted": {
+      "passed": 28,
+      "seconds": 2.51
+    },
+    "windows_full": {
+      "passed": 983,
+      "skipped": 2,
+      "failed": 0,
+      "seconds": 159.85
+    },
+    "ruff": "passed",
+    "actual_native_request_pairs_checked": 3,
+    "injected_fault_rejections": 6,
+    "original_source_preserved_on_rejection": true,
+    "real_defect_success_rate_changed": false,
+    "default_service_changed": false
+  },
+  "decision": "Retain opt-in feedback; no accuracy gain from detailed diagnostics in this small synthetic recovery probe."
+}
