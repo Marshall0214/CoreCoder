@@ -27,6 +27,8 @@
 | 参数转发上下文与反馈对照 | [repair-forwarding-feedback-v1.md](repair-forwarding-feedback-v1.md) |
 | 盐值关系矩阵与离线变异验证 | [salt-relations-audit-v1.md](salt-relations-audit-v1.md) |
 | 关系矩阵真实反馈对照 | [salt-relations-feedback-v1.md](salt-relations-feedback-v1.md) |
+| Thinking 开关人工小任务校准 | [thinking-calibration-v1.md](thinking-calibration-v1.md) |
+| 已有方法与下一步依据 | [repair-methods-research-v1.md](repair-methods-research-v1.md) |
 
 ## 架构和个人贡献边界
 
@@ -81,7 +83,7 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新关系矩阵反馈对照后 Windows 全量 **942 passed、2 skipped**，见 [对照报告](salt-relations-feedback-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新配置校准后 Windows 全量 **952 passed、2 skipped**，见 [校准报告](thinking-calibration-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -96,3 +98,5 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 盐值关系检查 v2 离线验证：人工正例 11/11、六个变异与六个历史失败补丁全部拒绝，0 次模型调用。它验证检查的已知区分能力，尚无模型收益结果，见 [关系验证](salt-relations-audit-v1.md)。
 
 关系矩阵反馈本轮 12 次全新模型调用，两组均 0/3，无收益；重复方法定义和错误默认值保留诊断，不改历史评分或默认策略。
+
+四个人工小任务另做 thinking 开关校准，共 8 次新调用，两组均 4/4；on Token 为 off 的 2.54 倍，无准确率收益。该结果不计入真实仓库成功率，不能替代 ItsDangerous 缺陷验收。下一步优先离线验证编辑事务保护。

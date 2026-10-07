@@ -1,0 +1,819 @@
+{
+  "protocol": {
+    "protocol": "thinking-calibration-v1",
+    "synthetic": true,
+    "unique_tasks": 4,
+    "repeats": 1,
+    "live": true,
+    "expected_runs": 8,
+    "model": "qwen3.5:27b",
+    "base_url": "http://127.0.0.1:11434",
+    "fixed_temperature": 0,
+    "fixed_top_p": 0.95,
+    "fixed_seed": 17,
+    "context_tokens": 16000,
+    "max_output_tokens": 2048,
+    "token_budget": 15000,
+    "max_calls_per_task": 1,
+    "adapter_hashes": {
+      "docs/experiments/thinking_calibration_v1.py": "4fd5865933ce8b83d0811654bebb93fdc22906a7245b13c664dd47771d3bb987",
+      "docs/experiments/thinking_calibration_cases_v1.py": "ef077f9a2f90b44c7e7bc81b5c7714ee69b27141ec81cdaf0761d7a4ce1cda21",
+      "docs/experiments/thinking_calibration_worker_v1.py": "007ce1b32a2dc904dd9c6af9529e9df9950b41596f277cbd2787e61e6f7711d8",
+      "evals/fixed_evidence.py": "1287133a1a5e09c6fd29a07627bfd6b8ee45fa68fa01c16402b605c72c8d1d7d",
+      "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+      "evals/process.py": "6a881e9a519e67776fe9a9bacc7b0c176259dceed6fabcac91c8fdc4d7f01b04",
+      "evals/schema.py": "8fde27c0a87507bf40872b5b2802645cff5304893ce15f415165f9fcee683091",
+      "corecoder/llm.py": "ad6207598582504fe1d084723392e107c2ca3016d16ca0e912d07c8da61d67ff"
+    },
+    "intervention": "native think boolean only; no feedback, tests or reference edits in model input",
+    "usage": "Native prompt_eval_count plus eval_count; thinking/final token split unavailable",
+    "model_identity": {
+      "version": "0.34.3",
+      "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+      "thinking_metadata": {
+        "values": [
+          false,
+          true
+        ],
+        "default": true
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.8B",
+        "quantization_level": "Q4_K_M"
+      }
+    }
+  },
+  "complete": true,
+  "admission": [
+    {
+      "task_id": "unique-falsey",
+      "before_hash": "5321a874d6fff1ab32f00abac3a7ba0c1d026d9a5d2c02109347f3bfbca85519",
+      "checks_sha256": "893e72f6ec5bd54cb2495bbc56f6da1695ba1611327eb68020fc25263d015f64",
+      "original": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0646,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0668,
+          "tests_run": 2,
+          "passed": false
+        },
+        "passed": false
+      },
+      "reference": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0625,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0648,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      }
+    },
+    {
+      "task_id": "preserve-methods",
+      "before_hash": "a37048fcd621cb1193feec98187860213906920f8f3c0c5a2751efc656cee904",
+      "checks_sha256": "b21a1fbcf6f8fe3130092c043ba653c7eaaa24490866298d3c0999895894f832",
+      "original": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0642,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0633,
+          "tests_run": 2,
+          "passed": false
+        },
+        "passed": false
+      },
+      "reference": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0623,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0629,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      }
+    },
+    {
+      "task_id": "annotation-import",
+      "before_hash": "cb4ecd30160f01508ff9fc570f0445a17737e7ad5201af906016bb81a6378d0d",
+      "checks_sha256": "1089725ea53949b672e711df377f95968e6c03ae0d0f7cc2325580e4a0fe0b06",
+      "original": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0642,
+          "tests_run": 0,
+          "passed": false
+        },
+        "behavior": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0667,
+          "tests_run": 0,
+          "passed": false
+        },
+        "passed": false
+      },
+      "reference": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0671,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0661,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      }
+    },
+    {
+      "task_id": "default-none-override",
+      "before_hash": "7878b08672bb1733dc79d2d6ade8bead7b831da8d5ba4edbb0e8efce1e90fc03",
+      "checks_sha256": "55a06463b4fb83a5d770534fc500935fafad43ef502d13b53d343d0f4d77da32",
+      "original": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0665,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0662,
+          "tests_run": 2,
+          "passed": false
+        },
+        "passed": false
+      },
+      "reference": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0635,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0648,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      }
+    }
+  ],
+  "runs": [
+    {
+      "repeat": 1,
+      "task_id": "unique-falsey",
+      "mode": "off",
+      "worker": {
+        "patch_applied": true,
+        "status": "patch_applied",
+        "prompt_sha256": "6a8c2907a159a8785fe27e2babd055f3f566009c67711932c52ee38f9156867e",
+        "edited_files": [
+          "app.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 221,
+          "completion_tokens": 52,
+          "known_prompt_tokens": 221,
+          "known_completion_tokens": 52,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 273,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "native": {
+          "response_received": true,
+          "provider_model": "qwen3.5:27b",
+          "thinking_present": false,
+          "thinking_chars": 0,
+          "content_chars": 194,
+          "tool_calls_present": false,
+          "done": true,
+          "done_reason": "stop",
+          "prompt_tokens": 221,
+          "completion_tokens": 52,
+          "total_duration_ns": 6616071300
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0664,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0648,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 7.301
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "unique-falsey",
+      "mode": "on",
+      "worker": {
+        "patch_applied": true,
+        "status": "patch_applied",
+        "prompt_sha256": "6a8c2907a159a8785fe27e2babd055f3f566009c67711932c52ee38f9156867e",
+        "edited_files": [
+          "app.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 219,
+          "completion_tokens": 177,
+          "known_prompt_tokens": 219,
+          "known_completion_tokens": 177,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 396,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "native": {
+          "response_received": true,
+          "provider_model": "qwen3.5:27b",
+          "thinking_present": true,
+          "thinking_chars": 515,
+          "content_chars": 194,
+          "tool_calls_present": false,
+          "done": true,
+          "done_reason": "stop",
+          "prompt_tokens": 219,
+          "completion_tokens": 177,
+          "total_duration_ns": 3795466500
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.067,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0733,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 4.4791
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "preserve-methods",
+      "mode": "on",
+      "worker": {
+        "patch_applied": true,
+        "status": "patch_applied",
+        "prompt_sha256": "aa75a96f05feb33a4c721f6656158579468a9ef01625ed9240395546100b5e9d",
+        "edited_files": [
+          "app.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 264,
+          "completion_tokens": 561,
+          "known_prompt_tokens": 264,
+          "known_completion_tokens": 561,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 825,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "native": {
+          "response_received": true,
+          "provider_model": "qwen3.5:27b",
+          "thinking_present": true,
+          "thinking_chars": 1993,
+          "content_chars": 249,
+          "tool_calls_present": false,
+          "done": true,
+          "done_reason": "stop",
+          "prompt_tokens": 264,
+          "completion_tokens": 561,
+          "total_duration_ns": 12024741000
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0684,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0669,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 12.7179
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "preserve-methods",
+      "mode": "off",
+      "worker": {
+        "patch_applied": true,
+        "status": "patch_applied",
+        "prompt_sha256": "aa75a96f05feb33a4c721f6656158579468a9ef01625ed9240395546100b5e9d",
+        "edited_files": [
+          "app.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 266,
+          "completion_tokens": 69,
+          "known_prompt_tokens": 266,
+          "known_completion_tokens": 69,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 335,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "native": {
+          "response_received": true,
+          "provider_model": "qwen3.5:27b",
+          "thinking_present": false,
+          "thinking_chars": 0,
+          "content_chars": 249,
+          "tool_calls_present": false,
+          "done": true,
+          "done_reason": "stop",
+          "prompt_tokens": 266,
+          "completion_tokens": 69,
+          "total_duration_ns": 1613681800
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0651,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0642,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 2.2759
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "annotation-import",
+      "mode": "off",
+      "worker": {
+        "patch_applied": true,
+        "status": "patch_applied",
+        "prompt_sha256": "4dcacd42cbbb7a62765c40743548b062dbf35c97225e9a2a70682c8c72bfea0c",
+        "edited_files": [
+          "app.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 263,
+          "completion_tokens": 49,
+          "known_prompt_tokens": 263,
+          "known_completion_tokens": 49,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 312,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "native": {
+          "response_received": true,
+          "provider_model": "qwen3.5:27b",
+          "thinking_present": false,
+          "thinking_chars": 0,
+          "content_chars": 149,
+          "tool_calls_present": false,
+          "done": true,
+          "done_reason": "stop",
+          "prompt_tokens": 263,
+          "completion_tokens": 49,
+          "total_duration_ns": 1258104200
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0711,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0716,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 1.9434
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "annotation-import",
+      "mode": "on",
+      "worker": {
+        "patch_applied": true,
+        "status": "patch_applied",
+        "prompt_sha256": "4dcacd42cbbb7a62765c40743548b062dbf35c97225e9a2a70682c8c72bfea0c",
+        "edited_files": [
+          "app.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 261,
+          "completion_tokens": 310,
+          "known_prompt_tokens": 261,
+          "known_completion_tokens": 310,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 571,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "native": {
+          "response_received": true,
+          "provider_model": "qwen3.5:27b",
+          "thinking_present": true,
+          "thinking_chars": 962,
+          "content_chars": 149,
+          "tool_calls_present": false,
+          "done": true,
+          "done_reason": "stop",
+          "prompt_tokens": 261,
+          "completion_tokens": 310,
+          "total_duration_ns": 6607914800
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0691,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0746,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 7.3456
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "default-none-override",
+      "mode": "on",
+      "worker": {
+        "patch_applied": true,
+        "status": "patch_applied",
+        "prompt_sha256": "bfcc9870563a99e57634cdfc0f85697ef66575badb751441e38eec79b07b5bf4",
+        "edited_files": [
+          "app.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 290,
+          "completion_tokens": 1470,
+          "known_prompt_tokens": 290,
+          "known_completion_tokens": 1470,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 1760,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "native": {
+          "response_received": true,
+          "provider_model": "qwen3.5:27b",
+          "thinking_present": true,
+          "thinking_chars": 5952,
+          "content_chars": 701,
+          "tool_calls_present": false,
+          "done": true,
+          "done_reason": "stop",
+          "prompt_tokens": 290,
+          "completion_tokens": 1470,
+          "total_duration_ns": 31262316900
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0691,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.067,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 31.9863
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "default-none-override",
+      "mode": "off",
+      "worker": {
+        "patch_applied": true,
+        "status": "patch_applied",
+        "prompt_sha256": "bfcc9870563a99e57634cdfc0f85697ef66575badb751441e38eec79b07b5bf4",
+        "edited_files": [
+          "app.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 292,
+          "completion_tokens": 189,
+          "known_prompt_tokens": 292,
+          "known_completion_tokens": 189,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 481,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "native": {
+          "response_received": true,
+          "provider_model": "qwen3.5:27b",
+          "thinking_present": false,
+          "thinking_chars": 0,
+          "content_chars": 679,
+          "tool_calls_present": false,
+          "done": true,
+          "done_reason": "stop",
+          "prompt_tokens": 292,
+          "completion_tokens": 189,
+          "total_duration_ns": 4157242800
+        }
+      },
+      "verification": {
+        "structure": {
+          "parsed": true,
+          "added_duplicate_methods": []
+        },
+        "import": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0748,
+          "tests_run": 0,
+          "passed": true
+        },
+        "behavior": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0684,
+          "tests_run": 2,
+          "passed": true
+        },
+        "passed": true
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 4.9112
+      }
+    }
+  ],
+  "summary": {
+    "off": {
+      "runs": 4,
+      "patch_applied": 4,
+      "import_passed": 4,
+      "behavior_passed": 4,
+      "accepted": 4,
+      "statuses": {
+        "patch_applied": 4
+      },
+      "provider_reported_total_tokens": 1401,
+      "thinking_responses": 0,
+      "truncated_responses": 0
+    },
+    "on": {
+      "runs": 4,
+      "patch_applied": 4,
+      "import_passed": 4,
+      "behavior_passed": 4,
+      "accepted": 4,
+      "statuses": {
+        "patch_applied": 4
+      },
+      "provider_reported_total_tokens": 3552,
+      "thinking_responses": 4,
+      "truncated_responses": 0
+    }
+  },
+  "raw_report_sha256": "df6fe3b73d8fc852095e086c35350bcc309674d1c8d1f73bc0d1785171b65f00",
+  "validation": {
+    "targeted_passed": 10,
+    "ruff": "passed",
+    "paired_requests_equal_except_think": true,
+    "full_passed": 952,
+    "full_skipped": 2,
+    "full_seconds": 157.53,
+    "linux_container_http_rerun": false
+  },
+  "limitations": [
+    "Four hand-authored synthetic tasks, one paired run per task; not a repository-level benchmark.",
+    "Native /api/chat protocol, not a replay of the old streaming OpenAI-compatible protocol.",
+    "Temperature fixed at zero; official recommended sampling profiles not tested.",
+    "Provider-reported generated tokens retained; separate thinking/final token counts unavailable.",
+    "No raw thinking text persisted; only presence and character counts recorded.",
+    "No feedback, tools, retrieval, default service changes or dependency installation."
+  ],
+  "token_ratio_on_to_off": 2.5353319057815846
+}

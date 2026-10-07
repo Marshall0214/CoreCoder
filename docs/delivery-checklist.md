@@ -13,6 +13,7 @@
 | 实验原型 | 点名类构造函数与参数转发片段装填、三轮反馈对照 | [转发上下文](repair-forwarding-feedback-v1.md)；两组均 3/6，新策略有盐值隔离回归，不替换默认 |
 | 实验原型 | 人工盐值关系矩阵、检查 v2 与离线变异验证 | [盐值关系](salt-relations-audit-v1.md)；正例 11/11、6 变异和 6 历史失败均拒绝，无模型调用 |
 | 实验原型 | 相同检查/上下文下的公开关系矩阵三轮反馈对照 | [矩阵反馈](salt-relations-feedback-v1.md)；两组均 0/3，冻结分支，未提升默认方案 |
+| 实验原型 | 人工小任务 thinking 开关校准与分阶段验证 | [校准](thinking-calibration-v1.md)；两组 4/4，on Token 2.54 倍，非真实仓库收益 |
 | 已完成 | FastAPI 提交/查询、SSE、幂等、取消、SQLite 持久化和进程清理 | [服务](service-mvp-v1.md)、[恢复](service-persistence-v2.md)、`service/` |
 | 已完成 | LangGraph 固定计划、一次执行与独立验证分支 | [有限工作流](langgraph-workflow-v1.md)、`workflows/repair.py` |
 | 已完成 | 人工审批、原生 SQLite 检查点、待审批恢复与防重放 | [审批](workflow-approval-v1.md)、`workflows/approval.py` |
@@ -64,3 +65,5 @@ Memory、Reflection、Multi-Agent 等名称不能只因上游存在工具就算�
 盐值关系离线验证后，最新 Windows 全量 934 passed、2 skipped，见 [离线摘要](salt-relations-audit-v1.json)。检查 v2 尚未接入模型反馈或默认服务。
 
 关系矩阵反馈对照后最新 Windows 全量为 942 passed、2 skipped；收益为零，保留失败与成本证据。
+
+最新 Windows 回归 952 passed、2 skipped；配置校准未改变默认模型和冻结评分。
