@@ -1,14 +1,16 @@
 # 容器部署配置与离线验收
 
-后续已补充不依赖 Docker 的 [真实 HTTP 服务故障验收](local-http-acceptance-v1.md)：Windows 上实际服务崩溃、孤儿清理、排队恢复及幂等验证通过；Linux/容器运行验收仍待引擎恢复。
+包含主机 [真实 HTTP 服务故障验收](local-http-acceptance-v1.md) 和本轮 Linux 容器验收，两者独立记录。2026-10-07 Docker/Linux 离线部署验收已通过，摘要见 [container-acceptance-v1.json](container-acceptance-v1.json)。
 
 ## 本轮交付与当前状态
 
 新增 `deploy/Dockerfile`、Compose、HTTP 健康探针和一键离线验收脚本。runtime 镜像包括 CoreCoder、评测 fixture、服务及 MCP Server；validation 阶段额外安装 pytest 和复制测试辅助模块。运行镜像不包含故障注入测试模块。
 
-**配置校验已通过，Docker/Linux 运行验收尚未完成。** 本机 Docker CLI 28.1.1 / Compose 2.35.1 可用，但启动 Docker Desktop 后，Linux 引擎仍不可用。`docker info` 返回 `dockerDesktopLinuxEngine` 管道不存在；后台日志显示 Inference manager 初始化失败，无法移除 `dockerInference` 本地 socket。验收停在引擎预检查，没有构建镜像、创建容器或数据卷，也没有新模型调用。没有重置 Docker 设置或删除 Docker 数据。
+**Docker/Linux 离线运行验收已通过。** Docker Server 28.1.1、Compose 2.35.1、Linux/amd64（WSL2）、容器 Python 3.11.17。首次构建 runtime / validation 镜像，Linux 专项 **48 passed（34.70 秒）**；13 项端到端检查、16 条 Docker 命令全部通过，没有真实模型调用。
 
-失败记录：`.tmp/deploy-acceptance-v1/acceptance.json`。其中 checks 为空，不能计作 Linux/Docker 已验收；需先在本机解决 Docker Desktop 启动问题，再复跑下面的命令。当前原有 8001 服务未停止或重启。
+完整成功记录：`.tmp/deploy-acceptance/5c067f94b2/acceptance.json`，包含命令、构建输出、测试、MCP 演示、HTTP 检查、镜像 ID 及 Linux pip freeze。验收容器和项目网络已移除；任务卷 `corecoder-acceptance-81add40d85_task-data` 保留，原有 8001 服务未停止或重启。
+
+历史失败记录 `.tmp/deploy-acceptance-v1/acceptance.json` 原样保留：当时 Docker Desktop 的 Inference manager 初始化失败，预检查没有通过。该批次不计为成功，也没有重置或删除 Docker 数据。
 
 ## 配置行为
 
@@ -30,7 +32,7 @@ Compose 的 `init`、`read_only`、资源及停止参数、回环端口绑定参
 
 ## 启动与 MCP 演示
 
-Docker Desktop 显示 Linux 引擎 Running、`docker info` 正常后，在项目根目录执行：
+在 Docker Desktop Linux 引擎 Running、`docker info` 正常的环境中，于项目根目录执行：
 
 ```powershell
 docker compose -f deploy/compose.yaml config --quiet
@@ -80,4 +82,14 @@ python -m deploy.acceptance
 
 两份 Compose 配置校验通过；部署/服务专项 **25 passed**，涵盖运维模型地址适配、引擎不可用时保存失败且不启动 Compose、命令超时，以及既有服务的持久化/幂等/恢复。全量回归 **838 passed、2 skipped（88.79 秒）**。随后新增日志收集失败仍关闭本次项目的用例，部署专项 **5 passed**；Ruff 和 Git diff 空白检查通过。上述均为本地/配置验证，不能替代尚未执行的 Linux 容器测试。
 
-新增配置及 Worker 适配已完成；Linux 进程清理、卷权限、镜像构建和容器 HTTP 故障验证仍待真实 Docker 引擎运行后确认。`corecoder/`、`evals/` 和冻结协议没有修改。
+## 已执行的 Linux 容器验证
+
+- runtime 与 validation 镜像构建成功，运行用户确认为 `10001:10001`；Compose 下只读根、任务卷及临时目录支持真实修复/独立验证。
+- Linux 专项 **48 passed、无跳过**：服务、SQLite 持久化、MCP、主机式真实 HTTP 崩溃恢复测试均通过；包括 Windows 曾跳过的符号链接边界测试。
+- 容器内官方 MCP Client 的真实 stdio 搜索/读取演示通过。
+- 真实容器 HTTP scripted 修复通过独立评分，unchanged 失败；补丁可下载、同键提交不重复创建任务。
+- 服务容器重启后，结果、补丁、SSE、幂等键保留；长任务取消通过。
+- 故障注入容器 SIGKILL 后，新进程将旧任务标记 interrupted；同键重发保持原 ID，不自动再执行。
+- 13 项检查全部通过，验收容器/网络已清理，任务卷及完整命令输出保留。validation 镜像 ID 和 Linux 依赖列表已进入版本控制摘要。
+
+`corecoder/`、`evals/` 和冻结协议没有修改，本轮无需修复源代码。这里只验证可信 fixture 的单服务容器：每任务独立沙箱、负载、远程部署、多用户权限、容器 live 模型连接及完整依赖锁仍未完成。下一步进入结构化工作流，继续保留既有冻结实验方式。

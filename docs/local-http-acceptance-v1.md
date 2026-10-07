@@ -44,8 +44,8 @@ python -m pytest tests/test_local_deploy_acceptance.py -q
 
 ## 验收边界与下一步
 
-本轮验证的是 **Windows 主机真实 HTTP/进程故障恢复**，不是 Docker/Linux、断电、磁盘损坏、多 Worker 或分布式恢复。Docker 引擎预检查仍返回 `dockerDesktopLinuxEngine` 管道不存在；容器验收状态仍以 [容器部署文档](container-deployment-v1.md) 为准。
+本文首轮验证的是 **Windows 主机真实 HTTP/进程故障恢复**。后续 2026-10-07 已将相同回归纳入 Linux 容器测试，48 项专项及容器端到端检查均通过，见 [容器部署文档](container-deployment-v1.md)。断电、磁盘损坏、多 Worker 或分布式恢复仍未验证。
 
 真实 CLI 的 22 项检查已通过，新增自动回归覆盖完整 HTTP 故障路径、收尾释放端口及拒绝复用任务目录。全量回归 **841 passed、2 skipped（103.02 秒）**，Ruff 与 Git diff 空白检查通过。CLI 验收的五次服务启动均已退出，其中一次为预期的强制结束；所有已记录 Worker/子进程清理确认通过。
 
-服务闭环已有故障证据；部署验证剩余引擎可用后的 Linux/容器验收：`python -m deploy.acceptance`。不需要继续扩充人工检索任务来验证这些工程行为。
+服务闭环已有主机及 Linux 容器故障证据；容器链路可通过 `python -m deploy.acceptance` 独立复跑。不需要继续扩充人工检索任务来验证这些工程行为。

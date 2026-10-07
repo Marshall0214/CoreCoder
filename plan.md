@@ -168,10 +168,10 @@
 - [x] 代码知识 MCP stdio Server 首版：复用 BM25，提供搜索/按行读取/文件分页；官方 SDK Client 与既有 Client 互操作、结构化输出、错误及超时已验证，见 `docs/mcp-code-knowledge-v1.md`。远程 MCP、资源与权限扩展另行推进。
 - [ ] FastAPI：任务创建/查询、SSE、审批、取消；权限贯穿 API、检索和工具。
 - [ ] 围绕修复接入文档 API、只读数据库元数据及测试工具。
-- [ ] Linux/Docker Compose 部署；任务容器限制挂载、网络、CPU、内存和时间，不携带宿主凭据。
-- [x] 首版 Dockerfile/Compose、健康探针、独立验收项目及故障脚本已编写；配置和本地服务测试通过，见 `docs/container-deployment-v1.md`。Docker Desktop 引擎启动失败，镜像构建与 Linux 运行验收仍未完成；当前是服务容器限制，尚非每任务独立沙箱。
+- [x] Linux/Docker Compose 单服务容器部署：非 root、只读根、任务卷、健康检查及资源限制；Linux 专项 48 passed，13 项端到端检查通过，见 `docs/container-deployment-v1.md` 与 `docs/container-acceptance-v1.json`。
+- [ ] 每任务独立容器沙箱：限制挂载、网络、CPU、内存和时间，不携带宿主凭据；当前服务容器边界不能替代此项。
 - [ ] 验证并发隔离、重启恢复和工具故障；mock 模型测服务负载，真实模型单独测端到端表现。
-- [x] Windows 真实 HTTP 服务故障验收：实际强制结束服务、确认孤儿存活、新服务清理、排队恢复、幂等不重跑及正常退出取消均通过，22 项检查见 `docs/local-http-acceptance-v1.md`。Linux/容器、服务负载及分布式恢复仍待验收。
+- [x] Windows 真实 HTTP 服务故障验收：实际强制结束服务、确认孤儿存活、新服务清理、排队恢复、幂等不重跑及正常退出取消均通过，22 项检查见 `docs/local-http-acceptance-v1.md`；相同回归已通过 Linux 容器验证。服务负载及分布式恢复仍待验收。
 
 **验收：**干净环境可启动；任务和副作用可追溯；并发、取消、恢复不串扰或重复写入。工程化后复测冻结的小型回归集，完整系统收益单独报告。
 
@@ -216,4 +216,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**当前：FastAPI MVP、SQLite 持久化/幂等/恢复、代码知识 MCP stdio Server 已完成，Windows 真实 HTTP 故障验收的 22 项检查通过，见 docs/local-http-acceptance-v1.md。Dockerfile/Compose 及容器故障验收脚本已编写，但本机引擎仍不可用，Linux/容器验收尚未完成。下一步在引擎恢复后运行 python -m deploy.acceptance；不以主机结果代替容器验收。PostgreSQL/Redis、LangGraph、鉴权和每任务容器沙箱仍未完成；当前检索批次不再扩充。**
+**当前：FastAPI MVP、SQLite 持久化/幂等/恢复、MCP stdio Server、Windows 故障验收及 Linux 单服务容器部署均完成。Linux 专项 48 passed，13 项容器端到端检查通过，见 docs/container-deployment-v1.md；离线运行，无新增模型调用。下一步实现 LangGraph 结构化、可取消的有限工作流，通过适配层保留冻结实验执行方式。PostgreSQL/Redis、鉴权和每任务独立容器沙箱仍未完成；当前检索批次不再扩充。**

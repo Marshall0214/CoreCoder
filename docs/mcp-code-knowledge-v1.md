@@ -85,4 +85,4 @@ python -m pip check
 
 ## 下一步
 
-已有标准工具连接可作为简历中的 MCP Server/Client 互操作成果；本轮没有产生新的修复成功率提升结论。下一步完成可复现的容器化部署与故障验收，把服务和 MCP 演示串成完整交付。PostgreSQL/Redis、LangGraph 和远程 MCP 仍按实际后续实现记录。
+已有标准工具连接可作为简历中的 MCP Server/Client 互操作成果；本轮没有产生新的修复成功率提升结论。后续 Docker/Linux 部署及容器内 MCP 演示已通过，见 [容器部署文档](container-deployment-v1.md)。下一步进入结构化工作流；PostgreSQL/Redis、LangGraph 和远程 MCP 按实际后续实现记录。
