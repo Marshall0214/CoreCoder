@@ -17,7 +17,7 @@ from evals.process import terminate_tree
 from service.store import TaskStore
 
 ROOT = Path(__file__).resolve().parent.parent
-TERMINAL = {'succeeded', 'failed', 'cancelled', 'timed_out', 'interrupted'}
+TERMINAL = {'succeeded', 'failed', 'rejected', 'cancelled', 'timed_out', 'interrupted'}
 
 
 def stop_tree(process):
@@ -53,14 +53,16 @@ class Job:
     store: TaskStore | None = None
     pid: int | None = None
     process_started_at: float | None = None
+    approval: str | None = None
 
     def record(self):
         return {k: getattr(self, k) for k in ('id', 'request', 'state', 'created_at', 'updated_at', 'result',
-                                            'cancel_requested', 'pid', 'process_started_at')}
+                                            'cancel_requested', 'pid', 'process_started_at', 'approval')}
 
     def view(self):
         return {'id': self.id, **self.request, 'state': self.state, 'created_at': self.created_at,
-                'updated_at': self.updated_at, 'result': self.result, 'events_url': f'/tasks/{self.id}/events'}
+                'updated_at': self.updated_at, 'result': self.result, 'approval': self.approval,
+                'events_url': f'/tasks/{self.id}/events'}
 
     def transition(self, state):
         self.state, self.updated_at = state, time.time()
@@ -149,11 +151,25 @@ class TaskManager:
     def cancel(self, job):
         if job.state not in TERMINAL:
             job.cancel_requested = True
-            if job.state == 'queued':
+            if job.state in {'queued', 'awaiting_approval'}:
                 job.transition('cancelled')
                 self.prune()
             elif job.state != 'cancelling':
                 job.transition('cancelling')
+        return job
+
+    def decide(self, job, decision):
+        if self.closing or job.request.get('workflow') != 'langgraph-approval-v1':
+            raise ValueError('Task does not accept approval decisions')
+        if job.approval is not None:
+            if decision != job.approval:
+                raise ValueError('Task already has another approval decision')
+            return job
+        if job.state != 'awaiting_approval':
+            raise ValueError('Task is not awaiting approval')
+        job.approval = decision
+        job.transition('queued')  # Persist the immutable decision before scheduling its worker.
+        job.handle = asyncio.create_task(self._run(job))
         return job
 
     async def _run(self, job):
@@ -165,7 +181,14 @@ class TaskManager:
                 stdout = (job.root / 'stdout.txt').open('wb')
                 stderr = (job.root / 'stderr.txt').open('wb')
                 env = dict(os.environ, PYTHONPATH=str(ROOT), PYTHONDONTWRITEBYTECODE='1', PYTHONIOENCODING='utf-8')
+                if os.environ.get('PYTHONPATH'):
+                    env['PYTHONPATH'] += os.pathsep + os.environ['PYTHONPATH']
                 kwargs = {'creationflags': subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == 'nt' else {'start_new_session': True}
+                # A resumed worker must pass its own launch handshake, never a previous worker's.
+                (job.root / 'start-approved').unlink(missing_ok=True)
+                (job.root / 'result.json').unlink(missing_ok=True)
+                job.pid, job.process_started_at = None, None
+                (job.root / 'job.json').write_text(json.dumps({'request': job.request, 'approval': job.approval}), encoding='utf-8')
                 job.transition('running')
                 job.process = await asyncio.to_thread(
                     subprocess.Popen, [sys.executable, '-m', 'service.launcher', self.worker_module, str(job.root / 'job.json')],
@@ -194,6 +217,15 @@ class TaskManager:
                     job.transition('failed')
                 else:
                     report = json.loads((job.root / 'result.json').read_text(encoding='utf-8'))
+                    if job.request.get('workflow') == 'langgraph-approval-v1' and report.get('status') == 'awaiting_approval':
+                        job.process = None
+                        job.pid, job.process_started_at = None, None
+                        job.transition('awaiting_approval')
+                        return
+                    if job.request.get('workflow') == 'langgraph-approval-v1' and report.get('status') == 'approval_rejected':
+                        job.result = {'status': 'approval_rejected', 'accepted': False}
+                        job.transition('rejected')
+                        return
                     job.result = {k: report.get(k) for k in ('status', 'accepted', 'metrics', 'verification')}
                     accepted = (report.get('accepted') is True and report.get('status') == 'passed'
                                 and (report.get('verification') or {}).get('passed') is True)
@@ -213,6 +245,7 @@ class TaskManager:
         self.closing = True
         jobs = list(self.jobs.values())
         for job in jobs:
-            self.cancel(job)
+            if job.state != 'awaiting_approval':
+                self.cancel(job)
         await asyncio.gather(*(j.handle for j in jobs if j.handle is not None))
         self.store.close()

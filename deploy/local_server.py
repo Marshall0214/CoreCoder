@@ -14,7 +14,7 @@ def main():
     parser.add_argument('--port', type=int, required=True)
     parser.add_argument('--faults', action='store_true')
     args = parser.parse_args()
-    app = create_app(args.data, worker_module='tests.service_worker_stub' if args.faults else 'service.worker')
+    app = create_app(args.data, worker_module='tests.dispatch_worker_stub' if args.faults else 'service.worker')
     server = uvicorn.Server(uvicorn.Config(app, host='127.0.0.1', port=args.port, log_level='warning'))
 
     @app.post('/__acceptance__/shutdown', include_in_schema=False)

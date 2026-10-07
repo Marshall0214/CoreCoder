@@ -23,16 +23,23 @@ class SubmitTask(BaseModel):
     task_id: str = Field(pattern=r'^[a-z0-9][a-z0-9_-]{0,79}$')
     mode: Literal['scripted', 'unchanged', 'reference', 'live'] = 'scripted'
     search_backend: Literal['off', 'none', 'keyword'] = 'off'
-    workflow: Literal['langgraph-v1'] | None = None
+    workflow: Literal['langgraph-v1', 'langgraph-approval-v1'] | None = None
 
 
 class TaskView(SubmitTask):
     id: str
-    state: Literal['queued', 'running', 'cancelling', 'succeeded', 'failed', 'cancelled', 'timed_out', 'interrupted']
+    state: Literal['queued', 'running', 'awaiting_approval', 'cancelling', 'succeeded', 'failed', 'rejected',
+                   'cancelled', 'timed_out', 'interrupted']
+    approval: Literal['approve', 'reject'] | None = None
     created_at: float
     updated_at: float
     result: dict | None
     events_url: str
+
+
+class ApprovalDecision(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    decision: Literal['approve', 'reject']
 
 
 def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_module='service.worker', retention=100):
@@ -67,6 +74,8 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
             raise HTTPException(400, 'Invalid Idempotency-Key')
         if body.workflow is not None and find_spec('langgraph') is None:
             raise HTTPException(503, 'Install the workflow extra to use langgraph-v1')
+        if body.workflow == 'langgraph-approval-v1' and find_spec('langgraph.checkpoint.sqlite') is None:
+            raise HTTPException(503, 'Install the workflow extra for persistent approval')
         try:
             load_suite(SUITES[body.suite], [body.task_id])
         except ValueError as exc:
@@ -88,6 +97,13 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
     @app.post('/tasks/{task_id}/cancel', response_model=TaskView)
     async def cancel(task_id: str):
         return app.state.manager.cancel(job_or_404(task_id)).view()
+
+    @app.post('/tasks/{task_id}/approval', status_code=202, response_model=TaskView)
+    async def approve(task_id: str, body: ApprovalDecision):
+        try:
+            return app.state.manager.decide(job_or_404(task_id), body.decision).view()
+        except ValueError as exc:
+            raise HTTPException(409, str(exc)) from exc
 
     @app.get('/tasks/{task_id}/artifacts/{name}')
     async def artifact(task_id: str, name: str):

@@ -1,5 +1,7 @@
 # LangGraph 有限修复工作流
 
+后续已增加独立 opt-in 人工审批与原生 SQLite 检查点模式，见 [人工审批与持久化恢复](workflow-approval-v1.md)。以下内容保留首版 `langgraph-v1` 的实现与验收边界；首版本身仍不具备审批或原生恢复。
+
 ## 本轮交付
 
 新增独立 `workflows/repair.py`，通过 LangGraph StateGraph 和 Pydantic 状态/计划组织一次修复任务。旧执行器、评分、Prompt、工具集合和预算保持原样；服务默认继续使用既有方式，显式指定 `workflow=langgraph-v1` 才启用适配层。

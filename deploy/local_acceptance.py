@@ -35,7 +35,8 @@ class LocalAcceptance(Acceptance):
         if faults:
             argv.append('--faults')
         options = {'creationflags': subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == 'nt' else {'start_new_session': True}
-        self.process = subprocess.Popen(argv, cwd=ROOT, env=dict(os.environ, PYTHONPATH=str(ROOT), PYTHONIOENCODING='utf-8'),
+        python_path = str(ROOT) + (os.pathsep + os.environ['PYTHONPATH'] if os.environ.get('PYTHONPATH') else '')
+        self.process = subprocess.Popen(argv, cwd=ROOT, env=dict(os.environ, PYTHONPATH=python_path, PYTHONIOENCODING='utf-8'),
                                         stdout=stdout, stderr=stderr, stdin=subprocess.DEVNULL, **options)
         self.report['servers'].append({'pid': self.process.pid, 'faults': faults, 'argv': argv})
         deadline = time.monotonic() + 20

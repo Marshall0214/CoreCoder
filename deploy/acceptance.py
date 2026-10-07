@@ -11,7 +11,7 @@ from pathlib import Path
 from urllib.request import ProxyHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parent.parent
-TERMINAL = {'succeeded', 'failed', 'cancelled', 'timed_out', 'interrupted'}
+TERMINAL = {'succeeded', 'failed', 'rejected', 'cancelled', 'timed_out', 'interrupted'}
 
 
 class Acceptance:
@@ -84,6 +84,8 @@ class Acceptance:
                       'tests/test_service_persistence.py', 'tests/test_code_knowledge_mcp.py', 'tests/test_mcp.py',
                       'tests/test_local_deploy_acceptance.py',
                       'tests/test_workflow.py',
+                      'tests/test_workflow_approval.py',
+                      'tests/test_approval_http_acceptance.py',
                       '-q', '-p', 'no:cacheprovider', '--basetemp=/tmp/pytest'], timeout=180)
         self.report['checks']['linux_service_and_mcp_tests'] = True
         self.command(['docker', 'run', '--rm', '--network', 'none', '--read-only', '--tmpfs', '/tmp:rw,mode=1777',
@@ -113,6 +115,25 @@ class Acceptance:
         graph_snapshot = self.request(f'/tasks/{graph_id}/artifacts/workflow.json')
         self.verify('graph_snapshot', graph_snapshot['outcome'] == 'accepted')
         self.verify('graph_idempotency', self.request('/tasks', graph_body, key='container-graph')['id'] == graph_id)
+        approval_body = {**graph_body, 'workflow': 'langgraph-approval-v1'}
+        approval_id = self.request('/tasks', approval_body, key='container-approval')['id']
+        self.wait(approval_id, {'awaiting_approval'})
+        self.verify('approval_plan_visible',
+                    self.request(f'/tasks/{approval_id}/artifacts/workflow.json')['stage'] == 'awaiting_approval')
+        self.compose('restart', 'repair')
+        self.compose('up', '-d', '--wait', '--wait-timeout', '60')
+        self.verify('approval_survives_restart', self.request(f'/tasks/{approval_id}')['state'] == 'awaiting_approval')
+        self.request(f'/tasks/{approval_id}/approval', {'decision': 'approve'})
+        approved = self.wait(approval_id)
+        self.verify('approval_resumes_verified_execution', approved['state'] == 'succeeded'
+                    and approved['result']['verification']['passed'])
+        self.verify('approval_duplicate_preserves_result',
+                    self.request(f'/tasks/{approval_id}/approval', {'decision': 'approve'}) == approved)
+        self.verify('approval_idempotency', self.request('/tasks', approval_body, key='container-approval')['id'] == approval_id)
+        rejected_id = self.request('/tasks', approval_body)['id']
+        self.wait(rejected_id, {'awaiting_approval'})
+        self.request(f'/tasks/{rejected_id}/approval', {'decision': 'reject'})
+        self.verify('approval_rejection_skips_execution', self.wait(rejected_id)['state'] == 'rejected')
         self.compose('down')
         self.faults = True
         self.compose('up', '-d', '--wait', '--wait-timeout', '60')

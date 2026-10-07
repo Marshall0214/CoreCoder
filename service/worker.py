@@ -18,7 +18,11 @@ def execute(path):
                        base_url=os.environ.get('CORECODER_MODEL_BASE_URL', 'http://localhost:11434/v1'), reasoning_effort='none',
                        search_backend=job['request']['search_backend'], token_budget=15000,
                        wall_timeout=180, test_timeout=15)
-    if job['request'].get('workflow') == 'langgraph-v1':
+    if job['request'].get('workflow') == 'langgraph-approval-v1':
+        from workflows.approval import run_approval_workflow
+
+        report = run_approval_workflow(task, config, path.parent, decision=job.get('approval'))
+    elif job['request'].get('workflow') == 'langgraph-v1':
         from workflows.repair import run_workflow
 
         report = run_workflow(task, config, path.parent)

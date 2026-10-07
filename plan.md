@@ -162,12 +162,14 @@
 ### P1：工作流、MCP 与服务工程化
 
 - [x] 本地 FastAPI MVP 与 SQLite 持久化：幂等提交、SSE 重放、取消、排队恢复、运行中断清理及有界终态查询历史；见 `docs/service-mvp-v1.md`、`docs/service-persistence-v2.md`，不计 PostgreSQL/Redis 或生产部署。
-- [ ] LLM 动态计划/任务拆解、有限反馈与反思、人工审批及原生节点检查点/恢复；通过适配层保留实验执行方式。
-- [x] LangGraph 首版有限编排：Pydantic 固定执行计划、一次执行/独立验证、条件接受或拒绝、原子诊断快照及服务级取消；默认旧方式不变，见 `docs/langgraph-workflow-v1.md`。动态计划、反思、审批和原生节点恢复仍待实现。
+- [ ] LLM 动态计划/任务拆解、有限反馈与反思；通过适配层保留实验执行方式。
+- [x] LangGraph 首版有限编排：Pydantic 固定执行计划、一次执行/独立验证、条件接受或拒绝、原子诊断快照及服务级取消；默认旧方式不变，见 `docs/langgraph-workflow-v1.md`。
+- [x] 可选人工审批与 SQLite 原生节点检查点：计划后 interrupt 暂停、持久化决定、Command 恢复、重复决定幂等、拒绝/取消无执行；执行中崩溃不自动重放，见 `docs/workflow-approval-v1.md`。动态计划、反思、逐工具审批与执行中断点续修仍未实现。
 - [ ] PostgreSQL 保存任务/检查点/审计；独立进程 Worker 执行，Redis 用于队列、限流和缓存。实现调用幂等、恢复及取消清理。
 - [ ] 区分任务内记忆与带来源/版本的仓库记忆；核心评测禁用跨任务答案记忆。
 - [x] 代码知识 MCP stdio Server 首版：复用 BM25，提供搜索/按行读取/文件分页；官方 SDK Client 与既有 Client 互操作、结构化输出、错误及超时已验证，见 `docs/mcp-code-knowledge-v1.md`。远程 MCP、资源与权限扩展另行推进。
-- [ ] FastAPI：任务创建/查询、SSE、审批、取消；权限贯穿 API、检索和工具。
+- [x] 本地 FastAPI：任务创建/查询、SSE、审批、取消。
+- [ ] 权限贯穿 API、检索和工具；审批人身份及授权审计。
 - [ ] 围绕修复接入文档 API、只读数据库元数据及测试工具。
 - [x] Linux/Docker Compose 单服务容器部署：非 root、只读根、任务卷、健康检查及资源限制；Linux 专项 48 passed，13 项端到端检查通过，见 `docs/container-deployment-v1.md` 与 `docs/container-acceptance-v1.json`。
 - [ ] 每任务独立容器沙箱：限制挂载、网络、CPU、内存和时间，不携带宿主凭据；当前服务容器边界不能替代此项。
@@ -217,4 +219,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**当前：FastAPI、SQLite 幂等/恢复、MCP、Linux 容器部署及可取消的 LangGraph 有限编排均完成。图模式显式启用，包含代码生成的结构化计划、一次执行与独立验证、结果分支和诊断快照；默认旧执行及幂等指纹兼容。全量 852 passed、2 skipped；Linux 59 passed、16 项容器检查通过，见 docs/langgraph-workflow-v1.md。下一步补充人工审批及原生节点持久化检查点；动态规划/反思、PostgreSQL/Redis、鉴权和每任务沙箱仍未实现。冻结实验不变，无新增模型调用。**
+**当前：FastAPI、SQLite 幂等/恢复、MCP、Linux 容器部署、LangGraph 有限编排及可选人工审批/原生 SQLite 检查点均已完成。待审批任务跨服务重启保留，批准恢复原图，重复决定不重跑；执行中崩溃清理后 interrupted，不自动重放。默认旧执行及幂等指纹兼容。全量 864 passed、2 skipped；Linux 71 passed、22 项容器检查及 18 项真实 HTTP 审批故障检查通过，见 docs/workflow-approval-v1.md。下一步收敛演示与交付证据，再按岗位需要选择鉴权或工具扩展；动态规划/反思、PostgreSQL/Redis 和每任务沙箱仍未实现。冻结实验不变，无新增模型调用。**
