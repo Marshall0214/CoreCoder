@@ -19,11 +19,11 @@ from service.worker import SUITES
 
 class SubmitTask(BaseModel):
     model_config = ConfigDict(extra='forbid')
-    suite: Literal['smoke', 'localization'] = 'smoke'
+    suite: Literal['smoke', 'localization', 'certified'] = 'smoke'
     task_id: str = Field(pattern=r'^[a-z0-9][a-z0-9_-]{0,79}$')
     mode: Literal['scripted', 'unchanged', 'reference', 'live'] = 'scripted'
     search_backend: Literal['off', 'none', 'keyword'] = 'off'
-    workflow: Literal['langgraph-v1', 'langgraph-approval-v1'] | None = None
+    workflow: Literal['langgraph-v1', 'langgraph-approval-v1', 'tentative-approval-v1'] | None = None
 
 
 class TaskView(SubmitTask):
@@ -66,18 +66,36 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
 
     @app.get('/catalog')
     async def catalog():
-        return {name: [{'task_id': t.task_id, 'title': t.title} for t in load_suite(path)] for name, path in SUITES.items()}
+        from service.tentative import TASKS
+
+        result = {name: [{'task_id': t.task_id, 'title': t.title} for t in load_suite(path)] for name, path in SUITES.items()}
+        result['certified'] = [{'task_id': name, 'title': name, 'workflow': 'tentative-approval-v1',
+                                'requires_local_certification': True} for name in TASKS]
+        return result
 
     @app.post('/tasks', status_code=202, response_model=TaskView)
     async def submit(body: SubmitTask, idempotency_key: str | None = Header(default=None)):
         if idempotency_key is not None and not re.fullmatch(r'[A-Za-z0-9._:-]{1,128}', idempotency_key):
             raise HTTPException(400, 'Invalid Idempotency-Key')
-        if body.workflow is not None and find_spec('langgraph') is None:
+        if body.workflow in {'langgraph-v1', 'langgraph-approval-v1'} and find_spec('langgraph') is None:
             raise HTTPException(503, 'Install the workflow extra to use langgraph-v1')
         if body.workflow == 'langgraph-approval-v1' and find_spec('langgraph.checkpoint.sqlite') is None:
             raise HTTPException(503, 'Install the workflow extra for persistent approval')
         try:
-            load_suite(SUITES[body.suite], [body.task_id])
+            if body.suite == 'certified' or body.workflow == 'tentative-approval-v1':
+                from service.tentative import TASKS, WORKFLOW, load_task
+
+                if (body.suite != 'certified' or body.workflow != WORKFLOW or body.mode != 'live'
+                        or body.search_backend != 'off'):
+                    raise HTTPException(422, 'Certified tasks require tentative-approval-v1, live mode, and fixed retrieval')
+                if body.task_id not in TASKS:
+                    raise HTTPException(422, 'Unknown certified task')
+                try:
+                    load_task(body.task_id)
+                except (OSError, ValueError, KeyError) as exc:
+                    raise HTTPException(503, 'Certified task inputs unavailable or changed') from exc
+            else:
+                load_suite(SUITES[body.suite], [body.task_id])
         except ValueError as exc:
             raise HTTPException(422, 'Unknown task in the selected suite') from exc
         try:
@@ -113,11 +131,19 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
             if not path.is_file() or path.is_symlink():
                 raise HTTPException(404, 'No workflow snapshot available')
             return FileResponse(path, filename=name, media_type='application/json')
+        if job.request.get('workflow') == 'tentative-approval-v1' and name in {'lifecycle.json', 'transaction.json'}:
+            path = job.root / 'runs' / 'tentative'
+            path = path / ('publication/transaction.json' if name == 'transaction.json' else name)
+            if path.is_symlink() or not path.is_file():
+                raise HTTPException(404, 'No publication diagnostic available')
+            return FileResponse(path, filename=name, media_type='application/json')
         if name not in {'patch.diff', 'report.json'}:
             raise HTTPException(404, 'Unknown artifact')
         if job.state not in {'succeeded', 'failed'} or job.result is None:
             raise HTTPException(409, 'No completed report available')
         report = json.loads((job.root / 'result.json').read_text(encoding='utf-8'))
+        if not report.get('artifacts'):
+            raise HTTPException(404, 'No repair artifacts available')
         location = (Path(report['artifacts']) / name).resolve()
         if not location.is_relative_to((job.root / 'runs').resolve()) or not location.is_file() or location.is_symlink():
             raise HTTPException(404, 'Unknown artifact')

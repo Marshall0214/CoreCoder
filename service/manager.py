@@ -18,6 +18,7 @@ from service.store import TaskStore
 
 ROOT = Path(__file__).resolve().parent.parent
 TERMINAL = {'succeeded', 'failed', 'rejected', 'cancelled', 'timed_out', 'interrupted'}
+APPROVAL_WORKFLOWS = {'langgraph-approval-v1', 'tentative-approval-v1'}
 
 
 def stop_tree(process):
@@ -159,7 +160,7 @@ class TaskManager:
         return job
 
     def decide(self, job, decision):
-        if self.closing or job.request.get('workflow') != 'langgraph-approval-v1':
+        if self.closing or job.request.get('workflow') not in APPROVAL_WORKFLOWS:
             raise ValueError('Task does not accept approval decisions')
         if job.approval is not None:
             if decision != job.approval:
@@ -217,16 +218,19 @@ class TaskManager:
                     job.transition('failed')
                 else:
                     report = json.loads((job.root / 'result.json').read_text(encoding='utf-8'))
-                    if job.request.get('workflow') == 'langgraph-approval-v1' and report.get('status') == 'awaiting_approval':
+                    if job.request.get('workflow') in APPROVAL_WORKFLOWS and report.get('status') == 'awaiting_approval':
                         job.process = None
                         job.pid, job.process_started_at = None, None
                         job.transition('awaiting_approval')
                         return
-                    if job.request.get('workflow') == 'langgraph-approval-v1' and report.get('status') == 'approval_rejected':
+                    if job.request.get('workflow') in APPROVAL_WORKFLOWS and report.get('status') == 'approval_rejected':
                         job.result = {'status': 'approval_rejected', 'accepted': False}
                         job.transition('rejected')
                         return
                     job.result = {k: report.get(k) for k in ('status', 'accepted', 'metrics', 'verification')}
+                    if job.request.get('workflow') == 'tentative-approval-v1':
+                        job.result.update({k: report.get(k) for k in ('publication', 'original_unchanged', 'task_end_sha256',
+                                                                    'failure_type')})
                     accepted = (report.get('accepted') is True and report.get('status') == 'passed'
                                 and (report.get('verification') or {}).get('passed') is True)
                     job.result['accepted'] = accepted

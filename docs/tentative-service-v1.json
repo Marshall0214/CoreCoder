@@ -1,0 +1,71 @@
+{
+  "protocol": "tentative-service-acceptance-v1",
+  "complete": true,
+  "workflow": "tentative-approval-v1",
+  "default_workflow_changed": false,
+  "new_model_calls": 0,
+  "private_grader_calls": 0,
+  "registered_tasks": [
+    "click-usage-empty",
+    "itsdangerous-none-salt"
+  ],
+  "real_certified_entry": {
+    "transport": "ASGI TestClient with real isolated service worker; no listening TCP server",
+    "path": ".tmp/tentative-service-real-acceptance-v1/acceptance.json",
+    "sha256": "08f24cbfdcd653aea8328ac1a21713fd1779338d1a1490ee7b2775ac9392dbe4",
+    "complete": true,
+    "model_calls": 0,
+    "private_grader_calls": 0,
+    "tasks": [
+      {
+        "task_id": "click-usage-empty",
+        "service_id": "bc073543e0b443948852bd8eca2a13c3",
+        "state": "rejected",
+        "source_unchanged": true,
+        "model_calls": 0
+      },
+      {
+        "task_id": "itsdangerous-none-salt",
+        "service_id": "b22dcecb4c124cadbe23e64c8018364c",
+        "state": "rejected",
+        "source_unchanged": true,
+        "model_calls": 0
+      }
+    ]
+  },
+  "validation": {
+    "new_tests": {
+      "passed": 16,
+      "seconds": 19.71,
+      "inference": "fake LLM; real subprocess, edits, compile/import and public checks"
+    },
+    "initial_joint_service_approval": {
+      "passed": 48,
+      "seconds": 51.97
+    },
+    "ruff": "passed",
+    "windows_full": {
+      "passed": 1134,
+      "skipped": 2,
+      "seconds": 188.77
+    },
+    "linux_docker_http_tcp_rerun": false,
+    "prior_full_before_final_failure_test": {
+      "passed": 1133,
+      "skipped": 2,
+      "seconds": 183.62
+    },
+    "local_document_links": 360
+  },
+  "source_protection_scope": "before final publication; forced interruption during multi-file publication is not crash-safe",
+  "certification": "fixed local historical data and template hashes; not self-contained distribution",
+  "next_step": "self-contained source/public-contract bundle and approved real HTTP inference",
+  "implementation_sha256": {
+    "service/tentative.py": "99421eba0288252d792bea915c2d525851b3bacbf97f4ccbf01cf87acbcab762",
+    "service/app.py": "ea41d5be8de0448dcbd33ae4217938b1544d05cba736cf3f4bd752119f12e23e",
+    "service/manager.py": "cf6861e1b10a3f4e2b6d2740d19da1eb946dfb42bcc93ee49227ceb06783acd8",
+    "service/worker.py": "ee3565fff30c01a74f888e5a0713731961dc9e7e4d102e3a0486bd561149ee41",
+    "tests/test_tentative_service.py": "2dbd4db2822d380690e74a3e7e65f161b471ee5510ac00c37e34c72f082af8df",
+    "tests/tentative_service_worker_stub.py": "4698d5f6d9ca183afd28ad7bf842b8fbb132e25538040a8dec41728febb322a2"
+  }
+}

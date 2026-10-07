@@ -8,7 +8,7 @@
 
 核心研究问题：在固定 LLM、工具集合、任务预算和评测协议下，不同代码检索与上下文组织策略如何影响修复结果和执行成本？工程问题：任务如何提交、审批、取消、恢复，并防止重复执行？
 
-**当前阶段可以交付。**评测、实验报告、本地服务、MCP、审批检查点和容器验收均有记录。服务仅接收 catalog 中的可信人工任务；真实仓库实验通过独立脚本运行，尚未将任意 GitHub 仓库接入服务。完整跨文件基准和全部 JD 要求未完成。
+**当前阶段可以交付。**评测、实验报告、本地服务、MCP、审批检查点和容器验收均有记录。服务接收 catalog 中的可信人工任务，并增加两项认证真实缺陷的可选暂存审批入口；其他真实仓库实验仍通过独立脚本运行，未支持任意 GitHub 仓库。完整跨文件基准和全部 JD 要求未完成。
 
 开发必要性来自对内部机制的实现、替换和验证需求：能够固定输入与预算，改一种证据策略，再用相同独立评分解释差异。这是求职工程作品与探索性实验，没有真实用户需求验证或优于成熟 Coding Agent 的证据。
 
@@ -32,6 +32,7 @@
 | Qwen / DeepSeek 固定流程对照 | [provider-compare-v1.md](provider-compare-v1.md) |
 | Qwen 源码契约上下文与回归 | [source-contract-context-v1.md](source-contract-context-v1.md) |
 | 暂存发布真实模型对照 | [tentative-publication-v1.md](tentative-publication-v1.md) |
+| 暂存发布的可选服务审批入口 | [tentative-service-v1.md](tentative-service-v1.md) |
 | 任务级暂存反馈与语义发布（可选 Worker） | [tentative-feedback-v1.md](tentative-feedback-v1.md) |
 | 最终候选公开语义验收事务（离线） | [semantic-patch-v1.md](semantic-patch-v1.md) |
 | 公开修复假设校验与结果追踪（未采用） | [repair-hypothesis-v1.md](repair-hypothesis-v1.md) |
@@ -50,6 +51,11 @@ flowchart TD
     Worker --> Run[既有评测执行器 / 候选补丁]
     Run --> Verify[干净副本独立验证]
     Verify --> Artifacts[补丁 / 报告 / Trace / 用量]
+    API --> Approval[可选认证任务 / 持久化审批]
+    Approval --> Tentative[独立暂存修复 / 一次反馈]
+    Tentative --> PublicGate[认证公开检查]
+    PublicGate --> Publish[发布到任务源码副本 / 失败保留原文]
+    Publish --> Artifacts
     Experiments[检索与上下文实验适配器] --> Run
     MCP[只读代码知识 MCP Server] --> Evidence[BM25 / 带路径行号及哈希的证据]
     Experiments --> Evidence
@@ -92,7 +98,7 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新暂存发布对照后 Windows 全量 **1,118 passed、2 skipped**，见 [发布对照报告](tentative-publication-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新暂存审批服务后 Windows 全量 **1,134 passed、2 skipped**，见 [服务报告](tentative-service-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -131,3 +137,5 @@ Qwen / DeepSeek 固定统一反馈流程对照已完成：六项已查看缺陷�
 任务级暂存反馈生命周期完成：第一轮与一次反馈只改暂存区，最终公开语义检查后发布净修改；失败保持任务起始版本，外部变化不覆盖。两项历史完整回答重放：正确修复发布、错误修复不发布，四次请求除 unittest 耗时行外一致；0 次新增模型与私有评分请求。全量 1,112 passed、2 skipped。接入可选 Worker，未接入默认 API；下一步固定模型与预算做两项全新发布对照，见 [报告](tentative-feedback-v1.md)。
 
 真实模型发布对照完成：两项任务两种流程均修复 1/2；直接写入的失败分支留下错误源码，暂存发布拒绝该候选并保持起始字节，控制测试通过分支由 1/2 变为 2/2。正式对照 8 次本地 Qwen 请求、33,842 Token，新增验收发布阶段约 2.84 秒；没有修复率提升。全量 1,118 passed、2 skipped。下一步接入服务可选执行路径，见 [报告](tentative-publication-v1.md)。
+
+可选暂存审批服务完成：两项认证真实缺陷可经 API 提交，审批后执行暂存修复与公开验收发布；拒绝、待审批取消和推理阶段取消不发布源码。16 项新测试覆盖成功/失败、重启、超时、幂等、外部变化、认证篡改及异常脱敏；两项真实快照经 ASGI/真实 Worker 到达待审批并拒绝，0 次模型请求。Windows 全量 1,134 passed、2 skipped；默认工作流不变。仍依赖历史本地产物，下一步生成独立认证任务包并验证批准后的真实 HTTP 推理，见 [报告](tentative-service-v1.md)。

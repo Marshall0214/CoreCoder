@@ -9,6 +9,7 @@
 | 任务、预算、独立评分与 Trace | [执行器](../evals/runner.py)、[预算与事件](../evals/runtime.py) | [评测协议](p0-1-testing.md)；演示 report.json 和 patch.diff |
 | 代码检索、上下文及编辑反馈实验 | [检索模块](../corecoder/retrieval/)、[事务保护](experiments/patch_transaction_v1.py)、[统一反馈](experiments/unified_feedback_worker_v1.py) | [第二仓库结果](second-repo-repair-v1.md)、[事务验证](patch-transaction-v1.md)、[已编辑函数对照](edited-context-v1.md) |
 | API、持久化、幂等与审批恢复 | [API](../service/app.py)、[调度器](../service/manager.py)、[存储](../service/store.py)、[审批图](../workflows/approval.py) | [5 分钟演示](demo-guide.md)、[审批协议](workflow-approval-v1.md) |
+| 可选暂存修复与公开验收发布 | [服务适配器](../service/tentative.py)、[暂存 Worker](experiments/tentative_feedback_worker_v1.py) | [服务报告](tentative-service-v1.md)、[模型发布对照](tentative-publication-v1.md) |
 | MCP 与部署可靠性 | [MCP Server](../mcp_servers/code_knowledge.py)、[互操作演示](../mcp_servers/demo.py)、[部署目录](../deploy/) | [MCP 报告](mcp-code-knowledge-v1.md)、[容器说明](container-deployment-v1.md)、[工程验收摘要](workflow-approval-acceptance-v1.json) |
 
 基础 Agent 循环、模型客户端、压缩、原有工具与 MCP Client 来自 CoreCoder 上游。新 Server 不自动替换 API 默认检索，实验适配器不自动成为默认服务流程。目录入口用于核查实现，不能仅凭代码存在宣称已验证全部行为。
@@ -29,7 +30,7 @@
 
 | 范围 | 已记录结果 | 版本化来源 |
 | --- | --- | --- |
-| 最新 Windows 全量 | 1,118 passed、2 skipped | [暂存发布真实对照摘要](tentative-publication-v1.json)；含上游与扩展测试 |
+| 最新 Windows 全量 | 1,134 passed、2 skipped | [暂存审批服务摘要](tentative-service-v1.json)；含上游与扩展测试 |
 | 历史 Linux 专项 | 71 passed | [审批验收](workflow-approval-acceptance-v1.json) |
 | 历史容器端到端 | 22 项检查通过 | 同上，container.checks |
 | 历史真实 HTTP 审批故障 | 18 项检查通过 | 同上，host.http_checks |
@@ -56,3 +57,5 @@
 任务级暂存反馈已接入可选 Worker：两轮只改暂存区，最终公开验收后发布；历史正确修复发布、错误修复保持任务起始字节，0 次新增推理。该结果为流程验收，不增加真实修复率，见 [报告](tentative-feedback-v1.md)。
 
 真实模型发布对照完成：两项任务两种流程均修复 1/2；直接写入的失败分支留下错误源码，暂存发布拒绝该候选并保持起始字节，控制测试通过分支由 1/2 变为 2/2。正式对照 8 次本地 Qwen 请求、33,842 Token，新增验收发布阶段约 2.84 秒；没有修复率提升。全量 1,118 passed、2 skipped。下一步接入服务可选执行路径，见 [报告](tentative-publication-v1.md)。
+
+可选暂存审批服务完成：两项认证真实缺陷可经 API 提交，审批后执行暂存修复与公开验收发布；拒绝、待审批取消和推理阶段取消不发布源码。16 项新测试覆盖成功/失败、重启、超时、幂等、外部变化、认证篡改及异常脱敏；两项真实快照经 ASGI/真实 Worker 到达待审批并拒绝，0 次模型请求。Windows 全量 1,134 passed、2 skipped；默认工作流不变。仍依赖历史本地产物，下一步生成独立认证任务包并验证批准后的真实 HTTP 推理，见 [报告](tentative-service-v1.md)。

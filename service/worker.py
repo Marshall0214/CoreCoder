@@ -13,6 +13,23 @@ SUITES = {'smoke': DEFAULT_SUITE, 'localization': DEFAULT_SUITE / 'localization-
 
 def execute(path):
     job = json.loads(path.read_text(encoding='utf-8'))
+    if job['request'].get('workflow') == 'tentative-approval-v1':
+        from service.tentative import run
+
+        try:
+            report = run(path, decision=job.get('approval'))
+        except Exception as exc:  # noqa: BLE001 - expose failure class, never provider credentials
+            report = {'status': 'service_execution_error', 'accepted': False,
+                      'verification': {'passed': False}, 'failure_type': type(exc).__name__}
+            snapshot_path = path.parent / 'workflow.json'
+            if snapshot_path.is_file():
+                snapshot = json.loads(snapshot_path.read_text(encoding='utf-8'))
+                snapshot.update(stage='failed', failure_type=type(exc).__name__)
+                temporary = path.parent / 'workflow.tmp'
+                temporary.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding='utf-8')
+                temporary.replace(snapshot_path)
+        (path.parent / 'result.json').write_text(json.dumps(report, ensure_ascii=False), encoding='utf-8')
+        return
     task = load_suite(SUITES[job['request']['suite']], [job['request']['task_id']])[0]
     config = RunConfig(mode=job['request']['mode'], model='qwen3.5:27b',
                        base_url=os.environ.get('CORECODER_MODEL_BASE_URL', 'http://localhost:11434/v1'), reasoning_effort='none',
