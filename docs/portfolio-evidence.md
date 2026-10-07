@@ -30,7 +30,7 @@
 
 | 范围 | 已记录结果 | 版本化来源 |
 | --- | --- | --- |
-| 最新 Windows 全量 | 1,144 passed、2 skipped | [补丁差异反馈摘要](patch-delta-v1.json)；含上游与扩展测试 |
+| 最新 Windows 全量 | 1,169 passed、2 skipped | [函数替换摘要](function-replace-v1.json)；含上游与扩展测试 |
 | 历史 Linux 专项 | 71 passed | [审批验收](workflow-approval-acceptance-v1.json) |
 | 历史容器端到端 | 22 项检查通过 | 同上，container.checks |
 | 历史真实 HTTP 审批故障 | 18 项检查通过 | 同上，host.http_checks |
@@ -61,3 +61,6 @@
 可选暂存审批服务完成：两项认证真实缺陷可经 API 提交，审批后执行暂存修复与公开验收发布；拒绝、待审批取消和推理阶段取消不发布源码。16 项新测试覆盖成功/失败、重启、超时、幂等、外部变化、认证篡改及异常脱敏；两项真实快照经 ASGI/真实 Worker 到达待审批并拒绝，0 次模型请求。Windows 全量 1,134 passed、2 skipped；默认工作流不变。仍依赖历史本地产物，下一步生成独立认证任务包并验证批准后的真实 HTTP 推理，见 [报告](tentative-service-v1.md)。
 
 补丁差异反馈完成：保持两次调用与原证据预算，历史差异可见且只使用当前片段编辑；两项新配对基线 1/2、候选 0/2。none-salt 恢复两处回退且 Controls 通过，但目标仍失败；Click 因 old 片段漏行被拒绝。8 次本地 Qwen 请求、33,798 Token；全量 1,144 passed、2 skipped。按停止条件冻结，不采用、不扩六项，不改服务；下一项核心工作先解决当前代码编辑锚点复述错误，见 [报告](patch-delta-v1.md)。
+
+
+函数替换实验收尾：程序按已展示函数与文件 SHA256 提取旧文本，防止模型复述漏行；严格兼容单个 JSON 代码块后，两项反馈事务均可执行，但同答案回放最终基线 1/2、候选 0/2。八次本地 Qwen 请求共 34,137 Token；回放零新增推理。Windows 1,169 passed、2 skipped。保留可选原型，不采用、不扩任务、不改服务；下一步重点是修复逻辑的参数语义和行为保持。 见 [实验报告](function-replace-v1.md)。

@@ -23,7 +23,7 @@
 
 **统一入口：[项目总览与结果](docs/project-overview.md) · [5 分钟离线演示](docs/demo-guide.md) · [交付与 JD 清单](docs/delivery-checklist.md) · [简历与面试说明](docs/resume-and-interview.md)。**
 
-最新 Windows 全量回归：1,144 passed、2 skipped，见 [补丁差异反馈摘要](docs/patch-delta-v1.json)。历史部署验收：Linux 71 passed、22 项容器检查和 18 项 HTTP 审批故障检查通过，见 [版本化摘要](docs/workflow-approval-acceptance-v1.json)。软件验收与真实模型修复效果分别计量；求职展示入口见 [证据索引](docs/portfolio-evidence.md)。下文保留上游核心的源码导读和作者归属。
+最新 Windows 全量回归：1,169 passed、2 skipped，见 [函数替换实验摘要](docs/function-replace-v1.json)。历史部署验收：Linux 71 passed、22 项容器检查和 18 项 HTTP 审批故障检查通过，见 [版本化摘要](docs/workflow-approval-acceptance-v1.json)。软件验收与真实模型修复效果分别计量；求职展示入口见 [证据索引](docs/portfolio-evidence.md)。下文保留上游核心的源码导读和作者归属。
 
 - **读得完。** 一个下午读完整个引擎，没有一处藏着你看不懂的魔法。
 - **改得动。** 每一行都能在你自己机器上下断点、改了再跑。它真能干活，所以这份参考是活的，不是示意图。

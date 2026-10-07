@@ -1,0 +1,206 @@
+{
+  "protocol": "function-replacement-summary-v1-v2",
+  "complete": true,
+  "decision": "optional prototype; not adopted or expanded",
+  "new_model_calls": 8,
+  "new_model_tokens": 34137,
+  "deepseek_calls": 0,
+  "live_v1": {
+    "path": ".tmp/real-defects/function-replace-compare-v1/experiment.json",
+    "sha256": "e12efdb8101e70c2cdeeb9a4be42f91cf56d64839324fb48f19199c217013d6f",
+    "summary": {
+      "baseline": {
+        "runs": 2,
+        "passed": 1,
+        "statuses": {
+          "passed": 1,
+          "failed_verification": 1
+        },
+        "budget_accounted_tokens": 16911,
+        "known_budget_accounted_tokens": 16911,
+        "missing_metrics_runs": 0,
+        "missing_usage_calls": 0,
+        "prompt_tokens": 14587,
+        "completion_tokens": 2324,
+        "worker_seconds": 64.1887,
+        "model_calls": 4,
+        "transaction_rejections": 0,
+        "failed_runs_with_source_changes": 1,
+        "failed_runs_preserving_start": 0,
+        "controls_passed": 1,
+        "publication_seconds": null
+      },
+      "function-replace": {
+        "runs": 2,
+        "passed": 0,
+        "statuses": {
+          "invalid_patch": 2
+        },
+        "budget_accounted_tokens": 17226,
+        "known_budget_accounted_tokens": 17226,
+        "missing_metrics_runs": 0,
+        "missing_usage_calls": 0,
+        "prompt_tokens": 14643,
+        "completion_tokens": 2583,
+        "worker_seconds": 74.0793,
+        "model_calls": 4,
+        "transaction_rejections": 2,
+        "failed_runs_with_source_changes": 2,
+        "failed_runs_preserving_start": 0,
+        "controls_passed": 1,
+        "publication_seconds": null
+      }
+    },
+    "adapter_hashes": {
+      "docs/experiments/function_replace_compare_v1.py": "4134127c3e10c91063872fee2645b97e6911d3544572e810d69a686e7c50ee26",
+      ".tmp/real-defects/function-replace-audit-v1-final/audit.json": "e1cc75c62f78d2edc0feba7e74c3b175030ad786ce06ea4ee8a4d6ccf0d5c26c",
+      "docs/experiments/function_replace_v1.py": "05e54ec6315af0eb4bafcc478956c1325e039272f3097495e7887590c311da68",
+      "docs/experiments/tentative_feedback_worker_v1.py": "b83032bbdc44e3ab99e47936afe68521b0dd706cc3dfb9ef2c0d209609923eb0",
+      "docs/experiments/semantic_patch_transaction_v1.py": "5bb75f565d8592e0927d80a39362c2aaf16a9327093788c078836af659e59c85",
+      "docs/experiments/edited_context_v1.py": "bb6ecbc0843cb18690700593d99f8effc425fae0ad8cee7ff859a004753780a7",
+      "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+      "docs/experiments/provider_compare_worker_v1.py": "5673402e02e11f122d3bb67e2a3fada04a532f00745c411bc2eb7171758a18cb",
+      "docs/experiments/function_replace_worker_v1.py": "0f3e25de3e83fca45bf40b272cb3122b7bf22c1558d1df2b5c2ab9f97fa6a146",
+      "docs/experiments/source_contract_context_v1.py": "f06bd16db2bebceb74bdf2db9956372cb8c4eca930eff806e1fbb4bffcb41406",
+      "docs/experiments/runtime_observation_v1.py": "643a052493a0303f27596ee05f84ef962b2e3a989a74da77906aee341862367d",
+      "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+      "docs/experiments/repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+      "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+      "docs/experiments/salt_relations_audit_v1.py": "94bb64473835d4a9c8f79c7e91a1ea90ec9ac526cfd64b4dc6ea4a91ae7fa1e0",
+      "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+      "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+      "docs/experiments/thinking_calibration_v1.py": "4fd5865933ce8b83d0811654bebb93fdc22906a7245b13c664dd47771d3bb987",
+      "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+      "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+      "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+      "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+      "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+      "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+      "evals/process.py": "6a881e9a519e67776fe9a9bacc7b0c176259dceed6fabcac91c8fdc4d7f01b04",
+      ".tmp/real-defects/tentative-feedback-audit-v1-final/audit.json": "f9c741776ccd3673ba5dab1c4de9e34be37282300af516fc40751d8e33181dcb",
+      ".tmp/real-defects/edited-context-audit-v1-final/audit.json": "afac19480c252dfbe46d7efb09e4a6f5a70d878d7154914fdeb9c8ed920a4574",
+      ".tmp/real-defects/runtime-observation-audit-v1/audit.json": "615948f936f370b7bdba939a211126e8d47457111e8d3e6d039f93e157c179aa",
+      ".tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+      ".tmp/real-defects/salt-relations-audit-v1-final/audit.json": "aed080365d682c89aab20f944cb6c178b6e5e97473e2407e212c6f812a65fbc0",
+      "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+      "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51"
+    }
+  },
+  "replay_v2": {
+    "path": ".tmp/real-defects/function-replace-replay-v2/replay.json",
+    "sha256": "ea75989e2365cf81ce76aa8f0ff19a65a390b5e8fd7dbe35a70cb3c31fae01fb",
+    "new_model_calls": 0,
+    "private_task_verifications": 4,
+    "usage_note": "Saved answers and usage reused; no additional inference or billing.",
+    "adapter_hashes": {
+      "docs/experiments/function_replace_replay_v2.py": "4483c55907c30d6754363132f190d54f7a51d73010e3bed49bf2f7ae940c04b8",
+      "docs/experiments/function_replace_worker_v2.py": "7a8018dc2d7fe4ae65b52b4cc5340dc050f441d62af238c5b7ff5d0170caedbd",
+      "docs/experiments/function_replace_v2.py": "e3e60be2ebe63cc9521cd158a67ce8e78eb0cd77893c8db144f0d8b1fdd3705a",
+      "docs/experiments/function_replace_v1.py": "05e54ec6315af0eb4bafcc478956c1325e039272f3097495e7887590c311da68",
+      ".tmp/real-defects/function-replace-compare-v1/experiment.json": "e12efdb8101e70c2cdeeb9a4be42f91cf56d64839324fb48f19199c217013d6f"
+    },
+    "runs": [
+      {
+        "task_id": "click-usage-empty",
+        "policy": "function-replace",
+        "status": "failed_verification",
+        "feedback_transaction_accepted": true,
+        "target_passed": false,
+        "controls_passed": false,
+        "requests": [
+          {
+            "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "historical_prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "comparison": "exact",
+            "matched_historical": true
+          },
+          {
+            "prompt_hash": "bf3b7fa2e70466bafaddb69359d0fceea2d64dab531e64c96d31d08ac2231af3",
+            "historical_prompt_hash": "bf3b7fa2e70466bafaddb69359d0fceea2d64dab531e64c96d31d08ac2231af3",
+            "comparison": "exact",
+            "matched_historical": true
+          }
+        ]
+      },
+      {
+        "task_id": "click-usage-empty",
+        "policy": "baseline",
+        "status": "passed",
+        "feedback_transaction_accepted": true,
+        "target_passed": true,
+        "controls_passed": true,
+        "requests": [
+          {
+            "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "historical_prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "comparison": "exact",
+            "matched_historical": true
+          },
+          {
+            "prompt_hash": "ab312d6becea2a9275ba8f554dca355912d7d0604511074fae93fa5775ad2118",
+            "historical_prompt_hash": "ab312d6becea2a9275ba8f554dca355912d7d0604511074fae93fa5775ad2118",
+            "comparison": "exact",
+            "matched_historical": true
+          }
+        ]
+      },
+      {
+        "task_id": "itsdangerous-none-salt",
+        "policy": "baseline",
+        "status": "failed_verification",
+        "feedback_transaction_accepted": true,
+        "target_passed": false,
+        "controls_passed": false,
+        "requests": [
+          {
+            "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "historical_prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "comparison": "exact",
+            "matched_historical": true
+          },
+          {
+            "prompt_hash": "ade745c4096689b44f77001bfbd1ac2e82244464d5d5307b34548ed47c0756e7",
+            "historical_prompt_hash": "b51992781a38448acad92bf64c38f35a6f4791d25ab1f1ea6b189ec53424f2ca",
+            "comparison": "unittest_timing_normalized",
+            "matched_historical": true
+          }
+        ]
+      },
+      {
+        "task_id": "itsdangerous-none-salt",
+        "policy": "function-replace",
+        "status": "failed_verification",
+        "feedback_transaction_accepted": true,
+        "target_passed": false,
+        "controls_passed": false,
+        "requests": [
+          {
+            "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "historical_prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "comparison": "exact",
+            "matched_historical": true
+          },
+          {
+            "prompt_hash": "011a8a317b09cb4772610cf0efd98a85be10a8092a226558a1326bc27ea11d90",
+            "historical_prompt_hash": "24b7449c2d2f17c83bc038a07c646a35d45517e6b0480ae1bbd9d487dc2c4bcc",
+            "comparison": "unittest_timing_normalized",
+            "matched_historical": true
+          }
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "targeted": {
+      "passed": 25,
+      "seconds": 1.16
+    },
+    "windows_full": {
+      "passed": 1169,
+      "skipped": 2,
+      "seconds": 187.75
+    },
+    "ruff": "passed",
+    "linux_container_http": "not rerun"
+  }
+}
