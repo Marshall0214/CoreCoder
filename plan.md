@@ -219,4 +219,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**当前：实验、服务工程和交付文档已完成。历史工程验收全量 864 passed、2 skipped；Linux 71 passed、22 项容器检查及 18 项真实 HTTP 审批故障检查通过，见 docs/workflow-approval-v1.md。总览和贡献边界见 docs/project-overview.md。补丁定位对照两方案均 3/6；最新符号检索正式对照 36 次新调用，点名函数覆盖 5/7→7/7、修复均 12/18，仍无修复率优势，保持唯一原文匹配及默认策略。最终全量 901 passed、2 skipped，见 docs/symbol-directed-retrieval-v1.md。后续聚焦 usage-empty/none-salt 的补丁语义和必要上下文，以独立协议评测有预算上限的公开自检反馈；独立评分不作为模型反馈，不继续无依据增加预算或检索变体。动态规划/反思、PostgreSQL/Redis 和每任务沙箱仍未实现。**
+**当前：实验、服务工程和交付文档已完成。历史工程验收 Windows 864 passed、2 skipped，Linux 71 passed、22 项容器检查和 18 项 HTTP 审批故障检查通过。补丁定位两方案均 3/6；符号检索点名函数覆盖 5/7→7/7、修复均 12/18，保留默认策略。本轮实现两项任务的人工公开检查、离线正例/失败认证及一次共享预算反馈：三轮对照单次 0/6、反馈 3/6，收益仅来自 usage-empty，none-salt 仍失败；Token 为 2.57 倍。另四项全新单次回归 4/4，总计 22 次新模型调用。最终 Windows 919 passed、2 skipped，详见 docs/repair-public-feedback-v1.md。反馈保留为独立可选实验，不替换默认服务。下一步聚焦 none-salt 的省略参数与显式 None 语义及调用链上下文，不直接增加重试。动态规划、通用反思、PostgreSQL/Redis 和每任务沙箱仍未实现。**

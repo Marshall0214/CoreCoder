@@ -1,0 +1,1284 @@
+{
+  "date": "2026-10-07",
+  "decision": "keep task-specific public feedback optional; one known defect repaired, one unresolved",
+  "raw_experiment": ".tmp/real-defects/repair-public-feedback-v1/experiment.json",
+  "raw_experiment_sha256": "db3b115cbc0560b1b1891a6e9c2ffe39ae87a4f640f5ccabebe22a45a3df29b1",
+  "protocol": {
+    "protocol": "repair-public-feedback-v1",
+    "unique_tasks": 2,
+    "repeats": 3,
+    "expected_runs": 12,
+    "previously_inspected_tasks": true,
+    "benchmark_eligible": false,
+    "prior_runs_included": false,
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+    "repair_model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "max_llm_calls": {
+      "single": 1,
+      "public-feedback": 2
+    },
+    "shared_total_token_budget": 15000,
+    "tools": [],
+    "evidence_policy": "same AST function corpus and complete-function packing; 6000 chars, five seeds, depth zero",
+    "intervention": "frozen public checks and at most one extra feedback repair; same initial prompt and source seeds",
+    "observations_sha256": "b4e18b46a66f99769a8175b8e75a4a1b1a4a52aec68d6e9e51dc1e84f4b0cd3a",
+    "adapter_hashes": {
+      "docs/experiments/repair_public_feedback_v1.py": "5dbe3077b8b34e0ddd44b5fed7846dab5dc6763604b110faf18fb5153b544b06",
+      "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+      "docs/experiments/repair_public_feedback_worker_v1.py": "ed1c4509ba4fa9f8ac296d17a6a1b5fab2f20062071cfd8b97b3f4f2ba7bdf88",
+      ".tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+      "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+      "docs/experiments/public_checks_v1/none_salt.py": "3ac7745e6b4f8f05d8573f7098ab83edf8c4ce0ced5110ca83ec42183f57d290",
+      "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+      "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+      "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+      "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+      "corecoder/retrieval/keyword.py": "af7166465a62260ff2c1b0409d08990867c69c6d3b23fe76bd157cd074f988cb",
+      "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+      "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+      "docs/experiments/validation_repeat_v2.py": "e7e27c416710567047cc0469b4da4a7f1be84692111cd5cfef18f1cb7969d454",
+      "docs/experiments/validation_repair_v1.py": "2fa46a0be8947c35d66e714d4cb6af342ef01c1595fc7dcebc02096e7aeac3c4",
+      "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+      "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+      "docs/experiments/second_repo_admission_v1.py": "87a17a95c77243e4aa4a9a5b7a2a1c1b6421830b788522a107502ef8f8161a46",
+      "docs/experiments/validation-prospective-v2.json": "6fffda44dac19694af1776a2a82f48330aebcc609122fff84d86ea18f7105b92",
+      "docs/experiments/validation-suite-v1.json": "3dbed44448ed8af27f27f1a8f9569efba1af0343c2b237d3d7901cfadbf0dc8a",
+      "docs/experiments/second-repo-suite-v1.json": "190edb5b580b12380041c2e2916aef5b0ed198fbe80d9341ebda5b011da89ce4"
+    },
+    "public_audit_sha256": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+    "public_registry": {
+      "click-usage-empty": {
+        "code_path": "docs/experiments/public_checks_v1/usage_empty.py",
+        "code_sha256": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+        "description_sha256": "6ddd1b01bda74384b5369b28ae456b8c42d71a6657ffb68f9012966fad3798c3",
+        "clauses": [
+          {
+            "test": "test_empty_usage_wide",
+            "text": "when args is empty, without a trailing separator space or extra blank line",
+            "span": [
+              70,
+              144
+            ]
+          },
+          {
+            "test": "test_empty_usage_narrow_custom_prefix",
+            "text": "Preserve custom prefixes",
+            "span": [
+              146,
+              170
+            ]
+          },
+          {
+            "test": "test_nonempty_arguments_and_custom_prefix",
+            "text": "normal nonempty argument rendering",
+            "span": [
+              175,
+              209
+            ]
+          },
+          {
+            "test": "test_command_empty_and_none_metavar",
+            "text": "Commands with no parameters and empty or None options_metavar",
+            "span": [
+              211,
+              272
+            ]
+          }
+        ],
+        "provenance": "hand-authored public development checks; not hidden scoring or general test generation",
+        "developer_choices": "demo program/prefix/widths, payload/key/salts; Usage and omitted salt defaults from original API"
+      },
+      "itsdangerous-none-salt": {
+        "code_path": "docs/experiments/public_checks_v1/none_salt.py",
+        "code_sha256": "3ac7745e6b4f8f05d8573f7098ab83edf8c4ce0ced5110ca83ec42183f57d290",
+        "description_sha256": "6ab9a5c1ebce76d93f561290d7bf18bb24b7144d6e89f88c92a018607bdfd83e",
+        "clauses": [
+          {
+            "test": "test_signer_none_uses_signer_default",
+            "text": "Signer salt=None must match its default",
+            "span": [
+              224,
+              263
+            ]
+          },
+          {
+            "test": "test_serializer_none_matches_explicit_signer",
+            "text": "Serializer salt=None signatures must match explicit itsdangerous.Signer salt",
+            "span": [
+              142,
+              218
+            ]
+          },
+          {
+            "test": "test_serializer_none_round_trip",
+            "text": "Signed values must round-trip",
+            "span": [
+              111,
+              140
+            ]
+          },
+          {
+            "test": "test_explicit_string_and_bytes_salts",
+            "text": "Preserve explicit string and bytes salts",
+            "span": [
+              265,
+              305
+            ]
+          },
+          {
+            "test": "test_omitted_serializer_salt_preserved",
+            "text": "the Serializer default salt",
+            "span": [
+              307,
+              334
+            ]
+          },
+          {
+            "test": "test_wrong_salt_rejected",
+            "text": "wrong-salt rejection",
+            "span": [
+              336,
+              356
+            ]
+          },
+          {
+            "test": "test_tampered_value_rejected",
+            "text": "tamper detection",
+            "span": [
+              361,
+              377
+            ]
+          }
+        ],
+        "provenance": "hand-authored public development checks; not hidden scoring or general test generation",
+        "developer_choices": "demo program/prefix/widths, payload/key/salts; Usage and omitted salt defaults from original API"
+      }
+    },
+    "scoring": {
+      "click-usage-empty": "5fc2c1424c4cc61237139e692941f21ad59eab8dc8f0a6ca56bd68e948311b2f",
+      "itsdangerous-none-salt": "a59f229cdd5d2ff20f4bd12f3252154d1235475051e5a264a6200422e5c8c08d"
+    },
+    "source_hashes": {
+      "click-usage-empty": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+      "itsdangerous-none-salt": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4"
+    }
+  },
+  "summary": {
+    "single": {
+      "runs": 6,
+      "passed": 0,
+      "statuses": {
+        "failed_verification": 6
+      },
+      "budget_accounted_tokens": 16056,
+      "known_budget_accounted_tokens": 16056,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 12936,
+      "completion_tokens": 3120,
+      "worker_seconds": 90.302
+    },
+    "public-feedback": {
+      "runs": 6,
+      "passed": 3,
+      "statuses": {
+        "passed": 3,
+        "failed_verification": 3
+      },
+      "budget_accounted_tokens": 41316,
+      "known_budget_accounted_tokens": 41316,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 35289,
+      "completion_tokens": 6027,
+      "worker_seconds": 158.681
+    },
+    "pairs": {
+      "both_passed": 0,
+      "baseline_only": 0,
+      "feedback_only": 3,
+      "both_failed": 3,
+      "incomplete": 0
+    }
+  },
+  "runs": [
+    {
+      "repeat": 1,
+      "task_id": "click-usage-empty",
+      "policy": "single",
+      "accepted": false,
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "llm_calls": 1,
+      "feedback_attempts": 0,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "initial_response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+      "feedback_response_sha256": null,
+      "patch_sha256": "f48128db88f9dcdd621645b21093fbdb5343b327af338cdd22bc6c2af6646ebb",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1334,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.124,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        }
+      },
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "click-usage-empty",
+      "policy": "public-feedback",
+      "accepted": true,
+      "status": "passed",
+      "worker_status": "completed",
+      "llm_calls": 2,
+      "feedback_attempts": 1,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "initial_response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+      "feedback_response_sha256": "944558684467e24159a696598d15c6978dd16ee8a253aa8ff3e3e6ce9ec15291",
+      "patch_sha256": "71c08edb4cd2b913b522245d27b01d8bb6c8e3950fcffdff5381fb086f286fed",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1247,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1219,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        },
+        "final": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1337,
+          "tests_run": 4,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": true
+        }
+      },
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "public-feedback",
+      "accepted": false,
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "llm_calls": 2,
+      "feedback_attempts": 1,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_response_sha256": "03babec2111e42371bad1b4a694050a4dfa3a0e65f0ba833d20ae2ae8adbd056",
+      "patch_sha256": "354120b2bec8d544eee25c5f7bbc6a0bae5b80b240a6b8099de7cc407fec7bf3",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1055,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.094,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        },
+        "final": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1043,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        }
+      },
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "single",
+      "accepted": false,
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "llm_calls": 1,
+      "feedback_attempts": 0,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_response_sha256": null,
+      "patch_sha256": "7877fb2a87aee0a2049f0b9434bf59fbfb974f960cff17823f74c7e664c0e379",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1084,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1059,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        }
+      },
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-usage-empty",
+      "policy": "public-feedback",
+      "accepted": true,
+      "status": "passed",
+      "worker_status": "completed",
+      "llm_calls": 2,
+      "feedback_attempts": 1,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "initial_response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+      "feedback_response_sha256": "944558684467e24159a696598d15c6978dd16ee8a253aa8ff3e3e6ce9ec15291",
+      "patch_sha256": "71c08edb4cd2b913b522245d27b01d8bb6c8e3950fcffdff5381fb086f286fed",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1293,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1306,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        },
+        "final": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.129,
+          "tests_run": 4,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": true
+        }
+      },
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-usage-empty",
+      "policy": "single",
+      "accepted": false,
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "llm_calls": 1,
+      "feedback_attempts": 0,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "initial_response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+      "feedback_response_sha256": null,
+      "patch_sha256": "f48128db88f9dcdd621645b21093fbdb5343b327af338cdd22bc6c2af6646ebb",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1341,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1356,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        }
+      },
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "single",
+      "accepted": false,
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "llm_calls": 1,
+      "feedback_attempts": 0,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_response_sha256": null,
+      "patch_sha256": "7877fb2a87aee0a2049f0b9434bf59fbfb974f960cff17823f74c7e664c0e379",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0983,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.098,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        }
+      },
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "public-feedback",
+      "accepted": false,
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "llm_calls": 2,
+      "feedback_attempts": 1,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_response_sha256": "03babec2111e42371bad1b4a694050a4dfa3a0e65f0ba833d20ae2ae8adbd056",
+      "patch_sha256": "354120b2bec8d544eee25c5f7bbc6a0bae5b80b240a6b8099de7cc407fec7bf3",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1007,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1023,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        },
+        "final": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.11,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        }
+      },
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-usage-empty",
+      "policy": "single",
+      "accepted": false,
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "llm_calls": 1,
+      "feedback_attempts": 0,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "initial_response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+      "feedback_response_sha256": null,
+      "patch_sha256": "f48128db88f9dcdd621645b21093fbdb5343b327af338cdd22bc6c2af6646ebb",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1407,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1278,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        }
+      },
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-usage-empty",
+      "policy": "public-feedback",
+      "accepted": true,
+      "status": "passed",
+      "worker_status": "completed",
+      "llm_calls": 2,
+      "feedback_attempts": 1,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "initial_response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+      "feedback_response_sha256": "944558684467e24159a696598d15c6978dd16ee8a253aa8ff3e3e6ce9ec15291",
+      "patch_sha256": "71c08edb4cd2b913b522245d27b01d8bb6c8e3950fcffdff5381fb086f286fed",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1317,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1326,
+          "tests_run": 4,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": false
+        },
+        "final": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1209,
+          "tests_run": 4,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "PublicContract.stdout.txt",
+          "stderr": "PublicContract.stderr.txt",
+          "passed": true
+        }
+      },
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "public-feedback",
+      "accepted": false,
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "llm_calls": 2,
+      "feedback_attempts": 1,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_response_sha256": "03babec2111e42371bad1b4a694050a4dfa3a0e65f0ba833d20ae2ae8adbd056",
+      "patch_sha256": "354120b2bec8d544eee25c5f7bbc6a0bae5b80b240a6b8099de7cc407fec7bf3",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0972,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0939,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        },
+        "final": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0937,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        }
+      },
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "single",
+      "accepted": false,
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "llm_calls": 1,
+      "feedback_attempts": 0,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "feedback_response_sha256": null,
+      "patch_sha256": "7877fb2a87aee0a2049f0b9434bf59fbfb974f960cff17823f74c7e664c0e379",
+      "public_checks": {
+        "original": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0973,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        },
+        "candidate": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0952,
+          "tests_run": 7,
+          "assertion_failure": true,
+          "execution_error": false,
+          "stderr": "PublicContract.stderr.txt",
+          "stdout": "PublicContract.stdout.txt",
+          "passed": false
+        }
+      },
+      "target_passed": false,
+      "controls_passed": true
+    }
+  ],
+  "offline_audit": {
+    "path": ".tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json",
+    "sha256": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+    "record": {
+      "protocol": "repair-public-checks-audit-v1",
+      "complete": true,
+      "model_calls": 0,
+      "implementation_sha256": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+      "prior_experiment_sha256": "d4710a63cf8d4629e9e6e7b9778dbb20c89eb1b4daf031e38e60b7208b0689e9",
+      "registry": {
+        "click-usage-empty": {
+          "code_path": "docs/experiments/public_checks_v1/usage_empty.py",
+          "code_sha256": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+          "description_sha256": "6ddd1b01bda74384b5369b28ae456b8c42d71a6657ffb68f9012966fad3798c3",
+          "clauses": [
+            {
+              "test": "test_empty_usage_wide",
+              "text": "when args is empty, without a trailing separator space or extra blank line",
+              "span": [
+                70,
+                144
+              ]
+            },
+            {
+              "test": "test_empty_usage_narrow_custom_prefix",
+              "text": "Preserve custom prefixes",
+              "span": [
+                146,
+                170
+              ]
+            },
+            {
+              "test": "test_nonempty_arguments_and_custom_prefix",
+              "text": "normal nonempty argument rendering",
+              "span": [
+                175,
+                209
+              ]
+            },
+            {
+              "test": "test_command_empty_and_none_metavar",
+              "text": "Commands with no parameters and empty or None options_metavar",
+              "span": [
+                211,
+                272
+              ]
+            }
+          ],
+          "provenance": "hand-authored public development checks; not hidden scoring or general test generation",
+          "developer_choices": "demo program/prefix/widths, payload/key/salts; Usage and omitted salt defaults from original API"
+        },
+        "itsdangerous-none-salt": {
+          "code_path": "docs/experiments/public_checks_v1/none_salt.py",
+          "code_sha256": "3ac7745e6b4f8f05d8573f7098ab83edf8c4ce0ced5110ca83ec42183f57d290",
+          "description_sha256": "6ab9a5c1ebce76d93f561290d7bf18bb24b7144d6e89f88c92a018607bdfd83e",
+          "clauses": [
+            {
+              "test": "test_signer_none_uses_signer_default",
+              "text": "Signer salt=None must match its default",
+              "span": [
+                224,
+                263
+              ]
+            },
+            {
+              "test": "test_serializer_none_matches_explicit_signer",
+              "text": "Serializer salt=None signatures must match explicit itsdangerous.Signer salt",
+              "span": [
+                142,
+                218
+              ]
+            },
+            {
+              "test": "test_serializer_none_round_trip",
+              "text": "Signed values must round-trip",
+              "span": [
+                111,
+                140
+              ]
+            },
+            {
+              "test": "test_explicit_string_and_bytes_salts",
+              "text": "Preserve explicit string and bytes salts",
+              "span": [
+                265,
+                305
+              ]
+            },
+            {
+              "test": "test_omitted_serializer_salt_preserved",
+              "text": "the Serializer default salt",
+              "span": [
+                307,
+                334
+              ]
+            },
+            {
+              "test": "test_wrong_salt_rejected",
+              "text": "wrong-salt rejection",
+              "span": [
+                336,
+                356
+              ]
+            },
+            {
+              "test": "test_tampered_value_rejected",
+              "text": "tamper detection",
+              "span": [
+                361,
+                377
+              ]
+            }
+          ],
+          "provenance": "hand-authored public development checks; not hidden scoring or general test generation",
+          "developer_choices": "demo program/prefix/widths, payload/key/salts; Usage and omitted salt defaults from original API"
+        }
+      },
+      "tasks": [
+        {
+          "task_id": "click-usage-empty",
+          "original": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1198,
+            "tests_run": 4,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stdout": "PublicContract.stdout.txt",
+            "stderr": "PublicContract.stderr.txt",
+            "passed": false
+          },
+          "positive": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1307,
+            "tests_run": 4,
+            "assertion_failure": false,
+            "execution_error": false,
+            "stdout": "PublicContract.stdout.txt",
+            "stderr": "PublicContract.stderr.txt",
+            "passed": true
+          },
+          "failed_candidates": [
+            {
+              "repeat": 1,
+              "policy": "direct-functions",
+              "response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.1283,
+                "tests_run": 4,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stdout": "PublicContract.stdout.txt",
+                "stderr": "PublicContract.stderr.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 1,
+              "policy": "symbol-directed-functions",
+              "response_sha256": "6ac0b52edd155bcfed5a10652196e8862ad18c9a637e951a1b851b251552f725",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.1226,
+                "tests_run": 4,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stdout": "PublicContract.stdout.txt",
+                "stderr": "PublicContract.stderr.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 2,
+              "policy": "symbol-directed-functions",
+              "response_sha256": "6ac0b52edd155bcfed5a10652196e8862ad18c9a637e951a1b851b251552f725",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.122,
+                "tests_run": 4,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stdout": "PublicContract.stdout.txt",
+                "stderr": "PublicContract.stderr.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 2,
+              "policy": "direct-functions",
+              "response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.1234,
+                "tests_run": 4,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stdout": "PublicContract.stdout.txt",
+                "stderr": "PublicContract.stderr.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 3,
+              "policy": "direct-functions",
+              "response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.125,
+                "tests_run": 4,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stdout": "PublicContract.stdout.txt",
+                "stderr": "PublicContract.stderr.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 3,
+              "policy": "symbol-directed-functions",
+              "response_sha256": "6ac0b52edd155bcfed5a10652196e8862ad18c9a637e951a1b851b251552f725",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.1217,
+                "tests_run": 4,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stdout": "PublicContract.stdout.txt",
+                "stderr": "PublicContract.stderr.txt",
+                "passed": false
+              }
+            }
+          ],
+          "source_hash": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+          "harness_hash": "b4245a6b73231a11628ab9857f42ec625124536aad82b2fb5e8cfeac642fae93",
+          "ready": true
+        },
+        {
+          "task_id": "itsdangerous-none-salt",
+          "original": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.093,
+            "tests_run": 7,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stderr": "PublicContract.stderr.txt",
+            "stdout": "PublicContract.stdout.txt",
+            "passed": false
+          },
+          "positive": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0932,
+            "tests_run": 7,
+            "assertion_failure": false,
+            "execution_error": false,
+            "stderr": "PublicContract.stderr.txt",
+            "stdout": "PublicContract.stdout.txt",
+            "passed": true
+          },
+          "failed_candidates": [
+            {
+              "repeat": 1,
+              "policy": "symbol-directed-functions",
+              "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.1005,
+                "tests_run": 7,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stderr": "PublicContract.stderr.txt",
+                "stdout": "PublicContract.stdout.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 1,
+              "policy": "direct-functions",
+              "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.0975,
+                "tests_run": 7,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stderr": "PublicContract.stderr.txt",
+                "stdout": "PublicContract.stdout.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 2,
+              "policy": "direct-functions",
+              "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.1066,
+                "tests_run": 7,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stderr": "PublicContract.stderr.txt",
+                "stdout": "PublicContract.stdout.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 2,
+              "policy": "symbol-directed-functions",
+              "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.1003,
+                "tests_run": 7,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stderr": "PublicContract.stderr.txt",
+                "stdout": "PublicContract.stdout.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 3,
+              "policy": "symbol-directed-functions",
+              "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.1001,
+                "tests_run": 7,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stderr": "PublicContract.stderr.txt",
+                "stdout": "PublicContract.stdout.txt",
+                "passed": false
+              }
+            },
+            {
+              "repeat": 3,
+              "policy": "direct-functions",
+              "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+              "outcome": {
+                "returncode": 1,
+                "timed_out": false,
+                "seconds": 0.1034,
+                "tests_run": 7,
+                "assertion_failure": true,
+                "execution_error": false,
+                "stderr": "PublicContract.stderr.txt",
+                "stdout": "PublicContract.stdout.txt",
+                "passed": false
+              }
+            }
+          ],
+          "source_hash": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+          "harness_hash": "94891e71725e893672b8d54bcd6df527e9ffcd3f57d49f4689c4d3aeec5d7d79",
+          "ready": true
+        }
+      ]
+    }
+  },
+  "passthrough_regression": {
+    "path": ".tmp/real-defects/repair-public-regression-v1/experiment.json",
+    "sha256": "2053292ac88d975cb0005225de92be5101818cb716b40af22eb13bec980bc53f",
+    "protocol": {
+      "protocol": "repair-public-regression-v1",
+      "unique_tasks": 4,
+      "repeats": 1,
+      "expected_runs": 4,
+      "previously_inspected_tasks": true,
+      "benchmark_eligible": false,
+      "prior_runs_included": false,
+      "config": {
+        "mode": "pipeline",
+        "model": "qwen3.5:27b",
+        "base_url": "http://localhost:11434/v1",
+        "max_rounds": 12,
+        "token_budget": 15000,
+        "max_output_tokens": 2048,
+        "context_tokens": 16000,
+        "wall_timeout": 600,
+        "test_timeout": 15,
+        "temperature": 0.0,
+        "reasoning_effort": "none",
+        "search_backend": "keyword",
+        "search_max_chars": 6000,
+        "search_history": "full",
+        "context_policy": "none",
+        "prompt_policy": "baseline",
+        "evidence_top_k": 5,
+        "evidence_dependency_depth": 0,
+        "evidence_order": "selection",
+        "patch_policy": "baseline",
+        "public_check_policy": "generated",
+        "output_policy": "fixed",
+        "read_policy": "full"
+      },
+      "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+      "repair_model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+      "llm_calls_per_branch": 1,
+      "tools": [],
+      "evidence_policy": "same AST function corpus and complete-function packing; 6000 chars, five seeds, depth zero",
+      "intervention": "no intervention: tasks without public-feedback harness retain original single-call worker",
+      "observations_sha256": "a7c4c90fac5a90702137744c47bcc5936aa22075f722f7b4286a6cef355520a6",
+      "adapter_hashes": {
+        "docs/experiments/repair_public_regression_v1.py": "504ed8d2e4a6e772e2497fbe4c797f3fe61497ba1e15c61f2f1aca2311ecf6e1",
+        "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+        "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+        "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+        "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+        "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+        "corecoder/retrieval/keyword.py": "af7166465a62260ff2c1b0409d08990867c69c6d3b23fe76bd157cd074f988cb",
+        "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+        "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+        "docs/experiments/validation_repeat_v2.py": "e7e27c416710567047cc0469b4da4a7f1be84692111cd5cfef18f1cb7969d454",
+        "docs/experiments/validation_repair_v1.py": "2fa46a0be8947c35d66e714d4cb6af342ef01c1595fc7dcebc02096e7aeac3c4",
+        "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+        "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+        "docs/experiments/second_repo_admission_v1.py": "87a17a95c77243e4aa4a9a5b7a2a1c1b6421830b788522a107502ef8f8161a46",
+        "docs/experiments/validation-prospective-v2.json": "6fffda44dac19694af1776a2a82f48330aebcc609122fff84d86ea18f7105b92",
+        "docs/experiments/validation-suite-v1.json": "3dbed44448ed8af27f27f1a8f9569efba1af0343c2b237d3d7901cfadbf0dc8a",
+        "docs/experiments/second-repo-suite-v1.json": "190edb5b580b12380041c2e2916aef5b0ed198fbe80d9341ebda5b011da89ce4"
+      },
+      "scoring": {
+        "click-echo-empty-bytes": "d31601e2902db4d5b1b4c77912e26986aae42c169e6f8642dc61f8614232739b",
+        "click-style-color-validation": "a3d5d8b86f1b704ad2e8ac0a6c24641b0a3a19c7995e6d07f005c67db4096444",
+        "itsdangerous-future-age": "eabc861330a3338fcdaccd17a5cd8bcdd5462581b316ed8bce4fc52bce3af253",
+        "itsdangerous-malformed-time": "c51a33dce0476e0d46d6bbb780e44b41e8924fbd22b73ccde3410d0e2cf3485d"
+      },
+      "source_hashes": {
+        "click-echo-empty-bytes": "1deab48d56e54d5bf49d922899b4a988d4dd53a288257abdafce37a97012d55b",
+        "click-style-color-validation": "afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+        "itsdangerous-future-age": "2f608833f29fa4b68d77a3667c4095b7efbae16cf583ffc1782e37356a03f204",
+        "itsdangerous-malformed-time": "afa63ea45c30fcb0cf92159676b04d9253cdd6ed73cc1b91db5dd2ca9c277967"
+      }
+    },
+    "summary": {
+      "single": {
+        "runs": 4,
+        "passed": 4,
+        "statuses": {
+          "passed": 4
+        },
+        "budget_accounted_tokens": 10610,
+        "known_budget_accounted_tokens": 10610,
+        "missing_metrics_runs": 0,
+        "missing_usage_calls": 0,
+        "prompt_tokens": 9269,
+        "completion_tokens": 1341,
+        "worker_seconds": 40.3197
+      }
+    },
+    "runs": [
+      {
+        "task_id": "click-echo-empty-bytes",
+        "accepted": true,
+        "status": "passed",
+        "llm_calls": 1
+      },
+      {
+        "task_id": "click-style-color-validation",
+        "accepted": true,
+        "status": "passed",
+        "llm_calls": 1
+      },
+      {
+        "task_id": "itsdangerous-future-age",
+        "accepted": true,
+        "status": "passed",
+        "llm_calls": 1
+      },
+      {
+        "task_id": "itsdangerous-malformed-time",
+        "accepted": true,
+        "status": "passed",
+        "llm_calls": 1
+      }
+    ]
+  },
+  "validation": {
+    "targeted_passed": 42,
+    "ruff": "passed",
+    "full_passed": 919,
+    "full_skipped": 2,
+    "full_seconds": 150.14,
+    "linux_container_http_rerun": false
+  },
+  "limitations": [
+    "two previously inspected failure-selected tasks; repetitions do not add unique defects",
+    "hand-authored task-specific examples; positive witnesses do not prove complete contract correctness",
+    "same total token allowance, different number of calls and additional public test information",
+    "four passthrough regressions use original single-call worker; not general feedback validation",
+    "Target/Controls only; not full upstream tests or an OS sandbox",
+    "raw reports, logs, source snapshots and positive diffs remain in ignored .tmp"
+  ]
+}
