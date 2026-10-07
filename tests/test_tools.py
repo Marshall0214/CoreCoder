@@ -319,9 +319,10 @@ def test_edit_file_rejects_non_utf8(tmp_path):
 
 # --- glob ---
 
-def test_glob_finds_files():
+def test_glob_finds_files(tmp_path):
     glob_t = get_tool("glob")
-    r = glob_t.execute(pattern="*.py", path=os.path.dirname(__file__))
+    (tmp_path / "test_tools.py").write_text("# fixture", encoding="utf-8")
+    r = glob_t.execute(pattern="*.py", path=str(tmp_path))
     assert "test_tools.py" in r
 
 
