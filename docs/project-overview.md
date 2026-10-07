@@ -18,6 +18,7 @@
 | --- | --- |
 | 5 分钟离线工程演示 | [demo-guide.md](demo-guide.md) |
 | 简历与面试说明 | [resume-and-interview.md](resume-and-interview.md) |
+| 求职贡献、代码与验收的对应证据 | [portfolio-evidence.md](portfolio-evidence.md) |
 | 实现/证据/未完成清单 | [delivery-checklist.md](delivery-checklist.md) |
 | 最新工程验收摘要 | [workflow-approval-acceptance-v1.json](workflow-approval-acceptance-v1.json) |
 | 真实仓库实验阶段结论 | [second-repo-repair-v1.md](second-repo-repair-v1.md) |
@@ -61,7 +62,7 @@ MCP 是独立工具接入与互操作成果，没有自动替换服务默认检�
 
 ## 实验结果：收益与失败都保留
 
-下表来自独立报告，不相加形成统一成功率；重复次数不增加不同缺陷数。模型使用本地 Ollama qwen3.5:27b，具体模式、预算和评分以各报告为准。
+下表来自独立报告，不相加形成统一成功率；重复次数不增加不同缺陷数。除明确标出的 DeepSeek 对照，模型使用本地 Ollama qwen3.5:27b，具体模式、预算和评分以各报告为准。
 
 | 任务池 / 对照 | 实测 | 能说明什么 |
 | --- | --- | --- |
@@ -72,12 +73,12 @@ MCP 是独立工具接入与互操作成果，没有自动替换服务默认检�
 | ItsDangerous 3 项、各一次 | 两策略均 2/3 | 第二仓库未复现成功率优势，见 [第二仓库对照](second-repo-repair-v1.md) |
 | 同一批 Click/ItsDangerous 6 项，补丁定位新对照 | 边界修正后原文匹配 3/6；行号定位 3/6 | 无效补丁减少，Token 增加，未替换默认；见 [补丁定位](anchored-patch-v1.md) |
 | 同一批 6 项，完整函数 BM25 / 符号优先，各三次新调用 | 点名函数覆盖 5/7 / 7/7；修复均 12/18 | 覆盖改善未转化为修复收益，保留默认；见 [符号检索](symbol-directed-retrieval-v1.md) |
-
 | 已知失败两项，各三次；单次 / 一次公开反馈 | 0/6 / 3/6；Token 16,056 / 41,316 | usage-empty 恢复、none-salt 仍失败；另四项单次新回归 4/4，不混合成功率；见 [公开反馈](repair-public-feedback-v1.md) |
-
 | 同两项任务，各三次；原反馈 / 转发上下文反馈 | 两组均 3/6，none-salt 均 0/3 | 新策略发生盐值隔离回归，不替换默认；见 [转发上下文](repair-forwarding-feedback-v1.md) |
-
 | none-salt 一项，各三次；检查 v2 / 加关系矩阵 | 两组均 0/3 | 关系表达未带来修复收益，冻结实验；见 [矩阵反馈](salt-relations-feedback-v1.md) |
+| 六项，各一次；公开反馈 / 统一反馈 | 两组均 5/6 | 事务保护拒绝重复定义，语义失败未解决；见 [统一反馈](unified-feedback-v1.md) |
+| 六项，各一次；同流程 Qwen / DeepSeek | 两组均 5/6 | 换模型未解决 none-salt；见 [模型对照](provider-compare-v1.md) |
+| 六项，各一次；原 / 源码契约上下文 | 两组均 5/6 | 候选 Controls 回归；少一次调用不是提效；见 [契约上下文](source-contract-context-v1.md) |
 
 Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个不同任务，不代表 13 项都必须多文件修改。后续检索、补丁与公开反馈实验复用了其中六项，没有增加不同缺陷数。passed 是满足独立 Target/Controls 和修改约束，不代表完整上游测试或生产正确性。评分错误修正记录与新调用分开，不覆盖旧结果。
 

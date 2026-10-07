@@ -14,12 +14,16 @@
 | 实验原型 | 人工盐值关系矩阵、检查 v2 与离线变异验证 | [盐值关系](salt-relations-audit-v1.md)；正例 11/11、6 变异和 6 历史失败均拒绝，无模型调用 |
 | 实验原型 | 相同检查/上下文下的公开关系矩阵三轮反馈对照 | [矩阵反馈](salt-relations-feedback-v1.md)；两组均 0/3，冻结分支，未提升默认方案 |
 | 实验原型 | 人工小任务 thinking 开关校准与分阶段验证 | [校准](thinking-calibration-v1.md)；两组 4/4，on Token 2.54 倍，非真实仓库收益 |
+| 实验原型 | 唯一匹配编辑事务与最多一次统一失败反馈 | [事务保护](patch-transaction-v1.md)、[统一反馈](unified-feedback-v1.md)；结构校验不能替代语义验收 |
+| 实验原型 | Qwen / DeepSeek 同流程配对对照 | [模型对照](provider-compare-v1.md)；两组均 5/6，无成功率收益 |
+| 实验原型 | 带来源的源码契约事实及同预算上下文对照 | [契约上下文](source-contract-context-v1.md)；两组均 5/6，候选有 Controls 回归 |
 | 已完成 | FastAPI 提交/查询、SSE、幂等、取消、SQLite 持久化和进程清理 | [服务](service-mvp-v1.md)、[恢复](service-persistence-v2.md)、`service/` |
 | 已完成 | LangGraph 固定计划、一次执行与独立验证分支 | [有限工作流](langgraph-workflow-v1.md)、`workflows/repair.py` |
 | 已完成 | 人工审批、原生 SQLite 检查点、待审批恢复与防重放 | [审批](workflow-approval-v1.md)、`workflows/approval.py` |
 | 已完成 | 只读代码知识 MCP Server 与两种 Client 互操作 | [MCP](mcp-code-knowledge-v1.md)、`mcp_servers/` |
 | 已完成 | Docker/Linux 单服务部署、故障注入与清理 | [容器](container-deployment-v1.md)、[最新验收](workflow-approval-acceptance-v1.json) |
 | 已完成 | 总览、演示、简历与面试入口 | [总览](project-overview.md)、[演示](demo-guide.md)、[简历](resume-and-interview.md) |
+| 已完成 | 求职贡献与代码/结果逐项核对 | [证据索引](portfolio-evidence.md)、[当前交付核查](portfolio-delivery-v2.json)；不表示用户已录屏或发布 |
 
 ## JD 可以如何对应
 

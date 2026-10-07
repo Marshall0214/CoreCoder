@@ -1,0 +1,67 @@
+{
+  "protocol": "portfolio-delivery-v2",
+  "date": "2026-10-07",
+  "complete": true,
+  "real_model_calls": 0,
+  "runtime_changed": false,
+  "historical_evidence_hashes": {
+    "docs/workflow-approval-acceptance-v1.json": "08a1d04cd0b7a1ec1a318080b38acd7eaff9cbbaffaa469e9f3db299c11935bc",
+    "docs/source-contract-context-v1.json": "df4414ddd1cca874a0ce78ca6847ad41c445cde7cf97629f39fbeb54095060f2",
+    "docs/provider-compare-v1.json": "9cf756afdb441819569e8661f9afc3f7893d17832aa8261e5c342add9e31fb5c",
+    "docs/patch-transaction-v1.json": "9d9cd846741b74567a815d2b4121e6d5bdfd7c4d0a81d629b491eb431cefc04e"
+  },
+  "historical_acceptance": {
+    "latest_windows": {
+      "passed": 1023,
+      "skipped": 2,
+      "failed": 0,
+      "seconds": 174.23
+    },
+    "linux_passed": 71,
+    "container_checks_passed": 22,
+    "http_approval_checks_passed": 18,
+    "rerun_this_turn": false
+  },
+  "current_checks": {
+    "mcp_tools": [
+      "search_code",
+      "list_code_files",
+      "read_code"
+    ],
+    "mcp_search_and_hash_read": "passed",
+    "fixture_unchanged": true,
+    "mcp_output": ".tmp/portfolio-delivery-v2/mcp.stdout.json",
+    "local_document_links": {
+      "checked": 173,
+      "failed": 0,
+      "documents": [
+        "README.md",
+        "README_CN.md",
+        "docs/project-overview.md",
+        "docs/delivery-checklist.md",
+        "docs/resume-and-interview.md",
+        "docs/demo-guide.md",
+        "docs/portfolio-evidence.md"
+      ]
+    },
+    "powershell_syntax": {
+      "blocks": 9,
+      "errors": 0
+    },
+    "readme_constraint_test": {
+      "passed": 1,
+      "seconds": 0.03
+    },
+    "historical_reports_unchanged": true
+  },
+  "pending_user_actions": [
+    "Manual presentation or recording",
+    "Fill actual project dates and public repository link",
+    "Publish or submit resume"
+  ],
+  "limits": [
+    "Document checks and read-only MCP demo this turn; no new model or deployment run",
+    "Raw historical inputs are not included in Git",
+    "No product superiority or general repair-gain claim"
+  ]
+}

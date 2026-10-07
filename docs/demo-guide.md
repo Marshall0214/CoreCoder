@@ -127,8 +127,14 @@ python -B -m mcp_servers.demo --workspace evals/fixtures/timeout-units/workspace
 
 打开 [总览的结果表](project-overview.md)：Click 有局部差异，第二仓库没有复现；Dense 召回较高却没有稳定修复收益。说明控制变量、独立评分、失败保留和样本边界，再回答为何不直接宣传成功率提升。完整复跑需要冻结快照和本地模型，不属于这个离线 5 分钟演示。
 
-## 本轮交付检查
+再用 [求职证据索引](portfolio-evidence.md)选一个近期失败案例：Qwen / DeepSeek 六项均 5/6；加入源码契约证据仍均 5/6，并产生 Controls 回归。展示补丁能编译却不能正确签名的区别，以及更少 Token 为什么只是失败提前停止。该段使用冻结报告，不启动真实模型或读取 API Key。
+
+## 历史交付检查
 
 2026-10-07：README 行数约束测试 1 passed；54 个本地文档链接有效；本文 9 段 PowerShell 示例通过语法解析。使用既有 `deploy.approval_acceptance` 复跑真实 HTTP 审批链路，18 项检查全部通过，自建服务及跟踪 Worker 已清理，记录 `.tmp/delivery-demo-acceptance-v1/acceptance.json`。
 
 MCP 演示成功发现三个工具并完成搜索与哈希读取，输出 `.tmp/delivery-mcp-demo.json`。本轮仅整理文档，不重新运行全量回归、容器构建或真实模型实验；864/71 等工程数字引用上一轮版本化验收。以上自动验收与语法检查不等于已经完成用户的手动讲解或录屏。
+
+## 求职交付核查 v2
+
+更新简历、证据索引和近期失败说明后，重新检查当前文档链接、PowerShell 示例、README 约束，并执行只读 MCP 演示；结果见 [交付摘要](portfolio-delivery-v2.json)。最新全量 1,023 passed、2 skipped 引用已有契约对照验收，本轮不重跑模型、全量测试、服务或容器。用户手动演讲、录屏与公开提交仍待完成。

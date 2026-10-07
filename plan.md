@@ -240,3 +240,5 @@ docs/                    # 架构决策、复现说明、个人贡献
 **模型对照完成：相同初始证据、统一反馈和预算下，Qwen / DeepSeek 六项各一次均 5/6，共 16 次请求；Token 25,413 / 23,981，none-salt 仍失败。全量 1,013 passed、2 skipped。冻结本轮，不切换默认；后续先离线审查默认值、成员定义与参数转发的契约证据，再考虑单变量组织策略对照，见 docs/provider-compare-v1.md。**
 
 **源码契约上下文对照已完成：固定 Qwen，离线审查默认值、类相关赋值与参数传递；六项两组均 5/6，候选 none-salt 出现 Controls 回归。15 次本地请求、0 次 DeepSeek 请求；较少 Token 因公开执行错误停止反馈，不算优化收益。全量 1,023 passed、2 skipped。冻结原型、不替换默认，转向项目交付和简历证据整理，见 docs/source-contract-context-v1.md。**
+
+**求职交付 v2 完成：更新四条简历贡献、近期失败问答、代码/验收证据索引与 README 演示入口；核对已有 1,023 passed、2 skipped 及历史部署验收，未新增模型或部署运行。只读 MCP 演示、README 约束、文档链接和演示命令语法通过。下一步由本人完成讲解录屏与实际简历提交，暂不继续围绕 none-salt 调参，见 docs/portfolio-evidence.md 与 docs/portfolio-delivery-v2.json。**
