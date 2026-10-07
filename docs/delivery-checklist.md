@@ -73,3 +73,7 @@ Memory、Reflection、Multi-Agent 等名称不能只因上游存在工具就算�
 事务反馈闭环验收完成：正常模式两调用上限和共享预算有回归验证；6 次真实模型调用验证三个合成故障恢复，两种反馈均 3/3，详细诊断成本增加约 39.1%。最终 Windows **983 passed、2 skipped**，见 [反馈摘要](transaction-feedback-v1.json)。不计真实缺陷成功率，默认服务不变。
 
 真实任务统一失败反馈验收完成：六项任务两组均 5/6，各 25,837 Token；16 次全新调用，无额外成功数。none-salt 第二轮重复定义被拦截，第一轮候选保持不变。最终 Windows **999 passed、2 skipped**，见 [统一反馈摘要](unified-feedback-v1.json)。默认服务不变，未触发的真实第一轮事务反馈不宣称获得模型收益。
+
+Qwen / DeepSeek 固定统一反馈流程对照已完成：六项已查看缺陷各一次，两组均 5/6、各 8 次请求；Token 25,413 / 23,981。none-salt 仍分别存在签名兼容错误和不存在成员引用，未因更换模型解决。最终 Windows 1,013 passed、2 skipped；冻结结果、不替换默认服务，见 [模型对照报告](provider-compare-v1.md)。
+
+源码契约上下文对照完成：零调用审查后，只用 Qwen 对六项已查看任务各比较一次；原上下文与候选均 5/6。候选 none-salt 删除盐值回退，Target/Controls 都失败；公开检查混合执行错误导致停止反馈，因此 Token 减少不是效率收益。共 15 次本地调用、0 次 DeepSeek 调用，全量 1,023 passed、2 skipped。冻结原型，建议收敛交付，见 [契约上下文报告](source-contract-context-v1.md)。

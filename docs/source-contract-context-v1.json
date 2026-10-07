@@ -1,0 +1,1987 @@
+{
+  "protocol": "source-contract-context-summary-v1",
+  "complete": true,
+  "unique_tasks": 6,
+  "repeats": 1,
+  "previously_inspected_tasks": true,
+  "benchmark_eligible": false,
+  "deepseek_calls": 0,
+  "model_calls": 15,
+  "summary": {
+    "baseline": {
+      "runs": 6,
+      "passed": 5,
+      "statuses": {
+        "passed": 5,
+        "failed_verification": 1
+      },
+      "budget_accounted_tokens": 25413,
+      "known_budget_accounted_tokens": 25413,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 21579,
+      "completion_tokens": 3834,
+      "worker_seconds": 114.1677,
+      "model_calls": 8,
+      "transaction_rejections": 0
+    },
+    "source-contract": {
+      "runs": 6,
+      "passed": 5,
+      "statuses": {
+        "passed": 5,
+        "failed_verification": 1
+      },
+      "budget_accounted_tokens": 20393,
+      "known_budget_accounted_tokens": 20393,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 17068,
+      "completion_tokens": 3325,
+      "worker_seconds": 104.8072,
+      "model_calls": 7,
+      "transaction_rejections": 0
+    }
+  },
+  "runs": [
+    {
+      "task_id": "click-usage-empty",
+      "policy": "source-contract",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "status": "completed",
+            "evidence_chars": 5578,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/click/formatting.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.1983
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/click/formatting.py"
+            ]
+          },
+          {
+            "stage": "feedback",
+            "prompt_hash": "c041146736cbf1de823a9f8bd9d066d867f40633f667ef31b4c72759dd0695ab",
+            "status": "completed",
+            "evidence_chars": 5676,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/click/formatting.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.1874
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/click/formatting.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 1,
+        "feedback_kind": "public",
+        "public_checks": {
+          "original": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1342,
+            "tests_run": 4,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stdout": "PublicContract.stdout.txt",
+            "stderr": "PublicContract.stderr.txt",
+            "passed": false
+          },
+          "candidate": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1392,
+            "tests_run": 4,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stdout": "PublicContract.stdout.txt",
+            "stderr": "PublicContract.stderr.txt",
+            "passed": false
+          },
+          "final": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1339,
+            "tests_run": 4,
+            "assertion_failure": false,
+            "execution_error": false,
+            "stdout": "PublicContract.stdout.txt",
+            "stderr": "PublicContract.stderr.txt",
+            "passed": true
+          }
+        },
+        "feedback_evidence_metadata": {
+          "evidence_chars": 5676,
+          "max_chars": 6000,
+          "seed_count": 5,
+          "max_seeds": 5,
+          "dependency_depth": 0,
+          "discarded": [],
+          "oversized_fallback": "none"
+        },
+        "edited_files": [
+          "src/click/formatting.py"
+        ],
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 5412,
+          "completion_tokens": 1550,
+          "known_prompt_tokens": 5412,
+          "known_completion_tokens": 1550,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 6962,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "a854331e01dbe5d45d4a9075d088eec14fa1fb3a02c25885c48b312397b69def",
+            "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "response_received": true,
+            "seconds": 22.2479,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2273,
+            "completion_tokens": 745,
+            "total_tokens": 3018,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          },
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "c4c078cec8723e9fe0225a520973980cead875c00b037af898b00ebfa61840d6",
+            "prompt_hash": "c041146736cbf1de823a9f8bd9d066d867f40633f667ef31b4c72759dd0695ab",
+            "response_received": true,
+            "seconds": 19.7195,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 3139,
+            "completion_tokens": 805,
+            "total_tokens": 3944,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/click/formatting.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1547,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Target.stdout.txt",
+          "stderr": "Target.stderr.txt",
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1639,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Controls.stdout.txt",
+          "stderr": "Controls.stderr.txt",
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not the full upstream suite"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 47.594
+      },
+      "status": "passed"
+    },
+    {
+      "task_id": "click-usage-empty",
+      "policy": "baseline",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "status": "completed",
+            "evidence_chars": 5578,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/click/formatting.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.2179
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/click/formatting.py"
+            ]
+          },
+          {
+            "stage": "feedback",
+            "prompt_hash": "c041146736cbf1de823a9f8bd9d066d867f40633f667ef31b4c72759dd0695ab",
+            "status": "completed",
+            "evidence_chars": 5676,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/click/formatting.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.1901
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/click/formatting.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 1,
+        "feedback_kind": "public",
+        "public_checks": {
+          "original": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1303,
+            "tests_run": 4,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stdout": "PublicContract.stdout.txt",
+            "stderr": "PublicContract.stderr.txt",
+            "passed": false
+          },
+          "candidate": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1427,
+            "tests_run": 4,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stdout": "PublicContract.stdout.txt",
+            "stderr": "PublicContract.stderr.txt",
+            "passed": false
+          },
+          "final": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1555,
+            "tests_run": 4,
+            "assertion_failure": false,
+            "execution_error": false,
+            "stdout": "PublicContract.stdout.txt",
+            "stderr": "PublicContract.stderr.txt",
+            "passed": true
+          }
+        },
+        "feedback_evidence_metadata": {
+          "evidence_chars": 5676,
+          "max_chars": 6000,
+          "seed_count": 5,
+          "max_seeds": 5,
+          "dependency_depth": 0,
+          "discarded": [],
+          "oversized_fallback": "none"
+        },
+        "edited_files": [
+          "src/click/formatting.py"
+        ],
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 5412,
+          "completion_tokens": 1550,
+          "known_prompt_tokens": 5412,
+          "known_completion_tokens": 1550,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 6962,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "a854331e01dbe5d45d4a9075d088eec14fa1fb3a02c25885c48b312397b69def",
+            "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "response_received": true,
+            "seconds": 17.6913,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2273,
+            "completion_tokens": 745,
+            "total_tokens": 3018,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          },
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "c4c078cec8723e9fe0225a520973980cead875c00b037af898b00ebfa61840d6",
+            "prompt_hash": "c041146736cbf1de823a9f8bd9d066d867f40633f667ef31b4c72759dd0695ab",
+            "response_received": true,
+            "seconds": 18.8471,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 3139,
+            "completion_tokens": 805,
+            "total_tokens": 3944,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/click/formatting.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1956,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Target.stdout.txt",
+          "stderr": "Target.stderr.txt",
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1594,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Controls.stdout.txt",
+          "stderr": "Controls.stderr.txt",
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not the full upstream suite"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 42.4621
+      },
+      "status": "passed"
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "policy": "baseline",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+            "status": "completed",
+            "evidence_chars": 5982,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/click/utils.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.1794
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/click/utils.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 0,
+        "feedback_kind": null,
+        "public_checks": {
+          "original": null
+        },
+        "feedback_skipped": "no_certified_public_checks",
+        "edited_files": [
+          "src/click/utils.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2332,
+          "completion_tokens": 131,
+          "known_prompt_tokens": 2332,
+          "known_completion_tokens": 131,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2463,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "0e1bd1bd145c9ae38eecb73d9298e62f099d77603c5bea2c0d5673db8a853006",
+            "prompt_hash": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+            "response_received": true,
+            "seconds": 4.8,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2332,
+            "completion_tokens": 131,
+            "total_tokens": 2463,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/click/utils.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1291,
+          "tests_run": 1,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Target.stdout.txt",
+          "stderr": "Target.stderr.txt",
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1388,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Controls.stdout.txt",
+          "stderr": "Controls.stderr.txt",
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not the full upstream suite"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 7.3153
+      },
+      "status": "passed"
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "policy": "source-contract",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+            "status": "completed",
+            "evidence_chars": 5982,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/click/utils.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.2019
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/click/utils.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 0,
+        "feedback_kind": null,
+        "public_checks": {
+          "original": null
+        },
+        "feedback_skipped": "no_certified_public_checks",
+        "edited_files": [
+          "src/click/utils.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2332,
+          "completion_tokens": 131,
+          "known_prompt_tokens": 2332,
+          "known_completion_tokens": 131,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2463,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "0e1bd1bd145c9ae38eecb73d9298e62f099d77603c5bea2c0d5673db8a853006",
+            "prompt_hash": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+            "response_received": true,
+            "seconds": 3.4049,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2332,
+            "completion_tokens": 131,
+            "total_tokens": 2463,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/click/utils.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1373,
+          "tests_run": 1,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Target.stdout.txt",
+          "stderr": "Target.stderr.txt",
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1366,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Controls.stdout.txt",
+          "stderr": "Controls.stderr.txt",
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not the full upstream suite"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 6.0458
+      },
+      "status": "passed"
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "source-contract",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+            "status": "completed",
+            "evidence_chars": 5972,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/click/termui.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.1989
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/click/termui.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 0,
+        "feedback_kind": null,
+        "public_checks": {
+          "original": null
+        },
+        "feedback_skipped": "no_certified_public_checks",
+        "edited_files": [
+          "src/click/termui.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2500,
+          "completion_tokens": 711,
+          "known_prompt_tokens": 2500,
+          "known_completion_tokens": 711,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3211,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "153f368073d23a0ef483ae81fb632c20172bfe5cf45b707717908a03f3c4404e",
+            "prompt_hash": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+            "response_received": true,
+            "seconds": 17.6167,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2500,
+            "completion_tokens": 711,
+            "total_tokens": 3211,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/click/termui.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1523,
+          "tests_run": 3,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Target.stdout.txt",
+          "stderr": "Target.stderr.txt",
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1403,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Controls.stdout.txt",
+          "stderr": "Controls.stderr.txt",
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not the full upstream suite"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 20.5102
+      },
+      "status": "passed"
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "baseline",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+            "status": "completed",
+            "evidence_chars": 5972,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/click/termui.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.1781
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/click/termui.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 0,
+        "feedback_kind": null,
+        "public_checks": {
+          "original": null
+        },
+        "feedback_skipped": "no_certified_public_checks",
+        "edited_files": [
+          "src/click/termui.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2500,
+          "completion_tokens": 711,
+          "known_prompt_tokens": 2500,
+          "known_completion_tokens": 711,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3211,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "153f368073d23a0ef483ae81fb632c20172bfe5cf45b707717908a03f3c4404e",
+            "prompt_hash": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+            "response_received": true,
+            "seconds": 16.6356,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2500,
+            "completion_tokens": 711,
+            "total_tokens": 3211,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/click/termui.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1249,
+          "tests_run": 3,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Target.stdout.txt",
+          "stderr": "Target.stderr.txt",
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1255,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "stdout": "Controls.stdout.txt",
+          "stderr": "Controls.stderr.txt",
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not the full upstream suite"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 19.2772
+      },
+      "status": "passed"
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "baseline",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+            "status": "completed",
+            "evidence_chars": 4651,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/itsdangerous/serializer.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.1015
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/itsdangerous/serializer.py"
+            ]
+          },
+          {
+            "stage": "feedback",
+            "prompt_hash": "fb9f2d94dedc40db6f78d7dc20cf1e6806e083f27f3c4982d2e0d97e3ea6165b",
+            "status": "completed",
+            "evidence_chars": 4840,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/itsdangerous/serializer.py",
+                "src/itsdangerous/signer.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0957
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/itsdangerous/serializer.py",
+              "src/itsdangerous/signer.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 1,
+        "feedback_kind": "public",
+        "public_checks": {
+          "original": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1091,
+            "tests_run": 11,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stderr": "PublicContract.stderr.txt",
+            "stdout": "PublicContract.stdout.txt",
+            "passed": false
+          },
+          "candidate": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1355,
+            "tests_run": 11,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stderr": "PublicContract.stderr.txt",
+            "stdout": "PublicContract.stdout.txt",
+            "passed": false
+          },
+          "final": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1133,
+            "tests_run": 11,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stderr": "PublicContract.stderr.txt",
+            "stdout": "PublicContract.stdout.txt",
+            "passed": false
+          }
+        },
+        "feedback_evidence_metadata": {
+          "evidence_chars": 4840,
+          "max_chars": 6000,
+          "seed_count": 5,
+          "max_seeds": 5,
+          "dependency_depth": 0,
+          "discarded": [],
+          "oversized_fallback": "none",
+          "selection": [
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.__init__",
+              "reason": "named_class_constructor"
+            },
+            {
+              "path": "src/itsdangerous/signer.py",
+              "symbol": "Signer.__init__",
+              "reason": "named_class_constructor"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.make_signer",
+              "reason": "named_parameter_state_forwarder"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.iter_unsigners",
+              "reason": "named_parameter_state_forwarder"
+            },
+            {
+              "path": "src/itsdangerous/jws.py",
+              "symbol": "JSONWebSignatureSerializer.__init__",
+              "reason": "refreshed_seed"
+            }
+          ],
+          "strategy": "public_named_class_parameter_forwarding"
+        },
+        "edited_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 6898,
+          "completion_tokens": 943,
+          "known_prompt_tokens": 6898,
+          "known_completion_tokens": 943,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 7841,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "4f8dbd0f1cfa8139b00212a61906ed8fdd17bb10ef51464906a9c7f70d4112a9",
+            "prompt_hash": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+            "response_received": true,
+            "seconds": 8.252,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2039,
+            "completion_tokens": 295,
+            "total_tokens": 2334,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          },
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "5660c6153d34cf41da9ab72dae6c09f0ffadcdb084d5c7dcf92274e8666ee6bc",
+            "prompt_hash": "fb9f2d94dedc40db6f78d7dc20cf1e6806e083f27f3c4982d2e0d97e3ea6165b",
+            "response_received": true,
+            "seconds": 16.9291,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 4859,
+            "completion_tokens": 648,
+            "total_tokens": 5507,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1102,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": true,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1153,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "accepted": false,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 28.5593
+      },
+      "status": "failed_verification"
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "source-contract",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "status": "completed",
+            "evidence_chars": 3945,
+            "context_metadata": {
+              "omitted_fact_rows": [],
+              "inference": "static local facts only; no expected fix or runtime proof",
+              "contract_chars": 1684,
+              "evidence_chars": 3945,
+              "combined_chars": 5629,
+              "max_chars": 6000,
+              "omitted_symbols": [
+                "JSONWebSignatureSerializer.__init__"
+              ],
+              "strategy": "source-facts-plus-constructor-forwarding",
+              "seed_count": 4
+            },
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/itsdangerous/serializer.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0987
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/itsdangerous/serializer.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 0,
+        "feedback_kind": null,
+        "public_checks": {
+          "original": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.105,
+            "tests_run": 11,
+            "assertion_failure": true,
+            "execution_error": false,
+            "stderr": "PublicContract.stderr.txt",
+            "stdout": "PublicContract.stdout.txt",
+            "passed": false
+          },
+          "candidate": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1377,
+            "tests_run": 11,
+            "assertion_failure": true,
+            "execution_error": true,
+            "stderr": "PublicContract.stderr.txt",
+            "stdout": "PublicContract.stdout.txt",
+            "passed": false
+          }
+        },
+        "feedback_skipped": "no_valid_assertion_failure_pair",
+        "edited_files": [
+          "src/itsdangerous/serializer.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2387,
+          "completion_tokens": 434,
+          "known_prompt_tokens": 2387,
+          "known_completion_tokens": 434,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2821,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "faea1822368b707fe322b93c1d7095d698bff3905e6688ef71a8a6817e7c3bc4",
+            "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "response_received": true,
+            "seconds": 11.6488,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2387,
+            "completion_tokens": 434,
+            "total_tokens": 2821,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1077,
+          "tests_run": 2,
+          "assertion_failure": true,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1105,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": true,
+          "passed": false
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "accepted": false,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 14.08
+      },
+      "status": "failed_verification"
+    },
+    {
+      "task_id": "itsdangerous-future-age",
+      "policy": "source-contract",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+            "status": "completed",
+            "evidence_chars": 5299,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/itsdangerous/timed.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0796
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/itsdangerous/timed.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 0,
+        "feedback_kind": null,
+        "public_checks": {
+          "original": null
+        },
+        "feedback_skipped": "no_certified_public_checks",
+        "edited_files": [
+          "src/itsdangerous/timed.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2112,
+          "completion_tokens": 211,
+          "known_prompt_tokens": 2112,
+          "known_completion_tokens": 211,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2323,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "d27ab1c35cd38f0c5c4db9488be5f326bbfdb1b60bd91ee3de5b3df7482bb880",
+            "prompt_hash": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+            "response_received": true,
+            "seconds": 6.3679,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2112,
+            "completion_tokens": 211,
+            "total_tokens": 2323,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/itsdangerous/timed.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1038,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.099,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 8.0171
+      },
+      "status": "passed"
+    },
+    {
+      "task_id": "itsdangerous-future-age",
+      "policy": "baseline",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+            "status": "completed",
+            "evidence_chars": 5299,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/itsdangerous/timed.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0777
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/itsdangerous/timed.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 0,
+        "feedback_kind": null,
+        "public_checks": {
+          "original": null
+        },
+        "feedback_skipped": "no_certified_public_checks",
+        "edited_files": [
+          "src/itsdangerous/timed.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2112,
+          "completion_tokens": 211,
+          "known_prompt_tokens": 2112,
+          "known_completion_tokens": 211,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2323,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "d27ab1c35cd38f0c5c4db9488be5f326bbfdb1b60bd91ee3de5b3df7482bb880",
+            "prompt_hash": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+            "response_received": true,
+            "seconds": 5.1741,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2112,
+            "completion_tokens": 211,
+            "total_tokens": 2323,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/itsdangerous/timed.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0972,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1019,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 6.7459
+      },
+      "status": "passed"
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "policy": "baseline",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+            "status": "completed",
+            "evidence_chars": 5975,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/itsdangerous/timed.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0902
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/itsdangerous/timed.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 0,
+        "feedback_kind": null,
+        "public_checks": {
+          "original": null
+        },
+        "feedback_skipped": "no_certified_public_checks",
+        "edited_files": [
+          "src/itsdangerous/timed.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2325,
+          "completion_tokens": 288,
+          "known_prompt_tokens": 2325,
+          "known_completion_tokens": 288,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2613,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "c6c73ea9d52bff472b097f497b66ab3804d9451d3838de2676050c24962db5e5",
+            "prompt_hash": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+            "response_received": true,
+            "seconds": 8.0978,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2325,
+            "completion_tokens": 288,
+            "total_tokens": 2613,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/itsdangerous/timed.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0968,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0961,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 9.8079
+      },
+      "status": "passed"
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "policy": "source-contract",
+      "worker": {
+        "status": "completed",
+        "prompt_hash": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+        "stages": [
+          {
+            "stage": "initial",
+            "prompt_hash": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+            "status": "completed",
+            "evidence_chars": 5975,
+            "transaction": {
+              "accepted": true,
+              "committed": true,
+              "reason": "committed",
+              "changed_files": [
+                "src/itsdangerous/timed.py"
+              ],
+              "duplicates": [],
+              "import": {
+                "returncode": 0,
+                "timed_out": false,
+                "seconds": 0.0882
+              },
+              "original_unchanged": false
+            },
+            "edited_files": [
+              "src/itsdangerous/timed.py"
+            ]
+          }
+        ],
+        "feedback_attempts": 0,
+        "feedback_kind": null,
+        "public_checks": {
+          "original": null
+        },
+        "feedback_skipped": "no_certified_public_checks",
+        "edited_files": [
+          "src/itsdangerous/timed.py"
+        ],
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2325,
+          "completion_tokens": 288,
+          "known_prompt_tokens": 2325,
+          "known_completion_tokens": 288,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2613,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "c6c73ea9d52bff472b097f497b66ab3804d9451d3838de2676050c24962db5e5",
+            "prompt_hash": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+            "response_received": true,
+            "seconds": 6.9338,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2325,
+            "completion_tokens": 288,
+            "total_tokens": 2613,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "changed_files": [
+          "src/itsdangerous/timed.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0934,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0991,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "accepted": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 8.5601
+      },
+      "status": "passed"
+    }
+  ],
+  "frozen_protocol": {
+    "protocol": "source-contract-context-v1",
+    "unique_tasks": 6,
+    "repeats": 1,
+    "started_at_utc": "2026-10-07T09:30:44.895884+00:00",
+    "ollama_identity": {
+      "version": "0.34.3",
+      "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+      "thinking_metadata": {
+        "values": [
+          false,
+          true
+        ],
+        "default": true
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.8B",
+        "quantization_level": "Q4_K_M"
+      }
+    },
+    "sdk_version": "3.20.0",
+    "expected_runs": 12,
+    "previously_inspected_tasks": true,
+    "benchmark_eligible": false,
+    "prior_runs_included": false,
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+    "qwen_model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "provider": {
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "reasoning_effort": "none"
+    },
+    "context_policies": [
+      "baseline",
+      "source-contract"
+    ],
+    "sampling": {
+      "temperature": 0,
+      "top_p": 1,
+      "seed": null,
+      "stream": false
+    },
+    "thinking_policy": "explicitly disabled; reject returned reasoning; record absent reasoning token breakdown as unknown",
+    "transport": "OpenAI-compatible SDK, 60-second timeout, zero automatic retries",
+    "max_llm_calls_per_branch": 2,
+    "shared_token_budget": 15000,
+    "tools": [],
+    "adapter_hashes": {
+      "docs/experiments/source_contract_compare_v1.py": "b599052d027e49ba995cc3e71a3f2a37c9d5508d5f86cb7a2d1fb2d3e98205f4",
+      "docs/experiments/provider_compare_worker_v1.py": "5673402e02e11f122d3bb67e2a3fada04a532f00745c411bc2eb7171758a18cb",
+      "docs/experiments/source_contract_worker_v1.py": "44c9a14aa55f31446a21b384c35f45f5c700aefa79b7cea3ca4ae5d5e6fc35fb",
+      "docs/experiments/source_contract_context_v1.py": "f06bd16db2bebceb74bdf2db9956372cb8c4eca930eff806e1fbb4bffcb41406",
+      "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+      "docs/experiments/repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+      "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+      "docs/experiments/salt_relations_audit_v1.py": "94bb64473835d4a9c8f79c7e91a1ea90ec9ac526cfd64b4dc6ea4a91ae7fa1e0",
+      "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+      "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+      "docs/experiments/thinking_calibration_v1.py": "4fd5865933ce8b83d0811654bebb93fdc22906a7245b13c664dd47771d3bb987",
+      "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+      "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+      "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+      "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+      "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+      "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+      "evals/process.py": "6a881e9a519e67776fe9a9bacc7b0c176259dceed6fabcac91c8fdc4d7f01b04",
+      ".tmp/real-defects/source-contract-audit-v1/audit.json": "830976c9e7323d712f543e8a3100a60c1061b33c429b87744c7b9992b1c636d5",
+      ".tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+      ".tmp/real-defects/salt-relations-audit-v1-final/audit.json": "aed080365d682c89aab20f944cb6c178b6e5e97473e2407e212c6f812a65fbc0",
+      "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+      "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51"
+    },
+    "evidence_policy": "baseline frozen retrieval; candidate source facts plus constructor/forwarding packing only for none-salt; combined 6000 chars, five full function seeds",
+    "intervention": "fixed Qwen adapter, workflow, budget and scoring; change context organization only on none-salt; no human repair rules",
+    "public_check_versions": {
+      "click-usage-empty": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+      "itsdangerous-none-salt": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51"
+    },
+    "regression_scope": "four tasks without certified public checks use single initial repair; transaction failures may use one feedback",
+    "observations_sha256": "a8f26b4e352de476bdbba3c4363fe7855df47747947f0693329996e50a21f9f9",
+    "source_hashes": {
+      "click-usage-empty": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+      "click-echo-empty-bytes": "1deab48d56e54d5bf49d922899b4a988d4dd53a288257abdafce37a97012d55b",
+      "click-style-color-validation": "afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+      "itsdangerous-none-salt": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+      "itsdangerous-future-age": "2f608833f29fa4b68d77a3667c4095b7efbae16cf583ffc1782e37356a03f204",
+      "itsdangerous-malformed-time": "afa63ea45c30fcb0cf92159676b04d9253cdd6ed73cc1b91db5dd2ca9c277967"
+    },
+    "scoring": {
+      "click-usage-empty": "5fc2c1424c4cc61237139e692941f21ad59eab8dc8f0a6ca56bd68e948311b2f",
+      "click-echo-empty-bytes": "d31601e2902db4d5b1b4c77912e26986aae42c169e6f8642dc61f8614232739b",
+      "click-style-color-validation": "a3d5d8b86f1b704ad2e8ac0a6c24641b0a3a19c7995e6d07f005c67db4096444",
+      "itsdangerous-none-salt": "a59f229cdd5d2ff20f4bd12f3252154d1235475051e5a264a6200422e5c8c08d",
+      "itsdangerous-future-age": "eabc861330a3338fcdaccd17a5cd8bcdd5462581b316ed8bce4fc52bce3af253",
+      "itsdangerous-malformed-time": "c51a33dce0476e0d46d6bbb780e44b41e8924fbd22b73ccde3410d0e2cf3485d"
+    }
+  },
+  "offline_audit": {
+    "protocol": "source-contract-audit-v1",
+    "complete": true,
+    "model_calls": 0,
+    "rows": [
+      {
+        "task_id": "click-usage-empty",
+        "source_hash": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+        "baseline_symbols": [
+          "Group.__init__",
+          "Command.__init__",
+          "HelpFormatter.write_usage",
+          "_format_deprecated_suffix",
+          "Command.format_usage"
+        ],
+        "candidate": null,
+        "intervention": false
+      },
+      {
+        "task_id": "click-echo-empty-bytes",
+        "source_hash": "1deab48d56e54d5bf49d922899b4a988d4dd53a288257abdafce37a97012d55b",
+        "baseline_symbols": [
+          "echo",
+          "secho",
+          "get_pager_file",
+          "_has_binary_buffer"
+        ],
+        "candidate": null,
+        "intervention": false
+      },
+      {
+        "task_id": "click-style-color-validation",
+        "source_hash": "afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+        "baseline_symbols": [
+          "style",
+          "secho",
+          "_interpret_color"
+        ],
+        "candidate": null,
+        "intervention": false
+      },
+      {
+        "task_id": "itsdangerous-none-salt",
+        "source_hash": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+        "baseline_symbols": [
+          "Serializer.__init__",
+          "JSONWebSignatureSerializer.__init__",
+          "Signer.unsign",
+          "Serializer.dumps",
+          "Signer.__init__"
+        ],
+        "candidate": {
+          "evidence": [
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.__init__",
+              "start_line": 89,
+              "end_line": 123,
+              "content": "    def __init__(\n        self,\n        secret_key: _t_secret_key,\n        salt: _t_str_bytes = b\"itsdangerous\",\n        serializer: _t.Any = None,\n        serializer_kwargs: _t_opt_kwargs = None,\n        signer: _t.Optional[_t_signer] = None,\n        signer_kwargs: _t_opt_kwargs = None,\n        fallback_signers: _t.Optional[_t_fallbacks] = None,\n    ):\n        #: The list of secret keys to try for verifying signatures, from\n        #: oldest to newest. The newest (last) key is used for signing.\n        #:\n        #: This allows a key rotation system to keep a list of allowed\n        #: keys and remove expired ones.\n        self.secret_keys: _t.List[bytes] = _make_keys_list(secret_key)\n        self.salt: bytes = want_bytes(salt)\n\n        if serializer is None:\n            serializer = self.default_serializer\n\n        self.serializer: _t.Any = serializer\n        self.is_text_serializer: bool = is_text_serializer(serializer)\n\n        if signer is None:\n            signer = self.default_signer\n\n        self.signer: _t_signer = signer\n        self.signer_kwargs: _t_kwargs = signer_kwargs or {}\n\n        if fallback_signers is None:\n            fallback_signers = list(self.default_fallback_signers or ())\n\n        self.fallback_signers: _t_fallbacks = fallback_signers\n        self.serializer_kwargs: _t_kwargs = serializer_kwargs or {}\n",
+              "content_hash": "c8a55ee36667c1f08affb08deba031d86cac8e43b4a986caae1e3ade5282ed75",
+              "rank": 1,
+              "score": 12.749238634846755,
+              "reason": "function_seed",
+              "complete_symbol": true
+            },
+            {
+              "path": "src/itsdangerous/signer.py",
+              "symbol": "Signer.__init__",
+              "start_line": 120,
+              "end_line": 159,
+              "content": "    def __init__(\n        self,\n        secret_key: _t_secret_key,\n        salt: _t_str_bytes = b\"itsdangerous.Signer\",\n        sep: _t_str_bytes = b\".\",\n        key_derivation: _t.Optional[str] = None,\n        digest_method: _t.Optional[_t.Any] = None,\n        algorithm: _t.Optional[SigningAlgorithm] = None,\n    ):\n        #: The list of secret keys to try for verifying signatures, from\n        #: oldest to newest. The newest (last) key is used for signing.\n        #:\n        #: This allows a key rotation system to keep a list of allowed\n        #: keys and remove expired ones.\n        self.secret_keys: _t.List[bytes] = _make_keys_list(secret_key)\n        self.sep: bytes = want_bytes(sep)\n\n        if self.sep in _base64_alphabet:\n            raise ValueError(\n                \"The given separator cannot be used because it may be\"\n                \" contained in the signature itself. ASCII letters,\"\n                \" digits, and '-_=' must not be used.\"\n            )\n\n        self.salt: bytes = want_bytes(salt)\n\n        if key_derivation is None:\n            key_derivation = self.default_key_derivation\n\n        self.key_derivation: str = key_derivation\n\n        if digest_method is None:\n            digest_method = self.default_digest_method\n\n        self.digest_method: _t.Any = digest_method\n\n        if algorithm is None:\n            algorithm = HMACAlgorithm(self.digest_method)\n\n        self.algorithm: SigningAlgorithm = algorithm\n",
+              "content_hash": "51d73e762a48797071f1358737a9aab3ade3b872ffdef3b40b8ca5fe5abaf419",
+              "rank": 2,
+              "score": 11.680383743565406,
+              "reason": "function_seed",
+              "complete_symbol": true
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.make_signer",
+              "start_line": 166,
+              "end_line": 173,
+              "content": "    def make_signer(self, salt: _t_opt_str_bytes = None) -> Signer:\n        \"\"\"Creates a new instance of the signer to be used. The default\n        implementation uses the :class:`.Signer` base class.\n        \"\"\"\n        if salt is None:\n            salt = self.salt\n\n        return self.signer(self.secret_keys, salt=salt, **self.signer_kwargs)\n",
+              "content_hash": "c8a55ee36667c1f08affb08deba031d86cac8e43b4a986caae1e3ade5282ed75",
+              "rank": 3,
+              "score": 0,
+              "reason": "function_seed",
+              "complete_symbol": true
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.iter_unsigners",
+              "start_line": 175,
+              "end_line": 195,
+              "content": "    def iter_unsigners(self, salt: _t_opt_str_bytes = None) -> _t.Iterator[Signer]:\n        \"\"\"Iterates over all signers to be tried for unsigning. Starts\n        with the configured signer, then constructs each signer\n        specified in ``fallback_signers``.\n        \"\"\"\n        if salt is None:\n            salt = self.salt\n\n        yield self.make_signer(salt)\n\n        for fallback in self.fallback_signers:\n            if isinstance(fallback, dict):\n                kwargs = fallback\n                fallback = self.signer\n            elif isinstance(fallback, tuple):\n                fallback, kwargs = fallback\n            else:\n                kwargs = self.signer_kwargs\n\n            for secret_key in self.secret_keys:\n                yield fallback(secret_key, salt=salt, **kwargs)\n",
+              "content_hash": "c8a55ee36667c1f08affb08deba031d86cac8e43b4a986caae1e3ade5282ed75",
+              "rank": 4,
+              "score": 0,
+              "reason": "function_seed",
+              "complete_symbol": true
+            }
+          ],
+          "source_contract_facts": "src/itsdangerous/serializer.py sha256=c8a55ee36667c1f08affb08deba031d86cac8e43b4a986caae1e3ade5282ed75\nSerializer L25-290 bases=[] locally assigned parameter-related members=['salt']; inherited/dynamic members unknown.\nsrc/itsdangerous/signer.py sha256=51d73e762a48797071f1358737a9aab3ade3b872ffdef3b40b8ca5fe5abaf419\nSigner L67-252 bases=[] locally assigned parameter-related members=['salt']; inherited/dynamic members unknown.\nSerializer.__init__ L89-123 salt=b'itsdangerous': L105 self.salt: bytes = want_bytes(salt); L105 call want_bytes(salt)\nSigner.__init__ L120-159 salt=b'itsdangerous.Signer': L144 self.salt: bytes = want_bytes(salt); L144 call want_bytes(salt)\nSerializer.make_signer L166-173 salt=None: L170 if salt is None; L171 salt = self.salt; L173 call self.signer(self.secret_keys, salt=salt, **self.signer_kwargs)\nSerializer.iter_unsigners L175-195 salt=None: L180 if salt is None; L181 salt = self.salt; L183 call self.make_signer(salt); L195 call fallback(secret_key, salt=salt, **kwargs)\nSerializer.dumps L197-208 salt=None: L203 rv = self.make_signer(salt).sign(payload); L203 call self.make_signer(salt)\nSerializer.dump L210-214 salt=None: L214 call f.write(self.dumps(obj, salt)); L214 call self.dumps(obj, salt)\nSerializer.loads L216-231 salt=None: L225 call self.iter_unsigners(salt)\nSerializer.load L233-235 salt=None: L235 call self.loads(f.read(), salt)\nSerializer.loads_unsafe L237-253 salt=None: L253 call self._loads_unsafe_impl(s, salt)\nSerializer._loads_unsafe_impl L255-283 salt=<required>: L269 call self.loads(s, salt=salt, **load_kwargs)\nSerializer.load_unsafe L285-290 salt=None: L290 call self.loads_unsafe(f.read(), salt=salt)",
+          "metadata": {
+            "omitted_fact_rows": [],
+            "inference": "static local facts only; no expected fix or runtime proof",
+            "contract_chars": 1684,
+            "evidence_chars": 3945,
+            "combined_chars": 5629,
+            "max_chars": 6000,
+            "omitted_symbols": [
+              "JSONWebSignatureSerializer.__init__"
+            ],
+            "strategy": "source-facts-plus-constructor-forwarding",
+            "seed_count": 4
+          }
+        },
+        "intervention": true
+      },
+      {
+        "task_id": "itsdangerous-future-age",
+        "source_hash": "2f608833f29fa4b68d77a3667c4095b7efbae16cf583ffc1782e37356a03f204",
+        "baseline_symbols": [
+          "TimestampSigner.unsign",
+          "TimedSerializer.loads",
+          "TimestampSigner.validate",
+          "BadTimeSignature.__init__",
+          "TimedJSONWebSignatureSerializer.loads"
+        ],
+        "candidate": null,
+        "intervention": false
+      },
+      {
+        "task_id": "itsdangerous-malformed-time",
+        "source_hash": "afa63ea45c30fcb0cf92159676b04d9253cdd6ed73cc1b91db5dd2ca9c277967",
+        "baseline_symbols": [
+          "TimestampSigner.unsign",
+          "TimedSerializer.loads",
+          "BadTimeSignature.__init__",
+          "Serializer.loads_unsafe",
+          "Signer.validate"
+        ],
+        "candidate": null,
+        "intervention": false
+      }
+    ],
+    "extractor_sha256": "f06bd16db2bebceb74bdf2db9956372cb8c4eca930eff806e1fbb4bffcb41406",
+    "limits": "local AST facts; inherited/dynamic members unknown; no runtime correctness or repair-gain claim"
+  },
+  "raw_report": {
+    "path": ".tmp/real-defects/source-contract-compare-v1/experiment.json",
+    "sha256": "12971f449ef9e5370dabacb8e7b07a9de5d333387075caf843e1a47d915d5546"
+  },
+  "validation": {
+    "regression_initial_prompt_pairs_equal": 5,
+    "none_salt_context_changed": true,
+    "frozen_hashes_valid": true,
+    "original_workflow_unchanged": true,
+    "provider_unit_and_workflow_tests": {
+      "passed": 40,
+      "seconds": 1.85
+    },
+    "windows_full": {
+      "passed": 1023,
+      "skipped": 2,
+      "failed": 0,
+      "seconds": 174.23
+    },
+    "ruff": "passed",
+    "default_service_changed": false
+  },
+  "decision": "No success gain; none-salt Controls regressed; fewer tokens due to execution-error feedback stop, not efficiency gain. Freeze optional experiment."
+}
