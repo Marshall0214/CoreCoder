@@ -17,6 +17,7 @@
 | 实验原型 | 唯一匹配编辑事务与最多一次统一失败反馈 | [事务保护](patch-transaction-v1.md)、[统一反馈](unified-feedback-v1.md)；结构校验不能替代语义验收 |
 | 实验原型 | Qwen / DeepSeek 同流程配对对照 | [模型对照](provider-compare-v1.md)；两组均 5/6，无成功率收益 |
 | 实验原型 | 带来源的源码契约事实及同预算上下文对照 | [契约上下文](source-contract-context-v1.md)；两组均 5/6，候选有 Controls 回归 |
+| 实验原型 | 区分候选异常与检查故障、一次运行时反馈 | [运行时反馈](runtime-feedback-v1.md)；异常记录 8→0，独立验收仍 5/6，Token 增加 |
 | 已完成 | FastAPI 提交/查询、SSE、幂等、取消、SQLite 持久化和进程清理 | [服务](service-mvp-v1.md)、[恢复](service-persistence-v2.md)、`service/` |
 | 已完成 | LangGraph 固定计划、一次执行与独立验证分支 | [有限工作流](langgraph-workflow-v1.md)、`workflows/repair.py` |
 | 已完成 | 人工审批、原生 SQLite 检查点、待审批恢复与防重放 | [审批](workflow-approval-v1.md)、`workflows/approval.py` |
@@ -81,3 +82,5 @@ Memory、Reflection、Multi-Agent 等名称不能只因上游存在工具就算�
 Qwen / DeepSeek 固定统一反馈流程对照已完成：六项已查看缺陷各一次，两组均 5/6、各 8 次请求；Token 25,413 / 23,981。none-salt 仍分别存在签名兼容错误和不存在成员引用，未因更换模型解决。最终 Windows 1,013 passed、2 skipped；冻结结果、不替换默认服务，见 [模型对照报告](provider-compare-v1.md)。
 
 源码契约上下文对照完成：零调用审查后，只用 Qwen 对六项已查看任务各比较一次；原上下文与候选均 5/6。候选 none-salt 删除盐值回退，Target/Controls 都失败；公开检查混合执行错误导致停止反馈，因此 Token 减少不是效率收益。共 15 次本地调用、0 次 DeepSeek 调用，全量 1,023 passed、2 skipped。冻结原型，建议收敛交付，见 [契约上下文报告](source-contract-context-v1.md)。
+
+运行时异常反馈完成：结构化 traceback 区分候选异常与检查故障，沿用一次修正与共享预算。六项两组均 5/6，none-salt 公开运行异常从 8 个降至 0 个但仍有语义和 Controls 失败；Token 20,393 / 27,206。全量 1,044 passed、2 skipped，保留可选，不替换默认；下一步验证已编辑函数的原文保留，见 [运行时反馈](runtime-feedback-v1.md)。

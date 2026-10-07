@@ -242,3 +242,5 @@ docs/                    # 架构决策、复现说明、个人贡献
 **源码契约上下文对照已完成：固定 Qwen，离线审查默认值、类相关赋值与参数传递；六项两组均 5/6，候选 none-salt 出现 Controls 回归。15 次本地请求、0 次 DeepSeek 请求；较少 Token 因公开执行错误停止反馈，不算优化收益。全量 1,023 passed、2 skipped。冻结原型、不替换默认，转向项目交付和简历证据整理，见 docs/source-contract-context-v1.md。**
 
 **求职交付 v2 完成：更新四条简历贡献、近期失败问答、代码/验收证据索引与 README 演示入口；核对已有 1,023 passed、2 skipped 及历史部署验收，未新增模型或部署运行。只读 MCP 演示、README 约束、文档链接和演示命令语法通过。下一步由本人完成讲解录屏与实际简历提交，暂不继续围绕 none-salt 调参，见 docs/portfolio-evidence.md 与 docs/portfolio-delivery-v2.json。**
+
+**按继续核心优化的要求，运行时异常反馈已完成：可归因候选异常获得已有一次反馈，检查/未知异常仍停止。15 次本地 Qwen 请求，异常记录 8→0，最终两组均 5/6；Token 增加约 33.4%，未提升修复率。全量 1,044 passed、2 skipped。下一步单独验证反馈时保留已编辑函数原文，见 docs/runtime-feedback-v1.md。**

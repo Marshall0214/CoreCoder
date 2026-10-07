@@ -29,7 +29,7 @@
 
 | 范围 | 已记录结果 | 版本化来源 |
 | --- | --- | --- |
-| 最新 Windows 全量 | 1,023 passed、2 skipped | [契约上下文摘要](source-contract-context-v1.json)；含上游与扩展测试 |
+| 最新 Windows 全量 | 1,044 passed、2 skipped | [运行时反馈摘要](runtime-feedback-v1.json)；含上游与扩展测试 |
 | 历史 Linux 专项 | 71 passed | [审批验收](workflow-approval-acceptance-v1.json) |
 | 历史容器端到端 | 22 项检查通过 | 同上，container.checks |
 | 历史真实 HTTP 审批故障 | 18 项检查通过 | 同上，host.http_checks |
