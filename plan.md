@@ -171,6 +171,7 @@
 - [ ] Linux/Docker Compose 部署；任务容器限制挂载、网络、CPU、内存和时间，不携带宿主凭据。
 - [x] 首版 Dockerfile/Compose、健康探针、独立验收项目及故障脚本已编写；配置和本地服务测试通过，见 `docs/container-deployment-v1.md`。Docker Desktop 引擎启动失败，镜像构建与 Linux 运行验收仍未完成；当前是服务容器限制，尚非每任务独立沙箱。
 - [ ] 验证并发隔离、重启恢复和工具故障；mock 模型测服务负载，真实模型单独测端到端表现。
+- [x] Windows 真实 HTTP 服务故障验收：实际强制结束服务、确认孤儿存活、新服务清理、排队恢复、幂等不重跑及正常退出取消均通过，22 项检查见 `docs/local-http-acceptance-v1.md`。Linux/容器、服务负载及分布式恢复仍待验收。
 
 **验收：**干净环境可启动；任务和副作用可追溯；并发、取消、恢复不串扰或重复写入。工程化后复测冻结的小型回归集，完整系统收益单独报告。
 
@@ -215,4 +216,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**当前：FastAPI MVP、SQLite 持久化/幂等/恢复、代码知识 MCP stdio Server 已完成。Dockerfile/Compose 和离线容器故障验收脚本已编写，见 docs/container-deployment-v1.md；Docker Desktop 引擎启动失败，尚未构建镜像或完成 Linux 运行验收。下一步先修复本机引擎并执行 python -m deploy.acceptance，再确认容器交付。PostgreSQL/Redis、LangGraph、鉴权和每任务容器沙箱仍未完成；当前检索批次不再扩充。**
+**当前：FastAPI MVP、SQLite 持久化/幂等/恢复、代码知识 MCP stdio Server 已完成，Windows 真实 HTTP 故障验收的 22 项检查通过，见 docs/local-http-acceptance-v1.md。Dockerfile/Compose 及容器故障验收脚本已编写，但本机引擎仍不可用，Linux/容器验收尚未完成。下一步在引擎恢复后运行 python -m deploy.acceptance；不以主机结果代替容器验收。PostgreSQL/Redis、LangGraph、鉴权和每任务容器沙箱仍未完成；当前检索批次不再扩充。**

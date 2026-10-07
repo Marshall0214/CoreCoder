@@ -1,5 +1,7 @@
 # 容器部署配置与离线验收
 
+后续已补充不依赖 Docker 的 [真实 HTTP 服务故障验收](local-http-acceptance-v1.md)：Windows 上实际服务崩溃、孤儿清理、排队恢复及幂等验证通过；Linux/容器运行验收仍待引擎恢复。
+
 ## 本轮交付与当前状态
 
 新增 `deploy/Dockerfile`、Compose、HTTP 健康探针和一键离线验收脚本。runtime 镜像包括 CoreCoder、评测 fixture、服务及 MCP Server；validation 阶段额外安装 pytest 和复制测试辅助模块。运行镜像不包含故障注入测试模块。

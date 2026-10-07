@@ -82,6 +82,7 @@ class Acceptance:
                       '--tmpfs', '/app/tests/.pytest_tmp:rw,uid=10001,gid=10001,mode=0700',
                       'corecoder-local:validation', 'python', '-m', 'pytest', 'tests/test_service.py',
                       'tests/test_service_persistence.py', 'tests/test_code_knowledge_mcp.py', 'tests/test_mcp.py',
+                      'tests/test_local_deploy_acceptance.py',
                       '-q', '-p', 'no:cacheprovider', '--basetemp=/tmp/pytest'], timeout=180)
         self.report['checks']['linux_service_and_mcp_tests'] = True
         self.command(['docker', 'run', '--rm', '--network', 'none', '--read-only', '--tmpfs', '/tmp:rw,mode=1777',
