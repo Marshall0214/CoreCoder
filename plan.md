@@ -220,3 +220,5 @@ docs/                    # 架构决策、复现说明、个人贡献
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
 **当前：实验、服务工程和交付文档已完成。历史工程验收 Windows 864 passed、2 skipped，Linux 71 passed、22 项容器检查和 18 项 HTTP 审批故障检查通过。补丁定位两方案均 3/6；符号检索点名函数覆盖 5/7→7/7、修复均 12/18，保留默认策略。本轮实现两项任务的人工公开检查、离线正例/失败认证及一次共享预算反馈：三轮对照单次 0/6、反馈 3/6，收益仅来自 usage-empty，none-salt 仍失败；Token 为 2.57 倍。另四项全新单次回归 4/4，总计 22 次新模型调用。最终 Windows 919 passed、2 skipped，详见 docs/repair-public-feedback-v1.md。反馈保留为独立可选实验，不替换默认服务。下一步聚焦 none-salt 的省略参数与显式 None 语义及调用链上下文，不直接增加重试。动态规划、通用反思、PostgreSQL/Redis 和每任务沙箱仍未实现。**
+
+**参数转发上下文验证完成：24 次新模型调用，原反馈与转发上下文反馈均 3/6，usage-empty 均 3/3、none-salt 均 0/3。补充 make_signer/iter_unsigners 未提升成功率，并产生被公开检查和 Controls 拦截的盐值隔离回归，不替换默认。全量 924 passed、2 skipped。下一步聚焦构造参数、省略参数和方法级覆盖的关系约束，先离线验证语义与检查能力，不继续增加重试或无依据扩张检索。详见 docs/repair-forwarding-feedback-v1.md。**

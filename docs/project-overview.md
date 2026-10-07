@@ -24,6 +24,7 @@
 | 最新补丁定位优化与失败归因 | [anchored-patch-v1.md](anchored-patch-v1.md) |
 | 符号定向检索与三轮修复对照 | [symbol-directed-retrieval-v1.md](symbol-directed-retrieval-v1.md) |
 | 公开检查与一次反馈修复 | [repair-public-feedback-v1.md](repair-public-feedback-v1.md) |
+| 参数转发上下文与反馈对照 | [repair-forwarding-feedback-v1.md](repair-forwarding-feedback-v1.md) |
 
 ## 架构和个人贡献边界
 
@@ -68,13 +69,15 @@ MCP 是独立工具接入与互操作成果，没有自动替换服务默认检�
 
 | 已知失败两项，各三次；单次 / 一次公开反馈 | 0/6 / 3/6；Token 16,056 / 41,316 | usage-empty 恢复、none-salt 仍失败；另四项单次新回归 4/4，不混合成功率；见 [公开反馈](repair-public-feedback-v1.md) |
 
+| 同两项任务，各三次；原反馈 / 转发上下文反馈 | 两组均 3/6，none-salt 均 0/3 | 新策略发生盐值隔离回归，不替换默认；见 [转发上下文](repair-forwarding-feedback-v1.md) |
+
 Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个不同任务，不代表 13 项都必须多文件修改。后续检索、补丁与公开反馈实验复用了其中六项，没有增加不同缺陷数。passed 是满足独立 Target/Controls 和修改约束，不代表完整上游测试或生产正确性。评分错误修正记录与新调用分开，不覆盖旧结果。
 
 原始实验输入、模型回答和日志位于被 Git 忽略的 `.tmp/`，复跑真实实验需要报告指定的准入快照、隔离环境及模型身份；仅 clone 不能直接重建所有历史结果。工程演示使用仓库内人工 fixture，可不依赖这些实验产物或模型 API。
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新公开反馈实验后 Windows 全量 **919 passed、2 skipped**，见 [反馈报告](repair-public-feedback-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新转发上下文实验后 Windows 全量 **924 passed、2 skipped**，见 [上下文报告](repair-forwarding-feedback-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -83,3 +86,5 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 新增工程产物、临时文件及本机 Docker 数据放在 D 盘；Docker Desktop 自身仍可能写系统配置和日志。历史模型实验已冻结；随后补丁定位对照 24 次、正式符号检索对照 36 次新调用分别报告，没有覆盖旧结果或替换默认方案。符号检索暂停原型另存未完成记录，不并入正式结果。
 
 公开反馈本轮新增 22 次模型调用（18 次配对实验、4 次单次回归）。只为两项任务提供人工公开检查和一次预算内反馈，未实现通用测试生成或接入服务默认流程。
+
+参数转发上下文本轮另新增 24 次模型调用，两种反馈均 3/6；none-salt 未修复，新的错误盐值隔离行为被公开检查及独立 Controls 拦截。

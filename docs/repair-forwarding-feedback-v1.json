@@ -1,0 +1,739 @@
+{
+  "complete": true,
+  "raw_report_sha256": "727d03910494154609116e977bb0495a478a01894c049835f11497d535a71592",
+  "protocol": {
+    "protocol": "repair-forwarding-feedback-v1",
+    "unique_tasks": 2,
+    "repeats": 3,
+    "expected_runs": 12,
+    "previously_inspected_tasks": true,
+    "benchmark_eligible": false,
+    "prior_runs_included": false,
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+    "repair_model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "max_llm_calls": {
+      "public-feedback": 2,
+      "forwarding-feedback": 2
+    },
+    "shared_total_token_budget": 15000,
+    "tools": [],
+    "evidence_policy": "same AST function corpus and complete-function packing; 6000 chars, five seeds, depth zero",
+    "intervention": "same public checks and two-call cap; only feedback context packing differs; same initial prompt and source seeds",
+    "observations_sha256": "b4e18b46a66f99769a8175b8e75a4a1b1a4a52aec68d6e9e51dc1e84f4b0cd3a",
+    "adapter_hashes": {
+      "docs/experiments/repair_forwarding_feedback_v1.py": "1330838ec27906e13f6e33c56ad9c323a1170173ddea1ebb22746ce0e2fa78d9",
+      "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+      "docs/experiments/repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+      ".tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+      "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+      "docs/experiments/public_checks_v1/none_salt.py": "3ac7745e6b4f8f05d8573f7098ab83edf8c4ce0ced5110ca83ec42183f57d290",
+      "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+      "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+      "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+      "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+      "corecoder/retrieval/keyword.py": "af7166465a62260ff2c1b0409d08990867c69c6d3b23fe76bd157cd074f988cb",
+      "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+      "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+      "docs/experiments/validation_repeat_v2.py": "e7e27c416710567047cc0469b4da4a7f1be84692111cd5cfef18f1cb7969d454",
+      "docs/experiments/validation_repair_v1.py": "2fa46a0be8947c35d66e714d4cb6af342ef01c1595fc7dcebc02096e7aeac3c4",
+      "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+      "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+      "docs/experiments/second_repo_admission_v1.py": "87a17a95c77243e4aa4a9a5b7a2a1c1b6421830b788522a107502ef8f8161a46",
+      "docs/experiments/validation-prospective-v2.json": "6fffda44dac19694af1776a2a82f48330aebcc609122fff84d86ea18f7105b92",
+      "docs/experiments/validation-suite-v1.json": "3dbed44448ed8af27f27f1a8f9569efba1af0343c2b237d3d7901cfadbf0dc8a",
+      "docs/experiments/second-repo-suite-v1.json": "190edb5b580b12380041c2e2916aef5b0ed198fbe80d9341ebda5b011da89ce4"
+    },
+    "public_audit_sha256": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+    "public_registry": {
+      "click-usage-empty": {
+        "code_path": "docs/experiments/public_checks_v1/usage_empty.py",
+        "code_sha256": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+        "description_sha256": "6ddd1b01bda74384b5369b28ae456b8c42d71a6657ffb68f9012966fad3798c3",
+        "clauses": [
+          {
+            "test": "test_empty_usage_wide",
+            "text": "when args is empty, without a trailing separator space or extra blank line",
+            "span": [
+              70,
+              144
+            ]
+          },
+          {
+            "test": "test_empty_usage_narrow_custom_prefix",
+            "text": "Preserve custom prefixes",
+            "span": [
+              146,
+              170
+            ]
+          },
+          {
+            "test": "test_nonempty_arguments_and_custom_prefix",
+            "text": "normal nonempty argument rendering",
+            "span": [
+              175,
+              209
+            ]
+          },
+          {
+            "test": "test_command_empty_and_none_metavar",
+            "text": "Commands with no parameters and empty or None options_metavar",
+            "span": [
+              211,
+              272
+            ]
+          }
+        ],
+        "provenance": "hand-authored public development checks; not hidden scoring or general test generation",
+        "developer_choices": "demo program/prefix/widths, payload/key/salts; Usage and omitted salt defaults from original API"
+      },
+      "itsdangerous-none-salt": {
+        "code_path": "docs/experiments/public_checks_v1/none_salt.py",
+        "code_sha256": "3ac7745e6b4f8f05d8573f7098ab83edf8c4ce0ced5110ca83ec42183f57d290",
+        "description_sha256": "6ab9a5c1ebce76d93f561290d7bf18bb24b7144d6e89f88c92a018607bdfd83e",
+        "clauses": [
+          {
+            "test": "test_signer_none_uses_signer_default",
+            "text": "Signer salt=None must match its default",
+            "span": [
+              224,
+              263
+            ]
+          },
+          {
+            "test": "test_serializer_none_matches_explicit_signer",
+            "text": "Serializer salt=None signatures must match explicit itsdangerous.Signer salt",
+            "span": [
+              142,
+              218
+            ]
+          },
+          {
+            "test": "test_serializer_none_round_trip",
+            "text": "Signed values must round-trip",
+            "span": [
+              111,
+              140
+            ]
+          },
+          {
+            "test": "test_explicit_string_and_bytes_salts",
+            "text": "Preserve explicit string and bytes salts",
+            "span": [
+              265,
+              305
+            ]
+          },
+          {
+            "test": "test_omitted_serializer_salt_preserved",
+            "text": "the Serializer default salt",
+            "span": [
+              307,
+              334
+            ]
+          },
+          {
+            "test": "test_wrong_salt_rejected",
+            "text": "wrong-salt rejection",
+            "span": [
+              336,
+              356
+            ]
+          },
+          {
+            "test": "test_tampered_value_rejected",
+            "text": "tamper detection",
+            "span": [
+              361,
+              377
+            ]
+          }
+        ],
+        "provenance": "hand-authored public development checks; not hidden scoring or general test generation",
+        "developer_choices": "demo program/prefix/widths, payload/key/salts; Usage and omitted salt defaults from original API"
+      }
+    },
+    "scoring": {
+      "click-usage-empty": "5fc2c1424c4cc61237139e692941f21ad59eab8dc8f0a6ca56bd68e948311b2f",
+      "itsdangerous-none-salt": "a59f229cdd5d2ff20f4bd12f3252154d1235475051e5a264a6200422e5c8c08d"
+    },
+    "source_hashes": {
+      "click-usage-empty": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+      "itsdangerous-none-salt": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4"
+    }
+  },
+  "summary": {
+    "public-feedback": {
+      "runs": 6,
+      "passed": 3,
+      "statuses": {
+        "passed": 3,
+        "failed_verification": 3
+      },
+      "budget_accounted_tokens": 41316,
+      "known_budget_accounted_tokens": 41316,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 35289,
+      "completion_tokens": 6027,
+      "worker_seconds": 164.4717
+    },
+    "forwarding-feedback": {
+      "runs": 6,
+      "passed": 3,
+      "statuses": {
+        "passed": 3,
+        "failed_verification": 3
+      },
+      "budget_accounted_tokens": 42681,
+      "known_budget_accounted_tokens": 42681,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 35394,
+      "completion_tokens": 7287,
+      "worker_seconds": 188.6787
+    },
+    "pairs": {
+      "both_passed": 3,
+      "baseline_only": 0,
+      "feedback_only": 0,
+      "both_failed": 3,
+      "incomplete": 0
+    }
+  },
+  "actual_model_calls": 24,
+  "token_ratio_forwarding_to_seed": 1.033038048213767,
+  "runs": [
+    {
+      "repeat": 1,
+      "task_id": "click-usage-empty",
+      "policy": "public-feedback",
+      "status": "passed",
+      "accepted": true,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "feedback_prompt_sha256": "c041146736cbf1de823a9f8bd9d066d867f40633f667ef31b4c72759dd0695ab",
+      "feedback_evidence_chars": 5676,
+      "feedback_selection": null,
+      "public_final_passed": true,
+      "public_failed_tests": [],
+      "target_passed": true,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5412,
+        "completion_tokens": 1550,
+        "known_prompt_tokens": 5412,
+        "known_completion_tokens": 1550,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6962,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "click-usage-empty",
+      "policy": "forwarding-feedback",
+      "status": "passed",
+      "accepted": true,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "feedback_prompt_sha256": "c041146736cbf1de823a9f8bd9d066d867f40633f667ef31b4c72759dd0695ab",
+      "feedback_evidence_chars": 5676,
+      "feedback_selection": [
+        {
+          "path": "src/click/core.py",
+          "symbol": "Group.__init__",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/core.py",
+          "symbol": "Command.__init__",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/formatting.py",
+          "symbol": "HelpFormatter.write_usage",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/core.py",
+          "symbol": "_format_deprecated_suffix",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/core.py",
+          "symbol": "Command.format_usage",
+          "reason": "refreshed_seed"
+        }
+      ],
+      "public_final_passed": true,
+      "public_failed_tests": [],
+      "target_passed": true,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5412,
+        "completion_tokens": 1550,
+        "known_prompt_tokens": 5412,
+        "known_completion_tokens": 1550,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6962,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "forwarding-feedback",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "feedback_prompt_sha256": "1c0bc00abe60d3cfd29527b43b9ce8fd916e3db31f3099121790aa4ddcf9e4e4",
+      "feedback_evidence_chars": 4840,
+      "feedback_selection": [
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "symbol": "Serializer.__init__",
+          "reason": "named_class_constructor"
+        },
+        {
+          "path": "src/itsdangerous/signer.py",
+          "symbol": "Signer.__init__",
+          "reason": "named_class_constructor"
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "symbol": "Serializer.make_signer",
+          "reason": "named_parameter_state_forwarder"
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "symbol": "Serializer.iter_unsigners",
+          "reason": "named_parameter_state_forwarder"
+        },
+        {
+          "path": "src/itsdangerous/jws.py",
+          "symbol": "JSONWebSignatureSerializer.__init__",
+          "reason": "refreshed_seed"
+        }
+      ],
+      "public_final_passed": false,
+      "public_failed_tests": [
+        "test_wrong_salt_rejected"
+      ],
+      "target_passed": false,
+      "controls_passed": false,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6386,
+        "completion_tokens": 879,
+        "known_prompt_tokens": 6386,
+        "known_completion_tokens": 879,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7265,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "public-feedback",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "feedback_prompt_sha256": "e903bd66b8e56119ded8916fff052b7c65bcc4b0424432ed857ed93a38fef9bc",
+      "feedback_evidence_chars": 4656,
+      "feedback_selection": null,
+      "public_final_passed": false,
+      "public_failed_tests": [
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "target_passed": false,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6351,
+        "completion_tokens": 459,
+        "known_prompt_tokens": 6351,
+        "known_completion_tokens": 459,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6810,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-usage-empty",
+      "policy": "forwarding-feedback",
+      "status": "passed",
+      "accepted": true,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "feedback_prompt_sha256": "45cee7a1a79118a97902c3feacff341c5c42e3a8a59f222f9ff944b6e22af91e",
+      "feedback_evidence_chars": 5676,
+      "feedback_selection": [
+        {
+          "path": "src/click/core.py",
+          "symbol": "Group.__init__",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/core.py",
+          "symbol": "Command.__init__",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/formatting.py",
+          "symbol": "HelpFormatter.write_usage",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/core.py",
+          "symbol": "_format_deprecated_suffix",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/core.py",
+          "symbol": "Command.format_usage",
+          "reason": "refreshed_seed"
+        }
+      ],
+      "public_final_passed": true,
+      "public_failed_tests": [],
+      "target_passed": true,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5412,
+        "completion_tokens": 1550,
+        "known_prompt_tokens": 5412,
+        "known_completion_tokens": 1550,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6962,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-usage-empty",
+      "policy": "public-feedback",
+      "status": "passed",
+      "accepted": true,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "feedback_prompt_sha256": "c041146736cbf1de823a9f8bd9d066d867f40633f667ef31b4c72759dd0695ab",
+      "feedback_evidence_chars": 5676,
+      "feedback_selection": null,
+      "public_final_passed": true,
+      "public_failed_tests": [],
+      "target_passed": true,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5412,
+        "completion_tokens": 1550,
+        "known_prompt_tokens": 5412,
+        "known_completion_tokens": 1550,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6962,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "public-feedback",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "feedback_prompt_sha256": "e903bd66b8e56119ded8916fff052b7c65bcc4b0424432ed857ed93a38fef9bc",
+      "feedback_evidence_chars": 4656,
+      "feedback_selection": null,
+      "public_final_passed": false,
+      "public_failed_tests": [
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "target_passed": false,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6351,
+        "completion_tokens": 459,
+        "known_prompt_tokens": 6351,
+        "known_completion_tokens": 459,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6810,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "forwarding-feedback",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "feedback_prompt_sha256": "1c0bc00abe60d3cfd29527b43b9ce8fd916e3db31f3099121790aa4ddcf9e4e4",
+      "feedback_evidence_chars": 4840,
+      "feedback_selection": [
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "symbol": "Serializer.__init__",
+          "reason": "named_class_constructor"
+        },
+        {
+          "path": "src/itsdangerous/signer.py",
+          "symbol": "Signer.__init__",
+          "reason": "named_class_constructor"
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "symbol": "Serializer.make_signer",
+          "reason": "named_parameter_state_forwarder"
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "symbol": "Serializer.iter_unsigners",
+          "reason": "named_parameter_state_forwarder"
+        },
+        {
+          "path": "src/itsdangerous/jws.py",
+          "symbol": "JSONWebSignatureSerializer.__init__",
+          "reason": "refreshed_seed"
+        }
+      ],
+      "public_final_passed": false,
+      "public_failed_tests": [
+        "test_wrong_salt_rejected"
+      ],
+      "target_passed": false,
+      "controls_passed": false,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6386,
+        "completion_tokens": 879,
+        "known_prompt_tokens": 6386,
+        "known_completion_tokens": 879,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7265,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-usage-empty",
+      "policy": "public-feedback",
+      "status": "passed",
+      "accepted": true,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "feedback_prompt_sha256": "c041146736cbf1de823a9f8bd9d066d867f40633f667ef31b4c72759dd0695ab",
+      "feedback_evidence_chars": 5676,
+      "feedback_selection": null,
+      "public_final_passed": true,
+      "public_failed_tests": [],
+      "target_passed": true,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5412,
+        "completion_tokens": 1550,
+        "known_prompt_tokens": 5412,
+        "known_completion_tokens": 1550,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6962,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-usage-empty",
+      "policy": "forwarding-feedback",
+      "status": "passed",
+      "accepted": true,
+      "initial_prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "feedback_prompt_sha256": "c041146736cbf1de823a9f8bd9d066d867f40633f667ef31b4c72759dd0695ab",
+      "feedback_evidence_chars": 5676,
+      "feedback_selection": [
+        {
+          "path": "src/click/core.py",
+          "symbol": "Group.__init__",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/core.py",
+          "symbol": "Command.__init__",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/formatting.py",
+          "symbol": "HelpFormatter.write_usage",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/core.py",
+          "symbol": "_format_deprecated_suffix",
+          "reason": "refreshed_seed"
+        },
+        {
+          "path": "src/click/core.py",
+          "symbol": "Command.format_usage",
+          "reason": "refreshed_seed"
+        }
+      ],
+      "public_final_passed": true,
+      "public_failed_tests": [],
+      "target_passed": true,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5412,
+        "completion_tokens": 1550,
+        "known_prompt_tokens": 5412,
+        "known_completion_tokens": 1550,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6962,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "forwarding-feedback",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "feedback_prompt_sha256": "1c0bc00abe60d3cfd29527b43b9ce8fd916e3db31f3099121790aa4ddcf9e4e4",
+      "feedback_evidence_chars": 4840,
+      "feedback_selection": [
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "symbol": "Serializer.__init__",
+          "reason": "named_class_constructor"
+        },
+        {
+          "path": "src/itsdangerous/signer.py",
+          "symbol": "Signer.__init__",
+          "reason": "named_class_constructor"
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "symbol": "Serializer.make_signer",
+          "reason": "named_parameter_state_forwarder"
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "symbol": "Serializer.iter_unsigners",
+          "reason": "named_parameter_state_forwarder"
+        },
+        {
+          "path": "src/itsdangerous/jws.py",
+          "symbol": "JSONWebSignatureSerializer.__init__",
+          "reason": "refreshed_seed"
+        }
+      ],
+      "public_final_passed": false,
+      "public_failed_tests": [
+        "test_wrong_salt_rejected"
+      ],
+      "target_passed": false,
+      "controls_passed": false,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6386,
+        "completion_tokens": 879,
+        "known_prompt_tokens": 6386,
+        "known_completion_tokens": 879,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7265,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "public-feedback",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "feedback_prompt_sha256": "e903bd66b8e56119ded8916fff052b7c65bcc4b0424432ed857ed93a38fef9bc",
+      "feedback_evidence_chars": 4656,
+      "feedback_selection": null,
+      "public_final_passed": false,
+      "public_failed_tests": [
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "target_passed": false,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6351,
+        "completion_tokens": 459,
+        "known_prompt_tokens": 6351,
+        "known_completion_tokens": 459,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6810,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    }
+  ],
+  "validation": {
+    "targeted_passed": 23,
+    "full_passed": 924,
+    "full_skipped": 2,
+    "full_seconds": 165.71,
+    "ruff": "passed",
+    "linux_container_http_rerun": false
+  },
+  "limitations": [
+    "Two inspected development defects, repeated three times; no unseen benchmark.",
+    "AST syntax heuristic, not dataflow or complete call graph.",
+    "Same initial prompt, feedback checks and two-call cap; only context packing differs.",
+    "Independent Target/Controls, not complete upstream tests.",
+    "No defaults changed; original snapshots and logs remain in ignored .tmp."
+  ]
+}
