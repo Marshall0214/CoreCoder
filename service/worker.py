@@ -1,6 +1,7 @@
 """One trusted fixture task per isolated service process."""
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -14,7 +15,7 @@ def execute(path):
     job = json.loads(path.read_text(encoding='utf-8'))
     task = load_suite(SUITES[job['request']['suite']], [job['request']['task_id']])[0]
     config = RunConfig(mode=job['request']['mode'], model='qwen3.5:27b',
-                       base_url='http://localhost:11434/v1', reasoning_effort='none',
+                       base_url=os.environ.get('CORECODER_MODEL_BASE_URL', 'http://localhost:11434/v1'), reasoning_effort='none',
                        search_backend=job['request']['search_backend'], token_budget=15000,
                        wall_timeout=180, test_timeout=15)
     report = run_task(task, config, path.parent / 'runs')
