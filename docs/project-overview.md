@@ -36,6 +36,7 @@
 | 补丁差异反馈结果（未采用） | [patch-delta-v1.md](patch-delta-v1.md) |
 | 函数替换协议（可选原型，未采用） | [function-replace-v1.md](function-replace-v1.md) |
 | 从起始源码重新修复（未采用） | [restart-feedback-v1.md](restart-feedback-v1.md) |
+| 公开执行参数轨迹（未采用） | [parameter-trace-v1.md](parameter-trace-v1.md) |
 | 当前核心优化与停止条件 | [core-repair-next.md](core-repair-next.md) |
 | 任务级暂存反馈与语义发布（可选 Worker） | [tentative-feedback-v1.md](tentative-feedback-v1.md) |
 | 最终候选公开语义验收事务（离线） | [semantic-patch-v1.md](semantic-patch-v1.md) |
@@ -102,7 +103,7 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新源码重启实验后 Windows 全量 **1,176 passed、2 skipped**，见 [实验报告](restart-feedback-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新参数轨迹实验后 Windows 全量 **1,181 passed、2 skipped**，见 [实验报告](parameter-trace-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -153,3 +154,6 @@ Qwen / DeepSeek 固定统一反馈流程对照已完成：六项已查看缺陷�
 
 
 源码重启反馈实验完成：失败观察保留，候选精确恢复到任务起始源码后重新生成补丁。两项全新配对原组 1/2、重启组 0/2，Controls 均 1/2；八次本地 Qwen 调用、35,012 Token，无预算或结构拒绝。回滚可执行，但语义错误仍再次生成。Windows 1,176 passed、2 skipped；不采用、不扩任务、不改服务。 见 [实验报告](restart-feedback-v1.md)。
+
+
+公开执行参数轨迹完成：两组采集公开检查并校验普通执行结果一致；候选在原 6,000 字符证据预算内加入实际参数与到达行。none-salt 获得六个事件仍失败，Click 无空间加入有效轨迹且两组通过。两组均 1/2，none-salt 最终 AST 成对相同；八次 Qwen 请求 34,252 Token。Windows 1,181 passed、2 skipped。不采用、不扩此策略、不改服务；后续先检查任务覆盖与失败类型，避免继续围绕单例叠加反馈字段。 见 [实验报告](parameter-trace-v1.md)。

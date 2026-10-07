@@ -30,7 +30,7 @@
 
 | 范围 | 已记录结果 | 版本化来源 |
 | --- | --- | --- |
-| 最新 Windows 全量 | 1,176 passed、2 skipped | [源码重启摘要](restart-feedback-v1.json)；含上游与扩展测试 |
+| 最新 Windows 全量 | 1,181 passed、2 skipped | [参数轨迹摘要](parameter-trace-v1.json)；含上游与扩展测试 |
 | 历史 Linux 专项 | 71 passed | [审批验收](workflow-approval-acceptance-v1.json) |
 | 历史容器端到端 | 22 项检查通过 | 同上，container.checks |
 | 历史真实 HTTP 审批故障 | 18 项检查通过 | 同上，host.http_checks |
@@ -67,3 +67,6 @@
 
 
 源码重启反馈实验完成：失败观察保留，候选精确恢复到任务起始源码后重新生成补丁。两项全新配对原组 1/2、重启组 0/2，Controls 均 1/2；八次本地 Qwen 调用、35,012 Token，无预算或结构拒绝。回滚可执行，但语义错误仍再次生成。Windows 1,176 passed、2 skipped；不采用、不扩任务、不改服务。 见 [实验报告](restart-feedback-v1.md)。
+
+
+公开执行参数轨迹完成：两组采集公开检查并校验普通执行结果一致；候选在原 6,000 字符证据预算内加入实际参数与到达行。none-salt 获得六个事件仍失败，Click 无空间加入有效轨迹且两组通过。两组均 1/2，none-salt 最终 AST 成对相同；八次 Qwen 请求 34,252 Token。Windows 1,181 passed、2 skipped。不采用、不扩此策略、不改服务；后续先检查任务覆盖与失败类型，避免继续围绕单例叠加反馈字段。 见 [实验报告](parameter-trace-v1.md)。
