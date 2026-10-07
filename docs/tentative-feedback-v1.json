@@ -1,0 +1,3294 @@
+{
+  "protocol": "tentative-feedback-summary-v1",
+  "complete": true,
+  "model_calls": 0,
+  "private_grader_calls": 0,
+  "summary": {
+    "correct_published": 1,
+    "wrong_task_start_preserved": 1,
+    "matched_requests_except_unittest_timing": 4,
+    "exact_prompt_matches": 3
+  },
+  "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "adapter_hashes": {
+    "docs/experiments/tentative_feedback_audit_v1.py": "31f4f8b7df5aa946cd32978778e41fae049837d702c353431e5b2751609104ec",
+    "docs/experiments/tentative_feedback_worker_v1.py": "b83032bbdc44e3ab99e47936afe68521b0dd706cc3dfb9ef2c0d209609923eb0",
+    "docs/experiments/semantic_patch_transaction_v1.py": "5bb75f565d8592e0927d80a39362c2aaf16a9327093788c078836af659e59c85",
+    "docs/experiments/edited_context_worker_v1.py": "93260a76856d55a73bbdc913b1376aa8c97cf531e419823b85a6965d08e7b1ed",
+    "docs/experiments/edited_context_v1.py": "bb6ecbc0843cb18690700593d99f8effc425fae0ad8cee7ff859a004753780a7",
+    "docs/experiments/source_contract_context_v1.py": "f06bd16db2bebceb74bdf2db9956372cb8c4eca930eff806e1fbb4bffcb41406",
+    "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+    "docs/experiments/runtime_observation_v1.py": "643a052493a0303f27596ee05f84ef962b2e3a989a74da77906aee341862367d",
+    ".tmp/real-defects/edited-context-compare-v1/experiment.json": "0dbb5da6dbb3372d6669af0aedc8ea33d0ad3246e4d4f3edc8cebb6ed3c32d43",
+    "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+    ".tmp/real-defects/edited-context-compare-v1/click-usage-empty/edited-first/job.json": "b3803dc4a2a85b28ce0e44d4e896fc07f55bc2c73406de474c82abbfa4c91923",
+    ".tmp/real-defects/edited-context-compare-v1/click-usage-empty/edited-first/response.txt": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+    ".tmp/real-defects/edited-context-compare-v1/click-usage-empty/edited-first/feedback-response.txt": "930046f1f6b13838bad69d82f88089ceb59b1eda05406aa0f9eed4353136bf26",
+    ".tmp/real-defects/edited-context-compare-v1/click-usage-empty/edited-first/worker-result.json": "377113d3b3fa044cba8874bb3c1937a3d563ee3d03331ca19877cad208bd7368",
+    ".tmp/real-defects/edited-context-compare-v1/click-usage-empty/edited-first/initial-messages.json": "62f99f88666bcbd33058799ef330226f1abdd70db500493f1f794fc6901cd3e8",
+    ".tmp/real-defects/edited-context-compare-v1/click-usage-empty/edited-first/feedback-messages.json": "f9fffa4b8f2ef0f6126f80e0bbfe387e87afc78497fd1f169be081fc33c59e47",
+    "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+    ".tmp/real-defects/edited-context-compare-v1/itsdangerous-none-salt/edited-first/job.json": "7b5ffbc92616f29f3bec75e366256aedb06810a54109afd80ba67a6f25fe6ca8",
+    ".tmp/real-defects/edited-context-compare-v1/itsdangerous-none-salt/edited-first/response.txt": "eb6e386b9f09383a9fbbabacdf7f7a3394cde329af578c063a395435978ba3bb",
+    ".tmp/real-defects/edited-context-compare-v1/itsdangerous-none-salt/edited-first/feedback-response.txt": "2df56e112dd6b9c8cc53d055d39f544658297a83fe58e497560ee95ddaa2d6fd",
+    ".tmp/real-defects/edited-context-compare-v1/itsdangerous-none-salt/edited-first/worker-result.json": "4698673193aaa9949385e8d0ac53ff7554406708bb42f334f3f79c2b0fc07a72",
+    ".tmp/real-defects/edited-context-compare-v1/itsdangerous-none-salt/edited-first/initial-messages.json": "95b49444ed4a1562038471b5ec71fdbf30d4f620e8747c2d801befbdcd8ddf65",
+    ".tmp/real-defects/edited-context-compare-v1/itsdangerous-none-salt/edited-first/feedback-messages.json": "a11d288b322760a718b87763e31d8081155e1af7d47dbb2652ed22e1fd0fe614"
+  },
+  "runs": [
+    {
+      "task_id": "click-usage-empty",
+      "matched_expected": true,
+      "historical_passed": true,
+      "replayed_requests": 2,
+      "matched_prompt_hashes": [
+        {
+          "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+          "historical_prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+          "comparison": "exact",
+          "matched_historical": true
+        },
+        {
+          "prompt_hash": "ab312d6becea2a9275ba8f554dca355912d7d0604511074fae93fa5775ad2118",
+          "historical_prompt_hash": "ab312d6becea2a9275ba8f554dca355912d7d0604511074fae93fa5775ad2118",
+          "comparison": "exact",
+          "matched_historical": true
+        }
+      ],
+      "replayed_usage_not_new_inference": {
+        "llm_calls": 2,
+        "prompt_tokens": 5412,
+        "completion_tokens": 1726,
+        "known_prompt_tokens": 5412,
+        "known_completion_tokens": 1726,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7138,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "worker": {
+        "status": "completed",
+        "committed": true,
+        "edited_files": [
+          "src/click/core.py",
+          "src/click/formatting.py"
+        ],
+        "attempt": {
+          "status": "completed",
+          "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+          "stages": [
+            {
+              "stage": "initial",
+              "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+              "status": "completed",
+              "evidence_chars": 5578,
+              "transaction": {
+                "accepted": true,
+                "committed": true,
+                "reason": "committed",
+                "changed_files": [
+                  "src/click/formatting.py"
+                ],
+                "duplicates": [],
+                "import": {
+                  "returncode": 0,
+                  "timed_out": false,
+                  "seconds": 0.1754
+                },
+                "original_unchanged": false
+              },
+              "edited_files": [
+                "src/click/formatting.py"
+              ],
+              "edited_symbols": [
+                {
+                  "path": "src/click/formatting.py",
+                  "symbol": "HelpFormatter.write_usage"
+                }
+              ]
+            },
+            {
+              "stage": "feedback",
+              "prompt_hash": "ab312d6becea2a9275ba8f554dca355912d7d0604511074fae93fa5775ad2118",
+              "status": "completed",
+              "evidence_chars": 5676,
+              "context_metadata": {
+                "strategy": "edited-functions-first",
+                "retained_symbols": [
+                  [
+                    "src/click/formatting.py",
+                    "HelpFormatter.write_usage"
+                  ]
+                ],
+                "seed_count": 5,
+                "evidence_chars": 5676,
+                "combined_chars": 5676,
+                "max_chars": 6000,
+                "discarded": [
+                  {
+                    "path": "src/click/formatting.py",
+                    "symbol": "HelpFormatter.write_usage",
+                    "reason": "overlap"
+                  }
+                ]
+              },
+              "transaction": {
+                "accepted": true,
+                "committed": true,
+                "reason": "committed",
+                "changed_files": [
+                  "src/click/core.py",
+                  "src/click/formatting.py"
+                ],
+                "duplicates": [],
+                "import": {
+                  "returncode": 0,
+                  "timed_out": false,
+                  "seconds": 0.2186
+                },
+                "original_unchanged": false
+              },
+              "edited_files": [
+                "src/click/core.py",
+                "src/click/formatting.py"
+              ],
+              "edited_symbols": [
+                {
+                  "path": "src/click/formatting.py",
+                  "symbol": "HelpFormatter.write_usage"
+                },
+                {
+                  "path": "src/click/core.py",
+                  "symbol": "Command.format_usage"
+                }
+              ]
+            }
+          ],
+          "feedback_attempts": 1,
+          "feedback_kind": "public",
+          "public_checks": {
+            "original": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1584,
+              "tests_run": 4,
+              "passed": false,
+              "assertion_failure": true,
+              "execution_error": false,
+              "classification": "assertion_failure",
+              "observation": {
+                "version": 1,
+                "complete": true,
+                "phase": "execution",
+                "tests_run": 4,
+                "issues": [
+                  {
+                    "test": "test_command_empty_and_none_metavar (test_admission.PublicContract.test_command_empty_and_none_metavar) (metavar='')",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'' != 'Usage: demo'\n+ Usage: demo",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 28,
+                        "function": "test_command_empty_and_none_metavar"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_command_empty_and_none_metavar (test_admission.PublicContract.test_command_empty_and_none_metavar) (metavar=None)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'' != 'Usage: demo'\n+ Usage: demo",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 28,
+                        "function": "test_command_empty_and_none_metavar"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_empty_usage_narrow_custom_prefix (test_admission.PublicContract.test_empty_usage_narrow_custom_prefix)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'Execute: demo \\n\\n' != 'Execute: demo\\n'\n- Execute: demo \n?              -\n+ Execute: demo\n- \n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 18,
+                        "function": "test_empty_usage_narrow_custom_prefix"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_empty_usage_wide (test_admission.PublicContract.test_empty_usage_wide)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'\\n' != 'Usage: demo\\n'\n- \n+ Usage: demo\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 15,
+                        "function": "test_empty_usage_wide"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  }
+                ],
+                "skipped": 0,
+                "expected_failures": 0,
+                "unexpected_successes": 0,
+                "successful": false
+              },
+              "stderr": "stderr.txt",
+              "stdout": "stdout.txt"
+            },
+            "candidate": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1524,
+              "tests_run": 4,
+              "passed": false,
+              "assertion_failure": true,
+              "execution_error": false,
+              "classification": "assertion_failure",
+              "observation": {
+                "version": 1,
+                "complete": true,
+                "phase": "execution",
+                "tests_run": 4,
+                "issues": [
+                  {
+                    "test": "test_command_empty_and_none_metavar (test_admission.PublicContract.test_command_empty_and_none_metavar) (metavar='')",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'' != 'Usage: demo'\n+ Usage: demo",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 28,
+                        "function": "test_command_empty_and_none_metavar"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_command_empty_and_none_metavar (test_admission.PublicContract.test_command_empty_and_none_metavar) (metavar=None)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'' != 'Usage: demo'\n+ Usage: demo",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 28,
+                        "function": "test_command_empty_and_none_metavar"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_empty_usage_wide (test_admission.PublicContract.test_empty_usage_wide)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'\\n' != 'Usage: demo\\n'\n- \n+ Usage: demo\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 15,
+                        "function": "test_empty_usage_wide"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  }
+                ],
+                "skipped": 0,
+                "expected_failures": 0,
+                "unexpected_successes": 0,
+                "successful": false
+              },
+              "stderr": "stderr.txt",
+              "stdout": "stdout.txt"
+            },
+            "final": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1537,
+              "tests_run": 4,
+              "passed": true,
+              "assertion_failure": false,
+              "execution_error": false,
+              "classification": "passed",
+              "observation": {
+                "version": 1,
+                "complete": true,
+                "phase": "execution",
+                "tests_run": 4,
+                "issues": [],
+                "skipped": 0,
+                "expected_failures": 0,
+                "unexpected_successes": 0,
+                "successful": true
+              },
+              "stderr": "stderr.txt",
+              "stdout": "stdout.txt"
+            }
+          },
+          "observation_decision": {
+            "classification": "assertion_failure",
+            "eligible": true
+          },
+          "feedback_evidence_metadata": {
+            "evidence_chars": 5676,
+            "max_chars": 6000,
+            "seed_count": 5,
+            "max_seeds": 5,
+            "dependency_depth": 0,
+            "discarded": [],
+            "oversized_fallback": "none"
+          },
+          "edited_files": [
+            "src/click/core.py",
+            "src/click/formatting.py"
+          ]
+        },
+        "lifecycle": [
+          "tentative",
+          "feedback_finished",
+          "validating",
+          "committed"
+        ],
+        "task_start_sha256": "867bd127b4f23ee230405f7485bd1d95ca6e01410f1624879690fdc3c39c73aa",
+        "original_unchanged": false,
+        "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+        "feedback_attempts": 1,
+        "tentative_edited_files": [
+          "src/click/core.py",
+          "src/click/formatting.py"
+        ],
+        "publication": {
+          "accepted": true,
+          "committed": true,
+          "reason": "committed",
+          "changed_files": [
+            "src/click/core.py",
+            "src/click/formatting.py"
+          ],
+          "structural": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/click/core.py",
+              "src/click/formatting.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.2133
+            },
+            "original_unchanged": false
+          },
+          "public_check": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1318,
+            "tests_run": 4,
+            "passed": true,
+            "assertion_failure": false,
+            "execution_error": false,
+            "classification": "passed",
+            "observation": {
+              "version": 1,
+              "complete": true,
+              "phase": "execution",
+              "tests_run": 4,
+              "issues": [],
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true
+            },
+            "stderr": "stderr.txt",
+            "stdout": "stdout.txt"
+          },
+          "rollback": null,
+          "original_before_sha256": "867bd127b4f23ee230405f7485bd1d95ca6e01410f1624879690fdc3c39c73aa",
+          "canonical_sha256": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+          "expected_public_tests": 4,
+          "candidate_sha256": "e36891c94d8e4e750e9da570198aa9ecac089b9526c3f265711e49564e1ea253",
+          "original_unchanged": false,
+          "original_after_sha256": "e36891c94d8e4e750e9da570198aa9ecac089b9526c3f265711e49564e1ea253"
+        },
+        "task_end_sha256": "e36891c94d8e4e750e9da570198aa9ecac089b9526c3f265711e49564e1ea253",
+        "attempt_artifacts": "tentative-source; initial/feedback messages and public/transaction logs"
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "matched_expected": true,
+      "historical_passed": false,
+      "replayed_requests": 2,
+      "matched_prompt_hashes": [
+        {
+          "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+          "historical_prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+          "comparison": "exact",
+          "matched_historical": true
+        },
+        {
+          "prompt_hash": "b15e4f72aebf0e41170b3716155cd0ad7c4ddb000bb6152e356674436be19f48",
+          "historical_prompt_hash": "ade745c4096689b44f77001bfbd1ac2e82244464d5d5307b34548ed47c0756e7",
+          "comparison": "unittest_timing_normalized",
+          "matched_historical": true
+        }
+      ],
+      "replayed_usage_not_new_inference": {
+        "llm_calls": 2,
+        "prompt_tokens": 9175,
+        "completion_tokens": 570,
+        "known_prompt_tokens": 9175,
+        "known_completion_tokens": 570,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 9745,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "worker": {
+        "status": "public_check_failed",
+        "committed": false,
+        "edited_files": [],
+        "attempt": {
+          "status": "completed",
+          "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+          "stages": [
+            {
+              "stage": "initial",
+              "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+              "status": "completed",
+              "evidence_chars": 3945,
+              "context_metadata": {
+                "omitted_fact_rows": [],
+                "inference": "static local facts only; no expected fix or runtime proof",
+                "contract_chars": 1684,
+                "evidence_chars": 3945,
+                "combined_chars": 5629,
+                "max_chars": 6000,
+                "omitted_symbols": [
+                  "JSONWebSignatureSerializer.__init__"
+                ],
+                "strategy": "source-facts-plus-constructor-forwarding",
+                "seed_count": 4
+              },
+              "transaction": {
+                "accepted": true,
+                "committed": true,
+                "reason": "committed",
+                "changed_files": [
+                  "src/itsdangerous/serializer.py"
+                ],
+                "duplicates": [],
+                "import": {
+                  "returncode": 0,
+                  "timed_out": false,
+                  "seconds": 0.0996
+                },
+                "original_unchanged": false
+              },
+              "edited_files": [
+                "src/itsdangerous/serializer.py"
+              ],
+              "edited_symbols": [
+                {
+                  "path": "src/itsdangerous/serializer.py",
+                  "symbol": "Serializer.make_signer"
+                },
+                {
+                  "path": "src/itsdangerous/serializer.py",
+                  "symbol": "Serializer.iter_unsigners"
+                }
+              ]
+            },
+            {
+              "stage": "feedback",
+              "prompt_hash": "b15e4f72aebf0e41170b3716155cd0ad7c4ddb000bb6152e356674436be19f48",
+              "status": "completed",
+              "evidence_chars": 4297,
+              "context_metadata": {
+                "omitted_fact_rows": [],
+                "inference": "static local facts only; no expected fix or runtime proof",
+                "contract_chars": 1594,
+                "evidence_chars": 4297,
+                "combined_chars": 5891,
+                "max_chars": 6000,
+                "omitted_symbols": [
+                  "Serializer.dumps"
+                ],
+                "strategy": "edited-functions-first",
+                "seed_count": 5,
+                "retained_symbols": [
+                  [
+                    "src/itsdangerous/serializer.py",
+                    "Serializer.make_signer"
+                  ],
+                  [
+                    "src/itsdangerous/serializer.py",
+                    "Serializer.iter_unsigners"
+                  ]
+                ],
+                "discarded": [
+                  {
+                    "path": "src/itsdangerous/jws.py",
+                    "symbol": "JSONWebSignatureSerializer.__init__",
+                    "reason": "budget"
+                  }
+                ]
+              },
+              "transaction": {
+                "accepted": true,
+                "committed": true,
+                "reason": "committed",
+                "changed_files": [
+                  "src/itsdangerous/serializer.py",
+                  "src/itsdangerous/signer.py"
+                ],
+                "duplicates": [],
+                "import": {
+                  "returncode": 0,
+                  "timed_out": false,
+                  "seconds": 0.0904
+                },
+                "original_unchanged": false
+              },
+              "edited_files": [
+                "src/itsdangerous/serializer.py",
+                "src/itsdangerous/signer.py"
+              ],
+              "edited_symbols": [
+                {
+                  "path": "src/itsdangerous/signer.py",
+                  "symbol": "Signer.__init__"
+                },
+                {
+                  "path": "src/itsdangerous/serializer.py",
+                  "symbol": "Serializer.__init__"
+                }
+              ]
+            }
+          ],
+          "feedback_attempts": 1,
+          "feedback_kind": "public",
+          "public_checks": {
+            "original": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1032,
+              "tests_run": 11,
+              "passed": false,
+              "assertion_failure": true,
+              "execution_error": false,
+              "classification": "assertion_failure",
+              "observation": {
+                "version": 1,
+                "complete": true,
+                "phase": "execution",
+                "tests_run": 11,
+                "issues": [
+                  {
+                    "test": "test_constructor_none_distinct_from_omission (test_admission.PublicContract.test_constructor_none_distinct_from_omission)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 73,
+                        "function": "test_constructor_none_distinct_from_omission"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': None}, method={})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': None}, method={'salt': None})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_serializer_none_matches_explicit_signer (test_admission.PublicContract.test_serializer_none_matches_explicit_signer)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 27,
+                        "function": "test_serializer_none_matches_explicit_signer"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_serializer_none_round_trip (test_admission.PublicContract.test_serializer_none_round_trip)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 33,
+                        "function": "test_serializer_none_round_trip"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_signer_none_uses_signer_default (test_admission.PublicContract.test_signer_none_uses_signer_default)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 20,
+                        "function": "test_signer_none_uses_signer_default"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  }
+                ],
+                "skipped": 0,
+                "expected_failures": 0,
+                "unexpected_successes": 0,
+                "successful": false
+              },
+              "stderr": "stderr.txt",
+              "stdout": "stdout.txt"
+            },
+            "candidate": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1254,
+              "tests_run": 11,
+              "passed": false,
+              "assertion_failure": true,
+              "execution_error": true,
+              "classification": "candidate_runtime_error",
+              "observation": {
+                "version": 1,
+                "complete": true,
+                "phase": "execution",
+                "tests_run": 11,
+                "issues": [
+                  {
+                    "test": "test_constructor_none_distinct_from_omission (test_admission.PublicContract.test_constructor_none_distinct_from_omission)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 73,
+                        "function": "test_constructor_none_distinct_from_omission"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt='public-explicit')",
+                    "kind": "exception",
+                    "origin": "candidate",
+                    "exception_type": "TypeError",
+                    "message": "unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 80,
+                        "function": "test_explicit_constructor_salt_exact_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/serializer.py",
+                        "line": 197,
+                        "function": "dumps"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 211,
+                        "function": "sign"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 204,
+                        "function": "get_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 190,
+                        "function": "derive_key"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'public-explicit')",
+                    "kind": "exception",
+                    "origin": "candidate",
+                    "exception_type": "TypeError",
+                    "message": "unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 80,
+                        "function": "test_explicit_constructor_salt_exact_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/serializer.py",
+                        "line": 197,
+                        "function": "dumps"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 211,
+                        "function": "sign"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 204,
+                        "function": "get_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 190,
+                        "function": "derive_key"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'')",
+                    "kind": "exception",
+                    "origin": "candidate",
+                    "exception_type": "TypeError",
+                    "message": "unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 80,
+                        "function": "test_explicit_constructor_salt_exact_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/serializer.py",
+                        "line": 197,
+                        "function": "dumps"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 211,
+                        "function": "sign"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 204,
+                        "function": "get_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 190,
+                        "function": "derive_key"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_explicit_string_and_bytes_salts (test_admission.PublicContract.test_explicit_string_and_bytes_salts) (factory='Serializer')",
+                    "kind": "exception",
+                    "origin": "candidate",
+                    "exception_type": "TypeError",
+                    "message": "unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 43,
+                        "function": "test_explicit_string_and_bytes_salts"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/serializer.py",
+                        "line": 197,
+                        "function": "dumps"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 211,
+                        "function": "sign"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 204,
+                        "function": "get_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 190,
+                        "function": "derive_key"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={'salt': None})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': None}, method={})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': None}, method={'salt': None})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={'salt': None})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={'salt': None})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 93,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_omitted_default_matches_independent_signer (test_admission.PublicContract.test_omitted_default_matches_independent_signer)",
+                    "kind": "exception",
+                    "origin": "candidate",
+                    "exception_type": "TypeError",
+                    "message": "unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 70,
+                        "function": "test_omitted_default_matches_independent_signer"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/serializer.py",
+                        "line": 197,
+                        "function": "dumps"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 211,
+                        "function": "sign"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 204,
+                        "function": "get_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 190,
+                        "function": "derive_key"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_omitted_serializer_salt_preserved (test_admission.PublicContract.test_omitted_serializer_salt_preserved)",
+                    "kind": "exception",
+                    "origin": "candidate",
+                    "exception_type": "TypeError",
+                    "message": "unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 48,
+                        "function": "test_omitted_serializer_salt_preserved"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/serializer.py",
+                        "line": 197,
+                        "function": "dumps"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 211,
+                        "function": "sign"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 204,
+                        "function": "get_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 190,
+                        "function": "derive_key"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_serializer_none_matches_explicit_signer (test_admission.PublicContract.test_serializer_none_matches_explicit_signer)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 27,
+                        "function": "test_serializer_none_matches_explicit_signer"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_serializer_none_round_trip (test_admission.PublicContract.test_serializer_none_round_trip)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 33,
+                        "function": "test_serializer_none_round_trip"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_signer_none_uses_signer_default (test_admission.PublicContract.test_signer_none_uses_signer_default)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "Public relation expects successful signing/loading; got TypeError: unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 20,
+                        "function": "test_signer_none_uses_signer_default"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 17,
+                        "function": "expected_success"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_tampered_value_rejected (test_admission.PublicContract.test_tampered_value_rejected)",
+                    "kind": "exception",
+                    "origin": "candidate",
+                    "exception_type": "TypeError",
+                    "message": "unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 57,
+                        "function": "test_tampered_value_rejected"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/serializer.py",
+                        "line": 197,
+                        "function": "dumps"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 211,
+                        "function": "sign"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 204,
+                        "function": "get_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 190,
+                        "function": "derive_key"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_wrong_salt_rejected (test_admission.PublicContract.test_wrong_salt_rejected)",
+                    "kind": "exception",
+                    "origin": "candidate",
+                    "exception_type": "TypeError",
+                    "message": "unsupported operand type(s) for +: 'NoneType' and 'bytes'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 51,
+                        "function": "test_wrong_salt_rejected"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/serializer.py",
+                        "line": 197,
+                        "function": "dumps"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 211,
+                        "function": "sign"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 204,
+                        "function": "get_signature"
+                      },
+                      {
+                        "origin": "candidate",
+                        "path": "itsdangerous/signer.py",
+                        "line": 190,
+                        "function": "derive_key"
+                      }
+                    ]
+                  }
+                ],
+                "skipped": 0,
+                "expected_failures": 0,
+                "unexpected_successes": 0,
+                "successful": false
+              },
+              "stderr": "stderr.txt",
+              "stdout": "stdout.txt"
+            },
+            "final": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1119,
+              "tests_run": 11,
+              "passed": false,
+              "assertion_failure": true,
+              "execution_error": false,
+              "classification": "assertion_failure",
+              "observation": {
+                "version": 1,
+                "complete": true,
+                "phase": "execution",
+                "tests_run": 11,
+                "issues": [
+                  {
+                    "test": "test_constructor_none_distinct_from_omission (test_admission.PublicContract.test_constructor_none_distinct_from_omission)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' == '{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM'",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 74,
+                        "function": "test_constructor_none_distinct_from_omission"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 882,
+                        "function": "assertNotEqual"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt='public-explicit')",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 80,
+                        "function": "test_explicit_constructor_salt_exact_signature"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'public-explicit')",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 80,
+                        "function": "test_explicit_constructor_salt_exact_signature"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'')",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 80,
+                        "function": "test_explicit_constructor_salt_exact_signature"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 94,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={'salt': None})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 94,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 94,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={'salt': None})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 94,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 94,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={'salt': None})",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 538,
+                        "function": "subTest"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 94,
+                        "function": "test_method_salt_override_matrix"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_omitted_default_matches_independent_signer (test_admission.PublicContract.test_omitted_default_matches_independent_signer)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 70,
+                        "function": "test_omitted_default_matches_independent_signer"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 873,
+                        "function": "assertEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 1253,
+                        "function": "assertMultiLineEqual"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 703,
+                        "function": "fail"
+                      }
+                    ]
+                  },
+                  {
+                    "test": "test_wrong_salt_rejected (test_admission.PublicContract.test_wrong_salt_rejected)",
+                    "kind": "assertion",
+                    "origin": "assertion",
+                    "exception_type": "AssertionError",
+                    "message": "BadSignature not raised",
+                    "frames": [
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 57,
+                        "function": "testPartExecutor"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 623,
+                        "function": "run"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 579,
+                        "function": "_callTestMethod"
+                      },
+                      {
+                        "origin": "harness",
+                        "path": "test_admission.py",
+                        "line": 52,
+                        "function": "test_wrong_salt_rejected"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 262,
+                        "function": "__exit__"
+                      },
+                      {
+                        "origin": "unknown",
+                        "path": "<external>",
+                        "line": 199,
+                        "function": "_raiseFailure"
+                      }
+                    ]
+                  }
+                ],
+                "skipped": 0,
+                "expected_failures": 0,
+                "unexpected_successes": 0,
+                "successful": false
+              },
+              "stderr": "stderr.txt",
+              "stdout": "stdout.txt"
+            }
+          },
+          "observation_decision": {
+            "classification": "candidate_runtime_error",
+            "eligible": true
+          },
+          "feedback_evidence_metadata": {
+            "evidence_chars": 4651,
+            "max_chars": 6000,
+            "seed_count": 5,
+            "max_seeds": 5,
+            "dependency_depth": 0,
+            "discarded": [],
+            "oversized_fallback": "none",
+            "selection": [
+              {
+                "path": "src/itsdangerous/serializer.py",
+                "symbol": "Serializer.__init__",
+                "reason": "named_class_constructor"
+              },
+              {
+                "path": "src/itsdangerous/signer.py",
+                "symbol": "Signer.__init__",
+                "reason": "named_class_constructor"
+              },
+              {
+                "path": "src/itsdangerous/jws.py",
+                "symbol": "JSONWebSignatureSerializer.__init__",
+                "reason": "refreshed_seed"
+              },
+              {
+                "path": "src/itsdangerous/signer.py",
+                "symbol": "Signer.unsign",
+                "reason": "refreshed_seed"
+              },
+              {
+                "path": "src/itsdangerous/serializer.py",
+                "symbol": "Serializer.dumps",
+                "reason": "refreshed_seed"
+              }
+            ],
+            "strategy": "public_named_class_parameter_forwarding"
+          },
+          "edited_files": [
+            "src/itsdangerous/serializer.py",
+            "src/itsdangerous/signer.py"
+          ]
+        },
+        "lifecycle": [
+          "tentative",
+          "feedback_finished",
+          "validating",
+          "rejected"
+        ],
+        "task_start_sha256": "4c96ff54075c6f30286d947a2b1de3490265c3a05f664bb9ac86b62248264f38",
+        "original_unchanged": true,
+        "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+        "feedback_attempts": 1,
+        "tentative_edited_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "publication": {
+          "accepted": false,
+          "committed": false,
+          "reason": "public_check_failed",
+          "changed_files": [
+            "src/itsdangerous/serializer.py",
+            "src/itsdangerous/signer.py"
+          ],
+          "structural": {
+            "accepted": true,
+            "committed": true,
+            "reason": "committed",
+            "changed_files": [
+              "src/itsdangerous/serializer.py",
+              "src/itsdangerous/signer.py"
+            ],
+            "duplicates": [],
+            "import": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1023
+            },
+            "original_unchanged": false
+          },
+          "public_check": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1195,
+            "tests_run": 11,
+            "passed": false,
+            "assertion_failure": true,
+            "execution_error": false,
+            "classification": "assertion_failure",
+            "observation": {
+              "version": 1,
+              "complete": true,
+              "phase": "execution",
+              "tests_run": 11,
+              "issues": [
+                {
+                  "test": "test_constructor_none_distinct_from_omission (test_admission.PublicContract.test_constructor_none_distinct_from_omission)",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' == '{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM'",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 623,
+                      "function": "run"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 579,
+                      "function": "_callTestMethod"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 74,
+                      "function": "test_constructor_none_distinct_from_omission"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 882,
+                      "function": "assertNotEqual"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt='public-explicit')",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 538,
+                      "function": "subTest"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 80,
+                      "function": "test_explicit_constructor_salt_exact_signature"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'public-explicit')",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.6owjkN7CkJx887lVtAFbRI0gl5E\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 538,
+                      "function": "subTest"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 80,
+                      "function": "test_explicit_constructor_salt_exact_signature"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_explicit_constructor_salt_exact_signature (test_admission.PublicContract.test_explicit_constructor_salt_exact_signature) (salt=b'')",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 538,
+                      "function": "subTest"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 80,
+                      "function": "test_explicit_constructor_salt_exact_signature"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={})",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 538,
+                      "function": "subTest"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 94,
+                      "function": "test_method_salt_override_matrix"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={}, method={'salt': None})",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 538,
+                      "function": "subTest"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 94,
+                      "function": "test_method_salt_override_matrix"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={})",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 538,
+                      "function": "subTest"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 94,
+                      "function": "test_method_salt_override_matrix"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b'instance-salt'}, method={'salt': None})",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.GcyY8V0ieB7KvhxBhygwv6V8lfI\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 538,
+                      "function": "subTest"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 94,
+                      "function": "test_method_salt_override_matrix"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={})",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 538,
+                      "function": "subTest"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 94,
+                      "function": "test_method_salt_override_matrix"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_method_salt_override_matrix (test_admission.PublicContract.test_method_salt_override_matrix) (constructor={'salt': b''}, method={'salt': None})",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.19alCd40k7PM8mCRcTxGwzg36VU\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 538,
+                      "function": "subTest"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 94,
+                      "function": "test_method_salt_override_matrix"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_omitted_default_matches_independent_signer (test_admission.PublicContract.test_omitted_default_matches_independent_signer)",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "'{\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM' != '{\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c'\n- {\"label\": \"public-example\", \"count\": 2}.KJqbExk1LGMNM0QbCZf1Foqs7JM\n+ {\"label\": \"public-example\", \"count\": 2}.xKRytpUbClAhaIlpdPjMAviu44c\n",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 623,
+                      "function": "run"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 579,
+                      "function": "_callTestMethod"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 70,
+                      "function": "test_omitted_default_matches_independent_signer"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 873,
+                      "function": "assertEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 1253,
+                      "function": "assertMultiLineEqual"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 703,
+                      "function": "fail"
+                    }
+                  ]
+                },
+                {
+                  "test": "test_wrong_salt_rejected (test_admission.PublicContract.test_wrong_salt_rejected)",
+                  "kind": "assertion",
+                  "origin": "assertion",
+                  "exception_type": "AssertionError",
+                  "message": "BadSignature not raised",
+                  "frames": [
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 57,
+                      "function": "testPartExecutor"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 623,
+                      "function": "run"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 579,
+                      "function": "_callTestMethod"
+                    },
+                    {
+                      "origin": "harness",
+                      "path": "test_admission.py",
+                      "line": 52,
+                      "function": "test_wrong_salt_rejected"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 262,
+                      "function": "__exit__"
+                    },
+                    {
+                      "origin": "unknown",
+                      "path": "<external>",
+                      "line": 199,
+                      "function": "_raiseFailure"
+                    }
+                  ]
+                }
+              ],
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false
+            },
+            "stderr": "stderr.txt",
+            "stdout": "stdout.txt"
+          },
+          "rollback": null,
+          "original_before_sha256": "4c96ff54075c6f30286d947a2b1de3490265c3a05f664bb9ac86b62248264f38",
+          "canonical_sha256": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+          "expected_public_tests": 11,
+          "candidate_sha256": "7d6423b253905a4c63b73563b7d59cf869bd726573aa61486117d46e4ae0038e",
+          "original_unchanged": true,
+          "original_after_sha256": "4c96ff54075c6f30286d947a2b1de3490265c3a05f664bb9ac86b62248264f38"
+        },
+        "task_end_sha256": "4c96ff54075c6f30286d947a2b1de3490265c3a05f664bb9ac86b62248264f38",
+        "attempt_artifacts": "tentative-source; initial/feedback messages and public/transaction logs"
+      }
+    }
+  ],
+  "validation": {
+    "new_tests": 16,
+    "targeted_passed": 16,
+    "targeted_seconds": 4.39,
+    "ruff": "passed",
+    "linux_docker_http_rerun": false,
+    "windows_passed": 1112,
+    "windows_skipped": 2,
+    "windows_seconds": 167.65,
+    "document_links": 189,
+    "frozen_inputs": "passed",
+    "readme_constraint": "passed"
+  },
+  "raw_artifacts": ".tmp/real-defects/tentative-feedback-audit-v1-final",
+  "decision": "Opt-in task-level tentative feedback integrated and validated offline; no default API integration or new repair-rate evidence."
+}

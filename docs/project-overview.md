@@ -31,6 +31,7 @@
 | Thinking 开关人工小任务校准 | [thinking-calibration-v1.md](thinking-calibration-v1.md) |
 | Qwen / DeepSeek 固定流程对照 | [provider-compare-v1.md](provider-compare-v1.md) |
 | Qwen 源码契约上下文与回归 | [source-contract-context-v1.md](source-contract-context-v1.md) |
+| 任务级暂存反馈与语义发布（可选 Worker） | [tentative-feedback-v1.md](tentative-feedback-v1.md) |
 | 最终候选公开语义验收事务（离线） | [semantic-patch-v1.md](semantic-patch-v1.md) |
 | 公开修复假设校验与结果追踪（未采用） | [repair-hypothesis-v1.md](repair-hypothesis-v1.md) |
 | 已编辑函数当前版本保留与对照 | [edited-context-v1.md](edited-context-v1.md) |
@@ -90,7 +91,7 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新语义验收事务后 Windows 全量 **1,096 passed、2 skipped**，见 [语义事务报告](semantic-patch-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新任务级暂存反馈后 Windows 全量 **1,112 passed、2 skipped**，见 [暂存反馈报告](tentative-feedback-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -125,3 +126,5 @@ Qwen / DeepSeek 固定统一反馈流程对照已完成：六项已查看缺陷�
 公开修复假设实验完成：写回前校验真实公开测试、当前函数引用与失败覆盖，执行后标记假设结果。初版校验过度拒绝已修正并单独复测；v1 六项原/假设 5/6、4/6，v2 两项 1/2、0/2，不采用为默认。共 24 次本地 Qwen 请求、0 次 DeepSeek 请求，全量 1,081 passed、2 skipped。下一步先离线验证最终候选的公开语义检查与提交/回滚关系，见 [报告](repair-hypothesis-v1.md)。
 
 最终候选公开语义验收事务离线完成：副本通过结构与公开行为检查后才写回，失败保留诊断且不写原文；写入异常记录恢复结果。3/3 历史语义错误拒绝，3/3 历史/人工正确补丁提交，0 次模型与私有评分请求。全量 1,096 passed、2 skipped。尚未接入 Worker 或默认服务；下一步验证第一轮暂存、一次反馈及任务级失败恢复的生命周期，见 [报告](semantic-patch-v1.md)。
+
+任务级暂存反馈生命周期完成：第一轮与一次反馈只改暂存区，最终公开语义检查后发布净修改；失败保持任务起始版本，外部变化不覆盖。两项历史完整回答重放：正确修复发布、错误修复不发布，四次请求除 unittest 耗时行外一致；0 次新增模型与私有评分请求。全量 1,112 passed、2 skipped。接入可选 Worker，未接入默认 API；下一步固定模型与预算做两项全新发布对照，见 [报告](tentative-feedback-v1.md)。
