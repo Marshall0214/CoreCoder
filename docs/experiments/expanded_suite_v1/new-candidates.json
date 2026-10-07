@@ -1,0 +1,278 @@
+{
+  "target_new_tasks": 17,
+  "cases": [
+    {
+      "task_id": "toolz-interpose-empty",
+      "repo": "pytoolz/toolz",
+      "before_commit": "55ce42dc3b6f786ed9d4e38633cc5cfe3622a526",
+      "after_commit": "d2eba0374a452c2b18fe188b04527e22bda3548c",
+      "package": "toolz",
+      "source_root": ".",
+      "description": "interpose must return an empty iterator for an empty input instead of raising StopIteration. Preserve separation of nonempty inputs.",
+      "upstream_url": "https://github.com/pytoolz/toolz/commit/d2eba0374a452c2b18fe188b04527e22bda3548c",
+      "changed_source_files": [
+        "toolz/itertoolz.py"
+      ],
+      "split": "development",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "toolz-accumulate-empty",
+      "repo": "pytoolz/toolz",
+      "before_commit": "c789e3cff7887f64a259d1364c589e827f59a654",
+      "after_commit": "a69f8a5c9d80b193fce84f5f126d09f4d3108338",
+      "package": "toolz",
+      "source_root": ".",
+      "description": "accumulate must return no elements on empty input without an initial value, and retain an explicitly supplied initial value. Preserve cumulative reduction.",
+      "upstream_url": "https://github.com/pytoolz/toolz/commit/a69f8a5c9d80b193fce84f5f126d09f4d3108338",
+      "changed_source_files": [
+        "toolz/itertoolz.py"
+      ],
+      "split": "development",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "repo": "pytoolz/toolz",
+      "before_commit": "85326bd35bd9bdda25287fffc3f0dff3fea30ab4",
+      "after_commit": "80ae19783d10852619d435253cfc2e052be7a73c",
+      "package": "toolz",
+      "source_root": ".",
+      "description": "join must yield unmatched left rows with right_default for a left outer join, without a NameError. Preserve matched rows and ordinary inner joins.",
+      "upstream_url": "https://github.com/pytoolz/toolz/commit/80ae19783d10852619d435253cfc2e052be7a73c",
+      "changed_source_files": [
+        "toolz/itertoolz.py"
+      ],
+      "split": "development",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "toolz-getter-empty",
+      "repo": "pytoolz/toolz",
+      "before_commit": "379a1ae344a5cdafaceb0fe144fd568285f129e1",
+      "after_commit": "e36b5eae0bfb311d2ef8ba3606d2310d5b31d168",
+      "package": "toolz",
+      "source_root": ".",
+      "description": "getter must support an empty list of indexes by returning an empty tuple for any input. Preserve scalar and singleton index behavior.",
+      "upstream_url": "https://github.com/pytoolz/toolz/commit/e36b5eae0bfb311d2ef8ba3606d2310d5b31d168",
+      "changed_source_files": [
+        "toolz/itertoolz.py"
+      ],
+      "split": "development",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "boltons-backoff-constant",
+      "repo": "mahmoud/boltons",
+      "before_commit": "57cb026b7f47cd2765a0d5acdc83849ed5f1f6a3",
+      "after_commit": "ead236e278ca0466bf468de746b5960fb12d7e5b",
+      "package": "boltons",
+      "source_root": ".",
+      "description": "backoff_iter and backoff must support factor=1 when start equals stop and count is inferred. For unequal endpoints and inferred count raise ValueError rather than arithmetic errors. Preserve explicit-count constant backoff and geometric growth.",
+      "upstream_url": "https://github.com/mahmoud/boltons/commit/ead236e278ca0466bf468de746b5960fb12d7e5b",
+      "changed_source_files": [
+        "boltons/iterutils.py"
+      ],
+      "split": "development",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "boltons-split-zero",
+      "repo": "mahmoud/boltons",
+      "before_commit": "3970a80f63807392e512340c25dc2db473bcba70",
+      "after_commit": "4aa77cddb5d06def130df6f09aefab4018fa487c",
+      "package": "boltons",
+      "source_root": ".",
+      "description": "split_iter with maxsplit=0 must emit one unsplit list of source values, not a nested source object. Support both lists and iterators. Preserve normal separator splitting.",
+      "upstream_url": "https://github.com/mahmoud/boltons/commit/4aa77cddb5d06def130df6f09aefab4018fa487c",
+      "changed_source_files": [
+        "boltons/iterutils.py"
+      ],
+      "split": "development",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "boltons-chunked-bytes",
+      "repo": "mahmoud/boltons",
+      "before_commit": "1819f52f1ed655772c425057fc3e4a9899fba74d",
+      "after_commit": "9b3392a81398d5d12a9faed9102678244cb15d79",
+      "package": "boltons",
+      "source_root": ".",
+      "description": "chunked_iter must chunk Python 3 bytes into bytes segments, including the final short segment. Preserve strings and sequence chunking.",
+      "upstream_url": "https://github.com/mahmoud/boltons/commit/9b3392a81398d5d12a9faed9102678244cb15d79",
+      "changed_source_files": [
+        "boltons/iterutils.py"
+      ],
+      "split": "development",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "boltons-remap-set",
+      "repo": "mahmoud/boltons",
+      "before_commit": "51d2f7177dea9c0099304aa74f0ad611038e95b9",
+      "after_commit": "f74b7e5a7d6cc985d47540c4437a072da6803851",
+      "package": "boltons",
+      "source_root": ".",
+      "description": "remap must preserve set values under default traversal and preserve frozenset type and values. Do not insert key-value pairs into the reconstructed set. Preserve list and dictionary traversal.",
+      "upstream_url": "https://github.com/mahmoud/boltons/commit/f74b7e5a7d6cc985d47540c4437a072da6803851",
+      "changed_source_files": [
+        "boltons/iterutils.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "more-falsy-exception",
+      "repo": "more-itertools/more-itertools",
+      "before_commit": "9ed3dbb0ae527230cd156d91d0af305478558fba",
+      "after_commit": "def2dabea858b6ecb84ee0c52e6e07929f2c409c",
+      "package": "more_itertools",
+      "source_root": ".",
+      "description": "one and only must raise custom exception instances even if they are falsy. A provided too_long exception must avoid evaluating item repr. Preserve default errors, singleton success and empty defaults.",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/def2dabea858b6ecb84ee0c52e6e07929f2c409c",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "more-batch-count",
+      "repo": "more-itertools/more-itertools",
+      "before_commit": "19ddb972845ab0e5b9b7449d3fd5930781407441",
+      "after_commit": "d032cab7798c7a072ecbb8ade4dfa50030c75cb5",
+      "package": "more_itertools",
+      "source_root": ".",
+      "description": "constrained_batches must reject nonpositive max_count with ValueError. Preserve positive count limits, optional count, and maximum-size limits.",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/d032cab7798c7a072ecbb8ade4dfa50030c75cb5",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "more-seekable-zero",
+      "repo": "more-itertools/more-itertools",
+      "before_commit": "ca711220a6657a22655f6fa497524d006a735c5f",
+      "after_commit": "6b1907de293a655fb77881bf81948f95fd15bd7c",
+      "package": "more_itertools",
+      "source_root": ".",
+      "description": "seekable.peek and bool must not consume or drop the next input item when maxlen=0. Repeated peek must observe the same next value. Preserve normal cached peeking and exhaustion behavior.",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/6b1907de293a655fb77881bf81948f95fd15bd7c",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "more-combination-index",
+      "repo": "more-itertools/more-itertools",
+      "before_commit": "b656ecc0a64e328549a9858af1c4b609f9922b07",
+      "after_commit": "1b74b56d03bbe0d7496b8431aabe41598850ec0d",
+      "package": "more_itertools",
+      "source_root": ".",
+      "description": "combination_with_replacement_index must match itertools enumeration, including None elements and empty combinations. Reject elements that are not a nondecreasing combination from the pool.",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/1b74b56d03bbe0d7496b8431aabe41598850ec0d",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "more-split-empty",
+      "repo": "more-itertools/more-itertools",
+      "before_commit": "d92f081a089714e0aa92434c797fdd1a06da1290",
+      "after_commit": "ce676d24136e6efa932df8a4f3bf4801b89e1dd0",
+      "package": "more_itertools",
+      "source_root": ".",
+      "description": "split_before, split_after and split_when must emit no groups for an empty input when maxsplit=0. Preserve one unsplit group for nonempty input and normal predicate splitting.",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/ce676d24136e6efa932df8a4f3bf4801b89e1dd0",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "more-value-chain-error",
+      "repo": "more-itertools/more-itertools",
+      "before_commit": "bc8be1013ac90fe3c1df8aae646b02605d578818",
+      "after_commit": "7847d4324a581da8d0919734a8e50b2a6573b780",
+      "package": "more_itertools",
+      "source_root": ".",
+      "description": "value_chain must propagate TypeError raised while consuming an iterable, rather than treating the iterable as a scalar. Continue treating objects whose iter() raises TypeError as scalar values.",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/7847d4324a581da8d0919734a8e50b2a6573b780",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "more-interleave-empty",
+      "repo": "more-itertools/more-itertools",
+      "before_commit": "5d946b3590bfe92f1465c1b9b9830dd434745c84",
+      "after_commit": "f51a53bfd2fe9504063a33ef5f4a73e30d82d0e2",
+      "package": "more_itertools",
+      "source_root": ".",
+      "description": "interleave_evenly must return an empty iterator for no input iterables, including explicitly empty lengths. Preserve balancing of nonempty iterables.",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/f51a53bfd2fe9504063a33ef5f4a73e30d82d0e2",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "more-reverse-empty-range",
+      "repo": "more-itertools/more-itertools",
+      "before_commit": "247e15b3a489d5805375c95dfa79486c9bd0eb1b",
+      "after_commit": "edb3346f835ca917efbfda5e2d6664ab952da369",
+      "package": "more_itertools",
+      "source_root": ".",
+      "description": "numeric_range.__reversed__ must yield no values for an empty range rather than raising IndexError. Preserve nonempty reverse iteration and normal forward iteration.",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/edb3346f835ca917efbfda5e2d6664ab952da369",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    },
+    {
+      "task_id": "more-negative-range-slice",
+      "repo": "more-itertools/more-itertools",
+      "before_commit": "1c21c3ae9c7991b73044fe16807b70d1cac61e0b",
+      "after_commit": "a51da8244b6f9ec59ec05f81f1555f943d9506b2",
+      "package": "more_itertools",
+      "source_root": ".",
+      "description": "numeric_range slicing with a negative step must agree with slicing a materialized range, including omitted and negative endpoints. Preserve positive slicing and integer indexing.",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/a51da8244b6f9ec59ec05f81f1555f943d9506b2",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "split": "heldout",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown."
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "task_id": "toolz-topk-zero-key",
+      "repo": "pytoolz/toolz",
+      "before_commit": "ee785666c0d9550f01894bad010316bce8a4667e",
+      "after_commit": "dd87e4f20f6ef591a57f3d28f43c1d1eb1318794",
+      "package": "toolz",
+      "source_root": ".",
+      "description": "topk must accept zero as a positional field key, selecting the largest items by field zero. Preserve callable keys and default ordering.",
+      "upstream_url": "https://github.com/pytoolz/toolz/commit/dd87e4f20f6ef591a57f3d28f43c1d1eb1318794",
+      "changed_source_files": [
+        "toolz/itertoolz.py"
+      ],
+      "split": "development",
+      "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown.",
+      "reason": "Before and upstream reference both contain legacy generator-expression syntax rejected by Python 3.11; excluded before any model calls"
+    }
+  ]
+}

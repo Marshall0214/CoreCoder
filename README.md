@@ -23,7 +23,7 @@ This fork adds controlled retrieval/context experiments, independent patch verif
 
 Start with the Chinese-language [project overview](docs/project-overview.md), [five-minute offline demo](docs/demo-guide.md), [delivery/JD checklist](docs/delivery-checklist.md), and [resume/interview guide](docs/resume-and-interview.md).
 
-Latest recorded Windows regression: 1,181 passed and 2 skipped; see the [parameter-trace experiment summary](docs/parameter-trace-v1.json). Historical deployment acceptance: Linux 71 passed, 22 container checks and 18 HTTP approval fault checks passed; see the [versioned evidence](docs/workflow-approval-acceptance-v1.json). Software checks are separate from model repair outcomes. The [portfolio evidence index](docs/portfolio-evidence.md) maps contributions to code and reports; the upstream walkthrough and author attribution below are retained.
+Latest recorded Windows regression: 1,187 passed and 2 skipped; see the [30-task baseline summary](docs/expanded-baseline-v1.json). Historical deployment acceptance: Linux 71 passed, 22 container checks and 18 HTTP approval fault checks passed; see the [versioned evidence](docs/workflow-approval-acceptance-v1.json). Software checks are separate from model repair outcomes. The [portfolio evidence index](docs/portfolio-evidence.md) maps contributions to code and reports; the upstream walkthrough and author attribution below are retained.
 
 - **Readable end to end.** Read the whole engine in an afternoon, with no magic hidden anywhere you can't follow it.
 - **Hackable.** Set a breakpoint on any line, change it, rerun, all on your own machine. It genuinely works, which makes this a living reference rather than a diagram.
