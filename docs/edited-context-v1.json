@@ -1,0 +1,254 @@
+{
+  "protocol": "edited-context-summary-v1",
+  "complete": true,
+  "unique_tasks": 6,
+  "repeats": 1,
+  "previously_inspected_tasks": true,
+  "benchmark_eligible": false,
+  "summary": {
+    "baseline": {
+      "runs": 6,
+      "passed": 5,
+      "statuses": {
+        "passed": 5,
+        "failed_verification": 1
+      },
+      "budget_accounted_tokens": 27206,
+      "known_budget_accounted_tokens": 27206,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 23717,
+      "completion_tokens": 3489,
+      "worker_seconds": 105.1669,
+      "model_calls": 8,
+      "transaction_rejections": 0
+    },
+    "edited-first": {
+      "runs": 6,
+      "passed": 5,
+      "statuses": {
+        "passed": 5,
+        "failed_verification": 1
+      },
+      "budget_accounted_tokens": 27493,
+      "known_budget_accounted_tokens": 27493,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 23856,
+      "completion_tokens": 3637,
+      "worker_seconds": 112.9609,
+      "model_calls": 8,
+      "transaction_rejections": 0
+    }
+  },
+  "model_calls": 16,
+  "deepseek_calls": 0,
+  "initial_prompt_pairs_equal": 6,
+  "initial_response_pairs_equal": 6,
+  "paired_initial_hashes": {
+    "click-usage-empty": {
+      "edited-first": {
+        "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+        "response_hash": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc"
+      },
+      "baseline": {
+        "prompt_hash": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+        "response_hash": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc"
+      }
+    },
+    "click-echo-empty-bytes": {
+      "baseline": {
+        "prompt_hash": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+        "response_hash": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b"
+      },
+      "edited-first": {
+        "prompt_hash": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+        "response_hash": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b"
+      }
+    },
+    "click-style-color-validation": {
+      "edited-first": {
+        "prompt_hash": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+        "response_hash": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb"
+      },
+      "baseline": {
+        "prompt_hash": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+        "response_hash": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb"
+      }
+    },
+    "itsdangerous-none-salt": {
+      "baseline": {
+        "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+        "response_hash": "eb6e386b9f09383a9fbbabacdf7f7a3394cde329af578c063a395435978ba3bb"
+      },
+      "edited-first": {
+        "prompt_hash": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+        "response_hash": "eb6e386b9f09383a9fbbabacdf7f7a3394cde329af578c063a395435978ba3bb"
+      }
+    },
+    "itsdangerous-future-age": {
+      "edited-first": {
+        "prompt_hash": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+        "response_hash": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc"
+      },
+      "baseline": {
+        "prompt_hash": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+        "response_hash": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc"
+      }
+    },
+    "itsdangerous-malformed-time": {
+      "baseline": {
+        "prompt_hash": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+        "response_hash": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e"
+      },
+      "edited-first": {
+        "prompt_hash": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+        "response_hash": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e"
+      }
+    }
+  },
+  "none_salt": {
+    "baseline": {
+      "complete_function_symbols": [
+        "Serializer.__init__",
+        "Signer.__init__",
+        "JSONWebSignatureSerializer.__init__",
+        "Signer.unsign"
+      ],
+      "combined_chars": 5755,
+      "final_assertions": 12,
+      "final_exceptions": 0,
+      "feedback_edits": [
+        {
+          "file": "src/itsdangerous/signer.py",
+          "old": "        self.salt: bytes = want_bytes(salt)",
+          "new": "        if salt is None:\n            salt = b\"itsdangerous.Signer\"\n        self.salt: bytes = want_bytes(salt)"
+        },
+        {
+          "file": "src/itsdangerous/serializer.py",
+          "old": "        self.salt: bytes = want_bytes(salt)",
+          "new": "        if salt is None:\n            salt = b\"itsdangerous\"\n        self.salt: bytes = want_bytes(salt)"
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.093,
+          "tests_run": 2,
+          "assertion_failure": true,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0952,
+          "tests_run": 2,
+          "assertion_failure": true,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      }
+    },
+    "edited-first": {
+      "complete_function_symbols": [
+        "Serializer.make_signer",
+        "Serializer.iter_unsigners",
+        "Serializer.__init__",
+        "Signer.__init__",
+        "Signer.unsign"
+      ],
+      "combined_chars": 5891,
+      "final_assertions": 12,
+      "final_exceptions": 0,
+      "feedback_edits": [
+        {
+          "file": "src/itsdangerous/signer.py",
+          "old": "        self.salt: bytes = want_bytes(salt)",
+          "new": "        if salt is None:\n            salt = b\"itsdangerous.Signer\"\n\n        self.salt: bytes = want_bytes(salt)"
+        },
+        {
+          "file": "src/itsdangerous/serializer.py",
+          "old": "        self.salt: bytes = want_bytes(salt)",
+          "new": "        if salt is None:\n            salt = b\"itsdangerous\"\n\n        self.salt: bytes = want_bytes(salt)"
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1001,
+          "tests_run": 2,
+          "assertion_failure": true,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1069,
+          "tests_run": 2,
+          "assertion_failure": true,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      }
+    }
+  },
+  "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+  "adapter_hashes": {
+    "docs/experiments/edited_context_compare_v1.py": "c0070fe7aff9db30fc0b2c5588b0812a7f96ba44f86f64fbf2f2afbc6cda80c8",
+    "docs/experiments/edited_context_v1.py": "bb6ecbc0843cb18690700593d99f8effc425fae0ad8cee7ff859a004753780a7",
+    "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+    "docs/experiments/provider_compare_worker_v1.py": "5673402e02e11f122d3bb67e2a3fada04a532f00745c411bc2eb7171758a18cb",
+    "docs/experiments/edited_context_worker_v1.py": "93260a76856d55a73bbdc913b1376aa8c97cf531e419823b85a6965d08e7b1ed",
+    "docs/experiments/source_contract_context_v1.py": "f06bd16db2bebceb74bdf2db9956372cb8c4eca930eff806e1fbb4bffcb41406",
+    "docs/experiments/runtime_observation_v1.py": "643a052493a0303f27596ee05f84ef962b2e3a989a74da77906aee341862367d",
+    "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+    "docs/experiments/repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+    "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+    "docs/experiments/salt_relations_audit_v1.py": "94bb64473835d4a9c8f79c7e91a1ea90ec9ac526cfd64b4dc6ea4a91ae7fa1e0",
+    "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+    "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+    "docs/experiments/thinking_calibration_v1.py": "4fd5865933ce8b83d0811654bebb93fdc22906a7245b13c664dd47771d3bb987",
+    "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+    "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+    "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+    "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+    "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+    "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+    "evals/process.py": "6a881e9a519e67776fe9a9bacc7b0c176259dceed6fabcac91c8fdc4d7f01b04",
+    ".tmp/real-defects/edited-context-audit-v1-final/audit.json": "afac19480c252dfbe46d7efb09e4a6f5a70d878d7154914fdeb9c8ed920a4574",
+    ".tmp/real-defects/runtime-observation-audit-v1/audit.json": "615948f936f370b7bdba939a211126e8d47457111e8d3e6d039f93e157c179aa",
+    ".tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+    ".tmp/real-defects/salt-relations-audit-v1-final/audit.json": "aed080365d682c89aab20f944cb6c178b6e5e97473e2407e212c6f812a65fbc0",
+    "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+    "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51"
+  },
+  "offline_audit": ".tmp/real-defects/edited-context-audit-v1-final/audit.json",
+  "raw_artifacts": ".tmp/real-defects/edited-context-compare-v1",
+  "validation": {
+    "windows_passed": 1056,
+    "windows_skipped": 2,
+    "windows_seconds": 166.94,
+    "new_tests": 12,
+    "ruff": "passed",
+    "linux_docker_http_rerun": false
+  },
+  "decision": "Retain optional strategy; complete edit anchors restored, no observed repair-rate gain; default unchanged."
+}

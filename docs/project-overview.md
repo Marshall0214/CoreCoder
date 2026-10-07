@@ -31,6 +31,7 @@
 | Thinking 开关人工小任务校准 | [thinking-calibration-v1.md](thinking-calibration-v1.md) |
 | Qwen / DeepSeek 固定流程对照 | [provider-compare-v1.md](provider-compare-v1.md) |
 | Qwen 源码契约上下文与回归 | [source-contract-context-v1.md](source-contract-context-v1.md) |
+| 已编辑函数当前版本保留与对照 | [edited-context-v1.md](edited-context-v1.md) |
 | 候选运行时异常观察与有界反馈 | [runtime-feedback-v1.md](runtime-feedback-v1.md) |
 | 已有方法与下一步依据 | [repair-methods-research-v1.md](repair-methods-research-v1.md) |
 
@@ -87,7 +88,7 @@ Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新运行时反馈对照后 Windows 全量 **1,044 passed、2 skipped**，见 [运行时反馈报告](runtime-feedback-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新已编辑函数对照后 Windows 全量 **1,056 passed、2 skipped**，见 [已编辑函数报告](edited-context-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -116,3 +117,5 @@ Qwen / DeepSeek 固定统一反馈流程对照已完成：六项已查看缺陷�
 源码契约上下文对照完成：零调用审查后，只用 Qwen 对六项已查看任务各比较一次；原上下文与候选均 5/6。候选 none-salt 删除盐值回退，Target/Controls 都失败；公开检查混合执行错误导致停止反馈，因此 Token 减少不是效率收益。共 15 次本地调用、0 次 DeepSeek 调用，全量 1,023 passed、2 skipped。冻结原型，建议收敛交付，见 [契约上下文报告](source-contract-context-v1.md)。
 
 运行时异常反馈完成：结构化 traceback 区分候选异常与检查故障，沿用一次修正与共享预算。六项两组均 5/6，none-salt 公开运行异常从 8 个降至 0 个但仍有语义和 Controls 失败；Token 20,393 / 27,206。全量 1,044 passed、2 skipped，保留可选，不替换默认；下一步验证已编辑函数的原文保留，见 [运行时反馈](runtime-feedback-v1.md)。
+
+已编辑函数保留对照完成：成功提交的修改函数在反馈中优先提供当前完整原文，保持 6,000 字符与五函数上限；覆盖 0/2→2/2，但两组独立验收仍 5/6，Token 27,206 / 27,493。16 次本地 Qwen 请求、0 次 DeepSeek 请求。全量 1,056 passed、2 skipped；保留可选，不替换默认。下一步先核查参数语义与修复假设，见 [报告](edited-context-v1.md)。

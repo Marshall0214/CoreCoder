@@ -7,7 +7,7 @@
 | 贡献 | 代码入口 | 验收或演示 |
 | --- | --- | --- |
 | 任务、预算、独立评分与 Trace | [执行器](../evals/runner.py)、[预算与事件](../evals/runtime.py) | [评测协议](p0-1-testing.md)；演示 report.json 和 patch.diff |
-| 代码检索、上下文及编辑反馈实验 | [检索模块](../corecoder/retrieval/)、[事务保护](experiments/patch_transaction_v1.py)、[统一反馈](experiments/unified_feedback_worker_v1.py) | [第二仓库结果](second-repo-repair-v1.md)、[事务验证](patch-transaction-v1.md)、[最新契约对照](source-contract-context-v1.md) |
+| 代码检索、上下文及编辑反馈实验 | [检索模块](../corecoder/retrieval/)、[事务保护](experiments/patch_transaction_v1.py)、[统一反馈](experiments/unified_feedback_worker_v1.py) | [第二仓库结果](second-repo-repair-v1.md)、[事务验证](patch-transaction-v1.md)、[已编辑函数对照](edited-context-v1.md) |
 | API、持久化、幂等与审批恢复 | [API](../service/app.py)、[调度器](../service/manager.py)、[存储](../service/store.py)、[审批图](../workflows/approval.py) | [5 分钟演示](demo-guide.md)、[审批协议](workflow-approval-v1.md) |
 | MCP 与部署可靠性 | [MCP Server](../mcp_servers/code_knowledge.py)、[互操作演示](../mcp_servers/demo.py)、[部署目录](../deploy/) | [MCP 报告](mcp-code-knowledge-v1.md)、[容器说明](container-deployment-v1.md)、[工程验收摘要](workflow-approval-acceptance-v1.json) |
 
@@ -29,12 +29,12 @@
 
 | 范围 | 已记录结果 | 版本化来源 |
 | --- | --- | --- |
-| 最新 Windows 全量 | 1,044 passed、2 skipped | [运行时反馈摘要](runtime-feedback-v1.json)；含上游与扩展测试 |
+| 最新 Windows 全量 | 1,056 passed、2 skipped | [已编辑函数上下文摘要](edited-context-v1.json)；含上游与扩展测试 |
 | 历史 Linux 专项 | 71 passed | [审批验收](workflow-approval-acceptance-v1.json) |
 | 历史容器端到端 | 22 项检查通过 | 同上，container.checks |
 | 历史真实 HTTP 审批故障 | 18 项检查通过 | 同上，host.http_checks |
 
-本次为文档交付核查，不重新运行模型、全量回归或部署验收。当前核查记录见 [交付摘要](portfolio-delivery-v2.json)，明确区分历史验收与本次检查。
+历史文档交付核查没有重新运行模型、全量回归或部署验收；其核查记录见 [交付摘要](portfolio-delivery-v2.json)，明确区分历史验收与本次检查。
 
 ## 展示顺序与后续事项
 
@@ -46,3 +46,5 @@
 当前优先完成本人手动讲解、录屏与实际简历整理；仍未实现生产向量库、学习型 Reranker、多用户鉴权、逐任务沙箱、动态规划、多 Agent 或微调，不为补齐关键词继续扩张。
 
 原始 `.tmp` 快照、日志和模型回答不随 Git 发布。工程 fixture 可离线演示，历史真实实验需要对应输入与隔离环境；发布或分享原始产物前另行选择归档范围。保留 [上游许可证](../LICENSE)与贡献归属。
+
+已编辑函数保留对照：两个丢失方法的完整覆盖 0/2→2/2，但六项独立验收仍均 5/6；不能写为修复率提升。最新模型与 Windows 验收见 [报告](edited-context-v1.md)。

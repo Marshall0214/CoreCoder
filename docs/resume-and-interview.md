@@ -11,7 +11,7 @@
 - 将修复流程封装为可审批的 FastAPI/LangGraph 服务，使重复提交与批准复用原任务、待审批任务跨重启保留、崩溃执行标记中断且不自动重放；通过 **18 项真实 HTTP 审批故障检查**验证状态恢复与防重复执行。
 - 建立独立工作区、补丁范围校验和 Trace，使修复结果、Token 与失败原因可复查；通过 MCP 将代码搜索与带哈希读取提供给外部 Client，并完成 **22 项 Docker/Linux 容器端到端检查**，验证工程链路可部署、可演示。
 
-最后一条数字来自历史 [工程验收摘要](workflow-approval-acceptance-v1.json)。最新 Windows 全量为 **1,044 passed、2 skipped**，来自 [运行时反馈摘要](runtime-feedback-v1.json)，本次文档整理没有重跑全量、容器或 HTTP。这些数字不是本人独立编写的测试数量，也不是修复缺陷数量；简历优先保留具体故障验收和机制。
+最后一条数字来自历史 [工程验收摘要](workflow-approval-acceptance-v1.json)。最新 Windows 全量为 **1,056 passed、2 skipped**，来自 [已编辑函数上下文摘要](edited-context-v1.json)，最新上下文对照已重跑 Windows 全量，没有重跑容器或 HTTP。这些数字不是本人独立编写的测试数量，也不是修复缺陷数量；简历优先保留具体故障验收和机制。
 
 四条贡献的代码、演示和实验出处见 [求职交付证据索引](portfolio-evidence.md)。前两条属于独立实验适配器，尚未进入默认 API 工作流。技术栈单列，正文优先写实际结果和行为变化。
 
