@@ -1,0 +1,945 @@
+{
+  "complete": true,
+  "raw_report_sha256": "b8e0f14d659213e5eb4524d06fc5144653db419a6c9503e3fcc3e41c47af4878",
+  "protocol": {
+    "protocol": "salt-relations-feedback-v1",
+    "unique_tasks": 1,
+    "repeats": 3,
+    "expected_runs": 6,
+    "previously_inspected_tasks": true,
+    "benchmark_eligible": false,
+    "prior_runs_included": false,
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+    "repair_model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "max_llm_calls": {
+      "checks-only": 2,
+      "checks-and-relations": 2
+    },
+    "shared_total_token_budget": 15000,
+    "tools": [],
+    "evidence_policy": "same AST function corpus and complete-function packing; 6000 chars, five seeds, depth zero",
+    "intervention": "same v2 checks, forwarding context, first prompt and two-call cap; only public relation matrix in feedback differs",
+    "observations_sha256": "614fbdf542bbd19a1db627e6b5bd033ad85d2467ffc7a957d7f00523332c5194",
+    "adapter_hashes": {
+      "docs/experiments/salt_relations_feedback_v1.py": "51d671394428b5e0f6f7382eed5ee876530177736c4c93ff970cd1d741a8db28",
+      "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+      "docs/experiments/salt_relations_worker_v1.py": "626b556cee335cd19471590b952b9346fa7aa36b8b40b2af7e8d2110cc0fa374",
+      "docs/experiments/salt_relations_audit_v1.py": "94bb64473835d4a9c8f79c7e91a1ea90ec9ac526cfd64b4dc6ea4a91ae7fa1e0",
+      "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+      "docs/experiments/repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+      ".tmp/real-defects/salt-relations-audit-v1-final/audit.json": "aed080365d682c89aab20f944cb6c178b6e5e97473e2407e212c6f812a65fbc0",
+      "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+      "docs/experiments/public_checks_v1/none_salt.py": "3ac7745e6b4f8f05d8573f7098ab83edf8c4ce0ced5110ca83ec42183f57d290",
+      "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+      "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+      "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+      "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+      "corecoder/retrieval/keyword.py": "af7166465a62260ff2c1b0409d08990867c69c6d3b23fe76bd157cd074f988cb",
+      "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+      "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+      "docs/experiments/validation_repeat_v2.py": "e7e27c416710567047cc0469b4da4a7f1be84692111cd5cfef18f1cb7969d454",
+      "docs/experiments/validation_repair_v1.py": "2fa46a0be8947c35d66e714d4cb6af342ef01c1595fc7dcebc02096e7aeac3c4",
+      "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+      "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+      "docs/experiments/second_repo_admission_v1.py": "87a17a95c77243e4aa4a9a5b7a2a1c1b6421830b788522a107502ef8f8161a46",
+      "docs/experiments/validation-prospective-v2.json": "6fffda44dac19694af1776a2a82f48330aebcc609122fff84d86ea18f7105b92",
+      "docs/experiments/validation-suite-v1.json": "3dbed44448ed8af27f27f1a8f9569efba1af0343c2b237d3d7901cfadbf0dc8a",
+      "docs/experiments/second-repo-suite-v1.json": "190edb5b580b12380041c2e2916aef5b0ed198fbe80d9341ebda5b011da89ce4"
+    },
+    "public_audit_sha256": "aed080365d682c89aab20f944cb6c178b6e5e97473e2407e212c6f812a65fbc0",
+    "public_contract": {
+      "description": "Serializer and Signer must accept salt=None, using the Signer default salt rather than the Serializer default. Signed values must round-trip, Serializer salt=None signatures must match explicit itsdangerous.Signer salt, and Signer salt=None must match its default. Preserve explicit string and bytes salts, the Serializer default salt, wrong-salt rejection and tamper detection.",
+      "description_sha256": "6ab9a5c1ebce76d93f561290d7bf18bb24b7144d6e89f88c92a018607bdfd83e",
+      "clauses": [
+        {
+          "text": "using the Signer default salt rather than the Serializer default",
+          "span": [
+            45,
+            109
+          ]
+        },
+        {
+          "text": "Signed values must round-trip",
+          "span": [
+            111,
+            140
+          ]
+        },
+        {
+          "text": "Preserve explicit string and bytes salts",
+          "span": [
+            265,
+            305
+          ]
+        },
+        {
+          "text": "the Serializer default salt",
+          "span": [
+            307,
+            334
+          ]
+        },
+        {
+          "text": "wrong-salt rejection",
+          "span": [
+            336,
+            356
+          ]
+        },
+        {
+          "text": "tamper detection",
+          "span": [
+            361,
+            377
+          ]
+        }
+      ],
+      "original_api_defaults": {
+        "Serializer": {
+          "salt_utf8": "itsdangerous",
+          "path": "src/itsdangerous/serializer.py",
+          "source_sha256": "c8a55ee36667c1f08affb08deba031d86cac8e43b4a986caae1e3ade5282ed75",
+          "line": 89
+        },
+        "Signer": {
+          "salt_utf8": "itsdangerous.Signer",
+          "path": "src/itsdangerous/signer.py",
+          "source_sha256": "51d73e762a48797071f1358737a9aab3ade3b872ffdef3b40b8ca5fe5abaf419",
+          "line": 120
+        }
+      },
+      "check_sha256": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51",
+      "rules": [
+        {
+          "constructor": "omitted",
+          "method_salt": "omitted or None",
+          "effective": "Serializer original default"
+        },
+        {
+          "constructor": "explicit None",
+          "method_salt": "omitted or None",
+          "effective": "Signer original default"
+        },
+        {
+          "constructor": "explicit str/bytes including empty",
+          "method_salt": "omitted or None",
+          "effective": "instance salt"
+        },
+        {
+          "constructor": "any",
+          "method_salt": "explicit str/bytes including empty",
+          "effective": "method override"
+        }
+      ],
+      "provenance": "Human-authored public-description relations plus preservation of original API parameter forwarding; not hidden grading.",
+      "preservation_source": [
+        "Serializer.make_signer",
+        "Serializer.iter_unsigners",
+        "Serializer.dumps",
+        "Serializer.loads"
+      ],
+      "limits": "11 test methods with subtests, not exhaustive semantics, cryptographic proof or general automatic test generation."
+    },
+    "relations_hash": "e6d5a0642f3c1da129626c37e0de5226113921a82c2208eb2d28ff4b22503e02",
+    "scoring": {
+      "itsdangerous-none-salt": "a59f229cdd5d2ff20f4bd12f3252154d1235475051e5a264a6200422e5c8c08d"
+    },
+    "source_hashes": {
+      "itsdangerous-none-salt": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4"
+    }
+  },
+  "summary": {
+    "checks-only": {
+      "runs": 3,
+      "passed": 0,
+      "statuses": {
+        "failed_verification": 3
+      },
+      "budget_accounted_tokens": 24453,
+      "known_budget_accounted_tokens": 24453,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 20694,
+      "completion_tokens": 3759,
+      "worker_seconds": 96.5401
+    },
+    "checks-and-relations": {
+      "runs": 3,
+      "passed": 0,
+      "statuses": {
+        "failed_verification": 3
+      },
+      "budget_accounted_tokens": 24864,
+      "known_budget_accounted_tokens": 24864,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 21027,
+      "completion_tokens": 3837,
+      "worker_seconds": 90.9446
+    },
+    "pairs": {
+      "both_passed": 0,
+      "baseline_only": 0,
+      "feedback_only": 0,
+      "both_failed": 3,
+      "incomplete": 0
+    }
+  },
+  "actual_model_calls": 12,
+  "token_ratio_relations_to_checks": 1.016807753649859,
+  "paired_initial_and_candidate_hashes_equal": true,
+  "runs": [
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "checks-only",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "candidate_before_feedback_sha256": "d507c5f0bcb8beb9a9a1be706436224300f1797c4fc263657bff98a66c46b5ee",
+      "feedback_prompt_sha256": "5cf571c48c6b4f645f2c5e4cfbeb5246a1291279f75d277773760d646cba8fd1",
+      "feedback_response_sha256": "2570c943793d91568643febe160244b23c7416715cab772ad04f75dbede1783f",
+      "feedback_evidence_metadata": {
+        "evidence_chars": 4840,
+        "max_chars": 6000,
+        "seed_count": 5,
+        "max_seeds": 5,
+        "dependency_depth": 0,
+        "discarded": [],
+        "oversized_fallback": "none",
+        "selection": [
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/signer.py",
+            "symbol": "Signer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.make_signer",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.iter_unsigners",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/jws.py",
+            "symbol": "JSONWebSignatureSerializer.__init__",
+            "reason": "refreshed_seed"
+          }
+        ],
+        "strategy": "public_named_class_parameter_forwarding"
+      },
+      "public_failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "public_final_passed": false,
+      "target_passed": false,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6898,
+        "completion_tokens": 1367,
+        "known_prompt_tokens": 6898,
+        "known_completion_tokens": 1367,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 8265,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "added_duplicate_method_definitions": [
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "class": "Serializer",
+          "method": "dumps",
+          "definitions_before": 1,
+          "definitions_after": 2
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "class": "Serializer",
+          "method": "loads",
+          "definitions_before": 1,
+          "definitions_after": 2
+        }
+      ],
+      "public_final_outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1045,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1096,
+          "tests_run": 2,
+          "assertion_failure": true,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1033,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "zero_tests_import_failure": null
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "checks-and-relations",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "candidate_before_feedback_sha256": "d507c5f0bcb8beb9a9a1be706436224300f1797c4fc263657bff98a66c46b5ee",
+      "feedback_prompt_sha256": "445470a603de39bc81147be7ab212c81c5f0bf9ed15b2a56bc0ceadefee2016b",
+      "feedback_response_sha256": "59deae65000fb1927bbbeda074dc6d6d7b20c3109112f7536c6a022f6f0a2326",
+      "feedback_evidence_metadata": {
+        "evidence_chars": 4840,
+        "max_chars": 6000,
+        "seed_count": 5,
+        "max_seeds": 5,
+        "dependency_depth": 0,
+        "discarded": [],
+        "oversized_fallback": "none",
+        "selection": [
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/signer.py",
+            "symbol": "Signer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.make_signer",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.iter_unsigners",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/jws.py",
+            "symbol": "JSONWebSignatureSerializer.__init__",
+            "reason": "refreshed_seed"
+          }
+        ],
+        "strategy": "public_named_class_parameter_forwarding"
+      },
+      "public_failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "public_final_passed": false,
+      "target_passed": false,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 7009,
+        "completion_tokens": 1457,
+        "known_prompt_tokens": 7009,
+        "known_completion_tokens": 1457,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 8466,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "added_duplicate_method_definitions": [
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "class": "Serializer",
+          "method": "dumps",
+          "definitions_before": 1,
+          "definitions_after": 3
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "class": "Serializer",
+          "method": "loads",
+          "definitions_before": 1,
+          "definitions_after": 3
+        }
+      ],
+      "public_final_outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1028,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1014,
+          "tests_run": 2,
+          "assertion_failure": true,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1149,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "zero_tests_import_failure": null
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "checks-and-relations",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "candidate_before_feedback_sha256": "d507c5f0bcb8beb9a9a1be706436224300f1797c4fc263657bff98a66c46b5ee",
+      "feedback_prompt_sha256": "445470a603de39bc81147be7ab212c81c5f0bf9ed15b2a56bc0ceadefee2016b",
+      "feedback_response_sha256": "59deae65000fb1927bbbeda074dc6d6d7b20c3109112f7536c6a022f6f0a2326",
+      "feedback_evidence_metadata": {
+        "evidence_chars": 4840,
+        "max_chars": 6000,
+        "seed_count": 5,
+        "max_seeds": 5,
+        "dependency_depth": 0,
+        "discarded": [],
+        "oversized_fallback": "none",
+        "selection": [
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/signer.py",
+            "symbol": "Signer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.make_signer",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.iter_unsigners",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/jws.py",
+            "symbol": "JSONWebSignatureSerializer.__init__",
+            "reason": "refreshed_seed"
+          }
+        ],
+        "strategy": "public_named_class_parameter_forwarding"
+      },
+      "public_failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "public_final_passed": false,
+      "target_passed": false,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 7009,
+        "completion_tokens": 1457,
+        "known_prompt_tokens": 7009,
+        "known_completion_tokens": 1457,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 8466,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "added_duplicate_method_definitions": [
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "class": "Serializer",
+          "method": "dumps",
+          "definitions_before": 1,
+          "definitions_after": 3
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "class": "Serializer",
+          "method": "loads",
+          "definitions_before": 1,
+          "definitions_after": 3
+        }
+      ],
+      "public_final_outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1125,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1037,
+          "tests_run": 2,
+          "assertion_failure": true,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1089,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "zero_tests_import_failure": null
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "checks-only",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "candidate_before_feedback_sha256": "d507c5f0bcb8beb9a9a1be706436224300f1797c4fc263657bff98a66c46b5ee",
+      "feedback_prompt_sha256": "fb9f2d94dedc40db6f78d7dc20cf1e6806e083f27f3c4982d2e0d97e3ea6165b",
+      "feedback_response_sha256": "c7d9a2b9951e6845b0616fb85a215df40786a03086c2e47c3a5998ec407e6552",
+      "feedback_evidence_metadata": {
+        "evidence_chars": 4840,
+        "max_chars": 6000,
+        "seed_count": 5,
+        "max_seeds": 5,
+        "dependency_depth": 0,
+        "discarded": [],
+        "oversized_fallback": "none",
+        "selection": [
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/signer.py",
+            "symbol": "Signer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.make_signer",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.iter_unsigners",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/jws.py",
+            "symbol": "JSONWebSignatureSerializer.__init__",
+            "reason": "refreshed_seed"
+          }
+        ],
+        "strategy": "public_named_class_parameter_forwarding"
+      },
+      "public_failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer",
+        "test_serializer_none_round_trip"
+      ],
+      "public_final_passed": false,
+      "target_passed": false,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6898,
+        "completion_tokens": 943,
+        "known_prompt_tokens": 6898,
+        "known_completion_tokens": 943,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7841,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "added_duplicate_method_definitions": [],
+      "public_final_outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.111,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1186,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": true,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1119,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "zero_tests_import_failure": null
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "checks-only",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "candidate_before_feedback_sha256": "d507c5f0bcb8beb9a9a1be706436224300f1797c4fc263657bff98a66c46b5ee",
+      "feedback_prompt_sha256": "5cf571c48c6b4f645f2c5e4cfbeb5246a1291279f75d277773760d646cba8fd1",
+      "feedback_response_sha256": "50a3b35b597cba0fb65145ee11f612a75338cb60fe85ec7510de86f5037dc154",
+      "feedback_evidence_metadata": {
+        "evidence_chars": 4840,
+        "max_chars": 6000,
+        "seed_count": 5,
+        "max_seeds": 5,
+        "dependency_depth": 0,
+        "discarded": [],
+        "oversized_fallback": "none",
+        "selection": [
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/signer.py",
+            "symbol": "Signer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.make_signer",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.iter_unsigners",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/jws.py",
+            "symbol": "JSONWebSignatureSerializer.__init__",
+            "reason": "refreshed_seed"
+          }
+        ],
+        "strategy": "public_named_class_parameter_forwarding"
+      },
+      "public_failed_methods": [],
+      "public_final_passed": false,
+      "target_passed": false,
+      "controls_passed": false,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6898,
+        "completion_tokens": 1449,
+        "known_prompt_tokens": 6898,
+        "known_completion_tokens": 1449,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 8347,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "added_duplicate_method_definitions": [
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "class": "Serializer",
+          "method": "dumps",
+          "definitions_before": 1,
+          "definitions_after": 3
+        },
+        {
+          "path": "src/itsdangerous/serializer.py",
+          "class": "Serializer",
+          "method": "loads",
+          "definitions_before": 1,
+          "definitions_after": 3
+        }
+      ],
+      "public_final_outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.0958,
+        "tests_run": 0,
+        "assertion_failure": false,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.094,
+          "tests_run": 0,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0967,
+          "tests_run": 0,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "zero_tests_import_failure": "AttributeError"
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "checks-and-relations",
+      "status": "failed_verification",
+      "accepted": false,
+      "initial_prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "initial_response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "candidate_before_feedback_sha256": "d507c5f0bcb8beb9a9a1be706436224300f1797c4fc263657bff98a66c46b5ee",
+      "feedback_prompt_sha256": "28363c5eaec23c7560a31ceeecd0bdb98be4c83b1dc88304fc17a7d50d577784",
+      "feedback_response_sha256": "bbd3e394c24c11024401085d45741ee3f43d7fb5acf7a6c2600f293676e7e549",
+      "feedback_evidence_metadata": {
+        "evidence_chars": 4840,
+        "max_chars": 6000,
+        "seed_count": 5,
+        "max_seeds": 5,
+        "dependency_depth": 0,
+        "discarded": [],
+        "oversized_fallback": "none",
+        "selection": [
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/signer.py",
+            "symbol": "Signer.__init__",
+            "reason": "named_class_constructor"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.make_signer",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer.iter_unsigners",
+            "reason": "named_parameter_state_forwarder"
+          },
+          {
+            "path": "src/itsdangerous/jws.py",
+            "symbol": "JSONWebSignatureSerializer.__init__",
+            "reason": "refreshed_seed"
+          }
+        ],
+        "strategy": "public_named_class_parameter_forwarding"
+      },
+      "public_failed_methods": [
+        "test_constructor_none_distinct_from_omission",
+        "test_method_salt_override_matrix",
+        "test_serializer_none_matches_explicit_signer"
+      ],
+      "public_final_passed": false,
+      "target_passed": false,
+      "controls_passed": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 7009,
+        "completion_tokens": 923,
+        "known_prompt_tokens": 7009,
+        "known_completion_tokens": 923,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7932,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "added_duplicate_method_definitions": [],
+      "public_final_outcome": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1002,
+        "tests_run": 11,
+        "assertion_failure": true,
+        "execution_error": false,
+        "stderr": "PublicContract.stderr.txt",
+        "stdout": "PublicContract.stdout.txt",
+        "passed": false
+      },
+      "verification": {
+        "passed": false,
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "scope_violations": [],
+        "target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0927,
+          "tests_run": 2,
+          "assertion_failure": true,
+          "execution_error": false,
+          "passed": false
+        },
+        "regression": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1052,
+          "tests_run": 2,
+          "assertion_failure": false,
+          "execution_error": false,
+          "passed": true
+        },
+        "regression_scope": "public Controls only; not full upstream tests"
+      },
+      "zero_tests_import_failure": null
+    }
+  ],
+  "validation": {
+    "targeted_passed": 41,
+    "full_passed": 942,
+    "full_skipped": 2,
+    "full_seconds": 160.55,
+    "ruff": "passed",
+    "linux_container_http_rerun": false
+  },
+  "limitations": [
+    "One previously inspected defect repeated three times; no unseen benchmark.",
+    "Hand-authored matrix, not general contract generation.",
+    "Same v2 checks and candidate source context, only feedback matrix field differs.",
+    "Target/Controls and development checks, not complete upstream tests.",
+    "Only duplicate definitions added relative to the pre-feedback candidate are diagnosed; pre-existing typing overloads are excluded. Patch acceptance and statuses are unchanged.",
+    "No default changes, raw snapshots and logs remain in ignored .tmp."
+  ]
+}
