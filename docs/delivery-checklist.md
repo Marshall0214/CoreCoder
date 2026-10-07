@@ -8,6 +8,7 @@
 | 已完成 | BM25 搜索工具、引用元数据及检索/上下文对照 | [search_code](p0-2-search-code.md)、[真实仓库结论](second-repo-repair-v1.md) |
 | 实验原型 | Embedding、精确余弦、RRF Hybrid、结构/依赖证据 | [向量检索](vector-retrieval-v1.md)、[函数索引](function-index-audit-v1.md)；不是生产向量库 |
 | 实验原型 | 行号补丁定位、换行边界修正和全新配对验证 | [补丁定位](anchored-patch-v1.md)；修复率未提高，保留默认方案 |
+| 实验原型 | 公开符号解析、同名消歧、预算装填与三轮新对照 | [符号检索](symbol-directed-retrieval-v1.md)；点名函数覆盖改善，修复率无提升 |
 | 已完成 | FastAPI 提交/查询、SSE、幂等、取消、SQLite 持久化和进程清理 | [服务](service-mvp-v1.md)、[恢复](service-persistence-v2.md)、`service/` |
 | 已完成 | LangGraph 固定计划、一次执行与独立验证分支 | [有限工作流](langgraph-workflow-v1.md)、`workflows/repair.py` |
 | 已完成 | 人工审批、原生 SQLite 检查点、待审批恢复与防重放 | [审批](workflow-approval-v1.md)、`workflows/approval.py` |

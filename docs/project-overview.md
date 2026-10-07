@@ -22,6 +22,7 @@
 | 最新工程验收摘要 | [workflow-approval-acceptance-v1.json](workflow-approval-acceptance-v1.json) |
 | 真实仓库实验阶段结论 | [second-repo-repair-v1.md](second-repo-repair-v1.md) |
 | 最新补丁定位优化与失败归因 | [anchored-patch-v1.md](anchored-patch-v1.md) |
+| 符号定向检索与三轮修复对照 | [symbol-directed-retrieval-v1.md](symbol-directed-retrieval-v1.md) |
 
 ## 架构和个人贡献边界
 
@@ -62,17 +63,18 @@ MCP 是独立工具接入与互操作成果，没有自动替换服务默认检�
 | Click 3 项、评分 v2、各三次新调用 | 行块 3/9；完整函数 6/9 | 差异来自颜色校验；任务已被查看，非新的盲测，见 [评分后复测](validation-repeat-v2.md) |
 | ItsDangerous 3 项、各一次 | 两策略均 2/3 | 第二仓库未复现成功率优势，见 [第二仓库对照](second-repo-repair-v1.md) |
 | 同一批 Click/ItsDangerous 6 项，补丁定位新对照 | 边界修正后原文匹配 3/6；行号定位 3/6 | 无效补丁减少，Token 增加，未替换默认；见 [补丁定位](anchored-patch-v1.md) |
+| 同一批 6 项，完整函数 BM25 / 符号优先，各三次新调用 | 点名函数覆盖 5/7 / 7/7；修复均 12/18 | 覆盖改善未转化为修复收益，保留默认；见 [符号检索](symbol-directed-retrieval-v1.md) |
 
-后面三组含 13 个不同历史任务，不代表 13 项都必须多文件修改。passed 是满足独立 Target/Controls 和修改约束，不代表完整上游测试或生产正确性。评分错误修正记录与新调用分开，不覆盖旧结果。
+Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个不同任务，不代表 13 项都必须多文件修改。后续两种优化复用了其中六项，没有增加不同缺陷数。passed 是满足独立 Target/Controls 和修改约束，不代表完整上游测试或生产正确性。评分错误修正记录与新调用分开，不覆盖旧结果。
 
 原始实验输入、模型回答和日志位于被 Git 忽略的 `.tmp/`，复跑真实实验需要报告指定的准入快照、隔离环境及模型身份；仅 clone 不能直接重建所有历史结果。工程演示使用仓库内人工 fixture，可不依赖这些实验产物或模型 API。
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新补丁定位优化后 Windows 全量 **882 passed、2 skipped**，见 [优化报告](anchored-patch-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新符号检索优化后 Windows 全量 **901 passed、2 skipped**，见 [优化报告](symbol-directed-retrieval-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
 检索向量索引为内存精确余弦，未实现生产向量数据库/ANN 或学习型 Reranker。计划是代码生成的固定契约，未实现 LLM 动态规划。服务为本地单 owner SQLite，未实现 PostgreSQL/Redis、多用户鉴权、逐工具审批、每任务容器沙箱或生产负载验证。整个服务容器的限制不能替代逐任务隔离。
 
-新增工程产物、临时文件及本机 Docker 数据放在 D 盘；Docker Desktop 自身仍可能写系统配置和日志。历史模型实验已冻结；随后补丁定位优化新增 24 次真实模型调用，初版与边界修正后分别报告，没有覆盖旧结果或替换默认方案。
+新增工程产物、临时文件及本机 Docker 数据放在 D 盘；Docker Desktop 自身仍可能写系统配置和日志。历史模型实验已冻结；随后补丁定位对照 24 次、正式符号检索对照 36 次新调用分别报告，没有覆盖旧结果或替换默认方案。符号检索暂停原型另存未完成记录，不并入正式结果。

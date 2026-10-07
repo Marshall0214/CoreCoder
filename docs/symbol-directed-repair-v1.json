@@ -1,0 +1,1365 @@
+{
+  "date": "2026-10-07",
+  "decision": "retain existing defaults; symbol priority improves extracted-name coverage but not measured repair success",
+  "raw_experiment": ".tmp/real-defects/symbol-directed-repair-v1-explicit/experiment.json",
+  "raw_experiment_sha256": "d4710a63cf8d4629e9e6e7b9778dbb20c89eb1b4daf031e38e60b7208b0689e9",
+  "protocol": {
+    "protocol": "symbol-directed-repair-v1",
+    "unique_tasks": 6,
+    "repeats": 3,
+    "expected_runs": 36,
+    "previously_inspected_tasks": true,
+    "benchmark_eligible": false,
+    "prior_runs_included": false,
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd",
+    "repair_model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "llm_calls_per_branch": 1,
+    "tools": [],
+    "evidence_policy": "same AST function corpus and complete-function packing; 6000 chars, five seeds, depth zero",
+    "intervention": "prioritize unambiguous symbols mentioned in public descriptions; unchanged patch prompt and verifier",
+    "observations_sha256": "a8f26b4e352de476bdbba3c4363fe7855df47747947f0693329996e50a21f9f9",
+    "adapter_hashes": {
+      "docs/experiments/symbol_directed_repair_v1.py": "c099e3851159fe202ca50021238eee66cda683f87ecbf13e4df35d832e4f35f7",
+      "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+      "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+      "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+      "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+      "corecoder/retrieval/keyword.py": "af7166465a62260ff2c1b0409d08990867c69c6d3b23fe76bd157cd074f988cb",
+      "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+      "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+      "docs/experiments/validation_repeat_v2.py": "e7e27c416710567047cc0469b4da4a7f1be84692111cd5cfef18f1cb7969d454",
+      "docs/experiments/validation_repair_v1.py": "2fa46a0be8947c35d66e714d4cb6af342ef01c1595fc7dcebc02096e7aeac3c4",
+      "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+      "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+      "docs/experiments/second_repo_admission_v1.py": "87a17a95c77243e4aa4a9a5b7a2a1c1b6421830b788522a107502ef8f8161a46",
+      "docs/experiments/validation-prospective-v2.json": "6fffda44dac19694af1776a2a82f48330aebcc609122fff84d86ea18f7105b92",
+      "docs/experiments/validation-suite-v1.json": "3dbed44448ed8af27f27f1a8f9569efba1af0343c2b237d3d7901cfadbf0dc8a",
+      "docs/experiments/second-repo-suite-v1.json": "190edb5b580b12380041c2e2916aef5b0ed198fbe80d9341ebda5b011da89ce4"
+    },
+    "scoring": {
+      "click-usage-empty": "5fc2c1424c4cc61237139e692941f21ad59eab8dc8f0a6ca56bd68e948311b2f",
+      "click-echo-empty-bytes": "d31601e2902db4d5b1b4c77912e26986aae42c169e6f8642dc61f8614232739b",
+      "click-style-color-validation": "a3d5d8b86f1b704ad2e8ac0a6c24641b0a3a19c7995e6d07f005c67db4096444",
+      "itsdangerous-none-salt": "a59f229cdd5d2ff20f4bd12f3252154d1235475051e5a264a6200422e5c8c08d",
+      "itsdangerous-future-age": "eabc861330a3338fcdaccd17a5cd8bcdd5462581b316ed8bce4fc52bce3af253",
+      "itsdangerous-malformed-time": "c51a33dce0476e0d46d6bbb780e44b41e8924fbd22b73ccde3410d0e2cf3485d"
+    },
+    "source_hashes": {
+      "click-usage-empty": "860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+      "click-echo-empty-bytes": "1deab48d56e54d5bf49d922899b4a988d4dd53a288257abdafce37a97012d55b",
+      "click-style-color-validation": "afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+      "itsdangerous-none-salt": "7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+      "itsdangerous-future-age": "2f608833f29fa4b68d77a3667c4095b7efbae16cf583ffc1782e37356a03f204",
+      "itsdangerous-malformed-time": "afa63ea45c30fcb0cf92159676b04d9253cdd6ed73cc1b91db5dd2ca9c277967"
+    }
+  },
+  "summary": {
+    "direct-functions": {
+      "runs": 18,
+      "passed": 12,
+      "statuses": {
+        "failed_verification": 6,
+        "passed": 12
+      },
+      "budget_accounted_tokens": 47886,
+      "known_budget_accounted_tokens": 47886,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 40743,
+      "completion_tokens": 7143,
+      "worker_seconds": 194.9652
+    },
+    "symbol-directed-functions": {
+      "runs": 18,
+      "passed": 12,
+      "statuses": {
+        "failed_verification": 6,
+        "passed": 12
+      },
+      "budget_accounted_tokens": 47697,
+      "known_budget_accounted_tokens": 47697,
+      "missing_metrics_runs": 0,
+      "missing_usage_calls": 0,
+      "prompt_tokens": 40515,
+      "completion_tokens": 7182,
+      "worker_seconds": 195.6127
+    },
+    "pairs": {
+      "both_passed": 12,
+      "baseline_only": 0,
+      "directed_only": 0,
+      "both_failed": 6,
+      "incomplete": 0
+    }
+  },
+  "explicit_symbol_coverage": {
+    "direct-functions": {
+      "covered": 5,
+      "resolved": 7,
+      "recall": 0.7142857142857143,
+      "tasks_with_resolved_functions": 5
+    },
+    "symbol-directed-functions": {
+      "covered": 7,
+      "resolved": 7,
+      "recall": 1.0,
+      "tasks_with_resolved_functions": 5
+    }
+  },
+  "task_diagnostics": [
+    {
+      "task_id": "click-usage-empty",
+      "resolution": {
+        "identifiers": [
+          "HelpFormatter.write_usage",
+          "options_metavar"
+        ],
+        "class_mentions": [],
+        "matches": [
+          {
+            "identifier": "HelpFormatter.write_usage",
+            "resolution": "resolved",
+            "reason": "qualified",
+            "candidates": [
+              {
+                "path": "src/click/formatting.py",
+                "symbol": "HelpFormatter.write_usage",
+                "start_line": 153,
+                "end_line": 189
+              }
+            ]
+          },
+          {
+            "identifier": "options_metavar",
+            "resolution": "unresolved",
+            "candidates": []
+          }
+        ],
+        "resolved_symbols": [
+          {
+            "path": "src/click/formatting.py",
+            "symbol": "HelpFormatter.write_usage",
+            "start_line": 153,
+            "end_line": 189
+          }
+        ]
+      },
+      "policies": {
+        "direct-functions": {
+          "evidence_chars": 5578,
+          "coverage": {
+            "resolved": 1,
+            "covered": 1,
+            "recall": 1.0,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/click/core.py",
+              "symbol": "Group.__init__"
+            },
+            {
+              "path": "src/click/core.py",
+              "symbol": "Command.__init__"
+            },
+            {
+              "path": "src/click/formatting.py",
+              "symbol": "HelpFormatter.write_usage"
+            },
+            {
+              "path": "src/click/core.py",
+              "symbol": "_format_deprecated_suffix"
+            },
+            {
+              "path": "src/click/core.py",
+              "symbol": "Command.format_usage"
+            }
+          ]
+        },
+        "symbol-directed-functions": {
+          "evidence_chars": 5578,
+          "coverage": {
+            "resolved": 1,
+            "covered": 1,
+            "recall": 1.0,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/click/formatting.py",
+              "symbol": "HelpFormatter.write_usage"
+            },
+            {
+              "path": "src/click/core.py",
+              "symbol": "Group.__init__"
+            },
+            {
+              "path": "src/click/core.py",
+              "symbol": "Command.__init__"
+            },
+            {
+              "path": "src/click/core.py",
+              "symbol": "_format_deprecated_suffix"
+            },
+            {
+              "path": "src/click/core.py",
+              "symbol": "Command.format_usage"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "resolution": {
+        "identifiers": [
+          "echo"
+        ],
+        "class_mentions": [],
+        "matches": [
+          {
+            "identifier": "echo",
+            "resolution": "resolved",
+            "reason": "bare",
+            "candidates": [
+              {
+                "path": "src/click/utils.py",
+                "symbol": "echo",
+                "start_line": 234,
+                "end_line": 334
+              }
+            ]
+          }
+        ],
+        "resolved_symbols": [
+          {
+            "path": "src/click/utils.py",
+            "symbol": "echo",
+            "start_line": 234,
+            "end_line": 334
+          }
+        ]
+      },
+      "policies": {
+        "direct-functions": {
+          "evidence_chars": 5982,
+          "coverage": {
+            "resolved": 1,
+            "covered": 1,
+            "recall": 1.0,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/click/utils.py",
+              "symbol": "echo"
+            },
+            {
+              "path": "src/click/termui.py",
+              "symbol": "secho"
+            },
+            {
+              "path": "src/click/_termui_impl.py",
+              "symbol": "get_pager_file"
+            },
+            {
+              "path": "src/click/_termui_impl.py",
+              "symbol": "_has_binary_buffer"
+            }
+          ]
+        },
+        "symbol-directed-functions": {
+          "evidence_chars": 5982,
+          "coverage": {
+            "resolved": 1,
+            "covered": 1,
+            "recall": 1.0,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/click/utils.py",
+              "symbol": "echo"
+            },
+            {
+              "path": "src/click/termui.py",
+              "symbol": "secho"
+            },
+            {
+              "path": "src/click/_termui_impl.py",
+              "symbol": "get_pager_file"
+            },
+            {
+              "path": "src/click/_termui_impl.py",
+              "symbol": "_has_binary_buffer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "resolution": {
+        "identifiers": [
+          "style",
+          "secho",
+          "colors"
+        ],
+        "class_mentions": [],
+        "matches": [
+          {
+            "identifier": "style",
+            "resolution": "resolved",
+            "reason": "bare",
+            "candidates": [
+              {
+                "path": "src/click/termui.py",
+                "symbol": "style",
+                "start_line": 583,
+                "end_line": 709
+              }
+            ]
+          },
+          {
+            "identifier": "secho",
+            "resolution": "resolved",
+            "reason": "bare",
+            "candidates": [
+              {
+                "path": "src/click/termui.py",
+                "symbol": "secho",
+                "start_line": 724,
+                "end_line": 755
+              }
+            ]
+          },
+          {
+            "identifier": "colors",
+            "resolution": "unresolved",
+            "candidates": []
+          }
+        ],
+        "resolved_symbols": [
+          {
+            "path": "src/click/termui.py",
+            "symbol": "style",
+            "start_line": 583,
+            "end_line": 709
+          },
+          {
+            "path": "src/click/termui.py",
+            "symbol": "secho",
+            "start_line": 724,
+            "end_line": 755
+          }
+        ]
+      },
+      "policies": {
+        "direct-functions": {
+          "evidence_chars": 5972,
+          "coverage": {
+            "resolved": 2,
+            "covered": 2,
+            "recall": 1.0,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/click/termui.py",
+              "symbol": "style"
+            },
+            {
+              "path": "src/click/termui.py",
+              "symbol": "secho"
+            },
+            {
+              "path": "src/click/termui.py",
+              "symbol": "_interpret_color"
+            }
+          ]
+        },
+        "symbol-directed-functions": {
+          "evidence_chars": 5972,
+          "coverage": {
+            "resolved": 2,
+            "covered": 2,
+            "recall": 1.0,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/click/termui.py",
+              "symbol": "style"
+            },
+            {
+              "path": "src/click/termui.py",
+              "symbol": "secho"
+            },
+            {
+              "path": "src/click/termui.py",
+              "symbol": "_interpret_color"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "resolution": {
+        "identifiers": [
+          "Serializer",
+          "Signer",
+          "values",
+          "signatures",
+          "itsdangerous.Signer",
+          "None"
+        ],
+        "class_mentions": [
+          {
+            "path": "src/itsdangerous/serializer.py",
+            "symbol": "Serializer"
+          },
+          {
+            "path": "src/itsdangerous/signer.py",
+            "symbol": "Signer"
+          }
+        ],
+        "matches": [
+          {
+            "identifier": "values",
+            "resolution": "unresolved",
+            "candidates": []
+          },
+          {
+            "identifier": "signatures",
+            "resolution": "unresolved",
+            "candidates": []
+          },
+          {
+            "identifier": "itsdangerous.Signer",
+            "resolution": "unresolved",
+            "candidates": []
+          },
+          {
+            "identifier": "None",
+            "resolution": "unresolved",
+            "candidates": []
+          }
+        ],
+        "resolved_symbols": []
+      },
+      "policies": {
+        "direct-functions": {
+          "evidence_chars": 4651,
+          "coverage": {
+            "resolved": 0,
+            "covered": 0,
+            "recall": null,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.__init__"
+            },
+            {
+              "path": "src/itsdangerous/jws.py",
+              "symbol": "JSONWebSignatureSerializer.__init__"
+            },
+            {
+              "path": "src/itsdangerous/signer.py",
+              "symbol": "Signer.unsign"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.dumps"
+            },
+            {
+              "path": "src/itsdangerous/signer.py",
+              "symbol": "Signer.__init__"
+            }
+          ]
+        },
+        "symbol-directed-functions": {
+          "evidence_chars": 4651,
+          "coverage": {
+            "resolved": 0,
+            "covered": 0,
+            "recall": null,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.__init__"
+            },
+            {
+              "path": "src/itsdangerous/jws.py",
+              "symbol": "JSONWebSignatureSerializer.__init__"
+            },
+            {
+              "path": "src/itsdangerous/signer.py",
+              "symbol": "Signer.unsign"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.dumps"
+            },
+            {
+              "path": "src/itsdangerous/signer.py",
+              "symbol": "Signer.__init__"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "itsdangerous-future-age",
+      "resolution": {
+        "identifiers": [
+          "TimestampSigner",
+          "TimedSerializer",
+          "max_age",
+          "validate",
+          "date_signed"
+        ],
+        "class_mentions": [
+          {
+            "path": "src/itsdangerous/exc.py",
+            "symbol": "SignatureExpired"
+          },
+          {
+            "path": "src/itsdangerous/timed.py",
+            "symbol": "TimedSerializer"
+          },
+          {
+            "path": "src/itsdangerous/timed.py",
+            "symbol": "TimestampSigner"
+          }
+        ],
+        "matches": [
+          {
+            "identifier": "max_age",
+            "resolution": "unresolved",
+            "candidates": []
+          },
+          {
+            "identifier": "validate",
+            "resolution": "resolved",
+            "reason": "class-scoped-bare",
+            "candidates": [
+              {
+                "path": "src/itsdangerous/timed.py",
+                "symbol": "TimestampSigner.validate",
+                "start_line": 112,
+                "end_line": 119
+              }
+            ]
+          },
+          {
+            "identifier": "date_signed",
+            "resolution": "unresolved",
+            "candidates": []
+          }
+        ],
+        "resolved_symbols": [
+          {
+            "path": "src/itsdangerous/timed.py",
+            "symbol": "TimestampSigner.validate",
+            "start_line": 112,
+            "end_line": 119
+          }
+        ]
+      },
+      "policies": {
+        "direct-functions": {
+          "evidence_chars": 5299,
+          "coverage": {
+            "resolved": 1,
+            "covered": 1,
+            "recall": 1.0,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimestampSigner.unsign"
+            },
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimedSerializer.loads"
+            },
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimestampSigner.validate"
+            },
+            {
+              "path": "src/itsdangerous/exc.py",
+              "symbol": "BadTimeSignature.__init__"
+            },
+            {
+              "path": "src/itsdangerous/jws.py",
+              "symbol": "TimedJSONWebSignatureSerializer.loads"
+            }
+          ]
+        },
+        "symbol-directed-functions": {
+          "evidence_chars": 5299,
+          "coverage": {
+            "resolved": 1,
+            "covered": 1,
+            "recall": 1.0,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimestampSigner.validate"
+            },
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimestampSigner.unsign"
+            },
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimedSerializer.loads"
+            },
+            {
+              "path": "src/itsdangerous/exc.py",
+              "symbol": "BadTimeSignature.__init__"
+            },
+            {
+              "path": "src/itsdangerous/jws.py",
+              "symbol": "TimedJSONWebSignatureSerializer.loads"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "resolution": {
+        "identifiers": [
+          "TimestampSigner",
+          "TimedSerializer",
+          "date_signed",
+          "validate",
+          "False",
+          "loads_unsafe"
+        ],
+        "class_mentions": [
+          {
+            "path": "src/itsdangerous/exc.py",
+            "symbol": "BadTimeSignature"
+          },
+          {
+            "path": "src/itsdangerous/timed.py",
+            "symbol": "TimedSerializer"
+          },
+          {
+            "path": "src/itsdangerous/timed.py",
+            "symbol": "TimestampSigner"
+          }
+        ],
+        "matches": [
+          {
+            "identifier": "date_signed",
+            "resolution": "unresolved",
+            "candidates": []
+          },
+          {
+            "identifier": "validate",
+            "resolution": "resolved",
+            "reason": "class-scoped-bare",
+            "candidates": [
+              {
+                "path": "src/itsdangerous/timed.py",
+                "symbol": "TimestampSigner.validate",
+                "start_line": 159,
+                "end_line": 166
+              }
+            ]
+          },
+          {
+            "identifier": "False",
+            "resolution": "unresolved",
+            "candidates": []
+          },
+          {
+            "identifier": "loads_unsafe",
+            "resolution": "resolved",
+            "reason": "class-scoped-bare",
+            "candidates": [
+              {
+                "path": "src/itsdangerous/timed.py",
+                "symbol": "TimedSerializer.loads_unsafe",
+                "start_line": 221,
+                "end_line": 227
+              }
+            ]
+          }
+        ],
+        "resolved_symbols": [
+          {
+            "path": "src/itsdangerous/timed.py",
+            "symbol": "TimestampSigner.validate",
+            "start_line": 159,
+            "end_line": 166
+          },
+          {
+            "path": "src/itsdangerous/timed.py",
+            "symbol": "TimedSerializer.loads_unsafe",
+            "start_line": 221,
+            "end_line": 227
+          }
+        ]
+      },
+      "policies": {
+        "direct-functions": {
+          "evidence_chars": 5975,
+          "coverage": {
+            "resolved": 2,
+            "covered": 0,
+            "recall": 0.0,
+            "missing": [
+              {
+                "path": "src/itsdangerous/timed.py",
+                "symbol": "TimestampSigner.validate",
+                "start_line": 159,
+                "end_line": 166
+              },
+              {
+                "path": "src/itsdangerous/timed.py",
+                "symbol": "TimedSerializer.loads_unsafe",
+                "start_line": 221,
+                "end_line": 227
+              }
+            ],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimestampSigner.unsign"
+            },
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimedSerializer.loads"
+            },
+            {
+              "path": "src/itsdangerous/exc.py",
+              "symbol": "BadTimeSignature.__init__"
+            },
+            {
+              "path": "src/itsdangerous/serializer.py",
+              "symbol": "Serializer.loads_unsafe"
+            },
+            {
+              "path": "src/itsdangerous/signer.py",
+              "symbol": "Signer.validate"
+            }
+          ]
+        },
+        "symbol-directed-functions": {
+          "evidence_chars": 5538,
+          "coverage": {
+            "resolved": 2,
+            "covered": 2,
+            "recall": 1.0,
+            "missing": [],
+            "scope": "unambiguously resolved explicit function mentions; no reference-patch labels"
+          },
+          "symbols": [
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimestampSigner.validate"
+            },
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimedSerializer.loads_unsafe"
+            },
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimestampSigner.unsign"
+            },
+            {
+              "path": "src/itsdangerous/timed.py",
+              "symbol": "TimedSerializer.loads"
+            },
+            {
+              "path": "src/itsdangerous/exc.py",
+              "symbol": "BadTimeSignature.__init__"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "repeat": 1,
+      "task_id": "click-usage-empty",
+      "policy": "direct-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "job_sha256": "930618452908502d0c38e20d6031341ac0064fd54ec446aa9bdaccb31e4183d3",
+      "response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+      "patch_sha256": "f48128db88f9dcdd621645b21093fbdb5343b327af338cdd22bc6c2af6646ebb",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "click-usage-empty",
+      "policy": "symbol-directed-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "210586bafd4642dcdaa2c28291190893a5fa91fb50c5e8241c7cd6af671f1042",
+      "job_sha256": "26124735b7f1f9769f36587fe0f5706aaa46de2a364ce612b69377012843aa58",
+      "response_sha256": "6ac0b52edd155bcfed5a10652196e8862ad18c9a637e951a1b851b251552f725",
+      "patch_sha256": "a60328c53ea9f66c1f682b5430ce794314557b81674706d32f1fd45332ef49ad",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "click-echo-empty-bytes",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+      "job_sha256": "6af6ddfb0d295ba6f5088f282a2a685b00bb6ac85f049c44f2ae4478d0c608f0",
+      "response_sha256": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b",
+      "patch_sha256": "0bc9b4d240c41304d602eb759862499e2a8180170870db56d271752060ccd4c0",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "click-echo-empty-bytes",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+      "job_sha256": "76efca513d9aa5e891df2176618cb6c51bfa3e418aabd40856eef6cfdde4ad6e",
+      "response_sha256": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b",
+      "patch_sha256": "0bc9b4d240c41304d602eb759862499e2a8180170870db56d271752060ccd4c0",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "click-style-color-validation",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+      "job_sha256": "1bc0633e9aaf7f5ecf4aa4fc44b187cc3757e150bb01c9f2e38eb27a4bf0a7e7",
+      "response_sha256": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb",
+      "patch_sha256": "900e3335eaa044d9e170b5c4e0b9b7b920e43550b9d88ffea28f13e9742881dd",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "click-style-color-validation",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+      "job_sha256": "24a1fccf1dee6bbea500ce9cb6c060d5aa52ddcc1f54773fa2230b544a090329",
+      "response_sha256": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb",
+      "patch_sha256": "900e3335eaa044d9e170b5c4e0b9b7b920e43550b9d88ffea28f13e9742881dd",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "symbol-directed-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "job_sha256": "1c43fea74e8b7f221181df6ed5e0c7f7e1093c174406e8023a69474335cd4877",
+      "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "patch_sha256": "7877fb2a87aee0a2049f0b9434bf59fbfb974f960cff17823f74c7e664c0e379",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "direct-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "job_sha256": "a3d62eacdf5431c54c05b1c8ec819fc8e325eaa0bcaea7017fa899eb3d067ab0",
+      "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "patch_sha256": "7877fb2a87aee0a2049f0b9434bf59fbfb974f960cff17823f74c7e664c0e379",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-future-age",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+      "job_sha256": "f23c5b830273446ce1138c1f525604d2309687a101afb4962202dd25de4fae06",
+      "response_sha256": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc",
+      "patch_sha256": "0c8fd39c4fe33ed1a64c79fb47313be40e8895ee3941b878a1ff8b05354495ee",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-future-age",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "2f5ccbbde479c3badf4a2fdf3115eae77feb5fbaaf4c66617ada3dd40e4064b6",
+      "job_sha256": "bd9231ce6db91338b943c313b678c927b4ed450a3aba501c7cc1a02634cdaa57",
+      "response_sha256": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc",
+      "patch_sha256": "0c8fd39c4fe33ed1a64c79fb47313be40e8895ee3941b878a1ff8b05354495ee",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-malformed-time",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "4a155c17d766f5365e98d9f17170128d799baa4fab00ff44bfa51bb258dc5a92",
+      "job_sha256": "077e4038d67936ea95eb73f9a23329126051a9db9d733df42a4ef4a6c74dfa0a",
+      "response_sha256": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e",
+      "patch_sha256": "0a5c25945ad7ae8e2fe7c488903378e115c1d3f5149dc5f28d6cf806eab4002f",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 1,
+      "task_id": "itsdangerous-malformed-time",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+      "job_sha256": "49d928936f6b4aa5cf5077260b950e788ac1edb7837167449f0bc359fe740f01",
+      "response_sha256": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e",
+      "patch_sha256": "0a5c25945ad7ae8e2fe7c488903378e115c1d3f5149dc5f28d6cf806eab4002f",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-usage-empty",
+      "policy": "symbol-directed-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "210586bafd4642dcdaa2c28291190893a5fa91fb50c5e8241c7cd6af671f1042",
+      "job_sha256": "a9b0494f48e3230144ac5e8615ff7eec4672d24c9bdee715e13dba0e9145a9d0",
+      "response_sha256": "6ac0b52edd155bcfed5a10652196e8862ad18c9a637e951a1b851b251552f725",
+      "patch_sha256": "a60328c53ea9f66c1f682b5430ce794314557b81674706d32f1fd45332ef49ad",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-usage-empty",
+      "policy": "direct-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "job_sha256": "67f04ee3416f3035454300c89732fc873caab3c8b4d318a9bfb5770e845dcb67",
+      "response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+      "patch_sha256": "f48128db88f9dcdd621645b21093fbdb5343b327af338cdd22bc6c2af6646ebb",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-echo-empty-bytes",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+      "job_sha256": "de6c60251e89d22caca23ecfa778ebd1a96f728a5fcb462c7ac94208ca815df5",
+      "response_sha256": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b",
+      "patch_sha256": "0bc9b4d240c41304d602eb759862499e2a8180170870db56d271752060ccd4c0",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-echo-empty-bytes",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+      "job_sha256": "0f61f656bb5083dcc89a08104257f6d4be59a218811a5e042390070b8bb31073",
+      "response_sha256": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b",
+      "patch_sha256": "0bc9b4d240c41304d602eb759862499e2a8180170870db56d271752060ccd4c0",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-style-color-validation",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+      "job_sha256": "7cc312a19c1a7d081e49be7ed678111def4363a1ae58bff905d18ac48fa2452e",
+      "response_sha256": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb",
+      "patch_sha256": "900e3335eaa044d9e170b5c4e0b9b7b920e43550b9d88ffea28f13e9742881dd",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "click-style-color-validation",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+      "job_sha256": "3aa1050baef290085659073e979897872db28756ccf0cdf53c5c20c7171cbbdf",
+      "response_sha256": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb",
+      "patch_sha256": "900e3335eaa044d9e170b5c4e0b9b7b920e43550b9d88ffea28f13e9742881dd",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "direct-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "job_sha256": "ee372ac06acaca3432a282bc888db3a78068ba7a62ead66de8a2f5c73e67c8b4",
+      "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "patch_sha256": "7877fb2a87aee0a2049f0b9434bf59fbfb974f960cff17823f74c7e664c0e379",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "symbol-directed-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "job_sha256": "02f5dc3d234f07b99ef40e4caca412cb679a251b86092dbcd870b846d6d3aad0",
+      "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "patch_sha256": "7877fb2a87aee0a2049f0b9434bf59fbfb974f960cff17823f74c7e664c0e379",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-future-age",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "2f5ccbbde479c3badf4a2fdf3115eae77feb5fbaaf4c66617ada3dd40e4064b6",
+      "job_sha256": "3524c9940b8734609b152cde0941e8412caa8684bb324e802028bc92adf60c38",
+      "response_sha256": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc",
+      "patch_sha256": "0c8fd39c4fe33ed1a64c79fb47313be40e8895ee3941b878a1ff8b05354495ee",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-future-age",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+      "job_sha256": "b72ae6bbc39c341d261f307bb9958eacd0213e49edca2d006f8848ff31581678",
+      "response_sha256": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc",
+      "patch_sha256": "0c8fd39c4fe33ed1a64c79fb47313be40e8895ee3941b878a1ff8b05354495ee",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-malformed-time",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+      "job_sha256": "188bcab92d9ad4152c8681d59051f6728e2decc0b1b432216f060c76b950d405",
+      "response_sha256": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e",
+      "patch_sha256": "0a5c25945ad7ae8e2fe7c488903378e115c1d3f5149dc5f28d6cf806eab4002f",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 2,
+      "task_id": "itsdangerous-malformed-time",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "4a155c17d766f5365e98d9f17170128d799baa4fab00ff44bfa51bb258dc5a92",
+      "job_sha256": "c8e841470817b9f32fedfdf7b904430f659a122cffa70687ddcf8dfc021fb63b",
+      "response_sha256": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e",
+      "patch_sha256": "0a5c25945ad7ae8e2fe7c488903378e115c1d3f5149dc5f28d6cf806eab4002f",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-usage-empty",
+      "policy": "direct-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+      "job_sha256": "e0aed38ad2514f8637a5e5b6c09f79cd5ebfcca309564624a41aa5f8762f285d",
+      "response_sha256": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc",
+      "patch_sha256": "f48128db88f9dcdd621645b21093fbdb5343b327af338cdd22bc6c2af6646ebb",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-usage-empty",
+      "policy": "symbol-directed-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "210586bafd4642dcdaa2c28291190893a5fa91fb50c5e8241c7cd6af671f1042",
+      "job_sha256": "1394f0aed0ffd3dcc4193ea875277b00bd1adc7126643b202a9a206e0ba7271b",
+      "response_sha256": "6ac0b52edd155bcfed5a10652196e8862ad18c9a637e951a1b851b251552f725",
+      "patch_sha256": "a60328c53ea9f66c1f682b5430ce794314557b81674706d32f1fd45332ef49ad",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-echo-empty-bytes",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+      "job_sha256": "82b43b72c07ecbcb590c68b5302b5255cea0a57526ec8eb823b88bc796a82361",
+      "response_sha256": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b",
+      "patch_sha256": "0bc9b4d240c41304d602eb759862499e2a8180170870db56d271752060ccd4c0",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-echo-empty-bytes",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+      "job_sha256": "ab9000941217b3309f1a12c45e55d93216769ce38cfdabc275b07572183f1660",
+      "response_sha256": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b",
+      "patch_sha256": "0bc9b4d240c41304d602eb759862499e2a8180170870db56d271752060ccd4c0",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-style-color-validation",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+      "job_sha256": "dda0707e29581926324a0b10064f1d681ade57c2cba1ca4452cad0f8291bb25c",
+      "response_sha256": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb",
+      "patch_sha256": "900e3335eaa044d9e170b5c4e0b9b7b920e43550b9d88ffea28f13e9742881dd",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "click-style-color-validation",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+      "job_sha256": "cb8fca0c268bc6cbe0bad6d03d7a200c82f8504a712d98289228ec72b1c79c23",
+      "response_sha256": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb",
+      "patch_sha256": "900e3335eaa044d9e170b5c4e0b9b7b920e43550b9d88ffea28f13e9742881dd",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "symbol-directed-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "job_sha256": "0d5b2ee6555bba043610b022f8844950fb806377432b8e825e78b43345fb6032",
+      "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "patch_sha256": "7877fb2a87aee0a2049f0b9434bf59fbfb974f960cff17823f74c7e664c0e379",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-none-salt",
+      "policy": "direct-functions",
+      "status": "failed_verification",
+      "worker_status": "completed",
+      "accepted": false,
+      "prompt_sha256": "faf10b9ea7b20b9911ec94b74e5c68ff5a1bfb1c0178130f0ccf7b1f1c45ca5c",
+      "job_sha256": "0044989543cfcbb98c04ac48ec153383d3ca20df3fba62ea6d3a457ec76fafb4",
+      "response_sha256": "c2ff864b53ce5476d70e039ef3d3c242abae02ddc52ebc5a9d23238f8d659fef",
+      "patch_sha256": "7877fb2a87aee0a2049f0b9434bf59fbfb974f960cff17823f74c7e664c0e379",
+      "target_passed": false,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-future-age",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+      "job_sha256": "d7fbb09ec742d0cbe2bb379c5675ac7e690d6115f818aa382d0a32034b1c7f9b",
+      "response_sha256": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc",
+      "patch_sha256": "0c8fd39c4fe33ed1a64c79fb47313be40e8895ee3941b878a1ff8b05354495ee",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-future-age",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "2f5ccbbde479c3badf4a2fdf3115eae77feb5fbaaf4c66617ada3dd40e4064b6",
+      "job_sha256": "054d90e6a3490b02f1255001b4a32600b4592fda9999714b2d62644c22adc2be",
+      "response_sha256": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc",
+      "patch_sha256": "0c8fd39c4fe33ed1a64c79fb47313be40e8895ee3941b878a1ff8b05354495ee",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-malformed-time",
+      "policy": "symbol-directed-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "4a155c17d766f5365e98d9f17170128d799baa4fab00ff44bfa51bb258dc5a92",
+      "job_sha256": "c8a70f26f5d64a82be12f1ecb580eaf86728f635f162e544148a32c990d32dd7",
+      "response_sha256": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e",
+      "patch_sha256": "0a5c25945ad7ae8e2fe7c488903378e115c1d3f5149dc5f28d6cf806eab4002f",
+      "target_passed": true,
+      "controls_passed": true
+    },
+    {
+      "repeat": 3,
+      "task_id": "itsdangerous-malformed-time",
+      "policy": "direct-functions",
+      "status": "passed",
+      "worker_status": "completed",
+      "accepted": true,
+      "prompt_sha256": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+      "job_sha256": "80ede08f7049076bef404c3dd1a8be659740662d30b3620e7b7753d47f999344",
+      "response_sha256": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e",
+      "patch_sha256": "0a5c25945ad7ae8e2fe7c488903378e115c1d3f5149dc5f28d6cf806eab4002f",
+      "target_passed": true,
+      "controls_passed": true
+    }
+  ],
+  "excluded_prototype": {
+    "complete": false,
+    "reason": "ordinary vocabulary misidentified as named functions",
+    "raw_experiment": ".tmp/real-defects/symbol-directed-repair-v1/experiment.json",
+    "raw_experiment_sha256": "323d36c03a13b303b53f4cc979e37864279137fd73faac4d206a8b60823de47c",
+    "recorded_branches": 5,
+    "started_jobs": 6,
+    "unfinished_provider_usage": "unknown; not counted as zero; excluded from formal comparison"
+  },
+  "validation": {
+    "targeted_passed": 47,
+    "full_passed": 901,
+    "full_skipped": 2,
+    "full_seconds": 163.05,
+    "ruff": "passed",
+    "linux_container_http_rerun": false,
+    "modified_docs_local_links": 40,
+    "git_diff_check": "passed"
+  },
+  "limitations": [
+    "six previously inspected tasks, three repetitions do not add unique defects",
+    "coverage is rule-extracted explicit functions, not ground-truth bug localization",
+    "complete-function BM25 control; no rate comparison against old line or anchored-patch runs",
+    "Target/Controls only, not full upstream or production correctness",
+    "raw admission snapshots, responses and archived prototype implementations remain in ignored .tmp"
+  ]
+}

@@ -219,4 +219,4 @@ docs/                    # 架构决策、复现说明、个人贡献
 
 不预写提升比例或宣称优于成熟产品；保留上游来源和个人改动边界。
 
-**当前：实验、服务工程和交付文档已完成。历史工程验收全量 864 passed、2 skipped；Linux 71 passed、22 项容器检查及 18 项真实 HTTP 审批故障检查通过，见 docs/workflow-approval-v1.md。总览和贡献边界见 docs/project-overview.md。最新开展补丁定位优化与换行边界修正，新增两轮共 24 次调用，最终两方案均 3/6；无修复率提升且 Token 增加，保留默认方案，见 docs/anchored-patch-v1.md。后续修复优化优先保证被点名函数实现进入上下文，再固定条件对照；不继续无依据增加预算或补丁格式。动态规划/反思、PostgreSQL/Redis 和每任务沙箱仍未实现。**
+**当前：实验、服务工程和交付文档已完成。历史工程验收全量 864 passed、2 skipped；Linux 71 passed、22 项容器检查及 18 项真实 HTTP 审批故障检查通过，见 docs/workflow-approval-v1.md。总览和贡献边界见 docs/project-overview.md。补丁定位对照两方案均 3/6；最新符号检索正式对照 36 次新调用，点名函数覆盖 5/7→7/7、修复均 12/18，仍无修复率优势，保持唯一原文匹配及默认策略。最终全量 901 passed、2 skipped，见 docs/symbol-directed-retrieval-v1.md。后续聚焦 usage-empty/none-salt 的补丁语义和必要上下文，以独立协议评测有预算上限的公开自检反馈；独立评分不作为模型反馈，不继续无依据增加预算或检索变体。动态规划/反思、PostgreSQL/Redis 和每任务沙箱仍未实现。**
