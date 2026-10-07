@@ -1,0 +1,999 @@
+{
+  "protocol": "public-repair-hypothesis-summary-v1",
+  "complete": true,
+  "previously_inspected_tasks": true,
+  "benchmark_eligible": false,
+  "versions": {
+    "v1": {
+      "complete": true,
+      "unique_tasks": 6,
+      "repeats": 1,
+      "summary": {
+        "patch-only": {
+          "runs": 6,
+          "passed": 5,
+          "statuses": {
+            "passed": 5,
+            "failed_verification": 1
+          },
+          "budget_accounted_tokens": 27513,
+          "known_budget_accounted_tokens": 27513,
+          "missing_metrics_runs": 0,
+          "missing_usage_calls": 0,
+          "prompt_tokens": 23856,
+          "completion_tokens": 3657,
+          "worker_seconds": 108.9152,
+          "model_calls": 8,
+          "transaction_rejections": 0
+        },
+        "public-hypotheses": {
+          "runs": 6,
+          "passed": 4,
+          "statuses": {
+            "hypothesis_rejected": 2,
+            "passed": 4
+          },
+          "budget_accounted_tokens": 28342,
+          "known_budget_accounted_tokens": 28342,
+          "missing_metrics_runs": 0,
+          "missing_usage_calls": 0,
+          "prompt_tokens": 24434,
+          "completion_tokens": 3908,
+          "worker_seconds": 117.157,
+          "model_calls": 8,
+          "transaction_rejections": 0
+        }
+      },
+      "initial_prompt_pairs_equal": 6,
+      "initial_response_pairs_equal": 6,
+      "paired_initial_hashes": {
+        "click-usage-empty": {
+          "public-hypotheses": {
+            "prompt": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "response": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc"
+          },
+          "patch-only": {
+            "prompt": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "response": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc"
+          }
+        },
+        "click-echo-empty-bytes": {
+          "patch-only": {
+            "prompt": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+            "response": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b"
+          },
+          "public-hypotheses": {
+            "prompt": "cf045ee6ff1da2f238d9a76d2373230d9cbdec89b873fb2bca6b1a1c80bb682e",
+            "response": "131483c1974022f20c18f45ec3a940937268e8782a8d8b7f753a1e2663fce14b"
+          }
+        },
+        "click-style-color-validation": {
+          "public-hypotheses": {
+            "prompt": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+            "response": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb"
+          },
+          "patch-only": {
+            "prompt": "b6b587dc7ff5cdd0298c235ff9aecc80eb7cd7d7d2be1525660e9f79ba419cc9",
+            "response": "6dab89208406d6d67b20493cba2323e38ebdccb88656276c3a6c305d223655cb"
+          }
+        },
+        "itsdangerous-none-salt": {
+          "patch-only": {
+            "prompt": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "response": "eb6e386b9f09383a9fbbabacdf7f7a3394cde329af578c063a395435978ba3bb"
+          },
+          "public-hypotheses": {
+            "prompt": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "response": "eb6e386b9f09383a9fbbabacdf7f7a3394cde329af578c063a395435978ba3bb"
+          }
+        },
+        "itsdangerous-future-age": {
+          "public-hypotheses": {
+            "prompt": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+            "response": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc"
+          },
+          "patch-only": {
+            "prompt": "874f5149dc41dd9d9302af52313ad361ece27693dc3718f0f02c1bc590d0c017",
+            "response": "5df216d4fb07c5a6c17cfcabf3b11369174e9c773ecbdf1476d4fff2a0e8afdc"
+          }
+        },
+        "itsdangerous-malformed-time": {
+          "patch-only": {
+            "prompt": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+            "response": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e"
+          },
+          "public-hypotheses": {
+            "prompt": "3fcfa8e479aca36727916e0ef7420781ec351f4eaa514f3d1dc1ee808349e041",
+            "response": "76165e63208572193e8565e1fcf6acf3e08077e2922b97f3cab4097b1e98997e"
+          }
+        }
+      },
+      "runs": [
+        {
+          "task_id": "click-usage-empty",
+          "policy": "public-hypotheses",
+          "status": "hypothesis_rejected",
+          "verification": {
+            "passed": false,
+            "changed_files": [
+              "src/click/formatting.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1515,
+              "tests_run": 2,
+              "assertion_failure": true,
+              "execution_error": false,
+              "stdout": "Target.stdout.txt",
+              "stderr": "Target.stderr.txt",
+              "passed": false
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1505,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Controls.stdout.txt",
+              "stderr": "Controls.stderr.txt",
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not the full upstream suite"
+          },
+          "feedback_error": "Unknown public test or undisplayed symbol",
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        },
+        {
+          "task_id": "click-usage-empty",
+          "policy": "patch-only",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/click/core.py",
+              "src/click/formatting.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1692,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Target.stdout.txt",
+              "stderr": "Target.stderr.txt",
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1416,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Controls.stdout.txt",
+              "stderr": "Controls.stderr.txt",
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not the full upstream suite"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": true
+          }
+        },
+        {
+          "task_id": "click-echo-empty-bytes",
+          "policy": "patch-only",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/click/utils.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1261,
+              "tests_run": 1,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Target.stdout.txt",
+              "stderr": "Target.stderr.txt",
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1295,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Controls.stdout.txt",
+              "stderr": "Controls.stderr.txt",
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not the full upstream suite"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        },
+        {
+          "task_id": "click-echo-empty-bytes",
+          "policy": "public-hypotheses",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/click/utils.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1337,
+              "tests_run": 1,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Target.stdout.txt",
+              "stderr": "Target.stderr.txt",
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1337,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Controls.stdout.txt",
+              "stderr": "Controls.stderr.txt",
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not the full upstream suite"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        },
+        {
+          "task_id": "click-style-color-validation",
+          "policy": "public-hypotheses",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/click/termui.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1286,
+              "tests_run": 3,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Target.stdout.txt",
+              "stderr": "Target.stderr.txt",
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1183,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Controls.stdout.txt",
+              "stderr": "Controls.stderr.txt",
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not the full upstream suite"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        },
+        {
+          "task_id": "click-style-color-validation",
+          "policy": "patch-only",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/click/termui.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.138,
+              "tests_run": 3,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Target.stdout.txt",
+              "stderr": "Target.stderr.txt",
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1264,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Controls.stdout.txt",
+              "stderr": "Controls.stderr.txt",
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not the full upstream suite"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        },
+        {
+          "task_id": "itsdangerous-none-salt",
+          "policy": "patch-only",
+          "status": "failed_verification",
+          "verification": {
+            "passed": false,
+            "changed_files": [
+              "src/itsdangerous/serializer.py",
+              "src/itsdangerous/signer.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1008,
+              "tests_run": 2,
+              "assertion_failure": true,
+              "execution_error": false,
+              "passed": false
+            },
+            "regression": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1003,
+              "tests_run": 2,
+              "assertion_failure": true,
+              "execution_error": false,
+              "passed": false
+            },
+            "regression_scope": "public Controls only; not full upstream tests"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 12,
+            "exceptions": 0,
+            "observed": true
+          }
+        },
+        {
+          "task_id": "itsdangerous-none-salt",
+          "policy": "public-hypotheses",
+          "status": "hypothesis_rejected",
+          "verification": {
+            "passed": false,
+            "changed_files": [
+              "src/itsdangerous/serializer.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1007,
+              "tests_run": 2,
+              "assertion_failure": true,
+              "execution_error": false,
+              "passed": false
+            },
+            "regression": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.0966,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": true,
+              "passed": false
+            },
+            "regression_scope": "public Controls only; not full upstream tests"
+          },
+          "feedback_error": "Unknown public test or undisplayed symbol",
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        },
+        {
+          "task_id": "itsdangerous-future-age",
+          "policy": "public-hypotheses",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/itsdangerous/timed.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0925,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0959,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not full upstream tests"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        },
+        {
+          "task_id": "itsdangerous-future-age",
+          "policy": "patch-only",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/itsdangerous/timed.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0931,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0982,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not full upstream tests"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        },
+        {
+          "task_id": "itsdangerous-malformed-time",
+          "policy": "patch-only",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/itsdangerous/timed.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0889,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0957,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not full upstream tests"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        },
+        {
+          "task_id": "itsdangerous-malformed-time",
+          "policy": "public-hypotheses",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/itsdangerous/timed.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0903,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1179,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not full upstream tests"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": false
+          }
+        }
+      ],
+      "adapter_hashes": {
+        "docs/experiments/repair_hypothesis_compare_v1.py": "60c386608792f78ecbf60692a6ae3c11b5f77d22500f1fccad40ada4e7f88dd9",
+        "docs/experiments/repair_hypothesis_v1.py": "9ea8c1d8a5acb93d3c108ec05b9fe6dd92c4898ae5b89b6ce6f2652ba6eaa6c9",
+        "docs/experiments/edited_context_v1.py": "bb6ecbc0843cb18690700593d99f8effc425fae0ad8cee7ff859a004753780a7",
+        "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+        "docs/experiments/provider_compare_worker_v1.py": "5673402e02e11f122d3bb67e2a3fada04a532f00745c411bc2eb7171758a18cb",
+        "docs/experiments/repair_hypothesis_worker_v1.py": "d714e38b89ddf6c84d125efcb30a62cd16024754094480de59def9ecb48303cb",
+        "docs/experiments/source_contract_context_v1.py": "f06bd16db2bebceb74bdf2db9956372cb8c4eca930eff806e1fbb4bffcb41406",
+        "docs/experiments/runtime_observation_v1.py": "643a052493a0303f27596ee05f84ef962b2e3a989a74da77906aee341862367d",
+        "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+        "docs/experiments/repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+        "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+        "docs/experiments/salt_relations_audit_v1.py": "94bb64473835d4a9c8f79c7e91a1ea90ec9ac526cfd64b4dc6ea4a91ae7fa1e0",
+        "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+        "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+        "docs/experiments/thinking_calibration_v1.py": "4fd5865933ce8b83d0811654bebb93fdc22906a7245b13c664dd47771d3bb987",
+        "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+        "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+        "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+        "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+        "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+        "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+        "evals/process.py": "6a881e9a519e67776fe9a9bacc7b0c176259dceed6fabcac91c8fdc4d7f01b04",
+        ".tmp/real-defects/repair-hypothesis-audit-v1/audit.json": "d51aec8f1ef7b36ea1c9642dc7dd35b0bf8ac3d8b15115d9d9ead99765db5762",
+        ".tmp/real-defects/edited-context-audit-v1-final/audit.json": "afac19480c252dfbe46d7efb09e4a6f5a70d878d7154914fdeb9c8ed920a4574",
+        ".tmp/real-defects/runtime-observation-audit-v1/audit.json": "615948f936f370b7bdba939a211126e8d47457111e8d3e6d039f93e157c179aa",
+        ".tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+        ".tmp/real-defects/salt-relations-audit-v1-final/audit.json": "aed080365d682c89aab20f944cb6c178b6e5e97473e2407e212c6f812a65fbc0",
+        "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+        "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51"
+      },
+      "raw_artifacts": ".tmp/real-defects/repair-hypothesis-compare-v1",
+      "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd"
+    },
+    "v2": {
+      "complete": true,
+      "unique_tasks": 2,
+      "repeats": 1,
+      "summary": {
+        "patch-only": {
+          "runs": 2,
+          "passed": 1,
+          "statuses": {
+            "passed": 1,
+            "failed_verification": 1
+          },
+          "budget_accounted_tokens": 16911,
+          "known_budget_accounted_tokens": 16911,
+          "missing_metrics_runs": 0,
+          "missing_usage_calls": 0,
+          "prompt_tokens": 14587,
+          "completion_tokens": 2324,
+          "worker_seconds": 66.5599,
+          "model_calls": 4,
+          "transaction_rejections": 0
+        },
+        "public-hypotheses": {
+          "runs": 2,
+          "passed": 0,
+          "statuses": {
+            "failed_verification": 2
+          },
+          "budget_accounted_tokens": 17748,
+          "known_budget_accounted_tokens": 17748,
+          "missing_metrics_runs": 0,
+          "missing_usage_calls": 0,
+          "prompt_tokens": 15165,
+          "completion_tokens": 2583,
+          "worker_seconds": 71.6484,
+          "model_calls": 4,
+          "transaction_rejections": 0
+        }
+      },
+      "initial_prompt_pairs_equal": 2,
+      "initial_response_pairs_equal": 2,
+      "paired_initial_hashes": {
+        "click-usage-empty": {
+          "public-hypotheses": {
+            "prompt": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "response": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc"
+          },
+          "patch-only": {
+            "prompt": "807152682ceb573d991c4d3514082d7dfec58a19148cda31156b98782d712f16",
+            "response": "474de77daf2df7f6c7d5fc55e4ce053cfc23a2b85e6622201727386df09846dc"
+          }
+        },
+        "itsdangerous-none-salt": {
+          "patch-only": {
+            "prompt": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "response": "eb6e386b9f09383a9fbbabacdf7f7a3394cde329af578c063a395435978ba3bb"
+          },
+          "public-hypotheses": {
+            "prompt": "690e6b6e330d3a653d52171f99b39fae924747443d618b9b1f6716224489474a",
+            "response": "eb6e386b9f09383a9fbbabacdf7f7a3394cde329af578c063a395435978ba3bb"
+          }
+        }
+      },
+      "runs": [
+        {
+          "task_id": "click-usage-empty",
+          "policy": "public-hypotheses",
+          "status": "failed_verification",
+          "verification": {
+            "passed": false,
+            "changed_files": [
+              "src/click/formatting.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1491,
+              "tests_run": 2,
+              "assertion_failure": true,
+              "execution_error": false,
+              "stdout": "Target.stdout.txt",
+              "stderr": "Target.stderr.txt",
+              "passed": false
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1393,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Controls.stdout.txt",
+              "stderr": "Controls.stderr.txt",
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not the full upstream suite"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [
+            {
+              "tests": [
+                "PublicContract.test_empty_usage_wide"
+              ],
+              "symbols": [
+                "src/click/formatting.py:HelpFormatter.write_usage"
+              ],
+              "claim": "write_usage will emit the usage prefix and program name even when args is empty, removing the conditional that skips writing the prefix.",
+              "status": "failed_public_checks"
+            },
+            {
+              "tests": [
+                "PublicContract.test_command_empty_and_none_metavar"
+              ],
+              "symbols": [
+                "src/click/core.py:Command.format_usage",
+                "src/click/formatting.py:HelpFormatter.write_usage"
+              ],
+              "claim": "format_usage will call write_usage with an empty string for args, and write_usage will render the prefix and program name without a trailing space or newline when args is empty.",
+              "status": "failed_public_checks"
+            },
+            {
+              "tests": [
+                "PublicContract.test_empty_usage_narrow_custom_prefix",
+                "PublicContract.test_nonempty_arguments_and_custom_prefix"
+              ],
+              "symbols": [
+                "src/click/formatting.py:HelpFormatter.write_usage"
+              ],
+              "claim": "write_usage will preserve custom prefixes and correctly render non-empty arguments, ensuring no regression in existing passing tests.",
+              "status": "supported_on_public_checks"
+            }
+          ],
+          "final_public_issues": {
+            "assertions": 3,
+            "exceptions": 0,
+            "observed": true
+          }
+        },
+        {
+          "task_id": "click-usage-empty",
+          "policy": "patch-only",
+          "status": "passed",
+          "verification": {
+            "passed": true,
+            "changed_files": [
+              "src/click/core.py",
+              "src/click/formatting.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1485,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Target.stdout.txt",
+              "stderr": "Target.stderr.txt",
+              "passed": true
+            },
+            "regression": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1439,
+              "tests_run": 2,
+              "assertion_failure": false,
+              "execution_error": false,
+              "stdout": "Controls.stdout.txt",
+              "stderr": "Controls.stderr.txt",
+              "passed": true
+            },
+            "regression_scope": "public Controls only; not the full upstream suite"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 0,
+            "exceptions": 0,
+            "observed": true
+          }
+        },
+        {
+          "task_id": "itsdangerous-none-salt",
+          "policy": "patch-only",
+          "status": "failed_verification",
+          "verification": {
+            "passed": false,
+            "changed_files": [
+              "src/itsdangerous/serializer.py",
+              "src/itsdangerous/signer.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.0993,
+              "tests_run": 2,
+              "assertion_failure": true,
+              "execution_error": false,
+              "passed": false
+            },
+            "regression": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1112,
+              "tests_run": 2,
+              "assertion_failure": true,
+              "execution_error": false,
+              "passed": false
+            },
+            "regression_scope": "public Controls only; not full upstream tests"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [],
+          "final_public_issues": {
+            "assertions": 12,
+            "exceptions": 0,
+            "observed": true
+          }
+        },
+        {
+          "task_id": "itsdangerous-none-salt",
+          "policy": "public-hypotheses",
+          "status": "failed_verification",
+          "verification": {
+            "passed": false,
+            "changed_files": [
+              "src/itsdangerous/serializer.py",
+              "src/itsdangerous/signer.py"
+            ],
+            "scope_violations": [],
+            "target": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1016,
+              "tests_run": 2,
+              "assertion_failure": true,
+              "execution_error": false,
+              "passed": false
+            },
+            "regression": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1053,
+              "tests_run": 2,
+              "assertion_failure": true,
+              "execution_error": false,
+              "passed": false
+            },
+            "regression_scope": "public Controls only; not full upstream tests"
+          },
+          "feedback_error": null,
+          "hypothesis_outcomes": [
+            {
+              "tests": [
+                "PublicContract.test_signer_none_uses_signer_default",
+                "PublicContract.test_serializer_none_matches_explicit_signer",
+                "PublicContract.test_serializer_none_round_trip"
+              ],
+              "symbols": [
+                "src/itsdangerous/signer.py:Signer.__init__"
+              ],
+              "claim": "Passing salt=None to Signer constructor will use the default salt 'itsdangerous.Signer' instead of storing None, preventing TypeError in derive_key.",
+              "status": "supported_on_public_checks"
+            },
+            {
+              "tests": [
+                "PublicContract.test_explicit_constructor_salt_exact_signature",
+                "PublicContract.test_explicit_string_and_bytes_salts"
+              ],
+              "symbols": [
+                "src/itsdangerous/signer.py:Signer.__init__"
+              ],
+              "claim": "Passing salt=None to Serializer constructor will propagate None to Signer, which resolves it to the default, ensuring signatures match explicit Signer usage.",
+              "status": "failed_public_checks"
+            },
+            {
+              "tests": [
+                "PublicContract.test_method_salt_override_matrix",
+                "PublicContract.test_constructor_none_distinct_from_omission"
+              ],
+              "symbols": [
+                "src/itsdangerous/serializer.py:Serializer.make_signer",
+                "src/itsdangerous/signer.py:Signer.__init__"
+              ],
+              "claim": "Method-level salt=None will be passed to make_signer, which passes it to Signer, resolving to the default, while instance salt remains distinct.",
+              "status": "failed_public_checks"
+            },
+            {
+              "tests": [
+                "PublicContract.test_omitted_default_matches_independent_signer"
+              ],
+              "symbols": [
+                "src/itsdangerous/signer.py:Signer.__init__"
+              ],
+              "claim": "Omitted salt in Serializer uses 'itsdangerous', while None resolves to Signer's default, ensuring distinct behavior as required.",
+              "status": "failed_public_checks"
+            },
+            {
+              "tests": [
+                "PublicContract.test_wrong_salt_rejected",
+                "PublicContract.test_tampered_value_rejected"
+              ],
+              "symbols": [
+                "src/itsdangerous/signer.py:Signer.__init__"
+              ],
+              "claim": "Explicit salts (string or bytes) are preserved correctly, ensuring wrong-salt rejection and tamper detection still function.",
+              "status": "failed_public_checks"
+            }
+          ],
+          "final_public_issues": {
+            "assertions": 12,
+            "exceptions": 0,
+            "observed": true
+          }
+        }
+      ],
+      "adapter_hashes": {
+        "docs/experiments/repair_hypothesis_compare_v2.py": "4a8b06549a265d3706064af6edc37d53d2b532a6128f31fc152d71090877094e",
+        "docs/experiments/repair_hypothesis_v2.py": "78a9bf6165ed2ea7b8e40b5e83a7bdef30334dd05827d65e750a9bdbbb0ad04b",
+        "docs/experiments/edited_context_v1.py": "bb6ecbc0843cb18690700593d99f8effc425fae0ad8cee7ff859a004753780a7",
+        "docs/experiments/function_index_audit_v1.py": "abba3339be8838c68693aad344fc106b44e36201d0db1cffdc44f6a6637630a7",
+        "docs/experiments/provider_compare_worker_v1.py": "5673402e02e11f122d3bb67e2a3fada04a532f00745c411bc2eb7171758a18cb",
+        "docs/experiments/repair_hypothesis_worker_v2.py": "4eb13c43a8c40fd6be4fedc213dac706a11e7de98b42fe44323d4a972e683b4d",
+        "docs/experiments/source_contract_context_v1.py": "f06bd16db2bebceb74bdf2db9956372cb8c4eca930eff806e1fbb4bffcb41406",
+        "docs/experiments/runtime_observation_v1.py": "643a052493a0303f27596ee05f84ef962b2e3a989a74da77906aee341862367d",
+        "docs/experiments/patch_transaction_v1.py": "8271621338f4a15a3b7125f28e51251d793f9095e9b42b7e763663338dfecc3d",
+        "docs/experiments/repair_forwarding_worker_v1.py": "9d092916212df35669040e9b7dd80c00ee428be4c75da2898b5c91561e4e824b",
+        "docs/experiments/repair_public_checks_v1.py": "5e3fd056a2ed92b626176eccf343f27d6515ae8f7cdf6ef738bd85ca515e475a",
+        "docs/experiments/salt_relations_audit_v1.py": "94bb64473835d4a9c8f79c7e91a1ea90ec9ac526cfd64b4dc6ea4a91ae7fa1e0",
+        "docs/experiments/symbol_directed_retrieval_v1.py": "3d20c6dc2b545dcd9799656fa4fa52f3db1a9140ed458719dcbe0c29aac8fdab",
+        "docs/experiments/anchored_patch_comparison_v1.py": "70f6097214b048f70c151576c0ef17db75c638a0aa0f5d702fc088dc532e8076",
+        "docs/experiments/thinking_calibration_v1.py": "4fd5865933ce8b83d0811654bebb93fdc22906a7245b13c664dd47771d3bb987",
+        "docs/experiments/second_repo_repair_v1.py": "af87e726f4a36a66c5d43dd9e53341d7f5ce951312d9b5bcc7848ff9927c3344",
+        "docs/experiments/function_index_repair_v1.py": "97d6d3af30723894b49ee0ff340ba8bb34b25b18839d728e6c7546df0d9d0aac",
+        "docs/experiments/retrieved_function_repair_v1.py": "0887c60597a1d5ec82fed92b447e2eb73aaae7556fb872cbc5dc9a644d7d1967",
+        "evals/symbol_context.py": "f6d6d5f9d6d2ea6dc74dddb5af47f2136af5bbfe1f18d04f74480a1db0e94150",
+        "evals/symbol_index.py": "4b80a3c5a3202adf142ec214da038d791636b27ed6286db0b79ed09d912155e6",
+        "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+        "evals/process.py": "6a881e9a519e67776fe9a9bacc7b0c176259dceed6fabcac91c8fdc4d7f01b04",
+        ".tmp/real-defects/repair-hypothesis-audit-v2/audit.json": "9ca2a4c61785fe62312496004776ef43bf6aafbf61d7e0cfe3431ca4a86dd941",
+        ".tmp/real-defects/edited-context-audit-v1-final/audit.json": "afac19480c252dfbe46d7efb09e4a6f5a70d878d7154914fdeb9c8ed920a4574",
+        ".tmp/real-defects/runtime-observation-audit-v1/audit.json": "615948f936f370b7bdba939a211126e8d47457111e8d3e6d039f93e157c179aa",
+        ".tmp/real-defects/repair-public-checks-audit-v1-certified/audit.json": "24acc25a2c9b252c657d57b975131c272219ecf4e0d0766da0c3883758dcfe2e",
+        ".tmp/real-defects/salt-relations-audit-v1-final/audit.json": "aed080365d682c89aab20f944cb6c178b6e5e97473e2407e212c6f812a65fbc0",
+        "docs/experiments/public_checks_v1/usage_empty.py": "e464120b0060b1bad2d13548e8bdc9f0aea758a863b5d1759c2d36404249b73a",
+        "docs/experiments/public_checks_v2/none_salt.py": "34f4d629a077777a68fd44ef99c4dab363929153df61dff33380dc4dd1cdaa51"
+      },
+      "raw_artifacts": ".tmp/real-defects/repair-hypothesis-compare-v2",
+      "engine_hash": "c53960d2ff6efe5ec91a836a3a8d47f1475d4a957071fab0261e0176eb89d6dd"
+    }
+  },
+  "model_calls": 24,
+  "total_budget_accounted_tokens": 90514,
+  "deepseek_calls": 0,
+  "validation": {
+    "new_tests": 25,
+    "targeted_passed": 25,
+    "targeted_seconds": 0.56,
+    "windows_passed": 1081,
+    "windows_skipped": 2,
+    "windows_seconds": 168.99,
+    "ruff": "passed",
+    "linux_docker_http_rerun": false,
+    "document_links": 183,
+    "frozen_inputs": "passed",
+    "readme_constraint": "passed"
+  },
+  "decision": "Do not adopt structured hypotheses as default; public reference validation works after v2 correction, but observed repair outcomes deteriorated."
+}

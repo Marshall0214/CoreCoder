@@ -29,7 +29,7 @@
 
 | 范围 | 已记录结果 | 版本化来源 |
 | --- | --- | --- |
-| 最新 Windows 全量 | 1,056 passed、2 skipped | [已编辑函数上下文摘要](edited-context-v1.json)；含上游与扩展测试 |
+| 最新 Windows 全量 | 1,081 passed、2 skipped | [修复假设实验摘要](repair-hypothesis-v1.json)；含上游与扩展测试 |
 | 历史 Linux 专项 | 71 passed | [审批验收](workflow-approval-acceptance-v1.json) |
 | 历史容器端到端 | 22 项检查通过 | 同上，container.checks |
 | 历史真实 HTTP 审批故障 | 18 项检查通过 | 同上，host.http_checks |
@@ -48,3 +48,5 @@
 原始 `.tmp` 快照、日志和模型回答不随 Git 发布。工程 fixture 可离线演示，历史真实实验需要对应输入与隔离环境；发布或分享原始产物前另行选择归档范围。保留 [上游许可证](../LICENSE)与贡献归属。
 
 已编辑函数保留对照：两个丢失方法的完整覆盖 0/2→2/2，但六项独立验收仍均 5/6；不能写为修复率提升。最新模型与 Windows 验收见 [报告](edited-context-v1.md)。
+
+公开修复假设实验：引用与覆盖校验通过不等于语义正确，修正版局部对照原流程 1/2、假设流程 0/2；不采用为默认，不增加简历收益数字。见 [完整报告](repair-hypothesis-v1.md)。
