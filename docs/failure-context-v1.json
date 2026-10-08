@@ -1,0 +1,360 @@
+{
+  "complete": true,
+  "protocol": {
+    "name": "failure-context-v1",
+    "input_hashes": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\manifest.json": "c91bb8d811cd4d0ded582b2866e53db0b465a3ce80f8a69df0e8c638ef281607",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\experiment.json": "c6474abd34f0013c4f1b59890a9af00709864d7f88681016a1417d09b387a6a6",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\failure_context_compare_v1.py": "743211b8fb519c0a1d756578ecbb06bdf20a8f07718859377f7deef648c550ff",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\failure_guided_context_v1.py": "5dd955750670388e3df35f84c3ee7ca84457e3acaf9f3e53248bb00e633657cf",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\failure_trace_probe_v1.py": "cd8bc18d9f7eda79df0141f028730a6ba5d0d2c2a338f3a9b585da55b855a88d"
+    },
+    "tasks": [
+      "click-usage-empty",
+      "click-help-eagerness",
+      "click-resource-exception",
+      "click-shared-default",
+      "toolz-join-unmatched",
+      "more-predicate-sentinel",
+      "itsdangerous-none-salt",
+      "click-style-color-validation"
+    ],
+    "policies": [
+      "unchanged-feedback",
+      "failure-context"
+    ],
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "selection": "6 known development failures across 3 repos + 2 known successes; not a full-suite or blind result",
+    "change": "Second-round code selection only; public trace, <=6000 source chars, <=5 complete functions, two seed anchors",
+    "unchanged": "First prompt, public feedback text, max 2 calls, 15000 tokens, 600s, dual validation and rollback",
+    "probe": "Public Reproduce/Preserve only, 15s each; no grader/reference/local-value input; not SBFL",
+    "fallback": "Invalid/truncated/missing probe evidence uses refreshed original seeds",
+    "order": "Alternating arm order; fresh independent model requests"
+  },
+  "experiment_sha256": "ebd5efe4b9cd719b14dc4fb00b9f04840f90aa70f02e84fb4eb280f1611479aa",
+  "summary": {
+    "unchanged-feedback": {
+      "tasks": 8,
+      "passed": 2,
+      "controls_passed": 8,
+      "calls": 15,
+      "tokens": 48529,
+      "missing_worker_results": 0,
+      "worker_seconds": 236.3242
+    },
+    "failure-context": {
+      "tasks": 8,
+      "passed": 2,
+      "controls_passed": 8,
+      "calls": 15,
+      "tokens": 47870,
+      "missing_worker_results": 0,
+      "worker_seconds": 240.888
+    }
+  },
+  "first_requests_identical": 8,
+  "first_answers_identical": 8,
+  "changed_selection_tasks": 7,
+  "gained": [],
+  "lost": [],
+  "adopted": false,
+  "decision": "No repair gain in 8-task known development pilot; keep optional only, no full-suite expansion",
+  "validation": {
+    "pytest": "1318 passed, 4 skipped",
+    "new_tests": 7,
+    "ruff": "passed"
+  },
+  "runs": [
+    {
+      "task_id": "click-usage-empty",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 6716,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [],
+      "probe_policy": null
+    },
+    {
+      "task_id": "click-usage-empty",
+      "policy": "failure-context",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 6620,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [
+        [
+          "src/click/_compat.py",
+          "term_len"
+        ],
+        [
+          "src/click/formatting.py",
+          "wrap_text"
+        ]
+      ],
+      "probe_policy": "failure-context-v1"
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 5878,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [],
+      "probe_policy": null
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "policy": "failure-context",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 5280,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [
+        [
+          "src/click/core.py",
+          "Command.parse_args"
+        ],
+        [
+          "src/click/decorators.py",
+          "HelpOption.show_help"
+        ],
+        [
+          "src/click/core.py",
+          "Command.get_help_option"
+        ]
+      ],
+      "probe_policy": "failure-context-v1"
+    },
+    {
+      "task_id": "click-resource-exception",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 5270,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [],
+      "probe_policy": null
+    },
+    {
+      "task_id": "click-resource-exception",
+      "policy": "failure-context",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 5122,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [
+        [
+          "src/click/globals.py",
+          "pop_context"
+        ]
+      ],
+      "probe_policy": "failure-context-v1"
+    },
+    {
+      "task_id": "click-shared-default",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 6381,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [],
+      "probe_policy": null
+    },
+    {
+      "task_id": "click-shared-default",
+      "policy": "failure-context",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 6653,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [
+        [
+          "src/click/core.py",
+          "Command.parse_args"
+        ],
+        [
+          "src/click/core.py",
+          "Parameter.get_default"
+        ],
+        [
+          "src/click/core.py",
+          "Parameter._parse_decls"
+        ]
+      ],
+      "probe_policy": "failure-context-v1"
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 5885,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [],
+      "probe_policy": null
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "policy": "failure-context",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 6072,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [
+        [
+          "toolz/itertoolz.py",
+          "getter"
+        ]
+      ],
+      "probe_policy": "failure-context-v1"
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 8584,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [],
+      "probe_policy": null
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "failure-context",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "calls": 2,
+      "tokens": 8425,
+      "original_restored": true,
+      "feedback_attempts": 1,
+      "correction_retained": false,
+      "added_symbols": [
+        [
+          "more_itertools/more.py",
+          "windowed"
+        ]
+      ],
+      "probe_policy": "failure-context-v1"
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "unchanged-feedback",
+      "accepted": true,
+      "status": "completed",
+      "calls": 2,
+      "tokens": 6444,
+      "original_restored": false,
+      "feedback_attempts": 1,
+      "correction_retained": true,
+      "added_symbols": [],
+      "probe_policy": null
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "failure-context",
+      "accepted": true,
+      "status": "completed",
+      "calls": 2,
+      "tokens": 6327,
+      "original_restored": false,
+      "feedback_attempts": 1,
+      "correction_retained": true,
+      "added_symbols": [
+        [
+          "src/itsdangerous/serializer.py",
+          "Serializer.loads"
+        ],
+        [
+          "src/itsdangerous/encoding.py",
+          "want_bytes"
+        ]
+      ],
+      "probe_policy": "failure-context-v1"
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "unchanged-feedback",
+      "accepted": true,
+      "status": "completed",
+      "calls": 1,
+      "tokens": 3371,
+      "original_restored": false,
+      "feedback_attempts": 0,
+      "correction_retained": false,
+      "added_symbols": [],
+      "probe_policy": null
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "failure-context",
+      "accepted": true,
+      "status": "completed",
+      "calls": 1,
+      "tokens": 3371,
+      "original_restored": false,
+      "feedback_attempts": 0,
+      "correction_retained": false,
+      "added_symbols": [],
+      "probe_policy": null
+    }
+  ]
+}
