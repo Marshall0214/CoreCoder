@@ -1,0 +1,1172 @@
+{
+  "complete": true,
+  "runs": [
+    {
+      "task_id": "more-falsy-exception",
+      "split": "diagnostic",
+      "repo": "more-itertools/more-itertools",
+      "policy": "single",
+      "worker": {
+        "status": "invalid_patch",
+        "recovery_attempts": 1,
+        "initial": {
+          "status": "invalid_patch",
+          "prompt_hash": "2176cc3258e760a43768da4f4a06b4fbcf441fa37e130546affda87253845c03",
+          "error": "ValueError: Old text must match exactly once"
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2631,
+          "completion_tokens": 382,
+          "known_prompt_tokens": 2631,
+          "known_completion_tokens": 382,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3013,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "diagnosis": {
+          "error": "old_text_not_unique",
+          "edit_index": 0,
+          "file": "more_itertools/more.py",
+          "sequential_match_count": 2,
+          "original_match_count": 2,
+          "displayed_owners": [
+            "one",
+            "only"
+          ],
+          "none_committed": true,
+          "rejected_patch": {
+            "edits": [
+              {
+                "file": "more_itertools/more.py",
+                "old": "            msg = (\n                f'Expected exactly one item in iterable, but got {first!r}, '\n                f'{second!r}, and perhaps more.'\n            )\n            raise too_long or ValueError(msg)",
+                "new": "            if too_long is None:\n                msg = (\n                    f'Expected exactly one item in iterable, but got {first!r}, '\n                    f'{second!r}, and perhaps more.'\n                )\n                raise ValueError(msg)\n            raise too_long"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "        return first\n    raise too_short or ValueError('too few items in iterable (expected 1)')",
+                "new": "        return first\n    if too_short is None:\n        raise ValueError('too few items in iterable (expected 1)')\n    raise too_short"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "            msg = (\n                f'Expected exactly one item in iterable, but got {first!r}, '\n                f'{second!r}, and perhaps more.'\n            )\n            raise too_long or ValueError(msg)",
+                "new": "            if too_long is None:\n                msg = (\n                    f'Expected exactly one item in iterable, but got {first!r}, '\n                    f'{second!r}, and perhaps more.'\n                )\n                raise ValueError(msg)\n            raise too_long"
+              }
+            ]
+          }
+        },
+        "recovery": {
+          "status": "completed",
+          "edited_files": [
+            "more_itertools/more.py"
+          ]
+        },
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2631,
+          "completion_tokens": 382,
+          "known_prompt_tokens": 2631,
+          "known_completion_tokens": 382,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3013,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "d46c908985352f2c0b704a4ff9ef7c7e19be600e98e00c3eb1393d1c8b1ea15f",
+            "prompt_hash": "2176cc3258e760a43768da4f4a06b4fbcf441fa37e130546affda87253845c03",
+            "response_received": true,
+            "seconds": 15.0255,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2631,
+            "completion_tokens": 382,
+            "total_tokens": 3013,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          },
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "46cf7452e8c690c0aa47ec745958d8fab2519d17dea7094e6206c7211c5bf9f5",
+            "prompt_hash": "1cc5805bf70365e56a0ce199f11253be30aa2eac38cfc19d55098674b7d23f0e",
+            "response_received": true,
+            "seconds": 41.4068,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 3109,
+            "completion_tokens": 1855,
+            "total_tokens": 4964,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1041,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0978,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "accepted": false,
+      "status": "invalid_patch",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 57.9533
+      }
+    },
+    {
+      "task_id": "more-falsy-exception",
+      "split": "diagnostic",
+      "repo": "more-itertools/more-itertools",
+      "policy": "anchor-recovery",
+      "worker": {
+        "status": "completed",
+        "recovery_attempts": 1,
+        "initial": {
+          "status": "invalid_patch",
+          "prompt_hash": "2176cc3258e760a43768da4f4a06b4fbcf441fa37e130546affda87253845c03",
+          "error": "ValueError: Old text must match exactly once"
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2631,
+          "completion_tokens": 382,
+          "known_prompt_tokens": 2631,
+          "known_completion_tokens": 382,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3013,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "diagnosis": {
+          "error": "old_text_not_unique",
+          "edit_index": 0,
+          "file": "more_itertools/more.py",
+          "sequential_match_count": 2,
+          "original_match_count": 2,
+          "displayed_owners": [
+            "one",
+            "only"
+          ],
+          "none_committed": true,
+          "rejected_patch": {
+            "edits": [
+              {
+                "file": "more_itertools/more.py",
+                "old": "            msg = (\n                f'Expected exactly one item in iterable, but got {first!r}, '\n                f'{second!r}, and perhaps more.'\n            )\n            raise too_long or ValueError(msg)",
+                "new": "            if too_long is None:\n                msg = (\n                    f'Expected exactly one item in iterable, but got {first!r}, '\n                    f'{second!r}, and perhaps more.'\n                )\n                raise ValueError(msg)\n            raise too_long"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "        return first\n    raise too_short or ValueError('too few items in iterable (expected 1)')",
+                "new": "        return first\n    if too_short is None:\n        raise ValueError('too few items in iterable (expected 1)')\n    raise too_short"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "            msg = (\n                f'Expected exactly one item in iterable, but got {first!r}, '\n                f'{second!r}, and perhaps more.'\n            )\n            raise too_long or ValueError(msg)",
+                "new": "            if too_long is None:\n                msg = (\n                    f'Expected exactly one item in iterable, but got {first!r}, '\n                    f'{second!r}, and perhaps more.'\n                )\n                raise ValueError(msg)\n            raise too_long"
+              }
+            ]
+          }
+        },
+        "recovery": {
+          "status": "completed",
+          "edited_files": [
+            "more_itertools/more.py"
+          ]
+        },
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 5740,
+          "completion_tokens": 2237,
+          "known_prompt_tokens": 5740,
+          "known_completion_tokens": 2237,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 7977,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "d46c908985352f2c0b704a4ff9ef7c7e19be600e98e00c3eb1393d1c8b1ea15f",
+            "prompt_hash": "2176cc3258e760a43768da4f4a06b4fbcf441fa37e130546affda87253845c03",
+            "response_received": true,
+            "seconds": 15.0255,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2631,
+            "completion_tokens": 382,
+            "total_tokens": 3013,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          },
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "46cf7452e8c690c0aa47ec745958d8fab2519d17dea7094e6206c7211c5bf9f5",
+            "prompt_hash": "1cc5805bf70365e56a0ce199f11253be30aa2eac38cfc19d55098674b7d23f0e",
+            "response_received": true,
+            "seconds": 41.4068,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 3109,
+            "completion_tokens": 1855,
+            "total_tokens": 4964,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0961,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0979,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "accepted": true,
+      "status": "passed",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 57.9533
+      }
+    },
+    {
+      "task_id": "more-seekable-zero",
+      "split": "diagnostic",
+      "repo": "more-itertools/more-itertools",
+      "policy": "single",
+      "worker": {
+        "status": "invalid_patch",
+        "recovery_attempts": 1,
+        "initial": {
+          "status": "invalid_patch",
+          "prompt_hash": "3a7c688074785b1c047e9be6ac0bc1f485c801230a7ad7dd1db3cd0c8d8a054e",
+          "error": "ValueError: Old text must match exactly once"
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2535,
+          "completion_tokens": 317,
+          "known_prompt_tokens": 2535,
+          "known_completion_tokens": 317,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2852,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "diagnosis": {
+          "error": "old_text_not_unique",
+          "edit_index": 1,
+          "file": "more_itertools/more.py",
+          "sequential_match_count": 2,
+          "original_match_count": 2,
+          "displayed_owners": [
+            "seekable.__bool__"
+          ],
+          "none_committed": true,
+          "rejected_patch": {
+            "edits": [
+              {
+                "file": "more_itertools/more.py",
+                "old": "    def peek(self, default=_marker):\n        try:\n            peeked = next(self)\n        except StopIteration:\n            if default is _marker:\n                raise\n            return default\n        if self._index is None:\n            self._index = len(self._cache)\n        self._index -= 1\n        return peeked",
+                "new": "    def peek(self, default=_marker):\n        if self._cache:\n            return self._cache[0]\n        try:\n            peeked = next(self)\n        except StopIteration:\n            if default is _marker:\n                raise\n            return default\n        if self._index is None:\n            self._index = len(self._cache)\n        self._index -= 1\n        return peeked"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "    def __bool__(self):\n        try:\n            self.peek()\n        except StopIteration:\n            return False\n        return True",
+                "new": "    def __bool__(self):\n        if self._cache:\n            return True\n        try:\n            self.peek()\n        except StopIteration:\n            return False\n        return True"
+              }
+            ]
+          }
+        },
+        "recovery": {
+          "status": "invalid_patch",
+          "error": "ValueError: Old text must match exactly once"
+        },
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2535,
+          "completion_tokens": 317,
+          "known_prompt_tokens": 2535,
+          "known_completion_tokens": 317,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2852,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "ff10aaf1fe7bc1f5790ec134328487c7ac6be382e8d3a57aeac9b5198ebe74a9",
+            "prompt_hash": "3a7c688074785b1c047e9be6ac0bc1f485c801230a7ad7dd1db3cd0c8d8a054e",
+            "response_received": true,
+            "seconds": 8.6454,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2535,
+            "completion_tokens": 317,
+            "total_tokens": 2852,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          },
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "6ebd87aab5bca36597ce7a603e1c863f33955ed36e630c784b67cc680d554bcd",
+            "prompt_hash": "212c3407be6d01ce677cb86723c4e4df50ccbbbc3dede385d8935b8555239b3f",
+            "response_received": true,
+            "seconds": 7.9239,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2961,
+            "completion_tokens": 285,
+            "total_tokens": 3246,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0979,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0953,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "accepted": false,
+      "status": "invalid_patch",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 18.0606
+      }
+    },
+    {
+      "task_id": "more-seekable-zero",
+      "split": "diagnostic",
+      "repo": "more-itertools/more-itertools",
+      "policy": "anchor-recovery",
+      "worker": {
+        "status": "invalid_patch",
+        "recovery_attempts": 1,
+        "initial": {
+          "status": "invalid_patch",
+          "prompt_hash": "3a7c688074785b1c047e9be6ac0bc1f485c801230a7ad7dd1db3cd0c8d8a054e",
+          "error": "ValueError: Old text must match exactly once"
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2535,
+          "completion_tokens": 317,
+          "known_prompt_tokens": 2535,
+          "known_completion_tokens": 317,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2852,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "diagnosis": {
+          "error": "old_text_not_unique",
+          "edit_index": 1,
+          "file": "more_itertools/more.py",
+          "sequential_match_count": 2,
+          "original_match_count": 2,
+          "displayed_owners": [
+            "seekable.__bool__"
+          ],
+          "none_committed": true,
+          "rejected_patch": {
+            "edits": [
+              {
+                "file": "more_itertools/more.py",
+                "old": "    def peek(self, default=_marker):\n        try:\n            peeked = next(self)\n        except StopIteration:\n            if default is _marker:\n                raise\n            return default\n        if self._index is None:\n            self._index = len(self._cache)\n        self._index -= 1\n        return peeked",
+                "new": "    def peek(self, default=_marker):\n        if self._cache:\n            return self._cache[0]\n        try:\n            peeked = next(self)\n        except StopIteration:\n            if default is _marker:\n                raise\n            return default\n        if self._index is None:\n            self._index = len(self._cache)\n        self._index -= 1\n        return peeked"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "    def __bool__(self):\n        try:\n            self.peek()\n        except StopIteration:\n            return False\n        return True",
+                "new": "    def __bool__(self):\n        if self._cache:\n            return True\n        try:\n            self.peek()\n        except StopIteration:\n            return False\n        return True"
+              }
+            ]
+          }
+        },
+        "recovery": {
+          "status": "invalid_patch",
+          "error": "ValueError: Old text must match exactly once"
+        },
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 5496,
+          "completion_tokens": 602,
+          "known_prompt_tokens": 5496,
+          "known_completion_tokens": 602,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 6098,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "ff10aaf1fe7bc1f5790ec134328487c7ac6be382e8d3a57aeac9b5198ebe74a9",
+            "prompt_hash": "3a7c688074785b1c047e9be6ac0bc1f485c801230a7ad7dd1db3cd0c8d8a054e",
+            "response_received": true,
+            "seconds": 8.6454,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2535,
+            "completion_tokens": 317,
+            "total_tokens": 2852,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          },
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "6ebd87aab5bca36597ce7a603e1c863f33955ed36e630c784b67cc680d554bcd",
+            "prompt_hash": "212c3407be6d01ce677cb86723c4e4df50ccbbbc3dede385d8935b8555239b3f",
+            "response_received": true,
+            "seconds": 7.9239,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2961,
+            "completion_tokens": 285,
+            "total_tokens": 3246,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0996,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0938,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "accepted": false,
+      "status": "invalid_patch",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 18.0606
+      }
+    },
+    {
+      "task_id": "more-split-empty",
+      "split": "diagnostic",
+      "repo": "more-itertools/more-itertools",
+      "policy": "single",
+      "worker": {
+        "status": "invalid_patch",
+        "recovery_attempts": 1,
+        "initial": {
+          "status": "invalid_patch",
+          "prompt_hash": "b8dde10c116ad78c42f385fb7be1a7e09487cf36ef3fdd7bb6e16f29d2f0c9fa",
+          "error": "ValueError: Old text must match exactly once"
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2855,
+          "completion_tokens": 308,
+          "known_prompt_tokens": 2855,
+          "known_completion_tokens": 308,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3163,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "diagnosis": {
+          "error": "old_text_not_unique",
+          "edit_index": 0,
+          "file": "more_itertools/more.py",
+          "sequential_match_count": 3,
+          "original_match_count": 3,
+          "displayed_owners": [
+            "split_before",
+            "split_after"
+          ],
+          "none_committed": true,
+          "rejected_patch": {
+            "edits": [
+              {
+                "file": "more_itertools/more.py",
+                "old": "    if maxsplit == 0:\n        yield list(iterable)\n        return\n\n    buf = []\n    it = iter(iterable)",
+                "new": "    if maxsplit == 0:\n        if iterable:\n            yield list(iterable)\n        return\n\n    buf = []\n    it = iter(iterable)"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "    if maxsplit == 0:\n        yield list(iterable)\n        return\n\n    buf = []\n    it = iter(iterable)",
+                "new": "    if maxsplit == 0:\n        if iterable:\n            yield list(iterable)\n        return\n\n    buf = []\n    it = iter(iterable)"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "    if maxsplit == 0:\n        yield list(iterable)\n        return\n\n    it = iter(iterable)",
+                "new": "    if maxsplit == 0:\n        if iterable:\n            yield list(iterable)\n        return\n\n    it = iter(iterable)"
+              }
+            ]
+          }
+        },
+        "recovery": {
+          "status": "completed",
+          "edited_files": [
+            "more_itertools/more.py"
+          ]
+        },
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2855,
+          "completion_tokens": 308,
+          "known_prompt_tokens": 2855,
+          "known_completion_tokens": 308,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3163,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "441eda35d376f241528eb1e464f1e4b9664bbc70808cdd36c81be428c591bdd8",
+            "prompt_hash": "b8dde10c116ad78c42f385fb7be1a7e09487cf36ef3fdd7bb6e16f29d2f0c9fa",
+            "response_received": true,
+            "seconds": 8.5174,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2855,
+            "completion_tokens": 308,
+            "total_tokens": 3163,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          },
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "b95967f3221eb43a798a8fe2af084c876a58c215497e25b93b70d899c9b1578a",
+            "prompt_hash": "7bbc6ed2c9eea9e3d3573226bd24df071c4966de67d5efbbf31f2cff7af7eb30",
+            "response_received": true,
+            "seconds": 40.9045,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 3264,
+            "completion_tokens": 1818,
+            "total_tokens": 5082,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1053,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1084,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "accepted": false,
+      "status": "invalid_patch",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 50.9138
+      }
+    },
+    {
+      "task_id": "more-split-empty",
+      "split": "diagnostic",
+      "repo": "more-itertools/more-itertools",
+      "policy": "anchor-recovery",
+      "worker": {
+        "status": "completed",
+        "recovery_attempts": 1,
+        "initial": {
+          "status": "invalid_patch",
+          "prompt_hash": "b8dde10c116ad78c42f385fb7be1a7e09487cf36ef3fdd7bb6e16f29d2f0c9fa",
+          "error": "ValueError: Old text must match exactly once"
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2855,
+          "completion_tokens": 308,
+          "known_prompt_tokens": 2855,
+          "known_completion_tokens": 308,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3163,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "diagnosis": {
+          "error": "old_text_not_unique",
+          "edit_index": 0,
+          "file": "more_itertools/more.py",
+          "sequential_match_count": 3,
+          "original_match_count": 3,
+          "displayed_owners": [
+            "split_before",
+            "split_after"
+          ],
+          "none_committed": true,
+          "rejected_patch": {
+            "edits": [
+              {
+                "file": "more_itertools/more.py",
+                "old": "    if maxsplit == 0:\n        yield list(iterable)\n        return\n\n    buf = []\n    it = iter(iterable)",
+                "new": "    if maxsplit == 0:\n        if iterable:\n            yield list(iterable)\n        return\n\n    buf = []\n    it = iter(iterable)"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "    if maxsplit == 0:\n        yield list(iterable)\n        return\n\n    buf = []\n    it = iter(iterable)",
+                "new": "    if maxsplit == 0:\n        if iterable:\n            yield list(iterable)\n        return\n\n    buf = []\n    it = iter(iterable)"
+              },
+              {
+                "file": "more_itertools/more.py",
+                "old": "    if maxsplit == 0:\n        yield list(iterable)\n        return\n\n    it = iter(iterable)",
+                "new": "    if maxsplit == 0:\n        if iterable:\n            yield list(iterable)\n        return\n\n    it = iter(iterable)"
+              }
+            ]
+          }
+        },
+        "recovery": {
+          "status": "completed",
+          "edited_files": [
+            "more_itertools/more.py"
+          ]
+        },
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 6119,
+          "completion_tokens": 2126,
+          "known_prompt_tokens": 6119,
+          "known_completion_tokens": 2126,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 8245,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "provider_calls": [
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "441eda35d376f241528eb1e464f1e4b9664bbc70808cdd36c81be428c591bdd8",
+            "prompt_hash": "b8dde10c116ad78c42f385fb7be1a7e09487cf36ef3fdd7bb6e16f29d2f0c9fa",
+            "response_received": true,
+            "seconds": 8.5174,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 2855,
+            "completion_tokens": 308,
+            "total_tokens": 3163,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          },
+          {
+            "provider": "qwen",
+            "model_requested": "qwen3.5:27b",
+            "request_sha256": "b95967f3221eb43a798a8fe2af084c876a58c215497e25b93b70d899c9b1578a",
+            "prompt_hash": "7bbc6ed2c9eea9e3d3573226bd24df071c4966de67d5efbbf31f2cff7af7eb30",
+            "response_received": true,
+            "seconds": 40.9045,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "system_fingerprint": "fp_ollama",
+            "reasoning_present": false,
+            "reasoning_tokens": null,
+            "prompt_tokens": 3264,
+            "completion_tokens": 1818,
+            "total_tokens": 5082,
+            "cache_hit_tokens": null,
+            "cache_miss_tokens": null
+          }
+        ]
+      },
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1035,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1049,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "accepted": true,
+      "status": "passed",
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 50.9138
+      }
+    }
+  ],
+  "protocol": {
+    "name": "exact-anchor-recovery-v1",
+    "scope": "three selected known failures; not new heldout/generalization evidence",
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "max_calls": 2,
+    "token_budget": 15000,
+    "intervention": "one resubmission only after rejected exact-match transaction; no behavior-test feedback",
+    "unique_match_version_checks": "unchanged",
+    "no_private_grader_input": true,
+    "frozen_inputs": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\expanded-admission-v2-final\\admission.json": "21b7ac5ec1f8a03cd4beeb24f1a0b4512c2605510b140bfdd096aa9f0241d65b",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\exact_anchor_recovery_v1.py": "f7677d1bf966ac55181d422a595371daa6b8c771021242f9216629864d6defdb",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\public_feedback_v2.py": "0b3e93f370bac497e67910abc5353167212429a8b0e86f9e23404f10daf61abc",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\exact-anchor-recovery-v1\\observations.json": "de647c7cdb2ab87f7c2eb701f8ea30137743c9ea711b6dc528ec13dfa8a66fdc"
+    }
+  },
+  "summary": {
+    "single": {
+      "overall": {
+        "tasks": 3,
+        "passed": 0,
+        "statuses": {
+          "invalid_patch": 3
+        },
+        "target_passed": 0,
+        "controls_passed": 3,
+        "model_calls": 3,
+        "tokens": 9028,
+        "missing_usage_calls": 0,
+        "worker_seconds": 126.9277
+      },
+      "split": {
+        "diagnostic": {
+          "tasks": 3,
+          "passed": 0,
+          "statuses": {
+            "invalid_patch": 3
+          },
+          "target_passed": 0,
+          "controls_passed": 3,
+          "model_calls": 3,
+          "tokens": 9028,
+          "missing_usage_calls": 0,
+          "worker_seconds": 126.9277
+        }
+      },
+      "repository": {
+        "more-itertools/more-itertools": {
+          "tasks": 3,
+          "passed": 0,
+          "statuses": {
+            "invalid_patch": 3
+          },
+          "target_passed": 0,
+          "controls_passed": 3,
+          "model_calls": 3,
+          "tokens": 9028,
+          "missing_usage_calls": 0,
+          "worker_seconds": 126.9277
+        }
+      }
+    },
+    "anchor-recovery": {
+      "overall": {
+        "tasks": 3,
+        "passed": 2,
+        "statuses": {
+          "passed": 2,
+          "invalid_patch": 1
+        },
+        "target_passed": 2,
+        "controls_passed": 3,
+        "model_calls": 6,
+        "tokens": 22320,
+        "missing_usage_calls": 0,
+        "worker_seconds": 126.9277
+      },
+      "split": {
+        "diagnostic": {
+          "tasks": 3,
+          "passed": 2,
+          "statuses": {
+            "passed": 2,
+            "invalid_patch": 1
+          },
+          "target_passed": 2,
+          "controls_passed": 3,
+          "model_calls": 6,
+          "tokens": 22320,
+          "missing_usage_calls": 0,
+          "worker_seconds": 126.9277
+        }
+      },
+      "repository": {
+        "more-itertools/more-itertools": {
+          "tasks": 3,
+          "passed": 2,
+          "statuses": {
+            "passed": 2,
+            "invalid_patch": 1
+          },
+          "target_passed": 2,
+          "controls_passed": 3,
+          "model_calls": 6,
+          "tokens": 22320,
+          "missing_usage_calls": 0,
+          "worker_seconds": 126.9277
+        }
+      }
+    }
+  },
+  "supplemental_audit": {
+    "complete": true,
+    "model_calls": 0,
+    "scope": "post-hoc public empty-iterator witness, not frozen grading",
+    "source_sha256": "5cc27132bbb4071b75bc9086abfda877db66b143265dd981f117beaa7cdabf41",
+    "outcomes": {
+      "before": {
+        "Reproduce": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0994,
+          "tests_run": 1,
+          "failures": 3,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0982,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "after": {
+        "Reproduce": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1031,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0958,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "candidate": {
+        "Reproduce": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0971,
+          "tests_run": 1,
+          "failures": 3,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0979,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      }
+    },
+    "certified": true,
+    "candidate_passed": false
+  },
+  "source_sha256": "5cc27132bbb4071b75bc9086abfda877db66b143265dd981f117beaa7cdabf41",
+  "decision": "application_recovery_demonstrated_semantic_failure_blocks_default_adoption",
+  "validation": {
+    "targeted_pytest": {
+      "passed": 7
+    },
+    "windows_pytest": {
+      "passed": 1232,
+      "skipped": 2,
+      "seconds": 193.01
+    },
+    "ruff": "passed",
+    "model_calls": 6,
+    "tokens": 22320,
+    "application_recovered": 2,
+    "frozen_grader_passed": 2,
+    "posthoc_empty_iterator_candidate_passed": false,
+    "linux_docker_http": "not rerun",
+    "deepseek": "not used"
+  }
+}

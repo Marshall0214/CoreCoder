@@ -17,7 +17,7 @@
 
 </div>
 
-Fixed expectations now reject the known shared-iterator false positive. A fresh two-call diagnostic still failed to repair that defect; no repair-rate gain or default policy adoption is claimed. See [fixed checks and the actual repair result](docs/fixed-product-checks-v1.md).
+One bounded resubmission recovered two of three known exact-anchor application failures. One repair passed target/controls; another still fails an empty-iterator public witness despite passing the limited grader. This is selected-case diagnostics, not a general repair-rate claim or default workflow change. See [anchor recovery results](docs/exact-anchor-recovery-v1.md).
 
 ## Fork extensions: repair evaluation and an approval service
 
