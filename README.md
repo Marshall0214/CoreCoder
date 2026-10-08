@@ -17,7 +17,7 @@
 
 </div>
 
-One bounded resubmission recovered two of three known exact-anchor application failures. One repair passed target/controls; another still fails an empty-iterator public witness despite passing the limited grader. This is selected-case diagnostics, not a general repair-rate claim or default workflow change. See [anchor recovery results](docs/exact-anchor-recovery-v1.md).
+A fresh three-task pairing combined exact-anchor diagnostics with certified public checks in the sole resubmission. Passing both the frozen grader and public boundaries increased from 1/3 to 2/3: empty iterators are now handled correctly; seekable still fails exact matching. These are known-case diagnostics, not a general repair-rate claim or default workflow change. See [combined recovery results](docs/anchor-public-recovery-v1.md).
 
 ## Fork extensions: repair evaluation and an approval service
 
@@ -25,7 +25,7 @@ This fork adds controlled retrieval/context experiments, independent patch verif
 
 Start with the Chinese-language [project overview](docs/project-overview.md), [five-minute offline demo](docs/demo-guide.md), [delivery/JD checklist](docs/delivery-checklist.md), and [resume/interview guide](docs/resume-and-interview.md).
 
-Latest recorded Windows regression: 1,206 passed and 2 skipped; see the [retrieval comparison summary](docs/class-scoped-comparison-v1.json). Historical deployment acceptance: Linux 71 passed, 22 container checks and 18 HTTP approval fault checks passed; see the [versioned evidence](docs/workflow-approval-acceptance-v1.json). Software checks are separate from model repair outcomes. The [portfolio evidence index](docs/portfolio-evidence.md) maps contributions to code and reports; the upstream walkthrough and author attribution below are retained.
+Latest recorded Windows regression: 1,239 passed and 2 skipped; see the [combined recovery summary](docs/anchor-public-recovery-v1.json). Historical deployment acceptance: Linux 71 passed, 22 container checks and 18 HTTP approval fault checks passed; see the [versioned evidence](docs/workflow-approval-acceptance-v1.json). Software checks are separate from model repair outcomes. The [portfolio evidence index](docs/portfolio-evidence.md) maps contributions to code and reports; the upstream walkthrough and author attribution below are retained.
 
 - **Readable end to end.** Read the whole engine in an afternoon, with no magic hidden anywhere you can't follow it.
 - **Hackable.** Set a breakpoint on any line, change it, rerun, all on your own machine. It genuinely works, which makes this a living reference rather than a diagram.
