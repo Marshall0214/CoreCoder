@@ -60,4 +60,6 @@ python -m docs.experiments.frozen_feedback_compare_v1 --audit .tmp/real-defects/
 
 ## 下一步
 
+新版检查与有界真实重试已完成：检查能拦截回归，但模型修复仍失败，已停止追加提示。见 [新版检查与停止结论](click-resource-checks-v2.md)。下段保留当时的后续计划。
+
 将 Context 栈三项检查纳入该任务的新版本公开保持组及独立 Controls，重新认证，旧任务和结果保持冻结。再在预算内给模型完整展示退出路径，验证异常抑制与栈清理同时成立；先收尾这个已知真实回归，再决定是否扩大策略实验。本轮不继续追加提示、重复推理或扩充部署。

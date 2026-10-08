@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-08",
+  "task": "click-resource-exception",
+  "decision": "adopt_optional_v2_checks_stop_prompt_and_retry_experiments",
+  "model_repair_succeeded": false,
+  "certified_before_inference": true,
+  "checks": {"public_reproduce": 1, "public_preserve": 4, "independent_target": 2, "independent_controls": 4, "added_context_scenarios": 3, "known_regression_rejected": true},
+  "attempts": [
+    {"name": "v2-checks", "new_calls": 2, "new_tokens": 5270, "accepted": false, "source_restored": true, "raw": ".tmp/real-defects/click-resource-repair-v2/repair.json", "sha256": "df88ccd1a2a1cb2603b61697d9a03fe263bae5120e48e7a9aaaf604aac65a333"},
+    {"name": "fallthrough-context", "new_calls": 2, "new_tokens": 5420, "accepted": false, "source_restored": true, "raw": ".tmp/real-defects/click-resource-fallthrough-v1/repair.json", "sha256": "c6437c7d211c417511981ada0a9524b29abf397b9bcb704e7d16cdb8813b677b"},
+    {"name": "verified-third-correction", "new_calls": 1, "new_tokens": 3139, "cumulative_calls": 3, "cumulative_tokens": 8409, "token_cap": 15000, "accepted": false, "source_restored": true, "raw": ".tmp/real-defects/click-resource-verified-retry-v1/repair.json", "sha256": "d0faecf52741020a5cb08df93fb6eed16db1919ed9a78e9b23dffa975a04ed4f"}
+  ],
+  "actual_usage": {"new_calls": 5, "new_tokens": 13829},
+  "validation": {"v2_and_guard_tests": "24 passed", "new_components": "21 passed", "ruff": "passed", "full": "1305 passed, 4 skipped in 154.18s", "docker_http": "not rerun"},
+  "limits": ["Known single development case", "New independent Controls reuse public regression scenarios", "Extra third request changes call opportunities", "No repair-rate improvement or completed defect fix claim", "Default Agent/API unchanged"]
+}
