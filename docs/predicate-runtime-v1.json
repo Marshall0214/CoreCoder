@@ -1,0 +1,392 @@
+{
+  "complete": true,
+  "decision": "do_not_adopt_or_expand",
+  "source": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\predicate-runtime-v1-fixed-feedback\\experiment.json",
+  "protocol": {
+    "name": "predicate-runtime-v1",
+    "task": "more-predicate-sentinel",
+    "policies": [
+      "unchanged-feedback",
+      "predicate-runtime"
+    ],
+    "input_hashes": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\manifest.json": "c91bb8d811cd4d0ded582b2866e53db0b465a3ce80f8a69df0e8c638ef281607",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\experiment.json": "ffc59c5164a08f8a86268f46f21c38128c68ca2ddefc7ef21ca1dd6fe6d36259",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\more-predicate-sentinel\\unchanged-feedback\\initial-response.txt": "5b312bb590344837a56bd40167ccc40480b7c86ad9d8c6ca5855cc13dfbcef27",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\more-predicate-sentinel\\unchanged-feedback\\initial-messages.json": "cd8e9b442846ba3d6f73a0235922474ada2c3709312809210791587a1dd093ab",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\more-predicate-sentinel\\unchanged-feedback\\feedback-messages.json": "505bba68dab4bf96933084aa6daa70754625d35f8c8f33f1d6dafe18d7afe32f",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\more-predicate-sentinel\\unchanged-feedback\\worker-result.json": "ac8b0813f9d35b0d6ec88e6dc3bbbb67713b66e759989b52891c9204ac9865bf",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\predicate_runtime_compare_v1.py": "2a6d91c52ae5c2c1ba378a40cb413352a4c5ca2a276e8ecd304ede9ec72b7c5c",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\predicate_runtime_feedback_v1.py": "e35925d6580af0290074dcb6247329b72484280fd8d225123adc9a53edca25a1",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\predicate_trace_probe_v1.py": "f467d9eaf8559fb53dfdca56c0b58f829fa7ac19ec76e53763652df068a97700"
+    },
+    "shared_candidate_hash": "928871028768e803759c40fa528c772dfafe77e5945f09cf545920e0af2bd781",
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "change": "Only append bounded public runtime observations to original second-round feedback",
+    "unchanged": "Identical recorded first patch and original feedback text, seed refresh, system prompt, validators, rollback and budgets",
+    "budget": "Historical first-call usage charged to each task; only two fresh second-round calls total",
+    "scope": "One known development failure; not a full repair-rate or blind experiment"
+  },
+  "same_first_request": true,
+  "same_second_system_prompt": true,
+  "only_runtime_payload_added": true,
+  "runtime_observations": {
+    "source": "Current candidate running certified readable public tests only",
+    "records": [
+      {
+        "group": "Reproduce",
+        "test": "test_admission.Reproduce.test_public_defect",
+        "passed": false,
+        "truncated": false,
+        "operations": [
+          {
+            "function": "locate",
+            "line": 2486,
+            "input": {
+              "type": "list",
+              "items": [
+                2,
+                3,
+                4
+              ],
+              "omitted": 0
+            },
+            "window_size": 2,
+            "predicate_calls": [
+              {
+                "arguments": {
+                  "type": "tuple",
+                  "items": [
+                    2,
+                    3
+                  ],
+                  "omitted": 0
+                },
+                "line": 8,
+                "return": false
+              },
+              {
+                "arguments": {
+                  "type": "tuple",
+                  "items": [
+                    3,
+                    4
+                  ],
+                  "omitted": 0
+                },
+                "line": 8,
+                "return": true
+              }
+            ]
+          },
+          {
+            "function": "locate",
+            "line": 2486,
+            "input": {
+              "type": "list",
+              "items": [
+                4
+              ],
+              "omitted": 0
+            },
+            "window_size": 2,
+            "predicate_calls": [
+              {
+                "arguments": {
+                  "type": "tuple",
+                  "items": [
+                    4,
+                    {
+                      "type": "object",
+                      "value": "not captured"
+                    }
+                  ],
+                  "omitted": 0
+                },
+                "line": 8,
+                "exception_type": "TypeError",
+                "return": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "group": "Preserve",
+        "test": "test_admission.Preserve.test_public_normal_behavior",
+        "passed": true,
+        "truncated": false,
+        "operations": [
+          {
+            "function": "locate",
+            "line": 2486,
+            "input": {
+              "type": "list",
+              "items": [
+                0,
+                2,
+                0,
+                3
+              ],
+              "omitted": 0
+            },
+            "window_size": null,
+            "predicate_calls": []
+          },
+          {
+            "function": "replace",
+            "line": 3347,
+            "input": {
+              "type": "list",
+              "items": [
+                2,
+                3
+              ],
+              "omitted": 0
+            },
+            "window_size": 1,
+            "predicate_calls": [
+              {
+                "arguments": {
+                  "type": "tuple",
+                  "items": [
+                    2
+                  ],
+                  "omitted": 0
+                },
+                "line": 20,
+                "return": true
+              },
+              {
+                "arguments": {
+                  "type": "tuple",
+                  "items": [
+                    3
+                  ],
+                  "omitted": 0
+                },
+                "line": 20,
+                "return": false
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "limits": "12 operations/test, 16 predicate calls/operation, 12 values/sequence; only explicit operation inputs and callback arguments/return/exception type, no other locals; not-captured objects are not proven padding; observations do not establish root cause"
+  },
+  "runs": [
+    {
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "output_truncated",
+        "prompt_hash": "29f12ac142e15101f3faaadfc21b7f5f856c82ec5e29fd8f17f439d9285087c9",
+        "error": "InvalidCompletion: output_truncated"
+      },
+      "new_model_calls": 1,
+      "new_model_tokens": 5525,
+      "budget_metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6399,
+        "completion_tokens": 2185,
+        "known_prompt_tokens": 6399,
+        "known_completion_tokens": 2185,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 8584,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "second_completion_tokens": 2048,
+      "initial_candidate_hash": "928871028768e803759c40fa528c772dfafe77e5945f09cf545920e0af2bd781",
+      "correction_checks": null,
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.111,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1108,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    },
+    {
+      "policy": "predicate-runtime",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "93fb2aa50c059bf3b8d738ce070bbdc8329a55d9105be3491b33121a71fc2d81",
+        "edited_files": [
+          "more_itertools/more.py"
+        ]
+      },
+      "new_model_calls": 1,
+      "new_model_tokens": 4286,
+      "budget_metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6960,
+        "completion_tokens": 385,
+        "known_prompt_tokens": 6960,
+        "known_completion_tokens": 385,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7345,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "second_completion_tokens": 248,
+      "initial_candidate_hash": "928871028768e803759c40fa528c772dfafe77e5945f09cf545920e0af2bd781",
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1035,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0976,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.107,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1031,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1041,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1007,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    }
+  ],
+  "preliminary_trial": {
+    "reason": "Independent original log timing text differed; not strict sole-variable comparison",
+    "new_model_calls": 2,
+    "new_model_tokens": 9806
+  },
+  "total_new_model_calls": 4,
+  "total_new_model_tokens": 19617
+}
