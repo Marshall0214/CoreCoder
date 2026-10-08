@@ -11,7 +11,7 @@
 - 将修复流程封装为可审批的 FastAPI/LangGraph 服务，使重复提交与批准复用原任务、待审批任务跨重启保留、崩溃执行标记中断且不自动重放；通过 **18 项真实 HTTP 审批故障检查**验证状态恢复与防重复执行。
 - 建立独立工作区、补丁范围校验和 Trace，使修复结果、Token 与失败原因可复查；通过 MCP 将代码搜索与带哈希读取提供给外部 Client，并完成 **22 项 Docker/Linux 容器端到端检查**，验证工程链路可部署、可演示。
 
-最后一条数字来自历史 [工程验收摘要](workflow-approval-acceptance-v1.json)。最新 Windows 全量为 **1,187 passed、2 skipped**，来自 [30 项基线摘要](expanded-baseline-v1.json)，最新 30 项基线实验已重跑 Windows 全量，没有重跑容器或 HTTP。这些数字不是本人独立编写的测试数量，也不是修复缺陷数量；简历优先保留具体故障验收和机制。
+最后一条数字来自历史 [工程验收摘要](workflow-approval-acceptance-v1.json)。最新 Windows 全量为 **1,206 passed、2 skipped**，来自 [检索配对摘要](class-scoped-comparison-v1.json)，最新检索优化实验已重跑 Windows 全量，没有重跑容器或 HTTP。这些数字不是本人独立编写的测试数量，也不是修复缺陷数量；简历优先保留具体故障验收和机制。
 
 四条贡献的代码、演示和实验出处见 [求职交付证据索引](portfolio-evidence.md)。前两条保留独立实验适配器；已有两项认证任务新增 [可选暂存审批入口](tentative-service-v1.md)，没有替换默认 API 工作流。技术栈单列，正文优先写实际结果和行为变化。
 
@@ -74,3 +74,13 @@
 ## 面试前准备
 
 先按 [演示指南](demo-guide.md)讲完审批与独立验证，再从 [证据索引](portfolio-evidence.md)选择一个实验讲清任务、控制变量、结果及限制。准备讲解唯一匹配编辑、为什么 Controls 必须独立、interrupt 恢复与执行崩溃不重放的区别。开源地址、个人开发时间与录屏由本人填写；文档更新不表示已公开发布或提交简历。
+
+
+## 50 项分类评测更新（2026-10-07）
+
+任务分类与第二次扩充完成：50 个上游真实缺陷、5 仓库、六类缺陷，开发 30/留出 20。全部重新入库验证并进行统一单次 Qwen 修复：21/50，开发 12/30、留出 9/20；50 次新请求、145,978 Token。结果分类：{"target_failed": 22, "passed": 21, "control_regression": 3, "invalid_patch": 3, "output_truncated": 1}。分类是可观察结果，不把失败直接归因于检索或推理。没有扩大工具、上下文或重试预算；旧 12/30 保留，不能把不同任务池的比例变化写成优化收益。Windows 1,198 passed、2 skipped；本轮未重跑容器或 HTTP。下一步仅在开发集验证核心策略，留出不逐题调参。 见 [50 项完整报告](expanded-baseline-v2.md)。
+
+
+## 类范围检索优化更新（2026-10-08）
+
+类范围检索优化已完成新配对：开发 12/30 → 14/30；留出 9/20 → 11/20；同一 50 项任务总体 21/50 → 25/50。新增成功 6 项、丢失成功 2 项；两组新调用合计 100 次。参考 Agentless/Aider 结构定位，改变限定名与类范围检索，模型、单次调用、上下文和评分预算一致。候选在 none-salt 出现新的正常行为回归；检索元数据也随策略变化，不能把全部收益归因于新增源码。决策：positive_development_and_heldout_pairing_optional_policy；默认 Agent/API 保持现状。Windows 1,206 passed、2 skipped。 见 [类范围检索配对](class-scoped-comparison-v1.md)。

@@ -1,0 +1,325 @@
+{
+  "cases": [
+    {
+      "task_id": "more-ichunked-zero",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "790bb0bb2c03e7a07282e5f16f4b1fde35b8fcf5",
+      "after_commit": "f89d7a3331ba6b5421273e556c0a738e3dd1dd35",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/f89d7a3331ba6b5421273e556c0a738e3dd1dd35",
+      "description": "ichunked with zero size must produce no chunks without consuming input; negative size must raise ValueError mentioning n must be at least 0. Preserve positive chunking.",
+      "defect_type": "parameter_validation",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-bucket-missing-key",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "b2f3aff7633057d234ec9186c18a53f4df306d08",
+      "after_commit": "2b8d5cddce4ea01f88a973551cd50479cf5fa45f",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/2b8d5cddce4ea01f88a973551cd50479cf5fa45f",
+      "description": "A missing bucket lookup or membership check must not invent keys when iterating bucket keys. Existing bucket contents and valid keys must remain available.",
+      "defect_type": "state_and_consumption",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-range-membership",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "2fe1b2eeb9d75f994113fe3ac76d14b6bcd6fb10",
+      "after_commit": "dc2664b4a7c66209485c9f5e359137bf4b365eb3",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/dc2664b4a7c66209485c9f5e359137bf4b365eb3",
+      "description": "numeric_range with inexact float steps must recognize each item it yields, return its correct index, and report a length matching iteration. Preserve exact integer ranges and nonmember rejection.",
+      "defect_type": "numeric_consistency",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-chunked-negative",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "516f0a80fb7c2c8562dbb5e318fc2a3d44f4171f",
+      "after_commit": "0e6acdf9b60765ecf9634d6f5c132ac1bebc616b",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/0e6acdf9b60765ecf9634d6f5c132ac1bebc616b",
+      "description": "chunked must reject negative sizes with a clear ValueError containing n must be at least 0, for empty and nonempty inputs. Preserve positive and None sizes.",
+      "defect_type": "parameter_validation",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-range-equality",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "da37f9de442b69fbcaa9f54fb042c2a6999473a6",
+      "after_commit": "069b30002a985c02f1ab18409290a699fd649376",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/069b30002a985c02f1ab18409290a699fd649376",
+      "description": "numeric_range objects yielding the same singleton must compare equal regardless of step and have equal hashes. Preserve unequal ranges and equality of empty ranges.",
+      "defect_type": "numeric_consistency",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-sliced-negative",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "ed86a1528aa015f219f8d3385ea2ebd3f63a5212",
+      "after_commit": "958990e22c4ab6daf434d89cf2b86d7a4a7a9e3c",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/958990e22c4ab6daf434d89cf2b86d7a4a7a9e3c",
+      "description": "sliced must reject negative slice sizes with ValueError under both strict modes, rather than silently yielding incorrect slices. Preserve positive slicing.",
+      "defect_type": "parameter_validation",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-windowed-zero",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "e4d2a4a2a97246a73856754b2c4866d7f41d4875",
+      "after_commit": "71b46b06fb48abcd2f7a26d74c148a650d340386",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/71b46b06fb48abcd2f7a26d74c148a650d340386",
+      "description": "windowed must raise ValueError for zero or negative window sizes, including empty sources; preserve positive window padding and step validation.",
+      "defect_type": "parameter_validation",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "c0ed9d187906d202b9276a0750b3c377584cb75f",
+      "after_commit": "d71c4ad9f828117e609269701f6df10419ae90c8",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/d71c4ad9f828117e609269701f6df10419ae90c8",
+      "description": "locate and replace with window_size must never pass internal padding sentinels to user predicates. Tail calls may contain fewer actual items; preserve window matching and replacement.",
+      "defect_type": "callback_and_exception",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-combination-size",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "def2d821c0a15ede86578660e7dc48e44bad9579",
+      "after_commit": "06f31819121eb0620d3165fda73a44cbf71b140d",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/06f31819121eb0620d3165fda73a44cbf71b140d",
+      "description": "nth_combination_with_replacement must allow r larger than the pool length. Empty pool with r zero has one empty combination; invalid indexes raise IndexError. Preserve ordinary combinations.",
+      "defect_type": "parameter_validation",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-permutation-exception",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "6b32fbfba127d6b4aaf57d6b254b2ab5fc80ae76",
+      "after_commit": "def2d821c0a15ede86578660e7dc48e44bad9579",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/def2d821c0a15ede86578660e7dc48e44bad9579",
+      "description": "nth_permutation for a requested size greater than the pool length must raise IndexError because no such permutation exists. Negative size remains ValueError; preserve valid indexed permutations.",
+      "defect_type": "callback_and_exception",
+      "split": "development",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-product-repeat",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "b110a77364ec0ed5bb06194b591f97a54591dbc9",
+      "after_commit": "073d23421b60e05a99872e7b174902f4aa151f31",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/073d23421b60e05a99872e7b174902f4aa151f31",
+      "description": "nth_product and product_index with repeat must handle one-shot iterators like reusable sequences, materializing each input only once. Preserve ordinary product indexing.",
+      "defect_type": "state_and_consumption",
+      "split": "heldout",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "fdbd43c569feb4388302ddee0551d18edd39fadc",
+      "after_commit": "be5793a55f58ee29521d8cbc9f14019f5833454e",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/be5793a55f58ee29521d8cbc9f14019f5833454e",
+      "description": "gray_product and partial_product with repeat must preserve output when inputs are one-shot iterators. Preserve ordinary traversal with reusable sequences.",
+      "defect_type": "state_and_consumption",
+      "split": "heldout",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-reversed-values",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "9ed3dbb0ae527230cd156d91d0af305478558fba",
+      "after_commit": "752799b5c88e0823f1bd93e073edab0a6a7e5648",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/752799b5c88e0823f1bd93e073edab0a6a7e5648",
+      "description": "Reversing numeric_range must preserve the exact float values yielded by forward iteration, and avoid overflow for datetime boundary ranges. Preserve integer reversal and empty ranges.",
+      "defect_type": "numeric_consistency",
+      "split": "heldout",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-broadcast-single-use",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "9ed3dbb0ae527230cd156d91d0af305478558fba",
+      "after_commit": "e426d256b90bcef9aa4509ea345fca68ff21ae0c",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/e426d256b90bcef9aa4509ea345fca68ff21ae0c",
+      "description": "zip_broadcast must open a single-use iterable only once, rather than probing iterability then opening it again. Preserve scalar broadcasting and normal zip behavior.",
+      "defect_type": "state_and_consumption",
+      "split": "heldout",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "more-last-typeerror",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "64be96ceb2a6e836f76f069f4a96d2394d59fd0c",
+      "after_commit": "319b24382341582defc71a15c7f74e144253d614",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/319b24382341582defc71a15c7f74e144253d614",
+      "description": "last must propagate TypeError from a user-defined reversed implementation, including when a default is supplied. Preserve default handling for empty iterables and ordinary last items.",
+      "defect_type": "callback_and_exception",
+      "split": "heldout",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "boltons-xfrange-descending",
+      "repo": "mahmoud/boltons",
+      "package": "boltons",
+      "source_root": ".",
+      "before_commit": "f1034b07ddf71f4d9285134a47a4ade16fe40789",
+      "after_commit": "3e9983db7b59578add73c01cd31fa7ecd8da2e04",
+      "upstream_url": "https://github.com/mahmoud/boltons/commit/3e9983db7b59578add73c01cd31fa7ecd8da2e04",
+      "description": "xfrange must support descending ranges and produce the same count as frange for inexact ascending steps. Preserve positive integer-step ranges.",
+      "defect_type": "numeric_consistency",
+      "split": "heldout",
+      "changed_source_files": [
+        "boltons/iterutils.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "boltons-backoff-zero",
+      "repo": "mahmoud/boltons",
+      "package": "boltons",
+      "source_root": ".",
+      "before_commit": "b3d4d1c54c9ed8aa2555ef550d313227a35348b6",
+      "after_commit": "fffc419762804765638fc9fb82d5e9b02d46bae6",
+      "upstream_url": "https://github.com/mahmoud/boltons/commit/fffc419762804765638fc9fb82d5e9b02d46bae6",
+      "description": "backoff must accept start zero, advance to one, and then grow exponentially up to stop. Preserve positive-start backoff and explicit counts.",
+      "defect_type": "defaults_and_boundaries",
+      "split": "heldout",
+      "changed_source_files": [
+        "boltons/iterutils.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "boltons-repeat-equality",
+      "repo": "mahmoud/boltons",
+      "package": "boltons",
+      "source_root": ".",
+      "before_commit": "e81916c6b87ead0060451f409c1c3ae21c0d4e5f",
+      "after_commit": "40d8d73332186074088e765fb47cc942a61890fd",
+      "upstream_url": "https://github.com/mahmoud/boltons/commit/40d8d73332186074088e765fb47cc942a61890fd",
+      "description": "backoff_iter count repeat must accept a dynamically constructed equal string, without relying on object identity. Preserve finite counts and bounded exponential values.",
+      "defect_type": "defaults_and_boundaries",
+      "split": "heldout",
+      "changed_source_files": [
+        "boltons/iterutils.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "toolz-partition-length",
+      "repo": "pytoolz/toolz",
+      "package": "toolz",
+      "source_root": ".",
+      "before_commit": "1fb2b9f1b69ab664a264944f4eafc290acce127d",
+      "after_commit": "5a7e078c941c990dcaca53ac6920e5d5c0b1475f",
+      "upstream_url": "https://github.com/pytoolz/toolz/commit/5a7e078c941c990dcaca53ac6920e5d5c0b1475f",
+      "description": "partition_all must raise LookupError if a sequence reports a length inconsistent with its contents instead of emitting padding or dropping values. Preserve correct lists and iterators.",
+      "defect_type": "parameter_validation",
+      "split": "heldout",
+      "changed_source_files": [
+        "toolz/itertoolz.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    },
+    {
+      "task_id": "toolz-merge-mapping",
+      "repo": "pytoolz/toolz",
+      "package": "toolz",
+      "source_root": ".",
+      "before_commit": "adc70fd6231e895df47d080084ff234f65050e0b",
+      "after_commit": "c696ac6f3c2962b370fe8dda78c64cf2564e1457",
+      "upstream_url": "https://github.com/pytoolz/toolz/commit/c696ac6f3c2962b370fe8dda78c64cf2564e1457",
+      "description": "merge_with must accept a single collections.abc Mapping that is not a dict, treating it as a mapping rather than an iterable of mappings. Preserve merging multiple dictionaries.",
+      "defect_type": "type_and_representation",
+      "split": "heldout",
+      "changed_source_files": [
+        "toolz/dicttoolz.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only."
+    }
+  ],
+  "target_new_tasks": 20
+}

@@ -21,8 +21,9 @@
 | 求职贡献、代码与验收的对应证据 | [portfolio-evidence.md](portfolio-evidence.md) |
 | 实现/证据/未完成清单 | [delivery-checklist.md](delivery-checklist.md) |
 | 最新工程验收摘要 | [workflow-approval-acceptance-v1.json](workflow-approval-acceptance-v1.json) |
-| 最新 30 项、5 仓库完整基线 | [expanded-baseline-v1.md](expanded-baseline-v1.md) |
-| 30 项固定任务与提交清单 | [expanded-suite-v1.json](expanded-suite-v1.json) |
+| 最新检索优化配对 | [class-scoped-comparison-v1.md](class-scoped-comparison-v1.md) |
+| 50 项、5 仓库分类基线 | [expanded-baseline-v2.md](expanded-baseline-v2.md) |
+| 50 项固定任务与提交清单 | [expanded-suite-v2.json](expanded-suite-v2.json) |
 | 历史第二仓库实验结论 | [second-repo-repair-v1.md](second-repo-repair-v1.md) |
 | 最新补丁定位优化与失败归因 | [anchored-patch-v1.md](anchored-patch-v1.md) |
 | 符号定向检索与三轮修复对照 | [symbol-directed-retrieval-v1.md](symbol-directed-retrieval-v1.md) |
@@ -99,13 +100,13 @@ MCP 是独立工具接入与互操作成果，没有自动替换服务默认检�
 | 六项，各一次；同流程 Qwen / DeepSeek | 两组均 5/6 | 换模型未解决 none-salt；见 [模型对照](provider-compare-v1.md) |
 | 六项，各一次；原 / 源码契约上下文 | 两组均 5/6 | 候选 Controls 回归；少一次调用不是提效；见 [契约上下文](source-contract-context-v1.md) |
 
-Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个不同任务，不代表 13 项都必须多文件修改。本轮新增 17 项，现有固定任务集为 30 项、5 仓库，见 [完整基线](expanded-baseline-v1.md)。后续检索、补丁与公开反馈实验复用了其中六项，没有增加不同缺陷数。passed 是满足独立 Target/Controls 和修改约束，不代表完整上游测试或生产正确性。评分错误修正记录与新调用分开，不覆盖旧结果。
+Click 7 项、Click 3 项、ItsDangerous 3 项三个历史任务池合计 13 个不同任务，不代表 13 项都必须多文件修改。本轮新增 17 项，当时固定任务集为 30 项、5 仓库；最新扩充为 50 项，见 [完整基线](expanded-baseline-v1.md)。后续检索、补丁与公开反馈实验复用了其中六项，没有增加不同缺陷数。passed 是满足独立 Target/Controls 和修改约束，不代表完整上游测试或生产正确性。评分错误修正记录与新调用分开，不覆盖旧结果。
 
 原始实验输入、模型回答和日志位于被 Git 忽略的 `.tmp/`，复跑真实实验需要报告指定的准入快照、隔离环境及模型身份；仅 clone 不能直接重建所有历史结果。工程演示使用仓库内人工 fixture，可不依赖这些实验产物或模型 API。
 
 ## 工程验收与边界
 
-历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新 30 项基线后 Windows 全量 **1,187 passed、2 skipped**，见 [实验报告](expanded-baseline-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
+历史审批工程验收：Windows **864 passed、2 skipped**；Linux **71 passed、无跳过**；**22 项容器端到端检查、18 项真实 HTTP 审批故障检查通过**。出处为 [验收摘要](workflow-approval-acceptance-v1.json)。最新检索优化后 Windows 全量 **1,206 passed、2 skipped**，见 [配对报告](class-scoped-comparison-v1.md)；本轮未重跑 Linux/容器/HTTP 验收。这些是软件回归/故障验收数字，不能当作真实修复成功率。
 
 待审批任务保存原生 interrupt，Worker 退出并释放并发名额；批准用 Command 恢复，拒绝不执行。相同决定重复提交不重跑；待审批重启保留，执行中崩溃清理进程并标记 interrupted，不自动重放副作用。详见 [审批协议](workflow-approval-v1.md)。
 
@@ -162,3 +163,13 @@ Qwen / DeepSeek 固定统一反馈流程对照已完成：六项已查看缺陷�
 
 
 测试集扩充与完整评测完成：保留 13 项历史缺陷，新增 17 项上游真实缺陷，30 项全部准入、覆盖 5 仓库，模型调用前冻结 20 开发/10 留出。统一完整函数 BM25 + 单次补丁基线通过 12/30（40%），开发 8/20、留出 4/10；15 项行为失败、3 项无效补丁，全部保留。30 次本地 Qwen 调用、86,075 Token。参考函数诊断仅在评分后生成：18 项失败中 9 项未完整展示参考修改函数，9 项已展示仍失败，不作因果证明。Windows 1,187 passed、2 skipped。后续优先在开发集改善定位与补丁拒绝处理，不据留出具体答案调参。 见 [完整基线](expanded-baseline-v1.md)。
+
+
+## 50 项分类评测更新（2026-10-07）
+
+任务分类与第二次扩充完成：50 个上游真实缺陷、5 仓库、六类缺陷，开发 30/留出 20。全部重新入库验证并进行统一单次 Qwen 修复：21/50，开发 12/30、留出 9/20；50 次新请求、145,978 Token。结果分类：{"target_failed": 22, "passed": 21, "control_regression": 3, "invalid_patch": 3, "output_truncated": 1}。分类是可观察结果，不把失败直接归因于检索或推理。没有扩大工具、上下文或重试预算；旧 12/30 保留，不能把不同任务池的比例变化写成优化收益。Windows 1,198 passed、2 skipped；本轮未重跑容器或 HTTP。下一步仅在开发集验证核心策略，留出不逐题调参。 见 [50 项完整报告](expanded-baseline-v2.md)。
+
+
+## 类范围检索优化更新（2026-10-08）
+
+类范围检索优化已完成新配对：开发 12/30 → 14/30；留出 9/20 → 11/20；同一 50 项任务总体 21/50 → 25/50。新增成功 6 项、丢失成功 2 项；两组新调用合计 100 次。参考 Agentless/Aider 结构定位，改变限定名与类范围检索，模型、单次调用、上下文和评分预算一致。候选在 none-salt 出现新的正常行为回归；检索元数据也随策略变化，不能把全部收益归因于新增源码。决策：positive_development_and_heldout_pairing_optional_policy；默认 Agent/API 保持现状。Windows 1,206 passed、2 skipped。 见 [类范围检索配对](class-scoped-comparison-v1.md)。
