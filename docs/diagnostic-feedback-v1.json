@@ -1,0 +1,508 @@
+{
+  "complete": true,
+  "decision": "do_not_adopt_or_expand",
+  "source": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\experiment.json",
+  "protocol": {
+    "name": "diagnostic-feedback-v1",
+    "input_hashes": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\manifest.json": "c91bb8d811cd4d0ded582b2866e53db0b465a3ce80f8a69df0e8c638ef281607",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\experiment.json": "c6474abd34f0013c4f1b59890a9af00709864d7f88681016a1417d09b387a6a6",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\diagnostic_feedback_compare_v1.py": "1cb3330726c2fea1ae139ec7146bfe93bb909bd2448076cb97894af585d972f7",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\diagnostic_feedback_v1.py": "e8f83cd0ebeaddb6283b809d0a41cc370c5f3e064f6852127fb8f01d4c5d098c"
+    },
+    "tasks": [
+      "click-usage-empty",
+      "click-help-eagerness",
+      "click-resource-exception",
+      "click-shared-default",
+      "toolz-join-unmatched",
+      "more-predicate-sentinel",
+      "itsdangerous-none-salt",
+      "click-style-color-validation"
+    ],
+    "policies": [
+      "unchanged-feedback",
+      "diagnostic-feedback"
+    ],
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "selection": "6 known development failures across 3 repos + 2 known successes; not a full-suite or blind result",
+    "change": "Second-round feedback only; balanced public failures, first patch diff, minimal unique replacement guidance",
+    "unchanged": "First prompt, original seed refresh, max 2 calls, 15000 tokens, 2048 output tokens, 600s, dual validation and rollback",
+    "evidence": "Certified public tests/outcomes and first patch only; no new trace, grader or reference input",
+    "order": "Alternating arm order; fresh independent model requests"
+  },
+  "summary": {
+    "unchanged-feedback": {
+      "tasks": 8,
+      "passed": 2,
+      "controls_passed": 8,
+      "calls": 15,
+      "tokens": 48509,
+      "missing_worker_results": 0,
+      "worker_seconds": 239.5805
+    },
+    "diagnostic-feedback": {
+      "tasks": 8,
+      "passed": 1,
+      "controls_passed": 8,
+      "calls": 15,
+      "tokens": 49438,
+      "missing_worker_results": 0,
+      "worker_seconds": 198.3696
+    }
+  },
+  "first_round_pairs": [
+    {
+      "task_id": "click-usage-empty",
+      "same_first_request": true,
+      "same_first_response": true
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "same_first_request": true,
+      "same_first_response": true
+    },
+    {
+      "task_id": "click-resource-exception",
+      "same_first_request": true,
+      "same_first_response": true
+    },
+    {
+      "task_id": "click-shared-default",
+      "same_first_request": true,
+      "same_first_response": true
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "same_first_request": true,
+      "same_first_response": true
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "same_first_request": true,
+      "same_first_response": true
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "same_first_request": true,
+      "same_first_response": true
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "same_first_request": true,
+      "same_first_response": true
+    }
+  ],
+  "runs": [
+    {
+      "task_id": "click-usage-empty",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "5bf366c1a8df6fd221410b98c67ab0b1d4297851597515de2dd7cb247d01ced8",
+        "edited_files": [
+          "src/click/formatting.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5525,
+        "completion_tokens": 1191,
+        "known_prompt_tokens": 5525,
+        "known_completion_tokens": 1191,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6716,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-usage-empty",
+      "policy": "diagnostic-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "34e99b6c4ea7f26c96bcfb61883cb8727add4ca0377472b68a9ecdef452629aa",
+        "edited_files": [
+          "src/click/formatting.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6082,
+        "completion_tokens": 1290,
+        "known_prompt_tokens": 6082,
+        "known_completion_tokens": 1290,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7372,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "policy": "diagnostic-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "6a4a6ec6147fb88136fd8893a896beaf868a3abbcaa3d60c4fc42242b04b9b4e",
+        "edited_files": [
+          "src/click/core.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5451,
+        "completion_tokens": 520,
+        "known_prompt_tokens": 5451,
+        "known_completion_tokens": 520,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 5971,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "ad4beb004685193a4f195f2a65adf528076187da77da65d67c3859d9e64a6920",
+        "edited_files": [
+          "src/click/core.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5125,
+        "completion_tokens": 753,
+        "known_prompt_tokens": 5125,
+        "known_completion_tokens": 753,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 5878,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-resource-exception",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "86e3e8440a99834e8540f0e1bcd56e795118c704fd358438b062b424f2e9ed8f",
+        "edited_files": [
+          "src/click/core.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 4292,
+        "completion_tokens": 978,
+        "known_prompt_tokens": 4292,
+        "known_completion_tokens": 978,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 5270,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-resource-exception",
+      "policy": "diagnostic-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "invalid_patch",
+        "prompt_hash": "1acf913e934c41aecc012b4525d2e407ff02ba47d6be2123339e4ff07576034d",
+        "error": "ValueError: Edit text was not supplied in local context"
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 4805,
+        "completion_tokens": 983,
+        "known_prompt_tokens": 4805,
+        "known_completion_tokens": 983,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 5788,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-shared-default",
+      "policy": "diagnostic-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "729613d6d643924d402b49ed7b03ab630155c3a1796fc32a2dd554e4c9346f9d",
+        "edited_files": [
+          "src/click/core.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6034,
+        "completion_tokens": 1023,
+        "known_prompt_tokens": 6034,
+        "known_completion_tokens": 1023,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7057,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-shared-default",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "fe7b5f51ef9f05d0d857609188affc00da2ef898775f590f507e72f481fb7db7",
+        "edited_files": [
+          "src/click/core.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5704,
+        "completion_tokens": 657,
+        "known_prompt_tokens": 5704,
+        "known_completion_tokens": 657,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6361,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "b0f05ab09026213a4c8272e9f753ae59f502b80d9af73a0769a955efb4f1897d",
+        "edited_files": [
+          "toolz/itertoolz.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5331,
+        "completion_tokens": 554,
+        "known_prompt_tokens": 5331,
+        "known_completion_tokens": 554,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 5885,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "policy": "diagnostic-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "252def21984fa31739b4a51201a44f9695afc41d0d6fb6d7b0b64771e8e2ef26",
+        "edited_files": [
+          "toolz/itertoolz.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5466,
+        "completion_tokens": 432,
+        "known_prompt_tokens": 5466,
+        "known_completion_tokens": 432,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 5898,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "diagnostic-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "79f2423341dcd9377c65bb589152f3d2a15c782052f2ff288d2d2c03f3b7365e",
+        "edited_files": [
+          "more_itertools/more.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6741,
+        "completion_tokens": 366,
+        "known_prompt_tokens": 6741,
+        "known_completion_tokens": 366,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7107,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "unchanged-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "output_truncated",
+        "prompt_hash": "29f12ac142e15101f3faaadfc21b7f5f856c82ec5e29fd8f17f439d9285087c9",
+        "error": "InvalidCompletion: output_truncated"
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6399,
+        "completion_tokens": 2185,
+        "known_prompt_tokens": 6399,
+        "known_completion_tokens": 2185,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 8584,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "unchanged-feedback",
+      "accepted": true,
+      "status": "completed",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "6e5e3b107672567c51ebfac2aca94b235dddb92be05cd6b85cef739865780a9e",
+        "edited_files": [
+          "src/itsdangerous/serializer.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5301,
+        "completion_tokens": 1143,
+        "known_prompt_tokens": 5301,
+        "known_completion_tokens": 1143,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6444,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "diagnostic-feedback",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "315b5a0ec7fa6c10912270f75244038ebd9d35ef248ffd1f8ec4f26fa43bd84f",
+        "edited_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ]
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5629,
+        "completion_tokens": 1245,
+        "known_prompt_tokens": 5629,
+        "known_completion_tokens": 1245,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6874,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "diagnostic-feedback",
+      "accepted": true,
+      "status": "completed",
+      "correction": null,
+      "metrics": {
+        "llm_calls": 1,
+        "prompt_tokens": 2629,
+        "completion_tokens": 742,
+        "known_prompt_tokens": 2629,
+        "known_completion_tokens": 742,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 3371,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "unchanged-feedback",
+      "accepted": true,
+      "status": "completed",
+      "correction": null,
+      "metrics": {
+        "llm_calls": 1,
+        "prompt_tokens": 2629,
+        "completion_tokens": 742,
+        "known_prompt_tokens": 2629,
+        "known_completion_tokens": 742,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 3371,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      }
+    }
+  ],
+  "scope": "Eight known development tasks; no full-suite or blind claim"
+}
