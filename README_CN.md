@@ -19,13 +19,13 @@
 
 ## 本仓库扩展：代码修复评测与可审批服务
 
-同一次恢复同时提供锚点诊断和认证公开检查已完成新配对：三项已知任务中，同时通过冻结评分与公开边界检查从 1/3 提升到 2/3，空迭代器不再误输出 [[]]，假值异常保持通过；seekable 仍匹配失败。每组最多两次请求、原预算，默认流程暂不接入。下一步在冻结开发集扩大验证，不继续单例调参。 见 [联合恢复结果](docs/anchor-public-recovery-v1.md)。
+30 项开发集完整新配对已完成：独立修复 14/30 → 14/30，原文恢复触发 0/30。未达到推广门槛，默认流程不接入；三项诊断中的局部收益不能推广到总体。停止扩大锚点恢复，下一步聚焦补丁可应用但行为错误的语义修复，统一公开反馈的有界流程，不继续单例调参。 见 [扩大验证结果](docs/anchor-public-development-v1.md)。
 
 基于 CoreCoder 的个人二次开发：固定模型与预算比较检索/上下文策略，提供独立补丁验证、FastAPI/SQLite 服务、代码知识 MCP Server、LangGraph 人工审批和 Docker/Linux 验收。当前为可信任务上的本地工程项目；实验未证明普遍提高修复率，服务尚未支持任意仓库或多用户生产部署。
 
 **统一入口：[项目总览与结果](docs/project-overview.md) · [5 分钟离线演示](docs/demo-guide.md) · [交付与 JD 清单](docs/delivery-checklist.md) · [简历与面试说明](docs/resume-and-interview.md)。**
 
-最新 Windows 全量回归：1,206 passed、2 skipped，见 [检索配对摘要](docs/class-scoped-comparison-v1.json)。历史部署验收：Linux 71 passed、22 项容器检查和 18 项 HTTP 审批故障检查通过，见 [版本化摘要](docs/workflow-approval-acceptance-v1.json)。软件验收与真实模型修复效果分别计量；求职展示入口见 [证据索引](docs/portfolio-evidence.md)。下文保留上游核心的源码导读和作者归属。
+最新 Windows 全量回归：1,245 passed、2 skipped，见 [扩大验证摘要](docs/anchor-public-development-v1.json)。历史部署验收：Linux 71 passed、22 项容器检查和 18 项 HTTP 审批故障检查通过，见 [版本化摘要](docs/workflow-approval-acceptance-v1.json)。软件验收与真实模型修复效果分别计量；求职展示入口见 [证据索引](docs/portfolio-evidence.md)。下文保留上游核心的源码导读和作者归属。
 
 - **读得完。** 一个下午读完整个引擎，没有一处藏着你看不懂的魔法。
 - **改得动。** 每一行都能在你自己机器上下断点、改了再跑。它真能干活，所以这份参考是活的，不是示意图。
