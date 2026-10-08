@@ -1,0 +1,299 @@
+{
+  "complete": true,
+  "protocol": {
+    "name": "patch-self-review-v1",
+    "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "development_only": true,
+    "max_calls": 2,
+    "shared_initial_response": true,
+    "shared_budget": true,
+    "private_grading_after_both_candidates": true,
+    "review_selection": "structure only; no private tests",
+    "promotion_gate": "net >=2 repairs; no newly regressed previously passing Controls",
+    "comparison_limit": "review adds one call and proposed-patch context; actual cost must be reported",
+    "inputs_sha256": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\expanded-admission-v2-final\\admission.json": "21b7ac5ec1f8a03cd4beeb24f1a0b4512c2605510b140bfdd096aa9f0241d65b",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\patch-self-review-v1\\observations.json": "317c3cedf745454a0c8479247a03704d902333a2d057563a29c40929d650e808",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\patch_self_review_v1.py": "f95d6efd478fd13ca66cff64e40c6a1471c34fff1d6957b9fd320ac0626ac63d",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\class_scoped_retrieval_v1.py": "f7a0ba337c03c16cb24c0710d3cb84b156ed41a0e5461a44159ca260458f6819",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\expanded_baseline_v2.py": "264d7fd931eae4ed87ccd5157475621bb5c1420e5cf3180e71fc91742012e7db"
+    }
+  },
+  "summary": {
+    "single": {
+      "overall": {
+        "tasks": 30,
+        "passed": 14,
+        "statuses": {
+          "failed_verification": 16,
+          "passed": 14
+        },
+        "target_passed": 14,
+        "controls_passed": 29,
+        "model_calls": 30,
+        "tokens": 83110,
+        "missing_usage_calls": 0,
+        "worker_seconds": 316.2264
+      },
+      "split": {
+        "development": {
+          "tasks": 30,
+          "passed": 14,
+          "statuses": {
+            "failed_verification": 16,
+            "passed": 14
+          },
+          "target_passed": 14,
+          "controls_passed": 29,
+          "model_calls": 30,
+          "tokens": 83110,
+          "missing_usage_calls": 0,
+          "worker_seconds": 316.2264
+        }
+      },
+      "repository": {
+        "mahmoud/boltons": {
+          "tasks": 3,
+          "passed": 1,
+          "statuses": {
+            "failed_verification": 2,
+            "passed": 1
+          },
+          "target_passed": 1,
+          "controls_passed": 3,
+          "model_calls": 3,
+          "tokens": 9026,
+          "missing_usage_calls": 0,
+          "worker_seconds": 16.1817
+        },
+        "more-itertools/more-itertools": {
+          "tasks": 10,
+          "passed": 5,
+          "statuses": {
+            "passed": 5,
+            "failed_verification": 5
+          },
+          "target_passed": 5,
+          "controls_passed": 10,
+          "model_calls": 10,
+          "tokens": 26611,
+          "missing_usage_calls": 0,
+          "worker_seconds": 102.4797
+        },
+        "pallets/click": {
+          "tasks": 10,
+          "passed": 3,
+          "statuses": {
+            "failed_verification": 7,
+            "passed": 3
+          },
+          "target_passed": 3,
+          "controls_passed": 10,
+          "model_calls": 10,
+          "tokens": 28356,
+          "missing_usage_calls": 0,
+          "worker_seconds": 116.9317
+        },
+        "pallets/itsdangerous": {
+          "tasks": 3,
+          "passed": 2,
+          "statuses": {
+            "failed_verification": 1,
+            "passed": 2
+          },
+          "target_passed": 2,
+          "controls_passed": 2,
+          "model_calls": 3,
+          "tokens": 8451,
+          "missing_usage_calls": 0,
+          "worker_seconds": 42.4073
+        },
+        "pytoolz/toolz": {
+          "tasks": 4,
+          "passed": 3,
+          "statuses": {
+            "passed": 3,
+            "failed_verification": 1
+          },
+          "target_passed": 3,
+          "controls_passed": 4,
+          "model_calls": 4,
+          "tokens": 10666,
+          "missing_usage_calls": 0,
+          "worker_seconds": 38.226
+        }
+      },
+      "failure_categories": {
+        "target_failed": 15,
+        "passed": 14,
+        "control_regression": 1
+      }
+    },
+    "self-review": {
+      "overall": {
+        "tasks": 30,
+        "passed": 14,
+        "statuses": {
+          "failed_verification": 16,
+          "passed": 14
+        },
+        "target_passed": 14,
+        "controls_passed": 29,
+        "model_calls": 60,
+        "tokens": 170455,
+        "missing_usage_calls": 0,
+        "worker_seconds": 376.6222
+      },
+      "split": {
+        "development": {
+          "tasks": 30,
+          "passed": 14,
+          "statuses": {
+            "failed_verification": 16,
+            "passed": 14
+          },
+          "target_passed": 14,
+          "controls_passed": 29,
+          "model_calls": 60,
+          "tokens": 170455,
+          "missing_usage_calls": 0,
+          "worker_seconds": 376.6222
+        }
+      },
+      "repository": {
+        "mahmoud/boltons": {
+          "tasks": 3,
+          "passed": 1,
+          "statuses": {
+            "failed_verification": 2,
+            "passed": 1
+          },
+          "target_passed": 1,
+          "controls_passed": 3,
+          "model_calls": 6,
+          "tokens": 18394,
+          "missing_usage_calls": 0,
+          "worker_seconds": 23.2542
+        },
+        "more-itertools/more-itertools": {
+          "tasks": 10,
+          "passed": 5,
+          "statuses": {
+            "passed": 5,
+            "failed_verification": 5
+          },
+          "target_passed": 5,
+          "controls_passed": 10,
+          "model_calls": 20,
+          "tokens": 54572,
+          "missing_usage_calls": 0,
+          "worker_seconds": 122.5387
+        },
+        "pallets/click": {
+          "tasks": 10,
+          "passed": 3,
+          "statuses": {
+            "failed_verification": 7,
+            "passed": 3
+          },
+          "target_passed": 3,
+          "controls_passed": 10,
+          "model_calls": 20,
+          "tokens": 58233,
+          "missing_usage_calls": 0,
+          "worker_seconds": 137.3214
+        },
+        "pallets/itsdangerous": {
+          "tasks": 3,
+          "passed": 2,
+          "statuses": {
+            "failed_verification": 1,
+            "passed": 2
+          },
+          "target_passed": 2,
+          "controls_passed": 2,
+          "model_calls": 6,
+          "tokens": 17382,
+          "missing_usage_calls": 0,
+          "worker_seconds": 47.0415
+        },
+        "pytoolz/toolz": {
+          "tasks": 4,
+          "passed": 3,
+          "statuses": {
+            "passed": 3,
+            "failed_verification": 1
+          },
+          "target_passed": 3,
+          "controls_passed": 4,
+          "model_calls": 8,
+          "tokens": 21874,
+          "missing_usage_calls": 0,
+          "worker_seconds": 46.4664
+        }
+      },
+      "failure_categories": {
+        "target_failed": 15,
+        "passed": 14,
+        "control_regression": 1
+      }
+    },
+    "paired": {
+      "tasks": 30,
+      "gained": 0,
+      "lost": 0
+    }
+  },
+  "changes": {
+    "gained": [],
+    "lost": []
+  },
+  "gate": {
+    "eligible": false,
+    "new_control_regressions": []
+  },
+  "token_ratio": 2.050956563590422,
+  "review_decisions": {
+    "kept_initial": 30
+  },
+  "physical_model_calls": 60,
+  "limits": [
+    "Development only; inspected tasks; one run per distinct issue.",
+    "Shared initial response; do not add branch call totals.",
+    "Extra call and patch context change together; no isolated causal claim.",
+    "Private hand-authored checks, not full upstream regression suites."
+  ],
+  "software_validation": {
+    "focused_passed": 12,
+    "windows_passed": 1251,
+    "windows_skipped": 4,
+    "seconds": 165.87,
+    "ruff": "passed",
+    "docker_http_rerun": false
+  }
+}
