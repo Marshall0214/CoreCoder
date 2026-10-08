@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-08",
+  "decision": "optional_workflow_offline_verified_live_comparison_pending",
+  "complete": true,
+  "summary": {
+    "tasks": 44,
+    "published": 27,
+    "independently_verified": 27,
+    "restored_original": 17,
+    "feedback_attempts": 17,
+    "corrections_retained": 4,
+    "historical_scored_success": 28,
+    "rejected_historical_success": ["more-gray-partial-repeat"],
+    "missing_recorded_answers": [],
+    "new_model_calls": 0
+  },
+  "raw_result": ".tmp/real-defects/frozen-feedback-replay-v1-accepted/replay.json",
+  "raw_sha256": "948e3ad9ccad8d6bdbf8913e4d0a931781d1d8dafb752eccc8c397b4cc2e7db5",
+  "input_hashes_verified_after_completion": true,
+  "validation": {
+    "focused": "15 passed in 0.45s",
+    "full": "1277 passed, 4 skipped in 156.60s; collected before two additional replay regression tests, both subsequently passed in focused run",
+    "ruff": "passed",
+    "docker_http": "not rerun"
+  },
+  "limits": [
+    "Historical answer replay is not fresh inference or repair-rate improvement",
+    "44 of 50 tasks certified",
+    "Private grading occurs after candidate selection",
+    "Default Agent/API unchanged",
+    "Retained patches stay in owned task-local copies; no deployment or merging"
+  ]
+}
