@@ -1,0 +1,1028 @@
+{
+  "complete": true,
+  "protocol": {
+    "name": "frozen-assertion-audit-v1",
+    "input_hashes": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\expanded-admission-v2-final\\admission.json": "21b7ac5ec1f8a03cd4beeb24f1a0b4512c2605510b140bfdd096aa9f0241d65b",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\public-feedback-v2-development\\experiment.json": "f4fb217c9b892f59fd7ee68111906f1b3aa95a9e104c78a806129676b11c6c1c",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\public-feedback-heldout-v1\\experiment.json": "aed4a446c9d63ee0ba3f82b5e76776b1c15b9828ca53c1d16bcde37cf911c1fe",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\public-feedback-v2-certification-final\\certificates.json": "40c454524fee959c3ebb462a7238f29bc08ec68c91ffcb2bbcb98d4e81e24f96",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\public-feedback-heldout-v1-certification-final\\certificates.json": "4bd21f1d77d6c89a1a377ef4982ad38238a32587cb2f10e42fbd56a15145b974",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\frozen_assertion_audit_v1.py": "fb04b9fb47d79038d85d3b7e830bfa928bf4f016165514af00ae465a5fa8de1e",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\frozen_assertions_v1.py": "de1aa663f555d9220fd877d38791c7bf06c87a04e6be8b8aa4b032368c25013a",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\public_feedback_v2.py": "0b3e93f370bac497e67910abc5353167212429a8b0e86f9e23404f10daf61abc"
+    },
+    "oracle": "Reproduce expected operands and healthy Preserve actual operands from original public checks",
+    "reference": "offline certification only; no reference-derived expected values",
+    "private_grader": "historical score is reported unchanged, never used to construct observations",
+    "limits": "Existing equality observations only; no new inputs; not a new repair benchmark or blind heldout",
+    "before_certification": "Original Preserve passes; observations nonempty; original Reproduce still fails",
+    "after_certification": "Reference Reproduce and Preserve both pass"
+  },
+  "summary": {
+    "tasks": 50,
+    "certified": 44,
+    "excluded": [
+      "itsdangerous-none-salt",
+      "boltons-remap-set",
+      "more-range-membership",
+      "more-range-equality",
+      "more-reversed-values",
+      "boltons-xfrange-descending"
+    ],
+    "replayed_candidates": 88,
+    "observations": 114,
+    "historically_scored_success_now_rejected": [
+      {
+        "task_id": "more-gray-partial-repeat",
+        "policy": "public-feedback"
+      }
+    ]
+  },
+  "raw_artifact": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\frozen-assertion-audit-v1-certified\\audit.json",
+  "raw_sha256": "5a47f5844251fd3eb5bca65bc6bbcdefc1331ca6caf5bdcfa0f6ffccee96fe5b",
+  "validation": {
+    "focused_passed": 13,
+    "compatibility_and_focused_passed": 36,
+    "windows_passed": 1264,
+    "windows_skipped": 4,
+    "seconds": 166.96,
+    "ruff": "passed",
+    "linux_docker_http": "not rerun",
+    "new_model_calls": 0
+  },
+  "cases": [
+    {
+      "task_id": "click-usage-empty",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "34fe7f08238ec1820ff4cefd39624dd04bf28bed3bfc0008b0ad43885910150f",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "34fe7f08238ec1820ff4cefd39624dd04bf28bed3bfc0008b0ad43885910150f",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "2a586e2ad500421fc400ec660d665b467c51bdb0ebf1c16e2cc19779bc88edbb",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "2a586e2ad500421fc400ec660d665b467c51bdb0ebf1c16e2cc19779bc88edbb",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "39432c81a4c4c61d4ce9c666a88614887c79b424378101b7f276ba5617fcf73a",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "39432c81a4c4c61d4ce9c666a88614887c79b424378101b7f276ba5617fcf73a",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "split": "development",
+      "certified": false,
+      "reason": "frozen_reference_or_original_certification_failed",
+      "observations": 3,
+      "replays": []
+    },
+    {
+      "task_id": "itsdangerous-future-age",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 3,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "735d16869bd977c074fcdf31c5b933fe3b430a8e44f6028f9ad2966a536736af",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "735d16869bd977c074fcdf31c5b933fe3b430a8e44f6028f9ad2966a536736af",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "af1210312d19248cc8ceaee13921f5efa36fa4cb535e55f5b7717c15e0be8a07",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "af1210312d19248cc8ceaee13921f5efa36fa4cb535e55f5b7717c15e0be8a07",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "f2071dfb9e740b0980d9dd588f8aeb9475f69947e49dba6744a606d90beb4d50",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "f2071dfb9e740b0980d9dd588f8aeb9475f69947e49dba6744a606d90beb4d50",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "click-flag-default-map",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "37c5f56857546c68246d6be7c3108d13330dd5428eb1fddbd0918e6e18a854d2",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "37c5f56857546c68246d6be7c3108d13330dd5428eb1fddbd0918e6e18a854d2",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "click-resource-exception",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "a515b1b2126ee47ffed71411fb8072593d8236c3b7039f9a1977efcbb681a619",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "a515b1b2126ee47ffed71411fb8072593d8236c3b7039f9a1977efcbb681a619",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "click-flag-envvar",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 4,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "d43616c0a9a90bca4c38920399c3b9f2600f14cf479acfe7927eeaf4f02cd2ce",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "d43616c0a9a90bca4c38920399c3b9f2600f14cf479acfe7927eeaf4f02cd2ce",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "click-prompt-suffix",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "c24607d2800769638328ae26f4df3b620a9031f35a7a182137648d0bbfc31b3e",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "c24607d2800769638328ae26f4df3b620a9031f35a7a182137648d0bbfc31b3e",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "click-invoke-missing",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "b2c93ce3b3f3c2a9ea15e48b5f59d97d26ff9a866247a6daa53a65e478e1c22a",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "b2c93ce3b3f3c2a9ea15e48b5f59d97d26ff9a866247a6daa53a65e478e1c22a",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "click-shared-default",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "7508ab9db914b0e4691cfe40f6c9669511b1b74abfb0d51ff51312d46f191f65",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "7508ab9db914b0e4691cfe40f6c9669511b1b74abfb0d51ff51312d46f191f65",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "toolz-interpose-empty",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "5792fcedd5a3e6c4e10ec86a0b14f31ed12a791aa3297ee2089c4528079d4f6d",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "5792fcedd5a3e6c4e10ec86a0b14f31ed12a791aa3297ee2089c4528079d4f6d",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "toolz-accumulate-empty",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "20e724045b519e16c14ee95e8bb183126f20d8ee9ab892acd324e843ffe4d90b",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "20e724045b519e16c14ee95e8bb183126f20d8ee9ab892acd324e843ffe4d90b",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "1dab3fc66524ae592068156992c4a52de5cc856272e0d2c4861b17478dafd8bb",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "1dab3fc66524ae592068156992c4a52de5cc856272e0d2c4861b17478dafd8bb",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "toolz-getter-empty",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "991909b6eecf49782b3b4cbdbeae8e1b19648db7d16f2469dc3bef2b86a6f4a9",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "991909b6eecf49782b3b4cbdbeae8e1b19648db7d16f2469dc3bef2b86a6f4a9",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-backoff-constant",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "a358482491ccec15b26810adc99cb41ba4ee814deca6d33730e50458e8c2ac42",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "a358482491ccec15b26810adc99cb41ba4ee814deca6d33730e50458e8c2ac42",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-split-zero",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "4e9d175230e89244a3bf80fa21b21b0235867dcd5ff2ba3bde7a47d8637cf4b4",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "4e9d175230e89244a3bf80fa21b21b0235867dcd5ff2ba3bde7a47d8637cf4b4",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-chunked-bytes",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "6edd7f0d685a281d3b62dc7263c95aecc6b1e387c8ba9918ee6b7e7f5fe8e394",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "393c7ac0e03c656a3a14d7594ec504dcf303ef694d1feee1674e73b145187e63",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-remap-set",
+      "split": "heldout",
+      "certified": false,
+      "reason": "frozen_reference_or_original_certification_failed",
+      "observations": 1,
+      "replays": []
+    },
+    {
+      "task_id": "more-falsy-exception",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 3,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "4eeacf8dec9d6f258bf4c04f5b861a6fcaa912c4256f28e85dd0ef39bc708f0a",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "4eeacf8dec9d6f258bf4c04f5b861a6fcaa912c4256f28e85dd0ef39bc708f0a",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "more-batch-count",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "856a6bb823b46329200c8119f210cb60cd1bcdd0d38c4e03e7231f749ae2053e",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "856a6bb823b46329200c8119f210cb60cd1bcdd0d38c4e03e7231f749ae2053e",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-seekable-zero",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 4,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "5cf99ac2d54e89a80a72572878860095c8cb0ba47c537dd5659ea60e9bb8d785",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "5cf99ac2d54e89a80a72572878860095c8cb0ba47c537dd5659ea60e9bb8d785",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "more-combination-index",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 21,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "cd126f8a4a39eb8199930bfeb2b9a5a858e1967153219e455702c4a6decb55bf",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "cd126f8a4a39eb8199930bfeb2b9a5a858e1967153219e455702c4a6decb55bf",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-split-empty",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 5,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "b9b5e66bd5e5913b7f446933950dd97843b311a4ae13ff9b980c4adb13fc0edd",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "b9b5e66bd5e5913b7f446933950dd97843b311a4ae13ff9b980c4adb13fc0edd",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "more-value-chain-error",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "59f12488ba921f6bfed7c6322d83eeb115b9853a4c4eea031d8023a80003f188",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "59f12488ba921f6bfed7c6322d83eeb115b9853a4c4eea031d8023a80003f188",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-interleave-empty",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "aef877b743ea2d985397034401d007b9486755051a27c24b1a20209bda6aa67c",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "aef877b743ea2d985397034401d007b9486755051a27c24b1a20209bda6aa67c",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-reverse-empty-range",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "20c777a61f67c8119df75db73e56104301eb9832e59a30eba54a05da71062aed",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "20c777a61f67c8119df75db73e56104301eb9832e59a30eba54a05da71062aed",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-negative-range-slice",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 6,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "56865c0c2e62deb45eee44e4e71f6afad01798c76dfa1422eeb702bc8cf6b22b",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "56865c0c2e62deb45eee44e4e71f6afad01798c76dfa1422eeb702bc8cf6b22b",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-ichunked-zero",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "9a29d83d1ba06082ab053908790b285138bf17b905755335becef04dcfcb415a",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "9a29d83d1ba06082ab053908790b285138bf17b905755335becef04dcfcb415a",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-bucket-missing-key",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "eb87c8b51a4e38cf82bd6b88c3140ba4281ee1b059537e142a776912aa674edf",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "3e0122cc9b389d8aedbd7cf85249aca133a63253c19830cc7b4b3ea7ee9c3a15",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-range-membership",
+      "split": "development",
+      "certified": false,
+      "reason": "frozen_reference_or_original_certification_failed",
+      "observations": 5,
+      "replays": []
+    },
+    {
+      "task_id": "more-chunked-negative",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "c23b55f2de4b22868938c885d4eb949a1ad143d5e8da5e5e082d9eebff96976f",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "c23b55f2de4b22868938c885d4eb949a1ad143d5e8da5e5e082d9eebff96976f",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-range-equality",
+      "split": "development",
+      "certified": false,
+      "reason": "original_preservation_or_capture_failed",
+      "observations": 1,
+      "replays": []
+    },
+    {
+      "task_id": "more-sliced-negative",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "598fef82fadd8c47c93ffe689bb52eacfcccaf4bb78ef9577eef7674dc8efe98",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "598fef82fadd8c47c93ffe689bb52eacfcccaf4bb78ef9577eef7674dc8efe98",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-windowed-zero",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "350929ff98b6b019fc814a79d7bb949cffb10453e3f080bd603a21033e0c1d33",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "350929ff98b6b019fc814a79d7bb949cffb10453e3f080bd603a21033e0c1d33",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "928871028768e803759c40fa528c772dfafe77e5945f09cf545920e0af2bd781",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "928871028768e803759c40fa528c772dfafe77e5945f09cf545920e0af2bd781",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "more-combination-size",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "7a850f45e363ccc0f4618ccf1dfede7b25a4248cf1b4a4ecfa960b1d298b0178",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "e64759abb950c835765d80032d462187539ff54b60199805691f919c2130eef3",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-permutation-exception",
+      "split": "development",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "0138695c083ca0361921681d26d7529092d6786abf9217022406685609ad8912",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "0138695c083ca0361921681d26d7529092d6786abf9217022406685609ad8912",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "more-product-repeat",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 10,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "3383b61af6e9658b3ddda3b4e62ebfa4423d09f8b6bbb3c218dd56b9d05dc873",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "3383b61af6e9658b3ddda3b4e62ebfa4423d09f8b6bbb3c218dd56b9d05dc873",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 4,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "da3bf0d8211b80402608cf4c1ea4f4f1c8e49e6fa36f717a405bb5c4d5defa3f",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "4687a23a7c65fe32f46b51163f330e9519ee6c4fcb5eb233bdd7a3ee02c4c7c9",
+          "historical_accepted": true,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "more-reversed-values",
+      "split": "heldout",
+      "certified": false,
+      "reason": "frozen_reference_or_original_certification_failed",
+      "observations": 3,
+      "replays": []
+    },
+    {
+      "task_id": "more-broadcast-single-use",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "f7d730d745a7dd86e4eaecb1eac1b32ef2b65cf1168db902009d4914157e97f8",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "f7d730d745a7dd86e4eaecb1eac1b32ef2b65cf1168db902009d4914157e97f8",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "more-last-typeerror",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 3,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "249e6c127fb567acea855db5bafe7df4607ab1f6a99145933b0d6b1577958cff",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "185ea8c95f45954ecb24a2095c7ad2ad4b2f8968f7bf53c8b098397f71036484",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-xfrange-descending",
+      "split": "heldout",
+      "certified": false,
+      "reason": "frozen_reference_or_original_certification_failed",
+      "observations": 1,
+      "replays": []
+    },
+    {
+      "task_id": "boltons-backoff-zero",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "cfa47f3da5117615b5c0f69359f5f10936cbd65766a044717f70b8b264982b91",
+          "historical_accepted": false,
+          "frozen_passed": false
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "cfa47f3da5117615b5c0f69359f5f10936cbd65766a044717f70b8b264982b91",
+          "historical_accepted": false,
+          "frozen_passed": false
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-repeat-equality",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "4c4cdd04378df4e490eabad82087fcc0d2d56340c763267d894aff2e6193a7c0",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "4c4cdd04378df4e490eabad82087fcc0d2d56340c763267d894aff2e6193a7c0",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "toolz-partition-length",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 2,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "0cff45f3ee0f8bb3f00d499e1ca0a8b04505f72ef6810be2c1ea4c2c1d971873",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "0cff45f3ee0f8bb3f00d499e1ca0a8b04505f72ef6810be2c1ea4c2c1d971873",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    },
+    {
+      "task_id": "toolz-merge-mapping",
+      "split": "heldout",
+      "certified": true,
+      "reason": null,
+      "observations": 1,
+      "replays": [
+        {
+          "policy": "single",
+          "candidate_hash": "8691c1d0ba04268d8829fc523fa93d501ca8e7caf741febef36039c05a6d9286",
+          "historical_accepted": true,
+          "frozen_passed": true
+        },
+        {
+          "policy": "public-feedback",
+          "candidate_hash": "8691c1d0ba04268d8829fc523fa93d501ca8e7caf741febef36039c05a6d9286",
+          "historical_accepted": true,
+          "frozen_passed": true
+        }
+      ]
+    }
+  ]
+}
