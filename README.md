@@ -17,7 +17,7 @@
 
 </div>
 
-Public-check feedback on the fixed 30 development tasks: 14/30 → 17/30 accepted repairs; 3 gains and 0 losses. At most one correction under the shared token cap, with private grading after inference. Development only; no new overall/heldout claim or default API change. See [the report](docs/public-feedback-v2.md).
+Frozen public-feedback heldout scoring: 11/20 → 13/20, with no newly failing private Controls. A separate public preservation witness nevertheless found a shared-iterator regression in partial_product. The current policy is not adopted; fixed expectations must be strengthened first. See [heldout results and the missed-regression audit](docs/public-feedback-heldout-v1.md).
 
 ## Fork extensions: repair evaluation and an approval service
 
