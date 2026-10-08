@@ -1,0 +1,2003 @@
+{
+  "complete": true,
+  "source": ".tmp\\real-defects\\guarded-provider-v2-pilot",
+  "protocol": {
+    "name": "guarded-provider-v2",
+    "input_hashes": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\manifest.json": "c91bb8d811cd4d0ded582b2866e53db0b465a3ce80f8a69df0e8c638ef281607",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\experiment.json": "c6474abd34f0013c4f1b59890a9af00709864d7f88681016a1417d09b387a6a6",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\guarded_provider_compare_v2.py": "0bd8133e329192f10b62b1476f86b516e3a1caa27491b348d84e70224b0970b1",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\frozen_feedback_v1.py": "36778a7431bfa55bef9cfc42beff93ba81d0b4ab884e2b63ef0eff907f14558f",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\provider_compare_worker_v1.py": "5673402e02e11f122d3bb67e2a3fada04a532f00745c411bc2eb7171758a18cb"
+    },
+    "tasks": [
+      "click-usage-empty",
+      "click-resource-exception",
+      "more-predicate-sentinel",
+      "itsdangerous-none-salt",
+      "click-style-color-validation"
+    ],
+    "policies": [
+      "qwen",
+      "deepseek"
+    ],
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "providers": {
+      "qwen": {
+        "model": "qwen3.5:27b",
+        "base_url": "http://localhost:11434/v1",
+        "reasoning_effort": "none"
+      },
+      "deepseek": {
+        "model": "deepseek-flash",
+        "base_url": "https://api.deepseek.com",
+        "extra_body": {
+          "thinking": {
+            "type": "disabled"
+          }
+        }
+      }
+    },
+    "selection": "3 known development failures + 2 known successes; not a full-suite or blind result",
+    "change": "Provider/model settings only; frozen guarded workflow; no runtime or independent-scenario prompt changes",
+    "unchanged": "Identical first prompt; same feedback construction on each model own candidate, max 2 calls, 15000 tokens, 2048 output tokens, 600s, dual validation and rollback",
+    "limits": "Different tokenizers, service/cache and cloud weight identity; not an algorithm improvement or proof of intrinsic model capability",
+    "order": "Alternating arm order; fresh independent model requests"
+  },
+  "summary": {
+    "qwen": {
+      "tasks": 5,
+      "passed": 2,
+      "controls_passed": 5,
+      "calls": 9,
+      "tokens": 30385,
+      "missing_worker_results": 0,
+      "worker_seconds": 183.2243
+    },
+    "deepseek": {
+      "tasks": 5,
+      "passed": 3,
+      "controls_passed": 5,
+      "calls": 9,
+      "tokens": 27155,
+      "missing_worker_results": 0,
+      "worker_seconds": 30.7029
+    }
+  },
+  "audit": {
+    "initial_prompt_pairs_equal": 5,
+    "frozen_sources_intact": true,
+    "credential_scan_passed": true
+  },
+  "decision": "pilot_only_no_default_switch_or_full_suite_claim",
+  "runs": [
+    {
+      "task_id": "click-usage-empty",
+      "policy": "qwen",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial_status": "completed",
+      "correction_status": "completed",
+      "correction_retained": false,
+      "published": false,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5525,
+        "completion_tokens": 1191,
+        "known_prompt_tokens": 5525,
+        "known_completion_tokens": 1191,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6716,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "90f93ea2bc6bff096089c29492d04315d3efa3f75bba5f6ff9a2f46c286d8f9e",
+          "prompt_hash": "1ec6b58977de52bb6481a8be4e6b4df66d2974b2c9b1b9c0ae475c3831c23dff",
+          "response_received": true,
+          "seconds": 23.7008,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2494,
+          "completion_tokens": 738,
+          "total_tokens": 3232,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "c96affe66dc320a3c8aa818a1424501dc7c1db69f1fb01693f224cae7eb1acef",
+          "prompt_hash": "f48ed6d6ce779b1234da10a1865ad681d80c24db34fcc4303733e1246ed17867",
+          "response_received": true,
+          "seconds": 12.2186,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3031,
+          "completion_tokens": 453,
+          "total_tokens": 3484,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1692,
+            "tests_run": 2,
+            "failures": 5,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1695,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1401,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1439,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1407,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1356,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1507,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1467,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1413,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1455,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "task_id": "click-usage-empty",
+      "policy": "deepseek",
+      "accepted": true,
+      "status": "completed",
+      "initial_status": "completed",
+      "correction_status": "completed",
+      "correction_retained": true,
+      "published": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5516,
+        "completion_tokens": 492,
+        "known_prompt_tokens": 5516,
+        "known_completion_tokens": 492,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6008,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "deepseek",
+          "model_requested": "deepseek-flash",
+          "request_sha256": "86056aa97d24a882770babd764cbac968f1c2d18653570aa516953600b69faa0",
+          "prompt_hash": "1ec6b58977de52bb6481a8be4e6b4df66d2974b2c9b1b9c0ae475c3831c23dff",
+          "response_received": true,
+          "seconds": 1.7366,
+          "model_returned": "deepseek-flash",
+          "finish_reason": "stop",
+          "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2467,
+          "completion_tokens": 389,
+          "total_tokens": 2856,
+          "cache_hit_tokens": 256,
+          "cache_miss_tokens": 2211
+        },
+        {
+          "provider": "deepseek",
+          "model_requested": "deepseek-flash",
+          "request_sha256": "1cf2a9702861e22b5ada340a3ed8a6bf9cfc15b37adb038567ca61733c2c9994",
+          "prompt_hash": "40b1ced542fa6d2e1b236bf8933945a1b7a85355a25e7f642f195c106ba7f635",
+          "response_received": true,
+          "seconds": 0.7653,
+          "model_returned": "deepseek-flash",
+          "finish_reason": "stop",
+          "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3049,
+          "completion_tokens": 103,
+          "total_tokens": 3152,
+          "cache_hit_tokens": 0,
+          "cache_miss_tokens": 3049
+        }
+      ],
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/formatting.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1511,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1635,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1483,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1375,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1502,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1457,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1376,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1318,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1504,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1423,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "task_id": "click-resource-exception",
+      "policy": "deepseek",
+      "accepted": true,
+      "status": "completed",
+      "initial_status": "completed",
+      "correction_status": "completed",
+      "correction_retained": true,
+      "published": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 4138,
+        "completion_tokens": 957,
+        "known_prompt_tokens": 4138,
+        "known_completion_tokens": 957,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 5095,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "deepseek",
+          "model_requested": "deepseek-flash",
+          "request_sha256": "3b3bb4aba81d09c917ef9d9acca5a214fa79077d06c0c836c5d0ddd455ab9910",
+          "prompt_hash": "96b142bf3465e4a9d9b7be5751cd66fb049eedf873076bb275a386457d27ba68",
+          "response_received": true,
+          "seconds": 1.5457,
+          "model_returned": "deepseek-flash",
+          "finish_reason": "stop",
+          "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 1608,
+          "completion_tokens": 437,
+          "total_tokens": 2045,
+          "cache_hit_tokens": 0,
+          "cache_miss_tokens": 1608
+        },
+        {
+          "provider": "deepseek",
+          "model_requested": "deepseek-flash",
+          "request_sha256": "d52985fc8b2fba7594ca8eb433ccb378cf3db0518133fd2a7b2f462b8c912581",
+          "prompt_hash": "86e3e8440a99834e8540f0e1bcd56e795118c704fd358438b062b424f2e9ed8f",
+          "response_received": true,
+          "seconds": 1.6293,
+          "model_returned": "deepseek-flash",
+          "finish_reason": "stop",
+          "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2530,
+          "completion_tokens": 520,
+          "total_tokens": 3050,
+          "cache_hit_tokens": 0,
+          "cache_miss_tokens": 2530
+        }
+      ],
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/core.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1323,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1316,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1417,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1491,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.153,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1443,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1302,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1326,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1455,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1303,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "task_id": "click-resource-exception",
+      "policy": "qwen",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial_status": "completed",
+      "correction_status": "completed",
+      "correction_retained": false,
+      "published": false,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 4292,
+        "completion_tokens": 978,
+        "known_prompt_tokens": 4292,
+        "known_completion_tokens": 978,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 5270,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "ea01a7ce96c82b1ced5435a9d3fce2b81f4490622d0526aa27eb4ba395192c77",
+          "prompt_hash": "96b142bf3465e4a9d9b7be5751cd66fb049eedf873076bb275a386457d27ba68",
+          "response_received": true,
+          "seconds": 12.3608,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 1717,
+          "completion_tokens": 455,
+          "total_tokens": 2172,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "f8d14a375427ba5fab65a2f041116903cbd350500210c46360ceeb377254411b",
+          "prompt_hash": "ea19bb8e453cc81dc0cfb5b3ea60d6e644b3a6c375867b4c94cef68baa5ceac3",
+          "response_received": true,
+          "seconds": 14.1926,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2575,
+          "completion_tokens": 523,
+          "total_tokens": 3098,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1333,
+            "tests_run": 2,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1384,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1411,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1367,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1369,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1476,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1356,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1405,
+            "tests_run": 4,
+            "failures": 3,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1396,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1447,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "qwen",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial_status": "completed",
+      "correction_status": "output_truncated",
+      "correction_retained": false,
+      "published": false,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6399,
+        "completion_tokens": 2185,
+        "known_prompt_tokens": 6399,
+        "known_completion_tokens": 2185,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 8584,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "802093e98da7264dead68d54e0eaa1b78dc5aabe1668ce51697b98862081e5dd",
+          "prompt_hash": "842b6fbad92381e5cb76aa0e507188b350a2b3d38fb9edfec943432026029094",
+          "response_received": true,
+          "seconds": 5.2701,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2922,
+          "completion_tokens": 137,
+          "total_tokens": 3059,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "366ce4ddc85c5dca84312ad00b9cd32b7c236fb734579c5892b6926dd0c9ff59",
+          "prompt_hash": "29f12ac142e15101f3faaadfc21b7f5f856c82ec5e29fd8f17f439d9285087c9",
+          "response_received": true,
+          "seconds": 49.6101,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "length",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3477,
+          "completion_tokens": 2048,
+          "total_tokens": 5525,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1308,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1136,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1136,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1156,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1158,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1139,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": null
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "deepseek",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial_status": "completed",
+      "correction_status": "completed",
+      "correction_retained": false,
+      "published": false,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6222,
+        "completion_tokens": 702,
+        "known_prompt_tokens": 6222,
+        "known_completion_tokens": 702,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6924,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "deepseek",
+          "model_requested": "deepseek-flash",
+          "request_sha256": "fdac2fa19021ae60c5d616f2eed57a514544b8312d9dde2938214bc0b3b50f8e",
+          "prompt_hash": "842b6fbad92381e5cb76aa0e507188b350a2b3d38fb9edfec943432026029094",
+          "response_received": true,
+          "seconds": 1.8459,
+          "model_returned": "deepseek-flash",
+          "finish_reason": "stop",
+          "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2785,
+          "completion_tokens": 464,
+          "total_tokens": 3249,
+          "cache_hit_tokens": 0,
+          "cache_miss_tokens": 2785
+        },
+        {
+          "provider": "deepseek",
+          "model_requested": "deepseek-flash",
+          "request_sha256": "858727b167c0ad6efea6ec4d9156204b1cac2567c646212e082ea14a53bd1cc2",
+          "prompt_hash": "7c99a0b027d7de51bd1af78527c559f786e8dd0d5474628d03b1982c28a9fb48",
+          "response_received": true,
+          "seconds": 0.8434,
+          "model_returned": "deepseek-flash",
+          "finish_reason": "stop",
+          "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3437,
+          "completion_tokens": 238,
+          "total_tokens": 3675,
+          "cache_hit_tokens": 0,
+          "cache_miss_tokens": 3437
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1034,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1049,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1078,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1058,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1138,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1176,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1086,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1062,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1051,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1068,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "deepseek",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial_status": "completed",
+      "correction_status": "completed",
+      "correction_retained": false,
+      "published": false,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5532,
+        "completion_tokens": 485,
+        "known_prompt_tokens": 5532,
+        "known_completion_tokens": 485,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6017,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "deepseek",
+          "model_requested": "deepseek-flash",
+          "request_sha256": "c03c3967046c7694c78668bfa599cb1168b271f344566b0ff141ecf908104c3f",
+          "prompt_hash": "f35f926a3890b4fd7a3059a69b9ee918ef04021891f92309540d742a87b4699a",
+          "response_received": true,
+          "seconds": 1.3316,
+          "model_returned": "deepseek-flash",
+          "finish_reason": "stop",
+          "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2110,
+          "completion_tokens": 314,
+          "total_tokens": 2424,
+          "cache_hit_tokens": 128,
+          "cache_miss_tokens": 1982
+        },
+        {
+          "provider": "deepseek",
+          "model_requested": "deepseek-flash",
+          "request_sha256": "7aebf4b6b1e0855c210163368cdd17f6a262167d8195ac66dcbd275313fd05da",
+          "prompt_hash": "a9ca87eb1b56faa422a3efa2fcae50b3f32e88ea85cfb440551316e23a5ba493",
+          "response_received": true,
+          "seconds": 0.9783,
+          "model_returned": "deepseek-flash",
+          "finish_reason": "stop",
+          "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3422,
+          "completion_tokens": 171,
+          "total_tokens": 3593,
+          "cache_hit_tokens": 0,
+          "cache_miss_tokens": 3422
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1032,
+            "tests_run": 2,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1028,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0999,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1021,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1095,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1012,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1012,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1039,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.105,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1078,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          }
+        }
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "qwen",
+      "accepted": true,
+      "status": "completed",
+      "initial_status": "completed",
+      "correction_status": "completed",
+      "correction_retained": true,
+      "published": true,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5301,
+        "completion_tokens": 1143,
+        "known_prompt_tokens": 5301,
+        "known_completion_tokens": 1143,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6444,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "c27f1ef32f95b2fd3508eefe286311d4f891639bb734cd91adc4f5bfa105b6ff",
+          "prompt_hash": "f35f926a3890b4fd7a3059a69b9ee918ef04021891f92309540d742a87b4699a",
+          "response_received": true,
+          "seconds": 20.2096,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2129,
+          "completion_tokens": 848,
+          "total_tokens": 2977,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "f40168b21b2e7648349bae2110bf43da1d3dd86632782e06c879a2f2281f4db4",
+          "prompt_hash": "6e5e3b107672567c51ebfac2aca94b235dddb92be05cd6b85cef739865780a9e",
+          "response_received": true,
+          "seconds": 8.3995,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3172,
+          "completion_tokens": 295,
+          "total_tokens": 3467,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.099,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1022,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1015,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1009,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1048,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0978,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1082,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0965,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0977,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0959,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "qwen",
+      "accepted": true,
+      "status": "completed",
+      "initial_status": "completed",
+      "correction_status": null,
+      "correction_retained": false,
+      "published": true,
+      "metrics": {
+        "llm_calls": 1,
+        "prompt_tokens": 2629,
+        "completion_tokens": 742,
+        "known_prompt_tokens": 2629,
+        "known_completion_tokens": 742,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 3371,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "3e07a49570e5aab5f9926bbe9b570b9d3fcb3932761f41b0d356a1cf8d064551",
+          "prompt_hash": "b2c76864c8d750910a37be2c5a9a5f288ac2f17786911a03fc5fdd6e2da3faec",
+          "response_received": true,
+          "seconds": 18.1514,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2629,
+          "completion_tokens": 742,
+          "total_tokens": 3371,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/termui.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1309,
+            "tests_run": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1634,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1376,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1504,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1428,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1399,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": null
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "deepseek",
+      "accepted": true,
+      "status": "completed",
+      "initial_status": "completed",
+      "correction_status": null,
+      "correction_retained": false,
+      "published": true,
+      "metrics": {
+        "llm_calls": 1,
+        "prompt_tokens": 2512,
+        "completion_tokens": 599,
+        "known_prompt_tokens": 2512,
+        "known_completion_tokens": 599,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 3111,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "deepseek",
+          "model_requested": "deepseek-flash",
+          "request_sha256": "0c1827cd749be0072d2eb4141ea99b6f3733ccf3a1c5d44b7afa1bc5a09202a0",
+          "prompt_hash": "b2c76864c8d750910a37be2c5a9a5f288ac2f17786911a03fc5fdd6e2da3faec",
+          "response_received": true,
+          "seconds": 2.3242,
+          "model_returned": "deepseek-flash",
+          "finish_reason": "stop",
+          "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2512,
+          "completion_tokens": 599,
+          "total_tokens": 3111,
+          "cache_hit_tokens": 256,
+          "cache_miss_tokens": 2256
+        }
+      ],
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/termui.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1638,
+            "tests_run": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1596,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1526,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1504,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1365,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1402,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": null
+    }
+  ]
+}

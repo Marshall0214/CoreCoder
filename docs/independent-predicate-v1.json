@@ -1,0 +1,415 @@
+{
+  "complete": true,
+  "decision": "do_not_adopt_or_expand",
+  "source": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\independent-predicate-v1-pilot\\experiment.json",
+  "protocol": {
+    "name": "independent-predicate-v1",
+    "task": "more-predicate-sentinel",
+    "policies": [
+      "predicate-runtime",
+      "independent-runtime"
+    ],
+    "input_hashes": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\manifest.json": "c91bb8d811cd4d0ded582b2866e53db0b465a3ce80f8a69df0e8c638ef281607",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\experiment.json": "ffc59c5164a08f8a86268f46f21c38128c68ca2ddefc7ef21ca1dd6fe6d36259",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\more-predicate-sentinel\\unchanged-feedback\\initial-response.txt": "5b312bb590344837a56bd40167ccc40480b7c86ad9d8c6ca5855cc13dfbcef27",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\more-predicate-sentinel\\unchanged-feedback\\initial-messages.json": "cd8e9b442846ba3d6f73a0235922474ada2c3709312809210791587a1dd093ab",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\more-predicate-sentinel\\unchanged-feedback\\feedback-messages.json": "505bba68dab4bf96933084aa6daa70754625d35f8c8f33f1d6dafe18d7afe32f",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\diagnostic-feedback-v1-pilot\\more-predicate-sentinel\\unchanged-feedback\\worker-result.json": "ac8b0813f9d35b0d6ec88e6dc3bbbb67713b66e759989b52891c9204ac9865bf",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\independent_predicate_compare_v1.py": "0ebe8177a291f4dc04f1af067a169964a947cd82aa89bf4942a5c56568a33de1",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\independent_predicate_feedback_v1.py": "3b08f94d48b9edd805c5b20de27e3c098ad954464c2feebea894996cc0dc4254",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\predicate_runtime_feedback_v1.py": "e35925d6580af0290074dcb6247329b72484280fd8d225123adc9a53edca25a1",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\predicate_trace_probe_v1.py": "f467d9eaf8559fb53dfdca56c0b58f829fa7ac19ec76e53763652df068a97700"
+    },
+    "shared_candidate_hash": "928871028768e803759c40fa528c772dfafe77e5945f09cf545920e0af2bd781",
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "change": "Replace single-test trace with independent-case public trace; <=5000 evidence chars; original feedback unchanged",
+    "unchanged": "Identical recorded first patch and original feedback text, seed refresh, system prompt, validators, rollback and budgets",
+    "budget": "Historical first-call usage charged to each task; only two fresh second-round calls total",
+    "scope": "One known development failure; not a full repair-rate or blind experiment"
+  },
+  "same_first_candidate": true,
+  "same_second_system_prompt": true,
+  "only_runtime_field_changed": true,
+  "new_runtime_observations": {
+    "source": "Independent diagnostics derived from existing certified public assertions; not the official grader",
+    "records": [
+      {
+        "group": "Reproduce",
+        "test": "test_admission.Reproduce.test_public_defect_case_1",
+        "passed": true,
+        "truncated": false
+      },
+      {
+        "group": "Reproduce",
+        "test": "test_admission.Reproduce.test_public_defect_case_2",
+        "passed": false,
+        "truncated": false,
+        "operations": [
+          {
+            "function": "locate",
+            "line": 2486,
+            "input": {
+              "type": "list",
+              "items": [
+                4
+              ],
+              "omitted": 0
+            },
+            "window_size": 2,
+            "predicate_calls": [
+              {
+                "arguments": {
+                  "type": "tuple",
+                  "items": [
+                    4,
+                    {
+                      "type": "object",
+                      "value": "not captured"
+                    }
+                  ],
+                  "omitted": 0
+                },
+                "line": 18,
+                "exception_type": "TypeError",
+                "return": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "group": "Reproduce",
+        "test": "test_admission.Reproduce.test_public_defect_case_3",
+        "passed": false,
+        "truncated": false,
+        "operations": [
+          {
+            "function": "replace",
+            "line": 3347,
+            "input": {
+              "type": "list",
+              "items": [
+                2,
+                3,
+                4
+              ],
+              "omitted": 0
+            },
+            "window_size": 2,
+            "predicate_calls": [
+              {
+                "arguments": {
+                  "type": "tuple",
+                  "items": [
+                    2,
+                    3
+                  ],
+                  "omitted": 0
+                },
+                "line": 30,
+                "return": false
+              },
+              {
+                "arguments": {
+                  "type": "tuple",
+                  "items": [
+                    3,
+                    4
+                  ],
+                  "omitted": 0
+                },
+                "line": 30,
+                "return": false
+              },
+              {
+                "arguments": {
+                  "type": "tuple",
+                  "items": [
+                    4,
+                    {
+                      "type": "object",
+                      "value": "not captured"
+                    }
+                  ],
+                  "omitted": 0
+                },
+                "line": 30,
+                "exception_type": "TypeError",
+                "return": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "group": "Reproduce",
+        "test": "test_admission.Reproduce.test_public_defect_case_4",
+        "passed": true,
+        "truncated": false
+      },
+      {
+        "group": "Preserve",
+        "test": "test_admission.Preserve.test_public_normal_behavior_case_1",
+        "passed": true,
+        "truncated": false
+      },
+      {
+        "group": "Preserve",
+        "test": "test_admission.Preserve.test_public_normal_behavior_case_2",
+        "passed": true,
+        "truncated": false
+      }
+    ],
+    "limits": "12 operations/test, 16 predicate calls/operation, 12 values/sequence; only explicit operation inputs and callback arguments/return/exception type, no other locals; not-captured objects are not proven padding; observations do not establish root cause",
+    "passing_operation_details_omitted": true,
+    "scenario_provenance": [
+      {
+        "group": "Reproduce",
+        "method": "test_public_defect_case_1",
+        "original_assertion_lines": [
+          11
+        ]
+      },
+      {
+        "group": "Reproduce",
+        "method": "test_public_defect_case_2",
+        "original_assertion_lines": [
+          12,
+          13
+        ]
+      },
+      {
+        "group": "Reproduce",
+        "method": "test_public_defect_case_3",
+        "original_assertion_lines": [
+          14
+        ]
+      },
+      {
+        "group": "Reproduce",
+        "method": "test_public_defect_case_4",
+        "original_assertion_lines": [
+          15
+        ]
+      },
+      {
+        "group": "Preserve",
+        "method": "test_public_normal_behavior_case_1",
+        "original_assertion_lines": [
+          19
+        ]
+      },
+      {
+        "group": "Preserve",
+        "method": "test_public_normal_behavior_case_2",
+        "original_assertion_lines": [
+          20
+        ]
+      }
+    ]
+  },
+  "runs": [
+    {
+      "policy": "predicate-runtime",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "93fb2aa50c059bf3b8d738ce070bbdc8329a55d9105be3491b33121a71fc2d81",
+        "edited_files": [
+          "more_itertools/more.py"
+        ]
+      },
+      "new_model_calls": 1,
+      "new_model_tokens": 4286,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6960,
+        "completion_tokens": 385,
+        "known_prompt_tokens": 6960,
+        "known_completion_tokens": 385,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7345,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "second_output_tokens": 248,
+      "post_correction_public_diagnostic_states": [
+        {
+          "test": "test_admission.Reproduce.test_public_defect_case_1",
+          "passed": true
+        },
+        {
+          "test": "test_admission.Reproduce.test_public_defect_case_2",
+          "passed": true
+        },
+        {
+          "test": "test_admission.Reproduce.test_public_defect_case_3",
+          "passed": false
+        },
+        {
+          "test": "test_admission.Reproduce.test_public_defect_case_4",
+          "passed": true
+        },
+        {
+          "test": "test_admission.Preserve.test_public_normal_behavior_case_1",
+          "passed": true
+        },
+        {
+          "test": "test_admission.Preserve.test_public_normal_behavior_case_2",
+          "passed": true
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.102,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1011,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    },
+    {
+      "policy": "independent-runtime",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "6e2cccfc330c04a8c54a6c48199c34905432e4f4d8a9e218f2f629a39e77336e",
+        "edited_files": [
+          "more_itertools/more.py"
+        ]
+      },
+      "new_model_calls": 1,
+      "new_model_tokens": 4519,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 7187,
+        "completion_tokens": 391,
+        "known_prompt_tokens": 7187,
+        "known_completion_tokens": 391,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7578,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "second_output_tokens": 254,
+      "post_correction_public_diagnostic_states": [
+        {
+          "test": "test_admission.Reproduce.test_public_defect_case_1",
+          "passed": true
+        },
+        {
+          "test": "test_admission.Reproduce.test_public_defect_case_2",
+          "passed": false
+        },
+        {
+          "test": "test_admission.Reproduce.test_public_defect_case_3",
+          "passed": false
+        },
+        {
+          "test": "test_admission.Reproduce.test_public_defect_case_4",
+          "passed": true
+        },
+        {
+          "test": "test_admission.Preserve.test_public_normal_behavior_case_1",
+          "passed": true
+        },
+        {
+          "test": "test_admission.Preserve.test_public_normal_behavior_case_2",
+          "passed": true
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0974,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0944,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    }
+  ],
+  "new_model_calls": 2,
+  "new_model_tokens": 8805,
+  "post_correction_diagnostics": "Public derived scenarios only, run after inference; no extra model calls or changes to acceptance"
+}

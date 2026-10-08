@@ -1,5 +1,14 @@
 # CoreCoder 扩展项目总览
 
+**最新模型对照：**现行冻结流程五项开发任务 Qwen 2/5、DeepSeek 3/5；新增两项成功、
+丢失一项，predicate 两者仍失败。只换模型，首轮输入五对一致；18 次请求、57,540 Token。
+不替换默认模型，完整 32/50 成绩未变。全量 1342 passed、4 skipped。
+见 [模型对照 v2](guarded-provider-v2.md)；下一轮可验证固定总预算的独立候选筛选。
+
+**最新诊断改进：**将串联公开复现派生为六个独立场景，两处异常都进入模型反馈。
+配对整项仍 0/1 → 0/1，过滤整个窗口的错误语义未解决，不接入默认；全量
+1338 passed、4 skipped。见 [独立场景报告](independent-predicate-v1.md)。
+
 **最新小试验：**公开 predicate 参数证据已实现并完成共享首轮候选/日志的严格对照。
 整项 0/1 → 0/1；第二轮补丁完整且 locate 尾部公开断言推进，replace 仍失败，不接入默认。
 全量 1331 passed、4 skipped；见 [实验报告](predicate-runtime-v1.md)。
