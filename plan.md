@@ -2,7 +2,7 @@
 
 > 更新：2026-10-07。目标：形成覆盖主要 AI Agent / LLM Application Engineer JD 的个人工程项目。未勾选内容均为计划，不代表已实现。统一交付入口：docs/project-overview.md。
 
-**当前优先级：50 项任务固定。类范围检索配对已完成，结果见 docs/class-scoped-comparison-v1.md。优先处理候选新增回归与丢失成功，再考虑默认流程接入；不新增服务扩展或扩大测试集。**
+**当前优先级：公开检查反馈开发门槛通过，下一步先冻结留出检查与策略，再做独立验证。固定 50 项任务，不扩服务。结果见 docs/public-feedback-v2.md。**
 
 **阶段状态：本阶段已收敛为可交付的实验与本地服务项目。检索实验冻结，两仓库结果分任务池报告，未证实普遍修复率提升。FastAPI/SQLite、MCP、LangGraph 审批检查点和 Docker/Linux 已完成验收；总览、离线演示、JD 清单及简历说明位于 docs/project-overview.md。完整跨文件基准、动态规划、多用户权限和生产规模仍未完成，不继续为补齐关键词无限扩展。**
 

@@ -19,6 +19,8 @@
 
 ## 本仓库扩展：代码修复评测与可审批服务
 
+公开检查反馈已完成固定 30 项开发对照：独立通过 14/30 → 17/30；新增 3、丢失 0；Controls 29/30 → 29/30。全部公开检查在模型调用前认证；共享首轮、最多一次修正，实际 46 次调用、135662 Token。开发门槛通过，下一步冻结同样策略并单独验证留出；仅是开发结果，默认 Agent/API 未接入，不能合并旧留出结果宣称新总体成功率。 见 [公开反馈报告](docs/public-feedback-v2.md)。
+
 基于 CoreCoder 的个人二次开发：固定模型与预算比较检索/上下文策略，提供独立补丁验证、FastAPI/SQLite 服务、代码知识 MCP Server、LangGraph 人工审批和 Docker/Linux 验收。当前为可信任务上的本地工程项目；实验未证明普遍提高修复率，服务尚未支持任意仓库或多用户生产部署。
 
 **统一入口：[项目总览与结果](docs/project-overview.md) · [5 分钟离线演示](docs/demo-guide.md) · [交付与 JD 清单](docs/delivery-checklist.md) · [简历与面试说明](docs/resume-and-interview.md)。**

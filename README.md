@@ -17,6 +17,8 @@
 
 </div>
 
+Public-check feedback on the fixed 30 development tasks: 14/30 → 17/30 accepted repairs; 3 gains and 0 losses. At most one correction under the shared token cap, with private grading after inference. Development only; no new overall/heldout claim or default API change. See [the report](docs/public-feedback-v2.md).
+
 ## Fork extensions: repair evaluation and an approval service
 
 This fork adds controlled retrieval/context experiments, independent patch verification, a FastAPI/SQLite task service, a read-only code knowledge MCP server, LangGraph human approval, and Docker/Linux acceptance. It serves trusted fixture tasks locally. Experiments have not established a general repair-rate improvement; arbitrary repository intake and multi-user production deployment remain future work.
