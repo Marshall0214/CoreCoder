@@ -1,0 +1,821 @@
+{
+  "complete": true,
+  "task_id": "more-gray-partial-repeat",
+  "split": "known-case diagnostic, not new generalization evidence",
+  "protocol": {
+    "worker": "unchanged public_feedback_v2",
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "no_private_grader_input": true,
+    "max_model_calls": 2,
+    "shared_token_budget": 15000,
+    "frozen_inputs": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\fixed-product-checks-v1-certification\\certificate.json": "ad9f8a84de006e61602693b6c9089b811c57a0f28fb29a74998911f3ba34dc14",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\fixed_product_checks_v1.py": "8e3d208a0e43eb22df9134963a9e9b0143e42c0e3577a15453f5e408f6ce8645",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\public_feedback_v2.py": "0b3e93f370bac497e67910abc5353167212429a8b0e86f9e23404f10daf61abc",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\fixed-product-checks-v1-certification\\frozen-expected.json": "eebacda89336641f7c009977d01fa5da3a8933cb93371d1bc0db12a17ffe021d",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\fixed-product-checks-v1-repair\\observations.json": "a1b38219b5fedd9e21fa468d00ce571226f955c8f5e852cbb356a4d4c96a5839"
+    },
+    "harness_hash": "2529ddbb925d46f5bfffd8d18e311ae57d65b50bc73d2ea7de19b59d44648a17",
+    "oracle_provenance": "original source + reusable input specs, frozen before new model calls; no reference oracle"
+  },
+  "worker": {
+    "status": "completed",
+    "feedback_attempts": 1,
+    "initial": {
+      "status": "completed",
+      "prompt_hash": "429ff003d8a44fd7a046b565ce9f8c72339d028c40b101cd303d27619fac539b",
+      "edited_files": [
+        "more_itertools/more.py"
+      ]
+    },
+    "initial_metrics": {
+      "llm_calls": 1,
+      "prompt_tokens": 2391,
+      "completion_tokens": 1038,
+      "known_prompt_tokens": 2391,
+      "known_completion_tokens": 1038,
+      "missing_usage_calls": 0,
+      "budget_accounted_tokens": 3429,
+      "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+      "cost_usd": null,
+      "failed_provider_attempt_usage": "unknown"
+    },
+    "initial_seconds": 30.281,
+    "public_initial": {
+      "Reproduce": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1059,
+        "tests_run": 1,
+        "failures": 0,
+        "errors": 6,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "successful": false,
+        "passed": false
+      },
+      "Preserve": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1053,
+        "tests_run": 1,
+        "failures": 0,
+        "errors": 6,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "successful": false,
+        "passed": false
+      }
+    },
+    "correction": {
+      "status": "completed",
+      "prompt_hash": "7e7a2f5cf532a67f115f1c90fad6741db5578b40268b10267b4025f5fe12dd71",
+      "edited_files": [
+        "more_itertools/more.py"
+      ]
+    },
+    "public_corrected": {
+      "Reproduce": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.0995,
+        "tests_run": 1,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "successful": false,
+        "passed": false
+      },
+      "Preserve": {
+        "returncode": 1,
+        "timed_out": false,
+        "seconds": 0.1024,
+        "tests_run": 1,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "successful": false,
+        "passed": false
+      }
+    },
+    "correction_retained": false,
+    "metrics": {
+      "llm_calls": 2,
+      "prompt_tokens": 6788,
+      "completion_tokens": 1142,
+      "known_prompt_tokens": 6788,
+      "known_completion_tokens": 1142,
+      "missing_usage_calls": 0,
+      "budget_accounted_tokens": 7930,
+      "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+      "cost_usd": null,
+      "failed_provider_attempt_usage": "unknown"
+    },
+    "provider_calls": [
+      {
+        "provider": "qwen",
+        "model_requested": "qwen3.5:27b",
+        "request_sha256": "8d4ddb5f788e71543db0190ea4ed4a81123e1a82765bd4454c37caf7dbd9f1a8",
+        "prompt_hash": "429ff003d8a44fd7a046b565ce9f8c72339d028c40b101cd303d27619fac539b",
+        "response_received": true,
+        "seconds": 29.8614,
+        "model_returned": "qwen3.5:27b",
+        "finish_reason": "stop",
+        "system_fingerprint": "fp_ollama",
+        "reasoning_present": false,
+        "reasoning_tokens": null,
+        "prompt_tokens": 2391,
+        "completion_tokens": 1038,
+        "total_tokens": 3429,
+        "cache_hit_tokens": null,
+        "cache_miss_tokens": null
+      },
+      {
+        "provider": "qwen",
+        "model_requested": "qwen3.5:27b",
+        "request_sha256": "3f0fb744491dbbae617333f09496705c25d8ddcfd635ded9d6aabeca9e1b7bc1",
+        "prompt_hash": "7e7a2f5cf532a67f115f1c90fad6741db5578b40268b10267b4025f5fe12dd71",
+        "response_received": true,
+        "seconds": 4.7676,
+        "model_returned": "qwen3.5:27b",
+        "finish_reason": "stop",
+        "system_fingerprint": "fp_ollama",
+        "reasoning_present": false,
+        "reasoning_tokens": null,
+        "prompt_tokens": 4397,
+        "completion_tokens": 104,
+        "total_tokens": 4501,
+        "cache_hit_tokens": null,
+        "cache_miss_tokens": null
+      }
+    ]
+  },
+  "process": {
+    "returncode": 0,
+    "timed_out": false,
+    "seconds": 36.944
+  },
+  "runs": [
+    {
+      "stage": "initial",
+      "private": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1051,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.102,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "public": {
+        "Reproduce": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1054,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 6,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Preserve": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 6,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        }
+      },
+      "accepted": false
+    },
+    {
+      "stage": "final",
+      "private": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1031,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1061,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "public": {
+        "Reproduce": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1061,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 6,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Preserve": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1003,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 6,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        }
+      },
+      "accepted": false
+    }
+  ],
+  "historical_bad_patch_rejected": true,
+  "certificate": {
+    "complete": true,
+    "task_id": "more-gray-partial-repeat",
+    "model_calls": 0,
+    "split": "known-case diagnostic, not heldout",
+    "oracle_provenance": "original source + reusable input specs, frozen before new model calls; no reference oracle",
+    "harness": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\fixed-product-checks-v1-certification\\checks",
+    "harness_hash": "2529ddbb925d46f5bfffd8d18e311ae57d65b50bc73d2ea7de19b59d44648a17",
+    "outcomes": {
+      "before": {
+        "Reproduce": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1053,
+          "tests_run": 1,
+          "failures": 2,
+          "errors": 2,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1081,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "after": {
+        "Reproduce": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1019,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1017,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "historical-bad": {
+        "Reproduce": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1036,
+          "tests_run": 1,
+          "failures": 2,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Preserve": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1023,
+          "tests_run": 1,
+          "failures": 2,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        }
+      }
+    },
+    "admission_hash": "21b7ac5ec1f8a03cd4beeb24f1a0b4512c2605510b140bfdd096aa9f0241d65b",
+    "historical_hash": "aed4a446c9d63ee0ba3f82b5e76776b1c15b9828ca53c1d16bcde37cf911c1fe",
+    "oracle_hash": "eebacda89336641f7c009977d01fa5da3a8933cb93371d1bc0db12a17ffe021d",
+    "oracle_path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\fixed-product-checks-v1-certification\\frozen-expected.json",
+    "adapter_hash": "8e3d208a0e43eb22df9134963a9e9b0143e42c0e3577a15453f5e408f6ce8645",
+    "case": {
+      "task_id": "more-gray-partial-repeat",
+      "repo": "more-itertools/more-itertools",
+      "package": "more_itertools",
+      "source_root": ".",
+      "before_commit": "fdbd43c569feb4388302ddee0551d18edd39fadc",
+      "after_commit": "be5793a55f58ee29521d8cbc9f14019f5833454e",
+      "upstream_url": "https://github.com/more-itertools/more-itertools/commit/be5793a55f58ee29521d8cbc9f14019f5833454e",
+      "description": "gray_product and partial_product with repeat must preserve output when inputs are one-shot iterators. Preserve ordinary traversal with reusable sequences.",
+      "defect_type": "state_and_consumption",
+      "split": "heldout",
+      "changed_source_files": [
+        "more_itertools/more.py"
+      ],
+      "provenance": "Public fix inspected by task author; no model outcome selection; held out from strategy tuning only.",
+      "before": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\expanded-admission-v2-final\\more-gray-partial-repeat\\before",
+      "after": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\expanded-admission-v2-final\\more-gray-partial-repeat\\after",
+      "checks": "D:\\project_other\\CoreCoder\\docs\\experiments\\expanded_suite_v2\\checks\\more-gray-partial-repeat",
+      "allowed_files": [
+        "more_itertools/__init__.py",
+        "more_itertools/more.py",
+        "more_itertools/recipes.py"
+      ],
+      "previously_inspected": false,
+      "admitted": true,
+      "admission": {
+        "before": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1014,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1011,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "after": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1386,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0973,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "before_hash": "6820768f85ea20d1a8b45cc03cd303a1d8deb15e40985ba758a112a6c4d12332",
+      "after_hash": "20687a33e2a0c53469e3d893421d99fb4b2395d852d7274a6eb80945fc0efe98",
+      "checks_hash": "d7e453b176c422c8e2d868775b7ff2524e9dad300087f3354028ec78be1ca588"
+    }
+  },
+  "expected": [
+    {
+      "api": "gray_product",
+      "pools": [
+        [
+          2,
+          3
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "repeat": 2,
+      "expected": [
+        [
+          2,
+          8,
+          2,
+          8
+        ],
+        [
+          3,
+          8,
+          2,
+          8
+        ],
+        [
+          3,
+          9,
+          2,
+          8
+        ],
+        [
+          2,
+          9,
+          2,
+          8
+        ],
+        [
+          2,
+          9,
+          3,
+          8
+        ],
+        [
+          3,
+          9,
+          3,
+          8
+        ],
+        [
+          3,
+          8,
+          3,
+          8
+        ],
+        [
+          2,
+          8,
+          3,
+          8
+        ],
+        [
+          2,
+          8,
+          3,
+          9
+        ],
+        [
+          3,
+          8,
+          3,
+          9
+        ],
+        [
+          3,
+          9,
+          3,
+          9
+        ],
+        [
+          2,
+          9,
+          3,
+          9
+        ],
+        [
+          2,
+          9,
+          2,
+          9
+        ],
+        [
+          3,
+          9,
+          2,
+          9
+        ],
+        [
+          3,
+          8,
+          2,
+          9
+        ],
+        [
+          2,
+          8,
+          2,
+          9
+        ]
+      ]
+    },
+    {
+      "api": "gray_product",
+      "pools": [
+        [
+          4,
+          5
+        ]
+      ],
+      "repeat": 2,
+      "expected": [
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "api": "gray_product",
+      "pools": [
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "repeat": 1,
+      "expected": [
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          2,
+          9
+        ]
+      ]
+    },
+    {
+      "api": "partial_product",
+      "pools": [
+        [
+          2,
+          3
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "repeat": 2,
+      "expected": [
+        [
+          2,
+          8,
+          2,
+          8
+        ],
+        [
+          3,
+          8,
+          2,
+          8
+        ],
+        [
+          3,
+          9,
+          2,
+          8
+        ],
+        [
+          3,
+          9,
+          3,
+          8
+        ],
+        [
+          3,
+          9,
+          3,
+          9
+        ]
+      ]
+    },
+    {
+      "api": "partial_product",
+      "pools": [
+        [
+          4,
+          5
+        ]
+      ],
+      "repeat": 2,
+      "expected": [
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "api": "partial_product",
+      "pools": [
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "repeat": 1,
+      "expected": [
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          4,
+          9
+        ]
+      ]
+    }
+  ],
+  "source_sha256": "5bbb8e31a4706ee6c88ed0c6ed0edfaef565a99e148e2b93c83507d318523012",
+  "certificate_sha256": "ad9f8a84de006e61602693b6c9089b811c57a0f28fb29a74998911f3ba34dc14",
+  "validation": {
+    "targeted_pytest": {
+      "passed": 2
+    },
+    "windows_pytest": {
+      "passed": 1225,
+      "skipped": 2,
+      "seconds": 200.72
+    },
+    "ruff": "passed",
+    "fixed_expected_api_cases": 6,
+    "historical_bad_patch_rejected": true,
+    "model_calls": 2,
+    "tokens": 7930,
+    "repair_accepted": false,
+    "linux_docker_http": "not rerun",
+    "deepseek": "not used"
+  },
+  "decision": "check_loophole_closed_repair_still_failed"
+}

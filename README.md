@@ -17,7 +17,7 @@
 
 </div>
 
-Frozen public-feedback heldout scoring: 11/20 → 13/20, with no newly failing private Controls. A separate public preservation witness nevertheless found a shared-iterator regression in partial_product. The current policy is not adopted; fixed expectations must be strengthened first. See [heldout results and the missed-regression audit](docs/public-feedback-heldout-v1.md).
+Fixed expectations now reject the known shared-iterator false positive. A fresh two-call diagnostic still failed to repair that defect; no repair-rate gain or default policy adoption is claimed. See [fixed checks and the actual repair result](docs/fixed-product-checks-v1.md).
 
 ## Fork extensions: repair evaluation and an approval service
 
