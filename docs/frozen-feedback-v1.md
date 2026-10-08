@@ -42,4 +42,6 @@ python -m docs.experiments.frozen_feedback_replay_v1 --audit .tmp/real-defects/f
 
 ## 下一步
 
+真实模型对照已完成，原评分增加两项，但事后发现新增 Context 栈回归，不采用。见 [27 项真实对照与补充审计](frozen-feedback-comparison-v1.md)。下段为本轮启动前的计划。
+
 验证和回滚闭环到此收尾。下一轮在固定开发任务、同模型同预算下重新生成回答，对比原公开反馈与双重检查反馈，统计独立修复通过数、正常行为回归、误保留、Token 和耗时。仅在真实调用显示收益后扩大验证；不继续以历史重放替代核心修复效果实验。

@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-08",
+  "complete": true,
+  "final_decision": "stop_expansion_after_context_stack_regression",
+  "raw_experiment_decision": "development_gain_expand_validation",
+  "tasks": 27,
+  "split": "certified development; no heldout inference",
+  "original_scoring": {
+    "public_feedback": {"passed": 16, "controls_passed": 27, "feedback_attempts": 14, "corrections_retained": 3, "calls_including_shared_initial": 41, "tokens_including_shared_initial": 122954},
+    "frozen_feedback": {"passed": 18, "controls_passed": 27, "feedback_attempts": 14, "corrections_retained": 5, "calls_including_shared_initial": 41, "tokens_including_shared_initial": 124706},
+    "gained": ["click-resource-exception", "boltons-backoff-constant"],
+    "lost": []
+  },
+  "actual_usage": {"new_model_calls": 55, "tokens": 171496, "provider_seconds": 608.9311},
+  "posthoc_audit": {
+    "task": "click-resource-exception",
+    "checks": 3,
+    "before_passed": true,
+    "reference_passed": true,
+    "control_patch_passed": true,
+    "candidate_patch_passed": false,
+    "candidate_failures": 3,
+    "new_model_calls": 0,
+    "finding": "Early return skips pop_context, leaking current Context"
+  },
+  "raw_result": ".tmp/real-defects/frozen-feedback-development-v1/experiment.json",
+  "raw_sha256": "60ab353390e847287c6615fe71db4dc8cf2372fbeb033ba9b830249fcdd910fa",
+  "audit_result": ".tmp/real-defects/frozen-feedback-context-audit-v1/audit.json",
+  "audit_sha256": "f948a67284c3f8701bc3a08a650239908b67b4b2d7fc0beff4b20e793810fc7b",
+  "validation": {"focused": "20 passed in 0.46s", "full": "1284 passed, 4 skipped in 160.00s", "ruff": "passed", "docker_http": "not rerun"},
+  "limits": ["Development experiment, not blind", "Posthoc audit not predeclared scoring", "Original 18 counted passes include one newly detected regression", "Default Agent/API unchanged", "Cached first inference excludes its time from second worker; no latency improvement claim"]
+}
