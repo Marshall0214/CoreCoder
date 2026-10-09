@@ -1,0 +1,1672 @@
+{
+  "complete": true,
+  "source": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun",
+  "tasks": 50,
+  "failures": 18,
+  "model_calls": 0,
+  "test_executions": 0,
+  "baseline_intact": true,
+  "signature_counts": {
+    "target_fail_preserve_pass": 8,
+    "target_pass_preserve_fail": 1,
+    "correction_invalid_patch": 1,
+    "initial_invalid_patch": 3,
+    "correction_output_truncated": 1,
+    "target_and_preserve_fail": 3,
+    "initial_output_truncated": 1
+  },
+  "limits": [
+    "Retrospective audit, not a new repair experiment",
+    "No reference patch or independent grader code read",
+    "Historical heldout failures now inspected; do not treat as untouched holdout",
+    "Traceback overlap is descriptive, not a necessary repair criterion",
+    "Invalid-stage anchor counts describe stage input, not sequential patch application"
+  ],
+  "artifact_path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\remaining-failure-audit-v1\\audit-verified.json",
+  "artifact_sha256": "5c777139df9f3f38dac412238c56009c302d58ea8b97d20b176f1dcefe0db6b2",
+  "input_file_count": 643,
+  "split_counts": {
+    "development": 10,
+    "heldout": 8
+  },
+  "review_type": "Human retrospective interpretation of public observations and candidate source; causal hypotheses are not experimentally confirmed",
+  "cases": [
+    {
+      "task_id": "click-usage-empty",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "target_fail_preserve_pass",
+      "original_restored": true,
+      "observations_and_interpretation": "两轮均输出仅换行；修改落在窄宽度分支，宽分支仍把空 args 交给 wrap_text。write_usage 已完整提供，wrap_text 未提供",
+      "next_direction": "识别实际分支；补充被调用函数的空输入行为，而非只调整换行",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "HelpFormatter.write_usage",
+            "Group.__init__",
+            "Command.__init__",
+            "_format_deprecated_suffix",
+            "Command.format_usage"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/formatting.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/formatting.py",
+              "symbols": [
+                {
+                  "name": "write_usage",
+                  "line": 153,
+                  "end_line": 195
+                }
+              ],
+              "candidate_sha256": "2512210e059e3ccf39417e05a01cc810f2756eee7be0197877918eb413a8ab5d"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-usage-empty\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "dd9a867615b108cde96661c2023767e75f389fdb6faab37c27e5004dd12ec906",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-usage-empty\\public\\test_admission.py\", line 9, in test_public_defect\n    self.assertEqual(f.getvalue(), 'Usage: sample\\n')\nAssertionError: '\\n' != 'Usage: sample\\n'\n- \n+ Usage: sample\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "HelpFormatter.write_usage",
+            "Group.__init__",
+            "Command.__init__",
+            "_format_deprecated_suffix",
+            "Command.format_usage"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/formatting.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/formatting.py",
+              "symbols": [
+                {
+                  "name": "write_usage",
+                  "line": 153,
+                  "end_line": 195
+                }
+              ],
+              "candidate_sha256": "5490323c8ddd7929e6a8ea10b0a29f13cb987e8a8b9a6115f5961eb704055c1b"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-usage-empty\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "dd9a867615b108cde96661c2023767e75f389fdb6faab37c27e5004dd12ec906",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-usage-empty\\public\\test_admission.py\", line 9, in test_public_defect\n    self.assertEqual(f.getvalue(), 'Usage: sample\\n')\nAssertionError: '\\n' != 'Usage: sample\\n'\n- \n+ Usage: sample\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "target_fail_preserve_pass",
+      "original_restored": true,
+      "observations_and_interpretation": "两轮均先执行 eager callback；只改排序键。源码 get_help_option 每次构造新 HelpOption，而 parse_args 使用 invocation_order.index 按对象匹配；两个函数均不在片段中",
+      "next_direction": "检查 help option 的对象生命周期与排序输入；需运行证据确认，不把“排序错误”当作唯一原因",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "option",
+            "iter_params_for_processing",
+            "Command.__init__",
+            "HelpOption.__init__",
+            "confirmation_option"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/core.py",
+              "symbols": [
+                {
+                  "name": "iter_params_for_processing",
+                  "line": 115,
+                  "end_line": 132
+                },
+                {
+                  "name": "sort_key",
+                  "line": 124,
+                  "end_line": 130
+                }
+              ],
+              "candidate_sha256": "d347f9e94028bb28ffb7a315419336cca0af5170ae41646f0dda9ee376f2a963"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-help-eagerness\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "8e9ecef50d68d0f72999ff59dfcf3c0100b6e232edb997e52ed56977966f0e71",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-help-eagerness\\public\\test_admission.py\", line 21, in test_public_defect\n    self.assertEqual(events, [])\nAssertionError: Lists differ: ['eager'] != []\n\nFirst list contains 1 additional elements.\nFirst extra element 0:\n'eager'\n\n- ['eager']\n+ []\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "option",
+            "iter_params_for_processing",
+            "Command.__init__",
+            "HelpOption.__init__",
+            "confirmation_option"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/core.py",
+              "symbols": [
+                {
+                  "name": "iter_params_for_processing",
+                  "line": 115,
+                  "end_line": 132
+                },
+                {
+                  "name": "sort_key",
+                  "line": 124,
+                  "end_line": 130
+                }
+              ],
+              "candidate_sha256": "f5286c7e91a52eae81a746c2081dd79251b2626406aa6a695cd06f306eeefbce"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-help-eagerness\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "8e9ecef50d68d0f72999ff59dfcf3c0100b6e232edb997e52ed56977966f0e71",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-help-eagerness\\public\\test_admission.py\", line 21, in test_public_defect\n    self.assertEqual(events, [])\nAssertionError: Lists differ: ['eager'] != []\n\nFirst list contains 1 additional elements.\nFirst extra element 0:\n'eager'\n\n- ['eager']\n+ []\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "click-flag-default-map",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "target_fail_preserve_pass",
+      "original_restored": true,
+      "observations_and_interpretation": "help 仍显示 fast；只改 get_default。未展示的 get_help_record 仍按 self.default 选择展示的 flag，而非计算所得 default_value",
+      "next_direction": "补齐默认值读取→帮助渲染调用链",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "Result.output",
+            "Option.__init__",
+            "Option.get_default",
+            "Context.lookup_default",
+            "Context.get_help"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/core.py",
+              "symbols": [
+                {
+                  "name": "get_default",
+                  "line": 2844,
+                  "end_line": 2869
+                }
+              ],
+              "candidate_sha256": "e10657a189c5334037fb752a567850ccc9f39ec6840812739d30bb70590db316"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-flag-default-map\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "99b2b1edb30e484046eb73d4c07f00fa017c4dfe7f6f29c22c31b23141ac3a6a",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-flag-default-map\\public\\test_admission.py\", line 14, in test_public_defect\n    self.assertIn('[default: slow]', r.output)\nAssertionError: '[default: slow]' not found in 'Usage: cli [OPTIONS]\\n\\nOptions:\\n  --fast / --slow  [default: fast]\\n  --help           Show this message and exit.\\n'\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "Result.output",
+            "Option.__init__",
+            "Option.get_default",
+            "Context.get_help"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/core.py",
+              "symbols": [
+                {
+                  "name": "get_default",
+                  "line": 2844,
+                  "end_line": 2869
+                }
+              ],
+              "candidate_sha256": "67b9124f4f818b3d99b46586e8d2d72e76bae4282cce6844a85eb534b2fe3de2"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-flag-default-map\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "99b2b1edb30e484046eb73d4c07f00fa017c4dfe7f6f29c22c31b23141ac3a6a",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-flag-default-map\\public\\test_admission.py\", line 14, in test_public_defect\n    self.assertIn('[default: slow]', r.output)\nAssertionError: '[default: slow]' not found in 'Usage: cli [OPTIONS]\\n\\nOptions:\\n  --fast / --slow  [default: fast]\\n  --help           Show this message and exit.\\n'\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "click-resource-exception",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "target_pass_preserve_fail",
+      "original_restored": true,
+      "observations_and_interpretation": "修正后 Reproduce 通过，但 3 个 Preserve 测试失败；__exit__ 中 return 跳过 pop_context，close 中 return 跳过 ExitStack 重置",
+      "next_direction": "保证返回异常抑制结果的同时执行清理；不是检索不足，两个函数已展示",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "Context.with_resource",
+            "Context.call_on_close",
+            "Context.exit",
+            "Context.close",
+            "Context.__exit__"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/core.py",
+              "symbols": [
+                {
+                  "name": "__exit__",
+                  "line": 481,
+                  "end_line": 490
+                },
+                {
+                  "name": "close",
+                  "line": 613,
+                  "end_line": 625
+                }
+              ],
+              "candidate_sha256": "648fd00c9f0b2bcedbb43a5534076bf3c8823fddc18b09dc3d34e4a06a68461b"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-resource-exception\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "a8cca800bbb1a84108d22759fa4afaf884ed22663b4f4989207ca4d96081053b",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... ERROR\n\n======================================================================\nERROR: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-resource-exception\\public\\test_admission.py\", line 24, in test_public_defect\n    raise ValueError('public-error')\nValueError: public-error\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "Context.with_resource",
+            "Context.call_on_close",
+            "Context.exit",
+            "Context.close",
+            "Context.__exit__"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/core.py",
+              "symbols": [
+                {
+                  "name": "__exit__",
+                  "line": 481,
+                  "end_line": 491
+                },
+                {
+                  "name": "close",
+                  "line": 614,
+                  "end_line": 626
+                }
+              ],
+              "candidate_sha256": "a338180fde550775efe32bb566ca97e643297441cd2aa6186d7e6b4f1133d7b4"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Preserve",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-resource-exception\\full\\corrected-public\\Preserve.stderr.txt",
+              "sha256": "7054b4399c5cfa37627c465076f13a1df78cee3bca60e0604fce65a4a2ea8e7c",
+              "owned_frames": [],
+              "tail": "xit_restores_outer_context) ... FAIL\ntest_normal_exit_pops_context (test_admission.Preserve.test_normal_exit_pops_context) ... FAIL\ntest_public_normal_behavior (test_admission.Preserve.test_public_normal_behavior) ... ok\n\n======================================================================\nFAIL: test_exceptional_exit_pops_context (test_admission.Preserve.test_exceptional_exit_pops_context)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-resource-exception\\public\\test_admission.py\", line 54, in test_exceptional_exit_pops_context\n    self.assertIsNone(click.get_current_context(silent=True))\nAssertionError: <click.core.Context object at 0x00000138AE5CC450> is not None\n\n======================================================================\nFAIL: test_nested_exit_restores_outer_context (test_admission.Preserve.test_nested_exit_restores_outer_context)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-resource-exception\\public\\test_admission.py\", line 47, in test_nested_exit_restores_outer_context\n    self.assertIs(click.get_current_context(), outer)\nAssertionError: <click.core.Context object at 0x00000138AE5CD9D0> is not <click.core.Context object at 0x00000138ADA61C50>\n\n======================================================================\nFAIL: test_normal_exit_pops_context (test_admission.Preserve.test_normal_exit_pops_context)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-resource-exception\\public\\test_admission.py\", line 38, in test_normal_exit_pops_context\n    self.assertIsNone(click.get_current_context(silent=True))\nAssertionError: <click.core.Context object at 0x00000138AE5CD9D0> is not None\n\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nFAILED (failures=3)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "click-flag-envvar",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "target_fail_preserve_pass",
+      "original_restored": true,
+      "observations_and_interpretation": "false-like 值仍激活 UPPER；修改 ParamType.split_envvar_value，并追加 convert；实际 flag 消费路径未被这些修改正确改变。Option.value_from_envvar 未展示",
+      "next_direction": "跟踪原始 envvar 到 flag_value 的转换；用运行事实确定分支",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "Option.get_default",
+            "wrap_text",
+            "ParamType.split_envvar_value",
+            "Parameter.type_cast_value.check_iter",
+            "Option.consume_value"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/types.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/types.py",
+              "symbols": [
+                {
+                  "name": "split_envvar_value",
+                  "line": 126,
+                  "end_line": 136
+                }
+              ],
+              "candidate_sha256": "370cb71e9294586fe5e372929eca8cfa34c7bcd6c16389c99745ebb02a8b9b9b"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-flag-envvar\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "ec0752e4d8050e20d1bee261a5fd6b7809bc5e6230ab19d660c6ed39d627af99",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-flag-envvar\\public\\test_admission.py\", line 15, in test_public_defect\n    self.assertNotEqual(r.output.strip(), repr('UPPER'))\nAssertionError: \"'UPPER'\" == \"'UPPER'\"\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "Option.get_default",
+            "wrap_text",
+            "ParamType.split_envvar_value",
+            "Parameter.type_cast_value.check_iter",
+            "Option.consume_value"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/types.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/types.py",
+              "symbols": [
+                {
+                  "name": "split_envvar_value",
+                  "line": 126,
+                  "end_line": 136
+                },
+                {
+                  "name": "convert",
+                  "line": 138,
+                  "end_line": 144
+                }
+              ],
+              "candidate_sha256": "8054fa6d09f821a781a1bfb7585b5ec92abd75ad35f5cd5d7217f96d9f629c7c"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-flag-envvar\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "ec0752e4d8050e20d1bee261a5fd6b7809bc5e6230ab19d660c6ed39d627af99",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-flag-envvar\\public\\test_admission.py\", line 15, in test_public_defect\n    self.assertNotEqual(r.output.strip(), repr('UPPER'))\nAssertionError: \"'UPPER'\" == \"'UPPER'\"\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "click-prompt-suffix",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "target_fail_preserve_pass",
+      "original_restored": true,
+      "observations_and_interpretation": "两轮仍输出 Count 后的空格；修正撤销 _build_prompt 改动，净差异为零。已展示 prompt 的内部 prompt_func 仍调用 f(\" \")",
+      "next_direction": "检查输入显示调用，不继续仅修改字符串构造器；confirm 后续路径尚未被首断言覆盖",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "prompt",
+            "_build_prompt",
+            "password_option",
+            "CliRunner.isolation.hidden_input",
+            "ShellComplete.get_completion_args"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/termui.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/termui.py",
+              "symbols": [
+                {
+                  "name": "_build_prompt",
+                  "line": 60,
+                  "end_line": 73
+                }
+              ],
+              "candidate_sha256": "043742f108b697056fe922bf4d157d10add73662d90dac31ca301d89e589bffc"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-prompt-suffix\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "7009fdeb86068184e7f90b52ad2feaf88e55a23235eade7100c81d696b0335b8",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-prompt-suffix\\public\\test_admission.py\", line 13, in test_public_defect\n    self.assertTrue(r.output.startswith('Count5\\n'), repr(r.output))\nAssertionError: False is not true : 'Count 5\\n'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "prompt",
+            "_build_prompt",
+            "password_option",
+            "CliRunner.isolation.hidden_input"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/termui.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-prompt-suffix\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "7009fdeb86068184e7f90b52ad2feaf88e55a23235eade7100c81d696b0335b8",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-prompt-suffix\\public\\test_admission.py\", line 13, in test_public_defect\n    self.assertTrue(r.output.startswith('Count5\\n'), repr(r.output))\nAssertionError: False is not true : 'Count 5\\n'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "click-shared-default",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "target_fail_preserve_pass",
+      "original_restored": true,
+      "observations_and_interpretation": "输出空字符串而非 alpha；修改排序键，未改默认值读取/消费。Option.get_default、Parameter.consume_value 未展示",
+      "next_direction": "检查共享参数名的默认值传播；空输出可能来自调用异常，不能仅凭此断言确定根因",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "iter_params_for_processing",
+            "Parameter.__init__",
+            "Argument.__init__",
+            "Argument._parse_decls",
+            "Context.lookup_default"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/core.py",
+              "symbols": [
+                {
+                  "name": "iter_params_for_processing",
+                  "line": 116,
+                  "end_line": 140
+                },
+                {
+                  "name": "sort_key",
+                  "line": 132,
+                  "end_line": 138
+                }
+              ],
+              "candidate_sha256": "0c7e712e1809ab7141d376a2e8bceff30bcfd889f75457720919c91f80a913e7"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-shared-default\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "f5b198d2b8afad0a7f773dc11c513d0cdc06229a644d09b206aa927be738aef6",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-shared-default\\public\\test_admission.py\", line 17, in test_public_defect\n    self.assertEqual(r.output.strip(), 'alpha')\nAssertionError: '' != 'alpha'\n+ alpha\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "iter_params_for_processing",
+            "Parameter.__init__",
+            "Argument.__init__",
+            "Argument._parse_decls",
+            "Context.lookup_default"
+          ],
+          "anchors": [
+            {
+              "file": "src/click/core.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "src/click/core.py",
+              "symbols": [
+                {
+                  "name": "iter_params_for_processing",
+                  "line": 116,
+                  "end_line": 140
+                },
+                {
+                  "name": "sort_key",
+                  "line": 132,
+                  "end_line": 138
+                }
+              ],
+              "candidate_sha256": "b4a8591d751b931a29006fba54ee66cabd164e8261b59ed0f3dae97c0def6747"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\click-shared-default\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "89a5c7b40479a1c7874a4df622c60e85d79e66dff67ea64563a134e861da5a2c",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\click-shared-default\\public\\test_admission.py\", line 17, in test_public_defect\n    self.assertEqual(r.output.strip(), 'alpha')\nAssertionError: '' != 'alpha'\n+ alpha\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "target_fail_preserve_pass",
+      "original_restored": true,
+      "observations_and_interpretation": "首轮添加未匹配输出循环且使用未定义 iteritems；修正仅改为 d.items，原有末尾循环仍在，最终同一行输出两次",
+      "next_direction": "对照完整控制流，修正重复路径；join 已完整展示",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "join",
+            "excepts.__doc__",
+            "diff",
+            "curry.__str__"
+          ],
+          "anchors": [
+            {
+              "file": "toolz/itertoolz.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "toolz/itertoolz.py",
+              "symbols": [
+                {
+                  "name": "join",
+                  "line": 813,
+                  "end_line": 926
+                }
+              ],
+              "candidate_sha256": "fe27a4e9469907dcb4d7395d3ef202c88267d01469e4cba9ccd908726845f41f"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\toolz-join-unmatched\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "6cc73009f339b9fae2837f2c58b6c93d2b1741ab0c47361aefe5b34cd0903305",
+              "owned_frames": [
+                {
+                  "file": "toolz/itertoolz.py",
+                  "line": 908,
+                  "function": "join",
+                  "statement": "for key, matches in iteritems(d):",
+                  "candidate_sha256": "fe27a4e9469907dcb4d7395d3ef202c88267d01469e4cba9ccd908726845f41f",
+                  "line_overlaps_change": true
+                }
+              ],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... ERROR\n\n======================================================================\nERROR: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\toolz-join-unmatched\\public\\test_admission.py\", line 7, in test_public_defect\n    self.assertEqual(list(join(lambda x: x, [2], lambda x: x, [3], right_default='absent')), [(2, 'absent')])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\toolz-join-unmatched\\full\\workspace\\toolz\\itertoolz.py\", line 908, in join\n    for key, matches in iteritems(d):\n                        ^^^^^^^^^\nNameError: name 'iteritems' is not defined\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "join",
+            "excepts.__doc__",
+            "curry.__str__"
+          ],
+          "anchors": [
+            {
+              "file": "toolz/itertoolz.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "toolz/itertoolz.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "toolz/itertoolz.py",
+              "symbols": [
+                {
+                  "name": "join",
+                  "line": 813,
+                  "end_line": 926
+                }
+              ],
+              "candidate_sha256": "ecb14f08c6b88249457e65de9e6b441d4c701d41d4a6316fc6cf4180ff70c182"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\toolz-join-unmatched\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "692aa218e4aab777ccfe5619d10cd37214b9a9a7015a333970c58dc830015a42",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\toolz-join-unmatched\\public\\test_admission.py\", line 7, in test_public_defect\n    self.assertEqual(list(join(lambda x: x, [2], lambda x: x, [3], right_default='absent')), [(2, 'absent')])\nAssertionError: Lists differ: [(2, 'absent'), (2, 'absent')] != [(2, 'absent')]\n\nFirst list contains 1 additional elements.\nFirst extra element 1:\n(2, 'absent')\n\n- [(2, 'absent'), (2, 'absent')]\n+ [(2, 'absent')]\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-remap-set",
+      "historical_split": "heldout",
+      "status": "failed_public_validation",
+      "signature": "correction_invalid_patch",
+      "original_restored": true,
+      "observations_and_interpretation": "片段都是 OrderedMultiDict，未包含 remap/default_exit；首轮 edits 为空。反馈回答虚构 remap 签名，old 在输入文件出现 0 次",
+      "next_direction": "优先修检索准入：关键 API 未覆盖时不直接生成补丁；属于明确覆盖缺口，但补齐后的收益未知",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "OrderedMultiDict.poplast",
+            "OrderedMultiDict.get",
+            "OrderedMultiDict.pop",
+            "OrderedMultiDict.setdefault",
+            "OrderedMultiDict.add"
+          ],
+          "anchors": [],
+          "changed_files": [],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\boltons-remap-set\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "8642dbfeb5315bf258e55ac93c7cf0d41725919de8aa35490056d59d36829104",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\boltons-remap-set\\public\\test_admission.py\", line 7, in test_public_defect\n    self.assertEqual(remap({2, 5}), {2, 5})\nAssertionError: Items in the first set but not the second:\n(0, 2)\n(1, 5)\nItems in the second set but not the first:\n2\n5\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "invalid_patch",
+          "error": "ValueError: Edit text was not supplied in local context",
+          "evidence_symbols": [
+            "OrderedMultiDict.poplast",
+            "OrderedMultiDict.get",
+            "OrderedMultiDict.pop",
+            "OrderedMultiDict.setdefault",
+            "OrderedMultiDict.add"
+          ],
+          "anchors": [
+            {
+              "file": "boltons/iterutils.py",
+              "input_occurrences": 0,
+              "supplied_in_fragment": false
+            }
+          ],
+          "changed_files": [],
+          "public_failure_logs": []
+        }
+      ]
+    },
+    {
+      "task_id": "more-falsy-exception",
+      "historical_split": "heldout",
+      "status": "invalid_patch",
+      "signature": "initial_invalid_patch",
+      "original_restored": true,
+      "observations_and_interpretation": "one/only 已展示；同一 old 在文件出现 2 次，第一编辑即违反唯一匹配",
+      "next_direction": "用函数范围或更长唯一原文消除歧义；不可声称候选语义正确，因为未执行验证",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "invalid_patch",
+          "error": "ValueError: Old text must match exactly once",
+          "evidence_symbols": [
+            "one",
+            "only",
+            "strictly_n",
+            "raise_",
+            "numeric_range.__repr__"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 2,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 2,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [],
+          "public_failure_logs": []
+        }
+      ]
+    },
+    {
+      "task_id": "more-seekable-zero",
+      "historical_split": "heldout",
+      "status": "invalid_patch",
+      "signature": "initial_invalid_patch",
+      "original_restored": true,
+      "observations_and_interpretation": "peek 锚点唯一，但 __bool__ 锚点出现 2 次，整个候选未提交；目标函数均已展示",
+      "next_direction": "类/函数范围定位；不得把 staging 的部分改动当作验证过的补丁",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "invalid_patch",
+          "error": "ValueError: Old text must match exactly once",
+          "evidence_symbols": [
+            "seekable.peek",
+            "_islice_helper",
+            "seekable.__bool__",
+            "locate",
+            "seekable.__iter__"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 2,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [],
+          "public_failure_logs": []
+        }
+      ]
+    },
+    {
+      "task_id": "more-split-empty",
+      "historical_split": "heldout",
+      "status": "invalid_patch",
+      "signature": "initial_invalid_patch",
+      "original_restored": true,
+      "observations_and_interpretation": "split_before/after/when 已展示；前两段 old 各出现 3 次",
+      "next_direction": "函数范围定位；候选还用 iterable 真值判断空输入，对迭代器未必成立，不能仅修格式就宣称解决",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "invalid_patch",
+          "error": "ValueError: Old text must match exactly once",
+          "evidence_symbols": [
+            "split_before",
+            "split_after",
+            "split_when",
+            "consecutive_groups",
+            "before_and_after"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 3,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 3,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [],
+          "public_failure_logs": []
+        }
+      ]
+    },
+    {
+      "task_id": "more-range-membership",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "target_fail_preserve_pass",
+      "original_restored": true,
+      "observations_and_interpretation": "0.30000000000000004 仍不属于 range；两轮只改 index。未展示的 __contains__ 仍使用精确取模，也不调用 index",
+      "next_direction": "按失败操作补齐魔术方法；不要用 index 的变化推断 membership 已修复",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "numeric_range.__init__",
+            "numeric_range.__getitem__",
+            "numeric_range._get_by_index",
+            "numeric_range.__reversed__",
+            "numeric_range.index"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "more_itertools/more.py",
+              "symbols": [
+                {
+                  "name": "index",
+                  "line": 2446,
+                  "end_line": 2458
+                }
+              ],
+              "candidate_sha256": "a0f775a292d0beeec00b47e10dcc22ac067c2c63bf626ebddb26397902d7366e"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-range-membership\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "deccaf8719fb8bfd8c4e973157b4a8776d07d035cf689b867cb5836c0248b357",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-range-membership\\public\\test_admission.py\", line 11, in test_public_defect\n    self.assertIn(value, r)\nAssertionError: 0.30000000000000004 not found in numeric_range(0.0, 1.0, 0.1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "numeric_range.__init__",
+            "numeric_range.__getitem__",
+            "numeric_range._get_by_index",
+            "numeric_range.__reversed__",
+            "numeric_range.index"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "more_itertools/more.py",
+              "symbols": [
+                {
+                  "name": "index",
+                  "line": 2446,
+                  "end_line": 2463
+                }
+              ],
+              "candidate_sha256": "92bb8239591416201474170dedacbedada826688afb193f5d4c68eb2639b0b4b"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-range-membership\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "deccaf8719fb8bfd8c4e973157b4a8776d07d035cf689b867cb5836c0248b357",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-range-membership\\public\\test_admission.py\", line 11, in test_public_defect\n    self.assertIn(value, r)\nAssertionError: 0.30000000000000004 not found in numeric_range(0.0, 1.0, 0.1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "historical_split": "development",
+      "status": "failed_public_validation",
+      "signature": "correction_output_truncated",
+      "original_restored": true,
+      "observations_and_interpretation": "首轮只改 replace，公开测试在 locate 的 callback 中先报 TypeError；locate 已完整展示但未修改；反馈输出 2048 Token 截断",
+      "next_direction": "先区分多 API 覆盖与输出失败；本次不能归因于“locate 没检索到”，也不是最近主动诊断候选",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "replace",
+            "locate",
+            "rlocate",
+            "tail",
+            "callback_iter._reader.callback"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "more_itertools/more.py",
+              "symbols": [
+                {
+                  "name": "replace",
+                  "line": 3347,
+                  "end_line": 3407
+                }
+              ],
+              "candidate_sha256": "8c72cb56cc31fb5721039abdc25ee8ee612ac3b77634aa879300f87e9bd23a80"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-predicate-sentinel\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "f88d43e6e2816494a6111fd5eb0a0c6e944cbf5508a906f8e0358204310e2432",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... ERROR\n\n======================================================================\nERROR: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-predicate-sentinel\\public\\test_admission.py\", line 12, in test_public_defect\n    self.assertEqual(list(locate([4], predicate, window_size=2)), [])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-predicate-sentinel\\public\\test_admission.py\", line 10, in predicate\n    return sum(items) == 7\n           ^^^^^^^^^^\nTypeError: unsupported operand type(s) for +: 'int' and 'object'\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "output_truncated",
+          "error": "InvalidCompletion: output_truncated",
+          "evidence_symbols": [
+            "replace",
+            "locate",
+            "rlocate",
+            "tail"
+          ],
+          "anchors": [],
+          "changed_files": [],
+          "public_failure_logs": []
+        }
+      ]
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "historical_split": "heldout",
+      "status": "failed_public_validation",
+      "signature": "target_and_preserve_fail",
+      "original_restored": true,
+      "observations_and_interpretation": "首轮 map * repeat 报错；修正消除此 TypeError，但 partial_product 目标和正常行为仍失败；重复的是相同 iterator 对象，多个位置共同消费",
+      "next_direction": "诊断状态共享/消费顺序；两个核心函数已展示，补齐片段不能直接保证解决",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "partial_product",
+            "gray_product",
+            "roundrobin",
+            "interleave_randomly",
+            "concurrent_tee"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "more_itertools/more.py",
+              "symbols": [
+                {
+                  "name": "gray_product",
+                  "line": 4880,
+                  "end_line": 4923
+                },
+                {
+                  "name": "partial_product",
+                  "line": 4926,
+                  "end_line": 4952
+                }
+              ],
+              "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-gray-partial-repeat\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "87d0f0a9ec8c68a015078ff2447af09cf1443e9f7ac88d6d44141340712878cc",
+              "owned_frames": [
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4900,
+                  "function": "gray_product",
+                  "statement": "all_iterables = tuple(map(tuple, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4900,
+                  "function": "gray_product",
+                  "statement": "all_iterables = tuple(map(tuple, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4900,
+                  "function": "gray_product",
+                  "statement": "all_iterables = tuple(map(tuple, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4942,
+                  "function": "partial_product",
+                  "statement": "iterators = tuple(map(iter, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4942,
+                  "function": "partial_product",
+                  "statement": "iterators = tuple(map(iter, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4942,
+                  "function": "partial_product",
+                  "statement": "iterators = tuple(map(iter, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                }
+              ],
+              "tail": "==============\nERROR: test_one_shot_matches_frozen_expected (test_admission.Reproduce.test_one_shot_matches_frozen_expected) (api='partial_product', pools=[[4, 5]], repeat=2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-gray-partial-repeat\\public\\test_admission.py\", line 11, in test_one_shot_matches_frozen_expected\n    actual = list(APIS[case[\"api\"]](*(iter(p) for p in case[\"pools\"]), repeat=case[\"repeat\"]))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-gray-partial-repeat\\full\\workspace\\more_itertools\\more.py\", line 4942, in partial_product\n    iterators = tuple(map(iter, iterables) * repeat)\n                      ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~\nTypeError: unsupported operand type(s) for *: 'map' and 'int'\n\n======================================================================\nERROR: test_one_shot_matches_frozen_expected (test_admission.Reproduce.test_one_shot_matches_frozen_expected) (api='partial_product', pools=[[2, 3, 4], [8, 9]], repeat=1)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-gray-partial-repeat\\public\\test_admission.py\", line 11, in test_one_shot_matches_frozen_expected\n    actual = list(APIS[case[\"api\"]](*(iter(p) for p in case[\"pools\"]), repeat=case[\"repeat\"]))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-gray-partial-repeat\\full\\workspace\\more_itertools\\more.py\", line 4942, in partial_product\n    iterators = tuple(map(iter, iterables) * repeat)\n                      ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~\nTypeError: unsupported operand type(s) for *: 'map' and 'int'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=6)\n"
+            },
+            {
+              "label": "public",
+              "group": "Preserve",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-gray-partial-repeat\\full\\initial-public\\Preserve.stderr.txt",
+              "sha256": "9927eff3a8084b7cd53d52deabfe898006f0f019c447f5671ec4d8963defc435",
+              "owned_frames": [
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4900,
+                  "function": "gray_product",
+                  "statement": "all_iterables = tuple(map(tuple, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4900,
+                  "function": "gray_product",
+                  "statement": "all_iterables = tuple(map(tuple, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4900,
+                  "function": "gray_product",
+                  "statement": "all_iterables = tuple(map(tuple, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4942,
+                  "function": "partial_product",
+                  "statement": "iterators = tuple(map(iter, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4942,
+                  "function": "partial_product",
+                  "statement": "iterators = tuple(map(iter, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                },
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4942,
+                  "function": "partial_product",
+                  "statement": "iterators = tuple(map(iter, iterables) * repeat)",
+                  "candidate_sha256": "815235441c17a7f91cb6811f456196023f463b38f95ffb98e813c4dc5ee0c725",
+                  "line_overlaps_change": true
+                }
+              ],
+              "tail": "r *: 'map' and 'int'\n\n======================================================================\nERROR: test_reusable_matches_frozen_expected (test_admission.Preserve.test_reusable_matches_frozen_expected) (api='partial_product', pools=[[4, 5]], repeat=2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-gray-partial-repeat\\public\\test_admission.py\", line 18, in test_reusable_matches_frozen_expected\n    actual = list(APIS[case[\"api\"]](*case[\"pools\"], repeat=case[\"repeat\"]))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-gray-partial-repeat\\full\\workspace\\more_itertools\\more.py\", line 4942, in partial_product\n    iterators = tuple(map(iter, iterables) * repeat)\n                      ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~\nTypeError: unsupported operand type(s) for *: 'map' and 'int'\n\n======================================================================\nERROR: test_reusable_matches_frozen_expected (test_admission.Preserve.test_reusable_matches_frozen_expected) (api='partial_product', pools=[[2, 3, 4], [8, 9]], repeat=1)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-gray-partial-repeat\\public\\test_admission.py\", line 18, in test_reusable_matches_frozen_expected\n    actual = list(APIS[case[\"api\"]](*case[\"pools\"], repeat=case[\"repeat\"]))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-gray-partial-repeat\\full\\workspace\\more_itertools\\more.py\", line 4942, in partial_product\n    iterators = tuple(map(iter, iterables) * repeat)\n                      ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~\nTypeError: unsupported operand type(s) for *: 'map' and 'int'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=6)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "partial_product",
+            "gray_product",
+            "roundrobin",
+            "interleave_randomly",
+            "concurrent_tee"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            },
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "more_itertools/more.py",
+              "symbols": [
+                {
+                  "name": "gray_product",
+                  "line": 4880,
+                  "end_line": 4923
+                },
+                {
+                  "name": "partial_product",
+                  "line": 4926,
+                  "end_line": 4952
+                }
+              ],
+              "candidate_sha256": "c17329c98a21459a225110fdfdfefb56e362a01c15245ca64c8eb044ecb01c30"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-gray-partial-repeat\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "eafade5a543a2194ec660ed5d1c0243bb363be29594439a45ce2ee2a0c46007e",
+              "owned_frames": [],
+              "tail": "frozen_expected) ... \n  test_one_shot_matches_frozen_expected (test_admission.Reproduce.test_one_shot_matches_frozen_expected) (api='partial_product', pools=[[2, 3], [8, 9]], repeat=2) ... FAIL\n  test_one_shot_matches_frozen_expected (test_admission.Reproduce.test_one_shot_matches_frozen_expected) (api='partial_product', pools=[[4, 5]], repeat=2) ... FAIL\n\n======================================================================\nFAIL: test_one_shot_matches_frozen_expected (test_admission.Reproduce.test_one_shot_matches_frozen_expected) (api='partial_product', pools=[[2, 3], [8, 9]], repeat=2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-gray-partial-repeat\\public\\test_admission.py\", line 12, in test_one_shot_matches_frozen_expected\n    self.assertEqual(actual, case[\"expected\"])\nAssertionError: Lists differ: [(2, 8, 3, 9)] != [(2, 8, 2, 8), (3, 8, 2, 8), (3, 9, 2, 8), (3, 9, 3, 8), (3, 9, 3, 9)]\n\nFirst differing element 0:\n(2, 8, 3, 9)\n(2, 8, 2, 8)\n\nSecond list contains 4 additional elements.\nFirst extra element 1:\n(3, 8, 2, 8)\n\n- [(2, 8, 3, 9)]\n+ [(2, 8, 2, 8), (3, 8, 2, 8), (3, 9, 2, 8), (3, 9, 3, 8), (3, 9, 3, 9)]\n\n======================================================================\nFAIL: test_one_shot_matches_frozen_expected (test_admission.Reproduce.test_one_shot_matches_frozen_expected) (api='partial_product', pools=[[4, 5]], repeat=2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-gray-partial-repeat\\public\\test_admission.py\", line 12, in test_one_shot_matches_frozen_expected\n    self.assertEqual(actual, case[\"expected\"])\nAssertionError: Lists differ: [(4, 5)] != [(4, 4), (5, 4), (5, 5)]\n\nFirst differing element 0:\n(4, 5)\n(4, 4)\n\nSecond list contains 2 additional elements.\nFirst extra element 1:\n(5, 4)\n\n- [(4, 5)]\n+ [(4, 4), (5, 4), (5, 5)]\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=2)\n"
+            },
+            {
+              "label": "public",
+              "group": "Preserve",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-gray-partial-repeat\\full\\corrected-public\\Preserve.stderr.txt",
+              "sha256": "44091329292f1cd3d7b2a96cd86793fc9a5311102b34a276db7511f1ce9a584a",
+              "owned_frames": [],
+              "tail": "hes_frozen_expected) ... \n  test_reusable_matches_frozen_expected (test_admission.Preserve.test_reusable_matches_frozen_expected) (api='partial_product', pools=[[2, 3], [8, 9]], repeat=2) ... FAIL\n  test_reusable_matches_frozen_expected (test_admission.Preserve.test_reusable_matches_frozen_expected) (api='partial_product', pools=[[4, 5]], repeat=2) ... FAIL\n\n======================================================================\nFAIL: test_reusable_matches_frozen_expected (test_admission.Preserve.test_reusable_matches_frozen_expected) (api='partial_product', pools=[[2, 3], [8, 9]], repeat=2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-gray-partial-repeat\\public\\test_admission.py\", line 19, in test_reusable_matches_frozen_expected\n    self.assertEqual(actual, case[\"expected\"])\nAssertionError: Lists differ: [(2, 8, 3, 9)] != [(2, 8, 2, 8), (3, 8, 2, 8), (3, 9, 2, 8), (3, 9, 3, 8), (3, 9, 3, 9)]\n\nFirst differing element 0:\n(2, 8, 3, 9)\n(2, 8, 2, 8)\n\nSecond list contains 4 additional elements.\nFirst extra element 1:\n(3, 8, 2, 8)\n\n- [(2, 8, 3, 9)]\n+ [(2, 8, 2, 8), (3, 8, 2, 8), (3, 9, 2, 8), (3, 9, 3, 8), (3, 9, 3, 9)]\n\n======================================================================\nFAIL: test_reusable_matches_frozen_expected (test_admission.Preserve.test_reusable_matches_frozen_expected) (api='partial_product', pools=[[4, 5]], repeat=2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-gray-partial-repeat\\public\\test_admission.py\", line 19, in test_reusable_matches_frozen_expected\n    self.assertEqual(actual, case[\"expected\"])\nAssertionError: Lists differ: [(4, 5)] != [(4, 4), (5, 4), (5, 5)]\n\nFirst differing element 0:\n(4, 5)\n(4, 4)\n\nSecond list contains 2 additional elements.\nFirst extra element 1:\n(5, 4)\n\n- [(4, 5)]\n+ [(4, 4), (5, 4), (5, 5)]\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=2)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "more-reversed-values",
+      "historical_split": "heldout",
+      "status": "failed_public_validation",
+      "signature": "target_and_preserve_fail",
+      "original_restored": true,
+      "observations_and_interpretation": "修改反向 numeric_range 的 stop；浮点输出仍与正向结果不一致，并使整数结果遗漏 2",
+      "next_direction": "同时保持数值生成方式与端点契约；不是单一浮点容差问题",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "numeric_range.__init__",
+            "numeric_range._index_near",
+            "numeric_range._len",
+            "numeric_range.__reversed__",
+            "numeric_range.__getitem__"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "more_itertools/more.py",
+              "symbols": [
+                {
+                  "name": "__reversed__",
+                  "line": 2452,
+                  "end_line": 2459
+                }
+              ],
+              "candidate_sha256": "4966086ea1fa07c55e857b99aad7ab276dd3c83e069cc5ac0602fd341539e305"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-reversed-values\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "f6fce5021ce35509ccaaeac67564cfe943baf4b788ff88adf217ab6b72baf9a4",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-reversed-values\\public\\test_admission.py\", line 9, in test_public_defect\n    self.assertEqual(list(reversed(r)), list(r)[::-1])\nAssertionError: Lists differ: [0.70[65 chars], 0.20000000000000007, 0.09999999999999998, 0.[19 chars]9998] != [0.70[65 chars], 0.2, 0.1, 0.0]\n\nFirst differing element 5:\n0.20000000000000007\n0.2\n\nFirst list contains 1 additional elements.\nFirst extra element 8:\n-0.09999999999999998\n\n  [0.7000000000000001,\n   0.6000000000000001,\n   0.5,\n   0.4,\n   0.30000000000000004,\n-  0.20000000000000007,\n-  0.09999999999999998,\n-  0.0,\n?    ^\n\n+  0.2,\n?    ^\n\n-  -0.09999999999999998]\n+  0.1,\n+  0.0]\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "numeric_range.__init__",
+            "numeric_range._index_near",
+            "numeric_range._len",
+            "numeric_range.__reversed__",
+            "numeric_range.__getitem__"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "more_itertools/more.py",
+              "symbols": [
+                {
+                  "name": "__reversed__",
+                  "line": 2452,
+                  "end_line": 2459
+                }
+              ],
+              "candidate_sha256": "1462a82dad6347766443b0201ad8891243714eb5035287a787af737a8ac0cd61"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-reversed-values\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "59dfa34a035595a8199a7ec1bdb532ca2504aad1cbcd9cb4d60237c8ee02d99b",
+              "owned_frames": [],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL\n\n======================================================================\nFAIL: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-reversed-values\\public\\test_admission.py\", line 9, in test_public_defect\n    self.assertEqual(list(reversed(r)), list(r)[::-1])\nAssertionError: Lists differ: [0.70[45 chars] 0.30000000000000004, 0.20000000000000007, 0.09999999999999998] != [0.70[45 chars] 0.30000000000000004, 0.2, 0.1, 0.0]\n\nFirst differing element 5:\n0.20000000000000007\n0.2\n\nSecond list contains 1 additional elements.\nFirst extra element 7:\n0.0\n\n  [0.7000000000000001,\n   0.6000000000000001,\n   0.5,\n   0.4,\n   0.30000000000000004,\n-  0.20000000000000007,\n-  0.09999999999999998]\n+  0.2,\n+  0.1,\n+  0.0]\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n"
+            },
+            {
+              "label": "public",
+              "group": "Preserve",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-reversed-values\\full\\corrected-public\\Preserve.stderr.txt",
+              "sha256": "36cf795bbab8dd35a877ae9762d51dfc50e7cd855695e1f2300d403b3f338c07",
+              "owned_frames": [],
+              "tail": "test_public_normal_behavior (test_admission.Preserve.test_public_normal_behavior) ... FAIL\n\n======================================================================\nFAIL: test_public_normal_behavior (test_admission.Preserve.test_public_normal_behavior)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-reversed-values\\public\\test_admission.py\", line 15, in test_public_normal_behavior\n    self.assertEqual(list(reversed(numeric_range(2, 6))), [5, 4, 3, 2])\nAssertionError: Lists differ: [5, 4, 3] != [5, 4, 3, 2]\n\nSecond list contains 1 additional elements.\nFirst extra element 3:\n2\n\n- [5, 4, 3]\n+ [5, 4, 3, 2]\n?         +++\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "more-broadcast-single-use",
+      "historical_split": "heldout",
+      "status": "failed_public_validation",
+      "signature": "target_and_preserve_fail",
+      "original_restored": true,
+      "observations_and_interpretation": "修正后 is_scalar 仍调用 iter(obj)，随后又 iter(obj)，仍 opened twice；变量改成 iterators 后，后文仍引用 iterables，正常行为报 NameError",
+      "next_direction": "一次创建并复用 iterator，检查重命名的所有使用点；整个函数已展示",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "zip_broadcast",
+            "unique_in_window",
+            "constrained_batches",
+            "with_iter",
+            "filter_except"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "more_itertools/more.py",
+              "symbols": [
+                {
+                  "name": "zip_broadcast",
+                  "line": 4652,
+                  "end_line": 4704
+                }
+              ],
+              "candidate_sha256": "75f49af9b41056e310dff87fb0477a8c8251b742198702d65dee5476c7b441e7"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-broadcast-single-use\\full\\initial-public\\Reproduce.stderr.txt",
+              "sha256": "f581b20ff758d4c438526df8e1fb8faa86118d07729e1daf0758d6f83ff8345f",
+              "owned_frames": [
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4701,
+                  "function": "zip_broadcast",
+                  "statement": "for item in zip(*iterables, strict=strict):",
+                  "candidate_sha256": "75f49af9b41056e310dff87fb0477a8c8251b742198702d65dee5476c7b441e7",
+                  "line_overlaps_change": false
+                }
+              ],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... ERROR\n\n======================================================================\nERROR: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-broadcast-single-use\\public\\test_admission.py\", line 16, in test_public_defect\n    self.assertEqual(list(zip_broadcast(s, 7)), [(2, 7), (3, 7)])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-broadcast-single-use\\full\\workspace\\more_itertools\\more.py\", line 4701, in zip_broadcast\n    for item in zip(*iterables, strict=strict):\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-broadcast-single-use\\public\\test_admission.py\", line 10, in __iter__\n    raise RuntimeError('opened twice')\nRuntimeError: opened twice\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n"
+            }
+          ]
+        },
+        {
+          "stage": "feedback",
+          "status": "completed",
+          "error": null,
+          "evidence_symbols": [
+            "zip_broadcast",
+            "unique_in_window",
+            "constrained_batches",
+            "with_iter",
+            "filter_except"
+          ],
+          "anchors": [
+            {
+              "file": "more_itertools/more.py",
+              "input_occurrences": 1,
+              "supplied_in_fragment": true
+            }
+          ],
+          "changed_files": [
+            {
+              "file": "more_itertools/more.py",
+              "symbols": [
+                {
+                  "name": "zip_broadcast",
+                  "line": 4652,
+                  "end_line": 4704
+                }
+              ],
+              "candidate_sha256": "8aa58ad99120b7754c48f4d18329175d552c971109531018031b3f1814884acc"
+            }
+          ],
+          "public_failure_logs": [
+            {
+              "label": "public",
+              "group": "Reproduce",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-broadcast-single-use\\full\\corrected-public\\Reproduce.stderr.txt",
+              "sha256": "5e28948a597b7ff6c6d64460e880d232b03735eaf92979d7ebc9611335982f18",
+              "owned_frames": [
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4694,
+                  "function": "zip_broadcast",
+                  "statement": "iterators.append(iter(obj))",
+                  "candidate_sha256": "8aa58ad99120b7754c48f4d18329175d552c971109531018031b3f1814884acc",
+                  "line_overlaps_change": true
+                }
+              ],
+              "tail": "test_public_defect (test_admission.Reproduce.test_public_defect) ... ERROR\n\n======================================================================\nERROR: test_public_defect (test_admission.Reproduce.test_public_defect)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-broadcast-single-use\\public\\test_admission.py\", line 16, in test_public_defect\n    self.assertEqual(list(zip_broadcast(s, 7)), [(2, 7), (3, 7)])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-broadcast-single-use\\full\\workspace\\more_itertools\\more.py\", line 4694, in zip_broadcast\n    iterators.append(iter(obj))\n                     ^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-broadcast-single-use\\public\\test_admission.py\", line 10, in __iter__\n    raise RuntimeError('opened twice')\nRuntimeError: opened twice\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n"
+            },
+            {
+              "label": "public",
+              "group": "Preserve",
+              "path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-broadcast-single-use\\full\\corrected-public\\Preserve.stderr.txt",
+              "sha256": "6d5b2c12911130618071e506765a8d1e4d8925ac45de441278053e9c9f2e9633",
+              "owned_frames": [
+                {
+                  "file": "more_itertools/more.py",
+                  "line": 4697,
+                  "function": "zip_broadcast",
+                  "statement": "if not iterables:",
+                  "candidate_sha256": "8aa58ad99120b7754c48f4d18329175d552c971109531018031b3f1814884acc",
+                  "line_overlaps_change": false
+                }
+              ],
+              "tail": "test_public_normal_behavior (test_admission.Preserve.test_public_normal_behavior) ... ERROR\n\n======================================================================\nERROR: test_public_normal_behavior (test_admission.Preserve.test_public_normal_behavior)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\more-broadcast-single-use\\public\\test_admission.py\", line 21, in test_public_normal_behavior\n    self.assertEqual(list(zip_broadcast([2, 3], [8, 9])), [(2, 8), (3, 9)])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\runs\\more-broadcast-single-use\\full\\workspace\\more_itertools\\more.py\", line 4697, in zip_broadcast\n    if not iterables:\n           ^^^^^^^^^\nNameError: name 'iterables' is not defined\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-backoff-zero",
+      "historical_split": "heldout",
+      "status": "output_truncated",
+      "signature": "initial_output_truncated",
+      "original_restored": true,
+      "observations_and_interpretation": "首轮 finish_reason=length、输出 2048 Token，被拒绝，没有可验收候选",
+      "next_direction": "单独处理冗长补丁输出；尚不能据截断回答评价修复语义",
+      "stages": [
+        {
+          "stage": "initial",
+          "status": "output_truncated",
+          "error": "InvalidCompletion: output_truncated",
+          "evidence_symbols": [
+            "backoff",
+            "backoff_iter",
+            "xfrange",
+            "frange",
+            "IndexedSet.iter_slice"
+          ],
+          "anchors": [],
+          "changed_files": [],
+          "public_failure_logs": []
+        }
+      ]
+    }
+  ],
+  "complete_corrections": 12,
+  "corrections_without_owned_public_frames": 11,
+  "validation": {
+    "focused_tests": 29,
+    "ruff": "passed",
+    "full_suite_rerun": false,
+    "offline_repeat_identical": true
+  }
+}
