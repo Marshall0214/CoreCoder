@@ -1,0 +1,2064 @@
+{
+  "complete": true,
+  "source": ".tmp\\real-defects\\body-block-v1-pilot",
+  "protocol": {
+    "name": "body-block-v1",
+    "input_hashes": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\manifest.json": "c91bb8d811cd4d0ded582b2866e53db0b465a3ce80f8a69df0e8c638ef281607",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\experiment.json": "c6474abd34f0013c4f1b59890a9af00709864d7f88681016a1417d09b387a6a6",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\body_block_compare_v1.py": "3054a53a16ce1dddf7997c0d455e141b6f13ee30bbf5016101f853078378d71f",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\frozen_feedback_v1.py": "36778a7431bfa55bef9cfc42beff93ba81d0b4ab884e2b63ef0eff907f14558f",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\body_block_edit_v1.py": "8f351dabe3a8e902bf7542dc4bdb0ae8090dbb640aed850a8866d11d87d1157f",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\provider_compare_worker_v1.py": "5673402e02e11f122d3bb67e2a3fada04a532f00745c411bc2eb7171758a18cb",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\function_replace_v2.py": "e3e60be2ebe63cc9521cd158a67ce8e78eb0cd77893c8db144f0d8b1fdd3705a",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\function_replace_v1.py": "05e54ec6315af0eb4bafcc478956c1325e039272f3097495e7887590c311da68"
+    },
+    "tasks": [
+      "click-usage-empty",
+      "click-resource-exception",
+      "more-predicate-sentinel",
+      "itsdangerous-none-salt",
+      "click-style-color-validation"
+    ],
+    "policies": [
+      "current",
+      "body-block"
+    ],
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "provider": {
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "reasoning_effort": "none"
+    },
+    "selection": "3 known development failures + 2 known successes; not a full-suite or blind result",
+    "change": "Feedback edit protocol only: server-resolved executable body IDs, preserved signatures/decorators/docstrings; unchanged first request",
+    "unchanged": "Identical first prompt; same feedback construction on each model own candidate, max 2 calls, 15000 tokens, 2048 output tokens, 600s, dual validation and rollback",
+    "limits": "Known development tasks, one run; body-only edits cannot change signatures/docstrings; system schema and small block catalog change with protocol",
+    "order": "Alternating arm order; fresh independent model requests"
+  },
+  "summary": {
+    "current": {
+      "tasks": 5,
+      "passed": 2,
+      "controls_passed": 5,
+      "calls": 9,
+      "tokens": 30385,
+      "missing_worker_results": 0,
+      "worker_seconds": 171.7051
+    },
+    "body-block": {
+      "tasks": 5,
+      "passed": 1,
+      "controls_passed": 5,
+      "calls": 9,
+      "tokens": 29402,
+      "missing_worker_results": 0,
+      "worker_seconds": 135.5302
+    }
+  },
+  "phase_metrics": {
+    "current": {
+      "feedback_attempts": 4,
+      "feedback_applied": 3,
+      "output_truncated": 1,
+      "prompt_tokens": 24146,
+      "completion_tokens": 6239
+    },
+    "body-block": {
+      "feedback_attempts": 4,
+      "feedback_applied": 3,
+      "output_truncated": 0,
+      "prompt_tokens": 24578,
+      "completion_tokens": 4824
+    }
+  },
+  "offline": {
+    "model_calls": 0,
+    "source": ".tmp\\real-defects\\predicate-dependency-v1-pilot\\more-predicate-sentinel\\repeat-01\\current\\provider-call-02\\response.txt",
+    "source_hash": "100f8c9a987ed89b99777ad3bfe035b228483a64d0393fb14b7742c62389d874",
+    "scope": "Only the complete first edit recoverable from a truncated response; no missing code inferred or applied",
+    "original_wire_chars": 3190,
+    "body_wire_chars": 299,
+    "reduction_percent": 90.6,
+    "lowered_ast_equal": true
+  },
+  "audit": {
+    "initial_requests_equal": 5,
+    "initial_answers_equal": 5,
+    "frozen_sources_intact": true
+  },
+  "decision": "output_complete_but_no_net_repair_gain_do_not_adopt",
+  "runs": [
+    {
+      "task_id": "click-usage-empty",
+      "policy": "current",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "1ec6b58977de52bb6481a8be4e6b4df66d2974b2c9b1b9c0ae475c3831c23dff",
+        "edited_files": [
+          "src/click/formatting.py"
+        ]
+      },
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "ef56af1e4887fa709bd34b6ff403cdb389b4d367102b368f568654ff2aad50c7",
+        "edited_files": [
+          "src/click/formatting.py"
+        ]
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.14,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1408,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1373,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1377,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1375,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1366,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1336,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1341,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5525,
+        "completion_tokens": 1191,
+        "known_prompt_tokens": 5525,
+        "known_completion_tokens": 1191,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6716,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "90f93ea2bc6bff096089c29492d04315d3efa3f75bba5f6ff9a2f46c286d8f9e",
+          "prompt_hash": "1ec6b58977de52bb6481a8be4e6b4df66d2974b2c9b1b9c0ae475c3831c23dff",
+          "response_received": true,
+          "seconds": 22.6671,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2494,
+          "completion_tokens": 738,
+          "total_tokens": 3232,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "6f8834e21e05501ba7c2494bc7e8d21c86da775a537cb76d385c99e1682d6e87",
+          "prompt_hash": "ef56af1e4887fa709bd34b6ff403cdb389b4d367102b368f568654ff2aad50c7",
+          "response_received": true,
+          "seconds": 11.712,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3031,
+          "completion_tokens": 453,
+          "total_tokens": 3484,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1484,
+            "tests_run": 2,
+            "failures": 5,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1483,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": false,
+      "original_restored": true
+    },
+    {
+      "task_id": "click-resource-exception",
+      "policy": "current",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "96b142bf3465e4a9d9b7be5751cd66fb049eedf873076bb275a386457d27ba68",
+        "edited_files": [
+          "src/click/core.py"
+        ]
+      },
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "86e3e8440a99834e8540f0e1bcd56e795118c704fd358438b062b424f2e9ed8f",
+        "edited_files": [
+          "src/click/core.py"
+        ]
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1322,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1242,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1269,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1292,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1239,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1278,
+            "tests_run": 4,
+            "failures": 3,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1253,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.116,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 4292,
+        "completion_tokens": 978,
+        "known_prompt_tokens": 4292,
+        "known_completion_tokens": 978,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 5270,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "ea01a7ce96c82b1ced5435a9d3fce2b81f4490622d0526aa27eb4ba395192c77",
+          "prompt_hash": "96b142bf3465e4a9d9b7be5751cd66fb049eedf873076bb275a386457d27ba68",
+          "response_received": true,
+          "seconds": 10.7932,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 1717,
+          "completion_tokens": 455,
+          "total_tokens": 2172,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "c434699877b99ae9bfedc23863796437a8dff05da66ba8ed4f6077e4b291391e",
+          "prompt_hash": "86e3e8440a99834e8540f0e1bcd56e795118c704fd358438b062b424f2e9ed8f",
+          "response_received": true,
+          "seconds": 13.1666,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2575,
+          "completion_tokens": 523,
+          "total_tokens": 3098,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1267,
+            "tests_run": 2,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1255,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": false,
+      "original_restored": true
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "current",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "842b6fbad92381e5cb76aa0e507188b350a2b3d38fb9edfec943432026029094",
+        "edited_files": [
+          "more_itertools/more.py"
+        ]
+      },
+      "correction": {
+        "status": "output_truncated",
+        "prompt_hash": "672dc463104b8cd3ac1aa2401b43ccfa168a2aab6fa2278266ef25e7a13619dc",
+        "error": "InvalidCompletion: output_truncated"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0953,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0971,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0941,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0967,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": null,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6399,
+        "completion_tokens": 2185,
+        "known_prompt_tokens": 6399,
+        "known_completion_tokens": 2185,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 8584,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "802093e98da7264dead68d54e0eaa1b78dc5aabe1668ce51697b98862081e5dd",
+          "prompt_hash": "842b6fbad92381e5cb76aa0e507188b350a2b3d38fb9edfec943432026029094",
+          "response_received": true,
+          "seconds": 4.9715,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2922,
+          "completion_tokens": 137,
+          "total_tokens": 3059,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "472505f64226ba11e5f92f58d650ab822c581baa0d22b7aebb09039fbe07d65b",
+          "prompt_hash": "672dc463104b8cd3ac1aa2401b43ccfa168a2aab6fa2278266ef25e7a13619dc",
+          "response_received": true,
+          "seconds": 45.9725,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "length",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3477,
+          "completion_tokens": 2048,
+          "total_tokens": 5525,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0976,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0934,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": false,
+      "original_restored": true
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "current",
+      "accepted": true,
+      "status": "completed",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "f35f926a3890b4fd7a3059a69b9ee918ef04021891f92309540d742a87b4699a",
+        "edited_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ]
+      },
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "6e5e3b107672567c51ebfac2aca94b235dddb92be05cd6b85cef739865780a9e",
+        "edited_files": [
+          "src/itsdangerous/serializer.py"
+        ]
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0963,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1016,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1031,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0931,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0922,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0944,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1047,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0955,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5301,
+        "completion_tokens": 1143,
+        "known_prompt_tokens": 5301,
+        "known_completion_tokens": 1143,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6444,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "c27f1ef32f95b2fd3508eefe286311d4f891639bb734cd91adc4f5bfa105b6ff",
+          "prompt_hash": "f35f926a3890b4fd7a3059a69b9ee918ef04021891f92309540d742a87b4699a",
+          "response_received": true,
+          "seconds": 18.9707,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2129,
+          "completion_tokens": 848,
+          "total_tokens": 2977,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "f40168b21b2e7648349bae2110bf43da1d3dd86632782e06c879a2f2281f4db4",
+          "prompt_hash": "6e5e3b107672567c51ebfac2aca94b235dddb92be05cd6b85cef739865780a9e",
+          "response_received": true,
+          "seconds": 8.3007,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3172,
+          "completion_tokens": 295,
+          "total_tokens": 3467,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1011,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0963,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": true,
+      "original_restored": false
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "current",
+      "accepted": true,
+      "status": "completed",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "b2c76864c8d750910a37be2c5a9a5f288ac2f17786911a03fc5fdd6e2da3faec",
+        "edited_files": [
+          "src/click/termui.py"
+        ]
+      },
+      "correction": null,
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1265,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1338,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1297,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1245,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": null,
+      "metrics": {
+        "llm_calls": 1,
+        "prompt_tokens": 2629,
+        "completion_tokens": 742,
+        "known_prompt_tokens": 2629,
+        "known_completion_tokens": 742,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 3371,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "3e07a49570e5aab5f9926bbe9b570b9d3fcb3932761f41b0d356a1cf8d064551",
+          "prompt_hash": "b2c76864c8d750910a37be2c5a9a5f288ac2f17786911a03fc5fdd6e2da3faec",
+          "response_received": true,
+          "seconds": 17.7288,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2629,
+          "completion_tokens": 742,
+          "total_tokens": 3371,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/termui.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1275,
+            "tests_run": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1253,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": true,
+      "original_restored": false
+    },
+    {
+      "task_id": "click-usage-empty",
+      "policy": "body-block",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "1ec6b58977de52bb6481a8be4e6b4df66d2974b2c9b1b9c0ae475c3831c23dff",
+        "edited_files": [
+          "src/click/formatting.py"
+        ]
+      },
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "18c430cb526d5021b4190e5a0ccb59915de34ac3f4895c654b103eeb25601691",
+        "edited_files": [
+          "src/click/formatting.py"
+        ]
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1416,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1407,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1437,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1412,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1439,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1465,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.142,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1511,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5647,
+        "completion_tokens": 1040,
+        "known_prompt_tokens": 5647,
+        "known_completion_tokens": 1040,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 6687,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "90f93ea2bc6bff096089c29492d04315d3efa3f75bba5f6ff9a2f46c286d8f9e",
+          "prompt_hash": "1ec6b58977de52bb6481a8be4e6b4df66d2974b2c9b1b9c0ae475c3831c23dff",
+          "response_received": true,
+          "seconds": 16.9275,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2494,
+          "completion_tokens": 738,
+          "total_tokens": 3232,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "0df731c688b560a76f386542c8e82604edc6e6c32e52d1bbb445ff5dec882761",
+          "prompt_hash": "18c430cb526d5021b4190e5a0ccb59915de34ac3f4895c654b103eeb25601691",
+          "response_received": true,
+          "seconds": 8.5212,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3153,
+          "completion_tokens": 302,
+          "total_tokens": 3455,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1494,
+            "tests_run": 2,
+            "failures": 5,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1561,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": false,
+      "original_restored": true
+    },
+    {
+      "task_id": "click-resource-exception",
+      "policy": "body-block",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "96b142bf3465e4a9d9b7be5751cd66fb049eedf873076bb275a386457d27ba68",
+        "edited_files": [
+          "src/click/core.py"
+        ]
+      },
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "dbdd4ceff705ac6edd8f3342a734acc5b16c10c51b064136c71a114f6afd2c6a",
+        "edited_files": []
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1217,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1199,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1275,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1245,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1267,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1239,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1296,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1322,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 4401,
+        "completion_tokens": 547,
+        "known_prompt_tokens": 4401,
+        "known_completion_tokens": 547,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 4948,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "ea01a7ce96c82b1ced5435a9d3fce2b81f4490622d0526aa27eb4ba395192c77",
+          "prompt_hash": "96b142bf3465e4a9d9b7be5751cd66fb049eedf873076bb275a386457d27ba68",
+          "response_received": true,
+          "seconds": 11.5498,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 1717,
+          "completion_tokens": 455,
+          "total_tokens": 2172,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "e4d50fff64a94a0c28ab30a0963283aa7dca126ef9c555d9bb2fff76b9002d04",
+          "prompt_hash": "dbdd4ceff705ac6edd8f3342a734acc5b16c10c51b064136c71a114f6afd2c6a",
+          "response_received": true,
+          "seconds": 3.7158,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2684,
+          "completion_tokens": 92,
+          "total_tokens": 2776,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.129,
+            "tests_run": 2,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1267,
+            "tests_run": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": false,
+      "original_restored": true
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "body-block",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "842b6fbad92381e5cb76aa0e507188b350a2b3d38fb9edfec943432026029094",
+        "edited_files": [
+          "more_itertools/more.py"
+        ]
+      },
+      "correction": {
+        "status": "completed",
+        "prompt_hash": "d038216df45a5493ab35fa2f82e014e3a2219029a3732b5bd1b094108d2d833d",
+        "edited_files": [
+          "more_itertools/more.py"
+        ]
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0995,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0976,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.102,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0987,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1003,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0967,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0975,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0994,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 6468,
+        "completion_tokens": 554,
+        "known_prompt_tokens": 6468,
+        "known_completion_tokens": 554,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7022,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "802093e98da7264dead68d54e0eaa1b78dc5aabe1668ce51697b98862081e5dd",
+          "prompt_hash": "842b6fbad92381e5cb76aa0e507188b350a2b3d38fb9edfec943432026029094",
+          "response_received": true,
+          "seconds": 3.6949,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2922,
+          "completion_tokens": 137,
+          "total_tokens": 3059,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "3140789655fdc5cf457e394e6e6f2013987af6dd8fb0dc8b63e57347dc2ec827",
+          "prompt_hash": "d038216df45a5493ab35fa2f82e014e3a2219029a3732b5bd1b094108d2d833d",
+          "response_received": true,
+          "seconds": 11.0849,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3546,
+          "completion_tokens": 417,
+          "total_tokens": 3963,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.0929,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.098,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": false,
+      "original_restored": true
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "body-block",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "f35f926a3890b4fd7a3059a69b9ee918ef04021891f92309540d742a87b4699a",
+        "edited_files": [
+          "src/itsdangerous/serializer.py",
+          "src/itsdangerous/signer.py"
+        ]
+      },
+      "correction": {
+        "status": "invalid_patch",
+        "prompt_hash": "9eeecc7930cb80792ef1123d773c4c3565046f22b86a8f52b2b39a22b7179461",
+        "error": "ValueError: Do not repeat the function signature"
+      },
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1026,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1042,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.096,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.0947,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": null,
+      "metrics": {
+        "llm_calls": 2,
+        "prompt_tokens": 5433,
+        "completion_tokens": 1941,
+        "known_prompt_tokens": 5433,
+        "known_completion_tokens": 1941,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 7374,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "c27f1ef32f95b2fd3508eefe286311d4f891639bb734cd91adc4f5bfa105b6ff",
+          "prompt_hash": "f35f926a3890b4fd7a3059a69b9ee918ef04021891f92309540d742a87b4699a",
+          "response_received": true,
+          "seconds": 20.002,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2129,
+          "completion_tokens": 848,
+          "total_tokens": 2977,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        },
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "574b4db82427908a426871cae997a888dacf6f57d8e6affbcb4e301fc0aecca7",
+          "prompt_hash": "9eeecc7930cb80792ef1123d773c4c3565046f22b86a8f52b2b39a22b7179461",
+          "response_received": true,
+          "seconds": 25.2279,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 3304,
+          "completion_tokens": 1093,
+          "total_tokens": 4397,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1011,
+            "tests_run": 2,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.096,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": false,
+      "original_restored": true
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "policy": "body-block",
+      "accepted": true,
+      "status": "completed",
+      "initial": {
+        "status": "completed",
+        "prompt_hash": "b2c76864c8d750910a37be2c5a9a5f288ac2f17786911a03fc5fdd6e2da3faec",
+        "edited_files": [
+          "src/click/termui.py"
+        ]
+      },
+      "correction": null,
+      "initial_checks": {
+        "public": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.125,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1369,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "frozen": {
+          "Reproduce": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1257,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Preserve": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1287,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        }
+      },
+      "correction_checks": null,
+      "metrics": {
+        "llm_calls": 1,
+        "prompt_tokens": 2629,
+        "completion_tokens": 742,
+        "known_prompt_tokens": 2629,
+        "known_completion_tokens": 742,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 3371,
+        "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown"
+      },
+      "provider_calls": [
+        {
+          "provider": "qwen",
+          "model_requested": "qwen3.5:27b",
+          "request_sha256": "3e07a49570e5aab5f9926bbe9b570b9d3fcb3932761f41b0d356a1cf8d064551",
+          "prompt_hash": "b2c76864c8d750910a37be2c5a9a5f288ac2f17786911a03fc5fdd6e2da3faec",
+          "response_received": true,
+          "seconds": 16.6598,
+          "model_returned": "qwen3.5:27b",
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_ollama",
+          "reasoning_present": false,
+          "reasoning_tokens": null,
+          "prompt_tokens": 2629,
+          "completion_tokens": 742,
+          "total_tokens": 3371,
+          "cache_hit_tokens": null,
+          "cache_miss_tokens": null
+        }
+      ],
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/termui.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1276,
+            "tests_run": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1248,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "published": true,
+      "original_restored": false
+    }
+  ]
+}
