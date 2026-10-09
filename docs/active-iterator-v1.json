@@ -1,0 +1,1467 @@
+{
+  "complete": true,
+  "source": ".tmp\\real-defects\\active-iterator-v1-pilot",
+  "protocol": {
+    "name": "active-iterator-v1",
+    "input_hashes": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\manifest.json": "c91bb8d811cd4d0ded582b2866e53db0b465a3ce80f8a69df0e8c638ef281607",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\experiment.json": "c6474abd34f0013c4f1b59890a9af00709864d7f88681016a1417d09b387a6a6",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\active_iterator_compare_v1.py": "914181df54805f6041c33bb0d5ff74469b6fa54e9e9c9b5f94420685bc5d2a35",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\frozen_feedback_v1.py": "36778a7431bfa55bef9cfc42beff93ba81d0b4ab884e2b63ef0eff907f14558f",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\active_iterator_repair_v1.py": "982445524b6fed7206986a306dc7f820077375a1509515a4ee02bfc37c84a243",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\active_iterator_probe_child_v1.py": "dd019caa4eba0000270ff8ec1e478dec5d91d1aee876c23f140da26a5ec4196c",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\system_comparison_worker_v1.py": "068533667d598d0660b81e62ab1c2d8c2baaab29be09184b11805c3e7b50f027"
+    },
+    "tasks": [
+      "more-predicate-sentinel",
+      "more-windowed-zero",
+      "more-ichunked-zero"
+    ],
+    "policies": [
+      "current",
+      "active"
+    ],
+    "config": {
+      "mode": "pipeline",
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "max_rounds": 12,
+      "token_budget": 15000,
+      "max_output_tokens": 2048,
+      "context_tokens": 16000,
+      "wall_timeout": 600,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "fixed",
+      "read_policy": "full"
+    },
+    "provider": {
+      "model": "qwen3.5:27b",
+      "base_url": "http://localhost:11434/v1",
+      "reasoning_effort": "none"
+    },
+    "selection": "One persistent predicate failure and two known same-repository regression successes; three known development tasks",
+    "change": "Allocate two calls to probe/generate rather than generate/correct; model selects bounded inputs; up to two tool executions",
+    "unchanged": "Same description/source fragments/model/temperature=0, max 2 LLM calls, 15000 tokens, 2048 output, 600s, dual validation, old/new patch format and rollback",
+    "limits": "First inputs differ; active arm has one patch-generation opportunity vs up to two, and receives original-source observations rather than candidate failures; not tool-only causal isolation or general code execution",
+    "order": "Alternating arm order; fresh independent model requests"
+  },
+  "summary": {
+    "current": {
+      "tasks": 3,
+      "passed": 2,
+      "controls_passed": 3,
+      "calls": 4,
+      "tokens": 14482,
+      "missing_worker_results": 0,
+      "worker_seconds": 103.8637
+    },
+    "active": {
+      "tasks": 3,
+      "passed": 2,
+      "controls_passed": 3,
+      "calls": 6,
+      "tokens": 20944,
+      "missing_worker_results": 0,
+      "worker_seconds": 50.7855
+    }
+  },
+  "phase_metrics": {
+    "current": {
+      "prompt_tokens": 11450,
+      "completion_tokens": 3032,
+      "tool_executions": 0,
+      "usable_observations": 0,
+      "probe_seconds": 0,
+      "output_truncated": 1
+    },
+    "active": {
+      "prompt_tokens": 19533,
+      "completion_tokens": 1411,
+      "tool_executions": 3,
+      "usable_observations": 3,
+      "probe_seconds": 0.2731,
+      "output_truncated": 0
+    }
+  },
+  "audit": {
+    "frozen_sources_intact": true,
+    "observations_present_in_actual_model_requests": true
+  },
+  "decision": "same_success_more_calls_and_tokens_stop_no_default_adoption",
+  "runs": [
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "current",
+      "accepted": false,
+      "worker": {
+        "status": "failed_public_validation",
+        "feedback_attempts": 1,
+        "published": false,
+        "correction_retained": false,
+        "protocol": "frozen-feedback-v1",
+        "initial": {
+          "status": "completed",
+          "prompt_hash": "842b6fbad92381e5cb76aa0e507188b350a2b3d38fb9edfec943432026029094",
+          "edited_files": [
+            "more_itertools/more.py"
+          ]
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2922,
+          "completion_tokens": 137,
+          "known_prompt_tokens": 2922,
+          "known_completion_tokens": 137,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3059,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "initial_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1171,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 1,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1183,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1183,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 1,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1283,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "correction": {
+          "status": "output_truncated",
+          "prompt_hash": "29f12ac142e15101f3faaadfc21b7f5f856c82ec5e29fd8f17f439d9285087c9",
+          "error": "InvalidCompletion: output_truncated"
+        },
+        "final_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1171,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 1,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1183,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1183,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 1,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1283,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 6399,
+          "completion_tokens": 2185,
+          "known_prompt_tokens": 6399,
+          "known_completion_tokens": 2185,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 8584,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "final_source_hash": "20687a33e2a0c53469e3d893421d99fb4b2395d852d7274a6eb80945fc0efe98",
+        "original_restored": true,
+        "provider_calls": [
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 23.672,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "prompt_tokens": 2922,
+            "completion_tokens": 137,
+            "total_tokens": 3059,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          },
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 49.453,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "length",
+            "prompt_tokens": 3477,
+            "completion_tokens": 2048,
+            "total_tokens": 5525,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          }
+        ],
+        "seconds": 74.937
+      },
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.111,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1148,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    },
+    {
+      "task_id": "more-windowed-zero",
+      "policy": "current",
+      "accepted": true,
+      "worker": {
+        "status": "completed",
+        "feedback_attempts": 0,
+        "published": true,
+        "correction_retained": false,
+        "protocol": "frozen-feedback-v1",
+        "initial": {
+          "status": "completed",
+          "prompt_hash": "69ea25be9ed2a5041c010b07734d36030f13f156eeed1632ea79d0c865a79bf6",
+          "edited_files": [
+            "more_itertools/more.py"
+          ]
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2475,
+          "completion_tokens": 143,
+          "known_prompt_tokens": 2475,
+          "known_completion_tokens": 143,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2618,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "initial_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1111,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1164,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1152,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1092,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "feedback_skipped": "checks_passed",
+        "final_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1111,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1164,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1152,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1092,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2475,
+          "completion_tokens": 143,
+          "known_prompt_tokens": 2475,
+          "known_completion_tokens": 143,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 2618,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "final_source_hash": "350929ff98b6b019fc814a79d7bb949cffb10453e3f080bd603a21033e0c1d33",
+        "original_restored": false,
+        "provider_calls": [
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 5.125,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "prompt_tokens": 2475,
+            "completion_tokens": 143,
+            "total_tokens": 2618,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          }
+        ],
+        "seconds": 6.281
+      },
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1134,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1077,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    },
+    {
+      "task_id": "more-ichunked-zero",
+      "policy": "current",
+      "accepted": true,
+      "worker": {
+        "status": "completed",
+        "feedback_attempts": 0,
+        "published": true,
+        "correction_retained": false,
+        "protocol": "frozen-feedback-v1",
+        "initial": {
+          "status": "completed",
+          "prompt_hash": "59c0a6814f50c5d1bbf74c9d07b9c0bc66bc4e98e103e6c682cbb7c036e84b43",
+          "edited_files": [
+            "more_itertools/more.py"
+          ]
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2576,
+          "completion_tokens": 704,
+          "known_prompt_tokens": 2576,
+          "known_completion_tokens": 704,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3280,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "initial_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1172,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1142,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1166,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.124,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "feedback_skipped": "checks_passed",
+        "final_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1172,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1142,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1166,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.124,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2576,
+          "completion_tokens": 704,
+          "known_prompt_tokens": 2576,
+          "known_completion_tokens": 704,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 3280,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "final_source_hash": "9a29d83d1ba06082ab053908790b285138bf17b905755335becef04dcfcb415a",
+        "original_restored": false,
+        "provider_calls": [
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 18.125,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "prompt_tokens": 2576,
+            "completion_tokens": 704,
+            "total_tokens": 3280,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          }
+        ],
+        "seconds": 19.328
+      },
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1238,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1175,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "active",
+      "accepted": false,
+      "worker": {
+        "status": "failed_public_validation",
+        "published": false,
+        "protocol": "active-iterator-v1",
+        "diagnostics": [
+          {
+            "usable": true,
+            "process": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0814
+            },
+            "data": {
+              "status": "observed",
+              "cases": [
+                {
+                  "parameters": {
+                    "items": [
+                      0,
+                      1,
+                      2,
+                      3
+                    ],
+                    "method": "replace",
+                    "pred": "sum_equals",
+                    "substitutes": [
+                      99
+                    ],
+                    "target": 3,
+                    "window_size": 3
+                  },
+                  "iterator_reads": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "windows": [
+                    [
+                      0,
+                      1,
+                      2
+                    ],
+                    [
+                      1,
+                      2,
+                      3
+                    ],
+                    [
+                      2,
+                      3,
+                      {
+                        "type": "internal_marker"
+                      }
+                    ],
+                    [
+                      3,
+                      {
+                        "type": "internal_marker"
+                      },
+                      {
+                        "type": "internal_marker"
+                      }
+                    ]
+                  ],
+                  "predicate_calls": [
+                    [
+                      0,
+                      1,
+                      2
+                    ],
+                    [
+                      3,
+                      {
+                        "type": "internal_marker"
+                      },
+                      {
+                        "type": "internal_marker"
+                      }
+                    ]
+                  ],
+                  "truncated": false,
+                  "error_type": "TypeError",
+                  "error": "unsupported operand type(s) for +: 'int' and 'object'"
+                },
+                {
+                  "parameters": {
+                    "items": [
+                      0,
+                      1,
+                      2,
+                      3
+                    ],
+                    "method": "locate",
+                    "pred": "sum_equals",
+                    "target": 3,
+                    "window_size": 3
+                  },
+                  "iterator_reads": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "windows": [
+                    [
+                      0,
+                      1,
+                      2
+                    ],
+                    [
+                      1,
+                      2,
+                      3
+                    ]
+                  ],
+                  "predicate_calls": [
+                    [
+                      0,
+                      1,
+                      2
+                    ],
+                    [
+                      1,
+                      2,
+                      3
+                    ]
+                  ],
+                  "truncated": false,
+                  "result": [
+                    0
+                  ]
+                }
+              ],
+              "provenance": "Model-selected bounded inputs on buggy source; no reference patch or grading tests"
+            }
+          }
+        ],
+        "edited_files": [
+          "more_itertools/more.py"
+        ],
+        "final_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1122,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 1,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1067,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1121,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 1,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1203,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 7195,
+          "completion_tokens": 405,
+          "known_prompt_tokens": 7195,
+          "known_completion_tokens": 405,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 7600,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "original_restored": true,
+        "provider_calls": [
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 5.187,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "tool_calls",
+            "prompt_tokens": 3472,
+            "completion_tokens": 119,
+            "total_tokens": 3591,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          },
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 7.813,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "prompt_tokens": 3723,
+            "completion_tokens": 286,
+            "total_tokens": 4009,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          }
+        ],
+        "seconds": 14.453
+      },
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1201,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1093,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    },
+    {
+      "task_id": "more-windowed-zero",
+      "policy": "active",
+      "accepted": true,
+      "worker": {
+        "status": "completed",
+        "published": true,
+        "protocol": "active-iterator-v1",
+        "diagnostics": [
+          {
+            "usable": true,
+            "process": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.0987
+            },
+            "data": {
+              "status": "observed",
+              "cases": [
+                {
+                  "parameters": {
+                    "items": [
+                      1,
+                      2,
+                      3
+                    ],
+                    "method": "windowed",
+                    "n": 0
+                  },
+                  "iterator_reads": [],
+                  "windows": [
+                    []
+                  ],
+                  "predicate_calls": [],
+                  "truncated": false,
+                  "result": [
+                    []
+                  ]
+                },
+                {
+                  "parameters": {
+                    "items": [
+                      1,
+                      2,
+                      3
+                    ],
+                    "method": "windowed",
+                    "n": -1
+                  },
+                  "iterator_reads": [],
+                  "windows": [],
+                  "predicate_calls": [],
+                  "truncated": false,
+                  "error_type": "ValueError",
+                  "error": "n must be >= 0"
+                },
+                {
+                  "parameters": {
+                    "items": [],
+                    "method": "windowed",
+                    "n": 0
+                  },
+                  "iterator_reads": [],
+                  "windows": [
+                    []
+                  ],
+                  "predicate_calls": [],
+                  "truncated": false,
+                  "result": [
+                    []
+                  ]
+                },
+                {
+                  "parameters": {
+                    "items": [],
+                    "method": "windowed",
+                    "n": -1
+                  },
+                  "iterator_reads": [],
+                  "windows": [],
+                  "predicate_calls": [],
+                  "truncated": false,
+                  "error_type": "ValueError",
+                  "error": "n must be >= 0"
+                }
+              ],
+              "provenance": "Model-selected bounded inputs on buggy source; no reference patch or grading tests"
+            }
+          }
+        ],
+        "edited_files": [
+          "more_itertools/more.py"
+        ],
+        "final_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1154,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1162,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1103,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1154,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 6115,
+          "completion_tokens": 237,
+          "known_prompt_tokens": 6115,
+          "known_completion_tokens": 237,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 6352,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "original_restored": false,
+        "provider_calls": [
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 4.765,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "tool_calls",
+            "prompt_tokens": 3025,
+            "completion_tokens": 112,
+            "total_tokens": 3137,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          },
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 4.875,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "prompt_tokens": 3090,
+            "completion_tokens": 125,
+            "total_tokens": 3215,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          }
+        ],
+        "seconds": 10.86
+      },
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1142,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1189,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    },
+    {
+      "task_id": "more-ichunked-zero",
+      "policy": "active",
+      "accepted": true,
+      "worker": {
+        "status": "completed",
+        "published": true,
+        "protocol": "active-iterator-v1",
+        "diagnostics": [
+          {
+            "usable": true,
+            "process": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.093
+            },
+            "data": {
+              "status": "observed",
+              "cases": [
+                {
+                  "parameters": {
+                    "items": [
+                      1,
+                      2,
+                      3
+                    ],
+                    "method": "ichunked",
+                    "n": 0
+                  },
+                  "iterator_reads": [
+                    1
+                  ],
+                  "windows": [],
+                  "predicate_calls": [],
+                  "truncated": false,
+                  "error_type": "ValueError",
+                  "error": "Stop argument for islice() must be None or an integer: 0 <= x <= sys.maxsize."
+                },
+                {
+                  "parameters": {
+                    "items": [
+                      1,
+                      2,
+                      3
+                    ],
+                    "method": "ichunked",
+                    "n": -1
+                  },
+                  "iterator_reads": [
+                    1
+                  ],
+                  "windows": [],
+                  "predicate_calls": [],
+                  "truncated": false,
+                  "error_type": "ValueError",
+                  "error": "Indices for islice() must be None or an integer: 0 <= x <= sys.maxsize."
+                }
+              ],
+              "provenance": "Model-selected bounded inputs on buggy source; no reference patch or grading tests"
+            }
+          }
+        ],
+        "edited_files": [
+          "more_itertools/more.py"
+        ],
+        "final_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1021,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1089,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1042,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1071,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 6223,
+          "completion_tokens": 769,
+          "known_prompt_tokens": 6223,
+          "known_completion_tokens": 769,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 6992,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "original_restored": false,
+        "provider_calls": [
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 4.047,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "tool_calls",
+            "prompt_tokens": 3126,
+            "completion_tokens": 80,
+            "total_tokens": 3206,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          },
+          {
+            "response_received": true,
+            "model_requested": "qwen3.5:27b",
+            "seconds": 16.922,
+            "model_returned": "qwen3.5:27b",
+            "finish_reason": "stop",
+            "prompt_tokens": 3097,
+            "completion_tokens": 689,
+            "total_tokens": 3786,
+            "reasoning_present": false,
+            "reasoning_tokens": null
+          }
+        ],
+        "seconds": 22.172
+      },
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1063,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.108,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      }
+    }
+  ]
+}
