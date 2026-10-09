@@ -1,0 +1,55 @@
+{
+  "scope": "development",
+  "tasks": 30,
+  "baseline_passed": 20,
+  "candidate_passed": 19,
+  "gained": [
+    "click-usage-empty"
+  ],
+  "lost": [
+    "click-echo-empty-bytes",
+    "itsdangerous-none-salt"
+  ],
+  "statuses": {
+    "completed": 19,
+    "failed_public_validation": 10,
+    "invalid_patch": 1
+  },
+  "candidate_calls": 76,
+  "candidate_tokens": 186706,
+  "missing_usage_calls": 0,
+  "unavailable_metrics": 0,
+  "grouped": {
+    "repo": {
+      "mahmoud/boltons": {
+        "tasks": 3,
+        "baseline_passed": 3,
+        "candidate_passed": 3
+      },
+      "more-itertools/more-itertools": {
+        "tasks": 10,
+        "baseline_passed": 8,
+        "candidate_passed": 8
+      },
+      "pallets/click": {
+        "tasks": 10,
+        "baseline_passed": 3,
+        "candidate_passed": 3
+      },
+      "pallets/itsdangerous": {
+        "tasks": 3,
+        "baseline_passed": 3,
+        "candidate_passed": 2
+      },
+      "pytoolz/toolz": {
+        "tasks": 4,
+        "baseline_passed": 3,
+        "candidate_passed": 3
+      }
+    }
+  },
+  "full_pool_numeric_target_met": false,
+  "limits": "Known fixed task pool, one stochastic trial; sampled generation/output/interface changes; no blind/generalization claim",
+  "trial_sha256": "b72b634bba73fda9c95788302757803cd3bcbaca7c337833e71ce7acfcb5aa7d",
+  "trial_path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\selected-source-v1-development\\experiment.json"
+}

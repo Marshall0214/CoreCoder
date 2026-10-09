@@ -1,0 +1,62 @@
+{
+  "scope": "full",
+  "tasks": 50,
+  "baseline_passed": 32,
+  "candidate_passed": 33,
+  "gained": [
+    "boltons-backoff-zero",
+    "click-usage-empty",
+    "more-broadcast-single-use",
+    "more-falsy-exception",
+    "more-reversed-values",
+    "more-split-empty"
+  ],
+  "lost": [
+    "itsdangerous-none-salt",
+    "more-bucket-missing-key",
+    "more-combination-size",
+    "more-negative-range-slice",
+    "toolz-partition-length"
+  ],
+  "statuses": {
+    "completed": 33,
+    "failed_public_validation": 17
+  },
+  "candidate_calls": 70,
+  "candidate_tokens": 195101,
+  "missing_usage_calls": 0,
+  "unavailable_metrics": 0,
+  "grouped": {
+    "repo": {
+      "mahmoud/boltons": {
+        "tasks": 7,
+        "baseline_passed": 5,
+        "candidate_passed": 6
+      },
+      "more-itertools/more-itertools": {
+        "tasks": 24,
+        "baseline_passed": 16,
+        "candidate_passed": 17
+      },
+      "pallets/click": {
+        "tasks": 10,
+        "baseline_passed": 3,
+        "candidate_passed": 4
+      },
+      "pallets/itsdangerous": {
+        "tasks": 3,
+        "baseline_passed": 3,
+        "candidate_passed": 2
+      },
+      "pytoolz/toolz": {
+        "tasks": 6,
+        "baseline_passed": 5,
+        "candidate_passed": 4
+      }
+    }
+  },
+  "full_pool_numeric_target_met": false,
+  "limits": "Known fixed task pool, one stochastic trial; sampled generation/output/interface changes; no blind/generalization claim",
+  "trial_sha256": "f610cabe632aac3128e3771e3a57426bf6d58eff22eddea13106f4207fb555f0",
+  "trial_path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\deepseek-direct-v1-full\\experiment.json"
+}

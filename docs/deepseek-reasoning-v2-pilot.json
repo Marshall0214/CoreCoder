@@ -1,0 +1,653 @@
+{
+  "complete": true,
+  "runs": [
+    {
+      "task_id": "click-usage-empty",
+      "policy": "deepseek-low",
+      "accepted": true,
+      "worker": {
+        "status": "completed",
+        "feedback_attempts": 0,
+        "published": true,
+        "correction_retained": false,
+        "protocol": "frozen-feedback-v1",
+        "initial": {
+          "status": "completed",
+          "prompt_hash": "1ec6b58977de52bb6481a8be4e6b4df66d2974b2c9b1b9c0ae475c3831c23dff",
+          "edited_files": [
+            "src/click/formatting.py"
+          ]
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2514,
+          "completion_tokens": 6643,
+          "known_prompt_tokens": 2514,
+          "known_completion_tokens": 6643,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 9157,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "initial_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1375,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1403,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1426,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1359,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "feedback_skipped": "checks_passed",
+        "final_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1375,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1403,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1426,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1359,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2514,
+          "completion_tokens": 6643,
+          "known_prompt_tokens": 2514,
+          "known_completion_tokens": 6643,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 9157,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "final_source_hash": "e93678c92c30e1bd041a3ef8ca0774a2b6a0b96a9fe57f92462d81c1a720ebb0",
+        "original_restored": false,
+        "provider_calls": [
+          {
+            "response_received": true,
+            "effective_output_limit": 24576,
+            "prompt_hash": "1ec6b58977de52bb6481a8be4e6b4df66d2974b2c9b1b9c0ae475c3831c23dff",
+            "model_returned": "deepseek-flash",
+            "finish_reason": "stop",
+            "reasoning_present": true,
+            "reasoning_chars": 26035,
+            "reasoning_tokens": 6134,
+            "prompt_tokens": 2514,
+            "completion_tokens": 6643,
+            "total_tokens": 9157,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "tool_calls_present": false
+          }
+        ],
+        "seconds": 25.641
+      },
+      "verification": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/formatting.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1604,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1677,
+            "tests_run": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "public": {
+        "Reproduce": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.148,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1716,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "frozen": {
+        "Reproduce": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1711,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1441,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 26.5766
+      }
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "deepseek-low",
+      "accepted": false,
+      "worker": {
+        "status": "failed_public_validation",
+        "feedback_attempts": 1,
+        "published": false,
+        "correction_retained": false,
+        "protocol": "frozen-feedback-v1",
+        "initial": {
+          "status": "completed",
+          "prompt_hash": "842b6fbad92381e5cb76aa0e507188b350a2b3d38fb9edfec943432026029094",
+          "edited_files": [
+            "more_itertools/more.py"
+          ]
+        },
+        "initial_metrics": {
+          "llm_calls": 1,
+          "prompt_tokens": 2832,
+          "completion_tokens": 6213,
+          "known_prompt_tokens": 2832,
+          "known_completion_tokens": 6213,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 9045,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "initial_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1093,
+              "tests_run": 1,
+              "failures": 1,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1028,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1088,
+              "tests_run": 1,
+              "failures": 1,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1049,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "correction": {
+          "status": "budget_exceeded",
+          "prompt_hash": "7cd94f508af237d359bb0253cc51ef6566fe47290cb197e7fb483ae6febd2d94",
+          "error": "BudgetExceeded: Returned usage exceeds task budget; no further tool execution"
+        },
+        "final_checks": {
+          "public": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1093,
+              "tests_run": 1,
+              "failures": 1,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1028,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          },
+          "frozen": {
+            "Reproduce": {
+              "returncode": 1,
+              "timed_out": false,
+              "seconds": 0.1088,
+              "tests_run": 1,
+              "failures": 1,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": false,
+              "passed": false
+            },
+            "Preserve": {
+              "returncode": 0,
+              "timed_out": false,
+              "seconds": 0.1049,
+              "tests_run": 1,
+              "failures": 0,
+              "errors": 0,
+              "skipped": 0,
+              "expected_failures": 0,
+              "unexpected_successes": 0,
+              "successful": true,
+              "passed": true
+            }
+          }
+        },
+        "metrics": {
+          "llm_calls": 2,
+          "prompt_tokens": 6452,
+          "completion_tokens": 23735,
+          "known_prompt_tokens": 6452,
+          "known_completion_tokens": 23735,
+          "missing_usage_calls": 0,
+          "budget_accounted_tokens": 30187,
+          "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+          "cost_usd": null,
+          "failed_provider_attempt_usage": "unknown"
+        },
+        "final_source_hash": "20687a33e2a0c53469e3d893421d99fb4b2395d852d7274a6eb80945fc0efe98",
+        "original_restored": true,
+        "provider_calls": [
+          {
+            "response_received": true,
+            "effective_output_limit": 24576,
+            "prompt_hash": "842b6fbad92381e5cb76aa0e507188b350a2b3d38fb9edfec943432026029094",
+            "model_returned": "deepseek-flash",
+            "finish_reason": "stop",
+            "reasoning_present": true,
+            "reasoning_chars": 23567,
+            "reasoning_tokens": 5717,
+            "prompt_tokens": 2832,
+            "completion_tokens": 6213,
+            "total_tokens": 9045,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "tool_calls_present": false
+          },
+          {
+            "response_received": true,
+            "effective_output_limit": 17522,
+            "prompt_hash": "7cd94f508af237d359bb0253cc51ef6566fe47290cb197e7fb483ae6febd2d94",
+            "model_returned": "deepseek-flash",
+            "finish_reason": "length",
+            "reasoning_present": true,
+            "reasoning_chars": 64841,
+            "reasoning_tokens": 17522,
+            "prompt_tokens": 3620,
+            "completion_tokens": 17522,
+            "total_tokens": 21142,
+            "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+            "tool_calls_present": false
+          }
+        ],
+        "seconds": 92.312
+      },
+      "verification": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "seconds": 0.1356,
+            "tests_run": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": false,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "seconds": 0.1301,
+            "tests_run": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "successful": true,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite"
+      },
+      "public": {
+        "Reproduce": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1075,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1103,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "frozen": {
+        "Reproduce": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1124,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1116,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "seconds": 93.2981
+      }
+    }
+  ],
+  "protocol": {
+    "name": "deepseek-reasoning-repair-v2",
+    "input_hashes": {
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\manifest.json": "c91bb8d811cd4d0ded582b2866e53db0b465a3ce80f8a69df0e8c638ef281607",
+      "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\experiment.json": "c6474abd34f0013c4f1b59890a9af00709864d7f88681016a1417d09b387a6a6",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\deepseek_reasoning_repair_v2.py": "690c957671049b7a8245b7dda074b46880c99a22410787715ad9b7056449ed9e",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\frozen_feedback_v1.py": "36778a7431bfa55bef9cfc42beff93ba81d0b4ab884e2b63ef0eff907f14558f",
+      "D:\\project_other\\CoreCoder\\docs\\experiments\\deepseek_reasoning_provider_v1.py": "e466bfca740df7bb0531ba8a1885884c4d05c78b145b0d7b377170308107a9aa"
+    },
+    "tasks": [
+      "click-usage-empty",
+      "more-predicate-sentinel"
+    ],
+    "scope": "pilot",
+    "policies": [
+      "deepseek-low"
+    ],
+    "config": {
+      "mode": "pipeline",
+      "model": "deepseek-flash",
+      "base_url": "https://api.deepseek.com",
+      "max_rounds": 12,
+      "token_budget": 30000,
+      "max_output_tokens": 24576,
+      "context_tokens": 32768,
+      "wall_timeout": 900,
+      "test_timeout": 15,
+      "temperature": 0.0,
+      "reasoning_effort": "none",
+      "search_backend": "keyword",
+      "search_max_chars": 6000,
+      "search_history": "full",
+      "context_policy": "none",
+      "prompt_policy": "baseline",
+      "evidence_top_k": 5,
+      "evidence_dependency_depth": 0,
+      "evidence_order": "selection",
+      "patch_policy": "baseline",
+      "public_check_policy": "generated",
+      "output_policy": "remaining",
+      "read_policy": "full"
+    },
+    "providers": {
+      "deepseek-low": {
+        "model": "deepseek-flash",
+        "base_url": "https://api.deepseek.com",
+        "thinking": true,
+        "reasoning_effort": "low"
+      }
+    },
+    "request_settings": {
+      "reasoning_effort": "low",
+      "top_p": 0.95,
+      "response_format": "json_object"
+    },
+    "selection": "Fixed development pool or explicit known full pool; pilot is only a feasibility check",
+    "change": "Cloud low-effort reasoning with explicit expanded budget; fixed guarded workflow",
+    "unchanged": "Same first prompt, source evidence, scoring, feedback, max 2 calls; 30000 total tokens, generation up to 24576 including reasoning; 32768 context and 900s",
+    "limits": "Known tasks; cloud alias not frozen weights; increased budget is a cost change, not equal-compute comparison",
+    "order": "Manifest task order; fresh independent model requests",
+    "identity": {
+      "model_alias": "deepseek-flash",
+      "cloud_weight_digest": null,
+      "limits": "Provider alias may change; fingerprint recorded per response"
+    }
+  },
+  "summary": {
+    "deepseek-low": {
+      "tasks": 2,
+      "passed": 1,
+      "controls_passed": 2,
+      "calls": 3,
+      "tokens": 39344,
+      "missing_worker_results": 0,
+      "worker_seconds": 119.8747
+    }
+  }
+}

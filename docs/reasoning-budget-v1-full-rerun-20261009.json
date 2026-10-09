@@ -1,0 +1,180 @@
+{
+  "scope": "full",
+  "complete": true,
+  "tasks_per_arm": 50,
+  "first_prompts_equal": 50,
+  "summary": {
+    "deepseek-off": {
+      "tasks": 50,
+      "passed": 28,
+      "calls": 76,
+      "tokens": 217758,
+      "seconds": 287.1418,
+      "failure_categories": {
+        "failed_public_validation": 18,
+        "independent_verification_failure": 3,
+        "invalid_patch": 1
+      }
+    },
+    "deepseek-high": {
+      "tasks": 50,
+      "passed": 43,
+      "calls": 57,
+      "tokens": 790530,
+      "seconds": 2703.3223,
+      "failure_categories": {
+        "output_truncated": 2,
+        "failed_public_validation": 4,
+        "independent_verification_failure": 1
+      }
+    }
+  },
+  "gained": [
+    "boltons-backoff-zero",
+    "boltons-chunked-bytes",
+    "click-echo-empty-bytes",
+    "click-invoke-missing",
+    "click-resource-exception",
+    "click-usage-empty",
+    "itsdangerous-none-salt",
+    "more-bucket-missing-key",
+    "more-combination-size",
+    "more-falsy-exception",
+    "more-predicate-sentinel",
+    "more-seekable-zero",
+    "toolz-interpose-empty",
+    "toolz-join-unmatched",
+    "toolz-partition-length"
+  ],
+  "lost": [],
+  "token_increase_percent": 263.03,
+  "historical_comparisons": {
+    "deepseek-off": {
+      "scope": "full",
+      "tasks": 50,
+      "baseline_passed": 32,
+      "candidate_passed": 28,
+      "gained": [
+        "more-broadcast-single-use",
+        "more-gray-partial-repeat",
+        "more-reversed-values",
+        "more-split-empty"
+      ],
+      "lost": [
+        "boltons-chunked-bytes",
+        "click-echo-empty-bytes",
+        "click-invoke-missing",
+        "itsdangerous-none-salt",
+        "more-bucket-missing-key",
+        "more-combination-size",
+        "toolz-interpose-empty",
+        "toolz-partition-length"
+      ],
+      "statuses": {
+        "failed_public_validation": 18,
+        "completed": 31,
+        "invalid_patch": 1
+      },
+      "candidate_calls": 76,
+      "candidate_tokens": 217758,
+      "missing_usage_calls": 0,
+      "unavailable_metrics": 0,
+      "grouped": {
+        "repo": {
+          "mahmoud/boltons": {
+            "tasks": 7,
+            "baseline_passed": 5,
+            "candidate_passed": 4
+          },
+          "more-itertools/more-itertools": {
+            "tasks": 24,
+            "baseline_passed": 16,
+            "candidate_passed": 18
+          },
+          "pallets/click": {
+            "tasks": 10,
+            "baseline_passed": 3,
+            "candidate_passed": 1
+          },
+          "pallets/itsdangerous": {
+            "tasks": 3,
+            "baseline_passed": 3,
+            "candidate_passed": 2
+          },
+          "pytoolz/toolz": {
+            "tasks": 6,
+            "baseline_passed": 5,
+            "candidate_passed": 3
+          }
+        }
+      },
+      "full_pool_numeric_target_met": false,
+      "limits": "Known fixed task pool, one stochastic trial; sampled generation/output/interface changes; no blind/generalization claim"
+    },
+    "deepseek-high": {
+      "scope": "full",
+      "tasks": 50,
+      "baseline_passed": 32,
+      "candidate_passed": 43,
+      "gained": [
+        "boltons-backoff-zero",
+        "click-resource-exception",
+        "click-usage-empty",
+        "more-broadcast-single-use",
+        "more-falsy-exception",
+        "more-gray-partial-repeat",
+        "more-predicate-sentinel",
+        "more-reversed-values",
+        "more-seekable-zero",
+        "more-split-empty",
+        "toolz-join-unmatched"
+      ],
+      "lost": [],
+      "statuses": {
+        "completed": 44,
+        "output_truncated": 2,
+        "failed_public_validation": 4
+      },
+      "candidate_calls": 57,
+      "candidate_tokens": 790530,
+      "missing_usage_calls": 0,
+      "unavailable_metrics": 0,
+      "grouped": {
+        "repo": {
+          "mahmoud/boltons": {
+            "tasks": 7,
+            "baseline_passed": 5,
+            "candidate_passed": 6
+          },
+          "more-itertools/more-itertools": {
+            "tasks": 24,
+            "baseline_passed": 16,
+            "candidate_passed": 23
+          },
+          "pallets/click": {
+            "tasks": 10,
+            "baseline_passed": 3,
+            "candidate_passed": 5
+          },
+          "pallets/itsdangerous": {
+            "tasks": 3,
+            "baseline_passed": 3,
+            "candidate_passed": 3
+          },
+          "pytoolz/toolz": {
+            "tasks": 6,
+            "baseline_passed": 5,
+            "candidate_passed": 6
+          }
+        }
+      },
+      "full_pool_numeric_target_met": true,
+      "limits": "Known fixed task pool, one stochastic trial; sampled generation/output/interface changes; no blind/generalization claim"
+    }
+  },
+  "full_pool_numeric_target_met": true,
+  "limits": "Known fixed tasks; one stochastic trial; equal budget ceilings, different actual compute; cloud weights not frozen",
+  "trial_path": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\reasoning-budget-v1-full-rerun-20261009\\experiment.json",
+  "trial_sha256": "41e7ef089db0205a924ce20f2b058130b8af657bc3cdf8ed62b364020b5e6e9a",
+  "auditor_sha256": "613865402c6010773ca226c077c586e787c58c23636a22e2a5ad733a7560f5af"
+}
