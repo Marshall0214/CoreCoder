@@ -13,6 +13,16 @@ SUITES = {'smoke': DEFAULT_SUITE, 'localization': DEFAULT_SUITE / 'localization-
 
 def execute(path):
     job = json.loads(path.read_text(encoding='utf-8'))
+    if job['request'].get('workflow') == 'repair-approval-v1':
+        from service.repair import run
+
+        try:
+            report = run(path, decision=job.get('approval'))
+        except Exception as exc:  # noqa: BLE001 - never expose credentials or provider error text
+            report = {'status': 'service_execution_error', 'accepted': False,
+                      'verification': {'passed': False}, 'failure_type': type(exc).__name__}
+        (path.parent / 'result.json').write_text(json.dumps(report, ensure_ascii=False), encoding='utf-8')
+        return
     if job['request'].get('workflow') == 'tentative-approval-v1':
         from service.tentative import run
 

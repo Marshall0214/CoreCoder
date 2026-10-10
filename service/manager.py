@@ -18,7 +18,7 @@ from service.store import TaskStore
 
 ROOT = Path(__file__).resolve().parent.parent
 TERMINAL = {'succeeded', 'failed', 'rejected', 'cancelled', 'timed_out', 'interrupted'}
-APPROVAL_WORKFLOWS = {'langgraph-approval-v1', 'tentative-approval-v1'}
+APPROVAL_WORKFLOWS = {'langgraph-approval-v1', 'tentative-approval-v1', 'repair-approval-v1'}
 
 
 def stop_tree(process):
@@ -228,6 +228,9 @@ class TaskManager:
                         job.transition('rejected')
                         return
                     job.result = {k: report.get(k) for k in ('status', 'accepted', 'metrics', 'verification')}
+                    if job.request.get('workflow') == 'repair-approval-v1':
+                        job.result.update({k: report.get(k) for k in ('execution_mode', 'fresh_inference', 'fresh_model_calls',
+                                                                    'historical_usage_only', 'original_unchanged')})
                     if job.request.get('workflow') == 'tentative-approval-v1':
                         job.result.update({k: report.get(k) for k in ('publication', 'original_unchanged', 'task_end_sha256',
                                                                     'failure_type')})

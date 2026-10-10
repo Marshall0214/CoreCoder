@@ -1,0 +1,78 @@
+{
+  "complete": true,
+  "audit_passed": true,
+  "scope": "Five predeclared known regressions only; full 50 score unchanged at 43/50",
+  "unit_tests_passed": 68,
+  "recent_full_selected_passed": 0,
+  "earlier_full_selected_passed": 5,
+  "current_selected_passed": 5,
+  "tokens_recent_full_selected": 172904,
+  "tokens_earlier_full_selected": 55923,
+  "tokens_after": 61937,
+  "token_change_from_recent_percent": -64.18,
+  "calls": 5,
+  "rows": [
+    {
+      "task_id": "click-usage-empty",
+      "recent_full_passed": false,
+      "earlier_full_passed": true,
+      "accepted": true,
+      "calls": 1,
+      "tokens": 12426,
+      "seconds": 39.281,
+      "v2_initial_evidence_identical": true,
+      "Target": true,
+      "Controls": true
+    },
+    {
+      "task_id": "click-resource-exception",
+      "recent_full_passed": false,
+      "earlier_full_passed": true,
+      "accepted": true,
+      "calls": 1,
+      "tokens": 19938,
+      "seconds": 68.656,
+      "v2_initial_evidence_identical": true,
+      "Target": true,
+      "Controls": true
+    },
+    {
+      "task_id": "click-invoke-missing",
+      "recent_full_passed": false,
+      "earlier_full_passed": true,
+      "accepted": true,
+      "calls": 1,
+      "tokens": 13874,
+      "seconds": 47.484,
+      "v2_initial_evidence_identical": true,
+      "Target": true,
+      "Controls": true
+    },
+    {
+      "task_id": "more-reverse-empty-range",
+      "recent_full_passed": false,
+      "earlier_full_passed": true,
+      "accepted": true,
+      "calls": 1,
+      "tokens": 2196,
+      "seconds": 3.969,
+      "v2_initial_evidence_identical": true,
+      "Target": true,
+      "Controls": true
+    },
+    {
+      "task_id": "more-range-equality",
+      "recent_full_passed": false,
+      "earlier_full_passed": true,
+      "accepted": true,
+      "calls": 1,
+      "tokens": 13503,
+      "seconds": 49.921,
+      "v2_initial_evidence_identical": true,
+      "Target": true,
+      "Controls": true
+    }
+  ],
+  "version_note": "Actual model run is v1. v2 excludes prose-only forced targets; all five initial evidence bundles match actual recorded inputs. No new v2 model calls.",
+  "limits": "Coverage and patch constraints changed together; historical cloud responses stochastic; no component-level causal claim or assembled full-pool score."
+}

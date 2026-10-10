@@ -1,0 +1,1382 @@
+{
+  "scope": "All 50 source contexts, offline only; coverage is not repair success",
+  "complete": true,
+  "passed": 50,
+  "rows": [
+    {
+      "task_id": "click-usage-empty",
+      "ok": true,
+      "symbols": [
+        "HelpFormatter.write_usage",
+        "HelpFormatter.write",
+        "HelpFormatter.write_dl",
+        "wrap_text",
+        "term_len"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3572,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "src/click/formatting.py",
+            "HelpFormatter.write_usage"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "ok": true,
+      "symbols": [
+        "echo",
+        "_find_binary_writer",
+        "auto_wrap_for_ansi",
+        "should_strip_ansi",
+        "resolve_color_default"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 4063,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "src/click/utils.py",
+            "echo"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "ok": true,
+      "symbols": [
+        "style",
+        "secho",
+        "Option.prompt_for_value",
+        "echo",
+        "_interpret_color"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 5197,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "src/click/termui.py",
+            "style"
+          ],
+          [
+            "src/click/termui.py",
+            "secho"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "ok": true,
+      "symbols": [
+        "Serializer.__init__",
+        "Signer.unsign",
+        "Serializer.dumps",
+        "Signer.__init__",
+        "Serializer.make_signer"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 4102,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "itsdangerous-future-age",
+      "ok": true,
+      "symbols": [
+        "TimestampSigner.unsign",
+        "TimestampSigner.validate",
+        "TimedSerializer.loads",
+        "TimestampSigner.timestamp_to_datetime",
+        "TimedSerializer.loads_unsafe"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3552,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "ok": true,
+      "symbols": [
+        "TimestampSigner.unsign",
+        "TimestampSigner.validate",
+        "TimedSerializer.loads_unsafe",
+        "TimedSerializer.loads",
+        "BadTimeSignature.__init__"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 4228,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "ok": true,
+      "symbols": [
+        "option",
+        "Command.get_help_option",
+        "Command.get_help_option_names",
+        "Command.format_help_text",
+        "Option.get_help_record"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 5356,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "src/click/decorators.py",
+            "option"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Command.get_params",
+            "reason": "budget"
+          }
+        ],
+        "public_api_owners": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Command"
+          },
+          {
+            "path": "src/click/core.py",
+            "symbol": "Option"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "click-flag-default-map",
+      "ok": true,
+      "symbols": [
+        "Result.output",
+        "Option.get_default",
+        "Option.get_help_record",
+        "Option.prompt_for_value",
+        "Parameter.process_value"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 5513,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "src/click/testing.py",
+            "Result.output"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Option.value_from_envvar",
+            "reason": "budget"
+          }
+        ],
+        "public_api_owners": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Command"
+          },
+          {
+            "path": "src/click/core.py",
+            "symbol": "Option"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "click-resource-exception",
+      "ok": true,
+      "symbols": [
+        "Context.with_resource",
+        "Context.__exit__",
+        "Context.call_on_close",
+        "Context.close",
+        "command"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2763,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "src/click/core.py",
+            "Context.with_resource"
+          ],
+          [
+            "src/click/core.py",
+            "Context.__exit__"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [
+          {
+            "path": "src/click/globals.py",
+            "symbol": "pop_context",
+            "reason": "budget"
+          }
+        ],
+        "public_api_owners": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Context"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "click-flag-envvar",
+      "ok": true,
+      "symbols": [
+        "Option.resolve_envvar_value",
+        "Option.value_from_envvar",
+        "Parameter.consume_value",
+        "Option.get_default",
+        "Option.__init__"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 4954,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Command"
+          },
+          {
+            "path": "src/click/core.py",
+            "symbol": "Option"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "click-prompt-suffix",
+      "ok": true,
+      "symbols": [
+        "Option.prompt_for_value",
+        "prompt",
+        "confirm",
+        "password_option",
+        "_build_prompt"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 5875,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Command"
+          },
+          {
+            "path": "src/click/exceptions.py",
+            "symbol": "Abort"
+          },
+          {
+            "path": "src/click/exceptions.py",
+            "symbol": "UsageError"
+          },
+          {
+            "path": "src/click/types.py",
+            "symbol": "ParamType"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "click-invoke-missing",
+      "ok": true,
+      "symbols": [
+        "Context.invoke",
+        "Option.prompt_for_value",
+        "Option.type_cast_value",
+        "Option.consume_value",
+        "Parameter.value_is_missing"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 5720,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "src/click/core.py",
+            "Context.invoke"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Parameter.process_value",
+            "reason": "budget"
+          }
+        ],
+        "public_api_owners": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Command"
+          },
+          {
+            "path": "src/click/core.py",
+            "symbol": "Option"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "click-shared-default",
+      "ok": true,
+      "symbols": [
+        "Command.get_params",
+        "Command.to_info_dict",
+        "Command.collect_usage_pieces",
+        "Command.make_parser",
+        "Command.format_options"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1818,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": [
+          {
+            "path": "src/click/core.py",
+            "symbol": "Command"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "toolz-interpose-empty",
+      "ok": true,
+      "symbols": [
+        "interpose",
+        "concat",
+        "interleave",
+        "peek",
+        "peekn"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1744,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "toolz/itertoolz.py",
+            "interpose"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "toolz-accumulate-empty",
+      "ok": true,
+      "symbols": [
+        "accumulate",
+        "memoize",
+        "fold",
+        "reduceby",
+        "partition_all"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3329,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "toolz/itertoolz.py",
+            "accumulate"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "ok": true,
+      "symbols": [
+        "join",
+        "excepts.__doc__",
+        "groupby",
+        "getter",
+        "update_in"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3469,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "toolz/itertoolz.py",
+            "join"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "toolz-getter-empty",
+      "ok": true,
+      "symbols": [
+        "getter",
+        "curry.__init__",
+        "pluck",
+        "_merge_sorted_key",
+        "concat"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3279,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "toolz/itertoolz.py",
+            "getter"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "boltons-backoff-constant",
+      "ok": true,
+      "symbols": [
+        "backoff_iter",
+        "backoff",
+        "BarrelList.del_slice",
+        "frange",
+        "xfrange"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3590,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "boltons/iterutils.py",
+            "backoff_iter"
+          ],
+          [
+            "boltons/iterutils.py",
+            "backoff"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "boltons-split-zero",
+      "ok": true,
+      "symbols": [
+        "split_iter",
+        "is_scalar",
+        "is_iterable",
+        "split",
+        "pairwise_iter"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2276,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "boltons/iterutils.py",
+            "split_iter"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "boltons-chunked-bytes",
+      "ok": true,
+      "symbols": [
+        "chunked_iter",
+        "is_iterable",
+        "chunked",
+        "_parse_wraps_expected",
+        "windowed_iter"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3219,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "boltons/iterutils.py",
+            "chunked_iter"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "boltons-remap-set",
+      "ok": true,
+      "symbols": [
+        "remap",
+        "OrderedMultiDict.poplast",
+        "default_enter",
+        "default_visit",
+        "default_exit"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 4596,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "boltons/iterutils.py",
+            "remap"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-falsy-exception",
+      "ok": true,
+      "symbols": [
+        "one",
+        "only",
+        "first",
+        "strictly_n",
+        "last"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1931,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "one"
+          ],
+          [
+            "more_itertools/more.py",
+            "only"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-batch-count",
+      "ok": true,
+      "symbols": [
+        "constrained_batches",
+        "running_statistics",
+        "running_max",
+        "running_median",
+        "running_mean"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1932,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "constrained_batches"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-seekable-zero",
+      "ok": true,
+      "symbols": [
+        "seekable.peek",
+        "seekable.__bool__",
+        "seekable.__next__",
+        "seekable.seek",
+        "seekable.__init__"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1201,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "seekable.peek"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-combination-index",
+      "ok": true,
+      "symbols": [
+        "combination_with_replacement_index",
+        "nth_combination_with_replacement",
+        "random_combination_with_replacement",
+        "combination_index",
+        "nth_combination"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3046,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "combination_with_replacement_index"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-split-empty",
+      "ok": true,
+      "symbols": [
+        "split_before",
+        "split_after",
+        "split_when",
+        "consecutive_groups",
+        "before_and_after"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1595,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "split_before"
+          ],
+          [
+            "more_itertools/more.py",
+            "split_after"
+          ],
+          [
+            "more_itertools/more.py",
+            "split_when"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-value-chain-error",
+      "ok": true,
+      "symbols": [
+        "value_chain",
+        "zip_broadcast",
+        "filter_except",
+        "extract",
+        "map_except"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1637,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "value_chain"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-interleave-empty",
+      "ok": true,
+      "symbols": [
+        "interleave_evenly",
+        "interleave_randomly",
+        "distribute",
+        "roundrobin",
+        "transpose"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2943,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "interleave_evenly"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-reverse-empty-range",
+      "ok": true,
+      "symbols": [
+        "numeric_range.__reversed__",
+        "numeric_range._get_by_index",
+        "numeric_range.__iter__",
+        "numeric_range.__eq__",
+        "numeric_range.__getitem__"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1780,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "numeric_range.__reversed__"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-negative-range-slice",
+      "ok": true,
+      "symbols": [
+        "numeric_range.__init__",
+        "numeric_range.__getitem__",
+        "numeric_range.__repr__",
+        "numeric_range.__reversed__",
+        "numeric_range.__eq__"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2842,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-ichunked-zero",
+      "ok": true,
+      "symbols": [
+        "numeric_range.__init__",
+        "tail",
+        "padded",
+        "windowed_complete",
+        "ichunked"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2462,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-bucket-missing-key",
+      "ok": true,
+      "symbols": [
+        "bucket.__contains__",
+        "bucket.__init__",
+        "bucket._get_values",
+        "bucket.__getitem__",
+        "bucket.__iter__"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1692,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-range-membership",
+      "ok": true,
+      "symbols": [
+        "numeric_range.index",
+        "numeric_range._len",
+        "numeric_range.__contains__",
+        "numeric_range.__iter__",
+        "numeric_range.__len__"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1655,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "numeric_range.index"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [
+          {
+            "path": "more_itertools/more.py",
+            "symbol": "numeric_range.__getitem__",
+            "reason": "budget"
+          }
+        ],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-chunked-negative",
+      "ok": true,
+      "symbols": [
+        "chunked",
+        "take",
+        "extract",
+        "_islice_helper",
+        "padded"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 5498,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "chunked"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-range-equality",
+      "ok": true,
+      "symbols": [
+        "numeric_range.__eq__",
+        "numeric_range.__hash__",
+        "numeric_range.__reversed__",
+        "numeric_range.__getitem__",
+        "numeric_range.__init__"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2443,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "numeric_range.__eq__"
+          ],
+          [
+            "more_itertools/more.py",
+            "numeric_range.__hash__"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [
+          {
+            "path": "more_itertools/more.py",
+            "symbol": "numeric_range.__repr__",
+            "reason": "budget"
+          }
+        ],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-sliced-negative",
+      "ok": true,
+      "symbols": [
+        "sliced",
+        "numeric_range.__getitem__",
+        "_islice_helper",
+        "padded",
+        "chunked"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 5727,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "sliced"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-windowed-zero",
+      "ok": true,
+      "symbols": [
+        "windowed",
+        "numeric_range.__init__",
+        "_islice_helper",
+        "running_median",
+        "multinomial"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 5908,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "windowed"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "ok": true,
+      "symbols": [
+        "replace",
+        "locate",
+        "rlocate",
+        "windowed",
+        "unique_in_window"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3151,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-combination-size",
+      "ok": true,
+      "symbols": [
+        "nth_combination_with_replacement",
+        "combination_with_replacement_index",
+        "nth_combination",
+        "combination_index",
+        "random_combination_with_replacement"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3043,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "nth_combination_with_replacement"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-permutation-exception",
+      "ok": true,
+      "symbols": [
+        "nth_permutation",
+        "distinct_permutations._full",
+        "nth_combination_with_replacement",
+        "permutation_index",
+        "nth_combination"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2531,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "nth_permutation"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-product-repeat",
+      "ok": true,
+      "symbols": [
+        "nth_product",
+        "product_index",
+        "partial_product",
+        "interleave_randomly",
+        "gray_product"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2155,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "nth_product"
+          ],
+          [
+            "more_itertools/more.py",
+            "product_index"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "ok": true,
+      "symbols": [
+        "gray_product",
+        "partial_product",
+        "roundrobin",
+        "interleave_randomly",
+        "concurrent_tee"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2326,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "gray_product"
+          ],
+          [
+            "more_itertools/more.py",
+            "partial_product"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-reversed-values",
+      "ok": true,
+      "symbols": [
+        "numeric_range.__iter__",
+        "numeric_range._index_near",
+        "numeric_range.__reversed__",
+        "numeric_range.__getitem__",
+        "numeric_range._len"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2864,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-broadcast-single-use",
+      "ok": true,
+      "symbols": [
+        "zip_broadcast",
+        "unique_in_window",
+        "with_iter",
+        "constrained_batches",
+        "value_chain"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2914,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "zip_broadcast"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "more-last-typeerror",
+      "ok": true,
+      "symbols": [
+        "last",
+        "always_iterable",
+        "first",
+        "nth_or_last",
+        "always_reversible"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1577,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "more_itertools/more.py",
+            "last"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "boltons-xfrange-descending",
+      "ok": true,
+      "symbols": [
+        "xfrange",
+        "IndexedSet.iter_slice",
+        "frange",
+        "backoff_iter",
+        "daterange"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 5219,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "boltons/iterutils.py",
+            "xfrange"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "boltons-backoff-zero",
+      "ok": true,
+      "symbols": [
+        "backoff",
+        "BarrelList.del_slice",
+        "backoff_iter",
+        "xfrange",
+        "frange"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 3284,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "boltons/iterutils.py",
+            "backoff"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "boltons-repeat-equality",
+      "ok": true,
+      "symbols": [
+        "backoff_iter",
+        "LRU.__init__",
+        "OrderedMultiDict.viewvalues",
+        "backoff",
+        "unique_iter"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2145,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "boltons/iterutils.py",
+            "backoff_iter"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "toolz-partition-length",
+      "ok": true,
+      "symbols": [
+        "partition_all",
+        "partition",
+        "partitionby",
+        "unzip",
+        "merge_with"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 1775,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [
+          [
+            "toolz/itertoolz.py",
+            "partition_all"
+          ]
+        ],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    },
+    {
+      "task_id": "toolz-merge-mapping",
+      "ok": true,
+      "symbols": [
+        "concat",
+        "merge",
+        "merge_with",
+        "get",
+        "merge_sorted"
+      ],
+      "metadata": {
+        "policy": "coverage-context-v1",
+        "chars": 2266,
+        "max_chars": 6000,
+        "max_fragments": 5,
+        "required": [],
+        "missing_required": [],
+        "discarded": [],
+        "public_api_owners": []
+      }
+    }
+  ]
+}

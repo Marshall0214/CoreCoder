@@ -19,13 +19,13 @@
 
 ## 本仓库扩展：代码修复评测与可审批服务
 
-公开失败驱动的第二轮函数重选已完成：补入签名加载和浮点成员判断的遗漏函数，但三项已知任务独立修复仍为 1/3 → 1/3，已修好任务保持通过。签名参数改写和浮点 index 委托均未修好公开缺陷，修正已回退；不扩大此策略、不接入默认流程。下一步聚焦根因判断及被调用函数的行为边界，不继续围绕失败位置堆上下文。 见 [失败上下文配对](docs/failure-context-pilot-v1.md)。
+统一修复入口已提供：CLI 与可审批 API 共用目标覆盖检索、受约束补丁、一次公开反馈、失败回滚与独立验收；支持真实 DeepSeek 和精确历史回答回放。见 [完整流程与复现命令](docs/unified-repair-flow.md)。已知 50 项任务最新完整单轮结果为 47/50，见 [评测报告](docs/coverage-full-repair-v1-results.md)；离线演示不计入新模型成绩。
 
 基于 CoreCoder 的个人二次开发：固定模型与预算比较检索/上下文策略，提供独立补丁验证、FastAPI/SQLite 服务、代码知识 MCP Server、LangGraph 人工审批和 Docker/Linux 验收。当前为可信任务上的本地工程项目；实验未证明普遍提高修复率，服务尚未支持任意仓库或多用户生产部署。
 
 **统一入口：[项目总览与结果](docs/project-overview.md) · [5 分钟离线演示](docs/demo-guide.md) · [交付与 JD 清单](docs/delivery-checklist.md) · [简历与面试说明](docs/resume-and-interview.md)。**
 
-最新 Windows 全量回归：1,251 passed、2 skipped，见 [失败上下文摘要](docs/failure-context-pilot-v1.json)。历史部署验收：Linux 71 passed、22 项容器检查和 18 项 HTTP 审批故障检查通过，见 [版本化摘要](docs/workflow-approval-acceptance-v1.json)。软件验收与真实模型修复效果分别计量；求职展示入口见 [证据索引](docs/portfolio-evidence.md)。下文保留上游核心的源码导读和作者归属。
+历史 Windows 全量回归：1,251 passed、2 skipped，见 [失败上下文摘要](docs/failure-context-pilot-v1.json)。历史部署验收：Linux 71 passed、22 项容器检查和 18 项 HTTP 审批故障检查通过，见 [版本化摘要](docs/workflow-approval-acceptance-v1.json)。软件验收与真实模型修复效果分别计量；求职展示入口见 [证据索引](docs/portfolio-evidence.md)。下文保留上游核心的源码导读和作者归属。
 
 - **读得完。** 一个下午读完整个引擎，没有一处藏着你看不懂的魔法。
 - **改得动。** 每一行都能在你自己机器上下断点、改了再跑。它真能干活，所以这份参考是活的，不是示意图。

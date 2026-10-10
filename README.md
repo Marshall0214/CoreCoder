@@ -21,11 +21,13 @@ Failure-directed second-round context exposed previously missing functions in tw
 
 ## Fork extensions: repair evaluation and an approval service
 
+The shared repair entry point connects target-preserving retrieval, constrained patches, one public-feedback correction, rollback, and independent verification to both the CLI and approval API. It supports fresh DeepSeek inference and explicitly labeled exact historical replay. See the [workflow and reproduction guide](docs/unified-repair-flow.md). The latest complete single run on 50 known tasks passed 47/50; see the [evaluation report](docs/coverage-full-repair-v1-results.md). Offline replay is not a new model evaluation.
+
 This fork adds controlled retrieval/context experiments, independent patch verification, a FastAPI/SQLite task service, a read-only code knowledge MCP server, LangGraph human approval, and Docker/Linux acceptance. It serves trusted fixture tasks locally. Experiments have not established a general repair-rate improvement; arbitrary repository intake and multi-user production deployment remain future work.
 
 Start with the Chinese-language [project overview](docs/project-overview.md), [five-minute offline demo](docs/demo-guide.md), [delivery/JD checklist](docs/delivery-checklist.md), and [resume/interview guide](docs/resume-and-interview.md).
 
-Latest recorded Windows regression: 1,251 passed and 2 skipped; see the [failure-context summary](docs/failure-context-pilot-v1.json). Historical deployment acceptance: Linux 71 passed, 22 container checks and 18 HTTP approval fault checks passed; see the [versioned evidence](docs/workflow-approval-acceptance-v1.json). Software checks are separate from model repair outcomes. The [portfolio evidence index](docs/portfolio-evidence.md) maps contributions to code and reports; the upstream walkthrough and author attribution below are retained.
+Historical Windows regression: 1,251 passed and 2 skipped; see the [failure-context summary](docs/failure-context-pilot-v1.json). Historical deployment acceptance: Linux 71 passed, 22 container checks and 18 HTTP approval fault checks passed; see the [versioned evidence](docs/workflow-approval-acceptance-v1.json). Software checks are separate from model repair outcomes. The [portfolio evidence index](docs/portfolio-evidence.md) maps contributions to code and reports; the upstream walkthrough and author attribution below are retained.
 
 - **Readable end to end.** Read the whole engine in an afternoon, with no magic hidden anywhere you can't follow it.
 - **Hackable.** Set a breakpoint on any line, change it, rerun, all on your own machine. It genuinely works, which makes this a living reference rather than a diagram.

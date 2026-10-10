@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-10",
+  "related_regression": {
+    "passed": 137,
+    "failed": 0,
+    "scope": "repairflow, service, persistence, approval, tentative compatibility, coverage constraints, targeted context, core"
+  },
+  "ruff": "passed",
+  "demo": {
+    "passed": true,
+    "mode": "historical single-call replay; not fresh model evaluation",
+    "fresh_model_calls": 0,
+    "bundle_hash": "d60dfd48d02441bfc105bbebda137f4d2850ae5b7be3667b84bb93d1d6f7c93b",
+    "task_id": "click-usage-empty",
+    "service_task_id": "632705540339408f8792de80ef72f505",
+    "cli_and_api_patch_identical": true,
+    "checks": [
+      "retrieval",
+      "constrained patch",
+      "public checks",
+      "independent Target/Controls",
+      "idempotency",
+      "approval restart",
+      "real service worker",
+      "SSE",
+      "artifact downloads",
+      "approval rejection without execution"
+    ],
+    "transport": "in-process ASGI HTTP client; worker executes in a real child process"
+  },
+  "demo_current_implementation_audit": true,
+  "live_integration": {
+    "task_id": "click-usage-empty",
+    "accepted": true,
+    "fresh_model_calls": 1,
+    "tokens": 15725,
+    "scope": "hand-authored Target and Controls; not entire upstream suite",
+    "record": "D:\\project_other\\CoreCoder\\.tmp\\repair-demo\\live-v1\\report.json",
+    "note": "The subsequent runtime change only adds Python/dependency metadata to provenance; archived live implementation hashes remain preserved."
+  },
+  "historical_full_pool": {
+    "passed": 47,
+    "tasks": 50,
+    "rerun_in_this_delivery": false
+  },
+  "limits": [
+    "Trusted local task bundles only",
+    "Approval precedes execution, not patch merge",
+    "ASGI demo with real worker, no live TCP/browser acceptance in this delivery",
+    "Historical replay is not a new model repair result",
+    "Source checkout execution; wheel does not package the complete extension"
+  ]
+}

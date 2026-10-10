@@ -19,11 +19,11 @@ from service.worker import SUITES
 
 class SubmitTask(BaseModel):
     model_config = ConfigDict(extra='forbid')
-    suite: Literal['smoke', 'localization', 'certified'] = 'smoke'
+    suite: Literal['smoke', 'localization', 'certified', 'repair'] = 'smoke'
     task_id: str = Field(pattern=r'^[a-z0-9][a-z0-9_-]{0,79}$')
-    mode: Literal['scripted', 'unchanged', 'reference', 'live'] = 'scripted'
+    mode: Literal['scripted', 'unchanged', 'reference', 'live', 'replay'] = 'scripted'
     search_backend: Literal['off', 'none', 'keyword'] = 'off'
-    workflow: Literal['langgraph-v1', 'langgraph-approval-v1', 'tentative-approval-v1'] | None = None
+    workflow: Literal['langgraph-v1', 'langgraph-approval-v1', 'tentative-approval-v1', 'repair-approval-v1'] | None = None
 
 
 class TaskView(SubmitTask):
@@ -71,18 +71,35 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
         result = {name: [{'task_id': t.task_id, 'title': t.title} for t in load_suite(path)] for name, path in SUITES.items()}
         result['certified'] = [{'task_id': name, 'title': name, 'workflow': 'tentative-approval-v1',
                                 'requires_local_certification': True} for name in TASKS]
+        from service.repair import catalog as repair_catalog
+
+        result['repair'] = repair_catalog()
         return result
 
     @app.post('/tasks', status_code=202, response_model=TaskView)
     async def submit(body: SubmitTask, idempotency_key: str | None = Header(default=None)):
         if idempotency_key is not None and not re.fullmatch(r'[A-Za-z0-9._:-]{1,128}', idempotency_key):
             raise HTTPException(400, 'Invalid Idempotency-Key')
-        if body.workflow in {'langgraph-v1', 'langgraph-approval-v1'} and find_spec('langgraph') is None:
+        if body.workflow in {'langgraph-v1', 'langgraph-approval-v1', 'repair-approval-v1'} and find_spec('langgraph') is None:
             raise HTTPException(503, 'Install the workflow extra to use langgraph-v1')
-        if body.workflow == 'langgraph-approval-v1' and find_spec('langgraph.checkpoint.sqlite') is None:
+        if body.workflow in {'langgraph-approval-v1', 'repair-approval-v1'} and find_spec('langgraph.checkpoint.sqlite') is None:
             raise HTTPException(503, 'Install the workflow extra for persistent approval')
         try:
-            if body.suite == 'certified' or body.workflow == 'tentative-approval-v1':
+            if body.suite == 'repair' or body.workflow == 'repair-approval-v1':
+                from service.repair import WORKFLOW, load_task
+
+                if (body.suite != 'repair' or body.workflow != WORKFLOW or body.mode not in {'live', 'replay'}
+                        or body.search_backend != 'off'):
+                    raise HTTPException(422, 'Repair bundles require repair-approval-v1, live/replay, and fixed retrieval')
+                try:
+                    _, data = load_task(body.task_id)
+                except (OSError, ValueError, KeyError) as exc:
+                    raise HTTPException(503, 'Trusted repair bundle unavailable or changed') from exc
+                if body.mode == 'replay' and 'replay_sha256' not in data:
+                    raise HTTPException(422, 'No exact replay record in this bundle')
+            elif body.mode == 'replay':
+                raise HTTPException(422, 'Replay mode is only available for repair bundles')
+            elif body.suite == 'certified' or body.workflow == 'tentative-approval-v1':
                 from service.tentative import TASKS, WORKFLOW, load_task
 
                 if (body.suite != 'certified' or body.workflow != WORKFLOW or body.mode != 'live'
@@ -137,7 +154,8 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
             if path.is_symlink() or not path.is_file():
                 raise HTTPException(404, 'No publication diagnostic available')
             return FileResponse(path, filename=name, media_type='application/json')
-        if name not in {'patch.diff', 'report.json'}:
+        repair_artifacts = {'patch.diff', 'report.json', 'context-selection.json', 'trace.jsonl', 'provenance.json'}
+        if name not in (repair_artifacts if job.request.get('workflow') == 'repair-approval-v1' else {'patch.diff', 'report.json'}):
             raise HTTPException(404, 'Unknown artifact')
         if job.state not in {'succeeded', 'failed'} or job.result is None:
             raise HTTPException(409, 'No completed report available')
@@ -147,7 +165,7 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
         location = (Path(report['artifacts']) / name).resolve()
         if not location.is_relative_to((job.root / 'runs').resolve()) or not location.is_file() or location.is_symlink():
             raise HTTPException(404, 'Unknown artifact')
-        return FileResponse(location, filename=name, media_type='text/plain' if name == 'patch.diff' else 'application/json')
+        return FileResponse(location, filename=name, media_type='text/plain' if name in {'patch.diff', 'trace.jsonl'} else 'application/json')
 
     @app.get('/tasks/{task_id}/events')
     async def events(task_id: str, request: Request, last_event_id: str | None = Header(default=None)):

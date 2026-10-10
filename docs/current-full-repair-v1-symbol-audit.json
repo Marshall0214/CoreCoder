@@ -1,0 +1,399 @@
+{
+  "scope": "Offline source/description evidence audit, no model calls; explicit resolution is a coverage indicator, not proof of required edits",
+  "rows": [
+    {
+      "task_id": "click-usage-empty",
+      "accepted": false,
+      "resolved": [
+        "HelpFormatter.write_usage"
+      ],
+      "missing": [
+        "HelpFormatter.write_usage"
+      ]
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "accepted": true,
+      "resolved": [
+        "echo"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "click-style-color-validation",
+      "accepted": true,
+      "resolved": [
+        "style",
+        "secho"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "accepted": true,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "itsdangerous-future-age",
+      "accepted": true,
+      "resolved": [
+        "TimestampSigner.validate"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "accepted": true,
+      "resolved": [
+        "TimestampSigner.validate",
+        "TimedSerializer.loads_unsafe"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "accepted": true,
+      "resolved": [
+        "option"
+      ],
+      "missing": [
+        "option"
+      ]
+    },
+    {
+      "task_id": "click-flag-default-map",
+      "accepted": true,
+      "resolved": [
+        "Result.output"
+      ],
+      "missing": [
+        "Result.output"
+      ]
+    },
+    {
+      "task_id": "click-resource-exception",
+      "accepted": false,
+      "resolved": [
+        "Context.with_resource"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "click-flag-envvar",
+      "accepted": true,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "click-prompt-suffix",
+      "accepted": true,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "click-invoke-missing",
+      "accepted": false,
+      "resolved": [
+        "Context.invoke"
+      ],
+      "missing": [
+        "Context.invoke"
+      ]
+    },
+    {
+      "task_id": "click-shared-default",
+      "accepted": false,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "toolz-interpose-empty",
+      "accepted": true,
+      "resolved": [
+        "interpose"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "toolz-accumulate-empty",
+      "accepted": true,
+      "resolved": [
+        "accumulate"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "accepted": true,
+      "resolved": [
+        "join"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "toolz-getter-empty",
+      "accepted": true,
+      "resolved": [
+        "getter"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "boltons-backoff-constant",
+      "accepted": true,
+      "resolved": [
+        "backoff_iter",
+        "backoff"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "boltons-split-zero",
+      "accepted": true,
+      "resolved": [
+        "split_iter"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "boltons-chunked-bytes",
+      "accepted": true,
+      "resolved": [
+        "chunked_iter"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "boltons-remap-set",
+      "accepted": true,
+      "resolved": [
+        "remap"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-falsy-exception",
+      "accepted": true,
+      "resolved": [
+        "one",
+        "only"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-batch-count",
+      "accepted": true,
+      "resolved": [
+        "constrained_batches"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-seekable-zero",
+      "accepted": true,
+      "resolved": [
+        "seekable.peek"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-combination-index",
+      "accepted": true,
+      "resolved": [
+        "combination_with_replacement_index"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-split-empty",
+      "accepted": true,
+      "resolved": [
+        "split_before",
+        "split_after",
+        "split_when"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-value-chain-error",
+      "accepted": true,
+      "resolved": [
+        "value_chain"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-interleave-empty",
+      "accepted": true,
+      "resolved": [
+        "interleave_evenly"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-reverse-empty-range",
+      "accepted": false,
+      "resolved": [
+        "numeric_range.__reversed__"
+      ],
+      "missing": [
+        "numeric_range.__reversed__"
+      ]
+    },
+    {
+      "task_id": "more-negative-range-slice",
+      "accepted": true,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "more-ichunked-zero",
+      "accepted": true,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "more-bucket-missing-key",
+      "accepted": true,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "more-range-membership",
+      "accepted": false,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "more-chunked-negative",
+      "accepted": true,
+      "resolved": [
+        "chunked"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-range-equality",
+      "accepted": false,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "more-sliced-negative",
+      "accepted": true,
+      "resolved": [
+        "sliced"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-windowed-zero",
+      "accepted": true,
+      "resolved": [
+        "windowed"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "accepted": true,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "more-combination-size",
+      "accepted": true,
+      "resolved": [
+        "nth_combination_with_replacement"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-permutation-exception",
+      "accepted": true,
+      "resolved": [
+        "nth_permutation"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-product-repeat",
+      "accepted": true,
+      "resolved": [
+        "nth_product",
+        "product_index"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "accepted": true,
+      "resolved": [
+        "gray_product",
+        "partial_product"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-reversed-values",
+      "accepted": true,
+      "resolved": [],
+      "missing": []
+    },
+    {
+      "task_id": "more-broadcast-single-use",
+      "accepted": true,
+      "resolved": [
+        "zip_broadcast"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "more-last-typeerror",
+      "accepted": true,
+      "resolved": [
+        "last"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "boltons-xfrange-descending",
+      "accepted": true,
+      "resolved": [
+        "xfrange"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "boltons-backoff-zero",
+      "accepted": true,
+      "resolved": [
+        "backoff"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "boltons-repeat-equality",
+      "accepted": true,
+      "resolved": [
+        "backoff_iter"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "toolz-partition-length",
+      "accepted": true,
+      "resolved": [
+        "partition_all"
+      ],
+      "missing": []
+    },
+    {
+      "task_id": "toolz-merge-mapping",
+      "accepted": true,
+      "resolved": [],
+      "missing": []
+    }
+  ]
+}

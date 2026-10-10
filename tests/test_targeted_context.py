@@ -52,7 +52,7 @@ def test_targeted_runner_refuses_full_pool_before_any_execution(tmp_path):
 
 
 @pytest.mark.parametrize('correction_passes', [True, False])
-@pytest.mark.parametrize('module', ['targeted_feedback_v1', 'public_api_feedback_v1', 'state_type_feedback_v1', 'caller_fallback_feedback_v1', 'public_contract_feedback_v1'])
+@pytest.mark.parametrize('module', ['targeted_feedback_v1', 'public_api_feedback_v1', 'state_type_feedback_v1', 'caller_fallback_feedback_v1', 'public_contract_feedback_v1', 'coverage_feedback_v1', 'coverage_contract_feedback_v1', 'coverage_feedback_v2', 'coverage_contract_feedback_v2'])
 def test_feedback_retrieves_current_source_and_preserves_rollback(tmp_path, monkeypatch, correction_passes, module):
     import hashlib
     from types import SimpleNamespace
@@ -68,7 +68,8 @@ def test_feedback_retrieves_current_source_and_preserves_rollback(tmp_path, monk
            'original_hash': digest(snapshot(workspace)),
            'description_hash': hashlib.sha256(b'prompt must return 3').hexdigest(),
            'evidence': retrieve(workspace, ['app.py'], 'prompt must return 3')['evidence']}
-    harnesses = ('harness', 'frozen_harness', 'contract_harness') if module == 'public_contract_feedback_v1' else ('harness', 'frozen_harness')
+    has_contract = module in {'public_contract_feedback_v1', 'coverage_contract_feedback_v1', 'coverage_contract_feedback_v2'}
+    harnesses = ('harness', 'frozen_harness', 'contract_harness') if has_contract else ('harness', 'frozen_harness')
     for label in harnesses:
         folder = tmp_path / label
         folder.mkdir()
@@ -82,13 +83,16 @@ def test_feedback_retrieves_current_source_and_preserves_rollback(tmp_path, monk
             guard.previous.repair.validate_evidence(workspace, job['allowed_files'], evidence)
         llm.calls += 1
         (workspace / 'app.py').write_text('def prompt():\n    return ' + ('2' if stage == 'initial' else '3') + '\n')
-        return {'status': 'completed'}
-    monkeypatch.setattr(guard.previous, 'request', request)
+        return {'status': 'invalid_patch' if module.startswith('coverage_') and stage == 'initial' else 'completed'}
+    if module.startswith('coverage_'):
+        monkeypatch.setattr(guard, 'request', request)
+    else:
+        monkeypatch.setattr(guard.previous, 'request', request)
     monkeypatch.setattr(guard, 'feedback', lambda *args: {'observations': 'public mismatch'})
     def checked(workspace, job, root, stage):
         passed = stage == 'corrected' and correction_passes
-        labels = ('public', 'frozen', 'contract') if module == 'public_contract_feedback_v1' else ('public', 'frozen')
-        return {label: {'Reproduce': {'passed': passed if label == 'contract' or module != 'public_contract_feedback_v1' else True,
+        labels = ('public', 'frozen', 'contract') if has_contract else ('public', 'frozen')
+        return {label: {'Reproduce': {'passed': passed if label == 'contract' or not has_contract else True,
                                     'timed_out': False, 'tests_run': 1}}
                 for label in labels}
     monkeypatch.setattr(guard, 'checked', checked)
