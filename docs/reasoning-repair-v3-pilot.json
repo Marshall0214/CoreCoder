@@ -1,0 +1,130 @@
+{
+  "summary": {
+    "off": {
+      "tasks": 6,
+      "passed": 3,
+      "controls_passed": 6,
+      "calls": 11,
+      "tokens": 35773,
+      "missing_worker_results": 0,
+      "worker_seconds": 135.9302
+    },
+    "on": {
+      "tasks": 6,
+      "passed": 2,
+      "controls_passed": 5,
+      "calls": 9,
+      "tokens": 73862,
+      "missing_worker_results": 0,
+      "worker_seconds": 1094.2789
+    }
+  },
+  "gained": [],
+  "lost": [
+    "click-usage-empty"
+  ],
+  "first_prompts_match": true,
+  "truncated_calls": {
+    "off": 0,
+    "on": 1
+  },
+  "cases": [
+    {
+      "task_id": "click-usage-empty",
+      "policy": "off",
+      "accepted": true,
+      "status": "completed",
+      "tokens": 7003,
+      "seconds": 42.594
+    },
+    {
+      "task_id": "click-usage-empty",
+      "policy": "on",
+      "accepted": false,
+      "status": "output_truncated",
+      "tokens": 35260,
+      "seconds": 719.359
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "on",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "tokens": 13534,
+      "seconds": 153.328
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "policy": "off",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "tokens": 6892,
+      "seconds": 11.562
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "policy": "off",
+      "accepted": true,
+      "status": "completed",
+      "tokens": 6372,
+      "seconds": 17.016
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "policy": "on",
+      "accepted": true,
+      "status": "completed",
+      "tokens": 7440,
+      "seconds": 48.297
+    },
+    {
+      "task_id": "click-flag-default-map",
+      "policy": "on",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "tokens": 9175,
+      "seconds": 82.516
+    },
+    {
+      "task_id": "click-flag-default-map",
+      "policy": "off",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "tokens": 6404,
+      "seconds": 24.75
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "policy": "off",
+      "accepted": true,
+      "status": "completed",
+      "tokens": 2698,
+      "seconds": 7.25
+    },
+    {
+      "task_id": "click-echo-empty-bytes",
+      "policy": "on",
+      "accepted": true,
+      "status": "completed",
+      "tokens": 4626,
+      "seconds": 46.172
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "on",
+      "accepted": false,
+      "status": "completed",
+      "tokens": 3827,
+      "seconds": 38.578
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "policy": "off",
+      "accepted": false,
+      "status": "failed_public_validation",
+      "tokens": 6404,
+      "seconds": 27.437
+    }
+  ],
+  "limitation": "Six selected known development tasks, one trial; not a new full-pool repair rate."
+}

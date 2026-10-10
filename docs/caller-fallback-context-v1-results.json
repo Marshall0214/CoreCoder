@@ -1,0 +1,28 @@
+{
+  "complete": true,
+  "scope": "one historical failure, full baseline unchanged at 43/50",
+  "summary": {
+    "deepseek-high": {
+      "tasks": 1,
+      "passed": 0,
+      "controls_passed": 1,
+      "calls": 1,
+      "tokens": 32128,
+      "missing_worker_results": 0,
+      "worker_seconds": 115.5432
+    }
+  },
+  "case": {
+    "task_id": "click-flag-envvar",
+    "accepted": false,
+    "status": "completed",
+    "calls": 1,
+    "tokens": 32128,
+    "seconds": 114.578,
+    "Target": false,
+    "Controls": true,
+    "feedback_skipped": "checks_passed",
+    "diagnosis": "Candidate passes unrecognized and false-like strings through instead of producing the inactive value. Public not-equal-to-activation assertion accepts raw strings, so feedback is skipped."
+  },
+  "audit": "Normal exit, original token/call ceilings, input hashes and final source hash verified. No private diagnostics were sent to the model."
+}

@@ -1,0 +1,41 @@
+{
+  "full_baseline": "43/50 unchanged",
+  "unit_tests_passed": 48,
+  "offline_contract_audit": "rejects original and two historical bad patches; accepts reference; Preserve passes in all four",
+  "runs": [
+    {
+      "protocol": "public-contract-repair-v1",
+      "complete": true,
+      "accepted": false,
+      "status": "output_truncated",
+      "feedback_attempts": 0,
+      "correction_status": null,
+      "logical_calls": 1,
+      "accounted_tokens": 35261,
+      "new_api_calls": 1,
+      "new_api_tokens": 35261,
+      "historical_replayed_tokens": 0,
+      "original_restored": true,
+      "seconds": 123.156
+    },
+    {
+      "protocol": "public-contract-replay-v1",
+      "complete": true,
+      "accepted": false,
+      "status": "failed_public_validation",
+      "feedback_attempts": 1,
+      "correction_status": "output_truncated",
+      "logical_calls": 2,
+      "accounted_tokens": 59588,
+      "new_api_calls": 1,
+      "new_api_tokens": 27460,
+      "historical_replayed_tokens": 32128,
+      "original_restored": true,
+      "seconds": 93.813
+    }
+  ],
+  "total_new_api_calls": 2,
+  "total_new_api_tokens": 62721,
+  "result": "Validation loophole closed for tested cases, feedback triggered, no new accepted repair. Correction exhausted generation on reasoning; both workspaces rolled back.",
+  "audit": "Original and new harness hashes, source hashes, process completion, budget/call limits and replay accounting verified."
+}

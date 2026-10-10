@@ -1,0 +1,39 @@
+{
+  "complete": true,
+  "task_id": "more-range-membership",
+  "accepted": false,
+  "status": "output_truncated",
+  "metrics": {
+    "llm_calls": 1,
+    "prompt_tokens": 1880,
+    "completion_tokens": 32768,
+    "known_prompt_tokens": 1880,
+    "known_completion_tokens": 32768,
+    "missing_usage_calls": 0,
+    "budget_accounted_tokens": 34648,
+    "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown"
+  },
+  "seconds": 111.344,
+  "provider_calls": [
+    {
+      "response_received": true,
+      "effective_output_limit": 32768,
+      "prompt_hash": "4888f29e90fda28824c789d6b99a7ca28c08e61f5c35d56455f68b41cf229706",
+      "model_returned": "deepseek-flash",
+      "finish_reason": "length",
+      "reasoning_present": true,
+      "reasoning_chars": 102221,
+      "reasoning_tokens": 32768,
+      "prompt_tokens": 1880,
+      "completion_tokens": 32768,
+      "total_tokens": 34648,
+      "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669",
+      "tool_calls_present": false
+    }
+  ],
+  "original_restored": true,
+  "same_source_evidence_as_previous": true,
+  "scope": "one known failure; baseline 43/50 unchanged"
+}

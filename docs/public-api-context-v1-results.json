@@ -1,0 +1,39 @@
+{
+  "complete": true,
+  "scope": "two historical failures only; 43/50 full baseline unchanged",
+  "summary": {
+    "deepseek-high": {
+      "tasks": 2,
+      "passed": 1,
+      "controls_passed": 2,
+      "calls": 2,
+      "tokens": 34022,
+      "missing_worker_results": 0,
+      "worker_seconds": 124.1931
+    }
+  },
+  "cases": [
+    {
+      "task_id": "click-flag-default-map",
+      "accepted": true,
+      "status": "completed",
+      "published": true,
+      "calls": 1,
+      "tokens": 5021,
+      "seconds": 12.422,
+      "Target": true,
+      "Controls": true
+    },
+    {
+      "task_id": "click-flag-envvar",
+      "accepted": false,
+      "status": "completed",
+      "published": true,
+      "calls": 1,
+      "tokens": 29001,
+      "seconds": 109.86,
+      "Target": false,
+      "Controls": true
+    }
+  ]
+}

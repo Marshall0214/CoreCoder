@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "scope": "three selected historical failures only, no full-pool rerun",
+  "baseline_full_score": "43/50 unchanged",
+  "summary": {
+    "deepseek-high": {
+      "tasks": 3,
+      "passed": 2,
+      "controls_passed": 3,
+      "calls": 3,
+      "tokens": 49016,
+      "missing_worker_results": 0,
+      "worker_seconds": 150.8875
+    }
+  },
+  "cases": [
+    {
+      "task_id": "boltons-remap-set",
+      "accepted": true,
+      "status": "completed",
+      "tokens": 3499,
+      "calls": 1,
+      "seconds": 5.704
+    },
+    {
+      "task_id": "more-range-membership",
+      "accepted": false,
+      "status": "output_truncated",
+      "tokens": 34189,
+      "calls": 1,
+      "seconds": 107.938
+    },
+    {
+      "task_id": "click-prompt-suffix",
+      "accepted": true,
+      "status": "completed",
+      "tokens": 11328,
+      "calls": 1,
+      "seconds": 34.438
+    }
+  ]
+}

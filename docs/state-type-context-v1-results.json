@@ -1,0 +1,28 @@
+{
+  "complete": true,
+  "scope": "one known envvar failure; full baseline remains 43/50",
+  "summary": {
+    "deepseek-high": {
+      "tasks": 1,
+      "passed": 0,
+      "controls_passed": 1,
+      "calls": 1,
+      "tokens": 29035,
+      "missing_worker_results": 0,
+      "worker_seconds": 101.7493
+    }
+  },
+  "case": {
+    "task_id": "click-flag-envvar",
+    "accepted": false,
+    "status": "completed",
+    "calls": 1,
+    "tokens": 29035,
+    "seconds": 100.875,
+    "Target": false,
+    "Controls": true,
+    "feedback_skipped": "checks_passed",
+    "diagnosis": "Activation filtering now matches description, but inactive values fall back to None instead of the required default representation. Public checks pass, so no correction is triggered."
+  },
+  "audit": "Completed process, budget, source hashes and independent outcome checked; private diagnostics were only read after the model run."
+}
