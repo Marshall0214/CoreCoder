@@ -1,4 +1,5 @@
 """Same group predicates as the experiment, using the active Python interpreter."""
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -7,6 +8,7 @@ from docs.experiments import public_feedback_v2 as historical
 from evals.process import run_process, test_environment
 from evals.runner import changes, digest, snapshot
 from repairflow.bundles import read
+from sandbox import runner
 
 repair = historical.repair
 diagnostic = historical.diagnostic
@@ -18,12 +20,18 @@ def groups(source, harness, package, source_root, logs, names):
     initial = digest(snapshot(source)), digest(snapshot(harness))
     logs.mkdir(parents=True, exist_ok=False)
     outcomes = {}
+    policy = (runner.ACTIVE_POLICY.get() or runner.preflight()) if runner.backend() == 'docker' else None
     for name in names:
         record = logs / (name + '.json')
-        process = run_process([sys.executable, '-I', '-B', '-c', historical.admission.previous.BOOT,
+        if policy:
+            process = runner.run(source, harness, package, source_root, logs, name,
+                                 historical.admission.previous.BOOT, policy,
+                                 runner.owner(os.environ.get('CORECODER_SANDBOX_OWNER', str(logs.parent))))
+        else:
+            process = run_process([sys.executable, '-I', '-B', '-c', historical.admission.previous.BOOT,
                                str((source / source_root).resolve()), str(harness.resolve()), package, name,
                                str(record.resolve())], source, 15, logs / (name + '.stdout.txt'),
-                              logs / (name + '.stderr.txt'), test_environment(source))
+                                  logs / (name + '.stderr.txt'), test_environment(source))
         score = read(record) if record.exists() else {}
         passed = (process['returncode'] == 0 and not process['timed_out'] and score.get('tests_run', 0) > 0
                   and score.get('successful') and not any(score.get(k, 0) for k in

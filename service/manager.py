@@ -97,10 +97,24 @@ class TaskManager:
         for job in list(self.jobs.values()):
             if job.state in {'running', 'cancelling'}:
                 await asyncio.to_thread(self._stop_orphan, job)
+                await asyncio.to_thread(self._clean_sandbox, job)
                 job.transition('interrupted')
             elif job.state == 'queued':
                 job.handle = asyncio.create_task(self._run(job))
         self.prune()
+
+    @staticmethod
+    def _clean_sandbox(job):
+        if job.request.get('workflow') != 'repair-approval-v1':
+            return
+        from sandbox.runner import SandboxError, backend, cleanup
+
+        if backend() == 'docker':
+            try:
+                cleanup(job.root)
+            except SandboxError as exc:
+                # Keep cleanup errors observable without blocking unrelated jobs.
+                (job.root / 'sandbox-cleanup-error.txt').write_text(exc.status, encoding='utf-8')
 
     @staticmethod
     def _stop_orphan(job):
@@ -182,6 +196,7 @@ class TaskManager:
                 stdout = (job.root / 'stdout.txt').open('wb')
                 stderr = (job.root / 'stderr.txt').open('wb')
                 env = dict(os.environ, PYTHONPATH=str(ROOT), PYTHONDONTWRITEBYTECODE='1', PYTHONIOENCODING='utf-8')
+                env['CORECODER_SANDBOX_OWNER'] = str(job.root)
                 if os.environ.get('PYTHONPATH'):
                     env['PYTHONPATH'] += os.pathsep + os.environ['PYTHONPATH']
                 kwargs = {'creationflags': subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == 'nt' else {'start_new_session': True}
@@ -243,6 +258,7 @@ class TaskManager:
                     await asyncio.to_thread(stop_tree, job.process)
                 job.transition('cancelled' if job.cancel_requested else 'failed')
             finally:
+                await asyncio.to_thread(self._clean_sandbox, job)
                 for stream in (stdout, stderr):
                     if stream is not None:
                         stream.close()

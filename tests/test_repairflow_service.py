@@ -9,6 +9,11 @@ from tests.repair_bundle_fixture import bundle
 from tests.test_service import wait
 
 
+@pytest.fixture(autouse=True)
+def explicit_development_backend(monkeypatch):
+    monkeypatch.setenv('CORECODER_TEST_BACKEND', 'local')
+
+
 def submit(client):
     response = client.post('/tasks', headers={'Idempotency-Key': 'repair-demo'}, json={
         'suite': 'repair', 'task_id': 'sample', 'mode': 'replay', 'workflow': 'repair-approval-v1'})

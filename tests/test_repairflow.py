@@ -9,6 +9,11 @@ from repairflow.engine import execute
 from tests.repair_bundle_fixture import bundle
 
 
+@pytest.fixture(autouse=True)
+def explicit_development_backend(monkeypatch):
+    monkeypatch.setenv('CORECODER_TEST_BACKEND', 'local')
+
+
 def test_real_replay_retrieves_applies_and_independently_verifies(tmp_path):
     task = bundle(tmp_path / 'sample')
     report = execute(task, 'replay', tmp_path / 'run')

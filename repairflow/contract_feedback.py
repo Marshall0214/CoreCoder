@@ -7,6 +7,7 @@ from docs.experiments.constrained_patch_v1 import request
 from docs.experiments.coverage_context_v2 import retrieve
 from evals.runner import digest, snapshot
 from repairflow import checks as previous
+from sandbox.runner import SandboxError
 
 
 def validate(job, root):
@@ -110,6 +111,8 @@ def run_candidate(llm, job, events):
                     raise ValueError('Certified public harness changed')
             result['published'] = valid(selected)
             result['status'] = 'completed' if result['published'] else 'failed_public_validation'
+    except SandboxError:
+        raise
     except Exception as exc:  # noqa: BLE001 - validation failure must not publish source
         result.update(status='agent_error', error_type=type(exc).__name__, published=False)
     finally:

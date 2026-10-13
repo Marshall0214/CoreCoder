@@ -19,7 +19,9 @@ def execute(path):
         try:
             report = run(path, decision=job.get('approval'))
         except Exception as exc:  # noqa: BLE001 - never expose credentials or provider error text
-            report = {'status': 'service_execution_error', 'accepted': False,
+            from sandbox.runner import SandboxError
+
+            report = {'status': exc.status if isinstance(exc, SandboxError) else 'service_execution_error', 'accepted': False,
                       'verification': {'passed': False}, 'failure_type': type(exc).__name__}
         (path.parent / 'result.json').write_text(json.dumps(report, ensure_ascii=False), encoding='utf-8')
         return

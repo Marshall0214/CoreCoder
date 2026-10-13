@@ -1,0 +1,186 @@
+"""One disposable, offline container per test group. No model credentials enter it."""
+import hashlib
+import io
+import json
+import os
+import re
+import subprocess
+import tarfile
+import threading
+import time
+import uuid
+from contextvars import ContextVar
+from pathlib import Path
+
+ACTIVE_POLICY = ContextVar('repair_sandbox_policy', default=None)
+
+
+class SandboxError(RuntimeError):
+    def __init__(self, status):
+        self.status = status
+        super().__init__(status)
+
+
+def backend():
+    value = os.environ.get('CORECODER_TEST_BACKEND', 'docker')
+    if value not in {'docker', 'local'}:
+        raise ValueError('CORECODER_TEST_BACKEND must be docker or local')
+    return value
+
+
+def owner(root):
+    return hashlib.sha256(str(Path(root).resolve()).encode()).hexdigest()
+
+
+def control(args, timeout=30):
+    try:
+        result = subprocess.run(['docker', *args], capture_output=True, timeout=timeout, check=False)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise SandboxError('sandbox_unavailable') from exc
+    if result.returncode:
+        raise SandboxError('sandbox_control_failed')
+    return result.stdout
+
+
+def preflight():
+    image = os.environ.get('CORECODER_SANDBOX_IMAGE', 'corecoder-test-sandbox:v1')
+    try:
+        info = json.loads(control(['info', '--format', '{{json .OSType}}']))
+    except SandboxError as exc:
+        raise SandboxError('sandbox_unavailable') from exc
+    if info != 'linux':
+        raise SandboxError('sandbox_requires_linux_containers')
+    try:
+        metadata = json.loads(control(['image', 'inspect', image]))[0]
+    except SandboxError as exc:
+        raise SandboxError('sandbox_image_missing') from exc
+    # Use the immutable local content ID; never pull at test execution time.
+    image_id = metadata['Id']
+    if not re.fullmatch(r'sha256:[0-9a-f]{64}', image_id):
+        raise SandboxError('sandbox_invalid_image')
+    return {'backend': 'docker', 'image': image, 'image_id': image_id,
+            'network': 'none', 'cpus': 1, 'memory_bytes': 1073741824, 'pids': 64,
+            'output_limit_bytes': 1048576}
+
+
+def cleanup(root):
+    """Only remove containers owned by this exact task, never unrelated containers."""
+    ids = control(['ps', '-aq', '--filter', 'label=corecoder.sandbox.owner=' + owner(root)]).decode().split()
+    if ids:
+        control(['rm', '-f', *ids])
+
+
+def bounded(args, timeout, limit=1048576):
+    """Bound both CLI streams in memory; stop log floods without filling a disk."""
+    proc = subprocess.Popen(['docker', *args], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                            stdin=subprocess.DEVNULL)
+    buffers = [bytearray(), bytearray()]
+    total = 0
+    exceeded = threading.Event()
+    lock = threading.Lock()
+
+    def drain(stream, index):
+        nonlocal total
+        while chunk := stream.read(8192):
+            with lock:
+                room = max(0, limit - total)
+                buffers[index].extend(chunk[:room])
+                total += len(chunk)
+                if total > limit:
+                    exceeded.set()
+                    proc.kill()
+
+    threads = [threading.Thread(target=drain, args=(stream, i), daemon=True)
+               for i, stream in enumerate((proc.stdout, proc.stderr))]
+    for thread in threads:
+        thread.start()
+    timed_out = False
+    try:
+        proc.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        timed_out = True
+        proc.kill()
+        proc.wait()
+    finally:
+        for thread in threads:
+            thread.join(5)
+        for stream in (proc.stdout, proc.stderr):
+            stream.close()
+    return proc.returncode, bytes(buffers[0]), bytes(buffers[1]), timed_out, exceeded.is_set()
+
+
+def parse_archive(raw):
+    """Read one small regular file without extracting any archive paths or links."""
+    with tarfile.open(fileobj=io.BytesIO(raw)) as archive:
+        members = archive.getmembers()
+        if (len(members) != 1 or not members[0].isfile() or members[0].name != 'result.json'
+                or members[0].size > 65536):
+            raise ValueError('Invalid result archive')
+        score = json.loads(archive.extractfile(members[0]).read())
+    counts = ('tests_run', 'skipped', 'expected_failures', 'unexpected_successes', 'errors', 'failures')
+    if (not isinstance(score, dict) or type(score.get('successful')) is not bool
+            or any(type(score.get(k)) is not int or score[k] < 0 for k in counts)):
+        raise ValueError('Invalid test result')
+    return {key: score[key] for key in (*counts, 'successful')}
+
+
+def command(image_id, name, task_owner, source, harness, entry, source_root, package, group):
+    relative = Path(source_root)
+    if relative.is_absolute() or source_root.startswith('/') or '..' in relative.parts or '\\' in source_root or ':' in source_root:
+        raise ValueError('Unsafe source root')
+    mounts = []
+    for path, target in ((source, '/source'), (harness, '/checks'), (entry, '/runner.py')):
+        path = Path(path).resolve()
+        if ',' in str(path):
+            raise ValueError('Comma in Docker mount path')
+        mounts += ['--mount', f'type=bind,source={path},target={target},readonly']
+    return ['create', '--name', name, '--label', 'corecoder.sandbox.owner=' + task_owner,
+            '--network', 'none', '--user', '10001:10001', '--read-only', '--cap-drop', 'ALL',
+            '--security-opt', 'no-new-privileges', '--cpus', '1', '--memory', '1g', '--memory-swap', '1g',
+            '--pids-limit', '64', '--init', '--log-driver', 'none',
+            '--tmpfs', '/tmp:rw,nosuid,nodev,size=128m,mode=1777', '--workdir', '/source',
+            '--env', 'PYTHONDONTWRITEBYTECODE=1', '--env', 'PYTHONIOENCODING=utf-8',
+            '--pull', 'never', *mounts, image_id, 'python', '-I', '-B', '/runner.py',
+            '/source/' + source_root, '/checks', package, group, '/tmp/result.json']
+
+
+def run(source, harness, package, source_root, logs, group, boot, policy, task_owner):
+    name = 'corecoder-test-' + uuid.uuid4().hex
+    entry = logs / (group + '-runner.py')
+    entry.write_text('import signal\nsignal.alarm(15)\n' + boot, encoding='utf-8')
+    started = time.perf_counter()
+    result = {'returncode': None, 'timed_out': False, 'sandbox': dict(policy), 'sandbox_status': 'sandbox_start_failed'}
+    try:
+        control(command(policy['image_id'], name, task_owner, source, harness, entry, source_root, package, group))
+        _, out, err, timeout, overflow = bounded(['start', '-a', name], 20)
+        (logs / (group + '.stdout.txt')).write_bytes(out)
+        (logs / (group + '.stderr.txt')).write_bytes(err)
+        state = json.loads(control(['inspect', '--format', '{{json .State}}', name]))
+        timeout = timeout or state['ExitCode'] == 142  # SIGALRM: original 15-second test deadline.
+        result.update(returncode=state['ExitCode'], timed_out=timeout,
+                      sandbox_status='sandbox_timeout' if timeout else 'sandbox_output_limit' if overflow
+                      else 'sandbox_oom' if state.get('OOMKilled') else 'completed')
+        if result['sandbox_status'] == 'completed':
+            code, archive, _, copy_timeout, copy_overflow = bounded(['cp', name + ':/tmp/result.json', '-'], 10, 131072)
+            if code or copy_timeout or copy_overflow:
+                result['sandbox_status'] = 'sandbox_invalid_result'
+            else:
+                try:
+                    score = parse_archive(archive)
+                    result.update(score)
+                    (logs / (group + '.json')).write_text(json.dumps(score), encoding='utf-8')
+                except (ValueError, KeyError, TypeError, AttributeError, tarfile.TarError, UnicodeError):
+                    result['sandbox_status'] = 'sandbox_invalid_result'
+    except SandboxError as exc:
+        result['sandbox_status'] = exc.status
+    finally:
+        try:
+            control(['rm', '-f', name])
+        except SandboxError:
+            result['cleanup_failed'] = True
+            result['sandbox_status'] = 'sandbox_cleanup_failed'
+        result['seconds'] = round(time.perf_counter() - started, 4)
+        (logs / (group + '-sandbox.json')).write_text(json.dumps(result), encoding='utf-8')
+    if result['sandbox_status'] != 'completed':
+        raise SandboxError(result['sandbox_status'])
+    return result

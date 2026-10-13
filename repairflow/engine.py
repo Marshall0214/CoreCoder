@@ -16,6 +16,7 @@ from evals.runtime import BudgetLLM, Events
 from evals.schema import RunConfig
 from repairflow import checks, strategy
 from repairflow.bundles import ROOT, load, read, write
+from sandbox import runner
 
 
 @dataclass(frozen=True)
@@ -79,6 +80,31 @@ def environment():
 
 
 def execute(bundle, mode, output, provider_factory=None):
+    token = runner.ACTIVE_POLICY.set(None)
+    try:
+        return _execute(bundle, mode, output, provider_factory)
+    except runner.SandboxError as exc:
+        output, bundle = Path(output).resolve(), Path(bundle).resolve()
+        if not output.exists():
+            raise  # Preflight failed before inference or output creation.
+        workspace = output / 'workspace'
+        if workspace.exists():
+            strategy.restore(workspace, bundle / 'source', output)
+        (output / 'patch.diff').write_text('', encoding='utf-8')
+        worker = read(output / 'worker-result.json') if (output / 'worker-result.json').exists() else {}
+        report = {'status': exc.status, 'accepted': False, 'verification': {'passed': False},
+                  'original_unchanged': True, 'execution_mode': mode, 'fresh_inference': mode == 'live',
+                  'fresh_model_calls': len(worker.get('provider_calls', [])) if mode == 'live' else 0,
+                  'historical_usage_only': mode == 'replay', 'metrics': worker.get('metrics', {}),
+                  'sandbox': runner.ACTIVE_POLICY.get()}
+        write(output / 'report.json', report)
+        Events(output / 'trace.jsonl', output.name).emit('stage', stage='failed', failure_type=exc.status)
+        return report
+    finally:
+        runner.ACTIVE_POLICY.reset(token)
+
+
+def _execute(bundle, mode, output, provider_factory=None):
     """Copy trusted source, repair with public evidence, grade only after generation."""
     bundle, output = Path(bundle).resolve(), Path(output).resolve()
     data, settings = load(bundle), config(mode)
@@ -86,12 +112,15 @@ def execute(bundle, mode, output, provider_factory=None):
         raise ValueError('Require fresh nonoverlapping output')
     if mode == 'replay' and 'replay_sha256' not in data:
         raise ValueError('Bundle has no exact replay record')
+    # Fail closed before inference (and any API key access) if Docker is unavailable.
+    sandbox_policy = runner.preflight() if runner.backend() == 'docker' else {'backend': 'local', 'isolated': False}
+    runner.ACTIVE_POLICY.set(sandbox_policy if sandbox_policy['backend'] == 'docker' else None)
     output.mkdir(parents=True)
     events = Events(output / 'trace.jsonl', output.name)
     versions = implementation()
     write(output / 'provenance.json', {'strategy': data['strategy'], 'bundle_hash': data['bundle_hash'],
                                       'config': settings.to_dict(), 'implementation': versions,
-                                      'environment': environment(),
+                                      'environment': environment(), 'sandbox': sandbox_policy,
                                       'execution_mode': mode, 'fresh_inference': mode == 'live'})
     workspace = output / 'workspace'
     shutil.copytree(bundle / 'source', workspace)
@@ -119,7 +148,12 @@ def execute(bundle, mode, output, provider_factory=None):
                 api_key=deepseek_key(), base_url=settings.base_url, timeout=480, max_retries=0))
         llm = BudgetLLM(inner, settings, events) if mode == 'replay' else provider.CheckedBudgetLLM(inner, settings, events)
         events.emit('stage', stage='repairing')
-        result = strategy.run_candidate(llm, job, events)
+        try:
+            result = strategy.run_candidate(llm, job, events)
+        except runner.SandboxError as exc:
+            write(output / 'worker-result.json', events.clean({'status': exc.status, 'metrics': llm.metrics(),
+                                                              'provider_calls': inner.calls}))
+            raise
         result['provider_calls'] = inner.calls
         write(output / 'worker-result.json', events.clean(result))
     finally:
@@ -147,7 +181,7 @@ def execute(bundle, mode, output, provider_factory=None):
     report = {'status': 'passed' if accepted else result['status'] if result['status'] != 'completed' else 'failed_verification',
               'accepted': bool(accepted), 'execution_mode': mode, 'fresh_inference': mode == 'live',
               'verification': verified, 'public': public, 'frozen': frozen,
-              'metrics': result['metrics'], 'historical_usage_only': mode == 'replay',
+              'metrics': result['metrics'], 'historical_usage_only': mode == 'replay', 'sandbox': sandbox_policy,
               'fresh_model_calls': len(inner.calls) if mode == 'live' else 0,
               'original_unchanged': digest(snapshot(workspace)) == data['hashes']['source'],
               'artifacts': str(output), 'bundle_hash': data['bundle_hash'],

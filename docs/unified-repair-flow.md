@@ -1,5 +1,8 @@
 # 统一 Issue 修复流程：演示与复现
 
+> 更新：统一流程默认要求 Docker 测试沙箱，请先按 [执行沙箱](execution-sandbox.md) 构建本地镜像。
+> 以下历史验收对应当时的子进程后端，不代表新增容器后端已验收。
+
 ## 当前交付
 
 CLI 与 FastAPI 的 `repair-approval-v1` 共用 `repairflow.engine.execute`：
