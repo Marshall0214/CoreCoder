@@ -109,6 +109,32 @@ def test_allow_all_approves_without_any_callback(tmp_path):
     assert (tmp_path / "a.txt").exists() and (tmp_path / "b.txt").exists()
 
 
+def test_always_allow_persists_across_instances(tmp_path):
+    store = tmp_path / "permissions.json"
+    asked = []
+    first = Permission(ask=lambda name, args: asked.append(name) or "always",
+                       persist_path=store)
+    assert first.check("bash", {}) is None
+
+    second = Permission(persist_path=store)  # a fresh process, nobody to ask
+    assert second.check("bash", {}) is None        # the grant survived
+    assert second.check("edit_file", {}) is not None  # but only that tool
+    assert asked == ["bash"]
+
+
+def test_corrupt_permissions_store_is_ignored(tmp_path):
+    store = tmp_path / "permissions.json"
+    store.write_text("{ nope", encoding="utf-8")
+
+    assert "non-interactive" in Permission(persist_path=store).check("bash", {})
+
+
+def test_without_persist_path_nothing_is_written(tmp_path):
+    p = Permission(ask=lambda name, args: "always")
+    assert p.check("bash", {}) is None
+    assert not (tmp_path / "permissions.json").exists()
+
+
 def test_parallel_calls_each_get_their_own_decision(tmp_path):
     marker = tmp_path / "touched"
     calls = [

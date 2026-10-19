@@ -1,11 +1,11 @@
 """Plan mode: read-only investigation, then a plan the user approves."""
 
-from corecoder import Agent, Config, cli
+from corecoder import Agent
 from corecoder.demo import ScriptedLLM
 from corecoder.llm import LLMResponse, ToolCall
 from corecoder.permissions import Permission
 from corecoder.tools.write import WriteFileTool
-from tests.conftest import get_tool
+from tests.conftest import get_tool, repl_with
 
 
 def _write_call(call_id, path):
@@ -22,13 +22,6 @@ def _agent(tmp_path, permission):
         tools=[WriteFileTool()],
         permission=permission,
     )
-
-
-def _repl_with(monkeypatch, agent, inputs):
-    """Drive the real REPL with a scripted list of inputs."""
-    it = iter(inputs)
-    monkeypatch.setattr(cli, "pt_prompt", lambda *a, **k: next(it))
-    cli._repl(agent, Config.from_env())
 
 
 def test_plan_mode_refuses_a_write_and_the_model_gets_the_reason(tmp_path):
@@ -82,17 +75,17 @@ def test_system_prompt_gains_the_plan_section_only_while_on():
 def test_plan_slash_command_toggles(monkeypatch):
     agent = Agent(llm=ScriptedLLM([]))
 
-    _repl_with(monkeypatch, agent, ["/plan", "quit"])
+    repl_with(monkeypatch, agent, ["/plan", "quit"])
     assert agent.plan_mode is True
 
-    _repl_with(monkeypatch, agent, ["/plan", "quit"])
+    repl_with(monkeypatch, agent, ["/plan", "quit"])
     assert agent.plan_mode is False
 
 
 def test_approve_exits_plan_mode_and_the_agent_proceeds(monkeypatch):
     agent = Agent(llm=ScriptedLLM([LLMResponse(content="executing the plan")]))
 
-    _repl_with(monkeypatch, agent, ["/plan", "approve", "quit"])
+    repl_with(monkeypatch, agent, ["/plan", "approve", "quit"])
 
     assert agent.plan_mode is False
     # the approval itself went to the model as an ordinary user message

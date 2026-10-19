@@ -1,6 +1,8 @@
 """A read-only tool that fetches the text content of a URL."""
 
 import urllib.request
+from typing import ClassVar
+
 from .base import Tool
 
 
@@ -10,7 +12,7 @@ class FetchUrlTool(Tool):
         "Fetch the text content of an http(s) URL. "
         "Use this to read documentation, API responses, or web pages."
     )
-    parameters = {
+    parameters: ClassVar[dict] = {
         "type": "object",
         "properties": {
             "url": {
@@ -33,7 +35,7 @@ class FetchUrlTool(Tool):
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 raw = resp.read(1_000_000)  # 顶多读 1MB，别让一个巨页撑爆内存
                 text = raw.decode("utf-8", errors="replace")
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - tool failures return an observation to the agent
             return f"Error fetching {url}: {e}"
         # 太长就留头尾，跟 bash 输出截断一个套路
         if len(text) > 8000:

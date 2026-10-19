@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-19",
+  "operation": "upstream_merge_pending_manual_commit",
+  "upstream": "https://github.com/he-yufeng/CoreCoder.git",
+  "upstream_commit": "13b18dac85a1a695581091e98d88d1486faf7b22",
+  "merge_base": "745ff657a465b606f4eba1133c645721ebce95de",
+  "local_before_merge": "4c93446",
+  "upstream_commits_since_base": 20,
+  "core_package_version": "0.8.0",
+  "final_regression": {
+    "command": "python -m pytest tests -q -p no:cacheprovider --junitxml=.tmp/upstream-sync-20261019/regression-final.xml",
+    "collected": 1670,
+    "passed": 1667,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 3,
+    "duration_seconds_rounded": 378,
+    "real_docker_cases_passed": 9,
+    "skipped_cases": [
+      {"test": "test_code_knowledge_mcp.test_symlink_escape_is_not_listed_or_read", "reason": "Windows symlink privileges unavailable"},
+      {"test": "test_search_code.test_symlink_outside_workspace_is_not_indexed", "reason": "Windows symlink privileges unavailable"},
+      {"test": "test_live_smoke.test_agent_reads_a_file_and_answers", "reason": "Real model smoke test explicitly disabled"}
+    ],
+    "docker_context": "desktop-linux",
+    "sandbox_image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219"
+  },
+  "diagnostics": {
+    "initial_full_run": {"passed": 1646, "failed": 19, "skipped": 3},
+    "initial_failure_categories": {"historical_test_environment": 11, "docker_image_tag_preflight": 8},
+    "historical_and_lint_fixture_recheck_passed": 77,
+    "standalone_docker_recheck_passed": 9,
+    "docker_tag_failure_root_cause": "undetermined; final regression pinned the local image content ID"
+  },
+  "ruff": {"targets": ["corecoder", "tests", "service", "repairflow", "sandbox"], "status": "passed"},
+  "readme_local_links": {"README.md": 15, "README_CN.md": 15, "missing": 0},
+  "frozen_paths_unchanged": ["docs/experiments", "evals", "repairflow", "sandbox", "configs"],
+  "historical_repair_experiments_rerun": false,
+  "real_model_calls": 0,
+  "existing_port_8001_service_modified": false,
+  "runtime_state_and_reports_drive": "D:",
+  "commit_created": false,
+  "pushed": false
+}

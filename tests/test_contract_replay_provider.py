@@ -15,8 +15,8 @@ def test_replay_requires_identical_request_and_charges_historical_tokens(tmp_pat
     messages = [{'role': 'user', 'content': 'original'}]
     (seed / 'initial-messages.json').write_text(json.dumps(messages))
     (seed / 'initial-response.txt').write_text('{"edits": []}')
-    call = dict(finish_reason='stop', model_returned='deepseek-flash', effective_output_limit=32768,
-                prompt_tokens=100, completion_tokens=200, total_tokens=300, tool_calls_present=False)
+    call = {'finish_reason': 'stop', 'model_returned': 'deepseek-flash', 'effective_output_limit': 32768,
+                'prompt_tokens': 100, 'completion_tokens': 200, 'total_tokens': 300, 'tool_calls_present': False}
     (seed / 'worker-result.json').write_text(json.dumps({'initial': {'status': 'completed'}, 'provider_calls': [call]}))
     monkeypatch.setattr(replay, 'SEED', seed)
     root = tmp_path / 'run'

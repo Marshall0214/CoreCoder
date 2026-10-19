@@ -4,8 +4,8 @@ from types import SimpleNamespace
 import pytest
 
 from corecoder.llm import LLMResponse
-from docs.experiments.coverage_context_v2 import retrieve
 from docs.experiments.constrained_patch_v1 import request
+from docs.experiments.coverage_context_v2 import retrieve
 
 
 def test_qualified_target_reserved_and_unrelated_methods_cannot_displace_it(tmp_path):
@@ -43,7 +43,7 @@ def test_constrained_patch_is_atomic_and_requires_real_change(tmp_path, kind):
     original = 'def repair_target():\n    return 1\n'
     (workspace / 'app.py').write_text(original)
     evidence = retrieve(workspace, ['app.py'], 'repair_target must return 2')['evidence']
-    edit = dict(file='app.py', old='return 1', new='return 2')
+    edit = {'file': 'app.py', 'old': 'return 1', 'new': 'return 2'}
     edits = [edit]
     if kind == 'empty':
         edits = []
@@ -55,8 +55,8 @@ def test_constrained_patch_is_atomic_and_requires_real_change(tmp_path, kind):
         edit['new'] = 'return ('
     elif kind == 'cancelling':
         # Both anchors are supplied, but the pair restores the original source.
-        edits = [dict(file='app.py', old='return 1', new='1'),
-                 dict(file='app.py', old='1', new='return 1')]
+        edits = [{'file': 'app.py', 'old': 'return 1', 'new': '1'},
+                 {'file': 'app.py', 'old': '1', 'new': 'return 1'}]
     llm = SimpleNamespace(chat=lambda *args, **kwargs: LLMResponse(content=json.dumps({'edits': edits})))
     result = request(llm, workspace, {'description': 'repair_target must return 2', 'allowed_files': ['app.py']}, evidence, tmp_path, 'initial')
     assert (result['status'] == 'completed') is (kind == 'valid')

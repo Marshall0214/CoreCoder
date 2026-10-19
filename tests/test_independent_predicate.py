@@ -1,5 +1,6 @@
 import ast
 import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -46,7 +47,8 @@ def replace(iterable, pred, substitutes, window_size=1):
 
 
 @pytest.fixture
-def case(tmp_path):
+def case(tmp_path, monkeypatch):
+    monkeypatch.setattr(independent.previous.admission, 'PYTHON', Path(sys.executable))
     workspace = tmp_path / 'workspace'
     workspace.mkdir()
     (workspace / 'example.py').write_text(SOURCE, encoding='utf-8')

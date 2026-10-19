@@ -1,298 +1,102 @@
 <div align="center">
 
-# CoreCoder
+# CoreCoder · Issue 自动修复与验证
 
-**编程 agent 里的 nanoGPT。1.4k 行引擎、整包 2872 行纯 Python，读懂一个 coding agent 到底怎么运作，再 fork 出你自己的。**
+围绕代码定位、候选补丁、沙箱验证与结果审查构建的 Coding Agent 工程项目。
 
-*learn from it · fork it · ship something better*
-
-中文 | [English](README.md) | [配套源码导读 · 八篇双语](article/)
-
-[![PyPI](https://img.shields.io/pypi/v/corecoder)](https://pypi.org/project/corecoder/)
-[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Tests](https://github.com/Marshall0214/CoreCoder/actions/workflows/ci.yml/badge.svg)](https://github.com/Marshall0214/CoreCoder/actions)
-[![engine](https://img.shields.io/badge/engine-1446_LoC-blue)](article/)
-[![源码导读](https://img.shields.io/badge/源码导读-8篇双语-orange)](article/)
+中文 · [English](README.md) · [MIT 许可证](LICENSE)
 
 </div>
 
-## 本仓库扩展：代码修复评测与可审批服务
+本仓库扩展自 Yufeng He 的 [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder)，保留原始最小 Agent 和双语源码导读，新增修复评测、任务服务、执行隔离及真实 Issue 准备能力。
 
-统一修复入口已提供：CLI 与可审批 API 共用目标覆盖检索、受约束补丁、一次公开反馈、失败回滚与独立验收；支持真实 DeepSeek 和精确历史回答回放。见 [完整流程与复现命令](docs/unified-repair-flow.md)。已知 50 项任务最新完整单轮结果为 47/50，见 [评测报告](docs/coverage-full-repair-v1-results.md)；离线演示不计入新模型成绩。
+## 当前能力
 
-基于 CoreCoder 的个人二次开发：固定模型与预算比较检索/上下文策略，提供独立补丁验证、FastAPI/SQLite 服务、代码知识 MCP Server、LangGraph 人工审批和 Docker/Linux 验收。当前为可信任务上的本地工程项目；实验未证明普遍提高修复率，服务尚未支持任意仓库或多用户生产部署。
-
-**统一入口：[项目总览与结果](docs/project-overview.md) · [5 分钟离线演示](docs/demo-guide.md) · [交付与 JD 清单](docs/delivery-checklist.md) · [简历与面试说明](docs/resume-and-interview.md)。**
-
-历史 Windows 全量回归：1,251 passed、2 skipped，见 [失败上下文摘要](docs/failure-context-pilot-v1.json)。历史部署验收：Linux 71 passed、22 项容器检查和 18 项 HTTP 审批故障检查通过，见 [版本化摘要](docs/workflow-approval-acceptance-v1.json)。软件验收与真实模型修复效果分别计量；求职展示入口见 [证据索引](docs/portfolio-evidence.md)。下文保留上游核心的源码导读和作者归属。
-
-- **读得完。** 一个下午读完整个引擎，没有一处藏着你看不懂的魔法。
-- **改得动。** 每一行都能在你自己机器上下断点、改了再跑。它真能干活，所以这份参考是活的，不是示意图。
-- **留白即起点。** 刻意只留最小核心，没做的那些不是半成品，是留给你 fork 出更好东西的地方。
-
-## 本项目的三层用途
-
-| 层次 | 用途 | 边界 |
+| 方向 | 已实现 | 使用边界 |
 | --- | --- | --- |
-| 上游最小引擎 | 阅读和理解 coding agent，作为二次开发基础 | 保留原作者归属；下方行数仅覆盖 corecoder 包 |
-| 检索与修复实验 | 固定模型、预算及评分，比较证据策略 | 小样本探索，不宣称普遍提升或优于其他产品 |
-| 本地工程服务 | 任务 API、独立验证、审批恢复、MCP 与容器验收 | 可信任务、单服务；不是任意仓库生产平台 |
+| GitHub Issue 准备 | 只读导入、固定版本下载、可信复现与正常行为检查 | 目前为 CLI；准备任务尚未直接接入补丁生成 |
+| 修复闭环 | 目标/符号检索、受约束补丁、最多一次公开反馈修正、失败回滚、独立评分 | 可信任务包与指定 Python 仓库 |
+| 执行沙箱 | 禁网、非 root、只读输入，限制 CPU、内存、进程数、时间及日志 | 覆盖统一 repairflow 检查，原始 Bash 和旧 evals 尚未迁移 |
+| 本地服务 | FastAPI、幂等提交、SSE、取消、SQLite、LangGraph 审批与重启恢复 | 单服务实例，不宣称多用户生产可用 |
+| 工具与证据 | 只读代码知识 MCP，保存补丁、Trace、用量、输入哈希和报告 | 尚不自动向 GitHub 发布 |
 
-## 这是什么
+当前保留两条入口：
 
-我一直觉得 coding agent 被讲得太玄了。把 Claude Code、Cursor 这类工具扒到底，核心是一个 while 循环套着一个大模型，外加七八个让它能真正动手的工具。难的从来不是这个循环，而是循环跑进真实世界以后要兜的那些底。CoreCoder 就是把这个核心老老实实写出来的最小版本。
+```text
+公开 Issue + 可信配置 → 固定源码 → 沙箱复现 → 准备任务
+可信修复任务包 → 代码检索 → 候选补丁 → 测试反馈 → 独立验收 → 报告
+```
 
-引擎部分（循环、模型接口、上下文、工具、会话）去掉空行和注释是 1446 行。连最外层的 CLI、配置和检索模块一起算，整个包 28 个文件、物理 2872 行、净 2336 行。自 1161 行快照之后新增了 plan mode、hooks、checkpoints 和可选证据检索工具。检索工具通过评测器启用，未加入普通 CLI 的默认工具集合。包外的评测代码与任务样例不计入这些行数，详见 [search_code 与评测协议](docs/p0-2-search-code.md)。
+`ready_for_repair` 表示原始问题已复现、约定正常行为检查通过，不表示 Issue 已修复。下一阶段再连接新任务的候选修复与审批。
 
-它真能跑：读写文件、执行 shell、派子 agent、分三层压上下文，还能随时把这趟烧掉的 token 和美元数报给你。任何要动你磁盘、要跑命令的调用，都会先停下来等你点头；原版基点有 179 项测试，当前扩展验收见上方摘要。但能跑不是为了劝你拿去日用，而是为了让这份「注释」不撒谎：一个解释 agent 怎么运作的范例，自己得真能运作。
+## 验证结果
 
-代码来自一次公开拆解。公开的源码分析里，Claude Code 这类生产级 agent 暴露出不少关键架构，我挑出最核心的一层，用尽量少的代码诚实地复写了一遍。所以读 CoreCoder，约等于读一份基于公开源码分析的「可运行注释版」：讲的是这类 agent 的核心思路，而它本身只是最小复写，就摆在你机器上，随你拆、随你改。
+- **已知任务池修复实验：**5 个 Python 仓库、50 项真实来源缺陷。固定 DeepSeek 高思考模式、预算与评分协议，单轮通过数从 **43/50 提升至 47/50（86% → 94%）**，Token 降低 **9.38%**。结果不是陌生 Issue 或 SWE-bench 成绩。[评测报告](docs/coverage-full-repair-v1-results.md)。
+- **真实沙箱验收：**9 项 Docker 用例覆盖只读、禁网、密钥隔离、资源限制、取消及重启清理；CLI/API 历史回放补丁一致。[验收证据](docs/sandbox-acceptance-20261019.md)。
+- **Issue 准备验收：**[Click #3887](https://github.com/pallets/click/issues/3887)，固定 8.1.8，出现 1 项预期复现失败、3 项正常行为通过，没有生成补丁或调用模型。上游同步前相关回归 **197 项通过**，含 34 项准备测试和 9 项真实 Docker 用例。[使用与证据](docs/github-issue-preparation.md)。
+- **上游整合验收：**本地全量回归 **1667 项通过、3 项跳过**，含 9 项真实 Docker 测试，无模型推理。[验收结果及跳过原因](docs/upstream-sync-20261019.md)。
 
-<p align="center">
-  <img src="assets/demo-plan-hooks.gif" width="760"
-       alt="plan mode 实战：agent 先读 fib.py，写入被 plan mode 拦下，先给计划；批准之后才动手改文件、跑测试，Pre/PostToolUse hooks 在每次调用前后触发">
-</p>
+历史回放不计为新模型推理。测试通过仅覆盖约定检查；容器隔离不等同于同解释器评分完全防篡改。
 
-<p align="center"><sub><i>这一千行真能跑通一个完整回合：让它修 buggy.py，它自己读文件、改代码、跑一遍确认、再给结论。看完就回来读代码。</i></sub></p>
+## 快速开始：无需模型 API
 
-这份 README 也就按这条线铺开：上半带你**读懂**（代码地图、主循环、八篇导读），下半带你 **fork** 它、再指几个能往更好里做的方向。
+请使用源码仓库；上游 PyPI 包不包含本仓库的完整修复扩展。
 
-## 先跑一次（读之前的五分钟）
-
-读源码之前，先让它在你机器上活一次，建立点体感。它是个拿来 fork 的地基，所以推荐直接 clone 下来、可编辑安装，边读边改：
-
-```bash
-git clone https://github.com/Marshall0214/CoreCoder
+```powershell
+git clone https://github.com/Marshall0214/CoreCoder.git
 cd CoreCoder
-pip install -e .
+python -m pip install --no-cache-dir -e ".[dev,service,workflow,mcp-server]"
 ```
 
-只想先跑起来找找感觉，直接 `pip install corecoder` 也行。
+已有 corecoder 环境可直接使用。以下配置将状态、临时产物和缓存放在 D 盘：
 
-给它一个模型加一把 key 就能动。默认走 OpenAI 兼容接口，换 provider 通常只是改两个环境变量：
-
-| Provider | 环境变量示例 |
-|---|---|
-| OpenAI（默认 `gpt-5.5`） | `OPENAI_API_KEY=sk-...` |
-| DeepSeek | `OPENAI_API_KEY=sk-... OPENAI_BASE_URL=https://api.deepseek.com CORECODER_MODEL=deepseek-chat` |
-| OmniRoute | `OPENAI_API_KEY=your-key OPENAI_BASE_URL=http://localhost:20128/v1 CORECODER_MODEL=auto` |
-| 本地 Ollama | `OPENAI_API_KEY=ollama OPENAI_BASE_URL=http://localhost:11434/v1 CORECODER_MODEL=qwen2.5-coder` |
-
-Kimi、Qwen 这些同样是改这两个变量；连 OpenAI 兼容接口都不给的 provider，装上可选的 LiteLLM 后端（`pip install "corecoder[litellm]"`）能路由一百多家。第三篇文章把这块讲得更细。思考模型也是一等公民：deepseek-reasoner、kimi-k2-thinking 这类模型的思考过程会实时流出来，CoreCoder 把它用暗色显示出来，但不进对话历史，provider 永远不会在回包里看到它。key 可以直接 `export`，也可以在项目根目录扔个 `.env`，启动时自动加载。然后：
-
-端到端真机冒烟过三家（读文件、改代码、跑一次确认、自己报告）：DeepSeek、Qwen3、Kimi K2，走同一个 OpenRouter 兼容端点，各自完整跑完全循环。写脚本用 one-shot 的留意：`-p` 默认拒绝一切改动类工具，要加 `--yes`，这是设计如此。
-
-```bash
-corecoder                                  # 交互式 REPL
-corecoder -p "给 parse_config() 加错误处理"   # 一次性模式，干完就退
+```powershell
+New-Item -ItemType Directory -Force 'D:\project_other\CoreCoder\.tmp' | Out-Null
+$env:PYTHONDONTWRITEBYTECODE='1'
+$env:CORECODER_LIVE_SMOKE=''
+$env:CORECODER_HOME='D:\project_other\CoreCoder\.tmp\corecoder-state'
+$env:TEMP='D:\project_other\CoreCoder\.tmp'
+$env:TMP=$env:TEMP
+$env:RUFF_CACHE_DIR='D:\project_other\CoreCoder\.tmp\ruff-cache'
+$env:DOCKER_CONTEXT='desktop-linux'
 ```
 
-## 读懂它：代码地图
+先开启 Docker Desktop 的 Linux containers，确认虚拟磁盘在 D 盘，再构建镜像。详见 [沙箱配置](docs/execution-sandbox.md)。
 
-核心包结构如下，可作为源码阅读目录。建议从 `agent.py` 的主循环读起；本项目包外的评测和服务扩展另见上方总览。
-
-```
-corecoder/
-├── agent.py        agent 主循环 + 并行工具执行       240 行   ← 从这里开始读
-├── llm.py          流式客户端 + 重试 + 成本统计       331 行
-├── context.py      三层上下文压缩                     221 行
-├── session.py      会话存盘 / 续聊 + 路径穿越防护      97 行
-├── permissions.py  改动类工具的用户授权                48 行
-├── hooks.py        工具调用前后的用户 shell 钩子        85 行
-├── mcp.py          MCP stdio 客户端，接外部工具       208 行
-├── prompt.py       系统提示词                          41 行
-├── cli.py          REPL + 斜杠命令 + 一次性模式        358 行
-├── config.py       环境变量配置                        55 行
-├── checkpoints.py  /undo 快照与回滚                      44 行
-├── demo.py         离线端到端演示                       100 行
-├── retrieval/
-│   ├── __init__.py  检索包入口                            1 行
-│   └── keyword.py   内存 BM25 证据索引                  121 行
-└── tools/
-    ├── search_code.py 评测器可选检索工具                  112 行
-    ├── bash.py       shell + 危险命令闸 + cd 追踪      203 行
-    ├── edit.py       唯一匹配搜索替换 + diff            99 行
-    ├── grep.py       内容搜索                           93 行
-    ├── glob_tool.py  文件名匹配                         52 行
-    ├── read.py       文件读取                           56 行
-    ├── write.py      文件写入                           46 行
-    ├── todo.py       agent 自维护的任务清单             79 行
-    ├── agent.py      子 agent 派生                      72 行
-    ├── fetch.py      抓取 URL 文本                      41 行
-    └── base.py       工具基类                           32 行
-examples/
-└── plan_hooks_demo.py  离线 plan mode + hooks 演示（免 API key）
+```powershell
+docker build -f deploy/sandbox/Dockerfile -t corecoder-test-sandbox:v1 deploy/sandbox
+$env:CORECODER_RUN_DOCKER_TESTS='1'
+python -B -m pytest tests/test_github_issue.py tests/test_sandbox_docker.py -q -p no:cacheprovider
+python -B -m repairflow import-issue --url https://github.com/pallets/click/issues/3887 --config configs/issue-tasks/click-3887.json --output .tmp/github-issues/click-3887
 ```
 
-九个工具：`bash`、`read_file`、`write_file`、`edit_file`、`glob`、`grep`、`todo_write`（agent 自己维护的任务清单）、`agent`（派子 agent）、`fetch_url`（把一个 http(s) URL 抓成文本）。其余都是包在引擎核心外面的 CLI 外壳、配置和打包。存在 `~/.corecoder/mcp.json` 时，里面的 MCP 服务器会以 `mcp__*` 工具的身份并进这九件里，下面有专门一节讲。
+导入只向 GitHub 发起公开 GET，不执行 Issue 中的命令，不安装仓库依赖，不调用模型。重复运行请使用新输出目录。
+输出包括 `issue.json`、固定源码、可信测试、复现日志、`task.json` 和 `report.json`。
 
-## 一个 while 循环就是 agent 的本体
+## 修复与审批服务
 
-一个 agent 的本体，一句话就能讲清：把用户的话交给模型，模型想调工具就执行，把结果塞回上下文，再问模型，直到它不再要工具、给出回答。落到代码，也就十来行：
+[完整流程指南](docs/unified-repair-flow.md) 提供可信任务包导出、历史精确回放及审批 API 的操作方法。历史任务回放需要此前保存的实验材料；上面的自包含测试无需这些旧产物。
 
-```python
-# corecoder/agent.py · 主循环（精简骨架）
-def chat(self, user_input):
-    self.messages.append(user_input)
-
-    for _ in range(self.max_rounds):                   # 循环有上限，跑不飞
-        reply = self.llm.chat(self.messages, self.tools)   # 交给模型规划下一步
-        if not reply.tool_calls:                       # 模型不再要工具
-            return reply.text                          #   → 收工，把回答给用户
-        results = run_parallel(reply.tool_calls)       # 要工具就并发执行
-        self.messages += results                       # 结果回灌，进入下一轮
-
-    return "(已达轮次上限)"
+```powershell
+python -B -m service --port 8004 --timeout 1200 --output .tmp/repair-service
 ```
 
-就这么点。这个循环的核心骨架就二十来行，把并行执行和被 Ctrl+C 打断后的回填都算上，也才四十多行。CoreCoder 一千多行里剩下的，几乎全在收拾它真跑起来之后冒出来的岔子。`llm.py` 最后成了全项目最大的文件，不是因为调模型有多难，而是流式返回里一个工具调用的参数会被切成好几段先后送到、得按顺序拼回去，provider 偶尔吐半截 JSON 或把 usage 填成 null，限流（429）、超时、连接中断和 5xx 都得退避重试，其余 4xx 该直接抛就别硬试。已经开始出字的流也可能半路断掉，所以重试包住的是整个请求，不只是建连。这些不起眼的脏活，而不是那个循环，才是一个 agent 从能演示走到能交付真正吃工程功夫的地方；第三篇文章顺着它拆到每一行。
+审批修复入口通过 `CORECODER_REPAIR_BUNDLES` 选择管理员维护的任务目录，执行前需要审批。Issue 导入目前仍为独立 CLI。默认快速开始不调用模型；后续新模型试验先关闭 thinking，和历史高思考实验分别记录。
 
-有三个决定值得单独看，因为它们是「先读懂别人怎么做」之后才做得出的取舍，也是你 fork 自己 agent 时可以直接抄走的判断。
+`CORECODER_HOME` 可迁移撤销记录、授权、会话、历史、hooks、MCP 配置和价格覆盖文件；不设置时保留上游用户目录约定。服务工作进程使用任务独立状态目录。普通 Agent 的 Bash 工具与 Docker 验证沙箱属于不同执行入口。
 
-**`edit_file` 用唯一匹配的搜索替换，不靠行号。** 行号这东西，模型只要数偏一行，就会悄悄改错地方；锚定一段唯一的原文：匹配不到，就把文件开头甩回去让模型照着重新锚定；匹配到多处，就让它多带几行上下文再来，而不是赌一个。改成功了，连一段 diff 一起返回。失败能复位、成功能复核，闭环都收在工具自己手里。
+## 代码与文档
 
-**上下文不是满了才一刀切，而是按代价从轻到重分三档退让。** 先在半满（50%）时把超长的工具输出就地截短，这一档纯机械、不花一次模型调用；到 70% 还压不下去，就把较早的轮次交给模型总结成一段摘要，最近几轮原文原样留着；逼到 90% 才进应急档，连摘要带最近几轮一起收到最紧。粗暴截断往往恰好丢掉一个长任务最依赖的早期决定；分层退让，是让它按重要性从低到高一档档地让，而不是一上来就把最老的决定整段切掉。
+| 路径 | 作用 |
+| --- | --- |
+| `corecoder/` | 上游 Agent 引擎、工具、模型接口、会话及 MCP Client |
+| `repairflow/`、`configs/issue-tasks/` | 统一修复流程、可信 Issue 准备 |
+| `sandbox/`、`deploy/sandbox/` | 容器策略与生命周期 |
+| `service/`、`workflows/`、`mcp_servers/` | 任务 API、审批检查点和只读代码工具 |
+| `evals/`、`docs/experiments/` | 评测框架、任务材料和版本化实验 |
 
-**约束子 agent 能干什么，靠的是不给它那把工具，而不是写一堆规则求它听话。** 派出去的子 agent 拿到的是隔离的上下文、自己独立的一份历史，工具集只比父 agent 少一样：`agent` 工具本身，于是它没法再往下递归派子 agent。少给一件工具，比事后立一条规矩干净得多。它还复用父 agent 同一个模型连接（花销一并算进总账），输出一过 5000 字就截短、只留开头一段，轮次上限也压得比父 agent 更短。同一套克制，从头贯到尾。
+建议从 [Issue 准备](docs/github-issue-preparation.md)、[修复流程](docs/unified-repair-flow.md)、[执行沙箱](docs/execution-sandbox.md) 和 [开发计划](plan.md) 进入。[上游同步说明](docs/upstream-sync-20261019.md) 记录本次整合与兼容处理。
 
-每一个「为什么」，下面的文章系列都拆到了具体代码行。
+原始 Agent 的学习内容见 [中文源码导读](article/00-index.md) 与 [English series](article/00-index_EN.md)。保留原作者署名及 MIT 许可证，个人新增能力与上游能力分别说明。
 
-## 配套源码导读 · 八篇双语
-
-我还写了一套双语源码导读，一篇导言加八篇正文，每篇都配英文镜像（`_EN.md`）。它对着 CoreCoder 的真实代码，讲 Claude Code 这类 agent 的内部构造。有一条给自己立的硬规矩：每一处行数、每一段代码都从仓库里现读现核，绝不凭印象编。前六篇带你读懂，第七篇带你 fork，第八篇讲怎么不动主循环地扩展它，哪篇先读都行。
-
-- **[导言 · 用 CoreCoder 读懂 Claude Code，再造一个你自己的](article/00-index.md)**
-- **[01 一个 agent 的本体，是一个 while 循环](article/01-the-loop.md)** — `agent.py` 的主循环、打断与轮次上限
-- **[02 工具系统：让模型安全地动手](article/02-tools.md)** — `tools/` 七个工具与 bash 安全闸
-- **[03 接入任意大模型，顺便把账算清楚](article/03-llm-and-cost.md)** — `llm.py` 的 provider 包装、重试与成本统计
-- **[04 用有限的窗口扛住一个长任务](article/04-context.md)** — `context.py` 的三层压缩与孤儿 tool 消息
-- **[05 并行执行与子 agent](article/05-parallel-and-subagents.md)** — 线程池并发与子 agent 隔离
-- **[06 把它跑成一个真正的命令行工具](article/06-session-and-cli.md)** — `session.py` 与路径穿越防护
-- **[07 Fork CoreCoder，搭一个你自己的 coding agent](article/07-build-your-own.md)** — 从 fork 到加自定义工具到换模型
-- **[08 不动主循环的三种加法：MCP、钩子与计划模式](article/08-extensibility.md)** — v0.6.0 扩展三件套，以及让它们成立的那条契约
-
-## Fork 它，造个更好的
-
-读懂之后，最自然的下一步就是 fork。起手不用伤筋动骨：
-
-- **换个你常用的模型。** 就是上面那两个环境变量，`llm.py`（331 行）是所有 provider 适配的入口。
-- **加一件你自己的工具。** 照 `tools/base.py`（32 行）的工具基类写个新文件，跑测试、抓网页、调 LSP 都行，第二篇文章末尾手把手带你写第一个。
-- **改系统提示词。** `prompt.py` 才 41 行，改一句就能看到 agent 的脾气变了，是门槛最低的「改一处就有反馈」。
-- **直接当库 import。** 顶层导出了 `Agent`、`LLM`、`Config`，能嵌进你自己的程序：
-
-```python
-from corecoder import Agent, LLM
-
-llm = LLM(model="deepseek-chat", api_key="sk-...", base_url="https://api.deepseek.com")
-print(Agent(llm=llm).chat("找出项目里所有 TODO 注释并列出来"))
-```
-
-往深里做，方向也都摆在明处。下面这些 CoreCoder 都没做，是设计取舍，不是没做完；换个角度，每一条都是你能接着往下做、把它推向更强的入口：
-
-- **bash 的危险命令拦截只是正则黑名单。** 防手滑，不是安全沙箱。要面对不可信输入，就得上 seccomp 或容器隔离。这条最硬，要一路走到系统调用和隔离那一层。
-- **重试只做了指数退避。** 没有 fallback 模型，也没有美元硬预算。顺着 `llm.py` 往下，加一条 fallback 模型链和超预算自动停的闸，改动基本就集中在这一个文件。
-- **子 agent 只有最朴素的同步执行。** 做成异步或流式执行器，正好补上第五篇点名的、相对生产级 agent 流式执行的那段差距。
-- **不做 RAG，MCP 客户端也只讲工具这一小片。** 给大仓加检索式代码定位还空着，`mcp.py` 也特意没实现 resources 和 prompts。随便挑一个，都是从最小核心往你自己的更强 agent 扩的真实方向。
-
-README 只给方向，每条的代码细节第七篇接着讲。挑一个动手，就是把它做得更好的开始。
-
-## 命令
-
-进了 REPL，`/help` 列全部，常用的这几个：
-
-```
-/model <名称>    切换模型
-/compact         手动压缩上下文
-/tokens          查看 token 用量和费用估算
-/diff            查看本次会话改过的文件
-/undo            撤销最近一次文件改动
-/plan            开关计划模式（只读摸底，再交出待批准的计划）
-/save  /sessions 保存 / 列出会话
-quit / exit      退出（Ctrl+C 取消当前回合）
-```
-
-会话 ID 会先清洗成安全字符再拿去当文件名，存档统统落在 `~/.corecoder/sessions` 里，恶意会话名穿越不出去。
-
-## 权限
-
-只读工具（`read_file`、`glob`、`grep`、`todo_write`、`fetch_url`）模型一调就跑。会动手的那些（`edit_file`、`write_file`、`bash`，以及派生子 agent）先停下来等你点头，REPL 启动横幅里能看到当前是哪种模式：
-
-- REPL 里每次调用问一次：允许这一次、本工具本次会话都允许、或者拒绝。「都允许」按工具记到会话结束；子 agent 继承同一层授权，活走到哪，许可跟到哪。
-- 一次性模式（`-p`）没人可问，改动类调用当场被拒，拒绝理由作为普通工具结果回给模型：循环绝不会卡在等一个永远不会来的输入上。要全部预授权就加 `--yes`（脚本、CI 场景）。
-- 判断本身是 `permissions.py` 里的纯逻辑，终端只是塞进来一个提问回调。不用 TTY 也能单测授权逻辑，或者直接搬进你自己的嵌入场景。
-
-## 计划模式
-
-REPL 里 `/plan` 开关计划模式。开着的时候，提示符变成 `(plan)`，一切改动类调用（写文件、编辑、bash、MCP 工具、子 agent）当场被拒：拒绝理由作为普通工具结果回给模型，让它用只读工具继续摸底，给出一份编号计划。计划看着没问题，敲 `approve`（或再敲一次 `/plan`）就把执行权交回去，agent 接着干活。机制上就是 `Agent` 身上的一个开关，加授权闸前面多出来的一支拒绝分支，授权闸本身一行没动；不落盘计划文件，会话之间也不记任何东西。
-
-## 钩子
-
-在 `~/.corecoder` 下放一个 `hooks.json`，就能让你自己的 shell 命令在每次工具调用前后跑起来，思路和 Claude Code 的 hooks 一致：
-
-```json
-{
-  "PreToolUse":  [{"matcher": "bash", "command": "cat >> ~/.corecoder/audit.jsonl"}],
-  "PostToolUse": [{"matcher": "*",    "command": "cat >> ~/.corecoder/trace.jsonl"}]
-}
-```
-
-每个钩子从 stdin 拿到这次调用的 JSON（`tool_name`、`tool_input`，post 钩子还带 `tool_response`）。matcher 是精确的工具名，留空或写 `*` 表示对所有工具生效。pre 钩子可以否决这次调用：退出码 2，它的 stderr 会作为理由回给模型，让它换条路走。post 钩子只观察，永远拦不住。钩子报错或超过十秒会被跳过并记一条警告：钩子是来帮忙的，没权力弄死循环。整个机制就是 `hooks.py` 一个文件，REPL 启动横幅会显示加载了几条。
-
-两个能直接抄走的（命令里用了 `jq`，装一下就有）：
-
-```bash
-# 1. lint 门：每次 edit/write 之后立刻对改动的文件跑快速 lint。
-#    模型同一回合就能看到输出，自己把低级错误修了，不用等 CI 回来。
-{
-  "PostToolUse": [{
-    "matcher": "edit",
-    "command": "f=$(jq -r .tool_input.path); ruff check \"$f\" 2>&1 | head -20"
-  }]
-}
-
-# 2. 写保护：指定路径一律不让 agent 碰。退出码 2 当场否决，
-#    拒绝原因会送到模型那边。
-{
-  "PreToolUse": [{
-    "matcher": "edit",
-    "command": "case \"$(jq -r .tool_input.path)\" in .env*|*/secrets/*|*.pem) echo 'that path is off-limits' >&2; exit 2;; esac"
-  }]
-}
-```
-
-两个例子都是纯 shell；除了 JSON 形状和退出码 2 否决这两个约定，没有任何 CoreCoder 特有的语法。
-
-## MCP 服务器
-
-在 `~/.corecoder` 下放一个 `mcp.json`，任何 MCP 服务器的工具就能通过 stdio 接进 agent，配置形状和 Claude Code 的一样：
-
-```json
-{
-  "mcpServers": {
-    "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]}
-  }
-}
-```
-
-每个配好的服务器在启动时拉起一个子进程，握手、列出工具；每件工具都注册成 `mcp__<服务器>__<工具>`，钩子匹配和授权闸对它和内建工具一视同仁。MCP 工具不在只读名单里，模型要调，得先问过你。握手给十五秒，一次调用给六十秒；服务器挂了或者迟迟不应，那一次调用就以普通工具结果的形式报错，循环照常往下走。客户端只实现协议里工具那一小片（initialize、tools/list、tools/call），别的一概不碰，所以整块实现收在 `mcp.py` 一个文件里，两百行出头。没有 `mcp.json` 就没有 MCP，一切照旧。
-
-## 相关项目
-
-如果你读 CoreCoder 读得还顺，下面几个我做的 agent / LLM 系统方向的工具也许用得上：
-
-- **[RepoWiki](https://github.com/he-yufeng/RepoWiki)** — 被丢进一个陌生代码库？它给你一份带「从哪读起」路径的 wiki，一个可自托管的 DeepWiki 替代。
-- **[FindJobs-Agent](https://github.com/he-yufeng/FindJobs-Agent)** — 别再手动刷招聘网站：它按你的简历给岗位排序，还能跑模拟面试。
-- **[ContractGuard](https://github.com/he-yufeng/ContractGuard)** — 签字前先把有风险的条款挑出来：它读合同、标出危险点。
-- **[GitSense](https://github.com/he-yufeng/GitSense)** — 想给开源做贡献？它帮你找到值得做的 issue，还能估你的 PR 多大概率被合。
-- **[CodeABC](https://github.com/he-yufeng/CodeABC)** — 不会写代码也能看懂一个项目，专给小白做的。
-
-## 贡献 / License
-
-动手之前按修改范围运行测试与代码检查；当前扩展依赖和 D 盘验证命令见 [交付清单](docs/delivery-checklist.md) 与 [审批说明](docs/workflow-approval-v1.md)。MIT License，欢迎 fork 拿去造更好的东西，能在 README 里留一句出处就更好。
-
----
-
-作者 [何宇峰](https://github.com/he-yufeng)，曾任职 Moonshot AI (Kimi)。早前写过一篇相当完整的 [Claude Code 源码分析](https://zhuanlan.zhihu.com/p/1898797658343862272)，这个项目是它的动手版：那篇带你读懂，这个带你重建。
-
-> CoreCoder 原名 NanoCoder，为避免和 [Nano-Collective/nanocoder](https://github.com/Nano-Collective/nanocoder) 混淆而改名，旧链接会自动跳到这里。
+仅统计核心包：**30 个文件、物理 3117 行、净 2537 行**，引擎标识 `engine-1462_LoC`。不含 repairflow、sandbox、服务和评测扩展。核心包版本随上游为 **0.8.0**，不代表完整修复系统已发布同版本安装包。

@@ -1,10 +1,17 @@
 import json
+import sys
 from pathlib import Path
 
 import pytest
 
 from docs.experiments import expanded_admission_v1 as admission
 from docs.experiments import expanded_baseline_v1 as baseline
+
+
+@pytest.fixture(autouse=True)
+def active_test_interpreter(monkeypatch):
+    # These stdlib fixtures must not depend on a disposable historical venv.
+    monkeypatch.setattr(admission, 'PYTHON', Path(sys.executable))
 
 
 def fixture(tmp_path, layout='.'):

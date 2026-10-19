@@ -16,9 +16,12 @@ import logging
 import subprocess
 from pathlib import Path
 
+from .paths import state_dir
+from .shell import run_shell
+
 log = logging.getLogger(__name__)
 
-HOOKS_FILE = Path.home() / ".corecoder" / "hooks.json"
+HOOKS_FILE = state_dir() / "hooks.json"
 TIMEOUT = 10  # seconds; a hung hook must not hang the agent
 
 
@@ -72,8 +75,8 @@ def _fire(hook: dict, payload: dict):
     if matcher not in ("", "*", payload["tool_name"]):
         return None
     try:
-        proc = subprocess.run(
-            hook["command"], shell=True, check=False, input=json.dumps(payload),
+        proc = run_shell(
+            hook["command"], check=False, input=json.dumps(payload),
             capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=TIMEOUT,
         )
     except (subprocess.TimeoutExpired, OSError) as e:

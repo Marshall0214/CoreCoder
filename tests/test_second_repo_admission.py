@@ -5,6 +5,19 @@ import pytest
 from docs.experiments import second_repo_admission_v1 as admission
 
 
+@pytest.fixture(autouse=True)
+def frozen_catalog_engine_fixture(monkeypatch):
+    # Catalog/projection unit tests simulate their historical engine. The real
+    # adapter remains pinned and must reject a different implementation.
+    monkeypatch.setattr(admission, 'implementation_metadata', lambda: {'source_hash': admission.ENGINE})
+
+
+def test_changed_engine_is_still_rejected(monkeypatch):
+    monkeypatch.setattr(admission, 'implementation_metadata', lambda: {'source_hash': '0' * 64})
+    with pytest.raises(ValueError, match='Frozen engine changed'):
+        admission.frozen_inputs()
+
+
 def test_candidate_pool_and_source_package_bootstrap():
     cases, identity = admission.frozen_inputs()
     assert tuple(c['case_id'] for c in cases) == admission.IDS

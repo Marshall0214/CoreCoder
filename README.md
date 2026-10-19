@@ -1,301 +1,101 @@
 <div align="center">
 
-# CoreCoder
+# CoreCoder · Issue Repair & Verification
 
-**The nanoGPT of coding agents. A 1.4k-line engine inside 2,872 readable lines of pure Python: understand how a coding agent actually works, then fork your own.**
+A coding agent project for reproducible patch generation, sandboxed testing, and reviewable repair evidence.
 
-*learn from it · fork it · ship something better*
-
-[中文](README_CN.md) | English | [Source-reading series · 8 bilingual essays](article/00-index_EN.md)
-
-[![PyPI](https://img.shields.io/pypi/v/corecoder)](https://pypi.org/project/corecoder/)
-[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Tests](https://github.com/Marshall0214/CoreCoder/actions/workflows/ci.yml/badge.svg)](https://github.com/Marshall0214/CoreCoder/actions)
-[![engine](https://img.shields.io/badge/engine-1446_LoC-blue)](article/00-index_EN.md)
-[![essays](https://img.shields.io/badge/source--reading-8_bilingual-orange)](article/00-index_EN.md)
+[中文](README_CN.md) · English · [MIT License](LICENSE)
 
 </div>
 
-Failure-directed second-round context exposed previously missing functions in two known semantic failures, but fresh paired repair acceptance remained 1/3 in both arms. The recovered control stayed correct; unsuccessful corrections were rolled back. This variant stops without default adoption or a general improvement claim. See [failure-context pilot](docs/failure-context-pilot-v1.md).
+This fork extends [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder), by Yufeng He. The original minimal agent and bilingual source-reading series remain available; this repository adds repair evaluation, task services, execution isolation, and public Issue preparation.
 
-## Fork extensions: repair evaluation and an approval service
+## Current capabilities
 
-The shared repair entry point connects target-preserving retrieval, constrained patches, one public-feedback correction, rollback, and independent verification to both the CLI and approval API. It supports fresh DeepSeek inference and explicitly labeled exact historical replay. See the [workflow and reproduction guide](docs/unified-repair-flow.md). The latest complete single run on 50 known tasks passed 47/50; see the [evaluation report](docs/coverage-full-repair-v1-results.md). Offline replay is not a new model evaluation.
-
-This fork adds controlled retrieval/context experiments, independent patch verification, a FastAPI/SQLite task service, a read-only code knowledge MCP server, LangGraph human approval, and Docker/Linux acceptance. It serves trusted fixture tasks locally. Experiments have not established a general repair-rate improvement; arbitrary repository intake and multi-user production deployment remain future work.
-
-Start with the Chinese-language [project overview](docs/project-overview.md), [five-minute offline demo](docs/demo-guide.md), [delivery/JD checklist](docs/delivery-checklist.md), and [resume/interview guide](docs/resume-and-interview.md).
-
-Historical Windows regression: 1,251 passed and 2 skipped; see the [failure-context summary](docs/failure-context-pilot-v1.json). Historical deployment acceptance: Linux 71 passed, 22 container checks and 18 HTTP approval fault checks passed; see the [versioned evidence](docs/workflow-approval-acceptance-v1.json). Software checks are separate from model repair outcomes. The [portfolio evidence index](docs/portfolio-evidence.md) maps contributions to code and reports; the upstream walkthrough and author attribution below are retained.
-
-- **Readable end to end.** Read the whole engine in an afternoon, with no magic hidden anywhere you can't follow it.
-- **Hackable.** Set a breakpoint on any line, change it, rerun, all on your own machine. It genuinely works, which makes this a living reference rather than a diagram.
-- **The gaps are the point.** It deliberately keeps only the minimal core; what's missing isn't half-finished, it's where you branch off and make it your own.
-
-## Three uses of this project
-
-| Layer | Purpose | Scope |
+| Area | Implemented | Boundary |
 | --- | --- | --- |
-| Upstream minimal engine | Read and understand a coding agent; use it as a fork foundation | Original author attribution retained; line counts cover the corecoder package |
-| Retrieval and repair experiments | Compare evidence strategies with fixed model, budgets, and grading | Exploratory samples; no general improvement or product superiority claim |
-| Local engineering service | Task APIs, independent verification, approval recovery, MCP, and container acceptance | Trusted tasks and one service owner; not an arbitrary-repository production platform |
+| Public GitHub Issues | Read-only import, pinned source download, trusted reproduction and preservation checks | CLI only; prepared tasks are not yet connected to candidate repair |
+| Repair workflow | Target/symbol retrieval, constrained patches, one public-feedback correction, rollback, independent grading | Trusted task bundles and specified Python repositories |
+| Execution sandbox | Offline, non-root Docker containers with readonly inputs and CPU/memory/PID/time/output limits | Unified repairflow checks; original Bash and legacy evals are not migrated |
+| Local service | FastAPI, idempotency, SSE, cancellation, SQLite, LangGraph approval/restart recovery | One local service owner; no multi-user production claim |
+| Tools and evidence | Read-only code knowledge MCP; patches, traces, usage, input hashes and reports | No automatic GitHub publishing |
 
-## What this is
+Two entry points currently coexist:
 
-I've always felt coding agents get talked about as if they were arcane. Strip a tool like Claude Code or Cursor all the way down and the core is a `while` loop wrapped around a large model, plus seven or eight tools that let it actually do things. The hard part was never the loop; it's everything the loop has to cope with once it meets the real world. CoreCoder is the minimal version that writes that core out honestly.
+```text
+Public Issue + trusted configuration → fixed source → sandbox admission → prepared task
+Trusted repair bundle → retrieval → candidate patch → feedback → independent checks → report
+```
 
-The engine (loop, model interface, context, tools, sessions) is 1,446 lines once you drop blank lines and comments. Counting the outer CLI, config and retrieval modules too, the whole package is 28 files: 2,872 physical lines, 2,336 net. The growth since the original 1,161-line snapshot includes plan mode, hooks, checkpoints and an optional evidence search tool. The search tool is enabled through the evaluation harness; it is not part of the default CLI tool set. Evaluation code and task fixtures outside the package are excluded from these counts. See [search_code and its evaluation protocol](docs/p0-2-search-code.md).
+`ready_for_repair` means the original defect was reproduced and declared preservation checks passed. It does not mean the Issue is fixed. Connecting newly prepared Issues to repair and approval is the next milestone.
 
-And it really runs: reads and writes files, executes shell, spawns sub-agents, compacts context in three tiers, and tells you the tokens and dollars a run burned whenever you ask. Anything that would mutate your disk or run a command stops for your consent first. The original baseline had 179 tests; current fork acceptance is recorded above. But the point of it running isn't to become your daily driver. It runs so the walkthrough can't lie: a reference that shows how an agent works has to actually work.
+## Validation evidence
 
-The code came out of a public teardown: open analyses have already exposed a lot of the load-bearing architecture inside production agents like Claude Code. I took the most essential layer and rewrote it honestly, in as little code as I could. So reading CoreCoder is roughly like reading a runnable, annotated take on how that kind of agent works, except it's only a minimal reimplementation, sitting right there on your machine for you to take apart and change.
+- **Known-task repair experiment:** 5 Python repositories, 50 upstream-derived defects. With fixed DeepSeek high-reasoning mode, budget and grading, acceptance increased from **43/50 to 47/50 (86% → 94%)**, with **9.38% fewer tokens**. This is a single run on a known task pool, not unseen-Issue or SWE-bench performance. [Report](docs/coverage-full-repair-v1-results.md).
+- **Real sandbox acceptance:** 9 Docker cases covering readonly inputs, blocked network, credentials, resource limits, cancellation and recovery; CLI/API historical replay produced identical patches. [Evidence](docs/sandbox-acceptance-20261019.md).
+- **Issue preparation:** [Click #3887](https://github.com/pallets/click/issues/3887), pinned to 8.1.8: one expected reproduction failure and three passing preservation tests. No candidate patch or model call. **197 related regression tests passed** before this upstream sync, including 34 Issue-preparation tests and 9 Docker tests. [Guide and evidence](docs/github-issue-preparation.md).
+- **Upstream integration:** full local regression **1,667 passed, 3 skipped**, including 9 real Docker tests, with no model inference. [Integration results and skip reasons](docs/upstream-sync-20261019.md).
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Marshall0214/CoreCoder/main/assets/demo-plan-hooks.gif" width="760"
-       alt="Plan mode in action: the agent reads fib.py, gets its edit refused while plan mode is on, presents a plan, and only after approval edits, tests, and reports — with Pre/PostToolUse hooks firing around every call.">
-</p>
+Historical replay is not fresh model inference. Test success is limited to the declared checks; container isolation does not prevent all grading manipulation inside the same interpreter.
 
-<p align="center"><sub><i>These thousand lines really do run a full loop end to end: ask it to fix buggy.py and it reads the file, edits the code, runs it once to confirm, then reports back on its own. Watch it, then come back and read the code.</i></sub></p>
+## Quick start: no model API required
 
-This README follows the same arc: the first half helps you **read it** (the code map, the main loop, eight essays), the second half helps you **fork it** and points at a few directions worth pushing further.
+Use a source checkout. The published upstream package does not include these repository-level extensions.
 
-## Run it once first (five minutes before you read)
-
-Before you read the source, get it running on your machine once to build some intuition. It's a foundation meant for forking, so the recommended path is to clone it and install editable, reading and changing as you go:
-
-```bash
-git clone https://github.com/Marshall0214/CoreCoder
+```powershell
+git clone https://github.com/Marshall0214/CoreCoder.git
 cd CoreCoder
-pip install -e .
+python -m pip install --no-cache-dir -e ".[dev,service,workflow,mcp-server]"
 ```
 
-If you just want to get it running first, `pip install corecoder` works too.
+With the existing corecoder environment, keep runtime state and temporary files on D:
 
-Give it a model and a key and it goes. It speaks the OpenAI-compatible API by default, and switching providers is usually just two environment variables:
-
-| Provider | Example env vars |
-|---|---|
-| OpenAI (default `gpt-5.5`) | `OPENAI_API_KEY=sk-...` |
-| DeepSeek | `OPENAI_API_KEY=sk-... OPENAI_BASE_URL=https://api.deepseek.com CORECODER_MODEL=deepseek-chat` |
-| OmniRoute | `OPENAI_API_KEY=your-key OPENAI_BASE_URL=http://localhost:20128/v1 CORECODER_MODEL=auto` |
-| Local Ollama | `OPENAI_API_KEY=ollama OPENAI_BASE_URL=http://localhost:11434/v1 CORECODER_MODEL=qwen2.5-coder` |
-
-Kimi, Qwen and the like are the same two variables; for providers that don't even offer an OpenAI-compatible endpoint, the optional LiteLLM backend (`pip install "corecoder[litellm]"`) routes to a hundred-plus of them. The third essay goes into this in detail. Thinking models are first-class too: deepseek-reasoner, kimi-k2-thinking and friends stream their chain-of-thought, and CoreCoder shows it dimmed as it works, kept out of the conversation history so providers never see it come back. The key can be `export`ed directly or dropped into a `.env` at the project root, which is loaded on startup. Then:
-
-Smoke-tested end to end (read the file, edit it, run it, report back) against DeepSeek, Qwen3 and Kimi K2 via a single OpenRouter-compatible endpoint; each completed the full loop. One note for one-shot scripts: `-p` refuses mutating tools unless you pass `--yes`, by design.
-
-```bash
-corecoder                                             # interactive REPL
-corecoder -p "add error handling to parse_config()"   # one-shot mode, exits when done
+```powershell
+New-Item -ItemType Directory -Force 'D:\project_other\CoreCoder\.tmp' | Out-Null
+$env:PYTHONDONTWRITEBYTECODE='1'
+$env:CORECODER_LIVE_SMOKE=''
+$env:CORECODER_HOME='D:\project_other\CoreCoder\.tmp\corecoder-state'
+$env:TEMP='D:\project_other\CoreCoder\.tmp'
+$env:TMP=$env:TEMP
+$env:RUFF_CACHE_DIR='D:\project_other\CoreCoder\.tmp\ruff-cache'
+$env:DOCKER_CONTEXT='desktop-linux'
 ```
 
-## Read it: the code map
+Start Docker Desktop with Linux containers and verify its disk data is on D before building. [Sandbox setup](docs/execution-sandbox.md).
 
-The core package below provides a source-reading map. Start from the main loop in `agent.py`; evaluation and service extensions outside the package are mapped in the project overview above.
-
-```
-corecoder/
-├── agent.py        agent loop + parallel tool exec       240 lines   ← start here
-├── llm.py          streaming client + retry + cost        331 lines
-├── context.py      three-tier context compaction          221 lines
-├── session.py      save / resume + path-traversal guard    97 lines
-├── permissions.py  consent for mutating tools              48 lines
-├── hooks.py        Pre/PostToolUse shell hooks             85 lines
-├── mcp.py          MCP stdio client for external tools    208 lines
-├── prompt.py       system prompt                           41 lines
-├── cli.py          REPL + slash commands + one-shot       358 lines
-├── config.py       env-var config                          55 lines
-├── checkpoints.py  /undo snapshot and restore                44 lines
-├── demo.py         offline end-to-end demo                 100 lines
-├── retrieval/
-│   ├── __init__.py  retrieval package                        1 line
-│   └── keyword.py   in-memory BM25 evidence index          121 lines
-└── tools/
-    ├── search_code.py optional evaluation search tool       112 lines
-    ├── bash.py       shell + dangerous-command gate + cd  203 lines
-    ├── edit.py       unique-match search/replace + diff    99 lines
-    ├── grep.py       content search                        93 lines
-    ├── glob_tool.py  filename matching                     52 lines
-    ├── read.py       file read                             56 lines
-    ├── write.py      file write                            46 lines
-    ├── todo.py       agent-maintained task checklist       79 lines
-    ├── agent.py      sub-agent spawning                    72 lines
-    ├── fetch.py      fetch a URL as text                   41 lines
-    └── base.py       tool base class                       32 lines
-examples/
-└── plan_hooks_demo.py  offline plan mode + hooks demo (no API key)
+```powershell
+docker build -f deploy/sandbox/Dockerfile -t corecoder-test-sandbox:v1 deploy/sandbox
+$env:CORECODER_RUN_DOCKER_TESTS='1'
+python -B -m pytest tests/test_github_issue.py tests/test_sandbox_docker.py -q -p no:cacheprovider
+python -B -m repairflow import-issue --url https://github.com/pallets/click/issues/3887 --config configs/issue-tasks/click-3887.json --output .tmp/github-issues/click-3887
 ```
 
-Nine tools: `bash`, `read_file`, `write_file`, `edit_file`, `glob`, `grep`, `todo_write` (a task checklist the agent maintains for itself), `agent` (which spawns a sub-agent), and `fetch_url` (which reads an http(s) URL as text). Everything else is the CLI shell, config, and packaging wrapped around that engine core. If `~/.corecoder/mcp.json` exists, its MCP servers join the nine as extra `mcp__*` tools; the MCP section below covers it.
+The import makes public GitHub GET requests. It never executes commands from the Issue, installs repository dependencies, or calls a model. Use a new output directory on each run. It retains `issue.json`, fixed source, trusted checks, admission logs, `task.json`, and `report.json`.
 
-## A `while` loop is the whole agent
+## Repair and approval service
 
-The whole of an agent fits in one sentence: hand the user's words to the model, run whatever tools it asks for, stuff the results back into the context, ask again, and keep going until it stops asking for tools and gives an answer. In code, that's about a dozen lines:
+The [shared workflow guide](docs/unified-repair-flow.md) covers trusted-bundle export, exact historical replay, and approval API operation. Historical replay requires previously retained experiment assets; it is not a fresh-clone prerequisite for the self-contained tests above.
 
-```python
-# corecoder/agent.py · the main loop (trimmed skeleton)
-def chat(self, user_input):
-    self.messages.append(user_input)
-
-    for _ in range(self.max_rounds):                   # bounded, so it can't run away
-        reply = self.llm.chat(self.messages, self.tools)   # ask the model what to do next
-        if not reply.tool_calls:                       # model wants no more tools
-            return reply.text                          #   -> done, hand the answer back
-        results = run_parallel(reply.tool_calls)       # tools requested -> run in parallel
-        self.messages += results                       # feed results back, loop again
-
-    return "(hit the round limit)"
+```powershell
+python -B -m service --port 8004 --timeout 1200 --output .tmp/repair-service
 ```
 
-That's the whole thing. The core skeleton is about twenty lines; counting parallel execution and the bookkeeping after a Ctrl+C interrupt, maybe forty. Almost everything else in CoreCoder's thousand-odd lines is there to clean up the mess the loop runs into once it meets the real world. `llm.py` ends up the biggest file in the project, not because calling a model is hard, but because a streamed response splinters each tool call's arguments into fragments you have to restitch in order, a provider will hand you half a JSON object or a null `usage` field, and 429s, timeouts, dropped connections and 5xx all need backoff-and-retry while the other 4xx should just raise. A stream can also die after it has already started, so the retry wraps the whole request, not just the connect. That unglamorous grunt work, not the loop, is where the real engineering of taking an agent from demo to delivery actually lives; the third essay follows it down to the line.
+Set `CORECODER_REPAIR_BUNDLES` to an administrator-controlled task registry when using the approval repair endpoint. Approval is required before execution; GitHub Issue import is currently a separate CLI entry point. Model-backed repair is not part of the default quick start. New model trials should keep thinking off unless explicitly enabled, and should not be combined with historical high-reasoning results.
 
-Three decisions are worth a closer look, because they're the kind of call you can only make after you've understood how others did it, and they're judgments you can lift straight into your own fork.
+`CORECODER_HOME` relocates checkpoints, grants, sessions, history, hooks, MCP configuration and pricing overrides. Without it the original upstream home-directory locations are retained. Service workers use task-local state. The ordinary agent's Bash tool remains separate from the Docker verification sandbox.
 
-**`edit_file` does search-and-replace on a unique match, not line numbers.** Line numbers are a trap: the model only has to miscount by one and it quietly edits the wrong place. Anchor on a unique snippet of the original instead. If there's no match, it hands the start of the file back so the model can re-anchor; if there are several matches, it makes the model bring more surrounding context rather than gamble on one. On a successful edit it returns a diff. Recoverable on failure, verifiable on success: the whole loop stays inside the tool.
+## Code and documentation
 
-**Context isn't cut all at once when it's full; it gives ground in three tiers, cheapest first.** At half full (50%) it trims over-long tool outputs in place, a tier that's purely mechanical and costs no model call. If 70% still isn't enough, it has the model summarize the older turns into a single paragraph while keeping the most recent ones verbatim. Only at 90% does it hit the emergency tier and pull everything, summary and recent turns alike, down to its tightest form. Blunt truncation tends to throw away exactly the early decision a long task leans on most; tiering lets it surrender the least important things first instead of lopping off the oldest decisions wholesale from the start.
+| Path | Purpose |
+| --- | --- |
+| `corecoder/` | Upstream-based agent engine, tools, providers, sessions and MCP client |
+| `repairflow/`, `configs/issue-tasks/` | Shared repair execution and trusted Issue admission |
+| `sandbox/`, `deploy/sandbox/` | Container policies and lifecycle |
+| `service/`, `workflows/`, `mcp_servers/` | Task API, approval checkpoints and read-only code tools |
+| `evals/`, `docs/experiments/` | Evaluation harness, task assets and versioned experiments |
 
-**You constrain a sub-agent by withholding the tool, not by writing rules and hoping it obeys.** A spawned sub-agent gets an isolated context and its own separate history, with a toolset exactly one item shorter than the parent's: the `agent` tool itself, so it can't recursively spawn more sub-agents. Handing it one fewer tool is cleaner than legislating a rule after the fact. It also reuses the parent's model connection (its spend folded into the same running total), truncates its output once it runs past 5,000 characters down to just the opening, and runs on a shorter round limit than the parent. The same restraint, end to end.
+Start with [Issue preparation](docs/github-issue-preparation.md), [repair workflow](docs/unified-repair-flow.md), [sandbox](docs/execution-sandbox.md), and [plan](plan.md). See [upstream sync notes](docs/upstream-sync-20261019.md) for the integration boundary.
 
-Every one of these *whys* is traced down to the actual lines of code in the series below.
+For the original agent walkthrough, read the [English source-reading series](article/00-index_EN.md) or [Chinese series](article/00-index.md). Original author attribution and the MIT license are retained.
 
-## The source-reading series · 8 bilingual essays
-
-I also wrote a bilingual source-reading series, one intro plus eight parts, each in Chinese with an English mirror. Against CoreCoder's actual code, it walks through how agents like Claude Code work under the hood. One hard rule I set myself: every line count and every snippet is re-read and re-checked from the repo, never written from memory. The first six get you reading, the seventh gets you forking, and the eighth is about extending it without touching the loop; read them in any order.
-
-- **[Intro · Read Claude Code through CoreCoder, then build your own](article/00-index_EN.md)**
-- **[01 · An agent, at its core, is a `while` loop](article/01-the-loop_EN.md)** — the main loop in `agent.py`, interrupts, and the round limit
-- **[02 · The tool system: letting the model act, safely](article/02-tools_EN.md)** — the seven tools in `tools/` and the bash safety gate
-- **[03 · Plug in any LLM, and keep the bill honest](article/03-llm-and-cost_EN.md)** — `llm.py`'s provider wrapper, retries, and cost accounting
-- **[04 · Surviving a long task on a finite window](article/04-context_EN.md)** — `context.py`'s three-tier compaction and orphaned tool messages
-- **[05 · Parallel execution and sub-agents](article/05-parallel-and-subagents_EN.md)** — thread-pool concurrency and sub-agent isolation
-- **[06 · Turning it into a real command-line tool](article/06-session-and-cli_EN.md)** — `session.py` and path-traversal defense
-- **[07 · Fork CoreCoder into your own coding agent](article/07-build-your-own_EN.md)** — from fork to custom tools to swapping models
-- **[08 · Three ways to extend without touching the loop: MCP, hooks, and plan mode](article/08-extensibility_EN.md)** — the v0.6.0 extensibility trio and the contract that makes them safe
-
-## Fork it, build something better
-
-Once you understand it, the natural next step is to fork. Getting started doesn't take much:
-
-- **Swap in a model you actually use.** It's the two env vars from above; `llm.py` (331 lines) is the entry point for all provider adaptation.
-- **Add a tool of your own.** Write a new file against the tool base class in `tools/base.py` (32 lines): run tests, fetch a page, call an LSP, whatever. The end of the second essay walks you through your first one by hand.
-- **Rewrite the system prompt.** `prompt.py` is all of 41 lines; change one line and you'll watch the agent's temperament shift. It's the cheapest "change one thing, see a result" in the whole project.
-- **Import it as a library.** The top level exports `Agent`, `LLM`, and `Config`, ready to embed in your own program:
-
-```python
-from corecoder import Agent, LLM
-
-llm = LLM(model="deepseek-chat", api_key="sk-...", base_url="https://api.deepseek.com")
-print(Agent(llm=llm).chat("find every TODO comment in this project and list them"))
-```
-
-Going deeper, the directions are out in the open too. None of the following is in CoreCoder, by design, not because it's unfinished. Flip it around and each one is an entry point you can carry into a real tool of your own:
-
-- **The dangerous-command blocking in bash is just a regex blacklist.** It guards against slips, not a security sandbox. Facing untrusted input means reaching for seccomp or container isolation. This is the hardest of the four; it goes all the way down to the syscall and isolation layer.
-- **Retry is only exponential backoff.** No fallback model, no hard dollar budget. Follow `llm.py` down and add a fallback model chain plus a stop-on-over-budget gate; the change stays mostly inside that one file.
-- **Sub-agents only run the plainest synchronous execution.** Make it async or a streaming executor and you close the exact gap the fifth essay identifies between this and how production agents stream execution.
-- **No RAG, and the MCP client speaks tools only.** Retrieval-based code location for big repos is still open, and `mcp.py` leaves resources and prompts unimplemented on purpose. Either one is a real way to grow from a minimal core into your own stronger agent.
-
-The README only points; the seventh essay picks up the code details for each. Pick one and start; that's the whole reason the core is kept this small.
-
-## Commands
-
-Inside the REPL, `/help` lists everything; these are the ones you'll reach for:
-
-```
-/model <name>    switch model
-/compact         compact the context by hand
-/tokens          token usage and cost estimate
-/diff            files changed this session
-/undo            revert the most recent file change
-/plan            toggle plan mode (read-only, then a plan to approve)
-/save  /sessions save / list sessions
-quit / exit      exit (Ctrl+C cancels the current round)
-```
-
-Session IDs are sanitized to safe characters before they become filenames, every archive lands under `~/.corecoder/sessions`, and a malicious session name can't traverse out.
-
-## Permissions
-
-Read-only tools (`read_file`, `glob`, `grep`, `todo_write`, `fetch_url`) run the moment the model asks. The mutating ones (`edit_file`, `write_file`, `bash`, and spawning a sub-agent) stop for consent first, and the REPL banner shows which mode you're in:
-
-- In the REPL you get one prompt per call: allow once, always allow this tool, or deny. "Always" is remembered per tool for the rest of the session, and a sub-agent inherits the same layer, so consent follows the work wherever it happens.
-- In one-shot mode (`-p`) there is nobody to ask, so a mutating call is refused on the spot and the refusal goes back to the model as an ordinary tool result: the loop never hangs on input that can't arrive. Pass `--yes` to approve everything up front (scripts, CI).
-- The decision itself is pure logic in `permissions.py`, with the terminal only supplying the prompt callback. You can unit-test consent without a TTY, or reuse the layer in your own embedding.
-
-## Plan mode
-
-`/plan` toggles plan mode in the REPL. While it's on, the prompt shows `(plan)` and every mutating call (writes, edits, bash, MCP tools, sub-agents) is refused on the spot: the refusal goes back to the model as an ordinary tool result, telling it to keep investigating read-only and present a numbered plan instead. When the plan looks right, `approve` (or `/plan` again) hands control back and the agent executes. Mechanically it is one flag on the `Agent` plus one refusal branch ahead of the consent gate, which itself stays untouched; there is no plan file and nothing is remembered between sessions.
-
-## Hooks
-
-Drop a `hooks.json` under `~/.corecoder` and your own shell commands run around every tool call, the same idea as Claude Code's hooks:
-
-```json
-{
-  "PreToolUse":  [{"matcher": "bash", "command": "cat >> ~/.corecoder/audit.jsonl"}],
-  "PostToolUse": [{"matcher": "*",    "command": "cat >> ~/.corecoder/trace.jsonl"}]
-}
-```
-
-Each hook gets the call as JSON on stdin (`tool_name`, `tool_input`; post hooks also get `tool_response`). The matcher is an exact tool name; empty or `*` fires on every tool. A pre hook can veto the call with exit code 2, and its stderr travels back to the model as the reason so it can route around the block. Post hooks only observe and can never block. A hook that errors or runs past ten seconds is skipped with a warning: hooks assist the loop, they never get to kill it. The whole mechanism is `hooks.py`, and the REPL banner shows how many hooks loaded.
-
-Two worth stealing (the commands lean on `jq`, the usual suspect):
-
-```bash
-# 1. lint gate: after every edit/write, run the project's fast linter on the
-#    touched file. The model sees the output and fixes its own mistakes in
-#    the same turn instead of waiting for CI.
-{
-  "PostToolUse": [{
-    "matcher": "edit",
-    "command": "f=$(jq -r .tool_input.path); ruff check \"$f\" 2>&1 | head -20"
-  }]
-}
-
-# 2. write protect: refuse edits under paths you never want an agent to
-#    touch. Exit code 2 vetoes the call and the message reaches the model.
-{
-  "PreToolUse": [{
-    "matcher": "edit",
-    "command": "case \"$(jq -r .tool_input.path)\" in .env*|*/secrets/*|*.pem) echo 'that path is off-limits' >&2; exit 2;; esac"
-  }]
-}
-```
-
-Both are plain shell; nothing here is CoreCoder-specific syntax beyond the JSON shape and the exit-code-2 veto.
-
-## MCP servers
-
-Drop a `mcp.json` under `~/.corecoder` and tools from any MCP server join the agent over stdio, the same config shape as Claude Code's:
-
-```json
-{
-  "mcpServers": {
-    "filesystem": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]}
-  }
-}
-```
-
-Each configured server starts as a subprocess at launch, handshakes, and lists its tools; every one is registered as `mcp__<server>__<tool>`, so hook matchers and the consent gate treat it exactly like a built-in. MCP tools stay out of the read-only set, meaning the agent asks before running one. The handshake gets fifteen seconds, a call gets sixty, and a server that dies or never answers fails that one call as an ordinary tool result instead of killing the loop. The client speaks the tools slice of the protocol (initialize, tools/list, tools/call) and nothing else, which keeps the whole thing inside `mcp.py` at about 200 lines. With no `mcp.json` there is no MCP and nothing changes.
-
-## Related Projects
-
-If working through CoreCoder was useful, here are a few other tools I've built around agents and LLM systems:
-
-- **[RepoWiki](https://github.com/he-yufeng/RepoWiki)** — dropped into an unfamiliar codebase? It gives you a guided wiki and a where-to-start reading path, a self-hostable DeepWiki alternative.
-- **[FindJobs-Agent](https://github.com/he-yufeng/FindJobs-Agent)** — stop sifting job boards by hand: it ranks postings against your resume and runs mock interviews.
-- **[ContractGuard](https://github.com/he-yufeng/ContractGuard)** — catch the risky clauses before you sign: it reads contracts and flags the dangerous bits.
-- **[GitSense](https://github.com/he-yufeng/GitSense)** — want to contribute to open source? It finds issues worth your time and gauges whether your PR will get merged.
-- **[CodeABC](https://github.com/he-yufeng/CodeABC)** — understand any codebase even if you don't code, built for non-programmers.
-
-## Contributing / License
-
-Before you send anything, run tests and code checks appropriate to the change. Fork dependencies and D-drive validation commands are documented in the [delivery checklist](docs/delivery-checklist.md) and [approval guide](docs/workflow-approval-v1.md). MIT licensed: fork it, learn from it, ship something better. A mention of this project is appreciated.
-
----
-
-By [Yufeng He](https://github.com/he-yufeng), formerly at Moonshot AI (Kimi). I earlier wrote a fairly complete [Claude Code source analysis](https://zhuanlan.zhihu.com/p/1898797658343862272) on Zhihu; this project is its hands-on counterpart: that one walks you through reading it, this one through rebuilding it.
-
-> CoreCoder was formerly named NanoCoder; it was renamed to avoid confusion with [Nano-Collective/nanocoder](https://github.com/Nano-Collective/nanocoder), and old links redirect here automatically.
+Core package size only: **30 files, 3,117 physical lines, 2,537 net**; `engine-1462_LoC`. These counts exclude repairflow, sandbox, service and evaluation extensions. Core package version follows upstream **0.8.0**; that is not a versioned release of the complete repair system.

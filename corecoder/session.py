@@ -10,7 +10,9 @@ import time
 import uuid
 from pathlib import Path
 
-SESSIONS_DIR = Path.home() / ".corecoder" / "sessions"
+from .paths import state_dir
+
+SESSIONS_DIR = state_dir() / "sessions"
 _SAFE_SESSION_RE = re.compile(r"[^A-Za-z0-9._-]+")
 _MAX_SESSION_ID_LEN = 100  # keep filenames comfortably under the OS limit
 
@@ -65,7 +67,7 @@ def load_session(session_id: str) -> tuple[list[dict], str] | None:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
         return data["messages"], data["model"]
-    except (json.JSONDecodeError, KeyError, OSError):
+    except (json.JSONDecodeError, UnicodeDecodeError, KeyError, OSError):
         # a corrupt or truncated session file shouldn't crash resume
         return None
 
@@ -91,7 +93,7 @@ def list_sessions() -> list[dict]:
                 "saved_at": data.get("saved_at", "?"),
                 "preview": preview,
             })
-        except (json.JSONDecodeError, KeyError):
+        except (json.JSONDecodeError, UnicodeDecodeError, KeyError):
             continue
 
     return sessions[:20]  # cap at 20

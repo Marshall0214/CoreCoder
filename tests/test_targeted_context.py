@@ -55,8 +55,8 @@ def test_targeted_runner_refuses_full_pool_before_any_execution(tmp_path):
 @pytest.mark.parametrize('module', ['targeted_feedback_v1', 'public_api_feedback_v1', 'state_type_feedback_v1', 'caller_fallback_feedback_v1', 'public_contract_feedback_v1', 'coverage_feedback_v1', 'coverage_contract_feedback_v1', 'coverage_feedback_v2', 'coverage_contract_feedback_v2'])
 def test_feedback_retrieves_current_source_and_preserves_rollback(tmp_path, monkeypatch, correction_passes, module):
     import hashlib
-    from types import SimpleNamespace
     import importlib
+    from types import SimpleNamespace
     guard = importlib.import_module('docs.experiments.' + module)
     from evals.runner import digest, snapshot
     from evals.runtime import Events

@@ -29,6 +29,7 @@ class ScriptedLLM:
 
     total_prompt_tokens = 0
     total_completion_tokens = 0
+    estimated_cost = None  # the REPL's /tokens reads this off the LLM
 
     def __init__(self, script: list[LLMResponse], model: str = "scripted-demo"):
         self._turns = list(script)

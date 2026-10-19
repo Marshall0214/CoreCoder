@@ -1,8 +1,8 @@
 import pytest
 
 from docs.experiments import caller_fallback_context_v1 as context
-from docs.experiments.function_index_audit_v1 import FunctionIndex
 from docs.experiments.caller_fallback_repair_v1 import run, trial_config
+from docs.experiments.function_index_audit_v1 import FunctionIndex
 
 
 def test_inherited_consumer_uses_effective_override_and_excludes_unrelated_class(tmp_path, monkeypatch):
@@ -25,9 +25,9 @@ class Other:
     index.refresh()
     info = index.parsed['app.py']
     start, end, _ = info['symbols']['Option.from_env']
-    row = dict(path='app.py', symbol='Option.from_env', start_line=start, end_line=end,
-               content=''.join(info['lines'][start-1:end]), content_hash=info['hash'],
-               symbol_range=[start, end], complete_symbol=True, reason='public_factory_class_method')
+    row = {'path': 'app.py', 'symbol': 'Option.from_env', 'start_line': start, 'end_line': end,
+               'content': ''.join(info['lines'][start-1:end]), 'content_hash': info['hash'],
+               'symbol_range': [start, end], 'complete_symbol': True, 'reason': 'public_factory_class_method'}
     monkeypatch.setattr(context.previous, 'retrieve', lambda *args: {
         'evidence': [row], 'metadata': {'public_api_owners': []}})
     result = context.retrieve(tmp_path, ['app.py'], 'Read environment and preserve defaults')

@@ -197,6 +197,7 @@ class TaskManager:
                 stderr = (job.root / 'stderr.txt').open('wb')
                 env = dict(os.environ, PYTHONPATH=str(ROOT), PYTHONDONTWRITEBYTECODE='1', PYTHONIOENCODING='utf-8')
                 env['CORECODER_SANDBOX_OWNER'] = str(job.root)
+                env['CORECODER_HOME'] = str(job.root / 'corecoder-state')
                 if os.environ.get('PYTHONPATH'):
                     env['PYTHONPATH'] += os.pathsep + os.environ['PYTHONPATH']
                 kwargs = {'creationflags': subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == 'nt' else {'start_new_session': True}

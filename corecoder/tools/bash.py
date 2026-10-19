@@ -13,6 +13,7 @@ import subprocess
 import threading
 from typing import ClassVar
 
+from ..shell import run_shell
 from .base import Tool
 
 # Track cwd across commands (Claude Code does this too). Thread-local, so that
@@ -83,9 +84,8 @@ class BashTool(Tool):
         cwd = get_tracked_cwd() or os.getcwd()
 
         try:
-            proc = subprocess.run(
+            proc = run_shell(
                 command,
-                shell=True,
                 check=False,
                 capture_output=True,
                 text=True,

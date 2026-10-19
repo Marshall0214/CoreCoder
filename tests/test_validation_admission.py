@@ -5,6 +5,19 @@ import pytest
 from docs.experiments import validation_admission_v1 as admission
 
 
+@pytest.fixture(autouse=True)
+def frozen_catalog_engine_fixture(monkeypatch):
+    # Exercise the historical catalog without pretending the current engine is
+    # the frozen one; retain a separate rejection test for mismatched engines.
+    monkeypatch.setattr(admission, 'implementation_metadata', lambda: {'source_hash': admission.ENGINE})
+
+
+def test_changed_engine_is_still_rejected(monkeypatch):
+    monkeypatch.setattr(admission, 'implementation_metadata', lambda: {'source_hash': '0' * 64})
+    with pytest.raises(ValueError, match='Frozen engine changed'):
+        admission.frozen_inputs()
+
+
 def groups(before=False, **overrides):
     target = {'passed': not before, 'assertion_failure': before, 'execution_error': False,
               'timed_out': False, 'tests_run': 1}

@@ -4,11 +4,11 @@ In the loop from the last piece, one step got glossed over: executing tools. Thi
 
 The model itself does only one thing, emitting the next text given the text so far. It can't read your files, can't run your tests, can't write a single byte to disk. What turns it from "able to talk" into "able to do" is tools. A tool is the hand through which an agent actually touches the world. So how strong an agent is depends largely on how well its tools are designed: whether the interface is clear, whether the error feedback lands, whether dangerous operations get stopped.
 
-CoreCoder gives the model seven tools: `bash`, `read_file`, `write_file`, `edit_file`, `glob`, `grep`, `agent`. In this piece we first look at the skeleton they share, then dig into the two most worth discussing, and finally I'll have you write one of your own.
+CoreCoder gives the model eight tools: `bash`, `read_file`, `write_file`, `edit_file`, `glob`, `grep`, `todo_write`, `agent`. In this piece we first look at the skeleton they share, then dig into the two most worth discussing, and finally I'll have you write one of your own.
 
 ## What a tool looks like
 
-Every tool inherits from `Tool` in `tools/base.py`, the whole base class being 27 lines:
+Every tool inherits from `Tool` in `tools/base.py`, the whole base class being 32 lines:
 
 ```python
 class Tool(ABC):
@@ -57,7 +57,7 @@ To add a tool, drop an instance into this list. We'll actually do that at the en
 
 ## edit_file: a key innovation that looks unremarkable
 
-If I could only discuss one of the seven tools, I'd pick `edit_file`. Because "let the model modify an existing file," a need that looks simple, has several dead bodies behind it.
+If I could only discuss one of the eight tools, I'd pick `edit_file`. Because "let the model modify an existing file," a need that looks simple, has several dead bodies behind it.
 
 The first dead end is having the model patch by line number, say "replace line 42 with this." The problem is the model's sense of line numbers is wildly unreliable; the line 42 in its head and the real line 42 in the file often don't match, and being off by one means editing the wrong place. Worse, the moment something earlier in the file gets touched, every line number after it shifts.
 
@@ -115,7 +115,7 @@ Without this check, the moment the model accidentally runs `edit_file` on a bina
 
 Tools like `read_file` and `edit_file` can only do limited damage. `bash` is different; it runs arbitrary shell commands, and the moment the model writes `rm -rf /`, the consequences are real.
 
-Claude Code's `BashTool` is 1,143 lines in public teardowns, with a command classifier, a real sandbox built on `sandbox-exec` and `seccomp`, output truncation, and interactive-command interception. CoreCoder's `bash.py` is a 127-line distillation that keeps the four most essential things: dangerous-command detection, output truncation, timeout, and working-directory tracking.
+Claude Code's `BashTool` is 1,143 lines in public teardowns, with a command classifier, a real sandbox built on `sandbox-exec` and `seccomp`, output truncation, and interactive-command interception. CoreCoder's `bash.py` is a 203-line distillation that keeps the four most essential things: dangerous-command detection, output truncation, timeout, and working-directory tracking.
 
 Dangerous-command detection is a regex blocklist:
 
@@ -161,7 +161,7 @@ The second is hooks. `~/.corecoder/hooks.json` lets users hang shell commands on
 
 The third is MCP. In `mcp.py`, each server is a subprocess speaking newline-delimited JSON-RPC over stdio: handshake, `tools/list`, and then every remote tool registers as `mcp__server__tool`, after which consent, hooks, and plan mode treat it exactly like the built-ins. The lesson is where that "exactly like" comes from: not from special-casing in the MCP code, but from a tool boundary (the `Tool` base class plus the three gates) clean enough that an external tool is just one more implementation. A wedged or dead server costs one error string on that one call; the loop keeps turning.
 
-All three are advanced pieces. They are not on the agent's skeleton — the skeleton is still the loop plus seven tools. But they answer the same question: around a tool call, who else gets to speak? The answer went from "two gates" to "two gates plus a ring of pluggable bypasses," and every bypass is designed to fail without dragging the main loop down with it.
+All three are advanced pieces. They are not on the agent's skeleton — the skeleton is still the loop plus eight tools. But they answer the same question: around a tool call, who else gets to speak? The answer went from "two gates" to "two gates plus a ring of pluggable bypasses," and every bypass is designed to fail without dragging the main loop down with it.
 
 ## Hands-on: write your first tool
 

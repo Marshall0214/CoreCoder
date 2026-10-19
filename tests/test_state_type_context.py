@@ -1,8 +1,8 @@
 import pytest
 
 from docs.experiments import state_type_context_v1 as context
-from docs.experiments.state_type_repair_v1 import run, trial_config
 from docs.experiments.function_index_audit_v1 import FunctionIndex
+from docs.experiments.state_type_repair_v1 import run, trial_config
 
 
 @pytest.mark.parametrize('description,expect_state', [('flag_value must activate only valid input', True),
@@ -26,9 +26,9 @@ class Option:
     index.refresh()
     info = index.parsed['app.py']
     start, end, _ = info['symbols']['Option.resolve_envvar_value']
-    row = dict(path='app.py', symbol='Option.resolve_envvar_value', start_line=start, end_line=end,
-               content=''.join(info['lines'][start-1:end]), content_hash=info['hash'],
-               symbol_range=[start, end], complete_symbol=True, reason='public_factory_class_method')
+    row = {'path': 'app.py', 'symbol': 'Option.resolve_envvar_value', 'start_line': start, 'end_line': end,
+               'content': ''.join(info['lines'][start-1:end]), 'content_hash': info['hash'],
+               'symbol_range': [start, end], 'complete_symbol': True, 'reason': 'public_factory_class_method'}
     monkeypatch.setattr(context.previous, 'retrieve', lambda *args: {
         'evidence': [row], 'metadata': {'public_api_owners': ['Option']}})
     result = context.retrieve(tmp_path, allowed, description, 'option(flag_value="UPPER")')
