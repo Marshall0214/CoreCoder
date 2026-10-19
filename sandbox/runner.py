@@ -140,8 +140,8 @@ def command(image_id, name, task_owner, source, harness, entry, source_root, pac
             '--pids-limit', '64', '--init', '--log-driver', 'none',
             '--tmpfs', '/tmp:rw,nosuid,nodev,size=128m,mode=1777', '--workdir', '/source',
             '--env', 'PYTHONDONTWRITEBYTECODE=1', '--env', 'PYTHONIOENCODING=utf-8',
-            '--pull', 'never', *mounts, image_id, 'python', '-I', '-B', '/runner.py',
-            '/source/' + source_root, '/checks', package, group, '/tmp/result.json']
+            '--pull', 'never', *mounts, image_id, 'python', '-I', '-B', '-c',
+            'import time; time.sleep(300)']
 
 
 def run(source, harness, package, source_root, logs, group, boot, policy, task_owner):
@@ -152,16 +152,28 @@ def run(source, harness, package, source_root, logs, group, boot, policy, task_o
     result = {'returncode': None, 'timed_out': False, 'sandbox': dict(policy), 'sandbox_status': 'sandbox_start_failed'}
     try:
         control(command(policy['image_id'], name, task_owner, source, harness, entry, source_root, package, group))
-        _, out, err, timeout, overflow = bounded(['start', '-a', name], 20)
+        # Keep tmpfs mounted until results have been copied. A stopped container
+        # loses /tmp even though its readonly root filesystem still exists.
+        control(['start', name])
+        code, out, err, timeout, overflow = bounded(['exec', name, 'python', '-I', '-B', '/runner.py',
+                                                   '/source/' + source_root, '/checks', package,
+                                                   group, '/tmp/result.json'], 20)
         (logs / (group + '.stdout.txt')).write_bytes(out)
         (logs / (group + '.stderr.txt')).write_bytes(err)
         state = json.loads(control(['inspect', '--format', '{{json .State}}', name]))
-        timeout = timeout or state['ExitCode'] == 142  # SIGALRM: original 15-second test deadline.
-        result.update(returncode=state['ExitCode'], timed_out=timeout,
+        timeout = timeout or code == 142  # SIGALRM: original 15-second test deadline.
+        oom = state.get('OOMKilled', False)
+        if code == 137 and state.get('Running'):
+            _, memory, _, _, _ = bounded(['exec', name, 'cat', '/sys/fs/cgroup/memory.events'], 5, 4096)
+            oom = oom or any(line.startswith(b'oom_kill ') and int(line.split()[1]) > 0 for line in memory.splitlines())
+        result.update(returncode=code, timed_out=timeout,
                       sandbox_status='sandbox_timeout' if timeout else 'sandbox_output_limit' if overflow
-                      else 'sandbox_oom' if state.get('OOMKilled') else 'completed')
+                      else 'sandbox_oom' if oom else 'completed')
         if result['sandbox_status'] == 'completed':
-            code, archive, _, copy_timeout, copy_overflow = bounded(['cp', name + ':/tmp/result.json', '-'], 10, 131072)
+            # Docker's archive API does not expose this tmpfs mount. Stream
+            # the one result file while the container is alive instead.
+            code, archive, _, copy_timeout, copy_overflow = bounded(
+                ['exec', name, 'tar', '-C', '/tmp', '-cf', '-', 'result.json'], 10, 131072)
             if code or copy_timeout or copy_overflow:
                 result['sandbox_status'] = 'sandbox_invalid_result'
             else:

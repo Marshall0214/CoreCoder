@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-19",
+  "passed": true,
+  "scope": "Relevant regression and real Docker sandbox acceptance, not the whole repository or fresh model evaluation",
+  "regression": {
+    "passed": 163,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 164.832,
+    "docker_cases": [
+      "test_real_container_runs_public_and_private_checks",
+      "test_container_cannot_write_inputs_or_inherit_credentials",
+      "test_real_replay_never_calls_a_provider",
+      "test_real_resource_failures_stop_and_remove_container[import time; time.sleep(60)-sandbox_timeout]",
+      "test_real_resource_failures_stop_and_remove_container[import os\\nwhile True: os.write(1,b\"x\" * 8192)-sandbox_output_limit]",
+      "test_real_resource_failures_stop_and_remove_container[x = bytearray(2 * 1024 ** 3)-sandbox_oom]",
+      "test_real_cgroup_limits_and_process_limit",
+      "test_api_cancel_removes_running_container",
+      "test_restart_removes_only_interrupted_task_container"
+    ]
+  },
+  "docker": {
+    "engine": "28.1.1 linux cgroup=1",
+    "image": "sha256:49332c29cf3413c53b31c967ccf6c5fea1ab11c400fa7320f6f84b82f88afb2d",
+    "python_version": "3.11.17",
+    "disk_directory": "D:/Users/admin/AppData/Local/Docker/wsl/DockerDesktopWSL",
+    "leftover_sandbox_containers": []
+  },
+  "demo": {
+    "task": "click-usage-empty",
+    "mode": "historical single-call replay",
+    "fresh_model_calls": 0,
+    "new_thinking_inference": false,
+    "cli_and_api_patch_identical": true,
+    "checks": [
+      "retrieval",
+      "constrained patch",
+      "public checks",
+      "independent Target/Controls",
+      "idempotency",
+      "approval restart",
+      "real service worker",
+      "SSE",
+      "artifact downloads",
+      "approval rejection without execution"
+    ],
+    "transport": "in-process ASGI HTTP client; worker executes in a real child process",
+    "implementation_hashes_match": true,
+    "successful_test_groups": 20,
+    "summed_group_seconds": 39.759,
+    "largest_group_seconds": 2.2581,
+    "timing_scope": "Container group lifecycle total; startup and test execution are not separately timed"
+  },
+  "artifact_root": "D:\\project_other\\CoreCoder\\.tmp\\sandbox-acceptance-20261019",
+  "artifact_sha256": {
+    "regression.xml": "83a72fe6fbb5cc6e940249bc64a7134792b58fa8a2472cedc54673b8e83fbb03",
+    "demo/acceptance.json": "d57eb2f8d22cdeda3040f7b6bc1ed6fdaa3c3a3eec1c14c5213dd3c4c549a1fa",
+    "demo/cli/report.json": "48be36dad85da53e2b9377fc05866bef102c445743eed9cbda8413ec00ee229e",
+    "demo/evidence/report.json": "90c631b1e9ce82d864dbee281de75d6c8c58b4f7d47594b1f4db4bb85d48b77a",
+    "demo/evidence/patch.diff": "6db964448b336ecee7bae94567d72976c410ba90359c3abae7697839695e907e",
+    "demo/evidence/events.sse": "55f36a6b8ae3e44e927c6218009116d51decbfa2fb9af840f34f1a007cd98f1a"
+  },
+  "limits": [
+    "No change to historical 47/50 score",
+    "Container isolation does not prevent same-interpreter grading manipulation",
+    "Original Bash and legacy evals not migrated",
+    "No browser/TCP deployment acceptance"
+  ]
+}

@@ -105,7 +105,7 @@ def test_execution_classification_and_cleanup(tmp_path, monkeypatch, timeout, ov
         return json.dumps({'ExitCode': 0, 'OOMKilled': oom}).encode() if args[0] == 'inspect' else b''
 
     def bounded(args, *unused):
-        if args[0] == 'cp':
+        if args[0] == 'exec' and 'tar' in args:
             return 0, archive(score()), b'', False, False
         return 0, b'output', b'', timeout, overflow
     monkeypatch.setattr(runner, 'control', control)
