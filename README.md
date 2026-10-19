@@ -14,7 +14,7 @@ This fork extends [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder),
 
 | Area | Implemented | Boundary |
 | --- | --- | --- |
-| Public GitHub Issues | Read-only import, pinned source download, trusted reproduction and preservation checks | CLI only; prepared tasks are not yet connected to candidate repair |
+| Public GitHub Issues | Read-only import, pinned source, candidate patches and Docker reproduction/preservation checks | CLI with trusted configuration; public-test success requires manual review |
 | Repair workflow | Target/symbol retrieval, constrained patches, one public-feedback correction, rollback, independent grading | Trusted task bundles and specified Python repositories |
 | Execution sandbox | Offline, non-root Docker containers with readonly inputs and CPU/memory/PID/time/output limits | Unified repairflow checks; original Bash and legacy evals are not migrated |
 | Local service | FastAPI, idempotency, SSE, cancellation, SQLite, LangGraph approval/restart recovery | One local service owner; no multi-user production claim |
@@ -23,11 +23,11 @@ This fork extends [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder),
 Two entry points currently coexist:
 
 ```text
-Public Issue + trusted configuration → fixed source → sandbox admission → prepared task
+Public Issue + trusted configuration → fixed source → sandbox admission → candidate → public checks → review
 Trusted repair bundle → retrieval → candidate patch → feedback → independent checks → report
 ```
 
-`ready_for_repair` means the original defect was reproduced and declared preservation checks passed. It does not mean the Issue is fixed. Connecting newly prepared Issues to repair and approval is the next milestone.
+`ready_for_repair` means the original defect was reproduced and declared preservation checks passed. Run the separate [prepared-Issue repair CLI](docs/prepared-issue-repair.md) to generate and validate a candidate. Without independent grading it produces a reviewable patch, never an independent acceptance claim. New-task HTTP approval remains a future milestone.
 
 ## Validation evidence
 
@@ -37,6 +37,8 @@ Trusted repair bundle → retrieval → candidate patch → feedback → indepen
 - **Upstream integration:** full local regression **1,667 passed, 3 skipped**, including 9 real Docker tests, with no model inference. [Integration results and skip reasons](docs/upstream-sync-20261019.md).
 
 Historical replay is not fresh model inference. Test success is limited to the declared checks; container isolation does not prevent all grading manipulation inside the same interpreter.
+
+The prepared-Issue repair CLI has **200 related regression tests passing**, including two new real Docker cases for delivery and rollback. Acceptance used scripted responses with zero model calls, not a new repair-rate experiment. [Guide](docs/prepared-issue-repair.md).
 
 ## Quick start: no model API required
 

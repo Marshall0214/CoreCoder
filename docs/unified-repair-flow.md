@@ -1,6 +1,7 @@
 # 统一 Issue 修复流程：演示与复现
 
-公开新 Issue 的前置准备入口见 [GitHub Issue 导入](github-issue-preparation.md)：只读获取固定版本并在沙箱验证复现，不调用模型；其产物尚未直接接入下面的旧任务包修复入口。
+公开新 Issue 的前置准备入口见 [GitHub Issue 导入](github-issue-preparation.md)：只读获取固定版本并在沙箱验证复现。
+其产物通过专用 [repair-issue 入口](prepared-issue-repair.md) 生成候选补丁并运行公开检查，不伪装成下面具有独立评分的旧任务包。
 
 > 更新：统一流程默认要求 Docker 测试沙箱，请先按 [执行沙箱](execution-sandbox.md) 构建本地镜像。
 > 2026-10-19 已完成真实 Docker 历史回放演示，见 [沙箱验收报告](sandbox-acceptance-20261019.md)。以下早期结果保留原执行后端说明。

@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-19",
+  "scope": "Prepared-Issue CLI candidate repair and public validation; scripted execution only",
+  "regression": {
+    "passed": 200,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 175.348,
+    "new_unit_tests": 32,
+    "new_real_docker_tests": 2,
+    "total_real_docker_tests": 11,
+    "junit_sha256": "55c1b5e93bbd7f629647fe15d1332d1d1b75ad1c2a694fba18d8bfdbedf51f61"
+  },
+  "real_issue_negative_acceptance": {
+    "issue_url": "https://github.com/pallets/click/issues/3887",
+    "base_commit": "934813e4d421071a1b3db3973c02fe2721359a6e",
+    "candidate_source": "Deliberately ineffective manually supplied scripted response, not model inference",
+    "initial_patch_applied": true,
+    "target_still_failing": true,
+    "preservation_tests": 3,
+    "preservation_passed": true,
+    "status": "invalid_patch",
+    "delivery_status": "not_delivered",
+    "candidate_rolled_back": true,
+    "original_unchanged": true,
+    "final_patch_empty": true,
+    "report_sha256": "6a360413d985c03b7258f811a543f21ec913edc59b7fe72a6f1929e61e30f738"
+  },
+  "fresh_model_calls": 0,
+  "thinking_used": false,
+  "independent_grading_available": false,
+  "sandbox_image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+  "leftover_acceptance_containers": [],
+  "docker_tag_recovery": "Refreshed existing sandbox tag to the identical verified image ID; underlying lookup failure cause undetermined",
+  "historical_experiments_modified": false,
+  "existing_port_8001_service_modified": false,
+  "runtime_state_and_reports_drive": "D:",
+  "implementation_sha256": {
+    "repairflow/issue_repair.py": "66ba0f701c5201e1c017db75fcd844a950f91fc71bd74183dddf14996de3dde2",
+    "repairflow/issue_providers.py": "9295601e7b0a8530357099a641650b3b6130087cfeaf430cd884bf045acc6cba",
+    "repairflow/__main__.py": "20cf700feeb1d21143899e7d12873cd68e29e60664baf2e156f6c2a6e069c328"
+  },
+  "limitations": [
+    "No new real-model Issue repair score",
+    "CLI only; new-task approval API not connected",
+    "Public checks only; manual review required",
+    "No automatic commit, push or PR publishing",
+    "Candidate and public tests share an interpreter within each sandbox"
+  ]
+}
