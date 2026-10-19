@@ -42,8 +42,8 @@ def control(args, timeout=30):
     return result.stdout
 
 
-def preflight():
-    image = os.environ.get('CORECODER_SANDBOX_IMAGE', 'corecoder-test-sandbox:v1')
+def preflight(image=None):
+    image = image or os.environ.get('CORECODER_SANDBOX_IMAGE', 'corecoder-test-sandbox:v1')
     try:
         info = json.loads(control(['info', '--format', '{{json .OSType}}']))
     except SandboxError as exc:

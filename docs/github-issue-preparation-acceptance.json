@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-19",
+  "status": "ready_for_repair",
+  "scope": "Public issue preparation only; no candidate repair or independent grading",
+  "issue_url": "https://github.com/pallets/click/issues/3887",
+  "base_commit": "934813e4d421071a1b3db3973c02fe2721359a6e",
+  "issue_updated_at": "2026-10-15T14:25:30Z",
+  "regression": {
+    "passed": 197,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 165.408,
+    "new_issue_tests": 34
+  },
+  "admission": {
+    "Reproduce": {
+      "tests_run": 1,
+      "failures": 1,
+      "errors": 0,
+      "successful": false,
+      "returncode": 1,
+      "seconds": 1.8312
+    },
+    "Preserve": {
+      "tests_run": 3,
+      "failures": 0,
+      "errors": 0,
+      "successful": true,
+      "returncode": 0,
+      "seconds": 1.7934
+    }
+  },
+  "fresh_model_calls": 0,
+  "thinking_used": false,
+  "independent_grading_available": false,
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "requested_urls": [
+    "https://api.github.com/repos/pallets/click/issues/3887",
+    "https://api.github.com/repos/pallets/click/git/commits/934813e4d421071a1b3db3973c02fe2721359a6e",
+    "https://codeload.github.com/pallets/click/zip/934813e4d421071a1b3db3973c02fe2721359a6e"
+  ],
+  "input_hashes": {
+    "config_sha256": "f1390bd833875537d48e3c1fe2247b192e2aa3d40ea4cdf70edb1dd4c02cfdec",
+    "issue_sha256": "f17e178f1213a6e331545b01d687fd55237cfd933315b15b11ea8a76d16bc32f",
+    "archive_sha256": "266110f5eb2ac4b460c833636e2859d95de080f84786844969c930981db04cd2",
+    "source_sha256": "d52d04c39e9482c3e5d0f8354bfb9c8285a207f5ee0b85097285b2d3d64060e4",
+    "harness_sha256": "64e41aee01041313e48e1b03b3520a45b3d56c39b607ce350b739ed37b323057",
+    "license_sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+    "task_sha256": "a56b93b1d00427ba00975c52a004bef76a6e34fe27deae3a99bd1d025f15e98b"
+  },
+  "artifacts": "D:\\project_other\\CoreCoder\\.tmp\\github-issue-acceptance-20261019\\click-3887-v2",
+  "artifact_sha256": {
+    "task.json": "a56b93b1d00427ba00975c52a004bef76a6e34fe27deae3a99bd1d025f15e98b",
+    "report.json": "a7927e307da7f8db61d5934118716147d787391ca7bced2513725e9e3af26ade",
+    "issue.json": "f17e178f1213a6e331545b01d687fd55237cfd933315b15b11ea8a76d16bc32f"
+  },
+  "implementation_sha256": {
+    "repairflow/github_issue.py": "44de371d00c84be84e25b1234ad4d6a1c82758194ba48eb78d478dc2ae6e7eaf",
+    "repairflow/__main__.py": "1e3310cc56e61501eece0843ec9ed626f2df98ea13807ee342a5dba10453ea6b",
+    "sandbox/runner.py": "6912daa6c2dd56f82be303f899e6a39430dc52ee8a6da55404b2de83bed97764"
+  },
+  "leftover_sandbox_containers": [],
+  "limitations": [
+    "Reporter expectation, not upstream-approved repair specification",
+    "Public issue body may have upstream edits",
+    "Prepared task is not an existing repair bundle",
+    "CLI only, no HTTP import or GitHub writes",
+    "Not part of the historical 50-task model comparison"
+  ]
+}
