@@ -1,0 +1,18 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v1\checks\more-interleave-empty\test_admission.py", line 6, in test_contract
+    self.assertEqual(list(mi.interleave_evenly([])),[])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v1-certified-v2\more-interleave-empty\before\more_itertools\more.py", line 1350, in interleave_evenly
+    delta_primary, deltas_secondary = lengths_desc[0], lengths_desc[1:]
+                                      ~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

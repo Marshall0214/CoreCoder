@@ -1,4 +1,5 @@
 """Explicit offline acceptance through real containers, not real model inference."""
+import json
 import os
 
 import pytest
@@ -24,3 +25,16 @@ def test_real_prepared_issue_to_review_or_rollback(tmp_path, succeeds, monkeypat
     assert report['delivery_status'] == ('ready_for_review' if succeeds else 'not_delivered')
     assert bool((tmp_path / 'run/patch.diff').read_text()) is succeeds
     assert report['final_public_checks']['Preserve']['passed']
+
+
+def test_real_symbol_read_and_third_edit_recovery(tmp_path):
+    prepared, configuration = prepare_fixture(tmp_path, os.environ.get('CORECODER_SANDBOX_IMAGE'))
+    responses = tmp_path / 'responses.json'
+    read_action = json.dumps({'action': 'read_symbol', 'arguments': {'path': 'src/pkg/__init__.py', 'symbol': 'f'}})
+    write(responses, [patch(old=77), read_action, patch(old=77), read_action, patch()])
+    report = execute(prepared, configuration, tmp_path / 'run', mode='scripted', responses=responses,
+                     workflow='symbol-recovery-v1')
+    assert report['public_checks_passed'] and report['edit_attempts_used'] == 3
+    assert report['scripted_calls'] == 5 and report['fresh_model_calls'] == 0
+    assert report['final_public_checks']['Preserve']['passed'] and report['original_unchanged']
+    assert report['accepted'] is False and report['delivery_status'] == 'ready_for_review'

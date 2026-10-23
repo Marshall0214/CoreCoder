@@ -1,0 +1,173 @@
+{
+  "date": "2026-10-19",
+  "run_id": "click-3887-qwen35-no-thinking-002",
+  "status": "invalid_patch",
+  "scope": "Second development run on the same public Issue; no repair gain and no statistical or held-out benchmark claim",
+  "issue_url": "https://github.com/pallets/click/issues/3887",
+  "base_commit": "934813e4d421071a1b3db3973c02fe2721359a6e",
+  "model": "qwen3.5:27b",
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "thinking_requested": false,
+  "fresh_model_calls": 2,
+  "cloud_model_calls": 0,
+  "protocol": {
+    "max_candidate_calls": 2,
+    "token_budget": 60000,
+    "max_output_tokens": 32768,
+    "context_tokens": 65536,
+    "wall_timeout": 1200,
+    "retake_policy": "One round-two invocation, no selected reruns; keep both previous and new outcomes"
+  },
+  "context": {
+    "policy": "module-bindings-v1",
+    "before_chars": 4317,
+    "after_chars": 2443,
+    "max_chars": 6000,
+    "max_fragments": 5,
+    "selected_symbols": [
+      "style",
+      "secho",
+      "<module-imports>",
+      "unstyle",
+      "_interpret_color"
+    ]
+  },
+  "before": {
+    "status": "failed_public_validation",
+    "metrics": {
+      "llm_calls": 2,
+      "prompt_tokens": 7262,
+      "completion_tokens": 1012,
+      "known_prompt_tokens": 7262,
+      "known_completion_tokens": 1012,
+      "missing_usage_calls": 0,
+      "budget_accounted_tokens": 8274,
+      "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+      "cost_usd": null,
+      "failed_provider_attempt_usage": "unknown"
+    },
+    "elapsed_seconds": 83.4323613,
+    "public_checks_passed": false,
+    "evidence_sha256": "fdb0fbd08fa6574368ee086effc55165b67ca0e25a7afefd27beea9ec624da1e"
+  },
+  "after": {
+    "status": "invalid_patch",
+    "metrics": {
+      "llm_calls": 2,
+      "prompt_tokens": 5077,
+      "completion_tokens": 3800,
+      "known_prompt_tokens": 5077,
+      "known_completion_tokens": 3800,
+      "missing_usage_calls": 0,
+      "budget_accounted_tokens": 8877,
+      "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+      "cost_usd": null,
+      "failed_provider_attempt_usage": "unknown"
+    },
+    "elapsed_seconds": 101.436219,
+    "public_checks_passed": false,
+    "attempts": [
+      {
+        "attempt": "initial",
+        "old_occurrences_in_base": [
+          0
+        ],
+        "status": "invalid_patch",
+        "error": "Edit text was not supplied in local context"
+      },
+      {
+        "attempt": "correction",
+        "old_occurrences_in_base": [
+          0
+        ],
+        "status": "invalid_patch",
+        "error": "Edit text was not supplied in local context"
+      }
+    ],
+    "provider_calls": [
+      {
+        "scripted": false,
+        "thinking_requested": false,
+        "finish_reason": "stop",
+        "model_returned": "qwen3.5:27b",
+        "prompt_tokens": 2436,
+        "completion_tokens": 1933
+      },
+      {
+        "scripted": false,
+        "thinking_requested": false,
+        "finish_reason": "stop",
+        "model_returned": "qwen3.5:27b",
+        "prompt_tokens": 2641,
+        "completion_tokens": 1867
+      }
+    ]
+  },
+  "total_token_change_percent": 7.29,
+  "no_progress_diagnostic_triggered_in_live_run": false,
+  "diagnostic_scope": "No-net-change classification is tested separately; invalid anchors are not mislabeled as a completed patch undo.",
+  "independent_grading_available": false,
+  "accepted": false,
+  "delivery_status": "not_delivered",
+  "candidate_rolled_back": true,
+  "original_unchanged": true,
+  "final_patch_empty": true,
+  "inputs_unchanged": true,
+  "as_run_implementation_snapshot_matches_plan": true,
+  "model_digest_unchanged": true,
+  "remaining_task_containers": [],
+  "deployment_decision": "Keep baseline context as default; expose module-bindings-v1 as explicit experimental CLI option",
+  "post_run_code_change": "Added the optional context selector after the trial; no further model calls. As-run sources retained under implementation/.",
+  "observed_failure_category": "generated_old_anchor_absent_from_supplied_evidence_and_actual_source",
+  "not_observed": [
+    "output_truncation",
+    "budget_exhaustion",
+    "sandbox_execution_failure"
+  ],
+  "artifacts": "D:\\project_other\\CoreCoder\\.tmp\\issue-context-round2-20261019\\click-3887-qwen35-no-thinking-002",
+  "artifact_sha256": {
+    "report.json": "8b498aa56bf959e0684027e948d281ac09ef1171c1687c19cece1f775dde0427",
+    "provenance.json": "7ae2c3a005e64fa5a957a62fc42b31ec2c5e1a8b91535acf8bc0b6afa94657d7",
+    "trace.jsonl": "e0873899199c67143dbabf88bea9fa9a708e2bea921215394832c351ef57a667",
+    "initial-context.json": "9de477c5e417bfecd265c652dbed53c39c35d6068145025bd849e70509241579",
+    "initial-messages.json": "b46a41e774a17202e97d1093952360296b6dd76ee3ce0529c83521f542a829f1",
+    "initial-response.txt": "50358d90276d014bb34b92a5a3841511c4e9ae4a65973def33cdf0faf43571ef",
+    "correction-context.json": "9de477c5e417bfecd265c652dbed53c39c35d6068145025bd849e70509241579",
+    "correction-messages.json": "adba60c80adfec6d9a71ec86ecc58e72b7091652407b7801bab9f4bf3b00b0a6",
+    "correction-response.txt": "814324ba26f7845412aa37fa24fb09b3a04b009bd52785837d2d15bf79e0a5ef",
+    "patch.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "run_plan_sha256": "824760c95f2d258a755b9205a0636c1f1aafde643b74918b74685ef12dd93f52",
+  "as_run_implementation_sha256": {
+    "repairflow\\issue_repair.py": "89889b242c94b7e76ec4ed0a0ea0de22909ac8c1b8956d1d058c16ca805eaa57",
+    "repairflow\\issue_context.py": "a8461b596f9df5ba0d02b887a9f587b402bf894db11ca10d96d1ac495586fc87",
+    "repairflow\\issue_providers.py": "9295601e7b0a8530357099a641650b3b6130087cfeaf430cd884bf045acc6cba",
+    "repairflow\\__main__.py": "20cf700feeb1d21143899e7d12873cd68e29e60664baf2e156f6c2a6e069c328"
+  },
+  "runtime_state_and_reports_drive": "D:",
+  "historical_50_task_results_modified": false,
+  "existing_port_8001_service_modified": false,
+  "regression_before_trial": {
+    "passed": 210,
+    "failed": 0,
+    "skipped": 0,
+    "junit_sha256": "b79e82fb02397482cae4f072820e8ef927c44bde7e162132133e0468be8bcf84"
+  },
+  "final_regression": {
+    "passed": 213,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 144.147,
+    "real_docker_cases": 11,
+    "new_context_cases": 8,
+    "prepared_repair_cases": 37,
+    "junit_sha256": "bd9ea44ed15a2153d92bed071df99b6dcd0f6a8a4202178eaf4e177ef468c255"
+  },
+  "final_implementation_sha256": {
+    "repairflow\\issue_context.py": "a8461b596f9df5ba0d02b887a9f587b402bf894db11ca10d96d1ac495586fc87",
+    "repairflow\\issue_repair.py": "148e56aa26ff00f349903df3556cb5352c894a07c8be6b1e3f38bf9cb75404d5",
+    "repairflow\\__main__.py": "bdf6922c622ffaf21fe2a8faaa793a5ae7b8774d39f1060354abe2ddf27e6e06"
+  },
+  "current_default_context_policy": "baseline",
+  "ruff_status": "passed"
+}

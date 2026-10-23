@@ -1,0 +1,114 @@
+{
+  "evidence": [
+    {
+      "path": "src/click/core.py",
+      "symbol": "Context.with_resource",
+      "start_line": 599,
+      "end_line": 599,
+      "content": "        return self._exit_stack.enter_context(context_manager)\n",
+      "content_hash": "af3df3b0c2e182ccbd0963f5dbc3ba7f09d06b089eb5ea28e0685e82852efb14",
+      "symbol_range": [
+        572,
+        599
+      ],
+      "complete_symbol": false,
+      "signature": "Context.with_resource(self, context_manager: AbstractContextManager[V])",
+      "reason": "required_repair_subject_or_protocol",
+      "score": 0
+    },
+    {
+      "path": "src/click/core.py",
+      "symbol": "Context.__exit__",
+      "start_line": 481,
+      "end_line": 490,
+      "content": "    def __exit__(\n        self,\n        exc_type: type[BaseException] | None,\n        exc_value: BaseException | None,\n        tb: TracebackType | None,\n    ) -> None:\n        self._depth -= 1\n        if self._depth == 0:\n            self.close()\n        pop_context()\n",
+      "content_hash": "af3df3b0c2e182ccbd0963f5dbc3ba7f09d06b089eb5ea28e0685e82852efb14",
+      "symbol_range": [
+        481,
+        490
+      ],
+      "complete_symbol": true,
+      "signature": "Context.__exit__(self, exc_type: type[BaseException] | None, exc_value: BaseException | None, tb: TracebackType | None)",
+      "reason": "required_repair_subject_or_protocol",
+      "score": 0
+    },
+    {
+      "path": "src/click/core.py",
+      "symbol": "Context.call_on_close",
+      "start_line": 601,
+      "end_line": 611,
+      "content": "    def call_on_close(self, f: t.Callable[..., t.Any]) -> t.Callable[..., t.Any]:\n        \"\"\"Register a function to be called when the context tears down.\n\n        This can be used to close resources opened during the script\n        execution. Resources that support Python's context manager\n        protocol which would be used in a ``with`` statement should be\n        registered with :meth:`with_resource` instead.\n\n        :param f: The function to execute on teardown.\n        \"\"\"\n        return self._exit_stack.callback(f)\n",
+      "content_hash": "af3df3b0c2e182ccbd0963f5dbc3ba7f09d06b089eb5ea28e0685e82852efb14",
+      "symbol_range": [
+        601,
+        611
+      ],
+      "complete_symbol": true,
+      "signature": "Context.call_on_close(self, f: t.Callable[..., t.Any])",
+      "reason": "public_factory_class_method",
+      "score": 31.36622433250023
+    },
+    {
+      "path": "src/click/core.py",
+      "symbol": "Context.close",
+      "start_line": 613,
+      "end_line": 620,
+      "content": "    def close(self) -> None:\n        \"\"\"Invoke all close callbacks registered with\n        :meth:`call_on_close`, and exit all context managers entered\n        with :meth:`with_resource`.\n        \"\"\"\n        self._exit_stack.close()\n        # In case the context is reused, create a new exit stack.\n        self._exit_stack = ExitStack()\n",
+      "content_hash": "af3df3b0c2e182ccbd0963f5dbc3ba7f09d06b089eb5ea28e0685e82852efb14",
+      "symbol_range": [
+        613,
+        620
+      ],
+      "complete_symbol": true,
+      "signature": "Context.close(self)",
+      "reason": "public_api_static_dependency",
+      "score": 26.64929309538911
+    },
+    {
+      "path": "src/click/decorators.py",
+      "symbol": "command",
+      "start_line": 206,
+      "end_line": 255,
+      "content": "    func: t.Callable[[_AnyCallable], t.Any] | None = None\n\n    if callable(name):\n        func = name\n        name = None\n        assert cls is None, \"Use 'command(cls=cls)(callable)' to specify a class.\"\n        assert not attrs, \"Use 'command(**kwargs)(callable)' to provide arguments.\"\n\n    if cls is None:\n        cls = t.cast(\"type[CmdType]\", Command)\n\n    def decorator(f: _AnyCallable) -> CmdType:\n        if isinstance(f, Command):\n            raise TypeError(\"Attempted to convert a callback into a command twice.\")\n\n        attr_params = attrs.pop(\"params\", None)\n        params = attr_params if attr_params is not None else []\n\n        try:\n            decorator_params = f.__click_params__  # type: ignore\n        except AttributeError:\n            pass\n        else:\n            del f.__click_params__  # type: ignore\n            params.extend(reversed(decorator_params))\n\n        if attrs.get(\"help\") is None:\n            attrs[\"help\"] = f.__doc__\n\n        if t.TYPE_CHECKING:\n            assert cls is not None\n            assert not callable(name)\n\n        if name is not None:\n            cmd_name = name\n        else:\n            cmd_name = f.__name__.lower().replace(\"_\", \"-\")\n            cmd_left, sep, suffix = cmd_name.rpartition(\"-\")\n\n            if sep and suffix in {\"command\", \"cmd\", \"group\", \"grp\"}:\n                cmd_name = cmd_left\n\n        cmd = cls(name=cmd_name, callback=f, params=params, **attrs)\n        cmd.__doc__ = f.__doc__\n        return cmd\n\n    if func is not None:\n        return decorator(func)\n\n    return decorator\n",
+      "content_hash": "e4feda6e126d010629fca1e08d4be132fe3ae044703b3aefd9e9cd9279701f24",
+      "symbol_range": [
+        168,
+        255
+      ],
+      "complete_symbol": false,
+      "signature": "command(name: str | _AnyCallable | None=None, cls: type[CmdType] | None=None, **attrs: t.Any)",
+      "reason": "public_api_static_dependency",
+      "score": 7.605654590281504
+    }
+  ],
+  "metadata": {
+    "policy": "coverage-context-v2",
+    "chars": 2763,
+    "max_chars": 6000,
+    "max_fragments": 5,
+    "required": [
+      [
+        "src/click/core.py",
+        "Context.with_resource"
+      ],
+      [
+        "src/click/core.py",
+        "Context.__exit__"
+      ]
+    ],
+    "missing_required": [],
+    "discarded": [
+      {
+        "path": "src/click/globals.py",
+        "symbol": "pop_context",
+        "reason": "budget"
+      }
+    ],
+    "public_api_owners": [
+      {
+        "path": "src/click/core.py",
+        "symbol": "Context"
+      }
+    ]
+  }
+}

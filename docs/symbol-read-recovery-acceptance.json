@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-23",
+  "kind": "deterministic-test-evidence",
+  "model_inference": false,
+  "real_docker_execution": false,
+  "warning": "Fixture source and explicitly simulated sandbox checks. Not a model repair-rate result.",
+  "source_report": ".tmp/pytest-symbol-recovery-full-pipes/test_third_edit_after_explicit0/run/report.json",
+  "source_report_sha256": "4a136e818696a33ba6e20f81df5040df67417eca871f33bbb549a934d4660bac",
+  "workflow": "symbol-recovery-v1",
+  "recovery_limits": {
+    "max_steps": 20,
+    "max_edit_attempts": 6,
+    "max_consecutive_errors": 3,
+    "max_repeated_actions": 3
+  },
+  "scripted_calls": 5,
+  "edit_attempts_used": 3,
+  "accepted": false,
+  "delivery_status": "ready_for_review",
+  "original_unchanged": true,
+  "steps": [
+    {
+      "step": 1,
+      "action": "apply_patch",
+      "status": "tool_error",
+      "error_code": "anchor_not_found",
+      "symbol": null
+    },
+    {
+      "step": 2,
+      "action": "read_symbol",
+      "status": "completed",
+      "error_code": null,
+      "symbol": "f"
+    },
+    {
+      "step": 3,
+      "action": "apply_patch",
+      "status": "tool_error",
+      "error_code": "anchor_not_found",
+      "symbol": null
+    },
+    {
+      "step": 4,
+      "action": "read_symbol",
+      "status": "completed",
+      "error_code": null,
+      "symbol": "f"
+    },
+    {
+      "step": 5,
+      "action": "apply_patch",
+      "status": "completed",
+      "error_code": null,
+      "symbol": null
+    }
+  ],
+  "schema_version": "prepared-issue-symbol-recovery-v1",
+  "full_regression": {
+    "passed": 1739,
+    "skipped": 18,
+    "seconds": 181.03
+  },
+  "targeted_regression": {
+    "passed": 130,
+    "docker_skipped": 3
+  },
+  "ruff": "passed",
+  "docker_status": "not executed: Docker Linux Engine pipe unavailable"
+}

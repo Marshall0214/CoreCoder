@@ -12,6 +12,8 @@ This fork extends [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder),
 
 ## Current capabilities
 
+The prepared-Issue CLI now supports [symbol reads and edit recovery (Chinese)](docs/symbol-read-recovery.md), with configurable action/edit limits and mandatory re-reads after anchor or version failures. Scripted acceptance is separate from the historical 47/50 result.
+
 | Area | Implemented | Boundary |
 | --- | --- | --- |
 | Public GitHub Issues | Read-only import, pinned source, candidate patches and Docker reproduction/preservation checks | CLI with trusted configuration; public-test success requires manual review |
@@ -38,7 +40,13 @@ Trusted repair bundle → retrieval → candidate patch → feedback → indepen
 
 Historical replay is not fresh model inference. Test success is limited to the declared checks; container isolation does not prevent all grading manipulation inside the same interpreter.
 
+The [43/50 → 47/50 evidence and interview guide (Chinese)](docs/repair50-evidence.md) bundles configurations, code changes, scoring rules, failures, costs, original reports and an offline audit with per-task CSV. The paired result is five gains and one loss. Both rounds already allowed one feedback correction; historical grading predates the Docker sandbox.
+
 The prepared-Issue repair CLI has **200 related regression tests passing**, including two new real Docker cases for delivery and rollback. Acceptance used scripted responses with zero model calls, not a new repair-rate experiment. [Guide](docs/prepared-issue-repair.md).
+
+One subsequent real local run on Click #3887 used Qwen3.5 27B with thinking disabled: two model calls, 8,274 tokens, about 83 seconds. The target remained unfixed; validation rejected the candidates and the final patch was empty. This is a single development case, not a new success-rate result. [Run and failure analysis](docs/local-issue-repair-20261019.md).
+
+A second development run tested module imports and helper context under the same limits. Both generated anchors were rejected; total usage rose to 8,877 tokens. The strategy stays explicitly opt-in, baseline remains the default, and final related regression is **213 passed**. [Comparison and limits](docs/issue-context-round2-20261019.md).
 
 ## Quick start: no model API required
 

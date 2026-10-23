@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-19",
+  "run_id": "click-3887-qwen35-no-thinking-001",
+  "status": "failed_public_validation",
+  "scope": "One real local-model development run on a prepared public Issue; not a held-out benchmark or successful repair",
+  "issue_url": "https://github.com/pallets/click/issues/3887",
+  "base_commit": "934813e4d421071a1b3db3973c02fe2721359a6e",
+  "code_commit": "61cd2ebdc34f2c922dd0e1046ffd55493d6adfc1",
+  "model": "qwen3.5:27b",
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "thinking_requested": false,
+  "execution_mode": "ollama",
+  "fresh_model_calls": 2,
+  "cloud_model_calls": 0,
+  "protocol": {
+    "max_candidate_calls": 2,
+    "token_budget": 60000,
+    "max_output_tokens": 32768,
+    "context_tokens": 65536,
+    "wall_timeout": 1200,
+    "retake_policy": "One invocation; retain failures; no selected reruns"
+  },
+  "metrics": {
+    "llm_calls": 2,
+    "prompt_tokens": 7262,
+    "completion_tokens": 1012,
+    "known_prompt_tokens": 7262,
+    "known_completion_tokens": 1012,
+    "missing_usage_calls": 0,
+    "budget_accounted_tokens": 8274,
+    "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown"
+  },
+  "provider_calls": [
+    {
+      "scripted": false,
+      "thinking_requested": false,
+      "finish_reason": "stop",
+      "model_returned": "qwen3.5:27b",
+      "prompt_tokens": 3243,
+      "completion_tokens": 897
+    },
+    {
+      "scripted": false,
+      "thinking_requested": false,
+      "finish_reason": "stop",
+      "model_returned": "qwen3.5:27b",
+      "prompt_tokens": 4019,
+      "completion_tokens": 115
+    }
+  ],
+  "elapsed_seconds": 83.4323613,
+  "process_exit_code": 1,
+  "initial_candidate": {
+    "patch_applied": true,
+    "reproduce_errors": 1,
+    "preserve_errors": 3,
+    "observed_failure": "NameError: _ansi_re is not defined"
+  },
+  "correction": {
+    "patch_applied": true,
+    "reproduce_failures": 1,
+    "preservation_tests_passed": 3,
+    "observed_failure": "AssertionError: 31 != 34",
+    "net_source_matches_base_before_final_rollback": true
+  },
+  "public_checks_passed": false,
+  "independent_grading_available": false,
+  "accepted": false,
+  "delivery_status": "not_delivered",
+  "candidate_rolled_back": true,
+  "original_unchanged": true,
+  "final_patch_empty": true,
+  "remaining_task_containers": [],
+  "model_digest_unchanged": true,
+  "inputs_and_implementation_unchanged": true,
+  "observed_failure_categories": [
+    "undefined_symbol_in_generated_patch",
+    "correction_undoes_change_without_fixing_target"
+  ],
+  "context_diagnosis": "The supplied fragments omit module imports; insufficient binding context is a plausible contributor, not a demonstrated causal improvement.",
+  "not_observed": [
+    "output_truncation",
+    "token_budget_exhaustion",
+    "sandbox_execution_failure"
+  ],
+  "artifacts": "D:\\project_other\\CoreCoder\\.tmp\\issue-repair-live-20261019\\click-3887-qwen35-no-thinking-001",
+  "artifact_sha256": {
+    "report.json": "8b030537fc3ae74c207e72cae2a3e7852bc62c6a586169ef7188b004cfb7b45f",
+    "provenance.json": "eca201ac33e1fcc270d2d11b93adce1e01997c7d1e492036055ecb327e005bea",
+    "trace.jsonl": "deb8b5f66aedafdf8c65896bc99d17de373953926ca34833c83ef128689d8736",
+    "initial-context.json": "c93e08a87380db3e45c1172a81aee9f091d234566f5d948e557eb0ce2ab5ebe3",
+    "initial-messages.json": "02804e2a58185e3980e7fb73b3898dc010cd7be22ba2ce5e141567adca62484e",
+    "initial-response.txt": "f07548146a1b603f5eb7b35e15683a47814c1907d680d8da5d81efeeab4e4c5e",
+    "initial-patch.diff": "76a2853ff20512a8c1ed68dabb5e6c1ff51150b1dcbe19c057365b90feb2bff5",
+    "correction-context.json": "cbfdd7577f6d658ca00f020b17afe314056f9e9417c1c5992d4f5aec0a2372e7",
+    "correction-messages.json": "86989a9cdb054c41ba47b4d3bab184122586a22a21502173fddf3deaadbb665f",
+    "correction-response.txt": "f8f57c7ae7a90382b8c7525334cf24643bf93caa14fc74cf071739be7e966808",
+    "correction-patch.diff": "c0139c3926e0a652d6969d3ebbfa097b28d1aa90b5b0a81ccae7e7c141e9a43d",
+    "patch.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "run_plan_sha256": "704ba672c9f9007eb6e7bcc79f287c5a9943e9aea9867ff269f76f00d5585208",
+  "implementation_sha256": {
+    "repairflow\\issue_repair.py": "66ba0f701c5201e1c017db75fcd844a950f91fc71bd74183dddf14996de3dde2",
+    "repairflow\\issue_providers.py": "9295601e7b0a8530357099a641650b3b6130087cfeaf430cd884bf045acc6cba",
+    "repairflow\\__main__.py": "20cf700feeb1d21143899e7d12873cd68e29e60664baf2e156f6c2a6e069c328"
+  },
+  "historical_50_task_results_modified": false,
+  "existing_port_8001_service_modified": false,
+  "runtime_state_and_reports_drive": "D:"
+}

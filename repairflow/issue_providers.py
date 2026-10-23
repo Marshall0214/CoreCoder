@@ -23,9 +23,9 @@ class ScriptedProvider:
         if len(raw) > 2_000_000:
             raise ValueError('Scripted responses exceed size limit')
         self.responses = json.loads(raw)
-        if (not isinstance(self.responses, list) or not 1 <= len(self.responses) <= 2
+        if (not isinstance(self.responses, list) or not 1 <= len(self.responses) <= 100
                 or not all(isinstance(row, str) for row in self.responses)):
-            raise ValueError('Require one or two JSON response strings')
+            raise ValueError('Require 1 to 100 JSON response strings')
         self.calls = []
 
     def chat(self, messages, tools=None, **kwargs):

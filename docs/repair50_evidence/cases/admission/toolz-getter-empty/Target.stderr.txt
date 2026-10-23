@@ -1,0 +1,18 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v1\checks\toolz-getter-empty\test_admission.py", line 6, in test_contract
+    self.assertEqual(getter([])('hello'), ())
+                     ^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v1-certified-v2\toolz-getter-empty\before\toolz\itertoolz.py", line 694, in getter
+    return operator.itemgetter(*index)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: itemgetter expected 1 argument, got 0
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

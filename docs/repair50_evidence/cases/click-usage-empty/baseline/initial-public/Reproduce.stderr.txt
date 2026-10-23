@@ -1,0 +1,17 @@
+test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL
+
+======================================================================
+FAIL: test_public_defect (test_admission.Reproduce.test_public_defect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\.tmp\real-defects\system-comparison-v1-rerun\admission\click-usage-empty\public\test_admission.py", line 9, in test_public_defect
+    self.assertEqual(f.getvalue(), 'Usage: sample\n')
+AssertionError: '\n' != 'Usage: sample\n'
+- 
++ Usage: sample
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (failures=1)

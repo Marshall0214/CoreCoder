@@ -1,0 +1,21 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v1\checks\boltons-backoff-constant\test_admission.py", line 6, in test_contract
+    self.assertEqual(backoff(3,3,factor=1), [3.0])
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v1-certified-v2\boltons-backoff-constant\before\boltons\iterutils.py", line 579, in backoff
+    return list(backoff_iter(start, stop, count=count,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v1-certified-v2\boltons-backoff-constant\before\boltons\iterutils.py", line 651, in backoff_iter
+    count = 1 + math.ceil(math.log(stop/denom, factor))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ZeroDivisionError: float division by zero
+
+----------------------------------------------------------------------
+Ran 1 test in 0.021s
+
+FAILED (errors=1)

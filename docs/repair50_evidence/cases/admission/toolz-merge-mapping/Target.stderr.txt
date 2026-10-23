@@ -1,0 +1,18 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v2\checks\toolz-merge-mapping\test_admission.py", line 9, in test_contract
+    self.assertEqual(m.merge_with(sum,UserDict({'x':3})),{'x':3})
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v2-final\toolz-merge-mapping\before\toolz\dicttoolz.py", line 63, in merge_with
+    for k, v in iteritems(d):
+                ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'items'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

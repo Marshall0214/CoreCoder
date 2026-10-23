@@ -6,7 +6,6 @@ import time
 from pathlib import Path
 
 from docs.experiments.constrained_patch_v1 import check_patch
-from docs.experiments.coverage_context_v2 import retrieve, validate_evidence
 from evals.runner import changes, snapshot
 from evals.runtime import BudgetExceeded, BudgetLLM, Events
 from evals.schema import RunConfig
@@ -15,6 +14,7 @@ from repairflow import checks
 from repairflow.bundles import read, tree_hash, write
 from repairflow.feedback import restore
 from repairflow.github_issue import config, load_prepared
+from repairflow.issue_context import baseline_retrieve, retrieve, validate_evidence
 from repairflow.issue_providers import OllamaProvider, ProviderFailure, ScriptedProvider
 from sandbox import runner
 
@@ -72,9 +72,10 @@ def public_checks(workspace, harness, task, logs, policy, owner):
     return outcomes
 
 
-def attempt(llm, workspace, task, root, label, feedback, events):
+def attempt(llm, workspace, task, root, label, feedback, events, context_policy='baseline'):
     public = (root / 'public/test_admission.py').read_text(encoding='utf-8')
-    context = retrieve(workspace, task['allowed_files'], task['description'], public)
+    select = baseline_retrieve if context_policy == 'baseline' else retrieve
+    context = select(workspace, task['allowed_files'], task['description'], public)
     evidence = context['evidence']
     validate_evidence(workspace, task['allowed_files'], evidence)
     write(root / (label + '-context.json'), context)
@@ -114,10 +115,18 @@ def attempt(llm, workspace, task, root, label, feedback, events):
     return result
 
 
-def execute(prepared, configuration, output, *, mode, responses=None, model='qwen3.5:27b'):
+def execute(prepared, configuration, output, *, mode, responses=None, model='qwen3.5:27b', context_policy='baseline',
+            workflow='patch-v1', max_steps=20, max_edit_attempts=6, max_consecutive_errors=3, max_repeated_actions=3):
     """CLI-only, trusted configuration required; always Docker, never host fallback."""
     if mode not in {'scripted', 'ollama'} or (mode == 'scripted') != (responses is not None):
         raise ValueError('Choose scripted with responses, or ollama without responses')
+    if context_policy not in {'baseline', 'module-bindings-v1'}:
+        raise ValueError('Unknown prepared Issue context policy')
+    from repairflow.issue_agent import RecoveryLimits
+
+    if workflow not in {'patch-v1', 'symbol-recovery-v1'}:
+        raise ValueError('Unknown prepared Issue workflow')
+    recovery = RecoveryLimits(max_steps, max_edit_attempts, max_consecutive_errors, max_repeated_actions)
     prepared, output = Path(prepared).resolve(), Path(output).resolve()
     task, settings = trusted_task(prepared, configuration)
     inputs = [prepared, Path(configuration).resolve().parent]
@@ -132,7 +141,8 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
     deadline = time.monotonic() + 1200
     inner = ScriptedProvider(Path(responses)) if mode == 'scripted' else OllamaProvider(model, deadline)
     limits = RunConfig(mode='live', model=inner.model, base_url='http://127.0.0.1:11434',
-                       reasoning_effort='none', max_rounds=2, token_budget=60000, max_output_tokens=32768,
+                       reasoning_effort='none', max_rounds=recovery.max_steps if workflow == 'symbol-recovery-v1' else 2,
+                       token_budget=60000, max_output_tokens=4096 if workflow == 'symbol-recovery-v1' else 32768,
                        context_tokens=65536, wall_timeout=1200, output_policy='remaining')
     output.mkdir(parents=True)
     events = Events(output / 'trace.jsonl', output.name)
@@ -145,18 +155,25 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
     before = snapshot(original)
     if tree_hash(workspace) != task['source_sha256'] or tree_hash(harness) != task['harness_sha256']:
         raise ValueError('Prepared inputs changed while copying')
-    write(output / 'provenance.json', {'schema_version': 'prepared-issue-repair-v1', 'mode': mode,
+    schema_version = 'prepared-issue-symbol-recovery-v1' if workflow == 'symbol-recovery-v1' else 'prepared-issue-repair-v1'
+    write(output / 'provenance.json', {'schema_version': schema_version, 'mode': mode,
           'prepared_task_sha256': task['task_sha256'], 'config_sha256': settings['config_sha256'],
           'repo': task['repo'], 'base_commit': task['base_commit'], 'issue_url': task['issue_url'],
           'source_sha256': task['source_sha256'], 'harness_sha256': task['harness_sha256'],
           'sandbox': policy, 'limits': limits.to_dict(), 'thinking': False,
           'implementation_sha256': {name: hashlib.sha256((Path(__file__).parent / name).read_bytes()).hexdigest()
-                                    for name in ('issue_repair.py', 'issue_providers.py')},
+                                    for name in ('issue_repair.py', 'issue_providers.py', 'issue_context.py',
+                                                 'issue_agent.py', 'issue_tools.py')},
+          'workflow': workflow, 'recovery_limits': recovery.__dict__ if workflow == 'symbol-recovery-v1' else None,
+          'context_policy': context_policy,
           'scripted_responses_sha256': hashlib.sha256(Path(responses).read_bytes()).hexdigest() if responses else None})
-    report = {'schema_version': 'prepared-issue-repair-v1', 'status': 'agent_error', 'accepted': False,
+    report = {'schema_version': schema_version, 'status': 'agent_error', 'accepted': False,
               'public_checks_passed': False, 'requires_review': True, 'delivery_status': 'not_delivered',
               'independent_verification': {'available': False, 'passed': None}, 'attempts': [],
               'execution_mode': mode, 'fresh_inference': mode == 'ollama', 'fresh_model_calls': 0,
+              'no_progress_detected': False,
+              'context_policy': context_policy,
+              'workflow': workflow,
               'scripted_execution': mode == 'scripted', 'thinking': False, 'sandbox': policy,
               'limits': 'Trusted public reproduction and preservation only; no independent grader or upstream full suite.'}
     token = runner.ACTIVE_POLICY.set(policy)
@@ -174,18 +191,23 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
         report['baseline_checks'] = baseline
         if not baseline_ready(baseline):
             report['status'] = 'baseline_admission_failed'
+        elif workflow == 'symbol-recovery-v1':
+            from repairflow.issue_agent import run as run_agent
+
+            run_agent(llm, workspace, task, output, events, report, run_checks, deadline, recovery, context_policy)
         else:
             feedback = None
             for label in ('initial', 'correction'):
                 if time.monotonic() >= deadline:
                     raise ProviderFailure('task_timeout')
                 events.emit('stage', stage=label)
-                result = attempt(llm, workspace, task, output, label, feedback, events)
+                result = attempt(llm, workspace, task, output, label, feedback, events, context_policy)
                 report['attempts'].append(result)
                 report['status'] = result['status']
                 if result['status'] not in {'completed', 'invalid_patch'}:
                     break
                 changed = changes(before, snapshot(workspace))[0]
+                result['net_changed_files'] = changed
                 if set(changed) - set(task['allowed_files']):
                     raise ValueError('Candidate changed forbidden files')
                 outcomes = run_checks(label + '-checks')
@@ -194,18 +216,26 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
                     report.update(status='public_checks_passed', public_checks_passed=True,
                                   delivery_status='ready_for_review')
                     break
-                report['status'] = 'invalid_patch' if result['status'] == 'invalid_patch' else 'failed_public_validation'
+                no_progress = result['status'] == 'completed' and not changed
+                if no_progress:
+                    report['no_progress_detected'] = True
+                    result['diagnostic'] = 'no_net_source_change'
+                    events.emit('no_progress', attempt=label, reason='no_net_source_change')
+                report['status'] = ('no_progress' if no_progress else 'invalid_patch' if result['status'] == 'invalid_patch'
+                                    else 'failed_public_validation')
                 feedback = {'scope': 'Public development checks only; no independent grader',
                             'patch_error': result.get('error'),
                             'observations': checks.diagnostic(outcomes, output / (label + '-checks'), workspace, harness)}
-            # Delivery requires unchanged prepared inputs and the original trusted configuration.
-            retained, _ = trusted_task(prepared, configuration)
-            if retained['task_sha256'] != task['task_sha256'] or tree_hash(harness) != task['harness_sha256']:
-                raise ValueError('Task inputs changed during repair')
+        # Delivery requires unchanged prepared inputs and the original trusted configuration.
+        retained, _ = trusted_task(prepared, configuration)
+        if retained['task_sha256'] != task['task_sha256'] or tree_hash(harness) != task['harness_sha256']:
+            raise ValueError('Task inputs changed during repair')
     except runner.SandboxError as exc:
         report.update(status=exc.status, public_checks_passed=False)
     except ProviderFailure as exc:
         report.update(status=exc.status, public_checks_passed=False)
+    except BudgetExceeded:
+        report.update(status='budget_exceeded', public_checks_passed=False)
     except Exception as exc:  # noqa: BLE001 - never publish on an unexpected execution failure
         report.update(status='agent_error', public_checks_passed=False, error_type=type(exc).__name__)
     finally:

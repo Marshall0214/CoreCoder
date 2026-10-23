@@ -1,0 +1,4 @@
+# Preserve byte-identical historical records and excerpts across Windows checkouts.
+inputs/** -text
+cases/** -text
+licenses/** -text

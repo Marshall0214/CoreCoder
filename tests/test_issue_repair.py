@@ -29,10 +29,10 @@ def task(tmp_path, monkeypatch):
     return prepare_fixture(tmp_path)
 
 
-def run_scripted(tmp_path, task, rows):
+def run_scripted(tmp_path, task, rows, **kwargs):
     response = tmp_path / 'responses.json'
     write(response, rows)
-    return module.execute(*task, tmp_path / 'run', mode='scripted', responses=response)
+    return module.execute(*task, tmp_path / 'run', mode='scripted', responses=response, **kwargs)
 
 
 def test_public_pass_is_reviewable_but_never_independent_acceptance(tmp_path, task, monkeypatch):
@@ -57,6 +57,36 @@ def test_one_feedback_correction_uses_current_code_and_public_evidence(tmp_path,
     assert 'return x + 4' in json.dumps(payload['fragments'])
     assert 'AssertionError' in payload['public_check_feedback']['observations']
     assert 'public_test_code' in payload and 'grader' not in payload and 'frozen' not in payload
+
+
+def test_correction_back_to_original_is_explicit_no_progress(tmp_path, task):
+    report = run_scripted(tmp_path, task, [patch(new=4), patch(old=4, new=1)])
+    assert report['status'] == 'no_progress' and report['no_progress_detected']
+    assert report['attempts'][1]['diagnostic'] == 'no_net_source_change'
+    assert report['attempts'][1]['net_changed_files'] == []
+    assert not report['public_checks_passed'] and (tmp_path / 'run/patch.diff').read_text() == ''
+    assert (tmp_path / 'run/correction-checks/Reproduce.stderr.txt').exists()
+
+
+def test_successful_correction_is_not_called_no_progress(tmp_path, task):
+    report = run_scripted(tmp_path, task, [patch(new=4), patch(old=4)])
+    assert report['public_checks_passed'] and not report['no_progress_detected']
+    assert report['attempts'][1]['net_changed_files'] == ['src/pkg/__init__.py']
+
+
+@pytest.mark.parametrize('policy', ['baseline', 'module-bindings-v1'])
+def test_context_policy_is_explicit_and_recorded(tmp_path, task, policy):
+    report = run_scripted(tmp_path, task, [patch()], context_policy=policy)
+    assert report['public_checks_passed'] and report['context_policy'] == policy
+    assert read(tmp_path / 'run/provenance.json')['context_policy'] == policy
+    actual = read(tmp_path / 'run/initial-context.json')['metadata']['policy']
+    assert actual == ('coverage-context-v2' if policy == 'baseline' else policy)
+
+
+def test_unknown_context_policy_rejected_before_loading_inputs(tmp_path):
+    with pytest.raises(ValueError, match='context policy'):
+        module.execute(tmp_path / 'missing', tmp_path / 'missing.json', tmp_path / 'run',
+                       mode='ollama', context_policy='unknown')
 
 
 @pytest.mark.parametrize('responses', [[patch(new=4), '{}'], ['{"edits":[]}', '{}'],

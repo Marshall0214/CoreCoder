@@ -1,0 +1,105 @@
+{
+  "evidence": [
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range.index",
+      "start_line": 2446,
+      "end_line": 2458,
+      "content": "    def index(self, value):\n        if self._growing:\n            if self._start <= value < self._stop:\n                q, r = divmod(value - self._start, self._step)\n                if r == self._zero:\n                    return int(q)\n        else:\n            if self._start >= value > self._stop:\n                q, r = divmod(self._start - value, -self._step)\n                if r == self._zero:\n                    return int(q)\n\n        raise ValueError(f\"{value} is not in numeric range\")\n",
+      "content_hash": "3f1dd57de2dfa2fe1fcdf9311ae42571a02eb9b869dd67f04cfed80239011888",
+      "symbol_range": [
+        2446,
+        2458
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range.index(self, value)",
+      "reason": "required_repair_subject_or_protocol",
+      "score": 0
+    },
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range._len",
+      "start_line": 2405,
+      "end_line": 2420,
+      "content": "    @cached_property\n    def _len(self):\n        if self._growing:\n            start = self._start\n            stop = self._stop\n            step = self._step\n        else:\n            start = self._stop\n            stop = self._start\n            step = -self._step\n        distance = stop - start\n        if distance <= self._zero:\n            return 0\n        else:  # distance > 0 and step > 0: regular euclidean division\n            q, r = divmod(distance, step)\n            return int(q) + int(r != self._zero)\n",
+      "content_hash": "3f1dd57de2dfa2fe1fcdf9311ae42571a02eb9b869dd67f04cfed80239011888",
+      "symbol_range": [
+        2405,
+        2420
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range._len(self)",
+      "reason": "description_protocol_method",
+      "score": 1.5823141299487131
+    },
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range.__contains__",
+      "start_line": 2333,
+      "end_line": 2341,
+      "content": "    def __contains__(self, elem):\n        if self._growing:\n            if self._start <= elem < self._stop:\n                return (elem - self._start) % self._step == self._zero\n        else:\n            if self._start >= elem > self._stop:\n                return (self._start - elem) % (-self._step) == self._zero\n\n        return False\n",
+      "content_hash": "3f1dd57de2dfa2fe1fcdf9311ae42571a02eb9b869dd67f04cfed80239011888",
+      "symbol_range": [
+        2333,
+        2341
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range.__contains__(self, elem)",
+      "reason": "description_protocol_method",
+      "score": 0.47962817546376957
+    },
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range.__iter__",
+      "start_line": 2395,
+      "end_line": 2400,
+      "content": "    def __iter__(self):\n        values = (self._start + (n * self._step) for n in count())\n        if self._growing:\n            return takewhile(partial(gt, self._stop), values)\n        else:\n            return takewhile(partial(lt, self._stop), values)\n",
+      "content_hash": "3f1dd57de2dfa2fe1fcdf9311ae42571a02eb9b869dd67f04cfed80239011888",
+      "symbol_range": [
+        2395,
+        2400
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range.__iter__(self)",
+      "reason": "description_protocol_method",
+      "score": 0.4501455921542068
+    },
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range.__len__",
+      "start_line": 2402,
+      "end_line": 2403,
+      "content": "    def __len__(self):\n        return self._len\n",
+      "content_hash": "3f1dd57de2dfa2fe1fcdf9311ae42571a02eb9b869dd67f04cfed80239011888",
+      "symbol_range": [
+        2402,
+        2403
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range.__len__(self)",
+      "reason": "description_protocol_method",
+      "score": 0.4222042153194349
+    }
+  ],
+  "metadata": {
+    "policy": "coverage-context-v2",
+    "chars": 1655,
+    "max_chars": 6000,
+    "max_fragments": 5,
+    "required": [
+      [
+        "more_itertools/more.py",
+        "numeric_range.index"
+      ]
+    ],
+    "missing_required": [],
+    "discarded": [
+      {
+        "path": "more_itertools/more.py",
+        "symbol": "numeric_range.__getitem__",
+        "reason": "budget"
+      }
+    ],
+    "public_api_owners": []
+  }
+}

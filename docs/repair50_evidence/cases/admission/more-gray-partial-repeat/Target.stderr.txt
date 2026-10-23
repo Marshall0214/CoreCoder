@@ -1,0 +1,17 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v2\checks\more-gray-partial-repeat\test_admission.py", line 9, in test_contract
+    self.assertEqual(list(fn(iter('AB'),iter('CD'),repeat=2)),list(fn('AB','CD',repeat=2)))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v2-final\more-gray-partial-repeat\before\more_itertools\more.py", line 4904, in gray_product
+    raise ValueError("each iterable must have two or more items")
+ValueError: each iterable must have two or more items
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

@@ -1,0 +1,109 @@
+{
+  "evidence": [
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range.__eq__",
+      "start_line": 2340,
+      "end_line": 2353,
+      "content": "    def __eq__(self, other):\n        if isinstance(other, numeric_range):\n            empty_self = not bool(self)\n            empty_other = not bool(other)\n            if empty_self or empty_other:\n                return empty_self and empty_other  # True if both empty\n            else:\n                return (\n                    self._start == other._start\n                    and self._step == other._step\n                    and self._get_by_index(-1) == other._get_by_index(-1)\n                )\n        else:\n            return False\n",
+      "content_hash": "a2c8cd88262073258c87a78a7fada129946d8244f66ce685910af5df5472f349",
+      "symbol_range": [
+        2340,
+        2353
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range.__eq__(self, other)",
+      "reason": "required_repair_subject_or_protocol",
+      "score": 0
+    },
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range.__hash__",
+      "start_line": 2371,
+      "end_line": 2375,
+      "content": "    def __hash__(self):\n        if self:\n            return hash((self._start, self._get_by_index(-1), self._step))\n        else:\n            return self._EMPTY_HASH\n",
+      "content_hash": "a2c8cd88262073258c87a78a7fada129946d8244f66ce685910af5df5472f349",
+      "symbol_range": [
+        2371,
+        2375
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range.__hash__(self)",
+      "reason": "required_repair_subject_or_protocol",
+      "score": 0
+    },
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range.__reversed__",
+      "start_line": 2414,
+      "end_line": 2423,
+      "content": "    def __reversed__(self):\n        # Empty iterator\n        try:\n            start = self._get_by_index(-1)\n        except IndexError:\n            return iter([])\n\n        return iter(\n            numeric_range(start, self._start - self._step, -self._step)\n        )\n",
+      "content_hash": "a2c8cd88262073258c87a78a7fada129946d8244f66ce685910af5df5472f349",
+      "symbol_range": [
+        2414,
+        2423
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range.__reversed__(self)",
+      "reason": "mentioned_class_method",
+      "score": 13.68677930949239
+    },
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range.__getitem__",
+      "start_line": 2355,
+      "end_line": 2369,
+      "content": "    def __getitem__(self, key):\n        if isinstance(key, int):\n            return self._get_by_index(key)\n        elif isinstance(key, slice):\n            start_idx, stop_idx, step_idx = key.indices(self._len)\n            return numeric_range(\n                self._start + start_idx * self._step,\n                self._start + stop_idx * self._step,\n                self._step * step_idx,\n            )\n        else:\n            raise TypeError(\n                'numeric range indices must be '\n                f'integers or slices, not {type(key).__name__}'\n            )\n",
+      "content_hash": "a2c8cd88262073258c87a78a7fada129946d8244f66ce685910af5df5472f349",
+      "symbol_range": [
+        2355,
+        2369
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range.__getitem__(self, key)",
+      "reason": "mentioned_class_method",
+      "score": 13.449375809388712
+    },
+    {
+      "path": "more_itertools/more.py",
+      "symbol": "numeric_range.__init__",
+      "start_line": 2299,
+      "end_line": 2322,
+      "content": "    def __init__(self, *args):\n        argc = len(args)\n        if argc == 1:\n            (self._stop,) = args\n            self._start = type(self._stop)(0)\n            self._step = type(self._stop - self._start)(1)\n        elif argc == 2:\n            self._start, self._stop = args\n            self._step = type(self._stop - self._start)(1)\n        elif argc == 3:\n            self._start, self._stop, self._step = args\n        elif argc == 0:\n            raise TypeError(\n                f'numeric_range expected at least 1 argument, got {argc}'\n            )\n        else:\n            raise TypeError(\n                f'numeric_range expected at most 3 arguments, got {argc}'\n            )\n\n        self._zero = type(self._step)(0)\n        if self._step == self._zero:\n            raise ValueError('numeric_range() arg 3 must not be zero')\n        self._growing = self._step > self._zero\n",
+      "content_hash": "a2c8cd88262073258c87a78a7fada129946d8244f66ce685910af5df5472f349",
+      "symbol_range": [
+        2299,
+        2322
+      ],
+      "complete_symbol": true,
+      "signature": "numeric_range.__init__(self, *args)",
+      "reason": "mentioned_class_method",
+      "score": 12.887927390282846
+    }
+  ],
+  "metadata": {
+    "policy": "coverage-context-v2",
+    "chars": 2443,
+    "max_chars": 6000,
+    "max_fragments": 5,
+    "required": [
+      [
+        "more_itertools/more.py",
+        "numeric_range.__eq__"
+      ],
+      [
+        "more_itertools/more.py",
+        "numeric_range.__hash__"
+      ]
+    ],
+    "missing_required": [],
+    "discarded": [
+      {
+        "path": "more_itertools/more.py",
+        "symbol": "numeric_range.__repr__",
+        "reason": "budget"
+      }
+    ],
+    "public_api_owners": []
+  }
+}

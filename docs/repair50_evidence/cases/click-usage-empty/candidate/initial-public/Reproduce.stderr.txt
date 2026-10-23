@@ -1,0 +1,6 @@
+test_public_defect (test_admission.Reproduce.test_public_defect) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+OK

@@ -1,0 +1,21 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v2\checks\more-broadcast-single-use\test_admission.py", line 15, in test_contract
+    self.assertEqual(list(m.zip_broadcast('tag',Once(),strict=strict)),[('tag',1),('tag',2)])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v2-final\more-broadcast-single-use\before\more_itertools\more.py", line 4694, in zip_broadcast
+    iterables.append(iter(obj))
+                     ^^^^^^^^^
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v2\checks\more-broadcast-single-use\test_admission.py", line 11, in __iter__
+    if self.opened: raise RuntimeError('opened twice')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: opened twice
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

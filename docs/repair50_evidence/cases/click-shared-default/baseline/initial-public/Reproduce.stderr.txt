@@ -1,0 +1,15 @@
+test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL
+
+======================================================================
+FAIL: test_public_defect (test_admission.Reproduce.test_public_defect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\.tmp\real-defects\system-comparison-v1-rerun\admission\click-shared-default\public\test_admission.py", line 17, in test_public_defect
+    self.assertEqual(r.output.strip(), 'alpha')
+AssertionError: '' != 'alpha'
++ alpha
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)

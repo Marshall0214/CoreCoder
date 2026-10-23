@@ -1,0 +1,491 @@
+{
+  "scope": "Verbatim excerpts; final patch may be empty after rollback. Original model reasoning is not included.",
+  "files": [
+    {
+      "file": "cases/click-usage-empty/baseline/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/click-usage-empty/deepseek-high/context-selection.json",
+      "sha256": "ba22cffbcff773509e89a82984de293f041f5b1e6ac0e84047ecaaa2a4d17522"
+    },
+    {
+      "file": "cases/click-usage-empty/baseline/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/click-usage-empty/deepseek-high/verification/patch.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cases/click-usage-empty/baseline/initial-public/Reproduce.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/click-usage-empty/deepseek-high/initial-public/Reproduce.stderr.txt",
+      "sha256": "fae6d251e1fc542bcbcd8294cace1301b694f30f019f1bea3bf6a43cf63bfe5d"
+    },
+    {
+      "file": "cases/click-usage-empty/candidate/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/click-usage-empty/deepseek-high/context-selection.json",
+      "sha256": "beb20f724e206fc8a40647a5bf859d3be181e2e93d7e0b98d38a40e06891adc4"
+    },
+    {
+      "file": "cases/click-usage-empty/candidate/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/click-usage-empty/deepseek-high/verification/patch.diff",
+      "sha256": "6db964448b336ecee7bae94567d72976c410ba90359c3abae7697839695e907e"
+    },
+    {
+      "file": "cases/click-usage-empty/candidate/initial-public/Reproduce.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/click-usage-empty/deepseek-high/initial-public/Reproduce.stderr.txt",
+      "sha256": "a1e00bc8fd398b63398b7ee382f3cc18cb01ef71f327e8c37ba218400e21b7ca"
+    },
+    {
+      "file": "cases/click-resource-exception/baseline/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/click-resource-exception/deepseek-high/context-selection.json",
+      "sha256": "382815290b95cf0b4e1e002265df9d8ee8da521360cc8a3ce73f9f6a2248e77f"
+    },
+    {
+      "file": "cases/click-resource-exception/baseline/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/click-resource-exception/deepseek-high/verification/patch.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cases/click-resource-exception/baseline/initial-public/Reproduce.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/click-resource-exception/deepseek-high/initial-public/Reproduce.stderr.txt",
+      "sha256": "6f025fa700012224895c65746013658ac6d4247f1cbb1081ce5f2ff41faa284c"
+    },
+    {
+      "file": "cases/click-resource-exception/candidate/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/click-resource-exception/deepseek-high/context-selection.json",
+      "sha256": "6dba4aeae4fac0e1c5412506fd5d92fe5f2d1f6068b8e0e340888ff0fa79d717"
+    },
+    {
+      "file": "cases/click-resource-exception/candidate/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/click-resource-exception/deepseek-high/verification/patch.diff",
+      "sha256": "af101fb5f221e5f076a1010cd41915f184f3133ed98f808e51544a45685b0c77"
+    },
+    {
+      "file": "cases/click-resource-exception/candidate/initial-public/Reproduce.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/click-resource-exception/deepseek-high/initial-public/Reproduce.stderr.txt",
+      "sha256": "849f5971291fc753f4e76bd625246335ecadee40f89761af08f30b8c4f70bc3b"
+    },
+    {
+      "file": "cases/more-range-equality/baseline/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/more-range-equality/deepseek-high/context-selection.json",
+      "sha256": "6a4c3fb4d05dc8795845e76d6ce5b769edc1e01a50c5c4cc7fde56021c122fa0"
+    },
+    {
+      "file": "cases/more-range-equality/baseline/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/more-range-equality/deepseek-high/verification/patch.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cases/more-range-equality/candidate/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/more-range-equality/deepseek-high/context-selection.json",
+      "sha256": "2e6a7a612084f36e39b79f785d4c53fa9dda81f7643363e8749ea734fd0a9db8"
+    },
+    {
+      "file": "cases/more-range-equality/candidate/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/more-range-equality/deepseek-high/verification/patch.diff",
+      "sha256": "be9716496eb788ad2c38a0b908f9bd09f38573c9bb7f77e35080f62a382aa6b2"
+    },
+    {
+      "file": "cases/more-range-equality/candidate/initial-public/Reproduce.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/more-range-equality/deepseek-high/initial-public/Reproduce.stderr.txt",
+      "sha256": "849f5971291fc753f4e76bd625246335ecadee40f89761af08f30b8c4f70bc3b"
+    },
+    {
+      "file": "cases/click-shared-default/baseline/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/click-shared-default/deepseek-high/context-selection.json",
+      "sha256": "97939d37b0c6309f480178d45116b826c1063c30ba4657d0de46ec029df64aff"
+    },
+    {
+      "file": "cases/click-shared-default/baseline/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/click-shared-default/deepseek-high/verification/patch.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cases/click-shared-default/baseline/initial-public/Reproduce.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/click-shared-default/deepseek-high/initial-public/Reproduce.stderr.txt",
+      "sha256": "89a5c7b40479a1c7874a4df622c60e85d79e66dff67ea64563a134e861da5a2c"
+    },
+    {
+      "file": "cases/click-shared-default/candidate/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/click-shared-default/deepseek-high/context-selection.json",
+      "sha256": "3a52a25c3541ccb7a6f7cb7d3056d59543642c0980c6759756a9cdb784cc4238"
+    },
+    {
+      "file": "cases/click-shared-default/candidate/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/click-shared-default/deepseek-high/verification/patch.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cases/click-shared-default/candidate/initial-public/Reproduce.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/click-shared-default/deepseek-high/initial-public/Reproduce.stderr.txt",
+      "sha256": "89a5c7b40479a1c7874a4df622c60e85d79e66dff67ea64563a134e861da5a2c"
+    },
+    {
+      "file": "cases/more-negative-range-slice/baseline/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/more-negative-range-slice/deepseek-high/context-selection.json",
+      "sha256": "1aa94df28736bbb56012bf56e1515ab9b763a963c47844a464205ed10700f75a"
+    },
+    {
+      "file": "cases/more-negative-range-slice/baseline/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/more-negative-range-slice/deepseek-high/verification/patch.diff",
+      "sha256": "5295e8de6aa7b76ab1c030d59ec729ab538de42e7783075d431821f3fcd5a5dd"
+    },
+    {
+      "file": "cases/more-negative-range-slice/baseline/initial-public/Reproduce.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/more-negative-range-slice/deepseek-high/initial-public/Reproduce.stderr.txt",
+      "sha256": "849f5971291fc753f4e76bd625246335ecadee40f89761af08f30b8c4f70bc3b"
+    },
+    {
+      "file": "cases/more-negative-range-slice/candidate/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/more-negative-range-slice/deepseek-high/context-selection.json",
+      "sha256": "ca2e2e7bf001a97ec98205d25386aefbf3bd724aa9aa8f1cee5bdf94cc8ade3d"
+    },
+    {
+      "file": "cases/more-negative-range-slice/candidate/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/more-negative-range-slice/deepseek-high/verification/patch.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cases/more-range-membership/baseline/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/more-range-membership/deepseek-high/context-selection.json",
+      "sha256": "769b677ff8736d6e62b7de98603009108b3e063fbf2b4776cf8249e3a7ee69f8"
+    },
+    {
+      "file": "cases/more-range-membership/baseline/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/current-full-repair-v1-20261009/more-range-membership/deepseek-high/verification/patch.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cases/more-range-membership/candidate/context-selection.json",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/more-range-membership/deepseek-high/context-selection.json",
+      "sha256": "d3675e93b8fbaaee9ec588c59cb0f1a9a6ff06081d71ccf1536878058602c3f0"
+    },
+    {
+      "file": "cases/more-range-membership/candidate/verification/patch.diff",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/coverage-full-repair-v1-20261010/more-range-membership/deepseek-high/verification/patch.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cases/admission/toolz-interpose-empty/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v1-certified-v2/admission-logs/toolz-interpose-empty/before/Target.stderr.txt",
+      "sha256": "53bdc6e10718639eece9222f4190f1d6a059070b7a9d770541bf9d1a413cc0e2"
+    },
+    {
+      "file": "cases/admission/boltons-backoff-constant/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v1-certified-v2/admission-logs/boltons-backoff-constant/before/Target.stderr.txt",
+      "sha256": "c0c0f616dd3f7b69acaba1fee789c9e4c7ee7a5ce91a3bbafa33f84147a60dcd"
+    },
+    {
+      "file": "cases/admission/toolz-accumulate-empty/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v1-certified-v2/admission-logs/toolz-accumulate-empty/before/Target.stderr.txt",
+      "sha256": "02acd16538cff43051adcfcf5217904ca8595f2d64baa21e550128121e450e20"
+    },
+    {
+      "file": "cases/admission/toolz-join-unmatched/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v1-certified-v2/admission-logs/toolz-join-unmatched/before/Target.stderr.txt",
+      "sha256": "127692fa8bd21d89cf89a8b0419c3b19028b5b43f3b13c1fef69c7d671183d93"
+    },
+    {
+      "file": "cases/admission/toolz-getter-empty/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v1-certified-v2/admission-logs/toolz-getter-empty/before/Target.stderr.txt",
+      "sha256": "a7c7ea9c73bdc40f5dab22ca0c6f9f8625be6de205c1c97302018b335f8e320c"
+    },
+    {
+      "file": "cases/admission/boltons-chunked-bytes/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v1-certified-v2/admission-logs/boltons-chunked-bytes/before/Target.stderr.txt",
+      "sha256": "d65d2d42e8774ca69ce00830f420568c1eb2e18f44b7360721cf176deb88e81f"
+    },
+    {
+      "file": "cases/admission/more-falsy-exception/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v1-certified-v2/admission-logs/more-falsy-exception/before/Target.stderr.txt",
+      "sha256": "a3cb3ec9ab07ea18917d47dacb0790ad7781102916dfa03752899bf585ed6a98"
+    },
+    {
+      "file": "cases/admission/more-interleave-empty/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v1-certified-v2/admission-logs/more-interleave-empty/before/Target.stderr.txt",
+      "sha256": "b3e5d881dbd05e8da64396ef3af1c751763dcefa959a8189c43dc5204b774f48"
+    },
+    {
+      "file": "cases/admission/more-reverse-empty-range/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v1-certified-v2/admission-logs/more-reverse-empty-range/before/Target.stderr.txt",
+      "sha256": "412480744d60ac03bdd05fabecdf61bb9b46ab9dc63f62163e6fbda58e61a241"
+    },
+    {
+      "file": "cases/admission/more-ichunked-zero/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v2-final/admission-logs/more-ichunked-zero/before/Target.stderr.txt",
+      "sha256": "3ee3d553b09b886419e32929c6c0a232a3ee31eb19dc26ed6812dae681276e71"
+    },
+    {
+      "file": "cases/admission/more-combination-size/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v2-final/admission-logs/more-combination-size/before/Target.stderr.txt",
+      "sha256": "2074d729f11019d0e2be07c0ce7a44b228c8bb704455112fa1234bcc5d1340df"
+    },
+    {
+      "file": "cases/admission/more-permutation-exception/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v2-final/admission-logs/more-permutation-exception/before/Target.stderr.txt",
+      "sha256": "00048366059aed9a1be255ba5427d5655f8f5b0cd315e196ba01bd428801fde9"
+    },
+    {
+      "file": "cases/admission/more-product-repeat/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v2-final/admission-logs/more-product-repeat/before/Target.stderr.txt",
+      "sha256": "b69729396fce1ea9da76fc2e9260c33ad63d907448c15197420c70d9821c7566"
+    },
+    {
+      "file": "cases/admission/more-gray-partial-repeat/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v2-final/admission-logs/more-gray-partial-repeat/before/Target.stderr.txt",
+      "sha256": "c13b5a4485cb3352e637f0a68b70a00fd0412812a74d16afcb620b63f39019d9"
+    },
+    {
+      "file": "cases/admission/more-broadcast-single-use/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v2-final/admission-logs/more-broadcast-single-use/before/Target.stderr.txt",
+      "sha256": "cc492569b6d77fe6876d7ae76859d506067a62889d447db5c1fa0dd2d7947b13"
+    },
+    {
+      "file": "cases/admission/boltons-backoff-zero/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v2-final/admission-logs/boltons-backoff-zero/before/Target.stderr.txt",
+      "sha256": "ad10e427b6435e377750882d453d6faa3930daf87c4d87049ec5bfc841f84b74"
+    },
+    {
+      "file": "cases/admission/boltons-repeat-equality/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v2-final/admission-logs/boltons-repeat-equality/before/Target.stderr.txt",
+      "sha256": "82a374aa88a64b8a5a06adc861cffcc6dbf867a2d08fa7bae62f0e70ae2b1ecd"
+    },
+    {
+      "file": "cases/admission/toolz-merge-mapping/Target.stderr.txt",
+      "source": "D:/project_other/CoreCoder/.tmp/real-defects/expanded-admission-v2-final/admission-logs/toolz-merge-mapping/before/Target.stderr.txt",
+      "sha256": "bd9c88c6828824a7de2ff3b8ec9164c3c2e5757f17e7d914ed00ac57dd6d48d2"
+    }
+  ],
+  "contexts": [
+    {
+      "task_id": "click-usage-empty",
+      "baseline_symbols": [
+        "HelpFormatter.write_dl",
+        "HelpFormatter.write_text",
+        "HelpFormatter.section",
+        "HelpFormatter.write_paragraph",
+        "HelpFormatter.write_heading"
+      ],
+      "candidate_symbols": [
+        "HelpFormatter.write_usage",
+        "HelpFormatter.write",
+        "HelpFormatter.write_dl",
+        "wrap_text",
+        "term_len"
+      ]
+    },
+    {
+      "task_id": "click-resource-exception",
+      "baseline_symbols": [
+        "Context.with_resource",
+        "Context.call_on_close",
+        "Context.close",
+        "command",
+        "pop_context"
+      ],
+      "candidate_symbols": [
+        "Context.with_resource",
+        "Context.__exit__",
+        "Context.call_on_close",
+        "Context.close",
+        "command"
+      ]
+    },
+    {
+      "task_id": "more-range-equality",
+      "baseline_symbols": [
+        "numeric_range.__eq__",
+        "numeric_range.__reversed__",
+        "numeric_range.__getitem__",
+        "numeric_range.__init__",
+        "numeric_range.__repr__"
+      ],
+      "candidate_symbols": [
+        "numeric_range.__eq__",
+        "numeric_range.__hash__",
+        "numeric_range.__reversed__",
+        "numeric_range.__getitem__",
+        "numeric_range.__init__"
+      ]
+    },
+    {
+      "task_id": "click-shared-default",
+      "baseline_symbols": [
+        "Command.get_params",
+        "Command.to_info_dict",
+        "Command.collect_usage_pieces",
+        "Command.make_parser",
+        "Command.format_options"
+      ],
+      "candidate_symbols": [
+        "Command.get_params",
+        "Command.to_info_dict",
+        "Command.collect_usage_pieces",
+        "Command.make_parser",
+        "Command.format_options"
+      ]
+    },
+    {
+      "task_id": "more-negative-range-slice",
+      "baseline_symbols": [
+        "numeric_range.__init__",
+        "numeric_range.__getitem__",
+        "numeric_range.__repr__",
+        "numeric_range.__reversed__",
+        "numeric_range.__eq__"
+      ],
+      "candidate_symbols": [
+        "numeric_range.__init__",
+        "numeric_range.__getitem__",
+        "numeric_range.__repr__",
+        "numeric_range.__reversed__",
+        "numeric_range.__eq__"
+      ]
+    },
+    {
+      "task_id": "more-range-membership",
+      "baseline_symbols": [
+        "numeric_range._len",
+        "numeric_range.__contains__",
+        "numeric_range.__iter__",
+        "numeric_range.__len__",
+        "numeric_range.__getitem__"
+      ],
+      "candidate_symbols": [
+        "numeric_range.index",
+        "numeric_range._len",
+        "numeric_range.__contains__",
+        "numeric_range.__iter__",
+        "numeric_range.__len__"
+      ]
+    }
+  ],
+  "admission_error_review": {
+    "scope": "Historical pre-fix target logs reviewed: target invocation raises while controls and reference checks pass. Exception class alone is not an infrastructure classifier. No tests rerun.",
+    "cases": [
+      {
+        "task_id": "toolz-interpose-empty",
+        "exception_lines": [
+          "StopIteration"
+        ],
+        "log": "cases/admission/toolz-interpose-empty/Target.stderr.txt"
+      },
+      {
+        "task_id": "toolz-accumulate-empty",
+        "exception_lines": [
+          "StopIteration",
+          "RuntimeError: generator raised StopIteration"
+        ],
+        "log": "cases/admission/toolz-accumulate-empty/Target.stderr.txt"
+      },
+      {
+        "task_id": "toolz-join-unmatched",
+        "exception_lines": [
+          "NameError: name 'iteritems' is not defined"
+        ],
+        "log": "cases/admission/toolz-join-unmatched/Target.stderr.txt"
+      },
+      {
+        "task_id": "toolz-getter-empty",
+        "exception_lines": [
+          "TypeError: itemgetter expected 1 argument, got 0"
+        ],
+        "log": "cases/admission/toolz-getter-empty/Target.stderr.txt"
+      },
+      {
+        "task_id": "boltons-backoff-constant",
+        "exception_lines": [
+          "ZeroDivisionError: float division by zero"
+        ],
+        "log": "cases/admission/boltons-backoff-constant/Target.stderr.txt"
+      },
+      {
+        "task_id": "boltons-chunked-bytes",
+        "exception_lines": [
+          "TypeError: sequence item 0: expected a bytes-like object, int found"
+        ],
+        "log": "cases/admission/boltons-chunked-bytes/Target.stderr.txt"
+      },
+      {
+        "task_id": "more-falsy-exception",
+        "exception_lines": [
+          "ValueError: too few items in iterable (expected 1)"
+        ],
+        "log": "cases/admission/more-falsy-exception/Target.stderr.txt"
+      },
+      {
+        "task_id": "more-interleave-empty",
+        "exception_lines": [
+          "IndexError: list index out of range"
+        ],
+        "log": "cases/admission/more-interleave-empty/Target.stderr.txt"
+      },
+      {
+        "task_id": "more-reverse-empty-range",
+        "exception_lines": [
+          "IndexError: numeric range object index out of range"
+        ],
+        "log": "cases/admission/more-reverse-empty-range/Target.stderr.txt"
+      },
+      {
+        "task_id": "more-ichunked-zero",
+        "exception_lines": [
+          "ValueError: Stop argument for islice() must be None or an integer: 0 <= x <= sys.maxsize."
+        ],
+        "log": "cases/admission/more-ichunked-zero/Target.stderr.txt"
+      },
+      {
+        "task_id": "more-combination-size",
+        "exception_lines": [
+          "ValueError"
+        ],
+        "log": "cases/admission/more-combination-size/Target.stderr.txt"
+      },
+      {
+        "task_id": "more-permutation-exception",
+        "exception_lines": [
+          "ValueError"
+        ],
+        "log": "cases/admission/more-permutation-exception/Target.stderr.txt"
+      },
+      {
+        "task_id": "more-product-repeat",
+        "exception_lines": [
+          "IndexError"
+        ],
+        "log": "cases/admission/more-product-repeat/Target.stderr.txt"
+      },
+      {
+        "task_id": "more-gray-partial-repeat",
+        "exception_lines": [
+          "ValueError: each iterable must have two or more items"
+        ],
+        "log": "cases/admission/more-gray-partial-repeat/Target.stderr.txt"
+      },
+      {
+        "task_id": "more-broadcast-single-use",
+        "exception_lines": [
+          "RuntimeError: opened twice"
+        ],
+        "log": "cases/admission/more-broadcast-single-use/Target.stderr.txt"
+      },
+      {
+        "task_id": "boltons-backoff-zero",
+        "exception_lines": [
+          "ValueError: start must be > 0, not 0"
+        ],
+        "log": "cases/admission/boltons-backoff-zero/Target.stderr.txt"
+      },
+      {
+        "task_id": "boltons-repeat-equality",
+        "exception_lines": [
+          "TypeError: '<' not supported between instances of 'str' and 'int'"
+        ],
+        "log": "cases/admission/boltons-repeat-equality/Target.stderr.txt"
+      },
+      {
+        "task_id": "toolz-merge-mapping",
+        "exception_lines": [
+          "AttributeError: 'str' object has no attribute 'items'"
+        ],
+        "log": "cases/admission/toolz-merge-mapping/Target.stderr.txt"
+      }
+    ]
+  }
+}

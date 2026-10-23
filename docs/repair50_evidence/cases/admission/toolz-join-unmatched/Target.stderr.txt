@@ -1,0 +1,18 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v1\checks\toolz-join-unmatched\test_admission.py", line 6, in test_contract
+    self.assertCountEqual(list(join(0,[(1,'a'),(2,'b')],0,[(1,'x')],right_default=None)),
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v1-certified-v2\toolz-join-unmatched\before\toolz\itertoolz.py", line 918, in join
+    for key, matches in iteritems(d):
+                        ^^^^^^^^^
+NameError: name 'iteritems' is not defined
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

@@ -1,0 +1,14 @@
+--- a/src/click/formatting.py
++++ b/src/click/formatting.py
+@@ -160,6 +160,11 @@
+         """
+         if prefix is None:
+             prefix = "{usage} ".format(usage=_("Usage:"))
++
++        if not args:
++            self.write(f"{prefix:>{self.current_indent}}{prog}")
++            self.write("\n")
++            return
+ 
+         usage_prefix = f"{prefix:>{self.current_indent}}{prog} "
+         text_width = self.width - self.current_indent

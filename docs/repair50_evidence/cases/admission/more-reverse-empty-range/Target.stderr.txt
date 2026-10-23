@@ -1,0 +1,20 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v1\checks\more-reverse-empty-range\test_admission.py", line 6, in test_contract
+    self.assertEqual(list(reversed(mi.numeric_range(0))),[])
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v1-certified-v2\more-reverse-empty-range\before\more_itertools\more.py", line 2407, in __reversed__
+    self._get_by_index(-1), self._start - self._step, -self._step
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v1-certified-v2\more-reverse-empty-range\before\more_itertools\more.py", line 2432, in _get_by_index
+    raise IndexError("numeric range object index out of range")
+IndexError: numeric range object index out of range
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

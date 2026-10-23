@@ -1,0 +1,40 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -2339,19 +2339,24 @@
+         elif isinstance(key, slice):
+             step = self._step if key.step is None else key.step * self._step
+ 
+-            if key.start is None or key.start <= -self._len:
+-                start = self._start
+-            elif key.start >= self._len:
+-                start = self._stop
+-            else:  # -self._len < key.start < self._len
+-                start = self._get_by_index(key.start)
+-
+-            if key.stop is None or key.stop >= self._len:
+-                stop = self._stop
+-            elif key.stop <= -self._len:
+-                stop = self._start
+-            else:  # -self._len < key.stop < self._len
+-                stop = self._get_by_index(key.stop)
++            if step > self._zero and self._step > self._zero:
++                if key.start is None or key.start <= -self._len:
++                    start = self._start
++                elif key.start >= self._len:
++                    start = self._stop
++                else:  # -self._len < key.start < self._len
++                    start = self._get_by_index(key.start)
++
++                if key.stop is None or key.stop >= self._len:
++                    stop = self._stop
++                elif key.stop <= -self._len:
++                    stop = self._start
++                else:  # -self._len < key.stop < self._len
++                    stop = self._get_by_index(key.stop)
++            else:
++                start_idx, stop_idx, _ = key.indices(self._len)
++                start = self._start + start_idx * self._step
++                stop = self._start + stop_idx * self._step
+ 
+             return numeric_range(start, stop, step)
+         else:

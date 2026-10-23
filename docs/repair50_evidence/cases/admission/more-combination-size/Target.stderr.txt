@@ -1,0 +1,17 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v2\checks\more-combination-size\test_admission.py", line 8, in test_contract
+    self.assertEqual(m.nth_combination_with_replacement('AB',3,0),('A','A','A'))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v2-final\more-combination-size\before\more_itertools\more.py", line 4277, in nth_combination_with_replacement
+    raise ValueError
+ValueError
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

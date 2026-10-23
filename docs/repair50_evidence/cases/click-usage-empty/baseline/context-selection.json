@@ -1,0 +1,93 @@
+{
+  "evidence": [
+    {
+      "path": "src/click/formatting.py",
+      "symbol": "HelpFormatter.write_dl",
+      "start_line": 230,
+      "end_line": 258,
+      "content": "        rows = list(rows)\n        widths = measure_table(rows)\n        if len(widths) != 2:\n            raise TypeError(\"Expected two columns for definition list\")\n\n        first_col = min(widths[0], col_max) + col_spacing\n\n        for first, second in iter_rows(rows, len(widths)):\n            self.write(f\"{'':>{self.current_indent}}{first}\")\n            if not second:\n                self.write(\"\\n\")\n                continue\n            if term_len(first) <= first_col - col_spacing:\n                self.write(\" \" * (first_col - term_len(first)))\n            else:\n                self.write(\"\\n\")\n                self.write(\" \" * (first_col + self.current_indent))\n\n            text_width = max(self.width - first_col - 2, 10)\n            wrapped_text = wrap_text(second, text_width, preserve_paragraphs=True)\n            lines = wrapped_text.splitlines()\n\n            if lines:\n                self.write(f\"{lines[0]}\\n\")\n\n                for line in lines[1:]:\n                    self.write(f\"{'':>{first_col + self.current_indent}}{line}\\n\")\n            else:\n                self.write(\"\\n\")\n",
+      "content_hash": "03582ed53e4aceb9e78332eaf112060ba9c305e55cc6074eb71bdce4fd499cfb",
+      "symbol_range": [
+        216,
+        258
+      ],
+      "complete_symbol": false,
+      "signature": "HelpFormatter.write_dl(self, rows: cabc.Sequence[tuple[str, str]], col_max: int=30, col_spacing: int=2)",
+      "reason": "mentioned_class_method",
+      "score": 18.898276412964083
+    },
+    {
+      "path": "src/click/formatting.py",
+      "symbol": "HelpFormatter.write_text",
+      "start_line": 200,
+      "end_line": 214,
+      "content": "    def write_text(self, text: str) -> None:\n        \"\"\"Writes re-indented text into the buffer.  This rewraps and\n        preserves paragraphs.\n        \"\"\"\n        indent = \" \" * self.current_indent\n        self.write(\n            wrap_text(\n                text,\n                self.width,\n                initial_indent=indent,\n                subsequent_indent=indent,\n                preserve_paragraphs=True,\n            )\n        )\n        self.write(\"\\n\")\n",
+      "content_hash": "03582ed53e4aceb9e78332eaf112060ba9c305e55cc6074eb71bdce4fd499cfb",
+      "symbol_range": [
+        200,
+        214
+      ],
+      "complete_symbol": true,
+      "signature": "HelpFormatter.write_text(self, text: str)",
+      "reason": "mentioned_class_method",
+      "score": 13.534337007226396
+    },
+    {
+      "path": "src/click/formatting.py",
+      "symbol": "HelpFormatter.section",
+      "start_line": 260,
+      "end_line": 273,
+      "content": "    @contextmanager\n    def section(self, name: str) -> cabc.Iterator[None]:\n        \"\"\"Helpful context manager that writes a paragraph, a heading,\n        and the indents.\n\n        :param name: the section name that is written as heading.\n        \"\"\"\n        self.write_paragraph()\n        self.write_heading(name)\n        self.indent()\n        try:\n            yield\n        finally:\n            self.dedent()\n",
+      "content_hash": "03582ed53e4aceb9e78332eaf112060ba9c305e55cc6074eb71bdce4fd499cfb",
+      "symbol_range": [
+        260,
+        273
+      ],
+      "complete_symbol": true,
+      "signature": "HelpFormatter.section(self, name: str)",
+      "reason": "mentioned_class_method",
+      "score": 12.308198974552267
+    },
+    {
+      "path": "src/click/formatting.py",
+      "symbol": "HelpFormatter.write_paragraph",
+      "start_line": 195,
+      "end_line": 198,
+      "content": "    def write_paragraph(self) -> None:\n        \"\"\"Writes a paragraph into the buffer.\"\"\"\n        if self.buffer:\n            self.write(\"\\n\")\n",
+      "content_hash": "03582ed53e4aceb9e78332eaf112060ba9c305e55cc6074eb71bdce4fd499cfb",
+      "symbol_range": [
+        195,
+        198
+      ],
+      "complete_symbol": true,
+      "signature": "HelpFormatter.write_paragraph(self)",
+      "reason": "mentioned_class_method",
+      "score": 7.778672180278665
+    },
+    {
+      "path": "src/click/formatting.py",
+      "symbol": "HelpFormatter.write_heading",
+      "start_line": 191,
+      "end_line": 193,
+      "content": "    def write_heading(self, heading: str) -> None:\n        \"\"\"Writes a heading into the buffer.\"\"\"\n        self.write(f\"{'':>{self.current_indent}}{heading}:\\n\")\n",
+      "content_hash": "03582ed53e4aceb9e78332eaf112060ba9c305e55cc6074eb71bdce4fd499cfb",
+      "symbol_range": [
+        191,
+        193
+      ],
+      "complete_symbol": true,
+      "signature": "HelpFormatter.write_heading(self, heading: str)",
+      "reason": "mentioned_class_method",
+      "score": 7.619758733042769
+    }
+  ],
+  "metadata": {
+    "policy": "caller-fallback-context-v1",
+    "chars": 2285,
+    "max_chars": 6000,
+    "max_fragments": 5,
+    "discarded": [],
+    "public_api_owners": [],
+    "source": "Public API, same inheritance family callers and effective self dispatch only"
+  }
+}

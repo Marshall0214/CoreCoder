@@ -1,0 +1,99 @@
+{
+  "evidence": [
+    {
+      "path": "src/click/core.py",
+      "symbol": "Command.get_params",
+      "start_line": 1002,
+      "end_line": 1025,
+      "content": "    def get_params(self, ctx: Context) -> list[Parameter]:\n        params = self.params\n        help_option = self.get_help_option(ctx)\n\n        if help_option is not None:\n            params = [*params, help_option]\n\n        if __debug__:\n            import warnings\n\n            opts = [opt for param in params for opt in param.opts]\n            opts_counter = Counter(opts)\n            duplicate_opts = (opt for opt, count in opts_counter.items() if count > 1)\n\n            for duplicate_opt in duplicate_opts:\n                warnings.warn(\n                    (\n                        f\"The parameter {duplicate_opt} is used more than once. \"\n                        \"Remove its duplicate as parameters should be unique.\"\n                    ),\n                    stacklevel=3,\n                )\n\n        return params\n",
+      "content_hash": "5e214de83e8c69349f93a8cd1fc1ce9a2c2c9b3fd5ca11988700c2fa47219cdb",
+      "symbol_range": [
+        1002,
+        1025
+      ],
+      "complete_symbol": true,
+      "signature": "Command.get_params(self, ctx: Context)",
+      "reason": "public_factory_class_method",
+      "score": 3.167169392336718
+    },
+    {
+      "path": "src/click/core.py",
+      "symbol": "Command.to_info_dict",
+      "start_line": 979,
+      "end_line": 988,
+      "content": "    def to_info_dict(self, ctx: Context) -> dict[str, t.Any]:\n        return {\n            \"name\": self.name,\n            \"params\": [param.to_info_dict() for param in self.get_params(ctx)],\n            \"help\": self.help,\n            \"epilog\": self.epilog,\n            \"short_help\": self.short_help,\n            \"hidden\": self.hidden,\n            \"deprecated\": self.deprecated,\n        }\n",
+      "content_hash": "5e214de83e8c69349f93a8cd1fc1ce9a2c2c9b3fd5ca11988700c2fa47219cdb",
+      "symbol_range": [
+        979,
+        988
+      ],
+      "complete_symbol": true,
+      "signature": "Command.to_info_dict(self, ctx: Context)",
+      "reason": "same_family_consumer",
+      "score": 0
+    },
+    {
+      "path": "src/click/core.py",
+      "symbol": "Command.collect_usage_pieces",
+      "start_line": 1039,
+      "end_line": 1044,
+      "content": "        rv = [self.options_metavar] if self.options_metavar else []\n\n        for param in self.get_params(ctx):\n            rv.extend(param.get_usage_pieces(ctx))\n\n        return rv\n",
+      "content_hash": "5e214de83e8c69349f93a8cd1fc1ce9a2c2c9b3fd5ca11988700c2fa47219cdb",
+      "symbol_range": [
+        1035,
+        1044
+      ],
+      "complete_symbol": false,
+      "signature": "Command.collect_usage_pieces(self, ctx: Context)",
+      "reason": "same_family_consumer",
+      "score": 0
+    },
+    {
+      "path": "src/click/core.py",
+      "symbol": "Command.make_parser",
+      "start_line": 1083,
+      "end_line": 1086,
+      "content": "        parser = _OptionParser(ctx)\n        for param in self.get_params(ctx):\n            param.add_to_parser(parser, ctx)\n        return parser\n",
+      "content_hash": "5e214de83e8c69349f93a8cd1fc1ce9a2c2c9b3fd5ca11988700c2fa47219cdb",
+      "symbol_range": [
+        1081,
+        1086
+      ],
+      "complete_symbol": false,
+      "signature": "Command.make_parser(self, ctx: Context)",
+      "reason": "same_family_consumer",
+      "score": 0
+    },
+    {
+      "path": "src/click/core.py",
+      "symbol": "Command.format_options",
+      "start_line": 1163,
+      "end_line": 1171,
+      "content": "        opts = []\n        for param in self.get_params(ctx):\n            rv = param.get_help_record(ctx)\n            if rv is not None:\n                opts.append(rv)\n\n        if opts:\n            with formatter.section(_(\"Options\")):\n                formatter.write_dl(opts)\n",
+      "content_hash": "5e214de83e8c69349f93a8cd1fc1ce9a2c2c9b3fd5ca11988700c2fa47219cdb",
+      "symbol_range": [
+        1161,
+        1171
+      ],
+      "complete_symbol": false,
+      "signature": "Command.format_options(self, ctx: Context, formatter: HelpFormatter)",
+      "reason": "same_family_consumer",
+      "score": 0
+    }
+  ],
+  "metadata": {
+    "policy": "coverage-context-v2",
+    "chars": 1818,
+    "max_chars": 6000,
+    "max_fragments": 5,
+    "required": [],
+    "missing_required": [],
+    "discarded": [],
+    "public_api_owners": [
+      {
+        "path": "src/click/core.py",
+        "symbol": "Command"
+      }
+    ]
+  }
+}

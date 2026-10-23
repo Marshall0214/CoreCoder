@@ -1,0 +1,19 @@
+--- a/src/click/core.py
++++ b/src/click/core.py
+@@ -483,11 +483,15 @@
+         exc_type: type[BaseException] | None,
+         exc_value: BaseException | None,
+         tb: TracebackType | None,
+-    ) -> None:
++    ) -> bool | None:
+         self._depth -= 1
+         if self._depth == 0:
++            suppress = self._exit_stack.__exit__(exc_type, exc_value, tb)
+             self.close()
++            pop_context()
++            return suppress or None
+         pop_context()
++        return None
+ 
+     @contextmanager
+     def scope(self, cleanup: bool = True) -> cabc.Iterator[Context]:

@@ -1,0 +1,14 @@
+test_public_defect (test_admission.Reproduce.test_public_defect) ... ERROR
+
+======================================================================
+ERROR: test_public_defect (test_admission.Reproduce.test_public_defect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\.tmp\real-defects\system-comparison-v1-rerun\admission\click-resource-exception\public\test_admission.py", line 24, in test_public_defect
+    raise ValueError('public-error')
+ValueError: public-error
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

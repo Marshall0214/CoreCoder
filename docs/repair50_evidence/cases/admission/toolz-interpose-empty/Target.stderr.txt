@@ -1,0 +1,17 @@
+test_contract (test_admission.Target.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\docs\experiments\expanded_suite_v1\checks\toolz-interpose-empty\test_admission.py", line 6, in test_contract
+    self.assertEqual(list(interpose('-', [])), [])
+                          ^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\.tmp\real-defects\expanded-admission-v1-certified-v2\toolz-interpose-empty\before\toolz\itertoolz.py", line 527, in interpose
+    next(inposed)
+StopIteration
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)
