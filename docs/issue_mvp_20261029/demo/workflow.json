@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "workflow": "langgraph-approval-v1",
+  "request_hash": "824ce507d787e5e13915fffecf7453db0665f9fee7e12e479a2f81d5efba8876",
+  "stage": "ready_for_review",
+  "plan": {
+    "task_id": "sample",
+    "allowed_files": [
+      "src/example/__init__.py"
+    ],
+    "mode": "scripted",
+    "token_budget": 60000,
+    "attempt_limit": 1,
+    "actions": [
+      "execute_and_verify",
+      "review_outcome"
+    ],
+    "review_only": true,
+    "details": {
+      "read_only_files": [
+        "src/example/policy.py"
+      ],
+      "model": "qwen3.5:27b",
+      "thinking": false,
+      "observation_policy": "compact-v1",
+      "independent_verification": false,
+      "max_steps": 20,
+      "max_edit_attempts": 6
+    }
+  },
+  "decision": "approve",
+  "outcome": "review_ready",
+  "events": [
+    {
+      "id": 1,
+      "stage": "planned",
+      "time": 1793269065.6427236
+    },
+    {
+      "id": 2,
+      "stage": "awaiting_approval",
+      "time": 1793269065.65724
+    },
+    {
+      "id": 3,
+      "stage": "approved",
+      "time": 1793269067.7251709
+    },
+    {
+      "id": 4,
+      "stage": "executing",
+      "time": 1793269067.729681
+    },
+    {
+      "id": 5,
+      "stage": "reviewing",
+      "time": 1793269074.4529197
+    },
+    {
+      "id": 6,
+      "stage": "ready_for_review",
+      "time": 1793269074.4539242
+    }
+  ],
+  "report": {
+    "status": "public_checks_passed",
+    "accepted": false,
+    "public_checks_passed": true,
+    "delivery_status": "ready_for_review",
+    "metrics": {
+      "llm_calls": 2,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "known_prompt_tokens": 0,
+      "known_completion_tokens": 0,
+      "missing_usage_calls": 2,
+      "budget_accounted_tokens": 10606,
+      "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+      "cost_usd": null,
+      "failed_provider_attempt_usage": "unknown"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "step": 1,
+    "status": "completed",
+    "prompt_sha256": "4849b755cace4db3de1b8895f43977f7df835bb58498c189edd55727dbee7502",
+    "action": "read_symbol",
+    "arguments": {
+      "path": "src/example/policy.py",
+      "symbol": "STEP"
+    },
+    "result": {
+      "path": "src/example/policy.py",
+      "symbol": "STEP",
+      "start_line": 1,
+      "end_line": 1,
+      "symbol_range": [
+        1,
+        1
+      ],
+      "content": "STEP = 2\n",
+      "content_hash": "a52130174672a12144043d622a9831ff695c837faffaa5c9288bdfdf334b3a49",
+      "offset": 0,
+      "complete_symbol": true,
+      "next_offset": null,
+      "reason": "explicit_symbol_read",
+      "resolution": "static_declaration",
+      "kind": "assignment",
+      "value_present": true
+    }
+  },
+  {
+    "step": 2,
+    "status": "completed",
+    "prompt_sha256": "932dca21993d8e395c18a4bdb025069ce1655a81acffdaf06c4733c20b724484",
+    "action": "apply_patch",
+    "arguments": {
+      "edits": [
+        {
+          "file": "src/example/__init__.py",
+          "old": "    return x + 1",
+          "new": "    return x + 2"
+        }
+      ]
+    },
+    "edit_attempt": 1,
+    "changed_files": [
+      "src/example/__init__.py"
+    ],
+    "net_changed_files": [
+      "src/example/__init__.py"
+    ]
+  }
+]

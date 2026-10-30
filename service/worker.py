@@ -13,8 +13,11 @@ SUITES = {'smoke': DEFAULT_SUITE, 'localization': DEFAULT_SUITE / 'localization-
 
 def execute(path):
     job = json.loads(path.read_text(encoding='utf-8'))
-    if job['request'].get('workflow') == 'repair-approval-v1':
-        from service.repair import run
+    if job['request'].get('workflow') in {'repair-approval-v1', 'issue-approval-v1'}:
+        if job['request']['workflow'] == 'issue-approval-v1':
+            from service.issues import run
+        else:
+            from service.repair import run
 
         try:
             report = run(path, decision=job.get('approval'))

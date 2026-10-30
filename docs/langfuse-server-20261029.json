@@ -1,0 +1,53 @@
+{
+  "scope": "Local Langfuse server acceptance; session started 2026-10-29",
+  "tests": {
+    "full": {
+      "tests": "1866",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "20",
+      "time": "270.975",
+      "timestamp": "2026-10-30T00:00:19.745565+08:00"
+    },
+    "targeted": {
+      "tests": "25",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.066",
+      "timestamp": "2026-10-30T00:46:38.715596+08:00"
+    }
+  },
+  "server_receipt_verified": true,
+  "trace_count": 2,
+  "observation_count": 14,
+  "local_login_verified": true,
+  "stack_restart_preserved_traces": true,
+  "fresh_model_calls": 0,
+  "files": {
+    "demo/acceptance.json": "97082c3a43f80947314fc8277ffca240702b083a3d8e3a61b847816626e5db10",
+    "demo/cli/observability.json": "1fa75e3e6b3029c370eca3e7c810638575376e890cadeb267f16f525407c07a8",
+    "demo/cli/patch.diff": "a26e7a319f0788adf632a8d5e3f394779fd3fee3d781c80683e1618abe295bbe",
+    "demo/cli/report.json": "486309d6b74ddff870928983039c3e81ab6f9d1a4f09f6ccfd05349a3fb06d9a",
+    "demo/cli/trace.jsonl": "4805012ac767922cb4e4475f895e8a6a198cf5535c4596997fc5710db2661438",
+    "demo/evidence/actions.json": "e26a1778ded8045925cbbe29d8f7316b7723ddd9e6f08fa1def224912f04f26d",
+    "demo/evidence/observability.json": "6fc46b992b5c292d17035240b1aaf7f01f65cc1d71348edcab7f7ce17de39520",
+    "demo/evidence/patch.diff": "a26e7a319f0788adf632a8d5e3f394779fd3fee3d781c80683e1618abe295bbe",
+    "demo/evidence/provenance.json": "ccfbe3cae1360f05bc4040e825624eb625324c7600185caa39e6243828081faa",
+    "demo/evidence/report.json": "a8de94ed16d3ad4364d5b369449c1be7b245922724a4ee3078e24b69d560d468",
+    "demo/evidence/trace.jsonl": "c2d834376c415194b2dbff4dbdcf0e77d9aca7df14daa3d7012ef492980b9971",
+    "frozen-evidence-check.json": "0d506d3b09b0227981562fea204a2c6c17794c52886243926e31c58e1a4e356e",
+    "full-junit.xml": "d3ed6135e9a017e8c47e7cd5539cdf47c9c064aa5e594250206981b23c8e8012",
+    "health.json": "b4cd7d86af260c78693b844016e483ba5a32999949fa73a5e48d6cdb6de44ee3",
+    "image-transfers.json": "02998e355bbeb48d871a0964a0db9867ae343720cc897bfebf19895a7a1e6542",
+    "implementation-hashes.json": "85f0cb69cff4cc51845adf4147a34f7bce5561b8f8b977ae076cf12577c713f0",
+    "login.json": "4d6b950479bb3d5dc706192dbb38d71b8c94bbfac18034446cd7ca2b499ded6a",
+    "NOTICE.md": "666204a17529ee717a02ec2cfb23c0a5251cebe68a83ea740a93d8f1b8bdfd9f",
+    "postflight.json": "a1b078d46efd24e26c937b3b9446921f4190c07948ef615f61610d166dda7745",
+    "server-receipt-after-restart.json": "c19a9ba603d155284c7b86535f26a31f7c061f523412b48d65140f145ec9a1be",
+    "server-receipt-final.json": "b2fee123f09a4e93f767db51a224cab8a4b9fcd365fa4ea3f4b4e37779901ad8",
+    "server-receipt-first.json": "c19a9ba603d155284c7b86535f26a31f7c061f523412b48d65140f145ec9a1be",
+    "storage.json": "5711293e34e3f5a29131c4ee98958f7916e173fafb1be1f66825485bd76d2811",
+    "targeted-junit.xml": "61f39ac5f4f24a1423e8b37b7630e75f0e1c4237b30d28de755d349424807f4a"
+  }
+}

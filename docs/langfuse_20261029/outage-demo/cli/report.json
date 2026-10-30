@@ -1,0 +1,258 @@
+{
+  "schema_version": "prepared-issue-symbol-recovery-v1",
+  "status": "public_checks_passed",
+  "accepted": false,
+  "public_checks_passed": true,
+  "requires_review": true,
+  "delivery_status": "ready_for_review",
+  "independent_verification": {
+    "available": false,
+    "passed": null
+  },
+  "attempts": [
+    {
+      "step": 2,
+      "status": "completed",
+      "prompt_sha256": "932dca21993d8e395c18a4bdb025069ce1655a81acffdaf06c4733c20b724484",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/example/__init__.py",
+            "old": "    return x + 1",
+            "new": "    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 1,
+      "changed_files": [
+        "src/example/__init__.py"
+      ],
+      "net_changed_files": [
+        "src/example/__init__.py"
+      ]
+    }
+  ],
+  "execution_mode": "scripted",
+  "fresh_inference": false,
+  "fresh_model_calls": 0,
+  "no_progress_detected": false,
+  "context_policy": "baseline",
+  "allowed_files": [
+    "src/example/__init__.py"
+  ],
+  "read_only_files": [
+    "src/example/policy.py"
+  ],
+  "observation_policy": "compact-v1",
+  "workflow": "symbol-recovery-v1",
+  "scripted_execution": true,
+  "thinking": false,
+  "sandbox": {
+    "backend": "docker",
+    "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "limits": "Trusted public reproduction and preservation only; no independent grader or upstream full suite.",
+  "baseline_checks": {
+    "Reproduce": {
+      "returncode": 1,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 1,
+      "successful": false,
+      "seconds": 1.6032,
+      "passed": false
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5392,
+      "passed": true
+    }
+  },
+  "actions": [
+    {
+      "step": 1,
+      "status": "completed",
+      "prompt_sha256": "4849b755cace4db3de1b8895f43977f7df835bb58498c189edd55727dbee7502",
+      "action": "read_symbol",
+      "arguments": {
+        "path": "src/example/policy.py",
+        "symbol": "STEP"
+      },
+      "result": {
+        "path": "src/example/policy.py",
+        "symbol": "STEP",
+        "start_line": 1,
+        "end_line": 1,
+        "symbol_range": [
+          1,
+          1
+        ],
+        "content": "STEP = 2\n",
+        "content_hash": "a52130174672a12144043d622a9831ff695c837faffaa5c9288bdfdf334b3a49",
+        "offset": 0,
+        "complete_symbol": true,
+        "next_offset": null,
+        "reason": "explicit_symbol_read",
+        "resolution": "static_declaration",
+        "kind": "assignment",
+        "value_present": true
+      }
+    },
+    {
+      "step": 2,
+      "status": "completed",
+      "prompt_sha256": "932dca21993d8e395c18a4bdb025069ce1655a81acffdaf06c4733c20b724484",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/example/__init__.py",
+            "old": "    return x + 1",
+            "new": "    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 1,
+      "changed_files": [
+        "src/example/__init__.py"
+      ],
+      "net_changed_files": [
+        "src/example/__init__.py"
+      ]
+    }
+  ],
+  "recovery_limits": {
+    "max_steps": 20,
+    "max_edit_attempts": 6,
+    "max_consecutive_errors": 3,
+    "max_repeated_actions": 3
+  },
+  "edit_attempts_used": 1,
+  "final_public_checks": {
+    "Reproduce": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5364,
+      "passed": true
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5649,
+      "passed": true
+    }
+  },
+  "changed_files": [
+    "src/example/__init__.py"
+  ],
+  "original_unchanged": true,
+  "candidate_rolled_back": false,
+  "scripted_calls": 2,
+  "metrics": {
+    "llm_calls": 2,
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "known_prompt_tokens": 0,
+    "known_completion_tokens": 0,
+    "missing_usage_calls": 2,
+    "budget_accounted_tokens": 10606,
+    "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown"
+  },
+  "provider_calls": [
+    {
+      "scripted": true,
+      "usage_known": false
+    },
+    {
+      "scripted": true,
+      "usage_known": false
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "status": "unavailable",
+    "content_capture": false,
+    "error_types": [
+      "ReadTimeout"
+    ]
+  }
+}

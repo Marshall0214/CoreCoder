@@ -14,6 +14,8 @@
 
 新 Issue CLI 已接入 [read_symbol 与编辑恢复](docs/symbol-read-recovery.md)：可配置步数和编辑次数，锚点或版本失败后强制重读。新流程的脚本测试不计入历史 47/50。
 
+新 Issue 已接入 [CLI/API 完整流程](docs/issue-service.md)：可信目录注册、执行前审批、重启恢复、只读依赖、沙箱验证及制品下载。可用合成任务和脚本响应完成离线演示；当前优先工程完整性，准确率优化后置。
+
 | 方向 | 已实现 | 使用边界 |
 | --- | --- | --- |
 | GitHub Issue 流程 | 只读导入、固定版本、候选补丁及 Docker 复现/回归检查 | CLI 与可信配置；公开测试通过后仍需人工审查 |
@@ -29,7 +31,7 @@
 可信修复任务包 → 代码检索 → 候选补丁 → 测试反馈 → 独立验收 → 报告
 ```
 
-`ready_for_repair` 表示原始问题已复现、约定正常行为检查通过。通过专用 [repair-issue CLI](docs/prepared-issue-repair.md) 才会生成并验证候选；没有独立评分时只交付待审查补丁。新任务 HTTP 审批尚待接入。
+`ready_for_repair` 表示原始问题已复现、正常行为检查通过。可用 [repair-issue CLI](docs/prepared-issue-repair.md) 或 `issue-approval-v1` HTTP 流程生成候选；公开检查通过后交付 `ready_for_review`，不能当作独立验收成功。
 
 ## 验证结果
 
@@ -47,6 +49,8 @@
 随后补充一次 Click #3887 的本地真实推理：Qwen3.5 27B 关闭 thinking，两次调用共 8,274 Token、约 83 秒。目标仍未修复，验证拒绝候选并清空最终补丁。这是开发单例，不是新增修复率成绩。[运行与失败分析](docs/local-issue-repair-20261019.md)。
 
 第二轮在相同限制下试验模块导入和辅助函数上下文，两次锚点均被拒绝，总用量增至 8,877 Token。实验策略保持可选、默认保留原策略，最终相关回归 **213 项通过**。[对照及限制](docs/issue-context-round2-20261019.md)。
+
+可选 [Langfuse 本地追踪](docs/langfuse-local.md)已实现任务、模型、工具及检查节点与确定性评分，默认不上送源码或 Prompt；[本地服务已上线](docs/langfuse-server-20261029.md)，回读确认两条 Trace、14 个节点，登录及整套服务重启后记录保留通过，模型调用为零。其余四项能力见[接入路线](docs/advanced-capabilities.md)，尚未集成。
 
 ## 快速开始：无需模型 API
 
@@ -91,7 +95,7 @@ python -B -m repairflow import-issue --url https://github.com/pallets/click/issu
 python -B -m service --port 8004 --timeout 1200 --output .tmp/repair-service
 ```
 
-审批修复入口通过 `CORECODER_REPAIR_BUNDLES` 选择管理员维护的任务目录，执行前需要审批。Issue 导入目前仍为独立 CLI。默认快速开始不调用模型；后续新模型试验先关闭 thinking，和历史高思考实验分别记录。
+旧任务包使用 `CORECODER_REPAIR_BUNDLES`，新 Issue 使用 `CORECODER_ISSUE_TASKS`。导入与注册由管理员 CLI 完成，HTTP 只提交可信目录中的任务 ID。离线演示不调用模型；本地 live 固定使用 Ollama、关闭 thinking。
 
 `CORECODER_HOME` 可迁移撤销记录、授权、会话、历史、hooks、MCP 配置和价格覆盖文件；不设置时保留上游用户目录约定。服务工作进程使用任务独立状态目录。普通 Agent 的 Bash 工具与 Docker 验证沙箱属于不同执行入口。
 

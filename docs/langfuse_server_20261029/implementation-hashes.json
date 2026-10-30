@@ -1,0 +1,8 @@
+{
+  "deploy/langfuse/compose.yaml": "38fa19764f0d32381c7171f9b7aa7450d9888f42a0e1a77357d40b9107655ba2",
+  "deploy/langfuse/prepare.py": "3fa0e6bccb642aec1fd403173fe8caa62d174f47e9d31c874f4423d2c299e04b",
+  "deploy/langfuse/verify.py": "acd094c95dd12cafd201925cafea14027b1f35478db2a29bfdca4b9f7635ada2",
+  "tests/test_langfuse_receipt.py": "509ecac6b76ac06cbd699c5d96b373ba3140a270466782288d702a3cc1906009",
+  "repairflow/telemetry.py": "986dcacbb900a667cb11f11203d1b0fad1333d71fefd0d6acbd56b0b42074725",
+  "repairflow/issue_demo.py": "18e90d0f7b152f6dce18fb2d36e5fe902ebdb701b54548b0a7b12de1c7f71beb"
+}

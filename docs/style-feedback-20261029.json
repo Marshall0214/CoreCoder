@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-29",
+  "scope": "One development run with expanded public checks; no independent or held-out score.",
+  "major_change": "Add six post-hoc preservation probes to a new public harness; runtime and prompt unchanged.",
+  "learning_budget": {
+    "new_task_runs_used": 2,
+    "max_new_task_runs": 6,
+    "method_rounds_used": 2,
+    "max_method_rounds": 2,
+    "stop_at_method_limit": true
+  },
+  "thinking": false,
+  "cloud_calls": 0,
+  "result": {
+    "status": "nonretryable_tool_error",
+    "public_checks_passed": false,
+    "accepted": false,
+    "delivery_status": "not_delivered",
+    "fresh_model_calls": 4,
+    "edit_attempts_used": 0,
+    "metrics": {
+      "llm_calls": 4,
+      "prompt_tokens": 22692,
+      "completion_tokens": 136,
+      "known_prompt_tokens": 22692,
+      "known_completion_tokens": 136,
+      "missing_usage_calls": 0,
+      "budget_accounted_tokens": 22828,
+      "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+      "cost_usd": null,
+      "failed_provider_attempt_usage": "unknown"
+    },
+    "candidate_rolled_back": true,
+    "original_unchanged": true
+  },
+  "last_action": {
+    "step": 4,
+    "status": "tool_error",
+    "prompt_sha256": "5b0eff8740d6174efd40227d595936cfc5180ce066dabadf42dca9fc17a75cc9",
+    "action": "read_symbol",
+    "arguments": {
+      "path": "src/click/_compat.py",
+      "symbol": "strip_ansi",
+      "offset": 0
+    },
+    "error": {
+      "code": "path_not_allowed",
+      "message": "Path is outside the allowed source.",
+      "retryable": false,
+      "next_action": "read_symbol"
+    }
+  },
+  "admission": {
+    "base": {
+      "target": "0/1",
+      "preserve": "9/9"
+    },
+    "old_candidate": {
+      "target": "1/1",
+      "preserve": "5/9",
+      "known_regressions_rejected": 4
+    }
+  },
+  "tests": {
+    "targeted": "83 passed in 10.30s",
+    "ruff": "passed",
+    "docker_groups": 6,
+    "docker_test_executions": 30,
+    "expected_assertion_failures": 6,
+    "errors": 0,
+    "skipped": 0
+  },
+  "postflight": {
+    "elapsed_seconds": 28.734000000054948,
+    "inputs_unchanged": true,
+    "prepared_unchanged": true,
+    "model_digest_unchanged": true,
+    "remaining_owned_containers": [],
+    "fresh_model_calls": 4,
+    "report_sha256": "2f1ab8b3dc2bc96a52ca92df7697277e90c78f151edcb29bf873089bc360aa86"
+  },
+  "prior_manifests": {
+    "compact-observations-20261029.json": "7b71afbc2d7477b4728af56f447942f2b571fbb4bc83ce6e724d359758d7ef8f",
+    "compact-candidate-review-20261029.json": "975818cc01c78ec203ac13b1cc8729e182e9367c515e901d6e36e3154a342d94"
+  },
+  "conclusion": "Known bad patch rejected by tests; model stopped on forbidden dependency read before any edits. Feedback correction untested.",
+  "files": {
+    "configuration.json": "1932232d1e6f0d52e548bf69ef6ccf4dd0eefb3c38cb22213438a300ab3741c7",
+    "execution/intent.json": "5053df9e6bfa2d39e7bcedb623d1e20fcc3e3c05afc058a53a2d9b0899beb6bc",
+    "execution/old-candidate-checks/Preserve-runner.py": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0",
+    "execution/old-candidate-checks/Preserve-sandbox.json": "ccb753c201e7d095385b1f0f0d5b4231a0a36da52a7d9040dbab974b968f8e91",
+    "execution/old-candidate-checks/Preserve.json": "007c696511b4dd10f06231b2f4258ba56ef74833a2389d13831c79c3a23f6ff9",
+    "execution/old-candidate-checks/Preserve.stderr.txt": "014a54febcd73985c49afd49555b1401ebaff33e8844652de1f9860423452666",
+    "execution/old-candidate-checks/Preserve.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "execution/old-candidate-checks/Reproduce-runner.py": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0",
+    "execution/old-candidate-checks/Reproduce-sandbox.json": "771b009850d3733abec5d5f44a9ad02678103e60decb942a7b5caec6de28b4f6",
+    "execution/old-candidate-checks/Reproduce.json": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1",
+    "execution/old-candidate-checks/Reproduce.stderr.txt": "1774bca71a3e5915c017b82c3ceda594c437c8318da004060107c6494b7f6b6f",
+    "execution/old-candidate-checks/Reproduce.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "execution/postflight.json": "8628e9432af8ce63f48fd2d73fb104f274bbec511a8e0181f21958b0b8af936c",
+    "execution/preparation-postflight.json": "2e1adf1a3d1f8745bddfcf7e9a1aa76cb96cb7d0b5e29be2ff680f9ac57cfb05",
+    "execution/preparation.json": "9768e810ad36a5df9154ef07c0ccb345c7aa9f23990251a5cb4c6efa458095d6",
+    "execution/run-plan.json": "ed5f45bb0605cebd0ef5fa7645286ed458882749963b7b6c3017a66c0060745c",
+    "LICENSE-click.txt": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+    "live/actions.json": "8da4be439784303d6afa02ac5110cb66693c51a2e4b9799df38ed442b523aaa0",
+    "live/agent-initial-context.json": "c93e08a87380db3e45c1172a81aee9f091d234566f5d948e557eb0ce2ab5ebe3",
+    "live/baseline/Preserve-runner.py": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0",
+    "live/baseline/Preserve-sandbox.json": "29b6936be93668e923f93cab2a435ae85824cf6455066207c910f34ade2d788f",
+    "live/baseline/Preserve.json": "d34885bb4da814a492e371892bd47a4f76c5cbe4215107fb6e62e1f3d24081b0",
+    "live/baseline/Preserve.stderr.txt": "6941d340f059e424fe8e680a4cd7ac65a9c90c13a2216f8dfdd06cd0c6559fa1",
+    "live/baseline/Preserve.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/baseline/Reproduce-runner.py": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0",
+    "live/baseline/Reproduce-sandbox.json": "ea3d848a1aa196acca197a370701fe6e95f9ef87361b2ee335843eccb4186f88",
+    "live/baseline/Reproduce.json": "7b67e27b0830a403b2404d9aababa726099fb0059b7f3ebebeab0f7ac66e78d3",
+    "live/baseline/Reproduce.stderr.txt": "cd2deb31fdb9ae82e665ab81c7d5fcb53c4f1af2f9f13a3a7a423fa095b95d71",
+    "live/baseline/Reproduce.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/patch.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/provenance.json": "6df107ef93ffd5eb3638e07a7acf5971a32ffdd5666f4bc826428c049a6926b6",
+    "live/report.json": "2f1ab8b3dc2bc96a52ca92df7697277e90c78f151edcb29bf873089bc360aa86",
+    "live/step-001-messages.json": "79a9ace540489589531f018e2efb8f18e31b968dfb5a0254b96c232143e71942",
+    "live/step-001-response.txt": "9d8c73a9c7a19a9651a913d01538225b38bf98ed8273c59bea4102760af1b8c6",
+    "live/step-002-messages.json": "a67bcb7a4c337b4db2712bc9a34a8dfa5497c27118f74378a29aab919f841ce6",
+    "live/step-002-response.txt": "d7438121bc78430ed5892cca43104b34b0eef53b2931dbfd87bb193a8c40ea40",
+    "live/step-003-messages.json": "977fd168e6bdf1b70aca1798cd6b633bf70a7fe7bc3e96c8eb69c3cbb0dd324d",
+    "live/step-003-response.txt": "a80301b0ae26168aff5477a0f8b489dc7883c528dd040c6f24741fd55840436c",
+    "live/step-004-messages.json": "64e242d7902aea3381c9c6d4d997b18cb3fe4fd3c9a9916a72174ff394490e3f",
+    "live/step-004-response.txt": "4393303f34fd7bbc0999b79fc790fc723771cbd17f7a3208d3e8c5cb6d2f6c96",
+    "live/trace.jsonl": "b84c80d15a5d5fcc85cc068f6467d203065355fecf998b823ccec0de0c5f0faa",
+    "NOTICE.md": "571820fcebd020749763bb4bcdc9f5a54daa7903cfedad5492bc39d2d51b164f",
+    "prepared/admission/Preserve-runner.py": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0",
+    "prepared/admission/Preserve-sandbox.json": "d525d8748b77107520f09273e22bfbee3eb112fde91a1d555545ac28b8447a2b",
+    "prepared/admission/Preserve.json": "d34885bb4da814a492e371892bd47a4f76c5cbe4215107fb6e62e1f3d24081b0",
+    "prepared/admission/Preserve.stderr.txt": "6941d340f059e424fe8e680a4cd7ac65a9c90c13a2216f8dfdd06cd0c6559fa1",
+    "prepared/admission/Preserve.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prepared/admission/Reproduce-runner.py": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0",
+    "prepared/admission/Reproduce-sandbox.json": "76d2cc58b5ae308f374f1a3f29f499e856f12f5d4ba6709ccde57a8e66839a42",
+    "prepared/admission/Reproduce.json": "7b67e27b0830a403b2404d9aababa726099fb0059b7f3ebebeab0f7ac66e78d3",
+    "prepared/admission/Reproduce.stderr.txt": "cd2deb31fdb9ae82e665ab81c7d5fcb53c4f1af2f9f13a3a7a423fa095b95d71",
+    "prepared/admission/Reproduce.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prepared/issue.json": "f17e178f1213a6e331545b01d687fd55237cfd933315b15b11ea8a76d16bc32f",
+    "prepared/report.json": "39fac12ed7c7720ed7bb6e7c0f532168079a4bd187253676959064d84ca233ee",
+    "prepared/task.json": "3f814ad6ac916671ec3c801be5fa8b25444a72a9b706ea6bbe1d596d7c65dd95",
+    "public/test_admission.py": "72e39065b89b936bc761d8072a1407c4bc37da89effbbc3876a16970077a7f71",
+    "run_round.py": "84828e27e9dd769d01ad02dbd86303dd13083054f7d2d28677da2132ed53412f",
+    "validation/test_style_feedback_harness.py": "fbd3fa0e822c30c82294a81296c910469f0af3faff282b69fc17bea388c94cab",
+    "validation/unit-junit.xml": "8a918c72adfefd1c8a1d22d25f1862535b087e062d8d78ea2b5cdc579d1aff4b"
+  }
+}

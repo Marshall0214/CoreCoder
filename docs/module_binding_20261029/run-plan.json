@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-29",
+  "model": {
+    "name": "qwen3.5:27b",
+    "model": "qwen3.5:27b",
+    "modified_at": "2026-09-19T20:23:24.6144565+08:00",
+    "size": 17420432728,
+    "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "27.8B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 5120,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ]
+  },
+  "thinking": false,
+  "cloud_calls": 0,
+  "workflow": "symbol-recovery-v1",
+  "context_policy": "baseline",
+  "max_steps": 20,
+  "max_edit_attempts": 6,
+  "max_consecutive_errors": 3,
+  "max_repeated_actions": 3,
+  "token_budget": 60000,
+  "max_output_tokens": 4096,
+  "context_tokens": 65536,
+  "wall_timeout": 1200,
+  "prepared": "D:\\project_other\\CoreCoder\\.tmp\\github-issue-acceptance-20261019\\click-3887-v2",
+  "configuration": "D:\\project_other\\CoreCoder\\configs\\issue-tasks\\click-3887.json",
+  "output": "D:\\project_other\\CoreCoder\\.tmp\\issue-bindings-live-20261029\\click-3887-qwen35-bindings-001",
+  "issue_url": "https://github.com/pallets/click/issues/3887",
+  "base_commit": "934813e4d421071a1b3db3973c02fe2721359a6e",
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "source_sha256": "d52d04c39e9482c3e5d0f8354bfb9c8285a207f5ee0b85097285b2d3d64060e4",
+  "harness_sha256": "64e41aee01041313e48e1b03b3520a45b3d56c39b607ce350b739ed37b323057",
+  "code_commit": "2cbabbda5c53d6bca75e34716da625b588511ad1",
+  "input_hashes": {
+    "prepared_tree": "7b46ec293bc88c0222fd79620193ff7dc3c285378f2569f00870da2cdd1e68f1",
+    "config": "f1390bd833875537d48e3c1fe2247b192e2aa3d40ea4cdf70edb1dd4c02cfdec",
+    "implementation": {
+      "repairflow/issue_tools.py": "edfad7141a3c945b2e4c49e2abcf7c8bc4ec42f09d6c8efcd017a14237f6ae31",
+      "repairflow/issue_agent.py": "c98c30bce0b3e2c3e5c548a3cbaeec13224fb8338b0416f3a90ba978a1506128",
+      "repairflow/issue_repair.py": "8ef5e1b82c6d1d34460835648242939a19f3f2cde9809c9c3961f212deaea61c",
+      "repairflow/issue_context.py": "a8461b596f9df5ba0d02b887a9f587b402bf894db11ca10d96d1ac495586fc87",
+      "repairflow/issue_providers.py": "422835fbf274122a61c07a6ecdb399019dc9492eff5202ce7134b5173597a322",
+      "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+      "sandbox/runner.py": "6912daa6c2dd56f82be303f899e6a39430dc52ee8a6da55404b2de83bed97764"
+    }
+  },
+  "resident_before": {
+    "models": []
+  },
+  "retake_policy": "One development invocation; preserve failure; no selected reruns.",
+  "comparison_scope": "Same task/model/budget as 2026-10-23; tool declarations and tool contract updated. Not a held-out benchmark."
+}

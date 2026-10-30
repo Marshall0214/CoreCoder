@@ -1,0 +1,25 @@
+{
+  "images": [
+    {
+      "name": "postgres",
+      "local_tag": "postgres:17",
+      "manifest_digest": "sha256:0b81cec82228160abfa753aeaad0609b709eb26eeb950f2e404ad2326e1cc370"
+    },
+    {
+      "name": "web",
+      "local_tag": "langfuse/langfuse:4.69.0",
+      "manifest_digest": "sha256:394c425afbd0d4305cc1fb167ff4a2984cb80c7e80fd2f5adb777e29c1d097a8"
+    },
+    {
+      "name": "worker",
+      "local_tag": "langfuse/langfuse-worker:4.69.0",
+      "manifest_digest": "sha256:c33c904e254633a0b5e3cc6214b6c9ed9d6eeae6fcfb6d45b003e1d78e27f48e"
+    },
+    {
+      "name": "clickhouse",
+      "local_tag": "clickhouse/clickhouse-server:25.12",
+      "manifest_digest": "sha256:8ecb92fa564142a2bad5fef7b39f89af7265ddbfd782693b15f002ca0f70be14"
+    }
+  ],
+  "failures": []
+}

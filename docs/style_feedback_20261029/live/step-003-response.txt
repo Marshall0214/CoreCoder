@@ -1,0 +1,1 @@
+{"action":"read_symbol","arguments":{"path":"src/click/termui.py","symbol":"strip_ansi","offset":0}}

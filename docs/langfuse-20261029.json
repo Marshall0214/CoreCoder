@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-29",
+  "scope": "Optional local observability engineering; no new model or accuracy run",
+  "tests": {
+    "full": {
+      "tests": "1857",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "20",
+      "time": "271.247"
+    },
+    "unit": {
+      "tests": "87",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "10.700"
+    },
+    "docker": {
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "86.783"
+    },
+    "api": {
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "16.052"
+    }
+  },
+  "sdk_contract": "real SDK and in-memory OTel exporter; no server",
+  "actual_sdk_outage_demo": {
+    "status": "passed",
+    "scope": "Offline scripted engineering demonstration, not model repair accuracy",
+    "fresh_model_calls": 0,
+    "independent_acceptance": false,
+    "repair_status": "public_checks_passed",
+    "api_state": "ready_for_review",
+    "same_patch": true,
+    "approval_restart": true,
+    "idempotent_submission": true,
+    "repeated_approval_no_execution": true,
+    "rejection_no_execution": true,
+    "task_id": "39e316ca77e74324a09ee2d0b43244d7",
+    "rejected_task_id": "8f549612822a42b78aa3a19ae1030c89"
+  },
+  "server_receipt_verified": false,
+  "files": {
+    "api-junit.xml": "b2a4cf16970156314af33f136441370448dcd41dba605581352c28cfd4f70984",
+    "deployment.json": "6e8f5fb70ae00aed869a2b57235dc20977c70fc762dd9fc89d378458c78f02e5",
+    "docker-junit.xml": "ab081f328f6510fb7259faf2490a036ea83595097ee60b3432e0c26d5c4e15ba",
+    "frozen-evidence-check.json": "1ba70951639b18724d010744e8ac30569d7429f161aba0a8f02386e699967dbd",
+    "full-junit.xml": "1937432335f40318b143044bb8dd257bf4628c684bf6f0499c2f0db6acafecba",
+    "implementation-hashes.json": "61eec0b150dcaff8238571890af268dd16d8c05ae73688352ee13994034e29f7",
+    "NOTICE.md": "2d936ab07930793b6cc0acc7c8c420a551c75ef5f044e503e2acf1a54ef70ece",
+    "outage-demo/acceptance.json": "99826a4a45e3a57eb5fe8cd9928650c0a7346b96243b01c5c833855e755f963a",
+    "outage-demo/cli/observability.json": "272e9c21b62d60296653b7c16000a6db84050c07d46bf28b102a5021f0fe690b",
+    "outage-demo/cli/patch.diff": "a26e7a319f0788adf632a8d5e3f394779fd3fee3d781c80683e1618abe295bbe",
+    "outage-demo/cli/report.json": "28a09d7b21a475b4d4213f8bcd1e15ce239fdf711882f3a787b7303c8a3f1c42",
+    "outage-demo/evidence/observability.json": "272e9c21b62d60296653b7c16000a6db84050c07d46bf28b102a5021f0fe690b",
+    "outage-demo/evidence/patch.diff": "a26e7a319f0788adf632a8d5e3f394779fd3fee3d781c80683e1618abe295bbe",
+    "outage-demo/evidence/report.json": "6338ef68e600acc4abe82b0cf7a65ed14da84deb7898c752bc0acc453de20157",
+    "storage.json": "97399d4de0f6a4ae9974fc7dd29cc23dc9adffb52f3d088f28dd1893e3035d41",
+    "unit-junit.xml": "d743905266bf021afabbac942aefa49099b71c5a0bfc8474d7b3c31bed9fda20",
+    "versions.json": "102734b5e19d9777d0da0d01b85685eb72c367068c568a49d01ba56c0ed36a73"
+  }
+}

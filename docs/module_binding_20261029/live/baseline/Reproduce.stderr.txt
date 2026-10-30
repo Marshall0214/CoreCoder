@@ -1,0 +1,14 @@
+test_explicit_blue_overrides_precolored_input (test_admission.Reproduce.test_explicit_blue_overrides_precolored_input) ... FAIL
+
+======================================================================
+FAIL: test_explicit_blue_overrides_precolored_input (test_admission.Reproduce.test_explicit_blue_overrides_precolored_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 28, in test_explicit_blue_overrides_precolored_input
+    self.assertEqual(foreground_at(rendered, 'This should be blue'), 34)
+AssertionError: 31 != 34
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)

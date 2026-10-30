@@ -1,0 +1,315 @@
+{
+  "date": "2026-10-23",
+  "scope": "One local development run plus three real Docker scripted tests; not a new repair-rate benchmark.",
+  "issue_url": "https://github.com/pallets/click/issues/3887",
+  "base_commit": "934813e4d421071a1b3db3973c02fe2721359a6e",
+  "code_commit": "2cbabbda5c53d6bca75e34716da625b588511ad1",
+  "model": "qwen3.5:27b",
+  "model_digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "thinking": false,
+  "cloud_calls": 0,
+  "workflow": "symbol-recovery-v1",
+  "context_policy": "baseline",
+  "protocol": {
+    "max_steps": 20,
+    "max_edit_attempts": 6,
+    "max_consecutive_errors": 3,
+    "max_repeated_actions": 3,
+    "token_budget": 60000,
+    "max_output_tokens": 4096,
+    "context_tokens": 65536,
+    "wall_timeout": 1200
+  },
+  "result": {
+    "status": "consecutive_error_limit",
+    "accepted": false,
+    "public_checks_passed": false,
+    "delivery_status": "not_delivered",
+    "fresh_model_calls": 6,
+    "edit_attempts_used": 0,
+    "changed_files": [],
+    "candidate_rolled_back": true,
+    "original_unchanged": true,
+    "metrics": {
+      "llm_calls": 6,
+      "prompt_tokens": 37584,
+      "completion_tokens": 174,
+      "known_prompt_tokens": 37584,
+      "known_completion_tokens": 174,
+      "missing_usage_calls": 0,
+      "budget_accounted_tokens": 37758,
+      "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+      "cost_usd": null,
+      "failed_provider_attempt_usage": "unknown"
+    }
+  },
+  "elapsed_seconds": 41.51271879999695,
+  "actions": [
+    {
+      "step": 1,
+      "action": "read_symbol",
+      "symbol": "style",
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "step": 2,
+      "action": "read_symbol",
+      "symbol": "_ansi_reset_all",
+      "status": "tool_error",
+      "error_code": "symbol_not_found"
+    },
+    {
+      "step": 3,
+      "action": "read_symbol",
+      "symbol": "unstyle",
+      "status": "completed",
+      "error_code": null
+    },
+    {
+      "step": 4,
+      "action": "read_symbol",
+      "symbol": "strip_ansi",
+      "status": "tool_error",
+      "error_code": "symbol_not_found"
+    },
+    {
+      "step": 5,
+      "action": "read_symbol",
+      "symbol": "_ansi_reset_all",
+      "status": "tool_error",
+      "error_code": "symbol_not_found"
+    },
+    {
+      "step": 6,
+      "action": "read_symbol",
+      "symbol": "_ansi_reset_all",
+      "status": "tool_error",
+      "error_code": "symbol_not_found"
+    }
+  ],
+  "integrity": {
+    "inputs_unchanged": true,
+    "prepared_unchanged": true,
+    "model_digest_unchanged": true,
+    "remaining_owned_containers": []
+  },
+  "docker_tests": {
+    "passed": 3,
+    "model_calls": 0,
+    "cases": [
+      {
+        "case": "test_real_prepared_issue_to_re0",
+        "status": "public_checks_passed",
+        "public_checks_passed": true,
+        "accepted": false,
+        "fresh_model_calls": 0,
+        "scripted_calls": 1,
+        "edit_attempts_used": null,
+        "original_unchanged": true
+      },
+      {
+        "case": "test_real_prepared_issue_to_re1",
+        "status": "invalid_patch",
+        "public_checks_passed": false,
+        "accepted": false,
+        "fresh_model_calls": 0,
+        "scripted_calls": 2,
+        "edit_attempts_used": null,
+        "original_unchanged": true
+      },
+      {
+        "case": "test_real_symbol_read_and_thir0",
+        "status": "public_checks_passed",
+        "public_checks_passed": true,
+        "accepted": false,
+        "fresh_model_calls": 0,
+        "scripted_calls": 5,
+        "edit_attempts_used": 3,
+        "original_unchanged": true
+      }
+    ]
+  },
+  "diagnosis": {
+    "read_successes": 2,
+    "symbol_not_found": 4,
+    "patch_submitted": false,
+    "limitations": [
+      "read_symbol supports functions/classes, not module constants or imported bindings",
+      "No edit was submitted: real anchor recovery effectiveness was not tested",
+      "Longer interaction, output cap and context delivery changed together; not a causal ablation"
+    ]
+  },
+  "artifacts": [
+    {
+      "file": "live/report.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/report.json",
+      "sha256": "36d4074a6ed89ead25a942940738d444ced8f241724028ef2766e9123342c58c"
+    },
+    {
+      "file": "live/provenance.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/provenance.json",
+      "sha256": "a286c38be95bc056adc92b414d3155d9541af809888bfcd642d679140b8a70a7"
+    },
+    {
+      "file": "live/actions.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/actions.json",
+      "sha256": "7890fbb4ce020408abf1612b93e24377e9059a7fb35067647cb54ffb0957d350"
+    },
+    {
+      "file": "live/trace.jsonl",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/trace.jsonl",
+      "sha256": "c3bf6a07056ace2057f503afaefd8738aa6c565c68032c1cf784f34b66d48576"
+    },
+    {
+      "file": "live/agent-initial-context.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/agent-initial-context.json",
+      "sha256": "c93e08a87380db3e45c1172a81aee9f091d234566f5d948e557eb0ce2ab5ebe3"
+    },
+    {
+      "file": "live/patch.diff",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/patch.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "live/step-001-messages.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-001-messages.json",
+      "sha256": "06259b1efd65163937933d6081f5b5186999c59e2ed085140b5572564eaacff7"
+    },
+    {
+      "file": "live/step-002-messages.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-002-messages.json",
+      "sha256": "941b6f2c530b830cef5553dbbffe9de185ffcf6ad44c231a1380e99889240cf6"
+    },
+    {
+      "file": "live/step-003-messages.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-003-messages.json",
+      "sha256": "b4faa0a72fe0ba33a958d92dc0248d66c872f2271192e3cc8d0f4844732cf0ac"
+    },
+    {
+      "file": "live/step-004-messages.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-004-messages.json",
+      "sha256": "0b2f8212d87064f4012e39432b748750cecd2680eb3dbaa25859d19b5553220f"
+    },
+    {
+      "file": "live/step-005-messages.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-005-messages.json",
+      "sha256": "40bf6fd00ddffa8ac92d90487f4d63e48deb757f2afc08bbe7f28c51972918ba"
+    },
+    {
+      "file": "live/step-006-messages.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-006-messages.json",
+      "sha256": "b9a4ae96cd8ef8605a9d3c968727f6b1489cd9a77f9ea64ad0b73e7f5751feb1"
+    },
+    {
+      "file": "live/step-001-response.txt",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-001-response.txt",
+      "sha256": "554a9692d3503134717c5155fa11440cf438d985e3710d9f32f03ed168aa7294"
+    },
+    {
+      "file": "live/step-002-response.txt",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-002-response.txt",
+      "sha256": "4f260824c3b8d4766766de142e99620ddad301017d417f5d27de408d989d7722"
+    },
+    {
+      "file": "live/step-003-response.txt",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-003-response.txt",
+      "sha256": "d7438121bc78430ed5892cca43104b34b0eef53b2931dbfd87bb193a8c40ea40"
+    },
+    {
+      "file": "live/step-004-response.txt",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-004-response.txt",
+      "sha256": "a80301b0ae26168aff5477a0f8b489dc7883c528dd040c6f24741fd55840436c"
+    },
+    {
+      "file": "live/step-005-response.txt",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-005-response.txt",
+      "sha256": "4f260824c3b8d4766766de142e99620ddad301017d417f5d27de408d989d7722"
+    },
+    {
+      "file": "live/step-006-response.txt",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/step-006-response.txt",
+      "sha256": "4f260824c3b8d4766766de142e99620ddad301017d417f5d27de408d989d7722"
+    },
+    {
+      "file": "live/baseline/Preserve-sandbox.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/baseline/Preserve-sandbox.json",
+      "sha256": "79c67beefbbbbc892cd286c74be59f835d5f53c403e345493c996d478e021b91"
+    },
+    {
+      "file": "live/baseline/Preserve.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/baseline/Preserve.json",
+      "sha256": "2e43e72025f11c9de7972c505c747c3081db46f1ddd800683eeea4232b20cbf1"
+    },
+    {
+      "file": "live/baseline/Reproduce-sandbox.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/baseline/Reproduce-sandbox.json",
+      "sha256": "117fe80930cc5d9ea2a3edc885cfe5ee3309553d97e1cc4ae71bdf8ec0f7c866"
+    },
+    {
+      "file": "live/baseline/Reproduce.json",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/baseline/Reproduce.json",
+      "sha256": "7b67e27b0830a403b2404d9aababa726099fb0059b7f3ebebeab0f7ac66e78d3"
+    },
+    {
+      "file": "live/baseline/Preserve.stderr.txt",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/baseline/Preserve.stderr.txt",
+      "sha256": "a740ca1fa040ad742d49d423504734b0f3e943134f4c47e83c9ece04494c729a"
+    },
+    {
+      "file": "live/baseline/Reproduce.stderr.txt",
+      "source": ".tmp/issue-recovery-live-20261023/click-3887-qwen35-symbol-001/baseline/Reproduce.stderr.txt",
+      "sha256": "8910278897cf218e6f90c5e1b855d122a3813c062814d46df55b32e90c785123"
+    },
+    {
+      "file": "run-plan.json",
+      "source": ".tmp/issue-recovery-live-20261023/run-plan.json",
+      "sha256": "59a977c2acd68ab5b6a89b46545199ddbb2840232ce5008eb8ca40060711aa4c"
+    },
+    {
+      "file": "postflight.json",
+      "source": ".tmp/issue-recovery-live-20261023/postflight.json",
+      "sha256": "ebe437f3e46c29d3bbf8a5bad22fbb67a02ad1212a0f19566b3994f6e742f140"
+    },
+    {
+      "file": "docker/junit.xml",
+      "source": ".tmp/pytest-symbol-recovery-docker-20261023.xml",
+      "sha256": "169581b2f11e637e161fbb60d5ed245b1c8d3a6646cf31383244260025ab2177"
+    },
+    {
+      "file": "docker/test_real_prepared_issue_to_re0.json",
+      "source": ".tmp/pytest-symbol-recovery-docker-20261023/test_real_prepared_issue_to_re0/run/report.json",
+      "sha256": "71e60c84b09c5b590911fc2967f684ba33e5ccbacb35c20075ccada7848372d0"
+    },
+    {
+      "file": "docker/test_real_prepared_issue_to_re1.json",
+      "source": ".tmp/pytest-symbol-recovery-docker-20261023/test_real_prepared_issue_to_re1/run/report.json",
+      "sha256": "2031ff0f282edf1fdf1ce652bd4a87e5f926441ac2047da06df06b89361f19ea"
+    },
+    {
+      "file": "docker/test_real_symbol_read_and_thir0.json",
+      "source": ".tmp/pytest-symbol-recovery-docker-20261023/test_real_symbol_read_and_thir0/run/report.json",
+      "sha256": "0309818e23b68e76e534a8158ed369929640cd19548eeed8581660aef4302505"
+    },
+    {
+      "file": "LICENSE-click.txt",
+      "source": ".tmp/github-issue-acceptance-20261019/click-3887-v2/source/LICENSE.txt",
+      "sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d"
+    },
+    {
+      "file": "public-checks.py",
+      "source": ".tmp/github-issue-acceptance-20261019/click-3887-v2/public/test_admission.py",
+      "sha256": "d7ccec524c41724513a9a4f81d2197db84dfb2d930de94b5c0c2066a9ce7b4ba"
+    },
+    {
+      "file": "module-declarations.txt",
+      "source": ".tmp/github-issue-acceptance-20261019/click-3887-v2/source/src/click/termui.py",
+      "line_range": [
+        1,
+        49
+      ],
+      "sha256": "0fd41a27c8778f208f7c05163a4a86584763cf8dc5167acc6f7e09c7f97fca2a",
+      "full_source_sha256": "74bc624bbd143af21805d6bf9c411968f0053950d5991b35b043ccb8b0e8c10a"
+    }
+  ]
+}

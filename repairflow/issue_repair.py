@@ -7,7 +7,7 @@ from pathlib import Path
 
 from docs.experiments.constrained_patch_v1 import check_patch
 from evals.runner import changes, snapshot
-from evals.runtime import BudgetExceeded, BudgetLLM, Events
+from evals.runtime import BudgetExceeded, BudgetLLM
 from evals.schema import RunConfig
 from evals.symbol_context import apply_symbol_patch
 from repairflow import checks
@@ -16,6 +16,7 @@ from repairflow.feedback import restore
 from repairflow.github_issue import config, load_prepared
 from repairflow.issue_context import baseline_retrieve, retrieve, validate_evidence
 from repairflow.issue_providers import OllamaProvider, ProviderFailure, ScriptedProvider
+from repairflow.telemetry import ObservedEvents, Telemetry
 from sandbox import runner
 
 SYSTEM = '''Repair the reported defect while preserving existing behavior. Return only JSON:
@@ -34,6 +35,8 @@ def trusted_task(prepared, configuration):
     for key in ('repo', 'base_commit', 'package', 'source_root', 'allowed_files', 'license_id'):
         if task[key] != settings[key]:
             raise ValueError('Prepared metadata differs from trusted configuration: ' + key)
+    if task.get('read_only_files', []) != settings.get('read_only_files', []):
+        raise ValueError('Prepared read-only scope differs from trusted configuration')
     if tree_hash(prepared / 'public') != settings['harness_sha256']:
         raise ValueError('Prepared checks differ from trusted configuration')
     issue = read(prepared / 'issue.json')
@@ -41,7 +44,7 @@ def trusted_task(prepared, configuration):
         raise ValueError('Prepared description differs from retained Issue')
     if not (prepared / 'source' / settings['source_root'] / settings['package'] / '__init__.py').is_file():
         raise ValueError('Prepared package is missing')
-    for name in settings['allowed_files']:
+    for name in settings['allowed_files'] + settings.get('read_only_files', []):
         if not (prepared / 'source' / name).is_file():
             raise ValueError('Prepared allowed source is missing')
     return task, settings
@@ -116,7 +119,8 @@ def attempt(llm, workspace, task, root, label, feedback, events, context_policy=
 
 
 def execute(prepared, configuration, output, *, mode, responses=None, model='qwen3.5:27b', context_policy='baseline',
-            workflow='patch-v1', max_steps=20, max_edit_attempts=6, max_consecutive_errors=3, max_repeated_actions=3):
+            workflow='patch-v1', max_steps=20, max_edit_attempts=6, max_consecutive_errors=3, max_repeated_actions=3,
+            observation_policy='full', sandbox_owner=None):
     """CLI-only, trusted configuration required; always Docker, never host fallback."""
     if mode not in {'scripted', 'ollama'} or (mode == 'scripted') != (responses is not None):
         raise ValueError('Choose scripted with responses, or ollama without responses')
@@ -126,6 +130,10 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
 
     if workflow not in {'patch-v1', 'symbol-recovery-v1'}:
         raise ValueError('Unknown prepared Issue workflow')
+    if observation_policy not in {'full', 'compact-v1'}:
+        raise ValueError('Unknown prepared Issue observation policy')
+    if workflow != 'symbol-recovery-v1' and observation_policy != 'full':
+        raise ValueError('Compact observations require symbol-recovery-v1')
     recovery = RecoveryLimits(max_steps, max_edit_attempts, max_consecutive_errors, max_repeated_actions)
     prepared, output = Path(prepared).resolve(), Path(output).resolve()
     task, settings = trusted_task(prepared, configuration)
@@ -145,7 +153,8 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
                        token_budget=60000, max_output_tokens=4096 if workflow == 'symbol-recovery-v1' else 32768,
                        context_tokens=65536, wall_timeout=1200, output_policy='remaining')
     output.mkdir(parents=True)
-    events = Events(output / 'trace.jsonl', output.name)
+    telemetry = Telemetry(output, task, mode, inner.model)
+    events = ObservedEvents(output / 'trace.jsonl', output.name, telemetry)
     llm = BudgetLLM(inner, limits, events)
     workspace, harness = output / 'workspace', output / 'public'
     shutil.copytree(prepared / 'source', workspace)
@@ -160,12 +169,13 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
           'prepared_task_sha256': task['task_sha256'], 'config_sha256': settings['config_sha256'],
           'repo': task['repo'], 'base_commit': task['base_commit'], 'issue_url': task['issue_url'],
           'source_sha256': task['source_sha256'], 'harness_sha256': task['harness_sha256'],
+          'allowed_files': task['allowed_files'], 'read_only_files': task.get('read_only_files', []),
           'sandbox': policy, 'limits': limits.to_dict(), 'thinking': False,
           'implementation_sha256': {name: hashlib.sha256((Path(__file__).parent / name).read_bytes()).hexdigest()
                                     for name in ('issue_repair.py', 'issue_providers.py', 'issue_context.py',
                                                  'issue_agent.py', 'issue_tools.py')},
           'workflow': workflow, 'recovery_limits': recovery.__dict__ if workflow == 'symbol-recovery-v1' else None,
-          'context_policy': context_policy,
+          'context_policy': context_policy, 'observation_policy': observation_policy,
           'scripted_responses_sha256': hashlib.sha256(Path(responses).read_bytes()).hexdigest() if responses else None})
     report = {'schema_version': schema_version, 'status': 'agent_error', 'accepted': False,
               'public_checks_passed': False, 'requires_review': True, 'delivery_status': 'not_delivered',
@@ -173,6 +183,8 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
               'execution_mode': mode, 'fresh_inference': mode == 'ollama', 'fresh_model_calls': 0,
               'no_progress_detected': False,
               'context_policy': context_policy,
+              'allowed_files': task['allowed_files'], 'read_only_files': task.get('read_only_files', []),
+              'observation_policy': observation_policy,
               'workflow': workflow,
               'scripted_execution': mode == 'scripted', 'thinking': False, 'sandbox': policy,
               'limits': 'Trusted public reproduction and preservation only; no independent grader or upstream full suite.'}
@@ -184,7 +196,16 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
         events.emit('stage', stage=stage)
         if tree_hash(harness) != task['harness_sha256']:
             raise ValueError('Public checks changed')
-        return public_checks(workspace, harness, task, output / stage, policy, runner.owner(output))
+        events.emit('public_checks_started', stage=stage)
+        try:
+            outcomes = public_checks(workspace, harness, task, output / stage, policy, sandbox_owner or runner.owner(output))
+        except Exception:
+            events.emit('public_checks_failed', stage=stage)
+            raise
+        groups = {name: {key: row.get(key) for key in ('tests_run', 'failures', 'errors', 'skipped', 'passed', 'seconds')}
+                  for name, row in outcomes.items()}
+        events.emit('public_checks_finished', stage=stage, groups=groups, passed=all(row['passed'] for row in outcomes.values()))
+        return outcomes
 
     try:
         baseline = run_checks('baseline')
@@ -194,7 +215,8 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
         elif workflow == 'symbol-recovery-v1':
             from repairflow.issue_agent import run as run_agent
 
-            run_agent(llm, workspace, task, output, events, report, run_checks, deadline, recovery, context_policy)
+            run_agent(llm, workspace, task, output, events, report, run_checks, deadline, recovery, context_policy,
+                      observation_policy)
         else:
             feedback = None
             for label in ('initial', 'correction'):
@@ -251,5 +273,7 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
                       scripted_calls=len(inner.calls) if mode == 'scripted' else 0,
                       metrics=llm.metrics(), provider_calls=inner.calls)
         events.emit('finished', status=report['status'], delivery_status=report['delivery_status'])
+        report['observability'] = telemetry.finish(report)
+        write(output / 'observability.json', report['observability'])
         write(output / 'report.json', events.clean(report))
     return report

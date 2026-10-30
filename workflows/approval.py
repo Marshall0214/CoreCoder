@@ -25,7 +25,7 @@ class ApprovalState(TypedDict, total=False):
 
 
 def run_approval_workflow(task, config, output: Path, decision: Literal['approve', 'reject'] | None = None,
-                          execute=run_task):
+                          execute=run_task, review_only=False, plan_details=None):
     """Resume only a saved approval interrupt; never retry started execution."""
     if decision not in {None, 'approve', 'reject'}:
         raise ValueError('Unknown approval decision')
@@ -34,8 +34,10 @@ def run_approval_workflow(task, config, output: Path, decision: Literal['approve
         raise ValueError('Workflow output cannot be inside task fixtures')
     output.mkdir(parents=True, exist_ok=True)
     snapshot_path = output / 'workflow.json'
-    identity = hashlib.sha256(json.dumps({'task': str(task.root.resolve()), 'config': config.to_dict(),
-                                         'allowed_files': list(task.allowed_files)}, sort_keys=True).encode()).hexdigest()
+    identity_data = {'task': str(task.root.resolve()), 'config': config.to_dict(), 'allowed_files': list(task.allowed_files)}
+    if review_only:
+        identity_data.update(review_only=True, plan_details=plan_details)
+    identity = hashlib.sha256(json.dumps(identity_data, sort_keys=True).encode()).hexdigest()
     if snapshot_path.exists():
         snapshot = json.loads(snapshot_path.read_text(encoding='utf-8'))
         if snapshot.get('workflow') != 'langgraph-approval-v1' or snapshot.get('request_hash') != identity:
@@ -54,6 +56,8 @@ def run_approval_workflow(task, config, output: Path, decision: Literal['approve
     def plan_node(state):
         plan = RepairPlan(task_id=task.task_id, allowed_files=list(task.allowed_files), mode=config.mode,
                           token_budget=config.token_budget).model_dump(mode='json')
+        if review_only:
+            plan.update(review_only=True, details=plan_details or {})
         record('planned', plan=plan)
         return {'plan': plan, 'outcome': 'pending'}
 
@@ -72,6 +76,15 @@ def run_approval_workflow(task, config, output: Path, decision: Literal['approve
             marker.write('Do not replay this execution.\n')
         record('executing')
         report = execute(task, config, output / 'runs')
+        if review_only:
+            # Operational completion is deliberately separate from independent acceptance.
+            ready = (report.get('status') == 'public_checks_passed' and report.get('public_checks_passed') is True
+                     and report.get('delivery_status') == 'ready_for_review' and report.get('original_unchanged') is True
+                     and bool(report.get('changed_files')))
+            report = dict(report, accepted=False)
+            record('reviewing', report={k: report.get(k) for k in ('status', 'accepted', 'public_checks_passed',
+                                                                 'delivery_status', 'metrics')})
+            return {'report': report, 'outcome': 'review_ready' if ready else 'rejected'}
         accepted = (report.get('status') == 'passed' and report.get('accepted') is True
                     and (report.get('verification') or {}).get('passed') is True)
         report = dict(report, accepted=accepted)
@@ -81,7 +94,8 @@ def run_approval_workflow(task, config, output: Path, decision: Literal['approve
         return {'report': report, 'outcome': 'accepted' if accepted else 'rejected'}
 
     def finish_node(state):
-        record('succeeded' if state['outcome'] == 'accepted' else 'failed', outcome=state['outcome'])
+        stage = 'ready_for_review' if state['outcome'] == 'review_ready' else 'succeeded' if state['outcome'] == 'accepted' else 'failed'
+        record(stage, outcome=state['outcome'])
         return {}
 
     def reject_node(state):

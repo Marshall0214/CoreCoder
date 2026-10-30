@@ -1,0 +1,379 @@
+{
+  "schema_version": "prepared-issue-symbol-recovery-v1",
+  "status": "public_checks_passed",
+  "accepted": false,
+  "public_checks_passed": true,
+  "requires_review": true,
+  "delivery_status": "ready_for_review",
+  "independent_verification": {
+    "available": false,
+    "passed": null
+  },
+  "attempts": [
+    {
+      "step": 1,
+      "status": "tool_error",
+      "prompt_sha256": "12444d7e7785b65e3188ae93cf97c76136ea8f7296ba633977fe3438a337e39e",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/pkg/__init__.py",
+            "old": "    return x + 77",
+            "new": "    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 1,
+      "error": {
+        "code": "anchor_not_found",
+        "message": "Old text must occur exactly once in current source.",
+        "retryable": true,
+        "next_action": "read_symbol",
+        "file": "src/pkg/__init__.py",
+        "matches": 0
+      }
+    },
+    {
+      "step": 3,
+      "status": "tool_error",
+      "prompt_sha256": "a29a4af0aed26716d1b52918983202e68c4744abda1435f3ebe6fea526b77e25",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/pkg/__init__.py",
+            "old": "    return x + 77",
+            "new": "    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 2,
+      "error": {
+        "code": "anchor_not_found",
+        "message": "Old text must occur exactly once in current source.",
+        "retryable": true,
+        "next_action": "read_symbol",
+        "file": "src/pkg/__init__.py",
+        "matches": 0
+      }
+    },
+    {
+      "step": 5,
+      "status": "completed",
+      "prompt_sha256": "1783e6311277de146510a02ad63e3921b730fdf6ea32170545be9cc69ec86aa0",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/pkg/__init__.py",
+            "old": "    return x + 1",
+            "new": "    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 3,
+      "changed_files": [
+        "src/pkg/__init__.py"
+      ],
+      "net_changed_files": [
+        "src/pkg/__init__.py"
+      ]
+    }
+  ],
+  "execution_mode": "scripted",
+  "fresh_inference": false,
+  "fresh_model_calls": 0,
+  "no_progress_detected": false,
+  "context_policy": "baseline",
+  "observation_policy": "compact-v1",
+  "workflow": "symbol-recovery-v1",
+  "scripted_execution": true,
+  "thinking": false,
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "limits": "Trusted public reproduction and preservation only; no independent grader or upstream full suite.",
+  "baseline_checks": {
+    "Reproduce": {
+      "returncode": 1,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 1,
+      "successful": false,
+      "seconds": 1.5346,
+      "passed": false
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5189,
+      "passed": true
+    }
+  },
+  "actions": [
+    {
+      "step": 1,
+      "status": "tool_error",
+      "prompt_sha256": "12444d7e7785b65e3188ae93cf97c76136ea8f7296ba633977fe3438a337e39e",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/pkg/__init__.py",
+            "old": "    return x + 77",
+            "new": "    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 1,
+      "error": {
+        "code": "anchor_not_found",
+        "message": "Old text must occur exactly once in current source.",
+        "retryable": true,
+        "next_action": "read_symbol",
+        "file": "src/pkg/__init__.py",
+        "matches": 0
+      }
+    },
+    {
+      "step": 2,
+      "status": "completed",
+      "prompt_sha256": "a933d99d8dccdc3ad94b3186521677982d610556c5a0ea5d578353d5f298b39f",
+      "action": "read_symbol",
+      "arguments": {
+        "path": "src/pkg/__init__.py",
+        "symbol": "f"
+      },
+      "result": {
+        "path": "src/pkg/__init__.py",
+        "symbol": "f",
+        "start_line": 1,
+        "end_line": 2,
+        "symbol_range": [
+          1,
+          2
+        ],
+        "content": "def f(x):\n    return x + 1\n",
+        "content_hash": "fd233a68746204792751f2e17b1c0e129b8db1b8843009f237d95a030c17eda8",
+        "offset": 0,
+        "complete_symbol": true,
+        "next_offset": null,
+        "reason": "explicit_symbol_read",
+        "resolution": "static_declaration",
+        "kind": "function"
+      }
+    },
+    {
+      "step": 3,
+      "status": "tool_error",
+      "prompt_sha256": "a29a4af0aed26716d1b52918983202e68c4744abda1435f3ebe6fea526b77e25",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/pkg/__init__.py",
+            "old": "    return x + 77",
+            "new": "    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 2,
+      "error": {
+        "code": "anchor_not_found",
+        "message": "Old text must occur exactly once in current source.",
+        "retryable": true,
+        "next_action": "read_symbol",
+        "file": "src/pkg/__init__.py",
+        "matches": 0
+      }
+    },
+    {
+      "step": 4,
+      "status": "completed",
+      "prompt_sha256": "4967b379f5f6520f5fe3456df296fe9d0b633173cd526154562f96122e8bef4d",
+      "action": "read_symbol",
+      "arguments": {
+        "path": "src/pkg/__init__.py",
+        "symbol": "f"
+      },
+      "result": {
+        "path": "src/pkg/__init__.py",
+        "symbol": "f",
+        "start_line": 1,
+        "end_line": 2,
+        "symbol_range": [
+          1,
+          2
+        ],
+        "content": "def f(x):\n    return x + 1\n",
+        "content_hash": "fd233a68746204792751f2e17b1c0e129b8db1b8843009f237d95a030c17eda8",
+        "offset": 0,
+        "complete_symbol": true,
+        "next_offset": null,
+        "reason": "explicit_symbol_read",
+        "resolution": "static_declaration",
+        "kind": "function"
+      }
+    },
+    {
+      "step": 5,
+      "status": "completed",
+      "prompt_sha256": "1783e6311277de146510a02ad63e3921b730fdf6ea32170545be9cc69ec86aa0",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/pkg/__init__.py",
+            "old": "    return x + 1",
+            "new": "    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 3,
+      "changed_files": [
+        "src/pkg/__init__.py"
+      ],
+      "net_changed_files": [
+        "src/pkg/__init__.py"
+      ]
+    }
+  ],
+  "recovery_limits": {
+    "max_steps": 20,
+    "max_edit_attempts": 6,
+    "max_consecutive_errors": 3,
+    "max_repeated_actions": 3
+  },
+  "edit_attempts_used": 3,
+  "final_public_checks": {
+    "Reproduce": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.539,
+      "passed": true
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5483,
+      "passed": true
+    }
+  },
+  "changed_files": [
+    "src/pkg/__init__.py"
+  ],
+  "original_unchanged": true,
+  "candidate_rolled_back": false,
+  "scripted_calls": 5,
+  "metrics": {
+    "llm_calls": 5,
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "known_prompt_tokens": 0,
+    "known_completion_tokens": 0,
+    "missing_usage_calls": 5,
+    "budget_accounted_tokens": 27126,
+    "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown"
+  },
+  "provider_calls": [
+    {
+      "scripted": true,
+      "usage_known": false
+    },
+    {
+      "scripted": true,
+      "usage_known": false
+    },
+    {
+      "scripted": true,
+      "usage_known": false
+    },
+    {
+      "scripted": true,
+      "usage_known": false
+    },
+    {
+      "scripted": true,
+      "usage_known": false
+    }
+  ]
+}

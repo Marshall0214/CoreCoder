@@ -1,0 +1,27 @@
+{
+  "status": "blocked_on_image_download",
+  "server_receipt_verified": false,
+  "compose_validation": "passed",
+  "proxy": "http://127.0.0.1:7890",
+  "proxy_port_reachable": true,
+  "official_tool_checksum_verified": true,
+  "completed_image_imports": [
+    "redis:7",
+    "cgr.dev/chainguard/minio:latest"
+  ],
+  "remaining_images": [
+    "langfuse/langfuse:4.69.0",
+    "langfuse/langfuse-worker:4.69.0",
+    "postgres:17",
+    "clickhouse/clickhouse-server:25.12"
+  ],
+  "failures": [
+    "registry EOF / TLS timeout",
+    "Docker rejected layer size mismatch",
+    "parallel transfer cache file conflict; retry switched to separate cache",
+    "bounded final transfers did not complete"
+  ],
+  "docker_global_proxy_modified": false,
+  "docker_restarted": false,
+  "port_8001_modified": false
+}

@@ -1,0 +1,24 @@
+id: 1
+event: state
+data: {"id": "ea6317d85049404e872ba110f00872c4", "suite": "issues", "task_id": "sample", "mode": "scripted", "search_backend": "off", "workflow": "issue-approval-v1", "state": "queued", "created_at": 1793269063.9129622, "updated_at": 1793269063.9129622, "result": null, "approval": null, "events_url": "/tasks/ea6317d85049404e872ba110f00872c4/events"}
+
+id: 2
+event: state
+data: {"id": "ea6317d85049404e872ba110f00872c4", "suite": "issues", "task_id": "sample", "mode": "scripted", "search_backend": "off", "workflow": "issue-approval-v1", "state": "running", "created_at": 1793269063.9129622, "updated_at": 1793269063.9182093, "result": null, "approval": null, "events_url": "/tasks/ea6317d85049404e872ba110f00872c4/events"}
+
+id: 3
+event: state
+data: {"id": "ea6317d85049404e872ba110f00872c4", "suite": "issues", "task_id": "sample", "mode": "scripted", "search_backend": "off", "workflow": "issue-approval-v1", "state": "awaiting_approval", "created_at": 1793269063.9129622, "updated_at": 1793269065.8968565, "result": null, "approval": null, "events_url": "/tasks/ea6317d85049404e872ba110f00872c4/events"}
+
+id: 4
+event: state
+data: {"id": "ea6317d85049404e872ba110f00872c4", "suite": "issues", "task_id": "sample", "mode": "scripted", "search_backend": "off", "workflow": "issue-approval-v1", "state": "queued", "created_at": 1793269063.9129622, "updated_at": 1793269066.0739782, "result": null, "approval": "approve", "events_url": "/tasks/ea6317d85049404e872ba110f00872c4/events"}
+
+id: 5
+event: state
+data: {"id": "ea6317d85049404e872ba110f00872c4", "suite": "issues", "task_id": "sample", "mode": "scripted", "search_backend": "off", "workflow": "issue-approval-v1", "state": "running", "created_at": 1793269063.9129622, "updated_at": 1793269066.0809777, "result": null, "approval": "approve", "events_url": "/tasks/ea6317d85049404e872ba110f00872c4/events"}
+
+id: 6
+event: state
+data: {"id": "ea6317d85049404e872ba110f00872c4", "suite": "issues", "task_id": "sample", "mode": "scripted", "search_backend": "off", "workflow": "issue-approval-v1", "state": "ready_for_review", "created_at": 1793269063.9129622, "updated_at": 1793269074.6412845, "result": {"status": "public_checks_passed", "accepted": false, "metrics": {"llm_calls": 2, "prompt_tokens": null, "completion_tokens": null, "known_prompt_tokens": 0, "known_completion_tokens": 0, "missing_usage_calls": 2, "budget_accounted_tokens": 10606, "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap", "cost_usd": null, "failed_provider_attempt_usage": "unknown"}, "verification": null, "execution_mode": "scripted", "fresh_inference": false, "fresh_model_calls": 0, "original_unchanged": true, "public_checks_passed": true, "delivery_status": "ready_for_review", "requires_review": true, "failure_type": null}, "approval": "approve", "events_url": "/tasks/ea6317d85049404e872ba110f00872c4/events"}
+

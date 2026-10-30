@@ -36,10 +36,22 @@ def main():
                               help='Keep the original context policy by default; module bindings are experimental')
     repair_issue.add_argument('--workflow', choices=('patch-v1', 'symbol-recovery-v1'), default='symbol-recovery-v1',
                               help='Symbol actions with recovery by default; patch-v1 retains the two-generation protocol')
+    repair_issue.add_argument('--observation-policy', choices=('full', 'compact-v1'), default='full',
+                              help='Optional compact history; canonical actions and source evidence remain unchanged')
     repair_issue.add_argument('--max-steps', type=int, default=20)
     repair_issue.add_argument('--max-edit-attempts', type=int, default=6)
     repair_issue.add_argument('--max-consecutive-errors', type=int, default=3)
     repair_issue.add_argument('--max-repeated-actions', type=int, default=3)
+    register_issue = commands.add_parser('register-issue', help='Copy an admitted Issue into an administrator-owned API catalog')
+    register_issue.add_argument('--prepared', type=Path, required=True)
+    register_issue.add_argument('--config', type=Path, required=True)
+    register_issue.add_argument('--output', type=Path, required=True)
+    register_issue.add_argument('--model', default='qwen3.5:27b')
+    register_issue.add_argument('--observation-policy', choices=('full', 'compact-v1'), default='full')
+    register_issue.add_argument('--responses', type=Path, help='Optional trusted scripted responses for an offline demo')
+    issue_demo = commands.add_parser('demo-issue', help='Offline CLI/API approval demonstration; requires a scripted Issue entry')
+    issue_demo.add_argument('--entry', type=Path, required=True)
+    issue_demo.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     if args.command == 'prepare':
         print(export(args.task, args.output, args.include_replay))
@@ -47,6 +59,15 @@ def main():
         from repairflow.demo import run as run_demo
 
         print(json.dumps(run_demo(args.bundle, args.output), ensure_ascii=False))
+    elif args.command == 'register-issue':
+        from repairflow.issue_registry import register
+
+        print(register(args.prepared, args.config, args.output, model=args.model,
+                       observation_policy=args.observation_policy, responses=args.responses))
+    elif args.command == 'demo-issue':
+        from repairflow.issue_demo import run as issue_demonstration
+
+        print(json.dumps(issue_demonstration(args.entry, args.output), ensure_ascii=False))
     elif args.command == 'import-issue':
         from repairflow.github_issue import prepare as prepare_issue
         from sandbox.runner import SandboxError
@@ -67,7 +88,7 @@ def main():
                                      responses=args.responses, model=args.model, context_policy=args.context_policy,
                                      workflow=args.workflow, max_steps=args.max_steps, max_edit_attempts=args.max_edit_attempts,
                                      max_consecutive_errors=args.max_consecutive_errors,
-                                     max_repeated_actions=args.max_repeated_actions)
+                                     max_repeated_actions=args.max_repeated_actions, observation_policy=args.observation_policy)
         except (SandboxError, ValueError, OSError, KeyError, TypeError) as exc:
             report = {'status': exc.status if isinstance(exc, SandboxError) else 'invalid_repair_input',
                       'public_checks_passed': False, 'accepted': False, 'fresh_model_calls': 0}

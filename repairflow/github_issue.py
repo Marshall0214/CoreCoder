@@ -68,7 +68,7 @@ def config(path, url):
     data = json.loads(raw)
     expected = {'schema_version', 'repo', 'issue_number', 'base_commit', 'package', 'source_root',
                 'allowed_files', 'harness', 'license_file', 'license_id', 'image'}
-    if set(data) != expected or data['schema_version'] != 1:
+    if set(data) - {'read_only_files'} != expected or data['schema_version'] != 1:
         raise ValueError('Unsupported trusted issue configuration')
     repo, number = identity(url)
     if (data['repo'] != repo or type(data['issue_number']) is not int or data['issue_number'] != number
@@ -86,6 +86,15 @@ def config(path, url):
         portable(name)
         if not name.endswith('.py'):
             raise ValueError('Only Python source changes supported in this version')
+    read_only = data.get('read_only_files', [])
+    if (not isinstance(read_only, list) or len(read_only) > 128
+            or any(not isinstance(name, str) for name in read_only)
+            or len(set(read_only)) != len(read_only) or set(read_only) & set(allowed)):
+        raise ValueError('Require unique read-only files distinct from writable files')
+    for name in read_only:
+        portable(name)
+        if not name.endswith('.py'):
+            raise ValueError('Read-only dependencies must be explicit Python source files')
     portable(data['harness'])
     harness = path.parent / data['harness']
     if any(p.is_symlink() for p in (harness, *harness.parents)) or not harness.resolve().is_relative_to(path.parent):
@@ -183,7 +192,7 @@ def prepare(url, configuration, output, client=None):
         extract(archive, source)
         if not (source / settings['source_root'] / settings['package'] / '__init__.py').is_file():
             raise ValueError('Configured package not found in pinned source')
-        for name in settings['allowed_files']:
+        for name in settings['allowed_files'] + settings.get('read_only_files', []):
             if not (source / name).is_file():
                 raise ValueError('Allowed source missing from pinned revision')
         license_path = source / settings['license_file']
@@ -215,6 +224,8 @@ def prepare(url, configuration, output, client=None):
                     preservation_passed=bool(preserved), checks=outcomes, source_sha256=source_hash,
                     harness_sha256=harness_hash, package=settings['package'], source_root=settings['source_root'],
                     allowed_files=settings['allowed_files'], description=issue['title'] + '\n\n' + (issue['body'] or ''))
+        if 'read_only_files' in settings:
+            task['read_only_files'] = settings['read_only_files']
     except runner.SandboxError as exc:
         task.update(status=exc.status, failure_stage=stage)
     except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile, urllib.error.URLError) as exc:

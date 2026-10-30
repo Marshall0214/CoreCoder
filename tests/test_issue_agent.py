@@ -62,6 +62,27 @@ def test_read_after_failed_public_checks_uses_modified_source(tmp_path, task):
     assert 'AssertionError' in json.dumps(payload['observations'])
 
 
+def test_compact_history_retains_current_source_errors_feedback_and_full_report(tmp_path, task):
+    report = execute(tmp_path, task, [symbol_read(), patch(old=77), symbol_read(), patch(new=4),
+                                     symbol_read(), patch(old=4)], observation_policy='compact-v1')
+    assert report['public_checks_passed'] and not report['accepted']
+    assert report['scripted_calls'] == 6 and report['edit_attempts_used'] == 3
+    assert report['observation_policy'] == 'compact-v1'
+    assert read(tmp_path / 'run/provenance.json')['observation_policy'] == 'compact-v1'
+    payload = json.loads(read(tmp_path / 'run/step-006-messages.json')[1]['content'])
+    assert payload['must_read_before_edit'] == []
+    assert any('return x + 4' in row['content'] for row in payload['fragments'])
+    assert payload['observations'][0]['result']['content_available'] is False
+    assert payload['observations'][4]['result']['content_available'] is True
+    assert payload['observations'][1]['error']['code'] == 'anchor_not_found'
+    assert 'AssertionError' in payload['observations'][3]['public_check_feedback']['observations']
+    assert all('content' not in row.get('result', {}) for row in payload['observations'])
+    # Full source and proposed old/new text remain in reports, not the request projection.
+    assert report['actions'][0]['result']['content'].startswith('def f(x):')
+    assert 'old' in report['actions'][1]['arguments']['edits'][0]
+    assert read(tmp_path / 'run/actions.json') == report['actions']
+
+
 @pytest.mark.parametrize('option,rows,status', [
     ({'max_steps': 1}, [symbol_read()], 'step_limit'),
     ({'max_edit_attempts': 3}, [patch(old=77), symbol_read(), patch(old=77), symbol_read(), patch(old=77)], 'edit_attempt_limit'),
@@ -155,13 +176,21 @@ def test_cli_exposes_retry_overrides_and_new_default(tmp_path, task, monkeypatch
     write(responses, [patch(old=77), symbol_read(), patch(old=77), symbol_read(), patch()])
     monkeypatch.setattr(sys, 'argv', ['repairflow', 'repair-issue', '--prepared', str(task[0]), '--config', str(task[1]),
                                     '--output', str(tmp_path / 'run'), '--mode', 'scripted', '--responses', str(responses),
-                                    '--max-steps', '12', '--max-edit-attempts', '4'])
+                                    '--max-steps', '12', '--max-edit-attempts', '4', '--observation-policy', 'compact-v1'])
     assert cli.main() == 0
     assert json.loads(capsys.readouterr().out)['public_checks_passed']
     provenance = read(tmp_path / 'run/provenance.json')
     assert provenance['workflow'] == 'symbol-recovery-v1'
     assert provenance['recovery_limits']['max_edit_attempts'] == 4
     assert provenance['limits']['max_rounds'] == 12
+    assert provenance['observation_policy'] == 'compact-v1'
+
+
+@pytest.mark.parametrize('workflow,policy', [('symbol-recovery-v1', 'unknown'), ('patch-v1', 'compact-v1')])
+def test_observation_policy_rejected_before_loading_inputs(tmp_path, workflow, policy):
+    with pytest.raises(ValueError, match='observation|Compact'):
+        module.execute(tmp_path / 'missing', tmp_path / 'missing.json', tmp_path / 'run', mode='ollama',
+                       workflow=workflow, observation_policy=policy)
 
 
 @pytest.mark.parametrize('option', [{'max_steps': 0}, {'max_edit_attempts': -1}, {'max_consecutive_errors': True},

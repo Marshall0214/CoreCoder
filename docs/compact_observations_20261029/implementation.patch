@@ -1,0 +1,251 @@
+diff --git a/repairflow/__main__.py b/repairflow/__main__.py
+index 7b66256..588f6a3 100644
+--- a/repairflow/__main__.py
++++ b/repairflow/__main__.py
+@@ -36,6 +36,8 @@ def main():
+                               help='Keep the original context policy by default; module bindings are experimental')
+     repair_issue.add_argument('--workflow', choices=('patch-v1', 'symbol-recovery-v1'), default='symbol-recovery-v1',
+                               help='Symbol actions with recovery by default; patch-v1 retains the two-generation protocol')
++    repair_issue.add_argument('--observation-policy', choices=('full', 'compact-v1'), default='full',
++                              help='Optional compact history; canonical actions and source evidence remain unchanged')
+     repair_issue.add_argument('--max-steps', type=int, default=20)
+     repair_issue.add_argument('--max-edit-attempts', type=int, default=6)
+     repair_issue.add_argument('--max-consecutive-errors', type=int, default=3)
+@@ -67,7 +69,7 @@ def main():
+                                      responses=args.responses, model=args.model, context_policy=args.context_policy,
+                                      workflow=args.workflow, max_steps=args.max_steps, max_edit_attempts=args.max_edit_attempts,
+                                      max_consecutive_errors=args.max_consecutive_errors,
+-                                     max_repeated_actions=args.max_repeated_actions)
++                                     max_repeated_actions=args.max_repeated_actions, observation_policy=args.observation_policy)
+         except (SandboxError, ValueError, OSError, KeyError, TypeError) as exc:
+             report = {'status': exc.status if isinstance(exc, SandboxError) else 'invalid_repair_input',
+                       'public_checks_passed': False, 'accepted': False, 'fresh_model_calls': 0}
+diff --git a/repairflow/issue_agent.py b/repairflow/issue_agent.py
+index 8e1bf7c..3d8d229 100644
+--- a/repairflow/issue_agent.py
++++ b/repairflow/issue_agent.py
+@@ -32,6 +32,9 @@ SYSTEM = '''Repair a prepared public Issue using one JSON action per response:
+ {"action":"apply_patch","arguments":{"edits":[{"file":"allowed/file.py","old":"exact supplied text","new":"replacement"}]}}
+ {"action":"finish","arguments":{}}
+ Read exact current symbols when context is incomplete or an anchor fails. Use qualified names when ambiguous.
++read_symbol also reads module assignments and import declarations in allowed files. kind identifies the declaration.
++These are static source declarations, not evaluated values. Imports report import_source; they are never followed.
++Do not treat an import declaration as the imported implementation or as permission to read another file.
+ Read offsets count characters within the symbol. next_offset indicates omitted source; never invent it.
+ Each old must be copied from a supplied current fragment and match uniquely in its full file.
+ After a source change, re-read changed symbols before editing them again. Failed edits do not change source.
+@@ -43,6 +46,50 @@ No shell, network, extra tools, or private grader is available. finish cannot as
+ Public-check success is limited evidence and always requires human review.'''
+ 
+ 
++COMPACT_GUIDANCE = '''Historical reads contain metadata only; their source is in fragments when content_available is true.
++If content_available is false, that exact read is no longer supplied; read current source again before using it.
++Historical edits contain lengths and hashes instead of old/new source. They are not editable source evidence.
++Tool errors and public test feedback remain observations; use them with current fragments to investigate failures.'''
++
++
++def observation_view(record, evidence):
++    """Project history for a request, retaining canonical actions and edit receipts unchanged."""
++    view = dict(record)
++    if record.get('action') == 'read_symbol' and isinstance(record.get('result'), dict):
++        source = record['result']
++        view['result'] = {key: value for key, value in source.items() if key != 'content'}
++        view['result']['content_available'] = any(
++            all(row.get(key) == source.get(key) for key in ('path', 'symbol', 'content_hash', 'start_line', 'end_line', 'content'))
++            and row.get('offset', 0) == source.get('offset', 0) for row in evidence)
++    elif record.get('action') == 'apply_patch' and isinstance(record.get('arguments'), dict):
++        edits = record['arguments'].get('edits')
++        if isinstance(edits, list):
++            summaries = []
++            for edit in edits:
++                row = {'file': edit.get('file')} if isinstance(edit, dict) else {'invalid_edit_type': type(edit).__name__}
++                for field in ('old', 'new'):
++                    if isinstance(edit, dict) and isinstance(edit.get(field), str):
++                        value = edit[field]
++                        row[field + '_chars'] = len(value)
++                        row[field + '_sha256'] = hashlib.sha256(value.encode('utf-8')).hexdigest()
++                summaries.append(row)
++            view['arguments'] = {'edits': summaries}
++        else:
++            view['arguments'] = {'invalid_edits_type': type(edits).__name__}
++    return view
++
++
++def request_messages(payload, observation_policy='full'):
++    if observation_policy not in {'full', 'compact-v1'}:
++        raise ValueError('Unknown prepared Issue observation policy')
++    system = SYSTEM
++    if observation_policy == 'compact-v1':
++        payload = dict(payload, observations=[observation_view(row, payload['fragments']) for row in payload['observations']])
++        system += '\n' + COMPACT_GUIDANCE
++    return [{'role': 'system', 'content': system},
++            {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}]
++
++
+ def action_from(content):
+     try:
+         value = json.loads(content)
+@@ -58,7 +105,7 @@ def action_from(content):
+     return value['action'], value['arguments']
+ 
+ 
+-def run(llm, workspace, task, output, events, report, run_checks, deadline, limits, context_policy):
++def run(llm, workspace, task, output, events, report, run_checks, deadline, limits, context_policy, observation_policy='full'):
+     public = (output / 'public/test_admission.py').read_text(encoding='utf-8')
+     select = baseline_retrieve if context_policy == 'baseline' else retrieve
+     try:
+@@ -82,8 +129,7 @@ def run(llm, workspace, task, output, events, report, run_checks, deadline, limi
+                    'must_read_before_edit': sorted(required_reads),
+                    'remaining_steps': limits.max_steps - step + 1,
+                    'remaining_edit_attempts': limits.max_edit_attempts - edits}
+-        messages = [{'role': 'system', 'content': SYSTEM},
+-                    {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}]
++        messages = request_messages(payload, observation_policy)
+         write(output / (label + '-messages.json'), events.clean(messages))
+         record = {'step': step, 'status': 'requesting',
+                   'prompt_sha256': hashlib.sha256(json.dumps(messages).encode()).hexdigest()}
+diff --git a/repairflow/issue_repair.py b/repairflow/issue_repair.py
+index cd1686b..ba13c38 100644
+--- a/repairflow/issue_repair.py
++++ b/repairflow/issue_repair.py
+@@ -116,7 +116,8 @@ def attempt(llm, workspace, task, root, label, feedback, events, context_policy=
+ 
+ 
+ def execute(prepared, configuration, output, *, mode, responses=None, model='qwen3.5:27b', context_policy='baseline',
+-            workflow='patch-v1', max_steps=20, max_edit_attempts=6, max_consecutive_errors=3, max_repeated_actions=3):
++            workflow='patch-v1', max_steps=20, max_edit_attempts=6, max_consecutive_errors=3, max_repeated_actions=3,
++            observation_policy='full'):
+     """CLI-only, trusted configuration required; always Docker, never host fallback."""
+     if mode not in {'scripted', 'ollama'} or (mode == 'scripted') != (responses is not None):
+         raise ValueError('Choose scripted with responses, or ollama without responses')
+@@ -126,6 +127,10 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
+ 
+     if workflow not in {'patch-v1', 'symbol-recovery-v1'}:
+         raise ValueError('Unknown prepared Issue workflow')
++    if observation_policy not in {'full', 'compact-v1'}:
++        raise ValueError('Unknown prepared Issue observation policy')
++    if workflow != 'symbol-recovery-v1' and observation_policy != 'full':
++        raise ValueError('Compact observations require symbol-recovery-v1')
+     recovery = RecoveryLimits(max_steps, max_edit_attempts, max_consecutive_errors, max_repeated_actions)
+     prepared, output = Path(prepared).resolve(), Path(output).resolve()
+     task, settings = trusted_task(prepared, configuration)
+@@ -165,7 +170,7 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
+                                     for name in ('issue_repair.py', 'issue_providers.py', 'issue_context.py',
+                                                  'issue_agent.py', 'issue_tools.py')},
+           'workflow': workflow, 'recovery_limits': recovery.__dict__ if workflow == 'symbol-recovery-v1' else None,
+-          'context_policy': context_policy,
++          'context_policy': context_policy, 'observation_policy': observation_policy,
+           'scripted_responses_sha256': hashlib.sha256(Path(responses).read_bytes()).hexdigest() if responses else None})
+     report = {'schema_version': schema_version, 'status': 'agent_error', 'accepted': False,
+               'public_checks_passed': False, 'requires_review': True, 'delivery_status': 'not_delivered',
+@@ -173,6 +178,7 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
+               'execution_mode': mode, 'fresh_inference': mode == 'ollama', 'fresh_model_calls': 0,
+               'no_progress_detected': False,
+               'context_policy': context_policy,
++              'observation_policy': observation_policy,
+               'workflow': workflow,
+               'scripted_execution': mode == 'scripted', 'thinking': False, 'sandbox': policy,
+               'limits': 'Trusted public reproduction and preservation only; no independent grader or upstream full suite.'}
+@@ -194,7 +200,8 @@ def execute(prepared, configuration, output, *, mode, responses=None, model='qwe
+         elif workflow == 'symbol-recovery-v1':
+             from repairflow.issue_agent import run as run_agent
+ 
+-            run_agent(llm, workspace, task, output, events, report, run_checks, deadline, recovery, context_policy)
++            run_agent(llm, workspace, task, output, events, report, run_checks, deadline, recovery, context_policy,
++                      observation_policy)
+         else:
+             feedback = None
+             for label in ('initial', 'correction'):
+diff --git a/repairflow/issue_tools.py b/repairflow/issue_tools.py
+index 613ae14..37505b9 100644
+--- a/repairflow/issue_tools.py
++++ b/repairflow/issue_tools.py
+@@ -49,26 +49,72 @@ def symbol_nodes(tree, prefix=''):
+                     yield from symbol_nodes(ast.Module(body=body, type_ignores=[]), prefix)
+ 
+ 
++def binding_names(target):
++    if isinstance(target, ast.Name):
++        yield target.id
++    elif isinstance(target, (ast.Tuple, ast.List)):
++        for item in target.elts:
++            yield from binding_names(item)
++    elif isinstance(target, ast.Starred):
++        yield from binding_names(target.value)
++
++
++def module_bindings(body):
++    """Describe declarations, never evaluate values or follow imports into another file."""
++    for node in body:
++        if isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
++            continue  # Local/class assignments are not module bindings.
++        if isinstance(node, (ast.Assign, ast.AnnAssign)):
++            targets = node.targets if isinstance(node, ast.Assign) else [node.target]
++            names = dict.fromkeys(name for target in targets for name in binding_names(target))
++            for name in names:
++                yield name, node, {'kind': 'assignment', 'value_present': node.value is not None}
++        elif isinstance(node, (ast.Import, ast.ImportFrom)):
++            for alias in node.names:
++                if alias.name == '*':
++                    continue  # Exported names require execution or reading a different module.
++                name = alias.asname or (alias.name.split('.')[0] if isinstance(node, ast.Import) else alias.name)
++                yield name, node, {'kind': 'import', 'import_source': {
++                    'module': node.module if isinstance(node, ast.ImportFrom) else alias.name,
++                    'name': alias.name if isinstance(node, ast.ImportFrom) else None,
++                    'level': node.level if isinstance(node, ast.ImportFrom) else 0,
++                    'followed': False}}
++        # Conditional declarations are returned as static possibilities, not runtime facts.
++        for field in ('body', 'orelse', 'finalbody'):
++            children = getattr(node, field, None)
++            if isinstance(children, list):
++                yield from module_bindings(children)
++        for branch in [*getattr(node, 'handlers', []), *getattr(node, 'cases', [])]:
++            yield from module_bindings(branch.body)
++
++
+ def read_symbol(workspace, allowed, path, symbol, offset=0):
+     if not isinstance(symbol, str) or not symbol or len(symbol) > 256 or type(offset) is not int or offset < 0:
+         raise ToolError('invalid_arguments', 'Supply symbol and a nonnegative character offset.')
+     raw = source_path(workspace, allowed, path).read_bytes()
+     try:
+         text = raw.decode('utf-8')
+-        nodes = list(symbol_nodes(ast.parse(text)))
++        tree = ast.parse(text)
++        nodes = [(name, node, {'kind': 'class' if isinstance(node, ast.ClassDef) else 'function'})
++                 for name, node in symbol_nodes(tree)]
++        nodes.extend(module_bindings(tree.body))
++        nodes.sort(key=lambda row: row[1].lineno)
+     except (UnicodeError, SyntaxError) as exc:
+         raise ToolError('source_parse_error', 'Source cannot be parsed as UTF-8 Python.', file=path) from exc
+-    matches = [(name, node) for name, node in nodes if name == symbol]
++    matches = [row for row in nodes if row[0] == symbol]
+     if not matches:
+-        matches = [(name, node) for name, node in nodes if name.rsplit('.', 1)[-1] == symbol]
++        matches = [row for row in nodes if row[0].rsplit('.', 1)[-1] == symbol]
+     if len(matches) != 1:
+         raise ToolError('symbol_ambiguous' if matches else 'symbol_not_found',
+-                        'Choose a qualified symbol from the candidates.', file=path,
+-                        candidates=[{'symbol': name, 'line': node.lineno} for name, node in (matches or nodes)[:20]],
++                        ('Multiple static declarations; choose a qualified symbol when possible. Runtime selection is not evaluated.'
++                         if matches else 'No supported static declaration found. Wildcard imports and dynamic bindings are not resolved.'),
++                        file=path,
++                        candidates=[{'symbol': name, 'line': node.lineno, 'kind': details['kind']}
++                                    for name, node, details in (matches or nodes)[:20]],
+                         candidates_truncated=len(matches or nodes) > 20)
+-    name, node = matches[0]
++    name, node, details = matches[0]
+     lines = text.splitlines(keepends=True)
+-    start = min([node.lineno] + [d.lineno for d in node.decorator_list])
++    start = min([node.lineno] + [d.lineno for d in getattr(node, 'decorator_list', [])])
+     content = ''.join(lines[start - 1:node.end_lineno])
+     if offset >= len(content):
+         raise ToolError('invalid_offset', 'Offset is outside the symbol; restart at zero.', file=path, symbol=name)
+@@ -79,7 +125,7 @@ def read_symbol(workspace, allowed, path, symbol, offset=0):
+             'content_hash': hashlib.sha256(raw).hexdigest(), 'offset': offset,
+             'complete_symbol': offset == 0 and next_offset == len(content),
+             'next_offset': next_offset if next_offset < len(content) else None,
+-            'reason': 'explicit_symbol_read'}
++            'reason': 'explicit_symbol_read', 'resolution': 'static_declaration', **details}
+ 
+ 
+ def apply_patch(workspace, allowed, evidence, arguments, staging):

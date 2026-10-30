@@ -1,0 +1,16 @@
+test_existing_color_without_override_is_retained (test_admission.Preserve.test_existing_color_without_override_is_retained) ... FAIL
+test_plain_input_can_be_colored (test_admission.Preserve.test_plain_input_can_be_colored) ... ok
+test_unstyle_preserves_visible_text (test_admission.Preserve.test_unstyle_preserves_visible_text) ... ok
+
+======================================================================
+FAIL: test_existing_color_without_override_is_retained (test_admission.Preserve.test_existing_color_without_override_is_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 40, in test_existing_color_without_override_is_retained
+    self.assertEqual(foreground_at(click.style(red), 'red'), 31)
+AssertionError: None != 31
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (failures=1)

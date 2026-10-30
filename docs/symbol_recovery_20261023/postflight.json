@@ -1,0 +1,58 @@
+{
+  "elapsed_seconds": 41.51271879999695,
+  "status": "consecutive_error_limit",
+  "model_after": {
+    "name": "qwen3.5:27b",
+    "model": "qwen3.5:27b",
+    "modified_at": "2026-09-19T20:23:24.6144565+08:00",
+    "size": 17420432728,
+    "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "27.8B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 5120,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ]
+  },
+  "resident_after": {
+    "models": [
+      {
+        "name": "qwen3.5:27b",
+        "model": "qwen3.5:27b",
+        "size": 20435708147,
+        "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "27.8B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-10-23T22:27:18.1292258+08:00",
+        "size_vram": 20435708147,
+        "context_length": 65536,
+        "runner": "llamacpp"
+      }
+    ]
+  },
+  "input_hashes_unchanged": true,
+  "prepared_task_unchanged": true,
+  "remaining_owned_containers": [],
+  "report_sha256": "36d4074a6ed89ead25a942940738d444ced8f241724028ef2766e9123342c58c"
+}

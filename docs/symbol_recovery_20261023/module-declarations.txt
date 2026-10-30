@@ -1,0 +1,49 @@
+import inspect
+import io
+import itertools
+import sys
+import typing as t
+from gettext import gettext as _
+
+from ._compat import isatty
+from ._compat import strip_ansi
+from .exceptions import Abort
+from .exceptions import UsageError
+from .globals import resolve_color_default
+from .types import Choice
+from .types import convert_type
+from .types import ParamType
+from .utils import echo
+from .utils import LazyFile
+
+if t.TYPE_CHECKING:
+    from ._termui_impl import ProgressBar
+
+V = t.TypeVar("V")
+
+# The prompt functions to use.  The doc tools currently override these
+# functions to customize how they work.
+visible_prompt_func: t.Callable[[str], str] = input
+
+_ansi_colors = {
+    "black": 30,
+    "red": 31,
+    "green": 32,
+    "yellow": 33,
+    "blue": 34,
+    "magenta": 35,
+    "cyan": 36,
+    "white": 37,
+    "reset": 39,
+    "bright_black": 90,
+    "bright_red": 91,
+    "bright_green": 92,
+    "bright_yellow": 93,
+    "bright_blue": 94,
+    "bright_magenta": 95,
+    "bright_cyan": 96,
+    "bright_white": 97,
+}
+_ansi_reset_all = "\033[0m"
+
+

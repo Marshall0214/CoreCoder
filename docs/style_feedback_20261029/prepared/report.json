@@ -1,0 +1,97 @@
+{
+  "schema_version": "github-issue-preparation-v1",
+  "repo": "pallets/click",
+  "issue_url": "https://github.com/pallets/click/issues/3887",
+  "base_commit": "934813e4d421071a1b3db3973c02fe2721359a6e",
+  "fetched_at": "2026-10-19T02:53:14.117479+00:00",
+  "status": "ready_for_repair",
+  "ready_for_repair": true,
+  "independent_grading_available": false,
+  "fresh_model_calls": 0,
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "config_sha256": "1932232d1e6f0d52e548bf69ef6ccf4dd0eefb3c38cb22213438a300ab3741c7",
+  "issue_sha256": "f17e178f1213a6e331545b01d687fd55237cfd933315b15b11ea8a76d16bc32f",
+  "commit_tree": "48a3e9893840b8ad002fc31b14be47a31dfd96ed",
+  "archive_sha256": "266110f5eb2ac4b460c833636e2859d95de080f84786844969c930981db04cd2",
+  "license_id": "BSD-3-Clause",
+  "license_sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+  "reproduction_failed_on_base": true,
+  "preservation_passed": true,
+  "checks": {
+    "Reproduce": {
+      "returncode": 1,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 1,
+      "successful": false,
+      "seconds": 1.7423,
+      "passed": false
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 9,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.9455,
+      "passed": true
+    }
+  },
+  "source_sha256": "d52d04c39e9482c3e5d0f8354bfb9c8285a207f5ee0b85097285b2d3d64060e4",
+  "harness_sha256": "628bd78ff15d7fa2931c32d82f040a73d8cfaadffe100f104c073197e1d5495a",
+  "package": "click",
+  "source_root": "src",
+  "allowed_files": [
+    "src/click/termui.py"
+  ],
+  "requested_urls": [],
+  "evidence_scope": "Expanded public DEVELOPMENT tests, derived after candidate review; no independent grader.",
+  "issue_text_scope": "Title/body as fetched, may have upstream edits; untrusted data, not execution instructions.",
+  "preparation_mode": "local_snapshot_reuse_no_http",
+  "prepared_at": "2026-10-29T09:16:07.159959+00:00",
+  "derived_from": {
+    "task_sha256": "a56b93b1d00427ba00975c52a004bef76a6e34fe27deae3a99bd1d025f15e98b",
+    "config_sha256": "f1390bd833875537d48e3c1fe2247b192e2aa3d40ea4cdf70edb1dd4c02cfdec",
+    "harness_sha256": "64e41aee01041313e48e1b03b3520a45b3d56c39b607ce350b739ed37b323057",
+    "fetched_at": "2026-10-19T02:53:14.117479+00:00"
+  }
+}

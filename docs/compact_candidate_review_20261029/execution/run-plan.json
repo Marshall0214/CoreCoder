@@ -1,0 +1,29 @@
+{
+  "scope": "Post-hoc compatibility review, not new frozen scoring or model inference",
+  "fresh_model_calls": 0,
+  "learning_task_runs_used": 1,
+  "method_rounds_used": 1,
+  "input_hashes": {
+    "prepared": "7b46ec293bc88c0222fd79620193ff7dc3c285378f2569f00870da2cdd1e68f1",
+    "candidate": "5eb9c28031e9097b6abcda5b8ff2a431c715bac81f7119f074300e32efe8df02",
+    "configuration": "f1390bd833875537d48e3c1fe2247b192e2aa3d40ea4cdf70edb1dd4c02cfdec",
+    "diagnostic_source": "bab670dcd6aeade2830e8de69c8f5474fe856ad9a06c7e8f85456f2213237308",
+    "frozen_summary": "7b71afbc2d7477b4728af56f447942f2b571fbb4bc83ce6e724d359758d7ef8f"
+  },
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "probe_count": 6,
+  "original_groups": [
+    "Reproduce",
+    "Preserve"
+  ],
+  "diagnostic_group": "StylePreservation"
+}

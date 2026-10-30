@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "server_receipt_verified": true,
+  "base_url": "http://127.0.0.1:3300",
+  "scope": "Scripted engineering acceptance; not model accuracy",
+  "fresh_model_calls": 0,
+  "traces": [
+    {
+      "trace_id": "fce5565f233f547f4836e04a8418a9c1",
+      "root_id": "5a20b5a67e350f41",
+      "observation_count": 7,
+      "names": [
+        "apply_patch",
+        "docker-public-checks",
+        "issue-repair",
+        "read_symbol",
+        "scripted-response"
+      ],
+      "all_operations_ended": true,
+      "parent_links_verified": true,
+      "summary_only_payloads": true,
+      "scores": {
+        "public_checks_passed": true,
+        "independent_verification_available": false,
+        "fresh_model_calls": 0
+      },
+      "fresh_model_calls": 0,
+      "independent_acceptance": false
+    },
+    {
+      "trace_id": "58c3b55b243ab6b4e8a1936e8c8bfd94",
+      "root_id": "082beb4c822e6dc2",
+      "observation_count": 7,
+      "names": [
+        "apply_patch",
+        "docker-public-checks",
+        "issue-repair",
+        "read_symbol",
+        "scripted-response"
+      ],
+      "all_operations_ended": true,
+      "parent_links_verified": true,
+      "summary_only_payloads": true,
+      "scores": {
+        "fresh_model_calls": 0,
+        "public_checks_passed": true,
+        "independent_verification_available": false
+      },
+      "fresh_model_calls": 0,
+      "independent_acceptance": false
+    }
+  ]
+}

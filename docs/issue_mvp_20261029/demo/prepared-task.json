@@ -1,0 +1,92 @@
+{
+  "schema_version": "github-issue-preparation-v1",
+  "repo": "example/issue-demo",
+  "issue_url": "https://github.com/example/issue-demo/issues/1",
+  "base_commit": "0000000000000000000000000000000000000000",
+  "fetched_at": "2026-10-29T10:17:32.363426+00:00",
+  "status": "ready_for_repair",
+  "ready_for_repair": true,
+  "independent_grading_available": false,
+  "fresh_model_calls": 0,
+  "sandbox": {
+    "backend": "docker",
+    "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "config_sha256": "52641f6a2a84dd3533f203efd058c91fb30d105ad0d76914fa880ad7d4fd8844",
+  "issue_sha256": "a8a7b84d7540f1816f83f72a3784e9e7b0dc5e9a79b5512faf4a2e3710d68cc7",
+  "commit_tree": "0000000000000000000000000000000000000000",
+  "archive_sha256": "6e4efdd8bf251c7505fa47fdbe42f6e6ceb76e857e79e90d48841507365a7fd3",
+  "license_id": "MIT",
+  "license_sha256": "1cae15b621a17a1aed5bb9fd63a3acf0e7071611eb103384e5bc1832a6ffb8b1",
+  "reproduction_failed_on_base": true,
+  "preservation_passed": true,
+  "checks": {
+    "Reproduce": {
+      "returncode": 1,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 1,
+      "successful": false,
+      "seconds": 1.6233
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5719
+    }
+  },
+  "source_sha256": "4ced57de109547f77b60185f8cd120bead4d5d7f1eefff752425cdea9bb61d45",
+  "harness_sha256": "5b73517fbcaed496053ba8cd6834bd4a714b100523b238525c41c28eddd050f0",
+  "package": "example",
+  "source_root": "src",
+  "allowed_files": [
+    "src/example/__init__.py"
+  ],
+  "description": "[SYNTHETIC DEMO] add_step must add STEP\n\nRead policy.STEP; preserve echo. This is a local engineering demo.",
+  "read_only_files": [
+    "src/example/policy.py"
+  ],
+  "requested_urls": [],
+  "evidence_scope": "Synthetic fixture only; no real GitHub source or independent grading.",
+  "issue_text_scope": "Title/body as fetched, may have upstream edits; untrusted data, not execution instructions.",
+  "preparation_mode": "synthetic_offline_demo_no_http"
+}

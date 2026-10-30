@@ -49,26 +49,72 @@ def symbol_nodes(tree, prefix=''):
                     yield from symbol_nodes(ast.Module(body=body, type_ignores=[]), prefix)
 
 
+def binding_names(target):
+    if isinstance(target, ast.Name):
+        yield target.id
+    elif isinstance(target, (ast.Tuple, ast.List)):
+        for item in target.elts:
+            yield from binding_names(item)
+    elif isinstance(target, ast.Starred):
+        yield from binding_names(target.value)
+
+
+def module_bindings(body):
+    """Describe declarations, never evaluate values or follow imports into another file."""
+    for node in body:
+        if isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue  # Local/class assignments are not module bindings.
+        if isinstance(node, (ast.Assign, ast.AnnAssign)):
+            targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+            names = dict.fromkeys(name for target in targets for name in binding_names(target))
+            for name in names:
+                yield name, node, {'kind': 'assignment', 'value_present': node.value is not None}
+        elif isinstance(node, (ast.Import, ast.ImportFrom)):
+            for alias in node.names:
+                if alias.name == '*':
+                    continue  # Exported names require execution or reading a different module.
+                name = alias.asname or (alias.name.split('.')[0] if isinstance(node, ast.Import) else alias.name)
+                yield name, node, {'kind': 'import', 'import_source': {
+                    'module': node.module if isinstance(node, ast.ImportFrom) else alias.name,
+                    'name': alias.name if isinstance(node, ast.ImportFrom) else None,
+                    'level': node.level if isinstance(node, ast.ImportFrom) else 0,
+                    'followed': False}}
+        # Conditional declarations are returned as static possibilities, not runtime facts.
+        for field in ('body', 'orelse', 'finalbody'):
+            children = getattr(node, field, None)
+            if isinstance(children, list):
+                yield from module_bindings(children)
+        for branch in [*getattr(node, 'handlers', []), *getattr(node, 'cases', [])]:
+            yield from module_bindings(branch.body)
+
+
 def read_symbol(workspace, allowed, path, symbol, offset=0):
     if not isinstance(symbol, str) or not symbol or len(symbol) > 256 or type(offset) is not int or offset < 0:
         raise ToolError('invalid_arguments', 'Supply symbol and a nonnegative character offset.')
     raw = source_path(workspace, allowed, path).read_bytes()
     try:
         text = raw.decode('utf-8')
-        nodes = list(symbol_nodes(ast.parse(text)))
+        tree = ast.parse(text)
+        nodes = [(name, node, {'kind': 'class' if isinstance(node, ast.ClassDef) else 'function'})
+                 for name, node in symbol_nodes(tree)]
+        nodes.extend(module_bindings(tree.body))
+        nodes.sort(key=lambda row: row[1].lineno)
     except (UnicodeError, SyntaxError) as exc:
         raise ToolError('source_parse_error', 'Source cannot be parsed as UTF-8 Python.', file=path) from exc
-    matches = [(name, node) for name, node in nodes if name == symbol]
+    matches = [row for row in nodes if row[0] == symbol]
     if not matches:
-        matches = [(name, node) for name, node in nodes if name.rsplit('.', 1)[-1] == symbol]
+        matches = [row for row in nodes if row[0].rsplit('.', 1)[-1] == symbol]
     if len(matches) != 1:
         raise ToolError('symbol_ambiguous' if matches else 'symbol_not_found',
-                        'Choose a qualified symbol from the candidates.', file=path,
-                        candidates=[{'symbol': name, 'line': node.lineno} for name, node in (matches or nodes)[:20]],
+                        ('Multiple static declarations; choose a qualified symbol when possible. Runtime selection is not evaluated.'
+                         if matches else 'No supported static declaration found. Wildcard imports and dynamic bindings are not resolved.'),
+                        file=path,
+                        candidates=[{'symbol': name, 'line': node.lineno, 'kind': details['kind']}
+                                    for name, node, details in (matches or nodes)[:20]],
                         candidates_truncated=len(matches or nodes) > 20)
-    name, node = matches[0]
+    name, node, details = matches[0]
     lines = text.splitlines(keepends=True)
-    start = min([node.lineno] + [d.lineno for d in node.decorator_list])
+    start = min([node.lineno] + [d.lineno for d in getattr(node, 'decorator_list', [])])
     content = ''.join(lines[start - 1:node.end_lineno])
     if offset >= len(content):
         raise ToolError('invalid_offset', 'Offset is outside the symbol; restart at zero.', file=path, symbol=name)
@@ -79,7 +125,7 @@ def read_symbol(workspace, allowed, path, symbol, offset=0):
             'content_hash': hashlib.sha256(raw).hexdigest(), 'offset': offset,
             'complete_symbol': offset == 0 and next_offset == len(content),
             'next_offset': next_offset if next_offset < len(content) else None,
-            'reason': 'explicit_symbol_read'}
+            'reason': 'explicit_symbol_read', 'resolution': 'static_declaration', **details}
 
 
 def apply_patch(workspace, allowed, evidence, arguments, staging):

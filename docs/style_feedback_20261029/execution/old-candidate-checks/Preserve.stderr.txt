@@ -1,0 +1,70 @@
+test_background_keeps_existing_foreground (test_admission.Preserve.test_background_keeps_existing_foreground) ... FAIL
+test_bold_keeps_existing_foreground (test_admission.Preserve.test_bold_keeps_existing_foreground) ... FAIL
+test_existing_color_without_override_is_retained (test_admission.Preserve.test_existing_color_without_override_is_retained) ... ok
+test_foreground_keeps_existing_background (test_admission.Preserve.test_foreground_keeps_existing_background) ... FAIL
+test_nested_open_styles_compose (test_admission.Preserve.test_nested_open_styles_compose) ... FAIL
+test_plain_foreground_background_and_bold (test_admission.Preserve.test_plain_foreground_background_and_bold) ... ok
+test_plain_input_can_be_colored (test_admission.Preserve.test_plain_input_can_be_colored) ... ok
+test_reset_false_keeps_output_open (test_admission.Preserve.test_reset_false_keeps_output_open) ... ok
+test_unstyle_preserves_visible_text (test_admission.Preserve.test_unstyle_preserves_visible_text) ... ok
+
+======================================================================
+FAIL: test_background_keeps_existing_foreground (test_admission.Preserve.test_background_keeps_existing_foreground)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 90, in test_background_keeps_existing_foreground
+    self.assertEqual(state_before(rendered), {'foreground': 31, 'background': 44, 'bold': False})
+AssertionError: {'foreground': None, 'background': 44, 'bold': False} != {'foreground': 31, 'background': 44, 'bold': False}
+- {'background': 44, 'bold': False, 'foreground': None}
+?                                                 ^^^^
+
++ {'background': 44, 'bold': False, 'foreground': 31}
+?                                                 ^^
+
+
+======================================================================
+FAIL: test_bold_keeps_existing_foreground (test_admission.Preserve.test_bold_keeps_existing_foreground)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 82, in test_bold_keeps_existing_foreground
+    self.assertEqual(state_before(rendered), {'foreground': 31, 'background': None, 'bold': True})
+AssertionError: {'foreground': None, 'background': None, 'bold': True} != {'foreground': 31, 'background': None, 'bold': True}
+- {'background': None, 'bold': True, 'foreground': None}
+?                                                  ^^^^
+
++ {'background': None, 'bold': True, 'foreground': 31}
+?                                                  ^^
+
+
+======================================================================
+FAIL: test_foreground_keeps_existing_background (test_admission.Preserve.test_foreground_keeps_existing_background)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 86, in test_foreground_keeps_existing_background
+    self.assertEqual(state_before(rendered), {'foreground': 34, 'background': 43, 'bold': False})
+AssertionError: {'foreground': 34, 'background': None, 'bold': False} != {'foreground': 34, 'background': 43, 'bold': False}
+- {'background': None, 'bold': False, 'foreground': 34}
+?                ^^^^
+
++ {'background': 43, 'bold': False, 'foreground': 34}
+?                ^^
+
+
+======================================================================
+FAIL: test_nested_open_styles_compose (test_admission.Preserve.test_nested_open_styles_compose)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 100, in test_nested_open_styles_compose
+    self.assertEqual(state_before(rendered), {'foreground': 31, 'background': None, 'bold': True})
+AssertionError: {'foreground': None, 'background': None, 'bold': True} != {'foreground': 31, 'background': None, 'bold': True}
+- {'background': None, 'bold': True, 'foreground': None}
+?                                                  ^^^^
+
++ {'background': None, 'bold': True, 'foreground': 31}
+?                                                  ^^
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.005s
+
+FAILED (failures=4)

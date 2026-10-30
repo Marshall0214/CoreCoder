@@ -1,0 +1,104 @@
+{
+  "services": [
+    {
+      "Service": "clickhouse",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "clickhouse/clickhouse-server:25.12",
+      "Ports": "8123/tcp, 9000/tcp, 9009/tcp"
+    },
+    {
+      "Service": "minio",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "cgr.dev/chainguard/minio",
+      "Ports": "127.0.0.1:13390->9000/tcp"
+    },
+    {
+      "Service": "postgres",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "postgres:17",
+      "Ports": "5432/tcp"
+    },
+    {
+      "Service": "redis",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "redis:7",
+      "Ports": "6379/tcp"
+    },
+    {
+      "Service": "web",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "langfuse/langfuse:4.69.0",
+      "Ports": "127.0.0.1:3300->3000/tcp"
+    },
+    {
+      "Service": "worker",
+      "State": "running",
+      "Health": "",
+      "Image": "langfuse/langfuse-worker:4.69.0",
+      "Ports": "3030/tcp"
+    }
+  ],
+  "images": [
+    {
+      "service": "clickhouse",
+      "tag": "clickhouse/clickhouse-server:25.12",
+      "image_id": "sha256:deec6953c88c7db1d988e10c92a5952bbd5d5b56f727c39998c56de87b29a54b",
+      "digests": [
+        "clickhouse/clickhouse-server@sha256:deec6953c88c7db1d988e10c92a5952bbd5d5b56f727c39998c56de87b29a54b"
+      ],
+      "official_config_digest": "sha256:0e76d9807edfac0345554816cd7f54aa9b650892848809932557c46e46bc3450",
+      "rootfs_layers_match": true
+    },
+    {
+      "service": "minio",
+      "tag": "cgr.dev/chainguard/minio",
+      "image_id": "sha256:b235e36658d696a02427535e730aaeb72baceff2ef30f1cdcd56e63a31be853a",
+      "digests": [
+        "cgr.dev/chainguard/minio@sha256:b235e36658d696a02427535e730aaeb72baceff2ef30f1cdcd56e63a31be853a"
+      ]
+    },
+    {
+      "service": "postgres",
+      "tag": "postgres:17",
+      "image_id": "sha256:cfd44df2ebcb6505e539768d085e197a46a6c0a56729c6d631eaf8f2d524afdb",
+      "digests": [
+        "postgres@sha256:cfd44df2ebcb6505e539768d085e197a46a6c0a56729c6d631eaf8f2d524afdb"
+      ],
+      "official_config_digest": "sha256:81edcaa5ff2923f7be9c1f43d3e5076f29c6c9c216c86964b5fd038959404429",
+      "rootfs_layers_match": true
+    },
+    {
+      "service": "redis",
+      "tag": "redis:7",
+      "image_id": "sha256:3f24eefe0b52d9233d6c96904c4cc52fe23785749939d9699e762b1217ccb294",
+      "digests": [
+        "redis@sha256:3f24eefe0b52d9233d6c96904c4cc52fe23785749939d9699e762b1217ccb294"
+      ]
+    },
+    {
+      "service": "web",
+      "tag": "langfuse/langfuse:4.69.0",
+      "image_id": "sha256:aba8f9e1dc95fed0daa3c046082b54b3608ec8479b1220fcfce482fb7f9f1b7c",
+      "digests": [
+        "langfuse/langfuse@sha256:aba8f9e1dc95fed0daa3c046082b54b3608ec8479b1220fcfce482fb7f9f1b7c"
+      ],
+      "official_config_digest": "sha256:55b2fe4a9ea480fad3012625032e6f8af5c9d790dfd8630cec5caf0c16b4f456",
+      "rootfs_layers_match": true
+    },
+    {
+      "service": "worker",
+      "tag": "langfuse/langfuse-worker:4.69.0",
+      "image_id": "sha256:9289f617cc45b9b7e866b8077e675e4eef3130bd50b4876b43aaae0a08ccbc17",
+      "digests": [
+        "langfuse/langfuse-worker@sha256:9289f617cc45b9b7e866b8077e675e4eef3130bd50b4876b43aaae0a08ccbc17"
+      ],
+      "official_config_digest": "sha256:56e2e2ce17aaa72d4312defd1c8c975b7c14ebe58a4731ac8de47949f4a60fa4",
+      "rootfs_layers_match": true
+    }
+  ]
+}

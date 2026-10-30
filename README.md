@@ -14,6 +14,10 @@ This fork extends [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder),
 
 The prepared-Issue CLI now supports [symbol reads and edit recovery (Chinese)](docs/symbol-read-recovery.md), with configurable action/edit limits and mandatory re-reads after anchor or version failures. Scripted acceptance is separate from the historical 47/50 result.
 
+Prepared Issues now have a [complete CLI/API path (Chinese)](docs/issue-service.md): trusted registry, execution approval, restart recovery, read-only dependencies, Docker checks, and artifact downloads. A self-contained scripted demo verifies engineering behavior without model calls. Accuracy optimization is deferred.
+
+An optional [local Langfuse adapter (Chinese)](docs/langfuse-local.md) adds task/model/tool/check spans and deterministic scores, without uploading source or prompts. The self-hosted service is running: [server readback verified two traces and 14 observations, login, and persistence across a stack restart](docs/langfuse-server-20261029.md), with zero model calls. [Further integrations](docs/advanced-capabilities.md) are planned separately.
+
 | Area | Implemented | Boundary |
 | --- | --- | --- |
 | Public GitHub Issues | Read-only import, pinned source, candidate patches and Docker reproduction/preservation checks | CLI with trusted configuration; public-test success requires manual review |
@@ -29,7 +33,7 @@ Public Issue + trusted configuration → fixed source → sandbox admission → 
 Trusted repair bundle → retrieval → candidate patch → feedback → independent checks → report
 ```
 
-`ready_for_repair` means the original defect was reproduced and declared preservation checks passed. Run the separate [prepared-Issue repair CLI](docs/prepared-issue-repair.md) to generate and validate a candidate. Without independent grading it produces a reviewable patch, never an independent acceptance claim. New-task HTTP approval remains a future milestone.
+`ready_for_repair` means the original defect was reproduced and declared preservation checks passed. Use the [prepared-Issue CLI](docs/prepared-issue-repair.md) or the `issue-approval-v1` HTTP workflow to generate a candidate. Public-check success ends in `ready_for_review`, never independent acceptance.
 
 ## Validation evidence
 
@@ -90,7 +94,7 @@ The [shared workflow guide](docs/unified-repair-flow.md) covers trusted-bundle e
 python -B -m service --port 8004 --timeout 1200 --output .tmp/repair-service
 ```
 
-Set `CORECODER_REPAIR_BUNDLES` to an administrator-controlled task registry when using the approval repair endpoint. Approval is required before execution; GitHub Issue import is currently a separate CLI entry point. Model-backed repair is not part of the default quick start. New model trials should keep thinking off unless explicitly enabled, and should not be combined with historical high-reasoning results.
+Use `CORECODER_REPAIR_BUNDLES` for legacy trusted bundles, or `CORECODER_ISSUE_TASKS` for prepared Issues. Administrators import and register tasks through the CLI; HTTP clients submit catalog IDs. Offline demonstrations use scripted responses; Issue live mode uses local Ollama with thinking disabled.
 
 `CORECODER_HOME` relocates checkpoints, grants, sessions, history, hooks, MCP configuration and pricing overrides. Without it the original upstream home-directory locations are retained. Service workers use task-local state. The ordinary agent's Bash tool remains separate from the Docker verification sandbox.
 

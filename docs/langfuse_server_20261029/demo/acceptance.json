@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "scope": "Offline scripted engineering demonstration, not model repair accuracy",
+  "fresh_model_calls": 0,
+  "independent_acceptance": false,
+  "repair_status": "public_checks_passed",
+  "api_state": "ready_for_review",
+  "same_patch": true,
+  "approval_restart": true,
+  "idempotent_submission": true,
+  "repeated_approval_no_execution": true,
+  "rejection_no_execution": true,
+  "task_id": "7e7662a71fe84735929b4ba0fa180431",
+  "rejected_task_id": "113fdaaf00ac4c71a1dba301b40b995e"
+}

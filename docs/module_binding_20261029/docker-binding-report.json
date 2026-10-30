@@ -1,0 +1,281 @@
+{
+  "schema_version": "prepared-issue-symbol-recovery-v1",
+  "status": "public_checks_passed",
+  "accepted": false,
+  "public_checks_passed": true,
+  "requires_review": true,
+  "delivery_status": "ready_for_review",
+  "independent_verification": {
+    "available": false,
+    "passed": null
+  },
+  "attempts": [
+    {
+      "step": 3,
+      "status": "completed",
+      "prompt_sha256": "92a0abc090446b5d6e2e402abf3af1c894f7d6347725bc2342d0192218849604",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/pkg/__init__.py",
+            "old": "STEP = 1\n",
+            "new": "STEP = 2\n"
+          }
+        ]
+      },
+      "edit_attempt": 1,
+      "changed_files": [
+        "src/pkg/__init__.py"
+      ],
+      "net_changed_files": [
+        "src/pkg/__init__.py"
+      ]
+    }
+  ],
+  "execution_mode": "scripted",
+  "fresh_inference": false,
+  "fresh_model_calls": 0,
+  "no_progress_detected": false,
+  "context_policy": "baseline",
+  "workflow": "symbol-recovery-v1",
+  "scripted_execution": true,
+  "thinking": false,
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "limits": "Trusted public reproduction and preservation only; no independent grader or upstream full suite.",
+  "baseline_checks": {
+    "Reproduce": {
+      "returncode": 1,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 1,
+      "successful": false,
+      "seconds": 1.5519,
+      "passed": false
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5854,
+      "passed": true
+    }
+  },
+  "actions": [
+    {
+      "step": 1,
+      "status": "completed",
+      "prompt_sha256": "023e3a9d25f5511e175a9304f55b1c5ccc7d6d614cd25776a00b05a341b2bf89",
+      "action": "read_symbol",
+      "arguments": {
+        "path": "src/pkg/__init__.py",
+        "symbol": "STEP"
+      },
+      "result": {
+        "path": "src/pkg/__init__.py",
+        "symbol": "STEP",
+        "start_line": 2,
+        "end_line": 2,
+        "symbol_range": [
+          2,
+          2
+        ],
+        "content": "STEP = 1\n",
+        "content_hash": "fa27928137b1ba14597423a7dc5cb942a5a6e91a909591bcc1475d0ba632ad8c",
+        "offset": 0,
+        "complete_symbol": true,
+        "next_offset": null,
+        "reason": "explicit_symbol_read",
+        "resolution": "static_declaration",
+        "kind": "assignment",
+        "value_present": true
+      }
+    },
+    {
+      "step": 2,
+      "status": "completed",
+      "prompt_sha256": "bb562082dfd734faa659a458fd16bc74e143a5e28b3bbac6c8072fc8d082d4f0",
+      "action": "read_symbol",
+      "arguments": {
+        "path": "src/pkg/__init__.py",
+        "symbol": "combine"
+      },
+      "result": {
+        "path": "src/pkg/__init__.py",
+        "symbol": "combine",
+        "start_line": 1,
+        "end_line": 1,
+        "symbol_range": [
+          1,
+          1
+        ],
+        "content": "from operator import add as combine\n",
+        "content_hash": "fa27928137b1ba14597423a7dc5cb942a5a6e91a909591bcc1475d0ba632ad8c",
+        "offset": 0,
+        "complete_symbol": true,
+        "next_offset": null,
+        "reason": "explicit_symbol_read",
+        "resolution": "static_declaration",
+        "kind": "import",
+        "import_source": {
+          "module": "operator",
+          "name": "add",
+          "level": 0,
+          "followed": false
+        }
+      }
+    },
+    {
+      "step": 3,
+      "status": "completed",
+      "prompt_sha256": "92a0abc090446b5d6e2e402abf3af1c894f7d6347725bc2342d0192218849604",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/pkg/__init__.py",
+            "old": "STEP = 1\n",
+            "new": "STEP = 2\n"
+          }
+        ]
+      },
+      "edit_attempt": 1,
+      "changed_files": [
+        "src/pkg/__init__.py"
+      ],
+      "net_changed_files": [
+        "src/pkg/__init__.py"
+      ]
+    }
+  ],
+  "recovery_limits": {
+    "max_steps": 20,
+    "max_edit_attempts": 6,
+    "max_consecutive_errors": 3,
+    "max_repeated_actions": 3
+  },
+  "edit_attempts_used": 1,
+  "final_public_checks": {
+    "Reproduce": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5746,
+      "passed": true
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5312,
+      "passed": true
+    }
+  },
+  "changed_files": [
+    "src/pkg/__init__.py"
+  ],
+  "original_unchanged": true,
+  "candidate_rolled_back": false,
+  "scripted_calls": 3,
+  "metrics": {
+    "llm_calls": 3,
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "known_prompt_tokens": 0,
+    "known_completion_tokens": 0,
+    "missing_usage_calls": 3,
+    "budget_accounted_tokens": 15736,
+    "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown"
+  },
+  "provider_calls": [
+    {
+      "scripted": true,
+      "usage_known": false
+    },
+    {
+      "scripted": true,
+      "usage_known": false
+    },
+    {
+      "scripted": true,
+      "usage_known": false
+    }
+  ]
+}

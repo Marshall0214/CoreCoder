@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "status": "unavailable",
+  "content_capture": false,
+  "error_types": [
+    "ReadTimeout"
+  ]
+}

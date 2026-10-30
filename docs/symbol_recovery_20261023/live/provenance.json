@@ -1,0 +1,63 @@
+{
+  "schema_version": "prepared-issue-symbol-recovery-v1",
+  "mode": "ollama",
+  "prepared_task_sha256": "a56b93b1d00427ba00975c52a004bef76a6e34fe27deae3a99bd1d025f15e98b",
+  "config_sha256": "f1390bd833875537d48e3c1fe2247b192e2aa3d40ea4cdf70edb1dd4c02cfdec",
+  "repo": "pallets/click",
+  "base_commit": "934813e4d421071a1b3db3973c02fe2721359a6e",
+  "issue_url": "https://github.com/pallets/click/issues/3887",
+  "source_sha256": "d52d04c39e9482c3e5d0f8354bfb9c8285a207f5ee0b85097285b2d3d64060e4",
+  "harness_sha256": "64e41aee01041313e48e1b03b3520a45b3d56c39b607ce350b739ed37b323057",
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "limits": {
+    "mode": "live",
+    "model": "qwen3.5:27b",
+    "base_url": "http://127.0.0.1:11434",
+    "max_rounds": 20,
+    "token_budget": 60000,
+    "max_output_tokens": 4096,
+    "context_tokens": 65536,
+    "wall_timeout": 1200,
+    "test_timeout": 15,
+    "temperature": 0.0,
+    "reasoning_effort": "none",
+    "search_backend": "off",
+    "search_max_chars": 6000,
+    "search_history": "full",
+    "context_policy": "none",
+    "prompt_policy": "baseline",
+    "evidence_top_k": 5,
+    "evidence_dependency_depth": 2,
+    "evidence_order": "selection",
+    "patch_policy": "baseline",
+    "public_check_policy": "generated",
+    "output_policy": "remaining",
+    "read_policy": "full"
+  },
+  "thinking": false,
+  "implementation_sha256": {
+    "issue_repair.py": "8ef5e1b82c6d1d34460835648242939a19f3f2cde9809c9c3961f212deaea61c",
+    "issue_providers.py": "422835fbf274122a61c07a6ecdb399019dc9492eff5202ce7134b5173597a322",
+    "issue_context.py": "a8461b596f9df5ba0d02b887a9f587b402bf894db11ca10d96d1ac495586fc87",
+    "issue_agent.py": "19dc9528589b309dbaf80620bfc1451e2ca890a22fab8486f248c4da036a16a4",
+    "issue_tools.py": "73c34e61246e4e3700f6bf33d284b389b4d4ef1f68be59cab1b82411ae17aed7"
+  },
+  "workflow": "symbol-recovery-v1",
+  "recovery_limits": {
+    "max_steps": 20,
+    "max_edit_attempts": 6,
+    "max_consecutive_errors": 3,
+    "max_repeated_actions": 3
+  },
+  "context_policy": "baseline",
+  "scripted_responses_sha256": null
+}

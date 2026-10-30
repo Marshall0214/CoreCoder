@@ -1,0 +1,14 @@
+--- a/src/click/termui.py
++++ b/src/click/termui.py
+@@ -552,6 +552,11 @@
+     if not isinstance(text, str):
+         text = str(text)
+ 
++    # Strip existing ANSI codes to prevent them from interfering with new styles
++    import re
++    ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
++    text = ansi_escape.sub('', text)
++
+     bits = []
+ 
+     if fg:

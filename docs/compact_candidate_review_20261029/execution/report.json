@@ -1,0 +1,201 @@
+{
+  "status": "completed",
+  "scope": "Post-hoc development diagnosis; original reports and scoring unchanged",
+  "fresh_model_calls": 0,
+  "cloud_calls": 0,
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "results": {
+    "base": {
+      "Reproduce": {
+        "returncode": 1,
+        "timed_out": false,
+        "sandbox": {
+          "backend": "docker",
+          "image": "corecoder-test-sandbox:v1",
+          "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+          "network": "none",
+          "cpus": 1,
+          "memory_bytes": 1073741824,
+          "pids": 64,
+          "output_limit_bytes": 1048576
+        },
+        "sandbox_status": "completed",
+        "tests_run": 1,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 1,
+        "successful": false,
+        "seconds": 1.6929,
+        "cases": {
+          "test_explicit_blue_overrides_precolored_input": "FAIL"
+        }
+      },
+      "Preserve": {
+        "returncode": 0,
+        "timed_out": false,
+        "sandbox": {
+          "backend": "docker",
+          "image": "corecoder-test-sandbox:v1",
+          "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+          "network": "none",
+          "cpus": 1,
+          "memory_bytes": 1073741824,
+          "pids": 64,
+          "output_limit_bytes": 1048576
+        },
+        "sandbox_status": "completed",
+        "tests_run": 3,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 0,
+        "successful": true,
+        "seconds": 1.6711,
+        "cases": {
+          "test_existing_color_without_override_is_retained": "ok",
+          "test_plain_input_can_be_colored": "ok",
+          "test_unstyle_preserves_visible_text": "ok"
+        }
+      },
+      "StylePreservation": {
+        "returncode": 0,
+        "timed_out": false,
+        "sandbox": {
+          "backend": "docker",
+          "image": "corecoder-test-sandbox:v1",
+          "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+          "network": "none",
+          "cpus": 1,
+          "memory_bytes": 1073741824,
+          "pids": 64,
+          "output_limit_bytes": 1048576
+        },
+        "sandbox_status": "completed",
+        "tests_run": 6,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 0,
+        "successful": true,
+        "seconds": 1.6611,
+        "cases": {
+          "test_background_keeps_existing_foreground": "ok",
+          "test_bold_keeps_existing_foreground": "ok",
+          "test_foreground_keeps_existing_background": "ok",
+          "test_nested_open_styles_compose": "ok",
+          "test_plain_foreground_background_and_bold": "ok",
+          "test_reset_false_keeps_output_open": "ok"
+        }
+      }
+    },
+    "candidate": {
+      "Reproduce": {
+        "returncode": 0,
+        "timed_out": false,
+        "sandbox": {
+          "backend": "docker",
+          "image": "corecoder-test-sandbox:v1",
+          "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+          "network": "none",
+          "cpus": 1,
+          "memory_bytes": 1073741824,
+          "pids": 64,
+          "output_limit_bytes": 1048576
+        },
+        "sandbox_status": "completed",
+        "tests_run": 1,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 0,
+        "successful": true,
+        "seconds": 1.6586,
+        "cases": {
+          "test_explicit_blue_overrides_precolored_input": "ok"
+        }
+      },
+      "Preserve": {
+        "returncode": 0,
+        "timed_out": false,
+        "sandbox": {
+          "backend": "docker",
+          "image": "corecoder-test-sandbox:v1",
+          "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+          "network": "none",
+          "cpus": 1,
+          "memory_bytes": 1073741824,
+          "pids": 64,
+          "output_limit_bytes": 1048576
+        },
+        "sandbox_status": "completed",
+        "tests_run": 3,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 0,
+        "successful": true,
+        "seconds": 1.6652,
+        "cases": {
+          "test_existing_color_without_override_is_retained": "ok",
+          "test_plain_input_can_be_colored": "ok",
+          "test_unstyle_preserves_visible_text": "ok"
+        }
+      },
+      "StylePreservation": {
+        "returncode": 1,
+        "timed_out": false,
+        "sandbox": {
+          "backend": "docker",
+          "image": "corecoder-test-sandbox:v1",
+          "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+          "network": "none",
+          "cpus": 1,
+          "memory_bytes": 1073741824,
+          "pids": 64,
+          "output_limit_bytes": 1048576
+        },
+        "sandbox_status": "completed",
+        "tests_run": 6,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 4,
+        "successful": false,
+        "seconds": 1.671,
+        "cases": {
+          "test_background_keeps_existing_foreground": "FAIL",
+          "test_bold_keeps_existing_foreground": "FAIL",
+          "test_foreground_keeps_existing_background": "FAIL",
+          "test_nested_open_styles_compose": "FAIL",
+          "test_plain_foreground_background_and_bold": "ok",
+          "test_reset_false_keeps_output_open": "ok"
+        }
+      }
+    }
+  },
+  "diagnostic_base_eligible": true,
+  "new_regressions": [
+    "test_background_keeps_existing_foreground",
+    "test_bold_keeps_existing_foreground",
+    "test_foreground_keeps_existing_background",
+    "test_nested_open_styles_compose"
+  ],
+  "review_decision": "needs_revision",
+  "limits": "Locally authored probes after seeing the patch; not upstream full suite or independent grading."
+}

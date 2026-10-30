@@ -1,0 +1,6 @@
+test_explicit_blue_overrides_precolored_input (test_admission.Reproduce.test_explicit_blue_overrides_precolored_input) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK

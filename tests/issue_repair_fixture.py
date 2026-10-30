@@ -27,14 +27,14 @@ class IssueClient(Client):
         return raw
 
 
-def prepare_fixture(tmp_path, image=None):
+def prepare_fixture(tmp_path, image=None, *, source=SOURCE):
     configuration_path = configuration(tmp_path)
     if image:
         data = read(configuration_path)
         data['image'] = image
         write(configuration_path, data)
     (configuration_path.parent / 'checks/test_admission.py').write_text(HARNESS, encoding='utf-8')
-    client = IssueClient(archive=zipped({'src/pkg/__init__.py': SOURCE, 'LICENSE': 'Example license'}))
+    client = IssueClient(archive=zipped({'src/pkg/__init__.py': source, 'LICENSE': 'Example license'}))
     root = tmp_path / 'prepared'
     task = prepare(URL, configuration_path, root, client)
     assert task['ready_for_repair']

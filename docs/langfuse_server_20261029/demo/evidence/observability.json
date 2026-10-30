@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "status": "submitted_unconfirmed",
+  "content_capture": false,
+  "trace_id": "58c3b55b243ab6b4e8a1936e8c8bfd94",
+  "base_url": "http://127.0.0.1:3300",
+  "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/58c3b55b243ab6b4e8a1936e8c8bfd94"
+}

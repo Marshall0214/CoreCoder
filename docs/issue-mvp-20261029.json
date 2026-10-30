@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-29",
+  "scope": "Local specified-task engineering MVP; accuracy research deferred.",
+  "full_pytest": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "20",
+    "tests": "1843",
+    "time": "258.823",
+    "timestamp": "2026-10-29T18:14:33.783198+08:00",
+    "hostname": "DESKTOP-4RMF6AG"
+  },
+  "docker_pytest": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "8",
+    "time": "83.819",
+    "timestamp": "2026-10-29T18:06:29.728561+08:00",
+    "hostname": "DESKTOP-4RMF6AG"
+  },
+  "ruff": "passed",
+  "demo": {
+    "status": "passed",
+    "scope": "Offline scripted engineering demonstration, not model repair accuracy",
+    "fresh_model_calls": 0,
+    "independent_acceptance": false,
+    "repair_status": "public_checks_passed",
+    "api_state": "ready_for_review",
+    "same_patch": true,
+    "approval_restart": true,
+    "idempotent_submission": true,
+    "repeated_approval_no_execution": true,
+    "rejection_no_execution": true,
+    "task_id": "ea6317d85049404e872ba110f00872c4",
+    "rejected_task_id": "c1ee7af428024759aee210d10d729a56"
+  },
+  "postflight": {
+    "remaining_owned_containers": {
+      ".tmp\\issue-mvp-starter-demo-20261029\\cli": [],
+      ".tmp\\issue-mvp-starter-demo-20261029\\api\\ea6317d85049404e872ba110f00872c4": [],
+      ".tmp\\issue-mvp-starter-demo-20261029\\api\\c1ee7af428024759aee210d10d729a56": [],
+      ".tmp\\issue-mvp-demo-20261029\\cli": [],
+      ".tmp\\issue-mvp-demo-20261029\\api\\b725dab6caf946b7933a7fb494a574bb": [],
+      ".tmp\\issue-mvp-demo-20261029\\api\\216f1466c5034af6870d51d8111845f5": []
+    },
+    "cli_api_patch_equal": true,
+    "original_unchanged": true,
+    "fresh_model_calls": 0,
+    "independent_acceptance": false
+  },
+  "implementation_sha256": {
+    "repairflow/github_issue.py": "a841aae037a372adda290cdafcb2ff93a3a7e2634484aa894e9dd9d5f605ea18",
+    "repairflow/issue_registry.py": "773888db67d5778dff880f55711e53aaba1dba7529510124c9e728d5f52c195c",
+    "repairflow/issue_demo.py": "b4ccb687797feee57a5fb4372ea4481fe2951e712cf9e2204c68c2435a8e7b8f",
+    "repairflow/issue_repair.py": "a123cfb78120f59424cbd49c1d42efb8b4ea724df03d91b6d91a3b6ffa9df61c",
+    "repairflow/issue_agent.py": "271a50c1a7b5bb29e81435a3c7f3db16e6c02c3135dceb9e4c42df8df4253310",
+    "repairflow/__main__.py": "0bb79eadc4387d1db477aac6e242034d354e59b66390924b5d877e56b1c3388b",
+    "service/issues.py": "5fcb406df3c3d04c8eb113273e068ffe4ce3b0ee9765dda2896e1d0f2402b4af",
+    "service/app.py": "b6ade38a44d572fed388e5ca2aae1606c4b03c129f002f8e1a702f38e21e795c",
+    "service/manager.py": "5d4601eb9875c196917594872f37c1e3455ac19f0992c9ef05215de7330ac531",
+    "service/worker.py": "4a258c005c61783fe656712b7b7fff47ad2bf0b56d4dc7c7241050ce9863f22c",
+    "workflows/approval.py": "ea940b7fc44e396d3ed0bc7d159daaf9929e05712e8995edffe646b0d615427c",
+    "examples/create_issue_demo.py": "c87b09624d89f590f0b9fdcf785b4681186daea97b7ff2486c4e1489897465f2"
+  },
+  "learning_experiment_counts_unchanged": {
+    "new_model_runs": 2,
+    "method_rounds": 2
+  },
+  "files": {
+    "demo/acceptance.json": "79ec9e84a92e76fdbe21caeecbe1e21023b753804d686e64e091b81655f4c452",
+    "demo/cli-patch.diff": "a26e7a319f0788adf632a8d5e3f394779fd3fee3d781c80683e1618abe295bbe",
+    "demo/cli-report.json": "9d1ad8e3499410af53b31270b7b007ed3eeb65948743e00697366c69b5c658b2",
+    "demo/evidence/actions.json": "e26a1778ded8045925cbbe29d8f7316b7723ddd9e6f08fa1def224912f04f26d",
+    "demo/evidence/events.sse": "f768d20037ffbc208ac44d0664984e6e223c1f2549bce792ca1f256c99b54b81",
+    "demo/evidence/patch.diff": "a26e7a319f0788adf632a8d5e3f394779fd3fee3d781c80683e1618abe295bbe",
+    "demo/evidence/provenance.json": "4613c52c0dc6d70ae68407fb64afa5f8f96196a40541541365e4e42f81e03717",
+    "demo/evidence/report.json": "550c05c88c248d36ee5430931c33973336f0d030c60634df653a8ab6f692ff20",
+    "demo/evidence/trace.jsonl": "544c66c7b9c9356c407ee1f052581894edf8984c2a897a89c638a2fb67d1c9d6",
+    "demo/prepared-task.json": "d7894611a30e7841b75d04596a3bd84b53fe98082162ca7c4de68b73e006760b",
+    "demo/rejected-workflow.json": "56ca7a322200d308cb163e1139577e8e885346bbc6f30983ba98ebf0102f2609",
+    "demo/workflow.json": "79f9865681bcd04071fc544d91a97b6e27ab1549ce95db9c25655db0eddf1796",
+    "docker-junit.xml": "18004c71d4798cfcb3f34cd0eb7660ac6f56f5c4dded1d87b2acb08db8b51c0f",
+    "full-junit.xml": "5467724766e473b7bb0a0a7e446b1c0e511465bd8c696045600b19a2233e9050",
+    "implementation-hashes.json": "ea628ffcc8211786ec52823337b98888d9b99a56d04de67591a9cbfdfe4960e6",
+    "NOTICE.md": "b39657c4631d66d2d5b641b85eb7dbef5b7439234fee651b8d88788378b900a8",
+    "postflight.json": "dd3bddd508412b42b56b549a42343b0588bad0473bc2ae908daa9bfc0cf65c48"
+  }
+}

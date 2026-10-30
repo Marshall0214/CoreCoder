@@ -1,0 +1,11 @@
+test_background_keeps_existing_foreground (test_admission.StylePreservation.test_background_keeps_existing_foreground) ... ok
+test_bold_keeps_existing_foreground (test_admission.StylePreservation.test_bold_keeps_existing_foreground) ... ok
+test_foreground_keeps_existing_background (test_admission.StylePreservation.test_foreground_keeps_existing_background) ... ok
+test_nested_open_styles_compose (test_admission.StylePreservation.test_nested_open_styles_compose) ... ok
+test_plain_foreground_background_and_bold (test_admission.StylePreservation.test_plain_foreground_background_and_bold) ... ok
+test_reset_false_keeps_output_open (test_admission.StylePreservation.test_reset_false_keeps_output_open) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK

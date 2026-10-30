@@ -1,0 +1,45 @@
+[
+  {
+    "path": "src/click/termui.py",
+    "symbol": "_ansi_reset_all",
+    "start_line": 47,
+    "end_line": 47,
+    "symbol_range": [
+      47,
+      47
+    ],
+    "content": "_ansi_reset_all = \"\\033[0m\"\n",
+    "content_hash": "74bc624bbd143af21805d6bf9c411968f0053950d5991b35b043ccb8b0e8c10a",
+    "offset": 0,
+    "complete_symbol": true,
+    "next_offset": null,
+    "reason": "explicit_symbol_read",
+    "resolution": "static_declaration",
+    "kind": "assignment",
+    "value_present": true
+  },
+  {
+    "path": "src/click/termui.py",
+    "symbol": "strip_ansi",
+    "start_line": 9,
+    "end_line": 9,
+    "symbol_range": [
+      9,
+      9
+    ],
+    "content": "from ._compat import strip_ansi\n",
+    "content_hash": "74bc624bbd143af21805d6bf9c411968f0053950d5991b35b043ccb8b0e8c10a",
+    "offset": 0,
+    "complete_symbol": true,
+    "next_offset": null,
+    "reason": "explicit_symbol_read",
+    "resolution": "static_declaration",
+    "kind": "import",
+    "import_source": {
+      "module": "_compat",
+      "name": "strip_ansi",
+      "level": 1,
+      "followed": false
+    }
+  }
+]

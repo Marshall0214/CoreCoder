@@ -1,0 +1,85 @@
+{
+  "scope": "Same nine frozen request states; eight originally called. No new inference or scoring.",
+  "called_request_count": 8,
+  "request_states": 9,
+  "full_called_request_estimate": 50956,
+  "compact_called_request_estimate": 30293,
+  "estimated_change_percent": -40.55,
+  "preservation": "Exact goals, public tests, source fragments, constraints, counters, errors and test feedback",
+  "rows": [
+    {
+      "step": 1,
+      "provider_called_in_original": true,
+      "full_request_estimate": 3456,
+      "compact_request_estimate": 3585,
+      "difference": 129,
+      "frozen_sha256": "487442a1f8bdf0329ecfec49ca2ef218a03d4b560d8e89f4b4cfc8e9a8b82f57"
+    },
+    {
+      "step": 2,
+      "provider_called_in_original": true,
+      "full_request_estimate": 5921,
+      "compact_request_estimate": 4672,
+      "difference": -1249,
+      "frozen_sha256": "f050022db3d1884fe16c1cb4630f01e0c85898b84aef0c0190b72a87cb28eaf9"
+    },
+    {
+      "step": 3,
+      "provider_called_in_original": true,
+      "full_request_estimate": 6244,
+      "compact_request_estimate": 4989,
+      "difference": -1255,
+      "frozen_sha256": "be368f6038228f4b5c922bd1d4627d5424b35697a1b4fe8bd0d3dc3b177b390b"
+    },
+    {
+      "step": 4,
+      "provider_called_in_original": true,
+      "full_request_estimate": 4205,
+      "compact_request_estimate": 2218,
+      "difference": -1987,
+      "frozen_sha256": "3ee4086d828a50adf0c6861be3204e85167d3a60373d46148abc7fa5db2b5645"
+    },
+    {
+      "step": 5,
+      "provider_called_in_original": true,
+      "full_request_estimate": 7364,
+      "compact_request_estimate": 3939,
+      "difference": -3425,
+      "frozen_sha256": "1477fe47222fd96f260bc4ba9e892f7810864cb1e2c9a6510dcd222a761b9374"
+    },
+    {
+      "step": 6,
+      "provider_called_in_original": true,
+      "full_request_estimate": 6535,
+      "compact_request_estimate": 2879,
+      "difference": -3656,
+      "frozen_sha256": "b4af098c76ca57f6f5d7659888e015550f9a1cb6db1958f07084caa7b9ab20d6"
+    },
+    {
+      "step": 7,
+      "provider_called_in_original": true,
+      "full_request_estimate": 9933,
+      "compact_request_estimate": 4720,
+      "difference": -5213,
+      "frozen_sha256": "233ba3519c13dee7bd984cd8f06eeebd7ea5f1a4e84e90e55d908aa5b4000bb3"
+    },
+    {
+      "step": 8,
+      "provider_called_in_original": true,
+      "full_request_estimate": 7298,
+      "compact_request_estimate": 3291,
+      "difference": -4007,
+      "frozen_sha256": "29bd0e27cb4cfd6e8913cd611bf8d87715e23aa9c6791ea527d10fb24a8021cd"
+    },
+    {
+      "step": 9,
+      "provider_called_in_original": false,
+      "full_request_estimate": 10140,
+      "compact_request_estimate": 4760,
+      "difference": -5380,
+      "frozen_sha256": "dfc65d83ebeb4946f0d83a350f6b232917d83f5fcf25fe7383a5a4d58f724c51"
+    }
+  ],
+  "limits": "Heuristic request estimates, not actual saved tokens or proof of repair improvement.",
+  "implementation_sha256": "b82e5a980ac5e99526563183d8e3d1fef639470bcb6897dbc0d084259cea4730"
+}

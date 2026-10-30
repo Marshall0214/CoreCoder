@@ -1,0 +1,308 @@
+{
+  "date": "2026-10-29",
+  "scope": "One local no-thinking development run; not a repair-rate benchmark.",
+  "implemented": "Bounded static module assignments and imports in existing allowed files; no import execution or following.",
+  "result": {
+    "status": "budget_exceeded",
+    "public_checks_passed": false,
+    "accepted": false,
+    "delivery_status": "not_delivered",
+    "fresh_model_calls": 8,
+    "edit_attempts_used": 3,
+    "candidate_rolled_back": true,
+    "original_unchanged": true,
+    "metrics": {
+      "llm_calls": 8,
+      "prompt_tokens": 51697,
+      "completion_tokens": 1555,
+      "known_prompt_tokens": 51697,
+      "known_completion_tokens": 1555,
+      "missing_usage_calls": 0,
+      "budget_accounted_tokens": 53252,
+      "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+      "cost_usd": null,
+      "failed_provider_attempt_usage": "unknown"
+    }
+  },
+  "actions": [
+    {
+      "step": 1,
+      "action": "read_symbol",
+      "symbol": "style",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "step": 2,
+      "action": "read_symbol",
+      "symbol": "_ansi_reset_all",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "step": 3,
+      "action": "apply_patch",
+      "symbol": null,
+      "status": "completed",
+      "error": null
+    },
+    {
+      "step": 4,
+      "action": "read_symbol",
+      "symbol": "style",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "step": 5,
+      "action": "apply_patch",
+      "symbol": null,
+      "status": "completed",
+      "error": null
+    },
+    {
+      "step": 6,
+      "action": "read_symbol",
+      "symbol": "style",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "step": 7,
+      "action": "apply_patch",
+      "symbol": null,
+      "status": "completed",
+      "error": null
+    },
+    {
+      "step": 8,
+      "action": "read_symbol",
+      "symbol": "style",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "step": 9,
+      "action": null,
+      "symbol": null,
+      "status": "budget_exceeded",
+      "error": null
+    }
+  ],
+  "checks_by_edit": {
+    "3": {
+      "Reproduce": {
+        "tests_run": 1,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 0,
+        "successful": true
+      },
+      "Preserve": {
+        "tests_run": 3,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 1,
+        "successful": false
+      }
+    },
+    "5": {
+      "Reproduce": {
+        "tests_run": 1,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 0,
+        "successful": true
+      },
+      "Preserve": {
+        "tests_run": 3,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 1,
+        "successful": false
+      }
+    },
+    "7": {
+      "Reproduce": {
+        "tests_run": 1,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 1,
+        "successful": false
+      },
+      "Preserve": {
+        "tests_run": 3,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 0,
+        "successful": true
+      }
+    }
+  },
+  "budget_blocked": {
+    "run_id": "click-3887-qwen35-bindings-001",
+    "sequence": 37,
+    "time": 1793243666.514653,
+    "event": "budget_blocked",
+    "reason": "minimum_output_preflight",
+    "request_estimate": 10140,
+    "remaining": 6748,
+    "minimum_output_tokens": 256,
+    "context_tokens": 65536
+  },
+  "integrity": {
+    "elapsed_seconds": 83.0,
+    "input_hashes_unchanged": true,
+    "model_digest_unchanged": true,
+    "remaining_owned_containers": [],
+    "report_sha256": "90712f8b889aa3eb0cf382cbc7aabe3514b5fa00f401692c4ed883238af4a55c"
+  },
+  "tests": {
+    "full": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "19",
+      "tests": "1784",
+      "time": "207.565",
+      "timestamp": "2026-10-29T11:11:17.821349+08:00",
+      "hostname": "DESKTOP-4RMF6AG"
+    },
+    "docker": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "4",
+      "time": "45.366",
+      "timestamp": "2026-10-29T11:11:22.434019+08:00",
+      "hostname": "DESKTOP-4RMF6AG"
+    },
+    "docker_cases": [
+      {
+        "case": "test_real_module_binding_reads0",
+        "public_checks_passed": true,
+        "scripted_calls": 3,
+        "fresh_model_calls": 0,
+        "edit_attempts_used": 1,
+        "original_unchanged": true,
+        "accepted": false
+      },
+      {
+        "case": "test_real_prepared_issue_to_re0",
+        "public_checks_passed": true,
+        "scripted_calls": 1,
+        "fresh_model_calls": 0,
+        "edit_attempts_used": null,
+        "original_unchanged": true,
+        "accepted": false
+      },
+      {
+        "case": "test_real_prepared_issue_to_re1",
+        "public_checks_passed": false,
+        "scripted_calls": 2,
+        "fresh_model_calls": 0,
+        "edit_attempts_used": null,
+        "original_unchanged": true,
+        "accepted": false
+      },
+      {
+        "case": "test_real_symbol_read_and_thir0",
+        "public_checks_passed": true,
+        "scripted_calls": 5,
+        "fresh_model_calls": 0,
+        "edit_attempts_used": 3,
+        "original_unchanged": true,
+        "accepted": false
+      }
+    ],
+    "ruff": "passed"
+  },
+  "comparison_before": {
+    "evidence": "symbol-recovery-20261023.json",
+    "calls": 6,
+    "edit_attempts": 0,
+    "status": "consecutive_error_limit",
+    "tokens": 37758
+  },
+  "files": {
+    "docker-binding-report.json": "d0c4be00ee9d01f7d9056f113760d0220f64f6f201e61c41cc9dd44ad9b093f1",
+    "docker-junit.xml": "56c7c576752bcf42b9fdba4343d36d70deadd17cfc72736840ebdef3b5a7ebff",
+    "full-junit.xml": "8f1a34c7eb4c9cac1f5347e615259702ffcc4b292bb66e390ae8f442321116d3",
+    "LICENSE-click.txt": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+    "live/actions.json": "90f8d2ceafa1aef7ebead0eb95454b1079a618e33e99b799a46b4c6031192822",
+    "live/agent-initial-context.json": "c93e08a87380db3e45c1172a81aee9f091d234566f5d948e557eb0ce2ab5ebe3",
+    "live/baseline/Preserve-sandbox.json": "b364bc0752c4e6e0db3dfd71a25c3006247000346afb5179600be26b3547831e",
+    "live/baseline/Preserve.json": "2e43e72025f11c9de7972c505c747c3081db46f1ddd800683eeea4232b20cbf1",
+    "live/baseline/Preserve.stderr.txt": "a740ca1fa040ad742d49d423504734b0f3e943134f4c47e83c9ece04494c729a",
+    "live/baseline/Preserve.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/baseline/Reproduce-sandbox.json": "22743644941c7e6399589ae497e16d6f176ee3bd896ef502525484928ae3459f",
+    "live/baseline/Reproduce.json": "7b67e27b0830a403b2404d9aababa726099fb0059b7f3ebebeab0f7ac66e78d3",
+    "live/baseline/Reproduce.stderr.txt": "7643f20b3239d510813be17cca2d517fa2f2efb517355d1090009364fb638407",
+    "live/baseline/Reproduce.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/patch.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/provenance.json": "1efdfb85bb11b80935614d87cde3992197be4bb7cab9ba4be8a232730c3c5ff2",
+    "live/report.json": "90712f8b889aa3eb0cf382cbc7aabe3514b5fa00f401692c4ed883238af4a55c",
+    "live/step-001-messages.json": "487442a1f8bdf0329ecfec49ca2ef218a03d4b560d8e89f4b4cfc8e9a8b82f57",
+    "live/step-001-response.txt": "554a9692d3503134717c5155fa11440cf438d985e3710d9f32f03ed168aa7294",
+    "live/step-002-messages.json": "f050022db3d1884fe16c1cb4630f01e0c85898b84aef0c0190b72a87cb28eaf9",
+    "live/step-002-response.txt": "4f260824c3b8d4766766de142e99620ddad301017d417f5d27de408d989d7722",
+    "live/step-003-checks/Preserve-sandbox.json": "c9f4c3011c5ff0150d48b8190877aa2166764076a3cedfaa89221b69e1021ea5",
+    "live/step-003-checks/Preserve.json": "9e0b102d7625bb71bb4bd68a4c7cc5bc97b6c5d14bc4f944c8700ce26c59fb79",
+    "live/step-003-checks/Preserve.stderr.txt": "4bbc3c0269b3a9e1c54941fb4b157d594f6d328d6c111c0d9ff34d7a2748ba45",
+    "live/step-003-checks/Preserve.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/step-003-checks/Reproduce-sandbox.json": "9358dc360aab58362e486ede0aaba903f81b1c81a8fed494a3255a13255818a6",
+    "live/step-003-checks/Reproduce.json": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1",
+    "live/step-003-checks/Reproduce.stderr.txt": "1774bca71a3e5915c017b82c3ceda594c437c8318da004060107c6494b7f6b6f",
+    "live/step-003-checks/Reproduce.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/step-003-messages.json": "be368f6038228f4b5c922bd1d4627d5424b35697a1b4fe8bd0d3dc3b177b390b",
+    "live/step-003-patch.diff": "24788727bb8706b7a837c7f85877bd120f74d236d2ed2640e9dbd75db6de4956",
+    "live/step-003-response.txt": "b57fe42e3e0d6b90ef183bbb480849a92a6f608d76ccce47d9d1f993088da2b4",
+    "live/step-004-messages.json": "3ee4086d828a50adf0c6861be3204e85167d3a60373d46148abc7fa5db2b5645",
+    "live/step-004-response.txt": "554a9692d3503134717c5155fa11440cf438d985e3710d9f32f03ed168aa7294",
+    "live/step-005-checks/Preserve-sandbox.json": "2ce29f789764e4fb2094c4a7692282a8305b122786d4918a11475b7ac85e0c71",
+    "live/step-005-checks/Preserve.json": "9e0b102d7625bb71bb4bd68a4c7cc5bc97b6c5d14bc4f944c8700ce26c59fb79",
+    "live/step-005-checks/Preserve.stderr.txt": "38e7e2fb0e343ddea44863fe15dcaa1b8263adfc0f2c712432f8c81e2f9b0e08",
+    "live/step-005-checks/Preserve.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/step-005-checks/Reproduce-sandbox.json": "84554e72deea26952eb501044a5fa040bd85b86e8ab99c80ba9e6d306b77c538",
+    "live/step-005-checks/Reproduce.json": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1",
+    "live/step-005-checks/Reproduce.stderr.txt": "1774bca71a3e5915c017b82c3ceda594c437c8318da004060107c6494b7f6b6f",
+    "live/step-005-checks/Reproduce.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/step-005-messages.json": "1477fe47222fd96f260bc4ba9e892f7810864cb1e2c9a6510dcd222a761b9374",
+    "live/step-005-patch.diff": "1cd1a3b1e10708c5263a197991cac0a13a0677decfa542d1a007c00483e6a517",
+    "live/step-005-response.txt": "0d709c82bcc1e221cb247995644dc541fa80dadf958c12a46f2816fdca187182",
+    "live/step-006-messages.json": "b4af098c76ca57f6f5d7659888e015550f9a1cb6db1958f07084caa7b9ab20d6",
+    "live/step-006-response.txt": "554a9692d3503134717c5155fa11440cf438d985e3710d9f32f03ed168aa7294",
+    "live/step-007-checks/Preserve-sandbox.json": "c772d995fca797de6e531c5cf03618445029bee95a588c6b96f496e837a0f26b",
+    "live/step-007-checks/Preserve.json": "2e43e72025f11c9de7972c505c747c3081db46f1ddd800683eeea4232b20cbf1",
+    "live/step-007-checks/Preserve.stderr.txt": "a740ca1fa040ad742d49d423504734b0f3e943134f4c47e83c9ece04494c729a",
+    "live/step-007-checks/Preserve.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/step-007-checks/Reproduce-sandbox.json": "7c5a37527570db603e299ad6b4aff41aa551b2e40c97b0490d09509f7d6daf0e",
+    "live/step-007-checks/Reproduce.json": "7b67e27b0830a403b2404d9aababa726099fb0059b7f3ebebeab0f7ac66e78d3",
+    "live/step-007-checks/Reproduce.stderr.txt": "8910278897cf218e6f90c5e1b855d122a3813c062814d46df55b32e90c785123",
+    "live/step-007-checks/Reproduce.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live/step-007-messages.json": "233ba3519c13dee7bd984cd8f06eeebd7ea5f1a4e84e90e55d908aa5b4000bb3",
+    "live/step-007-patch.diff": "1aedb01719ceb36595394a4df21cb32a32d80a24ac663bbbffbe7c0f444cc428",
+    "live/step-007-response.txt": "23476018b81d3119ed9535ade0fdab328920d5f5ae4b895168c6e7b06e5b0259",
+    "live/step-008-messages.json": "29bd0e27cb4cfd6e8913cd611bf8d87715e23aa9c6791ea527d10fb24a8021cd",
+    "live/step-008-response.txt": "554a9692d3503134717c5155fa11440cf438d985e3710d9f32f03ed168aa7294",
+    "live/step-009-messages.json": "dfc65d83ebeb4946f0d83a350f6b232917d83f5fcf25fe7383a5a4d58f724c51",
+    "live/trace.jsonl": "e8dda39c1bce50e75dcf422224977ff59457739d83d0cc2115727769e26ff94c",
+    "postflight.json": "9b976fdca7c8244569570db615bd552a052287dccc711838ee8709e081d41ab1",
+    "public-checks.py": "d7ccec524c41724513a9a4f81d2197db84dfb2d930de94b5c0c2066a9ce7b4ba",
+    "real-source-reads.json": "b466807c04c50e19289bbf20e44647b4a055dee3e1300f8326e35713652a154c",
+    "run-plan.json": "07e0a6ba80b560553c18c388b34625c1692948db9e51404706ed113fa834c920"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "method_round": 2,
+  "new_task_runs_before": 1,
+  "planned_new_task_runs": 1,
+  "model": {
+    "name": "qwen3.5:27b",
+    "model": "qwen3.5:27b",
+    "modified_at": "2026-09-19T20:23:24.6144565+08:00",
+    "size": 17420432728,
+    "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "27.8B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 5120,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ]
+  },
+  "thinking": false,
+  "cloud_calls": 0,
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "input_hashes": {
+    "previous_prepared": "7b46ec293bc88c0222fd79620193ff7dc3c285378f2569f00870da2cdd1e68f1",
+    "previous_configuration": "f1390bd833875537d48e3c1fe2247b192e2aa3d40ea4cdf70edb1dd4c02cfdec",
+    "previous_candidate": "5eb9c28031e9097b6abcda5b8ff2a431c715bac81f7119f074300e32efe8df02",
+    "configuration": "1932232d1e6f0d52e548bf69ef6ccf4dd0eefb3c38cb22213438a300ab3741c7",
+    "new_harness": "628bd78ff15d7fa2931c32d82f040a73d8cfaadffe100f104c073197e1d5495a",
+    "implementation": {
+      "repairflow/issue_tools.py": "edfad7141a3c945b2e4c49e2abcf7c8bc4ec42f09d6c8efcd017a14237f6ae31",
+      "repairflow/issue_agent.py": "b82e5a980ac5e99526563183d8e3d1fef639470bcb6897dbc0d084259cea4730",
+      "repairflow/issue_repair.py": "4e76bb7e601b9236dac71d23334107ed1bf23d81cfa5d70ca596247d936aaf49",
+      "repairflow/issue_context.py": "a8461b596f9df5ba0d02b887a9f587b402bf894db11ca10d96d1ac495586fc87",
+      "repairflow/issue_providers.py": "422835fbf274122a61c07a6ecdb399019dc9492eff5202ce7134b5173597a322",
+      "evals/runtime.py": "10f2b4c10f381644af09e6decd095ef96e466a5fda1c2b06e4ea1645bb2b0aa6",
+      "sandbox/runner.py": "6912daa6c2dd56f82be303f899e6a39430dc52ee8a6da55404b2de83bed97764"
+    }
+  },
+  "prepared_tree": "e56af8078f97288361eaf0bcef817d65abd8d61835afea3ac54e1dfa7acf1244",
+  "source_sha256": "d52d04c39e9482c3e5d0f8354bfb9c8285a207f5ee0b85097285b2d3d64060e4",
+  "harness_sha256": "628bd78ff15d7fa2931c32d82f040a73d8cfaadffe100f104c073197e1d5495a",
+  "observation_policy": "compact-v1",
+  "context_policy": "baseline",
+  "workflow": "symbol-recovery-v1",
+  "token_budget": 60000,
+  "max_steps": 20,
+  "max_edit_attempts": 6,
+  "max_output_tokens": 4096,
+  "max_consecutive_errors": 3,
+  "max_repeated_actions": 3,
+  "context_tokens": 65536,
+  "wall_timeout": 1200,
+  "scope": "Development-check expansion, original source restart; not a held-out or same-test comparison.",
+  "resident_before": {
+    "models": []
+  }
+}

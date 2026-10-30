@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "workflow": "langgraph-approval-v1",
+  "request_hash": "824ce507d787e5e13915fffecf7453db0665f9fee7e12e479a2f81d5efba8876",
+  "stage": "rejected",
+  "plan": {
+    "task_id": "sample",
+    "allowed_files": [
+      "src/example/__init__.py"
+    ],
+    "mode": "scripted",
+    "token_budget": 60000,
+    "attempt_limit": 1,
+    "actions": [
+      "execute_and_verify",
+      "review_outcome"
+    ],
+    "review_only": true,
+    "details": {
+      "read_only_files": [
+        "src/example/policy.py"
+      ],
+      "model": "qwen3.5:27b",
+      "thinking": false,
+      "observation_policy": "compact-v1",
+      "independent_verification": false,
+      "max_steps": 20,
+      "max_edit_attempts": 6
+    }
+  },
+  "decision": "reject",
+  "outcome": "rejected",
+  "events": [
+    {
+      "id": 1,
+      "stage": "planned",
+      "time": 1793269076.4332914
+    },
+    {
+      "id": 2,
+      "stage": "awaiting_approval",
+      "time": 1793269076.4472783
+    },
+    {
+      "id": 3,
+      "stage": "rejected",
+      "time": 1793269078.3272233
+    },
+    {
+      "id": 4,
+      "stage": "rejected",
+      "time": 1793269078.3292258
+    }
+  ],
+  "report": null
+}

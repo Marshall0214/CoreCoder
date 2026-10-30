@@ -17,8 +17,8 @@ from evals.process import terminate_tree
 from service.store import TaskStore
 
 ROOT = Path(__file__).resolve().parent.parent
-TERMINAL = {'succeeded', 'failed', 'rejected', 'cancelled', 'timed_out', 'interrupted'}
-APPROVAL_WORKFLOWS = {'langgraph-approval-v1', 'tentative-approval-v1', 'repair-approval-v1'}
+TERMINAL = {'succeeded', 'ready_for_review', 'failed', 'rejected', 'cancelled', 'timed_out', 'interrupted'}
+APPROVAL_WORKFLOWS = {'langgraph-approval-v1', 'tentative-approval-v1', 'repair-approval-v1', 'issue-approval-v1'}
 
 
 def stop_tree(process):
@@ -105,11 +105,11 @@ class TaskManager:
 
     @staticmethod
     def _clean_sandbox(job):
-        if job.request.get('workflow') != 'repair-approval-v1':
+        if job.request.get('workflow') not in {'repair-approval-v1', 'issue-approval-v1'}:
             return
         from sandbox.runner import SandboxError, backend, cleanup
 
-        if backend() == 'docker':
+        if backend() == 'docker' or job.request.get('workflow') == 'issue-approval-v1':
             try:
                 cleanup(job.root)
             except SandboxError as exc:
@@ -244,6 +244,16 @@ class TaskManager:
                         job.transition('rejected')
                         return
                     job.result = {k: report.get(k) for k in ('status', 'accepted', 'metrics', 'verification')}
+                    if job.request.get('workflow') == 'issue-approval-v1':
+                        job.result.update({k: report.get(k) for k in ('execution_mode', 'fresh_inference', 'fresh_model_calls',
+                            'original_unchanged', 'public_checks_passed', 'delivery_status', 'requires_review', 'failure_type',
+                            'observability')})
+                        ready = (report.get('status') == 'public_checks_passed' and report.get('public_checks_passed') is True
+                                 and report.get('delivery_status') == 'ready_for_review' and report.get('original_unchanged') is True
+                                 and bool(report.get('changed_files')))
+                        job.result['accepted'] = False
+                        job.transition('ready_for_review' if ready else 'failed')
+                        return
                     if job.request.get('workflow') == 'repair-approval-v1':
                         job.result.update({k: report.get(k) for k in ('execution_mode', 'fresh_inference', 'fresh_model_calls',
                                                                     'historical_usage_only', 'original_unchanged')})

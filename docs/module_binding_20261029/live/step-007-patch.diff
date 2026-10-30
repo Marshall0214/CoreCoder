@@ -1,0 +1,30 @@
+--- a/src/click/termui.py
++++ b/src/click/termui.py
+@@ -552,27 +552,7 @@
+     if not isinstance(text, str):
+         text = str(text)
+ 
+-    # Strip existing ANSI escape codes from the input text to prevent
+-    # them from interfering with the new styles being applied.
+-    import re
+-    text = re.sub(r'\x1b\[[0-9;]*m', '', text)
+-
+     bits = []
+-
+-    # If no style parameters are provided, return the stripped text
+-    if not any([
+-        fg is not None,
+-        bg is not None,
+-        bold is not None,
+-        dim is not None,
+-        underline is not None,
+-        overline is not None,
+-        italic is not None,
+-        blink is not None,
+-        reverse is not None,
+-        strikethrough is not None,
+-    ]):
+-        return text
+ 
+     if fg:
+         try:

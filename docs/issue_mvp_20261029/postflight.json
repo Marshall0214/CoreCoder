@@ -1,0 +1,14 @@
+{
+  "remaining_owned_containers": {
+    ".tmp\\issue-mvp-starter-demo-20261029\\cli": [],
+    ".tmp\\issue-mvp-starter-demo-20261029\\api\\ea6317d85049404e872ba110f00872c4": [],
+    ".tmp\\issue-mvp-starter-demo-20261029\\api\\c1ee7af428024759aee210d10d729a56": [],
+    ".tmp\\issue-mvp-demo-20261029\\cli": [],
+    ".tmp\\issue-mvp-demo-20261029\\api\\b725dab6caf946b7933a7fb494a574bb": [],
+    ".tmp\\issue-mvp-demo-20261029\\api\\216f1466c5034af6870d51d8111845f5": []
+  },
+  "cli_api_patch_equal": true,
+  "original_unchanged": true,
+  "fresh_model_calls": 0,
+  "independent_acceptance": false
+}

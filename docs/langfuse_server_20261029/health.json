@@ -1,0 +1,12 @@
+{
+  "health": {
+    "status": "OK",
+    "version": "4.69.0"
+  },
+  "projects": [
+    {
+      "id": "corecoder-issues",
+      "name": "Issue Repair"
+    }
+  ]
+}

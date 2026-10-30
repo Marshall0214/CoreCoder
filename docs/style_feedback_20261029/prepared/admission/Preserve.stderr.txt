@@ -1,0 +1,14 @@
+test_background_keeps_existing_foreground (test_admission.Preserve.test_background_keeps_existing_foreground) ... ok
+test_bold_keeps_existing_foreground (test_admission.Preserve.test_bold_keeps_existing_foreground) ... ok
+test_existing_color_without_override_is_retained (test_admission.Preserve.test_existing_color_without_override_is_retained) ... ok
+test_foreground_keeps_existing_background (test_admission.Preserve.test_foreground_keeps_existing_background) ... ok
+test_nested_open_styles_compose (test_admission.Preserve.test_nested_open_styles_compose) ... ok
+test_plain_foreground_background_and_bold (test_admission.Preserve.test_plain_foreground_background_and_bold) ... ok
+test_plain_input_can_be_colored (test_admission.Preserve.test_plain_input_can_be_colored) ... ok
+test_reset_false_keeps_output_open (test_admission.Preserve.test_reset_false_keeps_output_open) ... ok
+test_unstyle_preserves_visible_text (test_admission.Preserve.test_unstyle_preserves_visible_text) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.001s
+
+OK
