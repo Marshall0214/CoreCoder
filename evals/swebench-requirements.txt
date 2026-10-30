@@ -1,0 +1,5 @@
+# Optional external benchmark harness. Install into a fresh D-drive target;
+# do not merge these dependencies into the core Agent runtime.
+swebench==5.0.2
+ghapi==1.0.8
+pyarrow==26.0.0

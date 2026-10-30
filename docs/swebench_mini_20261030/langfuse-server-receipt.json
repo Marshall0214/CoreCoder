@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "fresh_model_calls": 0,
+  "is_agent_result": false,
+  "source": "official_grading_replay",
+  "controls_report_sha256": "8e2f0f0411f9c01dc530b2c565beb77da9f989fe7153e03a576bf5d42c3ebaca",
+  "dataset_name": "swebench-mini/admission/7f35e516556e",
+  "dataset_id": "cmvus85580003oa1wjbngpych",
+  "experiments": [
+    {
+      "mode": "unchanged",
+      "experiment_id": "6962e27d95fd1c4c",
+      "trace_id": "3787ce46f4d63850006458faec61592b",
+      "url": "http://127.0.0.1:3300/project/corecoder-issues/experiments/results?baseline=6962e27d95fd1c4c"
+    },
+    {
+      "mode": "reference",
+      "experiment_id": "10923803166b9fc4",
+      "trace_id": "37c8779c1b2d6088af78ba9d41bdb2de",
+      "url": "http://127.0.0.1:3300/project/corecoder-issues/experiments/results?baseline=10923803166b9fc4"
+    }
+  ],
+  "server_receipt_verified": true,
+  "receipts": {
+    "unchanged": {
+      "experiment_id": "6962e27d95fd1c4c",
+      "trace_id": "3787ce46f4d63850006458faec61592b",
+      "dataset_id": "cmvus85580003oa1wjbngpych",
+      "item_count": 1,
+      "output_matches_local": true,
+      "scores": {
+        "official_resolved": false,
+        "fail_to_pass": 0,
+        "pass_to_pass": 1,
+        "fresh_model_calls": 0
+      }
+    },
+    "reference": {
+      "experiment_id": "10923803166b9fc4",
+      "trace_id": "37c8779c1b2d6088af78ba9d41bdb2de",
+      "dataset_id": "cmvus85580003oa1wjbngpych",
+      "item_count": 1,
+      "output_matches_local": true,
+      "scores": {
+        "official_resolved": true,
+        "fail_to_pass": 1,
+        "pass_to_pass": 1,
+        "fresh_model_calls": 0
+      }
+    }
+  }
+}

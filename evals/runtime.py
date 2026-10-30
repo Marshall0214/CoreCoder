@@ -168,6 +168,32 @@ class BudgetLLM:
         self.prompt_known = 0
         self.completion_known = 0
         self.missing_usage = 0
+        self.missing_prompt = self.missing_completion = self.failed_calls = self.failed_missing_usage = 0
+
+    def _account_usage(self, response, reservation, *, failed=False):
+        values = getattr(response, 'reported_usage', None)
+        if values is None:
+            # Legacy responses use default zeros for absent usage. Preserve their interpretation.
+            values = {key: getattr(response, key, None) for key in ('prompt_tokens', 'completion_tokens')}
+            if not all(type(value) is int and value > 0 for value in values.values()):
+                values = {}
+        prompt, completion = (values.get(key) for key in ('prompt_tokens', 'completion_tokens'))
+        prompt = prompt if type(prompt) is int and prompt >= 0 else None
+        completion = completion if type(completion) is int and completion >= 0 else None
+        known = prompt is not None and completion is not None
+        self.prompt_known += prompt or 0
+        self.completion_known += completion or 0
+        self.missing_prompt += int(prompt is None)
+        self.missing_completion += int(completion is None)
+        self.missing_usage += int(not known)
+        self.failed_calls += int(failed)
+        self.failed_missing_usage += int(failed and not known)
+        self.spent += prompt + completion if known else max(reservation, (prompt or 0) + (completion or 0))
+        source = getattr(self.inner, 'usage_source', 'provider_response' if known else 'unknown')
+        status = 'not_applicable' if source == 'not_applicable' else 'known' if known else (
+            'partial' if prompt is not None or completion is not None else 'unknown')
+        return {'usage_known': known, 'usage_status': status, 'usage_source': source,
+                'prompt_tokens': prompt, 'completion_tokens': completion}
 
     def chat(self, messages, tools=None, **kwargs):
         breakdown = request_breakdown(messages, tools, response_format=kwargs.get("response_format"))
@@ -203,20 +229,12 @@ class BudgetLLM:
         try:
             response = self.inner.chat(messages, tools=tools, **kwargs)
         except Exception as exc:
-            self.events.emit("llm_failed", call_id=call_id, error=f"{type(exc).__name__}: {exc}")
+            usage = self._account_usage(exc, reservation, failed=True)
+            self.events.emit("llm_failed", call_id=call_id, error=f"{type(exc).__name__}: {exc}", **usage)
             raise
-        known = response.prompt_tokens > 0 and response.completion_tokens > 0
-        if known:
-            self.prompt_known += response.prompt_tokens
-            self.completion_known += response.completion_tokens
-            self.spent += response.prompt_tokens + response.completion_tokens
-        else:
-            self.missing_usage += 1
-            # Missing provider usage is unknown, not a measured zero. Reserve conservatively.
-            self.spent += reservation
+        usage = self._account_usage(response, reservation)
         self.events.emit("llm_finished", call_id=call_id, seconds=round(time.perf_counter() - started, 4),
-                         usage_known=known, prompt_tokens=response.prompt_tokens if known else None,
-                         completion_tokens=response.completion_tokens if known else None,
+                         **usage,
                          tools=[tc.name for tc in response.tool_calls])
         if self.spent > self.config.token_budget:
             self.events.emit("budget_blocked", reason="returned_usage", spent=self.spent,
@@ -225,9 +243,15 @@ class BudgetLLM:
         return response
 
     def metrics(self) -> dict:
-        return {"llm_calls": self.calls, "prompt_tokens": self.prompt_known if not self.missing_usage else None,
-                "completion_tokens": self.completion_known if not self.missing_usage else None,
+        source = getattr(self.inner, 'usage_source', 'provider_response')
+        status = 'not_applicable' if source == 'not_applicable' else 'known' if self.calls and not self.missing_usage else (
+            'partial' if self.calls > self.missing_prompt or self.calls > self.missing_completion else 'unknown')
+        return {"llm_calls": self.calls, "prompt_tokens": self.prompt_known if not self.missing_prompt else None,
+                "completion_tokens": self.completion_known if not self.missing_completion else None,
                 "known_prompt_tokens": self.prompt_known, "known_completion_tokens": self.completion_known,
                 "missing_usage_calls": self.missing_usage, "budget_accounted_tokens": self.spent,
                 "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
-                "cost_usd": None, "failed_provider_attempt_usage": "unknown"}
+                "usage_status": status, "usage_source": source, "failed_calls": self.failed_calls,
+                "cloud_api_cost_usd": getattr(self.inner, 'cloud_api_cost_usd', None),
+                "local_compute_cost_usd": None,
+                "cost_usd": None, "failed_provider_attempt_usage": 'known' if self.failed_calls and not self.failed_missing_usage else 'unknown'}

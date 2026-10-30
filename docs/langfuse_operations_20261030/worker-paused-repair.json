@@ -1,0 +1,132 @@
+{
+  "status": "public_checks_passed",
+  "accepted": false,
+  "public_checks_passed": true,
+  "delivery_status": "ready_for_review",
+  "fresh_model_calls": 0,
+  "execution_mode": "scripted",
+  "sandbox": {
+    "backend": "docker",
+    "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "baseline_checks": {
+    "Reproduce": {
+      "returncode": 1,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 1,
+      "successful": false,
+      "seconds": 1.5786,
+      "passed": false
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5352,
+      "passed": true
+    }
+  },
+  "final_public_checks": {
+    "Reproduce": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5261,
+      "passed": true
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5416,
+      "passed": true
+    }
+  },
+  "observability": {
+    "enabled": true,
+    "status": "submitted_unconfirmed",
+    "content_capture": false,
+    "trace_id": "d7c51ad49dc9f0586d36fceac5897d2e",
+    "base_url": "http://127.0.0.1:3300",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/d7c51ad49dc9f0586d36fceac5897d2e"
+  },
+  "local_artifact_sha256": {
+    "report.json": "53ed78c7d6ab6af48e796d0e0dbcacdddbac41aa2c15b3b880e93c83bfcab85f",
+    "patch.diff": "a26e7a319f0788adf632a8d5e3f394779fd3fee3d781c80683e1618abe295bbe",
+    "trace.jsonl": "be88347adf945ea0ab6ddd8e5f5bd15d92d6e07abc695049dfbc559c927bbe52",
+    "provenance.json": "56c89d2283e2ba60b2d1de5801045a5a42d2041ce6581be3a0e71ded63b260ef"
+  }
+}

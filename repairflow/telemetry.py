@@ -100,14 +100,21 @@ class Telemetry:
         try:
             if kind == 'llm_started':
                 self._start(fields['call_id'], 'model-call' if self.mode == 'ollama' else 'scripted-response',
-                            'generation', model=self.model, metadata={
-                                'execution_mode': self.mode, 'request_estimate': fields['request_estimate'],
-                                'fresh_inference': self.mode == 'ollama'})
-            elif kind == 'llm_finished':
-                usage = {'input': fields['prompt_tokens'], 'output': fields['completion_tokens']} if fields['usage_known'] else None
-                self._end(fields['call_id'], usage_details=usage, metadata={'usage_known': fields['usage_known']})
-            elif kind == 'llm_failed':
-                self._end(fields['call_id'], level='ERROR', status_message='Provider failure; see local trace')
+                            'generation' if self.mode == 'ollama' else 'span',
+                            **({'model': self.model} if self.mode == 'ollama' else {}), metadata={
+                                'execution_mode': self.mode, 'call_id': fields['call_id'],
+                                'request_estimate': fields['request_estimate'],
+                                'fresh_inference': self.mode == 'ollama',
+                                'usage_status': 'pending' if self.mode == 'ollama' else 'not_applicable'})
+            elif kind in {'llm_finished', 'llm_failed'}:
+                usage = {name: fields[key] for name, key in (('input', 'prompt_tokens'), ('output', 'completion_tokens'))
+                         if type(fields.get(key)) is int and fields[key] >= 0}
+                details = {'usage_details': usage or None, 'cost_details': {'input': 0.0, 'output': 0.0}} if self.mode == 'ollama' else {}
+                self._end(fields['call_id'], **details, metadata={'usage_known': fields.get('usage_known', False),
+                    'usage_status': fields.get('usage_status', 'known' if fields.get('usage_known') else 'unknown'),
+                    'usage_source': fields.get('usage_source', 'unknown'), 'cost_scope': 'cloud_api_fee',
+                    'local_compute_cost_tracked': False},
+                    **({'level': 'ERROR', 'status_message': 'Provider failure; see local trace'} if kind == 'llm_failed' else {}))
             elif kind == 'agent_action_started':
                 self._start('action-' + str(fields['step']), fields['action'], 'tool', input=action_summary(fields))
             elif kind == 'agent_action':

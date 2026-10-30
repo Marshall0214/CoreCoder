@@ -1,0 +1,30 @@
+{
+  "registry_manifest_sha256": "97132bd9fa42be42add93741520b3e58dbba8a693a209757a18381a31d386ec5",
+  "registry_config_digest": "sha256:c91e8e2db24af4206f02c20273e4ed30fa1f88222fe388302b09b8e9672bba25",
+  "loaded_image_id": "sha256:e0e74c3332a0c6bd8b1c8409fd966da5dc7b8836d9c4e0fa139908068d8f1d21",
+  "rootfs_diff_ids_match": true,
+  "all_downloaded_blob_hashes_verified": true,
+  "compressed_layer_bytes": 1153045341,
+  "mini_source": "https://huggingface.co/datasets/MariusHobbhahn/swe-bench-verified-mini",
+  "official_source": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified",
+  "local_artifacts": {
+    "unchanged": {
+      "eval.sh": "0061dbac6e224bbf2e248c7085592d29e22a66019c5c7cdefecc187dc353ac5d",
+      "patch.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_output.txt": "ec84a7bcf53e6d42fadd23a0eed79f82e4bf6363625580ff84641f80d9c739fc",
+      "official-report.json": "3239b7a39eb725a38eee08bd542031288972ae56538f2f74c6e61854eb6a400c"
+    },
+    "reference": {
+      "eval.sh": "0061dbac6e224bbf2e248c7085592d29e22a66019c5c7cdefecc187dc353ac5d",
+      "patch.diff": "45134a10c54998cc6a8454e4a13ecf9366976fe6876aa64ae59317e229304c3a",
+      "test_output.txt": "c831a5735f7ad0f5be210d8273626ed719f37edc6b6b0593413fbc66f0a2893b",
+      "official-report.json": "5f67ed00c3013371629d847fb79e387eb98700b44f924fac8ef15a0a094225a8"
+    }
+  },
+  "harness_sources": {
+    "swebench/types.py": "558b6e7193306c304f9847a8a83dcab6a03ee333f6d51e61152e8821f89e0725",
+    "swebench/harness/utils.py": "c22f38fdd4ffd34301da7f837b82926cf261d81ca0387d92dd2990b393517c79",
+    "swebench/harness/grading.py": "a095273010175001a6779e365b3b77abb8657c7ac2e4f80b4bc360faa6f09483",
+    "swebench/harness/log_parsers/python.py": "cd56156414f8327221e525665ace9b184f7d73e83b272d9eb3f545fb17c2d9bc"
+  }
+}

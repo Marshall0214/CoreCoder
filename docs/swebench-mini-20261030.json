@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-30",
+  "scope": "SWE-bench Verified Mini single-task harness admission and Langfuse experiment import",
+  "subset_count": 50,
+  "evaluated_unique_tasks": 1,
+  "control_runs": 2,
+  "fresh_model_calls": 0,
+  "is_agent_accuracy": false,
+  "instance_id": "django__django-11790",
+  "harness_version": "5.0.2",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "69",
+    "time": "1.545",
+    "timestamp": "2026-10-30T17:45:06.844043+08:00",
+    "hostname": "DESKTOP-4RMF6AG"
+  },
+  "langfuse_server_receipt_verified": true,
+  "files": {
+    "controls/reference-official.json": "5f67ed00c3013371629d847fb79e387eb98700b44f924fac8ef15a0a094225a8",
+    "controls/reference-summary.json": "123e98dac5d651de732787f05efd924ff3c9fda2e170a42cbb91528cc075736c",
+    "controls/report.json": "8e2f0f0411f9c01dc530b2c565beb77da9f989fe7153e03a576bf5d42c3ebaca",
+    "controls/unchanged-official.json": "3239b7a39eb725a38eee08bd542031288972ae56538f2f74c6e61854eb6a400c",
+    "controls/unchanged-summary.json": "16f161a453570e70d64baa04e0e42e2bd67cd4b82543e00b95a4e8bf9f25b53d",
+    "entry-manifest.json": "7f35e516556e835d95155eae3b13800887a6a9af8f3b6a296484d878b468e77a",
+    "first-attempt-incomplete.json": "24fcd3a877cf3e8c0f6221e5ec6252180d4bf16b910cc68078cf6b8def88f15c",
+    "implementation/deploy/langfuse/swebench_mini.py": "7bd3cf101d938ddeb2e70f36ca3f8f2cb2095e7a4102535afc0c23e4af4c993b",
+    "implementation/evals/swebench-requirements.txt": "488b30cd0eef59481b2a5e3b3032066882e59e6e27bd8dd815c805f72dffa5d5",
+    "implementation/evals/swebench_mini.py": "18bc108b79a89116cde184defdaa89c8f542cfad605c803e5082f0e1073f5b56",
+    "implementation/tests/test_swebench_mini.py": "4f55b39568bd3f29340434ec88867ae53ffde8c2f7b0be05893391e1992075cb",
+    "installed-controller-packages.txt": "58e3623ac498ea31f0e9e0535f82e73603242082bc1df672ce8bede2a3a86c5d",
+    "langfuse-server-receipt.json": "38acd248d346c5f02ef481b2246345629fa36845988b4787281507a4df72e0b8",
+    "NOTICE.md": "e824c933de0d91210c9e1271ade80e64c518eeb4ae723ff5077c66d19ba2cf9d",
+    "prior-packet-integrity.json": "162d489f87c7f06be5a50c90e2d5b09bf02a05da0c98a78674d59db38e61396f",
+    "provenance.json": "365ddb1bcc1e8c17ffb13d4d4b94e4e0a1e67cb1390600471eef9f656e476d42",
+    "tests.xml": "77fa950bcb01573c63adc092c915b40cfe36d35235b0e22ae78837dd120bf1de"
+  }
+}

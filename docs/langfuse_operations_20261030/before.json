@@ -1,0 +1,75 @@
+{
+  "status": "healthy",
+  "checked_at": "2026-10-30T07:51:32.672753+00:00",
+  "project": "corecoder-langfuse",
+  "checks": {
+    "container:web": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": "healthy"
+    },
+    "container:worker": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": null
+    },
+    "container:postgres": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": "healthy"
+    },
+    "container:clickhouse": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": "healthy"
+    },
+    "container:redis": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": "healthy"
+    },
+    "container:minio": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": "healthy"
+    },
+    "web_liveness": {
+      "passed": true,
+      "http_status": 200
+    },
+    "web_readiness": {
+      "passed": true,
+      "http_status": 200
+    },
+    "web_database": {
+      "passed": true,
+      "http_status": 200
+    },
+    "project_auth": {
+      "passed": true,
+      "http_status": 200
+    },
+    "worker_health": {
+      "passed": true,
+      "http_status": 200
+    }
+  },
+  "historical_readback": {
+    "requested": false,
+    "proves_fresh_ingestion": false
+  },
+  "fresh_model_calls": 0,
+  "scope": "Point-in-time diagnostics; fresh ingestion requires a new trace and receipt"
+}

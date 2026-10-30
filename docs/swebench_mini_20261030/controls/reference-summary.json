@@ -1,0 +1,22 @@
+{
+  "mode": "reference",
+  "script_exit_code": 0,
+  "seconds": 5.438,
+  "patch_source": "dataset_reference",
+  "base_commit_verified": "b1d6b35e146aea83b171c1b921178bbaae2795ed",
+  "image_initial_head": "84a9058f3ff86c9e7b27cc134460437fc9a4aac1",
+  "patch_sha256": "45134a10c54998cc6a8454e4a13ecf9366976fe6876aa64ae59317e229304c3a",
+  "fresh_model_calls": 0,
+  "is_agent_result": false,
+  "resolved": true,
+  "FAIL_TO_PASS": {
+    "passed": 2,
+    "failed": 0,
+    "total": 2
+  },
+  "PASS_TO_PASS": {
+    "passed": 77,
+    "failed": 0,
+    "total": 77
+  }
+}

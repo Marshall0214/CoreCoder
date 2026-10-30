@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-30",
+  "scope": "Synthetic Langfuse runtime checks and scoped fault recovery",
+  "fresh_model_calls": 0,
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "49",
+    "time": "1.580",
+    "timestamp": "2026-10-30T15:57:20.808772+08:00",
+    "hostname": "DESKTOP-4RMF6AG"
+  },
+  "actual_drills": 2,
+  "final_status": "healthy",
+  "worker_resume_receipt": {
+    "observations": 7,
+    "scores": 3,
+    "seconds": 2.09
+  },
+  "offline_backfill_implemented": false,
+  "files": {
+    "after.json": "28320b56dffa820038c6bf1f5a820efbb5d6bcedb5f9e8192d15320ff2ad03f0",
+    "before.json": "1f65fca6c2e8928efe300d18a2db5a92453fc19082984d6a9fc9ac5aebf43d73",
+    "doctor-cli.json": "554dc5f5d377a04a678e2372bb2fd299d19f66a757bd989aaa4cb23934be4897",
+    "implementation/deploy/langfuse/doctor.py": "2579ea18f52b3c9deeecf23be6be59ceeb582119acb1a2820a201127f39aa51d",
+    "implementation/deploy/langfuse/drill.py": "73715b397539fa5e1fc416fb4a72d0fd6d43241908cbba61b3461428ffa6b464",
+    "implementation/tests/test_langfuse_doctor.py": "c80b92fb5195a5776f9c52f439dd50695a38562a26dae68befa9bc5f220c2761",
+    "NOTICE.md": "6fb3a19e1bcce38d627544fea41929fa81407f6a3ab02e666378a380f9e17feb",
+    "recovered.json": "0abf8facaf2f9fc75949e7d1089ecd9eee46e80628be4b392be1052594711be0",
+    "result.json": "daeed31e8fb61d0c400dd9bb0100364aae1c145a35f32ed9c47688860c8efdd6",
+    "tests.xml": "6886c720b927cfaa6ddd4513de87466d74386294fd721bbdf05a9b44e910aaa7",
+    "web-offline-repair.json": "725d4d612741b43e5a83533f93a30f22039de62bf451cb027ff7378c143de457",
+    "web-offline.json": "0e0808107224720e203570dfe9d101609f6a1ac26816ad3b1a2bc5d6d25d1eb2",
+    "web-restored.json": "55132113ce161825752d06c1d35d44f3293cc6353c368d25e527ee178645a47a",
+    "worker-paused-repair.json": "95c1cc02d273cfe05ff2e786feb241e34cd4e56a3029531ee3cdb4ea27d884eb",
+    "worker-paused.json": "1094f02d0d8229cd401b6108908d0d648ee26fb1c7cc6327c84ed9e279e9a5be"
+  }
+}

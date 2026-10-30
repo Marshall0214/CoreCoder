@@ -52,6 +52,12 @@
 
 可选 [Langfuse 本地追踪](docs/langfuse-local.md)已实现任务、模型、工具及检查节点与确定性评分，默认不上送源码或 Prompt；[本地服务已上线](docs/langfuse-server-20261029.md)，回读确认两条 Trace、14 个节点，登录及整套服务重启后记录保留通过，模型调用为零。其余四项能力见[接入路线](docs/advanced-capabilities.md)，尚未集成。
 
+[后续真实用量验收](docs/langfuse-token-usage-20261030.md)：本地 Qwen3.5 27B 关闭 thinking，1 次调用共 1,027 Token，Ollama、本地报告与 Langfuse 一致；未知、实测零值、预算估算和零云 API 费用分别记录，脚本响应使用普通 Span。
+
+[Langfuse 运行检查与故障演练](docs/langfuse-operations-20261030.md)：提供无模型诊断及 Web/Worker 故障演练，验证观测离线时本地交付保留、后台恢复后新记录可回读；全部服务已恢复，暂不支持离线任务自动补传。
+
+[SWE-bench Verified Mini 首项](docs/swebench-mini-20261030.md)已接通官方评分与 Langfuse 数据集实验：未修改目标 0/2、参考补丁 2/2，回归均 77/77；无模型推理，不计入旧 47/50，也不是新 Agent 修复率。
+
 ## 快速开始：无需模型 API
 
 请使用源码仓库；上游 PyPI 包不包含本仓库的完整修复扩展。

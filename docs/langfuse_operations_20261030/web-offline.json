@@ -1,0 +1,75 @@
+{
+  "status": "degraded",
+  "checked_at": "2026-10-30T07:51:45.689938+00:00",
+  "project": "corecoder-langfuse",
+  "checks": {
+    "container:web": {
+      "passed": false,
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "health": "unhealthy"
+    },
+    "container:worker": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": null
+    },
+    "container:postgres": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": "healthy"
+    },
+    "container:clickhouse": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": "healthy"
+    },
+    "container:redis": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": "healthy"
+    },
+    "container:minio": {
+      "passed": true,
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "health": "healthy"
+    },
+    "web_liveness": {
+      "passed": false,
+      "error_type": "ConnectError"
+    },
+    "web_readiness": {
+      "passed": false,
+      "error_type": "ConnectError"
+    },
+    "web_database": {
+      "passed": false,
+      "error_type": "ConnectError"
+    },
+    "project_auth": {
+      "passed": false,
+      "error_type": "ConnectError"
+    },
+    "worker_health": {
+      "passed": true,
+      "http_status": 200
+    }
+  },
+  "historical_readback": {
+    "requested": false,
+    "proves_fresh_ingestion": false
+  },
+  "fresh_model_calls": 0,
+  "scope": "Point-in-time diagnostics; fresh ingestion requires a new trace and receipt"
+}

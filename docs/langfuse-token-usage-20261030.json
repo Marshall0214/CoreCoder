@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-30",
+  "scope": "Local native token accounting engineering acceptance",
+  "tests": {
+    "full": {
+      "tests": "1881",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "20",
+      "time": "288.007"
+    },
+    "targeted": {
+      "tests": "29",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.348"
+    }
+  },
+  "live_model_calls": 1,
+  "model": "qwen3.5:27b",
+  "thinking": false,
+  "prompt_tokens": 938,
+  "completion_tokens": 89,
+  "total_tokens": 1027,
+  "cloud_api_cost_usd": 0,
+  "local_compute_cost_usd": null,
+  "server_receipt_verified": true,
+  "files": {
+    "frozen-evidence-check.json": "9f7cdb652b86860f462954f2cc96e26d8251661dd2c71a1eac02018cf20a8653",
+    "full-junit.xml": "febd992347c0317d6323182558a75dff6118453e8f3fe38bd39c003c1f898fe8",
+    "implementation-hashes.json": "080ddfd96cccac306c07df2e7240c4182b8b451cd64bd0d82f43b5caeb34cfed",
+    "live/observability.json": "3fedcf838059f91a5fb65b60da3f2385a5928a9c975d7f08522f7a438d4008fd",
+    "live/patch.diff": "a26e7a319f0788adf632a8d5e3f394779fd3fee3d781c80683e1618abe295bbe",
+    "live/provenance.json": "c9eaa6ecb33af117d5e731668cbda2c5e66dd573531404bb3783d231d968fd1d",
+    "live/report.json": "07ef08897a433ba1645799cce893d5799bdb252b50fe818f1004d652d808d0f5",
+    "live/trace.jsonl": "b98784929a99f33a9e71223f628e17ede56573bd5731f5549d0e722e7c32b1b6",
+    "live-server-receipt.json": "f12ee62e403bc5a214285d0bb1429ce17019c3e24cf5e314777c059ead72ff66",
+    "NOTICE.md": "5858fddc646340061acdcfa77a58cb178f50ae2695e41132f448c2572cd6feaa",
+    "scripted/observability.json": "8b2178ddf5e5427ae58533c63ba398058719ac41ea33c916598635e0dd59e772",
+    "scripted/patch.diff": "a26e7a319f0788adf632a8d5e3f394779fd3fee3d781c80683e1618abe295bbe",
+    "scripted/provenance.json": "56c89d2283e2ba60b2d1de5801045a5a42d2041ce6581be3a0e71ded63b260ef",
+    "scripted/report.json": "8cab5f89988a052bd339f8bf25a1f7c2ef04b0793d8a7be3b827ae6141b2587a",
+    "scripted/trace.jsonl": "507ba91a8ef67ecaec53f8a568a9c88f010506bf1c557af277800031caeed6fb",
+    "scripted-server-receipt.json": "2a104de5ed04c9cb5e6371d250e1ca8e8939161a9edcf18c1edfc5f2bc431332",
+    "targeted-junit.xml": "2b13f26d2dfe7f69e64c9b155527a41392a422d6b2c676ef1cbd6a422f77bb47"
+  }
+}

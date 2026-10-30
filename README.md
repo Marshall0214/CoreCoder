@@ -18,6 +18,12 @@ Prepared Issues now have a [complete CLI/API path (Chinese)](docs/issue-service.
 
 An optional [local Langfuse adapter (Chinese)](docs/langfuse-local.md) adds task/model/tool/check spans and deterministic scores, without uploading source or prompts. The self-hosted service is running: [server readback verified two traces and 14 observations, login, and persistence across a stack restart](docs/langfuse-server-20261029.md), with zero model calls. [Further integrations](docs/advanced-capabilities.md) are planned separately.
 
+[Subsequent native usage acceptance](docs/langfuse-token-usage-20261030.md) verified 1,027 tokens from one local Qwen3.5 27B call across Ollama, local events and Langfuse, with thinking disabled. Missing counters, measured zero, budget estimates and cloud API fees are distinct; scripted responses use ordinary spans.
+
+[Langfuse operations drills](docs/langfuse-operations-20261030.md) add no-model diagnostics and scoped Web/Worker fault drills: local delivery survives telemetry downtime, and queued records become readable after Worker recovery. All services were restored; offline tasks are not automatically backfilled.
+
+[The first SWE-bench Verified Mini task](docs/swebench-mini-20261030.md) now has official grading and two Langfuse dataset control experiments: unchanged code passes 0/2 target tests, the reference patch passes 2/2, and both preserve 77/77 regression tests. No model inference or new Agent accuracy claim is involved.
+
 | Area | Implemented | Boundary |
 | --- | --- | --- |
 | Public GitHub Issues | Read-only import, pinned source, candidate patches and Docker reproduction/preservation checks | CLI with trusted configuration; public-test success requires manual review |

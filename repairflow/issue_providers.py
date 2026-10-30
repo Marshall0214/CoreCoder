@@ -2,20 +2,29 @@
 import json
 import time
 import urllib.request
+from dataclasses import dataclass, field
 
 from corecoder.llm import LLMResponse
 from repairflow.github_issue import NoRedirect
 
 
 class ProviderFailure(RuntimeError):
-    def __init__(self, status):
+    def __init__(self, status, *, reported_usage=None):
         self.status = status
+        self.reported_usage = reported_usage or {}
         super().__init__(status)
+
+
+@dataclass
+class UsageResponse(LLMResponse):
+    # Explicit evidence distinguishes measured zero from legacy/default zero.
+    reported_usage: dict = field(default_factory=dict)
 
 
 class ScriptedProvider:
     """Exercise execution with supplied answers, never claim model performance."""
     model = 'scripted-not-a-model'
+    usage_source = 'not_applicable'
 
     def __init__(self, path):
         with path.open('rb') as stream:
@@ -33,11 +42,13 @@ class ScriptedProvider:
             raise ProviderFailure('scripted_responses_exhausted')
         content = self.responses[len(self.calls)]
         self.calls.append({'scripted': True, 'usage_known': False})
-        return LLMResponse(content=content)  # Unknown usage; BudgetLLM reserves conservatively.
+        return UsageResponse(content=content)  # No inference; budget estimates remain separate.
 
 
 class OllamaProvider:
     """Native API explicitly disables thinking. Never loads .env or cloud keys."""
+    usage_source = 'ollama_response'
+    cloud_api_cost_usd = 0.0
     def __init__(self, model, deadline):
         if (not isinstance(model, str) or not model or len(model) > 128
                 or any(c.isspace() for c in model) or any(c in model for c in '/\\@')
@@ -53,7 +64,8 @@ class OllamaProvider:
             raise ProviderFailure('task_timeout')
         payload = {'model': self.model, 'messages': messages, 'stream': False, 'think': False,
                    'format': 'json', 'options': {'temperature': 0, 'num_predict': max_tokens, 'num_ctx': 65536}}
-        record = {'scripted': False, 'thinking_requested': False}
+        record = {'scripted': False, 'thinking_requested': False, 'usage_known': False}
+        usage = {}
         self.calls.append(record)
         request = urllib.request.Request('http://127.0.0.1:11434/api/chat',
                                          json.dumps(payload).encode(), {'Content-Type': 'application/json'})
@@ -65,23 +77,29 @@ class OllamaProvider:
             if len(raw) > 4_000_000:
                 raise ProviderFailure('provider_response_limit')
             data = json.loads(raw)
-            message = data['message']
+            native = {key: data.get(key) for key in ('prompt_eval_count', 'eval_count')}
+            usage = {name: value if type(value) is int and value >= 0 else None for name, value in
+                     zip(('prompt_tokens', 'completion_tokens'), native.values())}
+            record.update(usage, usage_known=all(value is not None for value in usage.values()),
+                          native_usage={key: value if type(value) is int and value >= 0 else None
+                                        for key, value in native.items()})
+            if any(value is not None and (type(value) is not int or value < 0) for value in native.values()):
+                raise ValueError('Invalid usage counts')
             record.update(finish_reason=data.get('done_reason'), model_returned=data.get('model'))
             if data.get('done') is not True or data.get('done_reason') != 'stop':
                 raise ProviderFailure('incomplete_model_response')
+            message = data['message']
             if message.get('thinking') or message.get('tool_calls'):
                 raise ProviderFailure('unexpected_model_response')
             content = message['content']
             if not isinstance(content, str):
                 raise TypeError('Invalid response content')
-            usage = [data.get(key, 0) for key in ('prompt_eval_count', 'eval_count')]
-            if any(type(value) is not int or value < 0 for value in usage):
-                raise ValueError('Invalid usage counts')
-            record.update(prompt_tokens=usage[0], completion_tokens=usage[1])
-            return LLMResponse(content=content, prompt_tokens=usage[0], completion_tokens=usage[1])
+            return UsageResponse(content=content, prompt_tokens=usage['prompt_tokens'] or 0,
+                                 completion_tokens=usage['completion_tokens'] or 0, reported_usage=usage)
         except ProviderFailure as exc:
             record['failure'] = exc.status
+            exc.reported_usage = dict(usage)
             raise
         except (OSError, ValueError, KeyError, TypeError) as exc:
             record['failure'] = 'local_provider_failed'
-            raise ProviderFailure('local_provider_failed') from exc
+            raise ProviderFailure('local_provider_failed', reported_usage=usage) from exc

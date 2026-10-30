@@ -1,0 +1,239 @@
+{
+  "schema_version": "prepared-issue-symbol-recovery-v1",
+  "status": "public_checks_passed",
+  "accepted": false,
+  "public_checks_passed": true,
+  "requires_review": true,
+  "delivery_status": "ready_for_review",
+  "independent_verification": {
+    "available": false,
+    "passed": null
+  },
+  "attempts": [
+    {
+      "step": 1,
+      "status": "completed",
+      "prompt_sha256": "f6f28c6d7349575107fe74544e1e95bd0e0ab31f57226951a6317eefe01e1d10",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/example/__init__.py",
+            "old": "def add_step(x):\n    return x + 1",
+            "new": "def add_step(x):\n    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 1,
+      "changed_files": [
+        "src/example/__init__.py"
+      ],
+      "net_changed_files": [
+        "src/example/__init__.py"
+      ]
+    }
+  ],
+  "execution_mode": "ollama",
+  "fresh_inference": true,
+  "fresh_model_calls": 1,
+  "no_progress_detected": false,
+  "context_policy": "baseline",
+  "allowed_files": [
+    "src/example/__init__.py"
+  ],
+  "read_only_files": [
+    "src/example/policy.py"
+  ],
+  "observation_policy": "compact-v1",
+  "workflow": "symbol-recovery-v1",
+  "scripted_execution": false,
+  "thinking": false,
+  "sandbox": {
+    "backend": "docker",
+    "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "limits": "Trusted public reproduction and preservation only; no independent grader or upstream full suite.",
+  "baseline_checks": {
+    "Reproduce": {
+      "returncode": 1,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 1,
+      "successful": false,
+      "seconds": 1.626,
+      "passed": false
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.5526,
+      "passed": true
+    }
+  },
+  "actions": [
+    {
+      "step": 1,
+      "status": "completed",
+      "prompt_sha256": "f6f28c6d7349575107fe74544e1e95bd0e0ab31f57226951a6317eefe01e1d10",
+      "action": "apply_patch",
+      "arguments": {
+        "edits": [
+          {
+            "file": "src/example/__init__.py",
+            "old": "def add_step(x):\n    return x + 1",
+            "new": "def add_step(x):\n    return x + 2"
+          }
+        ]
+      },
+      "edit_attempt": 1,
+      "changed_files": [
+        "src/example/__init__.py"
+      ],
+      "net_changed_files": [
+        "src/example/__init__.py"
+      ]
+    }
+  ],
+  "recovery_limits": {
+    "max_steps": 4,
+    "max_edit_attempts": 2,
+    "max_consecutive_errors": 3,
+    "max_repeated_actions": 3
+  },
+  "edit_attempts_used": 1,
+  "final_public_checks": {
+    "Reproduce": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.6522,
+      "passed": true
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.6234,
+      "passed": true
+    }
+  },
+  "changed_files": [
+    "src/example/__init__.py"
+  ],
+  "original_unchanged": true,
+  "candidate_rolled_back": false,
+  "scripted_calls": 0,
+  "metrics": {
+    "llm_calls": 1,
+    "prompt_tokens": 938,
+    "completion_tokens": 89,
+    "known_prompt_tokens": 938,
+    "known_completion_tokens": 89,
+    "missing_usage_calls": 0,
+    "budget_accounted_tokens": 1027,
+    "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+    "usage_status": "known",
+    "usage_source": "ollama_response",
+    "failed_calls": 0,
+    "cloud_api_cost_usd": 0.0,
+    "local_compute_cost_usd": null,
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown"
+  },
+  "provider_calls": [
+    {
+      "scripted": false,
+      "thinking_requested": false,
+      "usage_known": true,
+      "prompt_tokens": 938,
+      "completion_tokens": 89,
+      "native_usage": {
+        "prompt_eval_count": 938,
+        "eval_count": 89
+      },
+      "finish_reason": "stop",
+      "model_returned": "qwen3.5:27b"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "status": "submitted_unconfirmed",
+    "content_capture": false,
+    "trace_id": "449dfc3d57dcaee605bb3eea1612ebae",
+    "base_url": "http://127.0.0.1:3300",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/449dfc3d57dcaee605bb3eea1612ebae"
+  }
+}

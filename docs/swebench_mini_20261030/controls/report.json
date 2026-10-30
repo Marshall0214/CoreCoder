@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "scope": "Single-task harness admission, not Agent accuracy",
+  "instance_id": "django__django-11790",
+  "dataset": "MariusHobbhahn/swe-bench-verified-mini",
+  "subset_count": 50,
+  "evaluated_unique_tasks": 1,
+  "fresh_model_calls": 0,
+  "harness_version": "5.0.2",
+  "mini_revision": "b316c349947c29963fce3f4a65967c9807a4b673",
+  "official_revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+  "entry_manifest_sha256": "7f35e516556e835d95155eae3b13800887a6a9af8f3b6a296484d878b468e77a",
+  "image_id": "sha256:e0e74c3332a0c6bd8b1c8409fd966da5dc7b8836d9c4e0fa139908068d8f1d21",
+  "image_layers": [
+    "sha256:beb59027b96ddbf30ac9c80b527668fe7011f4f553fe83f5e59199e9a84fb5ca",
+    "sha256:24df650e8ccc41451cf4f7113e09420f7ec00ca9ae41e8be09c60bc467cdf4fe",
+    "sha256:098cb03ec50e1bd1637b7db5e2696a4d1dc3f1c3811adbbe444f43f631f2e7fd",
+    "sha256:fc3a8fa12509a555b3cea8d1f7457c0837ab8360be78e7a380294e09f96fe2f2",
+    "sha256:a3540f5c375c231bc054e7472d0de5a6d8fe5c96b92948f7655914860647fb54",
+    "sha256:f3684f1a85d5159913e2c41a55a86947882302421241b14b57583633bfc31873",
+    "sha256:722c8eeb6f64f224599d121dc290a951e4bf8edb118e02d6d548f65c2cabe44f",
+    "sha256:4995e8f73c6a8a23b72ba342e77397dbb476c1d9e38fe1349eb8faf5285e8067",
+    "sha256:30f4ad2c883a66a546fbbc0df7ecc7c35e88dc1c4b363fc898754ce61f888f90",
+    "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+  ],
+  "execution": "Local restricted Docker orchestration; official eval script, parser and grader",
+  "unchanged": {
+    "mode": "unchanged",
+    "script_exit_code": 0,
+    "seconds": 4.89,
+    "patch_source": "unchanged",
+    "base_commit_verified": "b1d6b35e146aea83b171c1b921178bbaae2795ed",
+    "image_initial_head": "84a9058f3ff86c9e7b27cc134460437fc9a4aac1",
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fresh_model_calls": 0,
+    "is_agent_result": false,
+    "resolved": false,
+    "FAIL_TO_PASS": {
+      "passed": 0,
+      "failed": 2,
+      "total": 2
+    },
+    "PASS_TO_PASS": {
+      "passed": 77,
+      "failed": 0,
+      "total": 77
+    }
+  },
+  "reference": {
+    "mode": "reference",
+    "script_exit_code": 0,
+    "seconds": 5.438,
+    "patch_source": "dataset_reference",
+    "base_commit_verified": "b1d6b35e146aea83b171c1b921178bbaae2795ed",
+    "image_initial_head": "84a9058f3ff86c9e7b27cc134460437fc9a4aac1",
+    "patch_sha256": "45134a10c54998cc6a8454e4a13ecf9366976fe6876aa64ae59317e229304c3a",
+    "fresh_model_calls": 0,
+    "is_agent_result": false,
+    "resolved": true,
+    "FAIL_TO_PASS": {
+      "passed": 2,
+      "failed": 0,
+      "total": 2
+    },
+    "PASS_TO_PASS": {
+      "passed": 77,
+      "failed": 0,
+      "total": 77
+    }
+  }
+}

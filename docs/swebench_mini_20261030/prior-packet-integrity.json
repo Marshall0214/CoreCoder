@@ -1,0 +1,38 @@
+[
+  {
+    "packet": "langfuse-operations-20261030",
+    "files_verified": 15
+  },
+  {
+    "packet": "langfuse-token-usage-20261030",
+    "files_verified": 17
+  },
+  {
+    "packet": "langfuse-server-20261029",
+    "files_verified": 24
+  },
+  {
+    "packet": "langfuse-20261029",
+    "files_verified": 17
+  },
+  {
+    "packet": "issue-mvp-20261029",
+    "files_verified": 17
+  },
+  {
+    "packet": "compact-observations-20261029",
+    "files_verified": 65
+  },
+  {
+    "packet": "compact-candidate-review-20261029",
+    "files_verified": 42
+  },
+  {
+    "packet": "style-feedback-20261029",
+    "files_verified": 59
+  },
+  {
+    "packet": "module-binding-20261029",
+    "files_verified": 66
+  }
+]

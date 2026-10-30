@@ -109,9 +109,10 @@ def test_real_operation_boundaries_and_scores_do_not_claim_independent_acceptanc
     client = observer.client
     assert result['status'] == 'submitted_unconfirmed' and len(result['trace_id']) == 32
     assert client.closed and client.root.ended and all(span.ended for span in client.root.children)
-    assert [span.values['as_type'] for span in client.root.children] == ['generation', 'tool', 'span']
+    assert [span.values['as_type'] for span in client.root.children] == ['span', 'tool', 'span']
     generation = client.root.children[0].values
-    assert generation['name'] == 'scripted-response' and generation['usage_details'] is None
+    assert generation['name'] == 'scripted-response' and 'usage_details' not in generation
+    assert 'model' not in generation
     assert 'private-code' not in json.dumps(client.root.children[1].values)
     assert 'secret-code' not in json.dumps(client.root.children[1].values)
     scores = {row['name']: row['value'] for row in client.scores}

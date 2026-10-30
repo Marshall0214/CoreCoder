@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "trace_id": "7a2574251a6e1b785c4475a970763638",
+  "fresh_model_calls": 0,
+  "scripted_spans": 2,
+  "model_generations": 0,
+  "usage_status": "not_applicable"
+}

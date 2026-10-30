@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "fresh_model_calls": 0,
+  "scope": "Synthetic operations drill, not accuracy",
+  "web_offline_repair": {
+    "public_checks_passed": true,
+    "accepted": false,
+    "fresh_model_calls": 0,
+    "local_trace_present": true,
+    "nonempty_patch": true,
+    "observability": {
+      "enabled": true,
+      "status": "unavailable",
+      "content_capture": false,
+      "error_types": [
+        "ConnectTimeout"
+      ]
+    }
+  },
+  "worker_paused_repair": {
+    "public_checks_passed": true,
+    "accepted": false,
+    "fresh_model_calls": 0,
+    "local_trace_present": true,
+    "nonempty_patch": true,
+    "observability": {
+      "enabled": true,
+      "status": "submitted_unconfirmed",
+      "content_capture": false,
+      "trace_id": "d7c51ad49dc9f0586d36fceac5897d2e",
+      "base_url": "http://127.0.0.1:3300",
+      "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/d7c51ad49dc9f0586d36fceac5897d2e"
+    }
+  },
+  "while_worker_paused": [
+    {
+      "elapsed_seconds": 0.06,
+      "observation_count": 0,
+      "score_count": 0,
+      "receipt": null
+    },
+    {
+      "elapsed_seconds": 2.09,
+      "observation_count": 0,
+      "score_count": 0,
+      "receipt": null
+    },
+    {
+      "elapsed_seconds": 4.14,
+      "observation_count": 0,
+      "score_count": 0,
+      "receipt": null
+    },
+    {
+      "elapsed_seconds": 6.17,
+      "observation_count": 0,
+      "score_count": 0,
+      "receipt": null
+    },
+    {
+      "elapsed_seconds": 8.22,
+      "observation_count": 0,
+      "score_count": 0,
+      "receipt": null
+    },
+    {
+      "elapsed_seconds": 10.25,
+      "observation_count": 0,
+      "score_count": 0,
+      "receipt": null
+    },
+    {
+      "elapsed_seconds": 12.28,
+      "observation_count": 0,
+      "score_count": 0,
+      "receipt": null
+    },
+    {
+      "elapsed_seconds": 14.33,
+      "observation_count": 0,
+      "score_count": 0,
+      "receipt": null
+    },
+    {
+      "elapsed_seconds": 16.36,
+      "observation_count": 0,
+      "score_count": 0,
+      "receipt": null
+    }
+  ],
+  "after_worker_resumed": {
+    "elapsed_seconds": 2.09,
+    "observation_count": 7,
+    "score_count": 3,
+    "receipt": {
+      "trace_id": "d7c51ad49dc9f0586d36fceac5897d2e",
+      "root_id": "9e1c8763e4f1b849",
+      "observation_count": 7,
+      "names": [
+        "apply_patch",
+        "docker-public-checks",
+        "issue-repair",
+        "read_symbol",
+        "scripted-response"
+      ],
+      "all_operations_ended": true,
+      "parent_links_verified": true,
+      "local_operation_counts_verified": true,
+      "summary_only_payloads": true,
+      "scores": {
+        "fresh_model_calls": 0,
+        "public_checks_passed": true,
+        "independent_verification_available": false
+      },
+      "fresh_model_calls": 0,
+      "independent_acceptance": false
+    }
+  }
+}

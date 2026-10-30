@@ -4,6 +4,8 @@
 
 **当前状态：本地服务已上线并完成服务器回读验收。**CLI/API 合成演示各留存一条 Trace，共 14 个节点；登录、评分与整套服务重启后记录保留均已验证。模型调用为零，准确率实验未变。[服务验收](langfuse-server-20261029.md)；[上一阶段离线验收](langfuse-20261029.md)保留原始网络故障记录。
 
+[运行检查与故障演练](langfuse-operations-20261030.md)已完成：停止 Web 后修复仍交付本地证据；暂停 Worker 时新记录不可见，恢复后回读 7 节点、3 评分。提供只读 `doctor` 与显式 `drill` 命令；均无需模型。Web 离线期间没有自动补传，后台队列恢复与客户端离线保留分开理解。
+
 ## 能看到什么
 
 | 节点/记录 | 内容 | 边界 |
@@ -16,6 +18,8 @@
 | 确定性评分 | public_checks_passed、fresh_model_calls、independent_verification_available | 后者在当前 prepared-Issue 流程恒为 false；无 LLM 评分 |
 
 SDK 不可用、配置错误或服务离线，只影响观测状态，不改变补丁、测试、审批或回滚结论。允许的服务地址仅为本机回环地址，避免误发云端。
+
+[真实本地模型 Token 验收](langfuse-token-usage-20261030.md)已通过：Qwen3.5 27B 一次无思考调用输入 938、输出 89，云 API 费用 $0。新脚本响应是普通 SPAN，标记 not_applicable；真实模型才记为 GENERATION。未知用量不填实测 0，预算估算不当作实际消耗，本地运行成本单独保持未知。
 
 ## 1. 准备环境与凭据
 
@@ -94,3 +98,5 @@ python -B -m deploy.langfuse.verify --demo .tmp/langfuse-demo-001 --env-file .tm
 本次已完成的演示输出为 `.tmp/langfuse-server-demo-20261029`；首次和重启后回读证据见[服务验收](langfuse-server-20261029.md)。账号密码仍只在 `.tmp/langfuse-local/login.txt`。
 
 禁用后恢复原流程：`Remove-Item Env:CORECODER_LANGFUSE_ENABLED`。本轮不包含 Langfuse 数据集同步、自动实验对比、告警或 LLM 裁判；其他四项路线见[前沿能力接入](advanced-capabilities.md)。
+
+上述限制是初次部署阶段的范围；后续已接通 [Mini 首项数据集实验](swebench-mini-20261030.md)：一个任务、未修改/参考补丁两个控制实验及服务器评分回读。它们明确标为实际评分结果导入，无模型推理，未实现完整在线案例回流或模型版本对照。

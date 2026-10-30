@@ -1,0 +1,70 @@
+{
+  "schema_version": "prepared-issue-symbol-recovery-v1",
+  "mode": "ollama",
+  "prepared_task_sha256": "d7894611a30e7841b75d04596a3bd84b53fe98082162ca7c4de68b73e006760b",
+  "config_sha256": "52641f6a2a84dd3533f203efd058c91fb30d105ad0d76914fa880ad7d4fd8844",
+  "repo": "example/issue-demo",
+  "base_commit": "0000000000000000000000000000000000000000",
+  "issue_url": "https://github.com/example/issue-demo/issues/1",
+  "source_sha256": "4ced57de109547f77b60185f8cd120bead4d5d7f1eefff752425cdea9bb61d45",
+  "harness_sha256": "5b73517fbcaed496053ba8cd6834bd4a714b100523b238525c41c28eddd050f0",
+  "allowed_files": [
+    "src/example/__init__.py"
+  ],
+  "read_only_files": [
+    "src/example/policy.py"
+  ],
+  "sandbox": {
+    "backend": "docker",
+    "image": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "limits": {
+    "mode": "live",
+    "model": "qwen3.5:27b",
+    "base_url": "http://127.0.0.1:11434",
+    "max_rounds": 4,
+    "token_budget": 60000,
+    "max_output_tokens": 4096,
+    "context_tokens": 65536,
+    "wall_timeout": 1200,
+    "test_timeout": 15,
+    "temperature": 0.0,
+    "reasoning_effort": "none",
+    "search_backend": "off",
+    "search_max_chars": 6000,
+    "search_history": "full",
+    "context_policy": "none",
+    "prompt_policy": "baseline",
+    "evidence_top_k": 5,
+    "evidence_dependency_depth": 2,
+    "evidence_order": "selection",
+    "patch_policy": "baseline",
+    "public_check_policy": "generated",
+    "output_policy": "remaining",
+    "read_policy": "full"
+  },
+  "thinking": false,
+  "implementation_sha256": {
+    "issue_repair.py": "781f85f371f6c642e46cf41b5fe5c6387431f93b1df1a8002d6315e9d99d2e8e",
+    "issue_providers.py": "b5782779b2d7fde09d391465741355bb5ee0797923186ac0488bbcc7f24743c6",
+    "issue_context.py": "a8461b596f9df5ba0d02b887a9f587b402bf894db11ca10d96d1ac495586fc87",
+    "issue_agent.py": "476fb107f9864de18d32bd783545503dd31ad5f793419de9fd8faaeccac62e12",
+    "issue_tools.py": "edfad7141a3c945b2e4c49e2abcf7c8bc4ec42f09d6c8efcd017a14237f6ae31"
+  },
+  "workflow": "symbol-recovery-v1",
+  "recovery_limits": {
+    "max_steps": 4,
+    "max_edit_attempts": 2,
+    "max_consecutive_errors": 3,
+    "max_repeated_actions": 3
+  },
+  "context_policy": "baseline",
+  "observation_policy": "compact-v1",
+  "scripted_responses_sha256": null
+}

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "scope": "Local inference usage verification; not a repair-rate experiment",
+  "trace_id": "449dfc3d57dcaee605bb3eea1612ebae",
+  "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/449dfc3d57dcaee605bb3eea1612ebae",
+  "server_receipt_verified": true,
+  "native_local_server_match": true,
+  "repair_status": "public_checks_passed",
+  "public_checks_passed": true,
+  "model": "qwen3.5:27b",
+  "thinking": false,
+  "fresh_model_calls": 1,
+  "prompt_tokens": 938,
+  "completion_tokens": 89,
+  "cloud_api_cost_usd": 0.0,
+  "all_usage_known": true,
+  "local_compute_cost_usd": null,
+  "calls": [
+    {
+      "call_id": "llm-1",
+      "input": 938,
+      "output": 89,
+      "usage_status": "known",
+      "failed": false
+    }
+  ]
+}
