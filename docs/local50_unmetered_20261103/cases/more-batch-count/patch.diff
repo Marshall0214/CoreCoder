@@ -1,0 +1,12 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -4953,6 +4953,9 @@
+     if max_size <= 0:
+         raise ValueError('maximum size must be greater than zero')
+ 
++    if max_count is not None and max_count <= 0:
++        raise ValueError('max_count must be greater than zero')
++
+     batch = []
+     batch_size = 0
+     batch_count = 0

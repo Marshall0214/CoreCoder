@@ -1,0 +1,46 @@
+{
+  "name": "mini-swe-local50-budget100k-v1",
+  "tasks": [
+    "click-usage-empty"
+  ],
+  "upstream": {
+    "version": "2.4.6",
+    "default_agent_sha256": "e8ef8aa365942d739c2ec5cb0879f60f377d2dc2de8ec670aaedf3bafb45a4c2",
+    "config_sha256": "112aa58328f478a41cc2630702a4b89ef459e912870e05065157ed221f56701f",
+    "action_protocol": "upstream text-based Bash",
+    "agent_loop_modified": false
+  },
+  "identity": {
+    "model": "qwen3.5:27b",
+    "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+    "sandbox": {
+      "backend": "docker",
+      "image": "corecoder-test-sandbox:v1",
+      "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+      "network": "none",
+      "cpus": 1,
+      "memory_bytes": 1073741824,
+      "pids": 64,
+      "output_limit_bytes": 1048576
+    }
+  },
+  "original_protocol_sha256": "5848882df492e9880ef140ab7d4a64ba5f244ad0b8b24dfd4368c2fde4031e1d",
+  "baseline_report_sha256": "92cd0b9a09286bc11afa09726c6d6ed835680968ca433080328b6020d2d0726a",
+  "sources": {
+    "evals/mini_swe.py": "b06d9cf004ac5187ee6aceea3f187dbc3fbfe740335907e144e3206c76a4d4bc",
+    "evals/mini_swe_adapter.py": "19a176d4127d741aa88ecbb32645bae3bbd3dc6268ebcbf7d606962f3db67307"
+  },
+  "limits": {
+    "requests": 20,
+    "token_budget": 100000,
+    "output_tokens": 2048,
+    "estimated_context": 16000,
+    "deadline_seconds": 1200,
+    "thinking": false,
+    "model_attempts_per_task": 1
+  },
+  "comparison_scope": "Whole-system development comparison; prompts/tools/history/edit limits differ",
+  "model_interface": "Upstream supported text actions; native tool calls not used",
+  "hidden_feedback": false,
+  "new_helpers_in_submission": false
+}

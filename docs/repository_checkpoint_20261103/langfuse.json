@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "publication_model_calls": 0,
+  "inference_receipts": [
+    {
+      "trace_id": "a8773867bef0c181ef518e7f0a1258aa",
+      "generation_count": 5,
+      "usage_status": "known",
+      "prompt_tokens": 8900,
+      "completion_tokens": 844,
+      "all_operations_ended": true
+    },
+    {
+      "trace_id": "7105a9775fdf898de0fac0460a713090",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 25435,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    },
+    {
+      "trace_id": "7fd28cefd5f82a30009bf7de6f1f373a",
+      "generation_count": 6,
+      "usage_status": "known",
+      "prompt_tokens": 19727,
+      "completion_tokens": 269,
+      "all_operations_ended": true
+    }
+  ]
+}

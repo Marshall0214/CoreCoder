@@ -1,0 +1,20 @@
+{
+  "name": "qwen3.5:27b",
+  "digest": "7653528ba5cba4dd8e19da24aaddc7f4d0b5ecd93571c0825dfd4137958ec06e",
+  "size": 17420432728,
+  "modified_at": "2026-09-19T20:23:24.6144565+08:00",
+  "details": {
+    "parent_model": "",
+    "format": "gguf",
+    "family": "qwen35",
+    "families": [
+      "qwen35"
+    ],
+    "parameter_size": "27.8B",
+    "quantization_level": "Q4_K_M",
+    "context_length": 262144,
+    "embedding_length": 5120,
+    "runner": "ggml"
+  },
+  "capture_phase": "post_run_read_only_metadata; not a new inference"
+}

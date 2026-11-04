@@ -1,0 +1,11 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -2402,6 +2402,8 @@
+         )
+ 
+     def __reversed__(self):
++        if self._len == 0:
++            return iter([])
+         return iter(
+             numeric_range(
+                 self._get_by_index(-1), self._start - self._step, -self._step

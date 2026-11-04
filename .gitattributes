@@ -1,0 +1,6 @@
+# Preserve frozen experiment artifacts byte-for-byte for SHA-256 verification.
+/docs/local50_unmetered_20261103/** -text
+/docs/mini_swe_20261103/** -text
+/docs/mini_swe_budget_20261103/** -text
+/docs/repository_checkpoint_20261103/** -text
+/docs/swebench_agent_20261030/** -text

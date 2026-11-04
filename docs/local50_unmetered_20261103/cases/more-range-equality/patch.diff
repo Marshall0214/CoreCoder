@@ -1,0 +1,15 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -2344,6 +2344,12 @@
+             if empty_self or empty_other:
+                 return empty_self and empty_other  # True if both empty
+             else:
++                # For non-empty ranges, compare start, step, and last element.
++                # However, for singletons (len == 1), step doesn't matter for equality.
++                self_len = len(self)
++                other_len = len(other)
++                if self_len == 1 and other_len == 1:
++                    return self._start == other._start
+                 return (
+                     self._start == other._start
+                     and self._step == other._step

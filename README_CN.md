@@ -12,6 +12,12 @@
 
 ## 当前能力
 
+[自有 Agent 本地无 Token 截止评测](docs/local50-unmetered-20261103.md)：50 项已知任务完整运行，独立验收 **21/50**，33 项生成补丁；309 次本地 Qwen 调用、937,866 Token，50 条真实 Trace 与用量回读通过。本轮采用 checkpoint 策略，与旧 DeepSeek 成绩分开记录。
+
+[mini-SWE-agent 可选接入](docs/mini-swe-integration.md)：复用 2.4.6 原版循环，连接本地 Ollama、受限 Docker、独立评分和 Langfuse。固定 5 项开发对照已完成，旧流程和 mini 均为 **0/5**；保留原核心，不将接入完成表述为准确率提升或上游基准成绩。
+
+[SWE-bench Mini 全量基线](docs/swebench-mini-batch.md)：已准备 Django 25 项、Sphinx 25 项，支持固定本地模型配置、逐项控制组验收、后置独立评分、断点恢复及统一 Langfuse 实验。当前批次运行中，尚无完整 50 项修复率。
+
 新 Issue CLI 已接入 [read_symbol 与编辑恢复](docs/symbol-read-recovery.md)：可配置步数和编辑次数，锚点或版本失败后强制重读。新流程的脚本测试不计入历史 47/50。
 
 新 Issue 已接入 [CLI/API 完整流程](docs/issue-service.md)：可信目录注册、执行前审批、重启恢复、只读依赖、沙箱验证及制品下载。可用合成任务和脚本响应完成离线演示；当前优先工程完整性，准确率优化后置。
@@ -57,6 +63,8 @@
 [Langfuse 运行检查与故障演练](docs/langfuse-operations-20261030.md)：提供无模型诊断及 Web/Worker 故障演练，验证观测离线时本地交付保留、后台恢复后新记录可回读；全部服务已恢复，暂不支持离线任务自动补传。
 
 [SWE-bench Verified Mini 首项](docs/swebench-mini-20261030.md)已接通官方评分与 Langfuse 数据集实验：未修改目标 0/2、参考补丁 2/2，回归均 77/77；无模型推理，不计入旧 47/50，也不是新 Agent 修复率。
+
+[首次本地 Agent 尝试](docs/swebench-agent-20261030.md)：自行搜索该项基线仓库，Qwen 无思考调用 6 次、19,364 Token；重复读取后停止，无补丁，官方目标 0/2、回归 77/77。真实推理和后置评分已在 Langfuse 关联，失败结果完整保留。
 
 ## 快速开始：无需模型 API
 

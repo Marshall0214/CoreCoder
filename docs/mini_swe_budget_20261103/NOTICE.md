@@ -1,0 +1,1 @@
+Single known development task, one fresh local attempt. Successful post-termination Target/Controls grading is distinct from active Agent submission: this Agent stopped on budget before submission. Earlier mini pilot and baseline evidence are unchanged. See comparability.json for tool-output divergence; no isolated causal improvement is claimed. No credentials included.

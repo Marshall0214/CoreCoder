@@ -1,0 +1,48 @@
+{
+  "scope": "Three known development tasks, combined opt-in policy, not full 50-task accuracy",
+  "tests": {
+    "passed": 70,
+    "ruff": "passed"
+  },
+  "summary": {
+    "tasks": 3,
+    "baseline_resolved": 0,
+    "candidate_resolved": 2,
+    "baseline_nonempty_patches": 0,
+    "candidate_nonempty_patches": 2,
+    "baseline_tokens": 71649,
+    "candidate_tokens": 55340,
+    "candidate_fresh_calls": 18
+  },
+  "files": {
+    "audit.json": "2a18eb089a98b0d74b5f9765fb4384fb9b35799835f33048946387c4a1186945",
+    "cases/boltons-repeat-equality/agent-report.json": "17b6dbfc8f378e611a20afcfbe8595246001bf3231444f9892bcb69322fdfdbd",
+    "cases/boltons-repeat-equality/grading-report.json": "e42eb469b812a4a4dedadc500416017cc02ce94194136152a8e990315f2d1f92",
+    "cases/boltons-repeat-equality/patch.diff": "90467fdcae1db9f4e7be006823826587d8433de643bb52a51e1b1c7f3f0635c9",
+    "cases/click-usage-empty/agent-report.json": "8fef63c44b19c7b6bd37b5081b647ce48fd97526813b7dfc058d39236e5c2b34",
+    "cases/click-usage-empty/grading-report.json": "827269fc6327e78130c1681bb9e28dfc33924a5297989b1944151ad8ed03bf66",
+    "cases/click-usage-empty/patch.diff": "4623f980793d7e6531f24793e8102f231b436dcaa4b6ae944c9400ecd65ffdce",
+    "cases/toolz-join-unmatched/agent-report.json": "6495edd1a96d5bbc4027857d614b0bedbd7b1184e5a18eeb867b43940644d3be",
+    "cases/toolz-join-unmatched/grading-report.json": "74410c2edfc8dd23cdc686e1909ea3c64d2b8a6dbcb89e1fc9e3567ac1efb0b5",
+    "cases/toolz-join-unmatched/patch.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "implementation/deploy/langfuse/local50.py": "f00ce5981be3125d55abcc4c4f5767d4d57e7a1b9ffcb392f8aa49605281f2ab",
+    "implementation/evals/checkpoint_pilot.py": "7aeace091111b1178f4bd2f9e9f41f3ba891e96c93c208d734da1f7a80f88310",
+    "implementation/evals/local50.py": "f47b14b998976f2fda4879cf39dbb69cab9e7e82c266f217655ffbe38936bb26",
+    "implementation/evals/repository_checkpoint.py": "0a0554c45bbe4eb8a17eb2ed61b81ed34267b455ea9d003457fda21d6ba72da4",
+    "implementation/evals/runtime.py": "ae6a21482a9dbe265e0e44818128319dc78a28bb15016eccfb236aa1279e660f",
+    "implementation/evals/schema.py": "8fde27c0a87507bf40872b5b2802645cff5304893ce15f415165f9fcee683091",
+    "implementation/evals/swebench_agent.py": "b53eb12d20fa566bb862597895efa7a432c0111d6c0790c20dd682ebe46e7b0a",
+    "implementation/evals/swebench_batch.py": "63a08237004ffbebfd6b7ba2c93c109676f9eb9c496067b776fc2f65655154b7",
+    "implementation/repairflow/checks.py": "0a32284d352fab13d886a9687555b74ff8f34fe69c10459de13d242f545c50bb",
+    "implementation/repairflow/issue_providers.py": "b5782779b2d7fde09d391465741355bb5ee0797923186ac0488bbcc7f24743c6",
+    "implementation/repairflow/issue_tools.py": "edfad7141a3c945b2e4c49e2abcf7c8bc4ec42f09d6c8efcd017a14237f6ae31",
+    "implementation/repairflow/telemetry.py": "1f4ded916a9f8ed019eb3dddd6116cfc08677ac207a9e32facb8721feda010b5",
+    "implementation/sandbox/runner.py": "6912daa6c2dd56f82be303f899e6a39430dc52ee8a6da55404b2de83bed97764",
+    "implementation/tests/test_repository_checkpoint.py": "0bd1d911dbb4013b320ecc312f1b7ed837b7276868bfa78e6ba81ea39c20a972",
+    "integrity.json": "6fec47b83d8769fcd4d1996393de2a8f42b6b77424058dba06d50f7c5b60db78",
+    "langfuse.json": "f2a07f1cc27ff405354b3f82023a8d4a2711382bf7f16f3086b07c596608c992",
+    "NOTICE.md": "871b6d0612ab57abcd97aeea46bef84256ebdb42c632d5b53bf28f0b03609f3d",
+    "protocol.json": "b093badc638736a85d284118433e2521d7b1496ba480f58022d3be7beb992f39",
+    "report.json": "2a4565fcdd185fc1347239766e8fca6bac0ee22990e7e0db657bfcd407a36020"
+  }
+}

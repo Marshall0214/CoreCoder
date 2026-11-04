@@ -1,0 +1,37 @@
+{
+  "scope": "Click budget-only configuration diagnostic, fresh rollout with differing directory enumeration",
+  "tests": {
+    "passed": 88,
+    "skipped": 1,
+    "ruff": "passed"
+  },
+  "summary": {
+    "before_resolved": false,
+    "after_resolved": true,
+    "target_tests_passed": 2,
+    "control_tests_passed": 2,
+    "before_calls": 7,
+    "after_calls": 16,
+    "before_tokens": 22135,
+    "after_tokens": 90624,
+    "agent_submitted": false,
+    "agent_stop": "budget_exceeded",
+    "telemetry_receipts": "passed"
+  },
+  "files": {
+    "agent-report.json": "c837b849b36cf27a5ed01a58f1b134601b026dee2537309ee5a635e3dd586ed3",
+    "baseline/agent-report.json": "b6b0766be7de337b5e237106ce5e22a8918643dd0e293e0ae90b3e09c2591e71",
+    "baseline/langfuse.json": "9cda9df1f6dee24627a9e09fb928b1ab6b1747da9fe660f5814024d8a2ef3047",
+    "comparability.json": "9b9e5ab57817552ad8f0a6513aed2627d667943ba43c455cd417f9b4ce3d57e2",
+    "grading-report.json": "28c55b780968101913cde1c3da4bbca401d70602e5d2bf653bd19b735699b357",
+    "implementation/evals/mini_swe.py": "b06d9cf004ac5187ee6aceea3f187dbc3fbfe740335907e144e3206c76a4d4bc",
+    "implementation/evals/mini_swe_adapter.py": "19a176d4127d741aa88ecbb32645bae3bbd3dc6268ebcbf7d606962f3db67307",
+    "implementation/tests/test_mini_swe.py": "41ecd2f39e5eac7876720937e21ea716079bf13d97efabe97ad510a7b1e96e48",
+    "langfuse.json": "8d7fcc1a2d46bff8b9fd4f125c9760e29301b99f63acaa69fd17452b3260f73f",
+    "NOTICE.md": "aa08a5d7686ce196e901438c116a3283798163ebf5ebaa7efc2a6403cf993761",
+    "patch.diff": "4415e823e1779c2545283b2aaf092f8497ca80ce774ab04b43d6591aad36b1d0",
+    "protocol.json": "257adff0d09a957c396b993e176f7e0f2102081f1eb601d4de81e493fb9e6353",
+    "report.json": "b94132f930c35562e0600b326578114ae77c33c532fb2c7d302b13e0969665bc",
+    "trace.jsonl": "c8b7c044cdcfb9c4d79316506cd699c17ab6bb5e3e59c9671e423c7643a948e9"
+  }
+}

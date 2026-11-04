@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "instance_id": "django__django-11790",
+  "harness_version": "5.0.2",
+  "entry_manifest_sha256": "7f35e516556e835d95155eae3b13800887a6a9af8f3b6a296484d878b468e77a",
+  "candidate_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "image_id": "sha256:e0e74c3332a0c6bd8b1c8409fd966da5dc7b8836d9c4e0fa139908068d8f1d21",
+  "fresh_model_calls": 0,
+  "phase": "grading_only",
+  "scope": "Withheld official tests after Agent termination; no feedback to Agent",
+  "candidate": {
+    "mode": "candidate",
+    "script_exit_code": 0,
+    "seconds": 5.032,
+    "patch_source": "agent_candidate",
+    "base_commit_verified": "b1d6b35e146aea83b171c1b921178bbaae2795ed",
+    "image_initial_head": "84a9058f3ff86c9e7b27cc134460437fc9a4aac1",
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fresh_model_calls": 0,
+    "is_agent_result": true,
+    "phase": "grading_only",
+    "resolved": false,
+    "FAIL_TO_PASS": {
+      "passed": 0,
+      "failed": 2,
+      "total": 2
+    },
+    "PASS_TO_PASS": {
+      "passed": 77,
+      "failed": 0,
+      "total": 77
+    }
+  }
+}

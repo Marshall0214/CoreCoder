@@ -1,0 +1,73 @@
+{
+  "status": "candidate_generated",
+  "instance_id": "toolz-getter-empty",
+  "model": "qwen3.5:27b",
+  "thinking": false,
+  "protocol": "local50-unmetered-checkpoint-v1",
+  "limits": {
+    "mode": "live",
+    "model": "qwen3.5:27b",
+    "base_url": "http://127.0.0.1:11434",
+    "max_rounds": 20,
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_tokens": 65536,
+    "wall_timeout": 1200,
+    "output_policy": "account_only"
+  },
+  "hidden_grading_feedback": false,
+  "is_agent_result": true,
+  "official_grading": "not_applicable",
+  "independent_grading": "after_agent_termination",
+  "max_edit_attempts": 6,
+  "export": {
+    "text_files": 57,
+    "text_bytes": 145505,
+    "skipped_files": [
+      "conda.yaml",
+      "doc/make.bat",
+      "doc/Makefile",
+      "release-notes"
+    ],
+    "git_history_exported": false,
+    "source": "git archive of base_commit"
+  },
+  "seconds": 7.032,
+  "metrics": {
+    "llm_calls": 3,
+    "prompt_tokens": 2062,
+    "completion_tokens": 232,
+    "known_prompt_tokens": 2062,
+    "known_completion_tokens": 232,
+    "missing_usage_calls": 0,
+    "budget_accounted_tokens": 2294,
+    "budget_enforcement": "none; local tokens accounted only",
+    "usage_status": "known",
+    "usage_source": "ollama_response",
+    "failed_calls": 0,
+    "cloud_api_cost_usd": 0.0,
+    "local_compute_cost_usd": null,
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown",
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_preflight_enforced": false,
+    "provider_context_tokens": 65536
+  },
+  "fresh_model_calls": 3,
+  "changed_files": [
+    "toolz/itertoolz.py"
+  ],
+  "patch_sha256": "390a82e452474508ab7d0afad8d24452b5104ee8164d23c048a8cee506a31003",
+  "observability": {
+    "enabled": true,
+    "status": "submitted_unconfirmed",
+    "content_capture": false,
+    "trace_id": "4df47072150d6efd914c280ca7d59e1c",
+    "base_url": "http://127.0.0.1:3300",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/4df47072150d6efd914c280ca7d59e1c"
+  },
+  "policy": "repository-checkpoint-v1",
+  "token_limits_disabled": true,
+  "not_comparable_to_historical_94_percent": true
+}

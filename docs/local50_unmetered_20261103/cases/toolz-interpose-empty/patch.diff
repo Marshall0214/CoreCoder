@@ -1,0 +1,20 @@
+--- a/toolz/itertoolz.py
++++ b/toolz/itertoolz.py
+@@ -523,9 +523,15 @@
+     >>> list(interpose("a", [1, 2, 3]))
+     [1, 'a', 2, 'a', 3]
+     """
++    seq = iter(seq)
++    try:
++        first = next(seq)
++    except StopIteration:
++        return iter([])
+     inposed = concat(zip(itertools.repeat(el), seq))
+-    next(inposed)
+-    return inposed
++    yield first
++    for item in inposed:
++        yield item
+ 
+ 
+ def frequencies(seq):

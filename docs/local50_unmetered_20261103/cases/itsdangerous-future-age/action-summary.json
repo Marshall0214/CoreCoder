@@ -1,0 +1,67 @@
+[
+  {
+    "step": 1,
+    "stage": "exploration",
+    "action": "list_files",
+    "status": "completed",
+    "location": {
+      "offset": 0
+    },
+    "edit_files": []
+  },
+  {
+    "step": 2,
+    "stage": "exploration",
+    "action": "read_file",
+    "status": "completed",
+    "location": {
+      "path": "src/itsdangerous/timed.py",
+      "offset": 0
+    },
+    "edit_files": []
+  },
+  {
+    "step": 3,
+    "stage": "exploration",
+    "action": "read_file",
+    "status": "completed",
+    "location": {
+      "path": "tests/test_itsdangerous/test_timed.py",
+      "offset": 0
+    },
+    "edit_files": []
+  },
+  {
+    "step": 4,
+    "stage": "exploration",
+    "action": "read_file",
+    "status": "completed",
+    "location": {
+      "path": "src/itsdangerous/exc.py",
+      "offset": 0
+    },
+    "edit_files": []
+  },
+  {
+    "step": 5,
+    "stage": "exploration",
+    "action": "read_symbol",
+    "status": "completed",
+    "location": {
+      "path": "src/itsdangerous/timed.py",
+      "symbol": "TimestampSigner.unsign",
+      "offset": 0
+    },
+    "edit_files": []
+  },
+  {
+    "step": 6,
+    "stage": "candidate",
+    "action": "apply_patch",
+    "status": "completed",
+    "location": {},
+    "edit_files": [
+      "src/itsdangerous/timed.py"
+    ]
+  }
+]

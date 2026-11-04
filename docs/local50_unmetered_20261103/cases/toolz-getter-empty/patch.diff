@@ -1,0 +1,13 @@
+--- a/toolz/itertoolz.py
++++ b/toolz/itertoolz.py
+@@ -687,7 +687,9 @@
+ 
+ def getter(index):
+     if isinstance(index, list):
+-        if len(index) == 1:
++        if len(index) == 0:
++            return lambda x: ()
++        elif len(index) == 1:
+             index = index[0]
+             return lambda x: (x[index],)
+         else:

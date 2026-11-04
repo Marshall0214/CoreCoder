@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "fresh_model_calls": 0,
+  "changed_files": [
+    "toolz/itertoolz.py"
+  ],
+  "is_model_performance": false,
+  "resolved": true
+}

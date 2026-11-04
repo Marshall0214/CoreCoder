@@ -1,0 +1,11 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -1229,7 +1229,7 @@
+             if self._validator(item_value):
+                 self._cache[item_value].append(item)
+ 
+-        return iter(self._cache)
++        return (k for k, v in self._cache.items() if v)
+ 
+     def __getitem__(self, value):
+         if not self._validator(value):

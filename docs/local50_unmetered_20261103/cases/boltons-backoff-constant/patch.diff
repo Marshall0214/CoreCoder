@@ -1,0 +1,20 @@
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -647,9 +647,14 @@
+     if stop < start:
+         raise ValueError('expected stop >= start, not %r' % stop)
+     if count is None:
+-        denom = start if start else 1
+-        count = 1 + math.ceil(math.log(stop/denom, factor))
+-        count = count if start else count + 1
++        if start == stop:
++            count = 1
++        elif factor == 1.0:
++            raise ValueError("factor=1.0 with unequal start/stop and inferred count is invalid")
++        else:
++            denom = start if start else 1
++            count = 1 + math.ceil(math.log(stop/denom, factor))
++            count = count if start else count + 1
+     if count != 'repeat' and count < 0:
+         raise ValueError('count must be positive or "repeat", not %r' % count)
+     if jitter:

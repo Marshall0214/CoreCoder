@@ -1,0 +1,11 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -230,6 +230,8 @@
+     list is yielded.
+ 
+     """
++    if n is not None and n < 0:
++        raise ValueError('n must be at least 0.')
+     iterator = iter(partial(take, n, iter(iterable)), [])
+     if strict:
+         if n is None:

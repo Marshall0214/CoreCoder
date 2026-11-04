@@ -1,0 +1,115 @@
+preflight [1/50] click-usage-empty: passed
+preflight [2/50] click-echo-empty-bytes: passed
+preflight [3/50] click-style-color-validation: passed
+preflight [4/50] itsdangerous-none-salt: passed
+preflight [5/50] itsdangerous-future-age: passed
+preflight [6/50] itsdangerous-malformed-time: passed
+preflight [7/50] click-help-eagerness: passed
+preflight [8/50] click-flag-default-map: passed
+preflight [9/50] click-resource-exception: passed
+preflight [10/50] click-flag-envvar: passed
+preflight [11/50] click-prompt-suffix: passed
+preflight [12/50] click-invoke-missing: passed
+preflight [13/50] click-shared-default: passed
+preflight [14/50] toolz-interpose-empty: passed
+preflight [15/50] toolz-accumulate-empty: passed
+preflight [16/50] toolz-join-unmatched: passed
+preflight [17/50] toolz-getter-empty: passed
+preflight [18/50] boltons-backoff-constant: passed
+preflight [19/50] boltons-split-zero: passed
+preflight [20/50] boltons-chunked-bytes: passed
+preflight [21/50] boltons-remap-set: passed
+preflight [22/50] more-falsy-exception: passed
+preflight [23/50] more-batch-count: passed
+preflight [24/50] more-seekable-zero: passed
+preflight [25/50] more-combination-index: passed
+preflight [26/50] more-split-empty: passed
+preflight [27/50] more-value-chain-error: passed
+preflight [28/50] more-interleave-empty: passed
+preflight [29/50] more-reverse-empty-range: passed
+preflight [30/50] more-negative-range-slice: passed
+preflight [31/50] more-ichunked-zero: passed
+preflight [32/50] more-bucket-missing-key: passed
+preflight [33/50] more-range-membership: passed
+preflight [34/50] more-chunked-negative: passed
+preflight [35/50] more-range-equality: passed
+preflight [36/50] more-sliced-negative: passed
+preflight [37/50] more-windowed-zero: passed
+preflight [38/50] more-predicate-sentinel: passed
+preflight [39/50] more-combination-size: passed
+preflight [40/50] more-permutation-exception: passed
+preflight [41/50] more-product-repeat: passed
+preflight [42/50] more-gray-partial-repeat: passed
+preflight [43/50] more-reversed-values: passed
+preflight [44/50] more-broadcast-single-use: passed
+preflight [45/50] more-last-typeerror: passed
+preflight [46/50] boltons-xfrange-descending: passed
+preflight [47/50] boltons-backoff-zero: passed
+preflight [48/50] boltons-repeat-equality: passed
+preflight [49/50] toolz-partition-length: passed
+preflight [50/50] toolz-merge-mapping: passed
+[1/50] click-usage-empty: agent error AttributeError
+[2/50] click-echo-empty-bytes: agent error AttributeError
+[3/50] click-style-color-validation: agent error AttributeError
+[4/50] itsdangerous-none-salt: agent error AttributeError
+[5/50] itsdangerous-future-age: agent error AttributeError
+[6/50] itsdangerous-malformed-time: agent error AttributeError
+[7/50] click-help-eagerness: agent error AttributeError
+[8/50] click-flag-default-map: agent error AttributeError
+[9/50] click-resource-exception: agent error AttributeError
+[10/50] click-flag-envvar: agent error AttributeError
+[11/50] click-prompt-suffix: agent error AttributeError
+[12/50] click-invoke-missing: agent error AttributeError
+[13/50] click-shared-default: agent error AttributeError
+[14/50] toolz-interpose-empty: agent error AttributeError
+[15/50] toolz-accumulate-empty: agent error AttributeError
+[16/50] toolz-join-unmatched: agent error AttributeError
+[17/50] toolz-getter-empty: agent error AttributeError
+[18/50] boltons-backoff-constant: agent error AttributeError
+[19/50] boltons-split-zero: agent error AttributeError
+[20/50] boltons-chunked-bytes: agent error AttributeError
+[21/50] boltons-remap-set: agent error AttributeError
+[22/50] more-falsy-exception: agent error AttributeError
+[23/50] more-batch-count: agent error AttributeError
+[24/50] more-seekable-zero: agent error AttributeError
+[25/50] more-combination-index: agent error AttributeError
+[26/50] more-split-empty: agent error AttributeError
+[27/50] more-value-chain-error: agent error AttributeError
+[28/50] more-interleave-empty: agent error AttributeError
+[29/50] more-reverse-empty-range: agent error AttributeError
+[30/50] more-negative-range-slice: agent error AttributeError
+[31/50] more-ichunked-zero: agent error AttributeError
+[32/50] more-bucket-missing-key: agent error AttributeError
+[33/50] more-range-membership: agent error AttributeError
+[34/50] more-chunked-negative: agent error AttributeError
+[35/50] more-range-equality: agent error AttributeError
+[36/50] more-sliced-negative: agent error AttributeError
+[37/50] more-windowed-zero: agent error AttributeError
+[38/50] more-predicate-sentinel: agent error AttributeError
+[39/50] more-combination-size: agent error AttributeError
+[40/50] more-permutation-exception: agent error AttributeError
+[41/50] more-product-repeat: agent error AttributeError
+[42/50] more-gray-partial-repeat: agent error AttributeError
+[43/50] more-reversed-values: agent error AttributeError
+[44/50] more-broadcast-single-use: agent error AttributeError
+[45/50] more-last-typeerror: agent error AttributeError
+[46/50] boltons-xfrange-descending: agent error AttributeError
+[47/50] boltons-backoff-zero: agent error AttributeError
+[48/50] boltons-repeat-equality: agent error AttributeError
+[49/50] toolz-partition-length: agent error AttributeError
+[50/50] toolz-merge-mapping: agent error AttributeError
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\project_other\CoreCoder\evals\local50_unmetered.py", line 163, in <module>
+    main()
+  File "D:\project_other\CoreCoder\evals\local50_unmetered.py", line 159, in main
+    print(json.dumps(execute(path)['summary']))
+                     ^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\evals\local50_unmetered.py", line 128, in execute
+    return local50.execute(output, resume=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\evals\local50.py", line 328, in execute
+    cwd=ROOT, env=environment('publish', output), stdout=stream, stderr=subprocess.STDOUT,
+                                                                        ^^^^^^^^^^^^^^^^^
+AttributeError: 'types.SimpleNamespace' object has no attribute 'STDOUT'

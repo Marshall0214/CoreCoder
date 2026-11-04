@@ -1,0 +1,3451 @@
+{
+  "status": "completed",
+  "protocol_sha256": "656d1bbf60c4cb83b662f630245ad6f634e28a2911e8a0bf90f62f0510ec151f",
+  "tasks": {
+    "click-usage-empty": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 5,
+      "nonempty_patch": true,
+      "total_tokens": 9744,
+      "trace_id": "7958b271859bfe2538cc316f489a5bee",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/formatting.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.942,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8876,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "click-echo-empty-bytes": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 5,
+      "nonempty_patch": true,
+      "total_tokens": 10642,
+      "trace_id": "a610b2826791e3d8b63668f3cee21338",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/utils.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8795,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8362,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "click-style-color-validation": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 8,
+      "nonempty_patch": false,
+      "total_tokens": 34532,
+      "trace_id": "226cd30c32e1ac53ba1097e8919dbbfb",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 3,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 26,
+            "successful": false,
+            "seconds": 1.9443,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8443,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "itsdangerous-none-salt": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 5,
+      "nonempty_patch": false,
+      "total_tokens": 9851,
+      "trace_id": "792b0ae4d224107765b23534df0a3e1e",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 2,
+            "successful": false,
+            "seconds": 1.847,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8707,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "itsdangerous-future-age": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 6,
+      "nonempty_patch": true,
+      "total_tokens": 14208,
+      "trace_id": "6718d3244aa9ea629e75279d1977b99f",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "src/itsdangerous/timed.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8273,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7702,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "itsdangerous-malformed-time": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 11,
+      "nonempty_patch": false,
+      "total_tokens": 48112,
+      "trace_id": "9aac31db875eadb1a7d9b6a2d36e46da",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 2,
+            "successful": false,
+            "seconds": 1.7832,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7693,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "click-help-eagerness": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 16,
+      "nonempty_patch": true,
+      "total_tokens": 82411,
+      "trace_id": "72cc3de2576cb31782511d928c0505ff",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/core.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.8666,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.9157,
+            "passed": false
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "click-flag-default-map": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 12,
+      "nonempty_patch": false,
+      "total_tokens": 63995,
+      "trace_id": "0134e6eab46dfbe10c0d9522ee45f7e8",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 2.0113,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.9181,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "click-resource-exception": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 6,
+      "nonempty_patch": false,
+      "total_tokens": 12903,
+      "trace_id": "0e96b1bdb366a20fd822e1dffd221d61",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 2,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 2,
+            "successful": false,
+            "seconds": 1.8727,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 4,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8244,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "click-flag-envvar": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 7,
+      "nonempty_patch": false,
+      "total_tokens": 22326,
+      "trace_id": "67770c66233c06566637777e0fca93a9",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 3,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 7,
+            "successful": false,
+            "seconds": 1.9844,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 3,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8815,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "click-prompt-suffix": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 6,
+      "nonempty_patch": true,
+      "total_tokens": 15579,
+      "trace_id": "93d4d89ab911067bde91bc95267c3d7c",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "src/click/termui.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 2,
+            "successful": false,
+            "seconds": 1.8952,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8978,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "click-invoke-missing": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 8,
+      "nonempty_patch": false,
+      "total_tokens": 26107,
+      "trace_id": "461c089920d142a7485e58d89196ac79",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 2,
+            "successful": false,
+            "seconds": 1.9283,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8921,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "click-shared-default": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 8,
+      "nonempty_patch": false,
+      "total_tokens": 29885,
+      "trace_id": "94a775ae3c33fbbccb651a28f4804a00",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.8995,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8568,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "toolz-interpose-empty": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 3,
+      "nonempty_patch": true,
+      "total_tokens": 2379,
+      "trace_id": "b7b269b9283982475fb0b31adfc60472",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "toolz/itertoolz.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8622,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8365,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "toolz-accumulate-empty": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 6188,
+      "trace_id": "88a7c56ea37221f241e7dd65c64dc3ab",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "toolz/itertoolz.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 2.075,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8407,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "toolz-join-unmatched": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 7,
+      "nonempty_patch": false,
+      "total_tokens": 25600,
+      "trace_id": "e5052e98183e02c91a92c4a4d1d07a1a",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 1,
+            "failures": 0,
+            "successful": false,
+            "seconds": 1.8225,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8369,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "toolz-getter-empty": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 3,
+      "nonempty_patch": true,
+      "total_tokens": 2294,
+      "trace_id": "4df47072150d6efd914c280ca7d59e1c",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "toolz/itertoolz.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7747,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7628,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "boltons-backoff-constant": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 7,
+      "nonempty_patch": true,
+      "total_tokens": 23183,
+      "trace_id": "e80ff0f84f450dcccce2c6852a2e4667",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "boltons/iterutils.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.6873,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7094,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "boltons-split-zero": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 6,
+      "nonempty_patch": false,
+      "total_tokens": 19693,
+      "trace_id": "017ba23ee6415690c66a6b752fcad1e5",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.7546,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7436,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "boltons-chunked-bytes": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 6,
+      "nonempty_patch": false,
+      "total_tokens": 20343,
+      "trace_id": "c98bf8f2ad31ed3f68994824a154c04c",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 1,
+            "failures": 0,
+            "successful": false,
+            "seconds": 1.7829,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.6964,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "boltons-remap-set": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 12,
+      "nonempty_patch": false,
+      "total_tokens": 64802,
+      "trace_id": "2de91387cec7b8239e1522f25a839256",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.6906,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.6977,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-falsy-exception": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 5,
+      "nonempty_patch": true,
+      "total_tokens": 10112,
+      "trace_id": "8d83ef621dff4f35e95a346268ffb761",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 1,
+            "failures": 0,
+            "successful": false,
+            "seconds": 1.7135,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7286,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-batch-count": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 5,
+      "nonempty_patch": true,
+      "total_tokens": 11610,
+      "trace_id": "fd2706a6c9f5fdc50f19a8dabce45060",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7587,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7821,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-seekable-zero": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "consecutive_error_limit",
+      "fresh_model_calls": 7,
+      "nonempty_patch": false,
+      "total_tokens": 16940,
+      "trace_id": "e6d8b244abbe48b20bb9ee5b2c16eeba",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.8711,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8098,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-combination-index": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 5,
+      "nonempty_patch": true,
+      "total_tokens": 10592,
+      "trace_id": "c2a8ae29c152ab1569202a863475c94f",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8432,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7982,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-split-empty": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 4528,
+      "trace_id": "ba30fcdaef126040844b20a9c793462d",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.8395,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8013,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-value-chain-error": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 6,
+      "nonempty_patch": true,
+      "total_tokens": 13261,
+      "trace_id": "7826d9b034560a44ec628eed5031699d",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8946,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8095,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-interleave-empty": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 3757,
+      "trace_id": "076694a9401a071dd8063a3d421f501b",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8689,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8086,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-reverse-empty-range": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 4607,
+      "trace_id": "97618bddcd26f9a043fba0a869e77d48",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8147,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7984,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-negative-range-slice": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 13,
+      "nonempty_patch": true,
+      "total_tokens": 63517,
+      "trace_id": "c17bb226fd2a3392e7e79f732d46c174",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.8392,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8125,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-ichunked-zero": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 3984,
+      "trace_id": "c40ef8606365616974c87d6e036f0f56",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8237,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8519,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-bucket-missing-key": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 7,
+      "nonempty_patch": true,
+      "total_tokens": 15731,
+      "trace_id": "415ec0e4da8a5831ba8e8711d7804c2a",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8768,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8224,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-range-membership": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 6,
+      "nonempty_patch": false,
+      "total_tokens": 13435,
+      "trace_id": "013a4942ab99fcb0df0de756b86ad40b",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.8668,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8092,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-chunked-negative": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 4038,
+      "trace_id": "dc23bbc7f44f2931586ad33db8ee795f",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8116,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8096,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-range-equality": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 12,
+      "nonempty_patch": true,
+      "total_tokens": 59798,
+      "trace_id": "4635871836e2f75c22fc801ee5947a03",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.8407,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8019,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-sliced-negative": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 4041,
+      "trace_id": "c38ad6e3ce31cda48ce8e33726c05c28",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8456,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8095,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-windowed-zero": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 3,
+      "nonempty_patch": true,
+      "total_tokens": 2814,
+      "trace_id": "dcc8b57afe88bcef7598d92fedb1b972",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.867,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8948,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "more-predicate-sentinel": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 5,
+      "nonempty_patch": true,
+      "total_tokens": 9046,
+      "trace_id": "769a10800451e5876b256e32090ac92c",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.8405,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8342,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-combination-size": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 4662,
+      "trace_id": "e58ecb338e62aa4062a99fa3752aa98f",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 1,
+            "failures": 0,
+            "successful": false,
+            "seconds": 1.7965,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8137,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-permutation-exception": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 4239,
+      "trace_id": "e53d43a85b4898dc38e12863f2b8384f",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 1,
+            "failures": 0,
+            "successful": false,
+            "seconds": 1.8364,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7821,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-product-repeat": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 6,
+      "nonempty_patch": true,
+      "total_tokens": 13918,
+      "trace_id": "9f2fee1a4bfef5f1a528e4b4d0e31a07",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 1,
+            "failures": 0,
+            "successful": false,
+            "seconds": 1.8434,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8032,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-gray-partial-repeat": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 5,
+      "nonempty_patch": true,
+      "total_tokens": 9460,
+      "trace_id": "73c8f66b63dba04ecbef8992e7056312",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 1,
+            "failures": 0,
+            "successful": false,
+            "seconds": 1.8462,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8117,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-reversed-values": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 6,
+      "nonempty_patch": false,
+      "total_tokens": 13455,
+      "trace_id": "347cbade8deeac36818cab5dfbfb9f2d",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.7991,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8083,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-broadcast-single-use": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 5191,
+      "trace_id": "63a919968f2061fc1c8c67579e1659a4",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 1,
+            "failures": 0,
+            "successful": false,
+            "seconds": 1.8385,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8549,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "more-last-typeerror": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 3,
+      "nonempty_patch": true,
+      "total_tokens": 2891,
+      "trace_id": "b80307017fda6899acb599394f1ed80b",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "more_itertools/more.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8463,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7916,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "boltons-xfrange-descending": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 7,
+      "nonempty_patch": false,
+      "total_tokens": 28122,
+      "trace_id": "36a19f642a19f167d619f6d22a2e8c89",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 1,
+            "successful": false,
+            "seconds": 1.8913,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.695,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "boltons-backoff-zero": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "repeated_action_limit",
+      "fresh_model_calls": 6,
+      "nonempty_patch": false,
+      "total_tokens": 19088,
+      "trace_id": "96be6677bea3b996d7fcdc3dfec90acc",
+      "resolved": false,
+      "grade": {
+        "passed": false,
+        "scope_violations": [],
+        "changed_files": [],
+        "groups": {
+          "Target": {
+            "returncode": 1,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 1,
+            "failures": 0,
+            "successful": false,
+            "seconds": 1.8523,
+            "passed": false
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7543,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": false
+      }
+    },
+    "boltons-repeat-equality": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 6,
+      "nonempty_patch": true,
+      "total_tokens": 19996,
+      "trace_id": "c31be14393e1647a2a08358e1038613e",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "boltons/iterutils.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8171,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.7941,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "toolz-partition-length": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 5,
+      "nonempty_patch": true,
+      "total_tokens": 13433,
+      "trace_id": "222e4f03db27792d68e083dc19a7c972",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "toolz/itertoolz.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.9855,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.8315,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    },
+    "toolz-merge-mapping": {
+      "status": "graded",
+      "controls_passed": true,
+      "agent_status": "candidate_generated",
+      "fresh_model_calls": 4,
+      "nonempty_patch": true,
+      "total_tokens": 6823,
+      "trace_id": "4e45bc8738f41275fb2180ceebf3e514",
+      "resolved": true,
+      "grade": {
+        "passed": true,
+        "scope_violations": [],
+        "changed_files": [
+          "toolz/dicttoolz.py"
+        ],
+        "groups": {
+          "Target": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.9774,
+            "passed": true
+          },
+          "Controls": {
+            "returncode": 0,
+            "timed_out": false,
+            "sandbox": {
+              "backend": "docker",
+              "image": "corecoder-test-sandbox:v1",
+              "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+              "network": "none",
+              "cpus": 1,
+              "memory_bytes": 1073741824,
+              "pids": 64,
+              "output_limit_bytes": 1048576
+            },
+            "sandbox_status": "completed",
+            "tests_run": 1,
+            "skipped": 0,
+            "expected_failures": 0,
+            "unexpected_successes": 0,
+            "errors": 0,
+            "failures": 0,
+            "successful": true,
+            "seconds": 1.9244,
+            "passed": true
+          }
+        },
+        "scope": "hand-authored Target and Controls; not entire upstream suite",
+        "resolved": true
+      }
+    }
+  },
+  "current_task": "toolz-merge-mapping",
+  "current_index": 50,
+  "summary": {
+    "scheduled": 50,
+    "controls_passed": 50,
+    "graded": 50,
+    "resolved": 21,
+    "agent_attempts": 50,
+    "nonempty_patches": 33,
+    "fresh_model_calls": 309,
+    "actual_tokens_known_sum": 937866,
+    "unknown_usage_tasks": 0,
+    "stop_reasons": {
+      "candidate_generated": 33,
+      "repeated_action_limit": 16,
+      "consecutive_error_limit": 1
+    },
+    "infra_errors": 0
+  },
+  "scripted_edit_and_grade_smoke": {
+    "passed": true,
+    "fresh_model_calls": 0,
+    "changed_files": [
+      "toolz/itertoolz.py"
+    ],
+    "is_model_performance": false,
+    "resolved": true
+  },
+  "publication": "completed"
+}

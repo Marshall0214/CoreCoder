@@ -1,0 +1,8 @@
+# Optional Python API subset, installed with --no-deps into D:/.tmp/mini-swe-deps.
+# The upstream CLI, LiteLLM backends and dataset tools are intentionally not installed.
+mini-swe-agent==2.4.6
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+platformdirs==4.5.0
+# Already present in the corecoder environment; verify before using --no-deps:
+# pydantic>=2, PyYAML, rich, python-dotenv

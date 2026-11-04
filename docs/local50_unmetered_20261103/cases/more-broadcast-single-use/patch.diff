@@ -1,0 +1,23 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -4691,7 +4691,8 @@
+         if is_scalar(obj):
+             new_item[i] = obj
+         else:
+-            iterables.append(iter(obj))
++            it = iter(obj)
++            iterables.append(it)
+             iterable_positions.append(i)
+ 
+     if not iterables:
+@@ -4699,8 +4700,8 @@
+         return
+ 
+     for item in zip(*iterables, strict=strict):
+-        for i, new_item[i] in zip(iterable_positions, item):
+-            pass
++        for i, val in zip(iterable_positions, item):
++            new_item[i] = val
+         yield tuple(new_item)
+ 
+ 

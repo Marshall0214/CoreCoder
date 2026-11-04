@@ -1,0 +1,27 @@
+{
+  "source_artifact_hashes": {
+    "step-001-messages.json": "4372ae5fb1cf909ebf4e5a22bff7d0396bb6f7ba90e090612370c4d52e40139c",
+    "step-001-response.txt": "c8e7e0ef1ff9d1ea2215eaaf13b82e1774179debf8b75f7c0edb76ed17535ac1",
+    "step-002-messages.json": "7ccf7f59cf68447ac694fbc39767e08b3ee51fd17c05a2dc5011466cbdbec5ef",
+    "step-002-response.txt": "c8b39c4adb7ad8f84a4ea289788e72bbe5294a941984d1b51385284a6dc9cc37",
+    "step-003-messages.json": "e1e6440d977518517ddbc103ef0cdc9a4bd128653733d7cf01840456cdd954b2",
+    "step-003-response.txt": "7cd633272c8035271360d703f52549a795fdee653d7b1a5b4a0cc5d934cdd2ef",
+    "step-004-messages.json": "a93f30b800f15cddea8d1f60d7230163c76e0e0c16e9acb5901137d1122e125e",
+    "step-004-response.txt": "c8b39c4adb7ad8f84a4ea289788e72bbe5294a941984d1b51385284a6dc9cc37",
+    "step-005-messages.json": "e1d4e131a40dfe4d4c43037d5a46c4f7d2b3023d17845b207e63e4c1a6ad1628",
+    "step-005-response.txt": "c8b39c4adb7ad8f84a4ea289788e72bbe5294a941984d1b51385284a6dc9cc37",
+    "step-006-messages.json": "8a52bf29ca24d5300105efa8cbe2262d1873567d3c809d5fa2058f663ff9e5d4",
+    "step-006-response.txt": "c8b39c4adb7ad8f84a4ea289788e72bbe5294a941984d1b51385284a6dc9cc37"
+  },
+  "local_trace_sha256": "e12e44061421b8eaa3a2fda1380377cb5c2f8bc8cdb5b5f1c4c52a8a6fdaea97",
+  "original_actions_sha256": "188484817a043752c73e053a71946cf6c5e4129f300135181b209db3c9740433",
+  "harness_eval_script_sha256": "0061dbac6e224bbf2e248c7085592d29e22a66019c5c7cdefecc187dc353ac5d",
+  "grading_log_sha256": "642315a99bc332b318f340ffe88177e49dda98a85fa56a97cc99acf2981bc884",
+  "reused_sources": {
+    "repairflow/issue_providers.py": "b5782779b2d7fde09d391465741355bb5ee0797923186ac0488bbcc7f24743c6",
+    "evals/runtime.py": "ae6a21482a9dbe265e0e44818128319dc78a28bb15016eccfb236aa1279e660f",
+    "repairflow/issue_tools.py": "edfad7141a3c945b2e4c49e2abcf7c8bc4ec42f09d6c8efcd017a14237f6ae31",
+    "repairflow/telemetry.py": "1f4ded916a9f8ed019eb3dddd6116cfc08677ac207a9e32facb8721feda010b5"
+  },
+  "entry_manifest_sha256": "7f35e516556e835d95155eae3b13800887a6a9af8f3b6a296484d878b468e77a"
+}

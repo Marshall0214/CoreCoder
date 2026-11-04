@@ -1,0 +1,34 @@
+[
+  {
+    "step": 1,
+    "stage": "exploration",
+    "action": "search",
+    "status": "completed",
+    "location": {
+      "query": "def getter"
+    },
+    "edit_files": []
+  },
+  {
+    "step": 2,
+    "stage": "exploration",
+    "action": "read_symbol",
+    "status": "completed",
+    "location": {
+      "path": "toolz/itertoolz.py",
+      "symbol": "getter",
+      "offset": 0
+    },
+    "edit_files": []
+  },
+  {
+    "step": 3,
+    "stage": "candidate",
+    "action": "apply_patch",
+    "status": "completed",
+    "location": {},
+    "edit_files": [
+      "toolz/itertoolz.py"
+    ]
+  }
+]

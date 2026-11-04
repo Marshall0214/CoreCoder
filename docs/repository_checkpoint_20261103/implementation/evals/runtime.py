@@ -1,0 +1,257 @@
+"""Fresh task tools, redacted events and a budgeted CoreCoder LLM adapter."""
+
+import hashlib
+import inspect
+import json
+import os
+import threading
+import time
+import uuid
+from pathlib import Path
+
+from corecoder.tools.base import Tool
+from corecoder.tools.bash import BashTool
+from corecoder.tools.edit import EditFileTool
+from corecoder.tools.glob_tool import GlobTool
+from corecoder.tools.grep import GrepTool
+from corecoder.tools.read import ReadFileTool
+from corecoder.tools.search_code import SearchCodeTool
+from corecoder.tools.todo import TodoWriteTool
+from corecoder.tools.write import WriteFileTool
+
+from .context_policy import request_breakdown
+from .process import run_tests
+from .read_policy import BoundedReadTool
+from .schema import RunConfig
+
+VISIBLE_COMMAND = "python -m unittest discover -s tests -v"
+
+
+class BudgetExceeded(RuntimeError):
+    pass
+
+
+class Events:
+    def __init__(self, path: Path, run_id: str):
+        self.path, self.run_id = path, run_id
+        self.lock = threading.Lock()
+        self.sequence = 0
+        self.secrets = [v for k, v in os.environ.items()
+                        if len(v) >= 8 and any(word in k.upper() for word in ("KEY", "TOKEN", "PASSWORD", "SECRET"))]
+
+    def clean(self, value):
+        if isinstance(value, str):
+            for secret in self.secrets:
+                value = value.replace(secret, "[REDACTED]")
+            return value
+        if isinstance(value, dict):
+            return {k: self.clean(v) for k, v in value.items()}
+        if isinstance(value, (list, tuple)):
+            return [self.clean(v) for v in value]
+        return value
+
+    def emit(self, kind: str, **fields):
+        with self.lock:
+            # Parent and worker append sequentially to the same file.
+            incomplete = False
+            if self.path.exists():
+                text = self.path.read_text(encoding="utf-8", errors="replace")
+                incomplete = bool(text) and not text.endswith("\n")
+                for line in reversed(text.splitlines()):
+                    try:
+                        self.sequence = max(self.sequence, json.loads(line)["sequence"])
+                        break
+                    except (json.JSONDecodeError, KeyError):
+                        continue  # hard termination may leave a partial final event
+            self.sequence += 1
+            record = self.clean({"run_id": self.run_id, "sequence": self.sequence,
+                                 "time": time.time(), "event": kind, **fields})
+            with self.path.open("a", encoding="utf-8") as stream:
+                if incomplete:
+                    stream.write("\n")
+                stream.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+class ScopedTool(Tool):
+    def __init__(self, inner: Tool, workspace: Path, allowed_files: list[str], events: Events, test_timeout: int):
+        self.inner, self.workspace = inner, workspace.resolve()
+        self.allowed_files, self.events, self.test_timeout = set(allowed_files), events, test_timeout
+        self.name, self.description, self.parameters = inner.name, inner.description, inner.parameters
+        self.read_receipts = []
+        self.fragment_receipts = []
+        self.visible_command, self.visible_runner = VISIBLE_COMMAND, None
+
+    def execute(self, **kwargs) -> str:
+        started = time.perf_counter()
+        tracked_source, original_bytes = None, None
+        self.events.emit("tool_started", tool=self.name, arguments=kwargs)
+        try:
+            inspect.signature(self.inner.execute).bind(**kwargs)
+            if self.name == "bash":
+                if kwargs["command"].strip() != self.visible_command:
+                    raise ValueError(f"Only the declared visible-test command is permitted: {self.visible_command}")
+                folder = self.workspace / ".eval-logs"
+                folder.mkdir(exist_ok=True)
+                result = (self.visible_runner(folder) if self.visible_runner else
+                          run_tests(self.workspace, "tests", min(self.test_timeout, max(1, int(kwargs.get("timeout", 120)))),
+                                    folder, f"visible-{uuid.uuid4().hex[:10]}"))
+                output = (folder / result["stdout"]).read_text(encoding="utf-8", errors="replace")
+                output += (folder / result["stderr"]).read_text(encoding="utf-8", errors="replace")
+                output = output[:12000] + f"\n[exit code: {result['returncode']}; timed_out: {result['timed_out']}]"
+            else:
+                args = dict(kwargs)
+                if self.name == "glob" and (Path(args["pattern"]).is_absolute() or ".." in Path(args["pattern"]).parts):
+                    raise ValueError("Glob pattern must stay inside workspace")
+                if self.name in {"read_file", "write_file", "edit_file", "glob", "grep"}:
+                    key = "file_path" if self.name.endswith("file") else "path"
+                    target = Path(args.get(key, ".")).expanduser()
+                    target = (target if target.is_absolute() else self.workspace / target).resolve()
+                    if not target.is_relative_to(self.workspace):
+                        raise ValueError("Path escapes task workspace")
+                    if self.name in {"write_file", "edit_file"} and target.relative_to(self.workspace).as_posix() not in self.allowed_files:
+                        raise ValueError("Only allowed source files can be modified")
+                    # Block links even when their destination happens to be inside this task.
+                    if any(p.is_symlink() for p in self.workspace.rglob("*")):
+                        raise ValueError("Symlinks are not supported in fixture workspaces")
+                    args[key] = str(target)
+                    if self.name in {'edit_file', 'write_file'}:
+                        original_bytes = target.read_bytes() if target.exists() else None
+                        tracked_source = target
+                output = self.inner.execute(**args)
+        except Exception as exc:  # noqa: BLE001 - tool failures are returned to the agent
+            output = f"Error: {type(exc).__name__}: {exc}"
+        output = self.events.clean(output)
+        if tracked_source is not None:
+            current_bytes = tracked_source.read_bytes() if tracked_source.exists() else None
+            if current_bytes != original_bytes:
+                self.events.emit('source_changed', tool=self.name,
+                                 path=tracked_source.relative_to(self.workspace).as_posix(),
+                                 before_sha256=hashlib.sha256(original_bytes).hexdigest() if original_bytes is not None else None,
+                                 after_sha256=hashlib.sha256(current_bytes).hexdigest() if current_bytes is not None else None)
+        if self.name == "read_file" and not output.startswith("Error:"):
+            try:
+                data = target.read_bytes()
+                lines = data.decode("utf-8").splitlines()
+                full = "\n".join(f"{index + 1}\t{line}" for index, line in enumerate(lines)) or "(empty file)"
+                receipt = {"path": target.relative_to(self.workspace).as_posix(),
+                           "content_hash": hashlib.sha256(data).hexdigest(),
+                           "response": output, "lines": lines,
+                           "full_read": output == full and kwargs.get('offset', 1) == 1}
+                self.fragment_receipts.append(receipt)
+                if receipt['full_read']:
+                    self.read_receipts.append(receipt)
+            except (OSError, UnicodeError):
+                pass  # A failed or changed read cannot authorize context replacement.
+        self.events.emit("tool_finished", tool=self.name, result=output, seconds=round(time.perf_counter() - started, 4))
+        return output
+
+
+def make_tools(workspace: Path, allowed_files: list[str], events: Events, timeout: int,
+               config: RunConfig | None = None) -> list[Tool]:
+    # Construct instances, never mutate the module-level ALL_TOOLS collection.
+    tools = [ScopedTool(cls(), workspace, allowed_files, events, timeout)
+             for cls in ((BoundedReadTool if config and config.read_policy == 'bounded' else ReadFileTool),
+                         GlobTool, GrepTool, EditFileTool, WriteFileTool, TodoWriteTool, BashTool)]
+    if config is not None and config.search_backend != "off":
+        search = SearchCodeTool(workspace, allowed_files, config.search_backend, config.search_max_chars, events.emit,
+                                deduplicate_history=config.search_history == "deduplicate")
+        tools.append(ScopedTool(search, workspace, allowed_files, events, timeout))
+    return tools
+
+
+class BudgetLLM:
+    def __init__(self, inner, config: RunConfig, events: Events):
+        self.inner, self.config, self.events = inner, config, events
+        self.model = inner.model
+        self.calls = 0
+        self.spent = 0
+        self.prompt_known = 0
+        self.completion_known = 0
+        self.missing_usage = 0
+        self.missing_prompt = self.missing_completion = self.failed_calls = self.failed_missing_usage = 0
+
+    def _account_usage(self, response, reservation, *, failed=False):
+        values = getattr(response, 'reported_usage', None)
+        if values is None:
+            # Legacy responses use default zeros for absent usage. Preserve their interpretation.
+            values = {key: getattr(response, key, None) for key in ('prompt_tokens', 'completion_tokens')}
+            if not all(type(value) is int and value > 0 for value in values.values()):
+                values = {}
+        prompt, completion = (values.get(key) for key in ('prompt_tokens', 'completion_tokens'))
+        prompt = prompt if type(prompt) is int and prompt >= 0 else None
+        completion = completion if type(completion) is int and completion >= 0 else None
+        known = prompt is not None and completion is not None
+        self.prompt_known += prompt or 0
+        self.completion_known += completion or 0
+        self.missing_prompt += int(prompt is None)
+        self.missing_completion += int(completion is None)
+        self.missing_usage += int(not known)
+        self.failed_calls += int(failed)
+        self.failed_missing_usage += int(failed and not known)
+        self.spent += prompt + completion if known else max(reservation, (prompt or 0) + (completion or 0))
+        source = getattr(self.inner, 'usage_source', 'provider_response' if known else 'unknown')
+        status = 'not_applicable' if source == 'not_applicable' else 'known' if known else (
+            'partial' if prompt is not None or completion is not None else 'unknown')
+        return {'usage_known': known, 'usage_status': status, 'usage_source': source,
+                'prompt_tokens': prompt, 'completion_tokens': completion}
+
+    def chat(self, messages, tools=None, **kwargs):
+        breakdown = request_breakdown(messages, tools, response_format=kwargs.get("response_format"))
+        request_estimate = breakdown["request_estimate"]
+        output_limit = self.config.max_output_tokens
+        if self.config.output_policy == 'remaining':
+            room = min(self.config.token_budget - self.spent, self.config.context_tokens) - request_estimate
+            floor = min(256, output_limit)
+            if room < floor:
+                self.events.emit('budget_blocked', reason='minimum_output_preflight',
+                                 request_estimate=request_estimate, remaining=self.config.token_budget - self.spent,
+                                 minimum_output_tokens=floor, context_tokens=self.config.context_tokens)
+                raise BudgetExceeded('Insufficient estimated space for a usable response')
+            output_limit = min(output_limit, room)
+            kwargs['max_tokens'] = output_limit
+        reservation = request_estimate + output_limit
+        self.events.emit("request_preflight", next_call=self.calls + 1, **breakdown,
+                         spent=self.spent, reservation=reservation, remaining=self.config.token_budget - self.spent,
+                         token_budget=self.config.token_budget, context_tokens=self.config.context_tokens,
+                         output_policy=self.config.output_policy, effective_max_output_tokens=output_limit)
+        if self.spent + reservation > self.config.token_budget:
+            self.events.emit("budget_blocked", reason="cumulative_preflight", request_estimate=request_estimate,
+                             reservation=reservation, remaining=self.config.token_budget - self.spent)
+            raise BudgetExceeded("Insufficient estimated token budget for another request")
+        if reservation > self.config.context_tokens:
+            self.events.emit("budget_blocked", reason="context_preflight", request_estimate=request_estimate,
+                             reservation=reservation, context_tokens=self.config.context_tokens)
+            raise BudgetExceeded("Estimated request plus output reservation exceeds context window")
+        self.calls += 1
+        call_id = f"llm-{self.calls}"
+        started = time.perf_counter()
+        self.events.emit("llm_started", call_id=call_id, request_estimate=request_estimate, message_count=len(messages))
+        try:
+            response = self.inner.chat(messages, tools=tools, **kwargs)
+        except Exception as exc:
+            usage = self._account_usage(exc, reservation, failed=True)
+            self.events.emit("llm_failed", call_id=call_id, error=f"{type(exc).__name__}: {exc}", **usage)
+            raise
+        usage = self._account_usage(response, reservation)
+        self.events.emit("llm_finished", call_id=call_id, seconds=round(time.perf_counter() - started, 4),
+                         **usage,
+                         tools=[tc.name for tc in response.tool_calls])
+        if self.spent > self.config.token_budget:
+            self.events.emit("budget_blocked", reason="returned_usage", spent=self.spent,
+                             token_budget=self.config.token_budget)
+            raise BudgetExceeded("Returned usage exceeds task budget; no further tool execution")
+        return response
+
+    def metrics(self) -> dict:
+        source = getattr(self.inner, 'usage_source', 'provider_response')
+        status = 'not_applicable' if source == 'not_applicable' else 'known' if self.calls and not self.missing_usage else (
+            'partial' if self.calls > self.missing_prompt or self.calls > self.missing_completion else 'unknown')
+        return {"llm_calls": self.calls, "prompt_tokens": self.prompt_known if not self.missing_prompt else None,
+                "completion_tokens": self.completion_known if not self.missing_completion else None,
+                "known_prompt_tokens": self.prompt_known, "known_completion_tokens": self.completion_known,
+                "missing_usage_calls": self.missing_usage, "budget_accounted_tokens": self.spent,
+                "budget_enforcement": "estimated preflight + returned usage; not a provider billing hard cap",
+                "usage_status": status, "usage_source": source, "failed_calls": self.failed_calls,
+                "cloud_api_cost_usd": getattr(self.inner, 'cloud_api_cost_usd', None),
+                "local_compute_cost_usd": None,
+                "cost_usd": None, "failed_provider_attempt_usage": 'known' if self.failed_calls and not self.failed_missing_usage else 'unknown'}

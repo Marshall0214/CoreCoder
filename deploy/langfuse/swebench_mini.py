@@ -17,10 +17,12 @@ from repairflow.telemetry import configuration
 def score_values(output):
     if output.get('fresh_model_calls') != 0 or output.get('is_agent_result') is not False:
         raise ValueError('Only no-inference harness controls can be published here')
-    return {'official_resolved': output['resolved'],
+    values = {'official_resolved': output['resolved'],
             'fail_to_pass': output['FAIL_TO_PASS']['passed'] / output['FAIL_TO_PASS']['total'],
-            'pass_to_pass': output['PASS_TO_PASS']['passed'] / output['PASS_TO_PASS']['total'],
             'fresh_model_calls': 0}
+    if output['PASS_TO_PASS']['total']:
+        values['pass_to_pass'] = output['PASS_TO_PASS']['passed'] / output['PASS_TO_PASS']['total']
+    return values
 
 
 def publication(entry, controls):
@@ -46,7 +48,7 @@ def publication(entry, controls):
     return manifest, report, data, outputs
 
 
-def validate_items(rows, experiment, dataset_id, output):
+def validate_items(rows, experiment, dataset_id, output, expected_scores=None):
     if len(rows) != 1:
         return None
     item = rows[0]
@@ -55,11 +57,12 @@ def validate_items(rows, experiment, dataset_id, output):
             or payload(item.get('output')) != output):
         return None
     scores = {row['name']: row['value'] for row in item.get('scores') or []}
-    if any(scores.get(key) != value for key, value in score_values(output).items()):
+    expected = score_values(output) if expected_scores is None else expected_scores
+    if any(scores.get(key) != value for key, value in expected.items()):
         return None
     return {'experiment_id': experiment['experiment_id'], 'trace_id': experiment['trace_id'],
             'dataset_id': dataset_id, 'item_count': 1, 'output_matches_local': True,
-            'scores': {key: scores[key] for key in score_values(output)}}
+            'scores': {key: scores[key] for key in expected}}
 
 
 def publish(entry, controls, output, timeout=120):

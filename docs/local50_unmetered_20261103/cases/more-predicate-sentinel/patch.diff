@@ -1,0 +1,14 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -2528,7 +2528,10 @@
+         raise ValueError('window size must be at least 1')
+ 
+     it = windowed(iterable, window_size, fillvalue=_marker)
+-    return compress(count(), starmap(pred, it))
++    return compress(
++        count(),
++        (pred(*args) for args in it if _marker not in args),
++    )
+ 
+ 
+ def longest_common_prefix(iterables):

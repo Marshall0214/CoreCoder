@@ -1,0 +1,330 @@
+{
+  "status": "completed_with_errors",
+  "protocol_sha256": "341ff3359662a2a0d7938e03a7202e15e7b344ba93f596006806ba3c4a378778",
+  "tasks": {
+    "click-usage-empty": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "click-echo-empty-bytes": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "click-style-color-validation": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "itsdangerous-none-salt": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "itsdangerous-future-age": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "itsdangerous-malformed-time": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "click-help-eagerness": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "click-flag-default-map": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "click-resource-exception": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "click-flag-envvar": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "click-prompt-suffix": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "click-invoke-missing": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "click-shared-default": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "toolz-interpose-empty": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "toolz-accumulate-empty": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "toolz-join-unmatched": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "toolz-getter-empty": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "boltons-backoff-constant": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "boltons-split-zero": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "boltons-chunked-bytes": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "boltons-remap-set": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-falsy-exception": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-batch-count": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-seekable-zero": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-combination-index": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-split-empty": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-value-chain-error": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-interleave-empty": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-reverse-empty-range": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-negative-range-slice": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-ichunked-zero": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-bucket-missing-key": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-range-membership": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-chunked-negative": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-range-equality": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-sliced-negative": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-windowed-zero": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-predicate-sentinel": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-combination-size": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-permutation-exception": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-product-repeat": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-gray-partial-repeat": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-reversed-values": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-broadcast-single-use": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "more-last-typeerror": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "boltons-xfrange-descending": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "boltons-backoff-zero": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "boltons-repeat-equality": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "toolz-partition-length": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    },
+    "toolz-merge-mapping": {
+      "status": "infra_error",
+      "controls_passed": true,
+      "phase": "agent",
+      "error_type": "AttributeError"
+    }
+  },
+  "current_task": "toolz-merge-mapping",
+  "current_index": 50,
+  "summary": {
+    "scheduled": 50,
+    "controls_passed": 50,
+    "graded": 0,
+    "resolved": 0,
+    "agent_attempts": 0,
+    "nonempty_patches": 0,
+    "fresh_model_calls": 0,
+    "actual_tokens_known_sum": 0,
+    "unknown_usage_tasks": 0,
+    "stop_reasons": {},
+    "infra_errors": 50
+  },
+  "scripted_edit_and_grade_smoke": {
+    "passed": true,
+    "fresh_model_calls": 0,
+    "changed_files": [
+      "toolz/itertoolz.py"
+    ],
+    "is_model_performance": false,
+    "resolved": true
+  }
+}

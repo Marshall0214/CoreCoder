@@ -1,0 +1,39 @@
+{
+  "scope": "Post-run input audit; not a new inference",
+  "constructor_character_range": [
+    6243,
+    6930
+  ],
+  "coverage": [
+    {
+      "request": "step-001-messages.json",
+      "constructor_complete_in_current_fragments": false
+    },
+    {
+      "request": "step-002-messages.json",
+      "constructor_complete_in_current_fragments": false
+    },
+    {
+      "request": "step-003-messages.json",
+      "constructor_complete_in_current_fragments": false
+    },
+    {
+      "request": "step-004-messages.json",
+      "constructor_complete_in_current_fragments": true
+    },
+    {
+      "request": "step-005-messages.json",
+      "constructor_complete_in_current_fragments": true
+    },
+    {
+      "request": "step-006-messages.json",
+      "constructor_complete_in_current_fragments": true
+    }
+  ],
+  "gold_patch_and_test_patch_literals_absent": true,
+  "grading_fields_absent_from_model_payload": true,
+  "original_action_records": 5,
+  "model_calls": 6,
+  "stopped_sixth_response_preserved": true,
+  "later_blocked_action_logging_fix_not_replayed": true
+}

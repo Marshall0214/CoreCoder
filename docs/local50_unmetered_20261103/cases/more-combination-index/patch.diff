@@ -1,0 +1,55 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -4517,30 +4517,31 @@
+     """
+     element = tuple(element)
+     l = len(element)
+-    element = enumerate(element)
+-
+-    k, y = next(element, (None, None))
+-    if k is None:
++    pool = tuple(iterable)
++    n = len(pool)
++
++    # Validate that element is a non-decreasing combination from the pool
++    if l == 0:
+         return 0
+ 
++    # Check each element exists in pool and is non-decreasing
++    prev_idx = -1
+     indexes = []
+-    pool = tuple(iterable)
+-    for n, x in enumerate(pool):
+-        while x == y:
+-            indexes.append(n)
+-            tmp, y = next(element, (None, None))
+-            if tmp is None:
+-                break
+-            else:
+-                k = tmp
+-        if y is None:
+-            break
+-    else:
+-        raise ValueError(
+-            'element is not a combination with replacement of iterable'
+-        )
+-
+-    n = len(pool)
++    for item in element:
++        try:
++            idx = pool.index(item)
++        except ValueError:
++            raise ValueError(
++                'element is not a combination with replacement of iterable'
++            )
++        if idx < prev_idx:
++            raise ValueError(
++                'element is not a combination with replacement of iterable'
++            )
++        indexes.append(idx)
++        prev_idx = idx
++
++    # Compute index using combinatorial formula for combinations with replacement
+     occupations = [0] * n
+     for p in indexes:
+         occupations[p] += 1

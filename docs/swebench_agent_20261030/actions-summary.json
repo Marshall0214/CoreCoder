@@ -1,0 +1,165 @@
+[
+  {
+    "step": 1,
+    "action": "search",
+    "arguments": {
+      "query": "AuthenticationForm",
+      "path_glob": "*.py"
+    },
+    "status": "completed",
+    "result": {
+      "truncated": true,
+      "note": "Narrow path_glob for more precise results",
+      "matches": [
+        {
+          "path": "django/contrib/admin/forms.py",
+          "line": 2
+        },
+        {
+          "path": "django/contrib/admin/forms.py",
+          "line": 6
+        },
+        {
+          "path": "django/contrib/admin/forms.py",
+          "line": 11
+        },
+        {
+          "path": "django/contrib/admin/sites.py",
+          "line": 389
+        },
+        {
+          "path": "django/contrib/admin/sites.py",
+          "line": 403
+        },
+        {
+          "path": "django/contrib/auth/forms.py",
+          "line": 163
+        },
+        {
+          "path": "django/contrib/auth/views.py",
+          "line": 11
+        },
+        {
+          "path": "django/contrib/auth/views.py",
+          "line": 44
+        },
+        {
+          "path": "tests/admin_views/custom_has_permission_admin.py",
+          "line": 6
+        },
+        {
+          "path": "tests/admin_views/custom_has_permission_admin.py",
+          "line": 13
+        },
+        {
+          "path": "tests/admin_views/custom_has_permission_admin.py",
+          "line": 21
+        },
+        {
+          "path": "tests/admin_views/customadmin.py",
+          "line": 15
+        },
+        {
+          "path": "tests/admin_views/forms.py",
+          "line": 2
+        },
+        {
+          "path": "tests/admin_views/forms.py",
+          "line": 6
+        },
+        {
+          "path": "tests/admin_views/test_forms.py",
+          "line": 1
+        },
+        {
+          "path": "tests/admin_views/test_forms.py",
+          "line": 9
+        },
+        {
+          "path": "tests/admin_views/test_forms.py",
+          "line": 19
+        },
+        {
+          "path": "tests/auth_tests/test_forms.py",
+          "line": 7
+        },
+        {
+          "path": "tests/auth_tests/test_forms.py",
+          "line": 283
+        },
+        {
+          "path": "tests/auth_tests/test_forms.py",
+          "line": 292
+        }
+      ]
+    }
+  },
+  {
+    "step": 2,
+    "action": "read_file",
+    "arguments": {
+      "path": "django/contrib/auth/forms.py",
+      "offset": 0
+    },
+    "status": "completed",
+    "result": {
+      "path": "django/contrib/auth/forms.py",
+      "content_hash": "ae307596924bc9f1f5391ce147afecf7b73277ed86926926d5d2220d3931a3a7",
+      "offset": 0,
+      "next_offset": 6000,
+      "kind": "file",
+      "symbol": null
+    }
+  },
+  {
+    "step": 3,
+    "action": "read_file",
+    "arguments": {
+      "path": "django/contrib/auth/forms.py",
+      "offset": 6000
+    },
+    "status": "completed",
+    "result": {
+      "path": "django/contrib/auth/forms.py",
+      "content_hash": "ae307596924bc9f1f5391ce147afecf7b73277ed86926926d5d2220d3931a3a7",
+      "offset": 6000,
+      "next_offset": 12000,
+      "kind": "file",
+      "symbol": null
+    }
+  },
+  {
+    "step": 4,
+    "action": "read_file",
+    "arguments": {
+      "path": "django/contrib/auth/forms.py",
+      "offset": 0
+    },
+    "status": "completed",
+    "result": {
+      "path": "django/contrib/auth/forms.py",
+      "content_hash": "ae307596924bc9f1f5391ce147afecf7b73277ed86926926d5d2220d3931a3a7",
+      "offset": 0,
+      "next_offset": 6000,
+      "kind": "file",
+      "symbol": null
+    }
+  },
+  {
+    "step": 5,
+    "action": "read_file",
+    "arguments": {
+      "path": "django/contrib/auth/forms.py",
+      "offset": 0
+    },
+    "status": "completed",
+    "result": {
+      "path": "django/contrib/auth/forms.py",
+      "content_hash": "ae307596924bc9f1f5391ce147afecf7b73277ed86926926d5d2220d3931a3a7",
+      "offset": 0,
+      "next_offset": 6000,
+      "kind": "file",
+      "symbol": null
+    }
+  }
+]

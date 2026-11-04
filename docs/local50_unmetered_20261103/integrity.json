@@ -1,0 +1,12 @@
+{
+  "legacy_implementation_unchanged": true,
+  "previous_evidence_packets_unchanged": true,
+  "same_local_model_and_sandbox_as_old50": true,
+  "frozen_run_sources_verified": true,
+  "all_50_grades_and_patch_hashes_verified": true,
+  "verified_inference_traces": 50,
+  "verified_real_generations": 309,
+  "verified_actual_tokens": 937866,
+  "token_limit_stop_events": 0,
+  "controls_reused_only_after_pre_inference_controller_failure": true
+}

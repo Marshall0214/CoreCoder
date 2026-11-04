@@ -1,0 +1,98 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -2337,23 +2337,78 @@
+         if isinstance(key, int):
+             return self._get_by_index(key)
+         elif isinstance(key, slice):
+-            step = self._step if key.step is None else key.step * self._step
+-
+-            if key.start is None or key.start <= -self._len:
+-                start = self._start
+-            elif key.start >= self._len:
+-                start = self._stop
+-            else:  # -self._len < key.start < self._len
+-                start = self._get_by_index(key.start)
+-
+-            if key.stop is None or key.stop >= self._len:
+-                stop = self._stop
+-            elif key.stop <= -self._len:
+-                stop = self._start
+-            else:  # -self._len < key.stop < self._len
+-                stop = self._get_by_index(key.stop)
+-
+-            return numeric_range(start, stop, step)
++            # Normalize the slice to handle negative indices and omitted endpoints
++            # similar to how list slicing works.
++            start = key.start
++            stop = key.stop
++            step = key.step
++
++            if step is None:
++                step = self._step
++            else:
++                step = step * self._step
++
++            # Normalize indices based on length and step direction
++            if step > 0:
++                # Positive step: start defaults to 0, stop defaults to len
++                if start is None:
++                    start = 0
++                elif start < 0:
++                    start = max(0, self._len + start)
++                else:
++                    start = min(start, self._len)
++
++                if stop is None:
++                    stop = self._len
++                elif stop < 0:
++                    stop = max(0, self._len + stop)
++                else:
++                    stop = min(stop, self._len)
++            else:
++                # Negative step: start defaults to len-1, stop defaults to -len-1 (before first)
++                if start is None:
++                    start = self._len - 1
++                elif start < 0:
++                    start = max(-1, self._len + start)
++                else:
++                    start = min(start, self._len - 1)
++
++                if stop is None:
++                    stop = -self._len - 1
++                elif stop < 0:
++                    stop = max(-self._len - 1, self._len + stop)
++                else:
++                    stop = min(stop, self._len - 1)
++
++            # If the range is empty after normalization, return an empty numeric_range
++            if step > 0 and start >= stop:
++                return numeric_range(self._stop, self._stop, step)
++            if step < 0 and start <= stop:
++                return numeric_range(self._start, self._start, step)
++
++            # Calculate actual start and stop values based on normalized indices
++            # We need to handle the case where indices might be out of bounds for _get_by_index
++            # but within the logical range of the slice.
++            if start < 0:
++                # This happens with negative step when stop is None (default -len-1)
++                # effectively meaning "before the first element"
++                actual_start = self._start
++                actual_stop = self._stop
++            elif start >= self._len:
++                actual_start = self._stop
++                actual_stop = self._start
++            else:
++                actual_start = self._get_by_index(start)
++
++            if stop < 0:
++                # For negative step, stop=-len-1 means go before the first element
++                actual_stop = self._stop
++            elif stop >= self._len:
++                actual_stop = self._start
++            else:
++                actual_stop = self._get_by_index(stop)
++
++            return numeric_range(actual_start, actual_stop, step)
+         else:
+             raise TypeError(
+                 'numeric range indices must be '

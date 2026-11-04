@@ -1,0 +1,154 @@
+{
+  "baseline_report_sha256": "92cd0b9a09286bc11afa09726c6d6ed835680968ca433080328b6020d2d0726a",
+  "actions": {
+    "search": 61,
+    "read_file": 222,
+    "read_symbol": 61,
+    "list_files": 27
+  },
+  "tool_errors": {
+    "invalid_arguments": 15,
+    "symbol_ambiguous": 1,
+    "invalid_offset": 2
+  },
+  "complete_symbol_seen_tasks": [
+    "boltons-repeat-equality",
+    "click-flag-envvar",
+    "click-help-eagerness",
+    "click-usage-empty",
+    "more-batch-count",
+    "more-broadcast-single-use",
+    "more-chunked-negative",
+    "more-combination-index",
+    "more-combination-size",
+    "more-gray-partial-repeat",
+    "more-ichunked-zero",
+    "more-interleave-empty",
+    "more-last-typeerror",
+    "more-permutation-exception",
+    "more-product-repeat",
+    "more-reverse-empty-range",
+    "more-sliced-negative",
+    "more-split-empty",
+    "more-value-chain-error",
+    "more-windowed-zero",
+    "toolz-accumulate-empty",
+    "toolz-getter-empty",
+    "toolz-interpose-empty",
+    "toolz-join-unmatched",
+    "toolz-merge-mapping",
+    "toolz-partition-length"
+  ],
+  "receipt_collision_tasks": [
+    {
+      "task": "click-help-eagerness",
+      "step_pairs": [
+        [
+          8,
+          9
+        ]
+      ]
+    },
+    {
+      "task": "more-chunked-negative",
+      "step_pairs": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "task": "more-last-typeerror",
+      "step_pairs": [
+        [
+          2,
+          3
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "task": "more-sliced-negative",
+      "step_pairs": [
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "task": "more-windowed-zero",
+      "step_pairs": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "task": "toolz-accumulate-empty",
+      "step_pairs": [
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "task": "toolz-join-unmatched",
+      "step_pairs": [
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "task": "toolz-merge-mapping",
+      "step_pairs": [
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "task": "toolz-partition-length",
+      "step_pairs": [
+        [
+          4,
+          5
+        ]
+      ]
+    }
+  ],
+  "scope": "Observed complete symbols may be unrelated to the actual defect; no oracle lookup"
+}

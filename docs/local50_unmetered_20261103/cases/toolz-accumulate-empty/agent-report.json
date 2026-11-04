@@ -1,0 +1,76 @@
+{
+  "status": "candidate_generated",
+  "instance_id": "toolz-accumulate-empty",
+  "model": "qwen3.5:27b",
+  "thinking": false,
+  "protocol": "local50-unmetered-checkpoint-v1",
+  "limits": {
+    "mode": "live",
+    "model": "qwen3.5:27b",
+    "base_url": "http://127.0.0.1:11434",
+    "max_rounds": 20,
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_tokens": 65536,
+    "wall_timeout": 1200,
+    "output_policy": "account_only"
+  },
+  "hidden_grading_feedback": false,
+  "is_agent_result": true,
+  "official_grading": "not_applicable",
+  "independent_grading": "after_agent_termination",
+  "max_edit_attempts": 6,
+  "export": {
+    "text_files": 65,
+    "text_bytes": 253369,
+    "skipped_files": [
+      "conda.recipe/bld.bat",
+      "conda.recipe/build.sh",
+      "conda.recipe/meta.yaml",
+      "doc/make.bat",
+      "doc/Makefile",
+      "MANIFEST.in",
+      "release-notes"
+    ],
+    "git_history_exported": false,
+    "source": "git archive of base_commit"
+  },
+  "seconds": 20.484,
+  "metrics": {
+    "llm_calls": 4,
+    "prompt_tokens": 5378,
+    "completion_tokens": 810,
+    "known_prompt_tokens": 5378,
+    "known_completion_tokens": 810,
+    "missing_usage_calls": 0,
+    "budget_accounted_tokens": 6188,
+    "budget_enforcement": "none; local tokens accounted only",
+    "usage_status": "known",
+    "usage_source": "ollama_response",
+    "failed_calls": 0,
+    "cloud_api_cost_usd": 0.0,
+    "local_compute_cost_usd": null,
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown",
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_preflight_enforced": false,
+    "provider_context_tokens": 65536
+  },
+  "fresh_model_calls": 4,
+  "changed_files": [
+    "toolz/itertoolz.py"
+  ],
+  "patch_sha256": "ec981c3030e64f5f25563194af3bdefc7788940c3dd91da103fdf2deacc02a20",
+  "observability": {
+    "enabled": true,
+    "status": "submitted_unconfirmed",
+    "content_capture": false,
+    "trace_id": "88a7c56ea37221f241e7dd65c64dc3ab",
+    "base_url": "http://127.0.0.1:3300",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/88a7c56ea37221f241e7dd65c64dc3ab"
+  },
+  "policy": "repository-checkpoint-v1",
+  "token_limits_disabled": true,
+  "not_comparable_to_historical_94_percent": true
+}

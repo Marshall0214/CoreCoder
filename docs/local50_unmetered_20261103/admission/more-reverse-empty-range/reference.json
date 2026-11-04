@@ -1,0 +1,50 @@
+{
+  "Target": {
+    "returncode": 0,
+    "timed_out": false,
+    "sandbox": {
+      "backend": "docker",
+      "image": "corecoder-test-sandbox:v1",
+      "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+      "network": "none",
+      "cpus": 1,
+      "memory_bytes": 1073741824,
+      "pids": 64,
+      "output_limit_bytes": 1048576
+    },
+    "sandbox_status": "completed",
+    "tests_run": 1,
+    "skipped": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0,
+    "errors": 0,
+    "failures": 0,
+    "successful": true,
+    "seconds": 1.76,
+    "passed": true
+  },
+  "Controls": {
+    "returncode": 0,
+    "timed_out": false,
+    "sandbox": {
+      "backend": "docker",
+      "image": "corecoder-test-sandbox:v1",
+      "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+      "network": "none",
+      "cpus": 1,
+      "memory_bytes": 1073741824,
+      "pids": 64,
+      "output_limit_bytes": 1048576
+    },
+    "sandbox_status": "completed",
+    "tests_run": 1,
+    "skipped": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0,
+    "errors": 0,
+    "failures": 0,
+    "successful": true,
+    "seconds": 1.7208,
+    "passed": true
+  }
+}

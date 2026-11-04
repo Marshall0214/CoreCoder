@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "source": "local_agent_result_import",
+  "original_fresh_model_calls": 6,
+  "publication_model_calls": 0,
+  "dataset_id": "cmvus85580003oa1wjbngpych",
+  "experiment": {
+    "experiment_id": "d272bbebaedba142",
+    "trace_id": "462c1cd3d066a247fc8ec4ca494ef471"
+  },
+  "url": "http://127.0.0.1:3300/project/corecoder-issues/experiments/results?baseline=d272bbebaedba142",
+  "inference_trace_id": "f94a07721f4087b3aeaa4745a6cdd4e6",
+  "scores": {
+    "official_resolved": false,
+    "fail_to_pass": 0.0,
+    "pass_to_pass": 1.0,
+    "fresh_model_calls": 6,
+    "actual_total_tokens": 19364
+  },
+  "server_receipt_verified": true,
+  "experiment_receipt": {
+    "experiment_id": "d272bbebaedba142",
+    "trace_id": "462c1cd3d066a247fc8ec4ca494ef471",
+    "dataset_id": "cmvus85580003oa1wjbngpych",
+    "item_count": 1,
+    "output_matches_local": true,
+    "scores": {
+      "official_resolved": false,
+      "fail_to_pass": 0,
+      "pass_to_pass": 1,
+      "fresh_model_calls": 6,
+      "actual_total_tokens": 19364
+    }
+  },
+  "inference_receipt": {
+    "trace_id": "f94a07721f4087b3aeaa4745a6cdd4e6",
+    "generation_count": 6,
+    "usage_status": "known",
+    "prompt_tokens": 19232,
+    "completion_tokens": 132,
+    "all_operations_ended": true,
+    "official_resolved": false
+  }
+}

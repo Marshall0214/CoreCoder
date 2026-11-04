@@ -102,3 +102,5 @@ python -B -m deploy.langfuse.swebench_mini --entry .tmp/swebench-mini-entry-002 
 新增 20 项测试覆盖固定选择、数据和标签漂移、输入完整性、缺失/矛盾评分、服务器关联验证、容器约束及异常/超时后清理；与现有 Langfuse 相关测试合计 69 项通过，Ruff 通过。真实 Docker 控制组和 Langfuse 回读另有证据，见[冻结清单](swebench-mini-20261030.json)。
 
 下一步是**只对这同一项运行一次本地 Agent**：让它读取实际基线仓库、独立定位和生成补丁，再交给同一评分器。不能把参考补丁、目标文件列表或评测专用测试反馈给 Agent；这需要单独的仓库范围与工具适配，不直接复用只接受手工 allowed_files 的旧任务入口。本轮不自动扩大到 50 项，不调用 DeepSeek，不把参考补丁通过当作 Agent 成绩。
+
+后续[第一次真实 Agent 尝试](swebench-agent-20261030.md)已执行：本地 Qwen 关闭 thinking，6 次调用、19,364 Token；定位后重复读取，未生成补丁，目标 0/2、回归 77/77。原始推理与后置评分均已关联 Langfuse；保留失败，没有自动重跑。

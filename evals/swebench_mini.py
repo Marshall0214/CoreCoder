@@ -50,7 +50,8 @@ def select(mini, official, instance_id=None):
         if original[key] != row[key]:
             raise ValueError('Mini/official task drift: ' + key)
     for key in ('FAIL_TO_PASS', 'PASS_TO_PASS'):
-        if not labels(row, key) or set(labels(original, key)) != set(labels(row, key)):
+        if ((key == 'FAIL_TO_PASS' and not labels(row, key))
+                or set(labels(original, key)) != set(labels(row, key))):
             raise ValueError('Mini/official test drift: ' + key)
     if not re.fullmatch(r'[0-9a-f]{40}', row['base_commit']):
         raise ValueError('Expected pinned base commit')
@@ -123,7 +124,9 @@ def docker(*args, timeout=30):
                           timeout=timeout).stdout
 
 
-def control(row, spec, mode, image_id, output, timeout):
+def control(row, spec, mode, image_id, output, timeout, candidate_patch=None):
+    if mode not in {'unchanged', 'reference', 'candidate'} or (mode == 'candidate' and candidate_patch is None):
+        raise ValueError('Choose a control or provide a candidate patch')
     output.mkdir(parents=True, exist_ok=False)
     suffix = hashlib.sha256(str(output.resolve()).encode()).hexdigest()[:12]
     container = 'corecoder-swe-control-' + suffix
@@ -147,7 +150,8 @@ def control(row, spec, mode, image_id, output, timeout):
         if actual != row['base_commit']:
             raise ValueError('Image does not contain the pinned base commit')
         docker('exec', '-w', '/testbed', container, 'git', 'diff', '--exit-code', 'HEAD', '--')
-        patch = row['patch'] if mode == 'reference' else ''
+        patch = (Path(candidate_patch).read_text(encoding='utf-8') if mode == 'candidate'
+                 else row['patch'] if mode == 'reference' else '')
         (output / 'patch.diff').write_text(patch, encoding='utf-8', newline='\n')
         if patch:
             docker('cp', output / 'patch.diff', container + ':/candidate.diff')
@@ -166,10 +170,11 @@ def control(row, spec, mode, image_id, output, timeout):
         report = get_eval_report(spec, prediction, str(output / 'test_output.txt'), include_tests_status=True)
         write(output / 'official-report.json', report)
         result = {'mode': mode, 'script_exit_code': process.returncode, 'seconds': round(time.monotonic() - started, 3),
-                  'patch_source': 'dataset_reference' if patch else 'unchanged', 'base_commit_verified': actual,
+                  'patch_source': 'agent_candidate' if mode == 'candidate' else 'dataset_reference' if patch else 'unchanged',
+                  'base_commit_verified': actual,
                   'image_initial_head': initial_head,
                   'patch_sha256': sha(output / 'patch.diff'), 'fresh_model_calls': 0,
-                  'is_agent_result': False, **summarize(report, row)}
+                  'is_agent_result': mode == 'candidate', 'phase': 'grading_only', **summarize(report, row)}
         write(output / 'summary.json', result)
         return result
     finally:
@@ -216,6 +221,31 @@ def run(entry, output, image_id, timeout=600):
         write(output / 'report.json', result)
 
 
+def grade_candidate(entry, candidate, output, image_id, timeout=600):
+    os.environ['PYTHON_DOTENV_DISABLED'] = '1'
+    import swebench
+    from swebench.harness.utils import make_test_spec
+
+    if swebench.__version__ != HARNESS_VERSION:
+        raise ValueError('Use pinned official harness ' + HARNESS_VERSION)
+    _manifest, row = load_entry(entry)
+    image = json.loads(docker('image', 'inspect', row['image']).decode())[0]
+    if image['Id'] != image_id or not re.fullmatch(r'sha256:[0-9a-f]{64}', image_id):
+        raise ValueError('Task image mismatch')
+    output.mkdir(parents=True, exist_ok=False)
+    result = {'status': 'incomplete', 'instance_id': row['instance_id'], 'harness_version': HARNESS_VERSION,
+              'entry_manifest_sha256': sha(entry / 'manifest.json'), 'candidate_sha256': sha(candidate),
+              'image_id': image_id, 'fresh_model_calls': 0, 'phase': 'grading_only',
+              'scope': 'Withheld official tests after Agent termination; no feedback to Agent'}
+    try:
+        result['candidate'] = control(row, make_test_spec(row), 'candidate', image_id,
+                                      output / 'candidate', timeout, candidate_patch=candidate)
+        result['status'] = 'completed'
+        return result
+    finally:
+        write(output / 'report.json', result)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
@@ -229,7 +259,12 @@ def main():
     run_parser.add_argument('--entry', type=Path, required=True)
     run_parser.add_argument('--image-id', required=True)
     run_parser.add_argument('--timeout', type=int, default=600)
-    for command_parser in (prepare_parser, run_parser):
+    candidate_parser = sub.add_parser('grade-candidate')
+    candidate_parser.add_argument('--entry', type=Path, required=True)
+    candidate_parser.add_argument('--candidate', type=Path, required=True)
+    candidate_parser.add_argument('--image-id', required=True)
+    candidate_parser.add_argument('--timeout', type=int, default=600)
+    for command_parser in (prepare_parser, run_parser, candidate_parser):
         command_parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     output = args.output.resolve()
@@ -244,7 +279,8 @@ def main():
     else:
         if not 1 <= args.timeout <= 1800:
             parser.error('Timeout must be from 1 to 1800 seconds')
-        result = run(args.entry.resolve(), output, args.image_id, args.timeout)
+        result = (grade_candidate(args.entry.resolve(), args.candidate.resolve(), output, args.image_id, args.timeout)
+                  if args.command == 'grade-candidate' else run(args.entry.resolve(), output, args.image_id, args.timeout))
         print(json.dumps(result))
 
 

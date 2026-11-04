@@ -1,0 +1,11 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -4198,7 +4198,7 @@
+ 
+     ``IndexError`` will be raised if the given *index* is invalid.
+     """
+-    pools = tuple(map(tuple, reversed(iterables * repeat)))
++    pools = tuple(map(tuple, reversed(tuple(iterables) * repeat)))
+     ns = tuple(map(len, pools))
+ 
+     c = reduce(mul, ns)

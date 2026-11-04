@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "publication_model_calls": 0,
+  "inference_receipts": [
+    {
+      "trace_id": "90a35aa9f15df18d8fb7c438982e97ec",
+      "generation_count": 16,
+      "usage_status": "known",
+      "prompt_tokens": 87800,
+      "completion_tokens": 2824,
+      "all_operations_ended": true
+    }
+  ]
+}

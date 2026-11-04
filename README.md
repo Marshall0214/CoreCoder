@@ -12,6 +12,10 @@ This fork extends [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder),
 
 ## Current capabilities
 
+[Own-agent local evaluation without token cutoffs](docs/local50-unmetered-20261103.md) completed all 50 known tasks: **21/50 accepted**, 33 candidate patches, 309 local Qwen calls and 937,866 measured tokens. Independent grading and all 50 inference traces were verified. This checkpoint-policy run is separate from the historical DeepSeek results.
+
+[Optional mini-SWE-agent integration](docs/mini-swe-integration.md) reuses its unmodified 2.4.6 loop with local Ollama, restricted Docker, independent grading and Langfuse. The fixed five-task development pilot completed at **0/5**, matching the old loop on that subset; this is an integration result, not a replacement or an upstream benchmark score.
+
 The prepared-Issue CLI now supports [symbol reads and edit recovery (Chinese)](docs/symbol-read-recovery.md), with configurable action/edit limits and mandatory re-reads after anchor or version failures. Scripted acceptance is separate from the historical 47/50 result.
 
 Prepared Issues now have a [complete CLI/API path (Chinese)](docs/issue-service.md): trusted registry, execution approval, restart recovery, read-only dependencies, Docker checks, and artifact downloads. A self-contained scripted demo verifies engineering behavior without model calls. Accuracy optimization is deferred.
@@ -23,6 +27,10 @@ An optional [local Langfuse adapter (Chinese)](docs/langfuse-local.md) adds task
 [Langfuse operations drills](docs/langfuse-operations-20261030.md) add no-model diagnostics and scoped Web/Worker fault drills: local delivery survives telemetry downtime, and queued records become readable after Worker recovery. All services were restored; offline tasks are not automatically backfilled.
 
 [The first SWE-bench Verified Mini task](docs/swebench-mini-20261030.md) now has official grading and two Langfuse dataset control experiments: unchanged code passes 0/2 target tests, the reference patch passes 2/2, and both preserve 77/77 regression tests. No model inference or new Agent accuracy claim is involved.
+
+[The first actual local Agent attempt](docs/swebench-agent-20261030.md) explored that pinned repository with six Qwen calls and 19,364 tokens, thinking disabled. It stopped on repeated reads without a patch: official target tests 0/2, regression tests 77/77. Actual inference and subsequent grading are linked in Langfuse; the failed attempt is retained.
+
+[Mini-50 batch evaluation](docs/swebench-mini-batch.md) runs all 25 Django and 25 Sphinx tasks serially, with fixed local-model settings, per-task harness admission, independent grading, resumable artifacts and a unified Langfuse experiment. A running batch is not a completed accuracy result.
 
 | Area | Implemented | Boundary |
 | --- | --- | --- |

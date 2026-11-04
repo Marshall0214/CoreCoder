@@ -1,0 +1,15 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -3718,6 +3718,12 @@
+     [8, 9, 10, 11]
+ 
+     """
++    if n is None:
++        raise TypeError("n must be an integer")
++    if n < 0:
++        raise ValueError("n must be at least 0")
++    if n == 0:
++        return
+     iterator = iter(iterable)
+     for first in iterator:
+         rest = islice(iterator, n - 1)

@@ -1,0 +1,12 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -1338,6 +1338,9 @@
+ 
+     dims = len(lengths)
+ 
++    if dims == 0:
++        return
++
+     # sort iterables by length, descending
+     lengths_permute = sorted(
+         range(dims), key=lambda i: lengths[i], reverse=True

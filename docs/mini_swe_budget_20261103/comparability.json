@@ -1,0 +1,20 @@
+{
+  "only_changed_run_config": {
+    "token_budget": {
+      "before": 30000,
+      "after": 100000
+    }
+  },
+  "same_upstream": true,
+  "same_public_task": true,
+  "same_seed_file_manifest": true,
+  "same_execution_adapter": true,
+  "same_first_model_request": true,
+  "same_first_model_response": true,
+  "same_first_find_output": false,
+  "same_second_model_request": false,
+  "common_paths_in_first_50": 37,
+  "baseline_packet_unchanged": true,
+  "legacy_implementation_and_reports_unchanged": true,
+  "limitation": "Fresh rollout, not deterministic replay. Directory enumeration changed the first tool observation; causal attribution to token budget alone is not established."
+}

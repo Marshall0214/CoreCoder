@@ -1,0 +1,18 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -4267,13 +4267,12 @@
+         >>> nth_combination_with_replacement(range(5), 3, 5)
+         (0, 1, 1)
+ 
+-    ``ValueError`` will be raised If *r* is negative or greater than the length
+-    of *iterable*.
++    ``ValueError`` will be raised If *r* is negative.
+     ``IndexError`` will be raised if the given *index* is invalid.
+     """
+     pool = tuple(iterable)
+     n = len(pool)
+-    if (r < 0) or (r > n):
++    if r < 0:
+         raise ValueError
+ 
+     c = comb(n + r - 1, r)

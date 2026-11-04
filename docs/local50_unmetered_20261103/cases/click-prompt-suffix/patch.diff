@@ -1,0 +1,13 @@
+--- a/src/click/termui.py
++++ b/src/click/termui.py
+@@ -70,7 +70,9 @@
+         prompt += f" ({', '.join(map(str, type.choices))})"
+     if default is not None and show_default:
+         prompt = f"{prompt} [{_format_default(default)}]"
+-    return f"{prompt}{suffix}"
++    if suffix:
++        return f"{prompt}{suffix}"
++    return prompt
+ 
+ 
+ def _format_default(default: t.Any) -> t.Any:

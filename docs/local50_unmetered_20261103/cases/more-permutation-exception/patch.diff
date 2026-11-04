@@ -1,0 +1,11 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -4237,7 +4237,7 @@
+ 
+     if r is None or r == n:
+         r, c = n, factorial(n)
+-    elif not 0 <= r < n:
++    elif not 0 <= r <= n:
+         raise ValueError
+     else:
+         c = perm(n, r)

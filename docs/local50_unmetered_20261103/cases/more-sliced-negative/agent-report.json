@@ -1,0 +1,79 @@
+{
+  "status": "candidate_generated",
+  "instance_id": "more-sliced-negative",
+  "model": "qwen3.5:27b",
+  "thinking": false,
+  "protocol": "local50-unmetered-checkpoint-v1",
+  "limits": {
+    "mode": "live",
+    "model": "qwen3.5:27b",
+    "base_url": "http://127.0.0.1:11434",
+    "max_rounds": 20,
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_tokens": 65536,
+    "wall_timeout": 1200,
+    "output_policy": "account_only"
+  },
+  "hidden_grading_feedback": false,
+  "is_agent_result": true,
+  "official_grading": "not_applicable",
+  "independent_grading": "after_agent_termination",
+  "max_edit_attempts": 6,
+  "export": {
+    "text_files": 22,
+    "text_bytes": 612679,
+    "skipped_files": [
+      "docs/_static/theme_overrides.css",
+      "docs/make.bat",
+      "docs/Makefile",
+      "LICENSE",
+      "Makefile",
+      "MANIFEST.in",
+      "more_itertools/__init__.pyi",
+      "more_itertools/more.pyi",
+      "more_itertools/py.typed",
+      "more_itertools/recipes.pyi"
+    ],
+    "git_history_exported": false,
+    "source": "git archive of base_commit"
+  },
+  "seconds": 20.109,
+  "metrics": {
+    "llm_calls": 4,
+    "prompt_tokens": 3213,
+    "completion_tokens": 828,
+    "known_prompt_tokens": 3213,
+    "known_completion_tokens": 828,
+    "missing_usage_calls": 0,
+    "budget_accounted_tokens": 4041,
+    "budget_enforcement": "none; local tokens accounted only",
+    "usage_status": "known",
+    "usage_source": "ollama_response",
+    "failed_calls": 0,
+    "cloud_api_cost_usd": 0.0,
+    "local_compute_cost_usd": null,
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown",
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_preflight_enforced": false,
+    "provider_context_tokens": 65536
+  },
+  "fresh_model_calls": 4,
+  "changed_files": [
+    "more_itertools/more.py"
+  ],
+  "patch_sha256": "18e2581b119b5e81afc833c10db547e354831f5d168a7faa875d52bf0efa10bb",
+  "observability": {
+    "enabled": true,
+    "status": "submitted_unconfirmed",
+    "content_capture": false,
+    "trace_id": "c38ad6e3ce31cda48ce8e33726c05c28",
+    "base_url": "http://127.0.0.1:3300",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/c38ad6e3ce31cda48ce8e33726c05c28"
+  },
+  "policy": "repository-checkpoint-v1",
+  "token_limits_disabled": true,
+  "not_comparable_to_historical_94_percent": true
+}
