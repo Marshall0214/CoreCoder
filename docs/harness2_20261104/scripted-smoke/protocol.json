@@ -1,0 +1,17 @@
+{
+  "upstream_commit": "6868817518876de8fd170c6a8354daca273b6191",
+  "task": "bridge-smoke",
+  "k": 1,
+  "mode": "parallel",
+  "editor": "scripted",
+  "thinking": false,
+  "token_budget": null,
+  "editable_files": [
+    "systemprompt.md",
+    "tool_descriptions/tool_guidance.md"
+  ],
+  "grading_after_adoption": true,
+  "is_accuracy_result": false,
+  "baseline_42_percent_unchanged": true,
+  "windows_compatibility": true
+}

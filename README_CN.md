@@ -16,6 +16,8 @@
 
 [mini-SWE-agent 可选接入](docs/mini-swe-integration.md)：复用 2.4.6 原版循环，连接本地 Ollama、受限 Docker、独立评分和 Langfuse。固定 5 项开发对照已完成，旧流程和 mini 均为 **0/5**；保留原核心，不将接入完成表述为准确率提升或上游基准成绩。
 
+[Harness² 可选接入](docs/harness2-integration.md)：固定官方 Propose–Probe–Compose 核心，复用自有执行器和本地 Ollama 编辑器，只开放两份文本指导。无模型演示与独立 Docker 烟测通过；单项真实试验经采纳后恢复完成，但目标缺陷仍未修复，保留全部失败和消耗，**21/50 基线不变**。
+
 [SWE-bench Mini 全量基线](docs/swebench-mini-batch.md)：已准备 Django 25 项、Sphinx 25 项，支持固定本地模型配置、逐项控制组验收、后置独立评分、断点恢复及统一 Langfuse 实验。当前批次运行中，尚无完整 50 项修复率。
 
 新 Issue CLI 已接入 [read_symbol 与编辑恢复](docs/symbol-read-recovery.md)：可配置步数和编辑次数，锚点或版本失败后强制重读。新流程的脚本测试不计入历史 47/50。
@@ -56,7 +58,7 @@
 
 第二轮在相同限制下试验模块导入和辅助函数上下文，两次锚点均被拒绝，总用量增至 8,877 Token。实验策略保持可选、默认保留原策略，最终相关回归 **213 项通过**。[对照及限制](docs/issue-context-round2-20261019.md)。
 
-可选 [Langfuse 本地追踪](docs/langfuse-local.md)已实现任务、模型、工具及检查节点与确定性评分，默认不上送源码或 Prompt；[本地服务已上线](docs/langfuse-server-20261029.md)，回读确认两条 Trace、14 个节点，登录及整套服务重启后记录保留通过，模型调用为零。其余四项能力见[接入路线](docs/advanced-capabilities.md)，尚未集成。
+可选 [Langfuse 本地追踪](docs/langfuse-local.md)已实现任务、模型、工具及检查节点与确定性评分，默认不上送源码或 Prompt；[本地服务已上线](docs/langfuse-server-20261029.md)，回读确认两条 Trace、14 个节点，登录及整套服务重启后记录保留通过，模型调用为零。Harness² 当前接入与其余能力的计划见[接入路线](docs/advanced-capabilities.md)。
 
 [后续真实用量验收](docs/langfuse-token-usage-20261030.md)：本地 Qwen3.5 27B 关闭 thinking，1 次调用共 1,027 Token，Ollama、本地报告与 Langfuse 一致；未知、实测零值、预算估算和零云 API 费用分别记录，脚本响应使用普通 Span。
 

@@ -1,0 +1,23 @@
+{
+  "upstream_commit": "6868817518876de8fd170c6a8354daca273b6191",
+  "task": "toolz-join-unmatched",
+  "k": 1,
+  "mode": "parallel",
+  "editor": "local Ollama JSON adapter",
+  "thinking": false,
+  "token_budget": null,
+  "editable_files": [
+    "systemprompt.md",
+    "tool_descriptions/tool_guidance.md"
+  ],
+  "grading_after_adoption": true,
+  "is_accuracy_result": false,
+  "baseline_42_percent_unchanged": true,
+  "windows_compatibility": true,
+  "baseline_report_sha256": "dd319b73fc429325367fe33e405bf747a483c69d3246a906bac31de36d37d6e1",
+  "source_files": {
+    "integrations/harness2.py": "8bc4533cd487eaa443affdc3e3a06a50d87e340692fb22258ba57fac49933355",
+    "integrations/harness2_runtime.py": "0d4cc3b4215a2099248671285e8cefaebd48f729750be745ea483a429ca282fc",
+    "integrations/harness2-source.json": "52600358b54b540f83f26661a2d3d50a6160c09dc76dd7426eaeffd59d1a5287"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "status": "passed",
+  "receipts": [
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104/executions/issue-cc-agg1/toolz-join-unmatched/base1/agent/report.json",
+      "trace_id": "70c3c31e03ba1429e08bcf74fcb9ecda",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 25435,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104/editors/call-001/report.json",
+      "trace_id": "0780a9b33c52a38641431238a7f8bba1",
+      "generation_count": 1,
+      "usage_status": "known",
+      "prompt_tokens": 13466,
+      "completion_tokens": 1145,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104/editors/call-002/report.json",
+      "trace_id": "cf60ea97bafdf3c52b960f09fd055c09",
+      "generation_count": 1,
+      "usage_status": "known",
+      "prompt_tokens": 13342,
+      "completion_tokens": 730,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104-v2/executions/issue-cc-agg1/toolz-join-unmatched/agg1/agent/report.json",
+      "trace_id": "452c7e8e3f282ed220cd9cba6bbc27e6",
+      "generation_count": 5,
+      "usage_status": "known",
+      "prompt_tokens": 18152,
+      "completion_tokens": 549,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104-v2/executions/issue-cc-agg1/toolz-join-unmatched/base1/agent/report.json",
+      "trace_id": "a2fd65c794ae65360dfff3bf3358fec9",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 25435,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104-v2/executions/issue-cc-agg1/toolz-join-unmatched/dom1/agent/report.json",
+      "trace_id": "0a7daa7c0e40bc52ab5a004e464294d2",
+      "generation_count": 5,
+      "usage_status": "known",
+      "prompt_tokens": 18152,
+      "completion_tokens": 549,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104-v2/executions/issue-cc-agg1/toolz-join-unmatched/inv1/agent/report.json",
+      "trace_id": "e838d3870247dc5410f67cb64051fc88",
+      "generation_count": 6,
+      "usage_status": "known",
+      "prompt_tokens": 23108,
+      "completion_tokens": 147,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104-v2/editors/call-001/report.json",
+      "trace_id": "bcfd7b692604708b1cde6b2a64153726",
+      "generation_count": 2,
+      "usage_status": "known",
+      "prompt_tokens": 28135,
+      "completion_tokens": 2293,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104-v2/editors/call-002/report.json",
+      "trace_id": "7d38bf6d459a97f26d5b8b540385f751",
+      "generation_count": 1,
+      "usage_status": "known",
+      "prompt_tokens": 13342,
+      "completion_tokens": 730,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104-v2/editors/call-003/report.json",
+      "trace_id": "29cf418f8ef0452d1361f6b175e75839",
+      "generation_count": 1,
+      "usage_status": "known",
+      "prompt_tokens": 32738,
+      "completion_tokens": 1067,
+      "all_operations_ended": true
+    },
+    {
+      "report": ".tmp/harness2-toolz-pilot-20261104-v2/editors/call-005/report.json",
+      "trace_id": "0e23c4e74d453a9cabe2421374195a20",
+      "generation_count": 1,
+      "usage_status": "known",
+      "prompt_tokens": 31453,
+      "completion_tokens": 10,
+      "all_operations_ended": true
+    }
+  ],
+  "all_attempts_model_calls": 37,
+  "all_attempts_tokens": 250308,
+  "baseline_evidence_files_verified": 330,
+  "baseline_source_unchanged": true,
+  "baseline_report_sha256": "dd319b73fc429325367fe33e405bf747a483c69d3246a906bac31de36d37d6e1",
+  "verification_model_calls": 0
+}

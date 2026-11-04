@@ -1,0 +1,17 @@
+{
+  "domain": "python-repair",
+  "n_tasks": 1,
+  "seed": null,
+  "done": 0,
+  "failed": 1,
+  "tasks": [
+    {
+      "task": "toolz-join-unmatched",
+      "status": "partial",
+      "error": "agg: ValueError: Only two prompt/guidance files, at most 4000 characters each, are editable",
+      "library_entries_before": {
+        "agg": 0
+      }
+    }
+  ]
+}

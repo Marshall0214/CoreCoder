@@ -1,0 +1,12 @@
+{
+  "original_protocol_sha256": "71d09f1ce519e83c1ac8e458baabd72ed3773ae6635defe586c5cedd22fb5083",
+  "adoption_before_recovery_sha256": "d34c5207d336ed68bacf4ddf1a229a1fa0f5d9e410b42d6dee8fbbc80004696c",
+  "rollouts_reused": 4,
+  "stages_rerun": [
+    "reflection",
+    "independent_grading",
+    "publication"
+  ],
+  "changed_transport": "lossless exact-duplicate aliases",
+  "implementation_sha256": "ae2b54a314d590db36282937132a2cf6466fa54ac59cdbbb09217cec4f6f3614"
+}

@@ -16,11 +16,13 @@ This fork extends [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder),
 
 [Optional mini-SWE-agent integration](docs/mini-swe-integration.md) reuses its unmodified 2.4.6 loop with local Ollama, restricted Docker, independent grading and Langfuse. The fixed five-task development pilot completed at **0/5**, matching the old loop on that subset; this is an integration result, not a replacement or an upstream benchmark score.
 
+[Optional Harness² integration](docs/harness2-integration.md) uses the pinned upstream Propose–Probe–Compose core with our executor and local Ollama editor. Only two guidance files can change. The no-model demos and independent Docker smoke passed; one real development task completed after post-adoption recovery but remained unresolved. All attempts and costs are retained; the **21/50 baseline is unchanged**.
+
 The prepared-Issue CLI now supports [symbol reads and edit recovery (Chinese)](docs/symbol-read-recovery.md), with configurable action/edit limits and mandatory re-reads after anchor or version failures. Scripted acceptance is separate from the historical 47/50 result.
 
 Prepared Issues now have a [complete CLI/API path (Chinese)](docs/issue-service.md): trusted registry, execution approval, restart recovery, read-only dependencies, Docker checks, and artifact downloads. A self-contained scripted demo verifies engineering behavior without model calls. Accuracy optimization is deferred.
 
-An optional [local Langfuse adapter (Chinese)](docs/langfuse-local.md) adds task/model/tool/check spans and deterministic scores, without uploading source or prompts. The self-hosted service is running: [server readback verified two traces and 14 observations, login, and persistence across a stack restart](docs/langfuse-server-20261029.md), with zero model calls. [Further integrations](docs/advanced-capabilities.md) are planned separately.
+An optional [local Langfuse adapter (Chinese)](docs/langfuse-local.md) adds task/model/tool/check spans and deterministic scores, without uploading source or prompts. The self-hosted service is running: [server readback verified two traces and 14 observations, login, and persistence across a stack restart](docs/langfuse-server-20261029.md), with zero model calls. See [integration status](docs/advanced-capabilities.md) for Harness² and remaining plans.
 
 [Subsequent native usage acceptance](docs/langfuse-token-usage-20261030.md) verified 1,027 tokens from one local Qwen3.5 27B call across Ollama, local events and Langfuse, with thinking disabled. Missing counters, measured zero, budget estimates and cloud API fees are distinct; scripted responses use ordinary spans.
 
