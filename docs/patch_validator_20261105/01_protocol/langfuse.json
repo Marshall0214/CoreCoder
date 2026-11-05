@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "trace_id": "309877b62f9f4bc26e452cb44147650b",
+  "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/309877b62f9f4bc26e452cb44147650b",
+  "observations": 5,
+  "generations": 0,
+  "model_calls": 0,
+  "published_independent_results": false,
+  "publisher_sha256": "9b39e5f39b1d3b7187d8960a9b77cbce897356f5e095618e59af509a13731302"
+}

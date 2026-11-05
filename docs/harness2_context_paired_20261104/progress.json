@@ -1,0 +1,72 @@
+{
+  "phase": "agent",
+  "completed": [
+    {
+      "pair": 1,
+      "variant": "control",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-1\\control",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 0,
+        "collapsed_observations": 0,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      }
+    },
+    {
+      "pair": 1,
+      "variant": "deduplicate",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-1\\deduplicate",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 2,
+        "collapsed_observations": 3,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      }
+    },
+    {
+      "pair": 2,
+      "variant": "deduplicate",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-2\\deduplicate",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 2,
+        "collapsed_observations": 3,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      }
+    },
+    {
+      "pair": 2,
+      "variant": "control",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-2\\control",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 0,
+        "collapsed_observations": 0,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      }
+    },
+    {
+      "pair": 3,
+      "variant": "control",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-3\\control",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 0,
+        "collapsed_observations": 0,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      }
+    },
+    {
+      "pair": 3,
+      "variant": "deduplicate",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-3\\deduplicate",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 2,
+        "collapsed_observations": 3,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      }
+    }
+  ],
+  "grading_available_to_agent": false
+}

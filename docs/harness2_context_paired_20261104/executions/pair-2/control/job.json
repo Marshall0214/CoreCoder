@@ -1,0 +1,17 @@
+{
+  "kind": "rollout",
+  "source": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\input",
+  "source_hash": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+  "public_sha256": "5f24e87ecbaa26117e14a80160ba1c6761b3b9d928cd2056ad3ad09889f600e1",
+  "harness": {
+    "systemprompt.md": "",
+    "tool_descriptions/tool_guidance.md": "",
+    "context_policy.json": "{\"version\": 1, \"deduplicate_reads\": false, \"complete_symbols_first\": false, \"read_index\": false}"
+  },
+  "harness_sha256": "262f17358d52ab7fa3fd8cef027b6ae29ecc3f3f907c03ac3a2f8b8175623f2d",
+  "scripted": false,
+  "context_enabled": true,
+  "experiment_id": "harness2-context-paired-20261104",
+  "task_id": "toolz-join-unmatched",
+  "harness_variant": "control"
+}

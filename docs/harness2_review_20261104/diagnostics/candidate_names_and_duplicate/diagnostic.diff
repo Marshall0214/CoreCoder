@@ -1,0 +1,23 @@
+--- agent-candidate
++++ candidate_names_and_duplicate
+@@ -904,11 +904,6 @@
+                 if key in d:
+                     for left_match in d[key]:
+                         yield (left_match, item)
+-            # Yield unmatched left rows with right_default
+-            for key, matches in iteritems(d):
+-                if key not in seen_keys:
+-                    for match in matches:
+-                        yield (match, right_default)
+         else:
+             # Full Join
+             for item in rightseq:
+@@ -920,7 +915,7 @@
+                 else:
+                     yield (left_default, item)
+ 
+-        for key, matches in iteritems(d):
++        for key, matches in d.items():
+             if key not in seen_keys:
+                 for match in matches:
+                     yield (match, right_default)

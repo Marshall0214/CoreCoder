@@ -1,0 +1,15 @@
+test_contract (test_admission.Target.test_contract) ... FAIL
+
+======================================================================
+FAIL: test_contract (test_admission.Target.test_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 6, in test_contract
+    self.assertCountEqual(list(join(0,[(1,'a'),(2,'b')],0,[(1,'x')],right_default=None)),
+AssertionError: Element counts were not equal:
+First has 2, Second has 1:  ((2, 'b'), None)
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)

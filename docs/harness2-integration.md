@@ -1,6 +1,14 @@
 # Harness² 与本项目的接入
 
+2026-11-05 后续：[控制端 Patch Validator](patch-validator-20261105.md)完成独立入口和四份制品验收。Harness² 无权修改验证器；公开检查与后验 Target/Controls 分开，Langfuse 仅发布公开摘要。本轮模型调用 0，尚未接入 Agent 反馈循环，不能解释为自主策略已提高修复率。
+
+2026-11-04 后续：完成 [首轮失败复盘](harness2-review-20261104.md)，纠正原代码已有 iteritems、候选重复输出及测试工具边界。增加显式 `--context-policy` 的三布尔配置层，已完成无模型验收；不带开关仍保持下面首轮的两文件权限。下列真实模型结果属于扩展前版本，未重跑。
+
+随后完成 [固定指导、只开启读取去重的三对真实运行](harness2-context-paired-20261104.md)：同一任务两组均 0/3，无补丁、重复读取停止；原生 Token 减少 1.82%，没有修复收益。该固定配置消融未重新调用 Harness² 策略生成，不改默认配置或完整 50 项基线。
+
 ## 分工
+
+最新完成 [三组件自主PPC试验](harness2-autonomous-20261104.md)：自主修改两份指导及Context配置，最终有补丁但目标仍失败；38次调用、256,704 Token。传输改为可逆共享后只恢复后置阶段，不重跑四次修复；经验审查拒绝复用。
 
 已有 Langfuse 负责保存、展示和核对轨迹、用量与评分；当前自有 Agent 的完整本地基线为 **21/50（42%）**。
 Harness² 在执行器外增加一个改进流程：根据可见任务和执行行为提出运行策略改动，探测改动，再合成最终策略。模型权重不变，也不把独立测试答案当作改进信号。
@@ -93,6 +101,9 @@ python -B -m integrations.fetch_harness2
 & $controller -B -m integrations.harness2 --smoke --output .tmp/h2-smoke-new
 & $controller -B -m integrations.harness2 --task toolz-join-unmatched --output .tmp/h2-live-new
 
+# 可选配置层的无模型验收；不是新的修复率实验：
+& $controller -B -m integrations.harness2 --context-policy --smoke --output .tmp/h2-context-smoke-new
+
 & $controller -B -m unittest tests.test_harness2 -q
 ```
 
@@ -100,7 +111,7 @@ python -B -m integrations.fetch_harness2
 目录已存在会拒绝覆盖，不自动整轮重试；上游阶段内部仍保留自身的有效性检查与有限回退。真实试验中若发生接入错误，先保留已消耗的调用与制品，再决定如何恢复。
 `CORECODER_AGENT_PYTHON` 指向原 conda 环境，控制器由单独的 `$controller` 指定，两者无需使用同一 Python 版本。
 
-仅对固定 Toolz 任务已经完成采纳、尚未开始独立评分的目录，提供 `--finish-existing <原输出目录>`。它校验原补丁哈希，只恢复采纳后的经验提取和交付，不重新执行提议、探测或合成；已评分目录拒绝再次恢复。它不是通用断点续跑命令。本轮已经完成恢复，无需再次运行。
+仅对固定 Toolz 任务已经完成采纳、尚未开始独立评分的目录，提供 `--finish-existing <原输出目录>`。按原协议恢复两文件或Context模式，校验原补丁和组件哈希，只恢复经验、评分和交付，不重新执行提议、探测或合成；已评分目录拒绝再次恢复。它不是通用断点续跑命令，已完成的恢复无需重复运行。
 
 ## 如何阅读结果
 

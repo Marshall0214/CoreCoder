@@ -16,7 +16,7 @@ This fork extends [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder),
 
 [Optional mini-SWE-agent integration](docs/mini-swe-integration.md) reuses its unmodified 2.4.6 loop with local Ollama, restricted Docker, independent grading and Langfuse. The fixed five-task development pilot completed at **0/5**, matching the old loop on that subset; this is an integration result, not a replacement or an upstream benchmark score.
 
-[Optional Harness² integration](docs/harness2-integration.md) uses the pinned upstream Propose–Probe–Compose core with our executor and local Ollama editor. Only two guidance files can change. The no-model demos and independent Docker smoke passed; one real development task completed after post-adoption recovery but remained unresolved. All attempts and costs are retained; the **21/50 baseline is unchanged**.
+[Optional Harness² integration](docs/harness2-integration.md) uses the pinned upstream Propose–Probe–Compose core with our executor and local Ollama editor. Two guidance files are editable by default; an opt-in three-boolean Context Builder config has separate no-model acceptance. [The first failure review](docs/harness2-review-20261104.md) traces retained undefined symbols and duplicate output. The real development task remains unresolved; all attempts and costs are retained and the **21/50 baseline is unchanged**.
 
 The prepared-Issue CLI now supports [symbol reads and edit recovery (Chinese)](docs/symbol-read-recovery.md), with configurable action/edit limits and mandatory re-reads after anchor or version failures. Scripted acceptance is separate from the historical 47/50 result.
 

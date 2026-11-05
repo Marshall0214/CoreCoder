@@ -1,0 +1,13 @@
+# toolz-join-unmatched
+
+- adopted: `agg1`  (run `issue-cc-agg1/toolz-join-unmatched/agg1`)
+- components: always-on edits only; 2,012 always-on chars
+
+## Why this was chosen
+trivial pool: single final at k=1; delivered without a selector session
+
+## Transferable lesson
+- **cue**: When repairing a defect in a function with multiple conditional branches (e.g., join types), where the bug is a missing code path for a specific branch condition.
+- **lesson**: Do not add new top-level conditional blocks to handle the missing case if the existing logic structure already supports it via parameter combinations; instead, insert the missing logic directly into the existing branch that handles the relevant parameter state (e.g., inside the `elif right_default != no_default` block for left joins).
+- **evidence**: The `agg1` candidate inserted the missing left-join logic (`for key, matches in iteritems(d)...`) directly into the existing `elif right_default != no_default` block (specifically under the `if left_default == no_default` sub-branch), which was adopted. The `inv1` candidate attempted to add a new top-level `elif` block and redundant logic outside the main flow, which was rejected. The `dom1` candidate made no code changes.
+- **confidence**: high

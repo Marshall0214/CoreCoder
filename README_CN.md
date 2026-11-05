@@ -16,7 +16,7 @@
 
 [mini-SWE-agent 可选接入](docs/mini-swe-integration.md)：复用 2.4.6 原版循环，连接本地 Ollama、受限 Docker、独立评分和 Langfuse。固定 5 项开发对照已完成，旧流程和 mini 均为 **0/5**；保留原核心，不将接入完成表述为准确率提升或上游基准成绩。
 
-[Harness² 可选接入](docs/harness2-integration.md)：固定官方 Propose–Probe–Compose 核心，复用自有执行器和本地 Ollama 编辑器，只开放两份文本指导。无模型演示与独立 Docker 烟测通过；单项真实试验经采纳后恢复完成，但目标缺陷仍未修复，保留全部失败和消耗，**21/50 基线不变**。
+[Harness² 可选接入](docs/harness2-integration.md)：固定官方 Propose–Probe–Compose 核心，复用自有执行器和本地 Ollama 编辑器；默认两份文本指导，可显式启用三布尔 Context Builder 配置，已通过无模型验收。[首轮失败复盘](docs/harness2-review-20261104.md)确认保留未定义符号并重复输出的问题；真实单项仍未修复，全部失败和消耗保留，**21/50 基线不变**。
 
 [SWE-bench Mini 全量基线](docs/swebench-mini-batch.md)：已准备 Django 25 项、Sphinx 25 项，支持固定本地模型配置、逐项控制组验收、后置独立评分、断点恢复及统一 Langfuse 实验。当前批次运行中，尚无完整 50 项修复率。
 

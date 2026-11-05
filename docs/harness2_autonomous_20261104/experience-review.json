@@ -1,0 +1,13 @@
+{
+  "status": "reject_for_reuse",
+  "source_selection_sha256": "f7537edc89c4185c6810c12970abfaa14b6eb9c0ec428aecf128af1389dfa4c9",
+  "reasons": [
+    "Adopted candidate failed independent Target checks.",
+    "Experience treats adoption as correctness; k=1 adoption was automatic, not a successful evaluator result.",
+    "Experience claims inv1 was rejected but no selector session made that judgment.",
+    "Proposed loop duplicates an existing common loop and retains undefined iteritems."
+  ],
+  "enforcement_scope": "Existing trial-local library is isolated; no default or cross-task memory injection exists. This is a post-hoc review record, not a newly implemented global memory gate.",
+  "original_library_record_preserved": true,
+  "new_model_calls": 0
+}

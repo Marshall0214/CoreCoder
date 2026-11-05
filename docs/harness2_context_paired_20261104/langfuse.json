@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/7a0a7b1805013129a1d6b2bfcea097a6",
+  "trace_id": "7a0a7b1805013129a1d6b2bfcea097a6",
+  "observations": 7,
+  "controller_generations": 0,
+  "publication_model_calls": 0,
+  "inference_receipts": [
+    {
+      "trace_id": "73f85cad0ce4405cffa005ddfbda057b",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 25435,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    },
+    {
+      "trace_id": "81f36bbbbca4f329d46ca62f9fd634c8",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 24970,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    },
+    {
+      "trace_id": "ff69fa1cc42a2dceb3eee45be4498135",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 24970,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    },
+    {
+      "trace_id": "5b096588fe4616168e77dedec451fac8",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 25435,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    },
+    {
+      "trace_id": "ae8f26d8d460b414570cd24be8fe495c",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 25435,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    },
+    {
+      "trace_id": "adc0a7601c80f667b941b5a5200dd739",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 24970,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    }
+  ]
+}

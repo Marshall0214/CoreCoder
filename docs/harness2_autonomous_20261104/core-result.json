@@ -1,0 +1,17 @@
+{
+  "domain": "python-repair",
+  "n_tasks": 1,
+  "seed": null,
+  "done": 0,
+  "failed": 1,
+  "tasks": [
+    {
+      "task": "toolz-join-unmatched",
+      "status": "partial",
+      "error": "agg: ValueError: Editor evidence exceeds local transport bound; no silent truncation",
+      "library_entries_before": {
+        "agg": 0
+      }
+    }
+  ]
+}

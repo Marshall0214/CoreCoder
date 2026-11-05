@@ -1,0 +1,265 @@
+{
+  "scope": "Single known-task, single-run post-hoc audit; not a strategy efficacy estimate",
+  "new_model_calls": 0,
+  "diagnostic_patch_author": "offline analyst; not an Agent success",
+  "original_source_sha256": "a7bce48b8756a7e783eeecb74262f7aaee809d76ca46a4f407ceeba675ec1b6e",
+  "source_contains_iteritems_before_agent": true,
+  "candidate_repeats_existing_unmatched_loop": true,
+  "rollouts": [
+    {
+      "label": "base1",
+      "status": "repeated_action_limit",
+      "calls": 7,
+      "tokens": 25600,
+      "seconds": 19.485,
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "nonempty_patch": false,
+      "tool_executions": 6,
+      "tool_errors": 0,
+      "guard_stops": 1,
+      "complete_symbol_reads": [],
+      "candidate_input_contains_iteritems": false
+    },
+    {
+      "label": "inv1",
+      "status": "repeated_action_limit",
+      "calls": 6,
+      "tokens": 23255,
+      "seconds": 31.328,
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "nonempty_patch": false,
+      "tool_executions": 5,
+      "tool_errors": 0,
+      "guard_stops": 1,
+      "complete_symbol_reads": [],
+      "candidate_input_contains_iteritems": false
+    },
+    {
+      "label": "dom1",
+      "status": "candidate_generated",
+      "calls": 5,
+      "tokens": 18701,
+      "seconds": 25.766,
+      "patch_sha256": "1c3e6be689d97fc720486ecc399cd5ceca9f2f6400baf5af96157063150ca771",
+      "nonempty_patch": true,
+      "tool_executions": 5,
+      "tool_errors": 0,
+      "guard_stops": 0,
+      "complete_symbol_reads": [
+        {
+          "step": 4,
+          "symbol": "join",
+          "start_line": 813,
+          "end_line": 921,
+          "characters": 3857,
+          "contains_iteritems": true
+        }
+      ],
+      "candidate_input_contains_iteritems": true
+    },
+    {
+      "label": "agg1",
+      "status": "candidate_generated",
+      "calls": 5,
+      "tokens": 18701,
+      "seconds": 18.703,
+      "patch_sha256": "1c3e6be689d97fc720486ecc399cd5ceca9f2f6400baf5af96157063150ca771",
+      "nonempty_patch": true,
+      "tool_executions": 5,
+      "tool_errors": 0,
+      "guard_stops": 0,
+      "complete_symbol_reads": [
+        {
+          "step": 4,
+          "symbol": "join",
+          "start_line": 813,
+          "end_line": 921,
+          "characters": 3857,
+          "contains_iteritems": true
+        }
+      ],
+      "candidate_input_contains_iteritems": true
+    }
+  ],
+  "counterfactuals": {
+    "candidate_unchanged": {
+      "author": "offline analyst; not Agent or Harness2",
+      "source_sha256": "e3772c2c2f6897638dd49c7add487eb9b18444e64b5966205a6ad70f8d9a6768",
+      "syntax_compiles": true,
+      "iteritems_calls": 2,
+      "groups": {
+        "Target": {
+          "returncode": 1,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 1,
+          "failures": 0,
+          "successful": false,
+          "seconds": 1.8456,
+          "passed": false
+        },
+        "Controls": {
+          "returncode": 0,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 0,
+          "failures": 0,
+          "successful": true,
+          "seconds": 1.9077,
+          "passed": true
+        }
+      },
+      "all_passed": false
+    },
+    "candidate_names_only": {
+      "author": "offline analyst; not Agent or Harness2",
+      "source_sha256": "648a53fb9d7372e0058a1c231f67b80dfa7cb63be9b74ae2b8a8886bc3d6ffb5",
+      "syntax_compiles": true,
+      "iteritems_calls": 0,
+      "groups": {
+        "Target": {
+          "returncode": 1,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 0,
+          "failures": 1,
+          "successful": false,
+          "seconds": 1.8748,
+          "passed": false
+        },
+        "Controls": {
+          "returncode": 0,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 0,
+          "failures": 0,
+          "successful": true,
+          "seconds": 1.8778,
+          "passed": true
+        }
+      },
+      "all_passed": false
+    },
+    "candidate_names_and_duplicate": {
+      "author": "offline analyst; not Agent or Harness2",
+      "source_sha256": "5872de2458a271fb0f04c066eb45d70d6f7f936d32bafebb7bd2426ff2912b4a",
+      "syntax_compiles": true,
+      "iteritems_calls": 0,
+      "groups": {
+        "Target": {
+          "returncode": 0,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 0,
+          "failures": 0,
+          "successful": true,
+          "seconds": 1.9025,
+          "passed": true
+        },
+        "Controls": {
+          "returncode": 0,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 0,
+          "failures": 0,
+          "successful": true,
+          "seconds": 1.8921,
+          "passed": true
+        }
+      },
+      "all_passed": true
+    }
+  },
+  "protected_artifacts_unchanged": {
+    "D:\\project_other\\CoreCoder\\.tmp\\harness2-toolz-pilot-20261104-v2\\report.json": "1daa1a685f081fbc88bfd15d1824f90d597e949c48a5d17d5a37a0e698f1905c",
+    "D:\\project_other\\CoreCoder\\.tmp\\harness2-toolz-pilot-20261104-v2\\protocol.json": "71d09f1ce519e83c1ac8e458baabd72ed3773ae6635defe586c5cedd22fb5083",
+    "D:\\project_other\\CoreCoder\\.tmp\\harness2-toolz-pilot-20261104-v2\\core-result.json": "37729b7e0be77d3ebf2d51e04d0b0a06620d8e6ffc6cb338645d07e4138657c0",
+    "D:\\project_other\\CoreCoder\\.tmp\\harness2-toolz-pilot-20261104-v2\\recovery.json": "db9e1158db0907445a561155bc11ca2368b2b231ea08fdc419c0d6f1c86625e4",
+    "D:\\project_other\\CoreCoder\\docs\\harness2-20261104.json": "dafcc2aec1b8e6293867baa3c085203522cfd76c9136c20cfb2529368e52c88e",
+    "D:\\project_other\\CoreCoder\\docs\\experiments\\expanded_suite_v1\\checks\\toolz-join-unmatched\\test_admission.py": "1846cf741100e848c902b59a27ffd3816db4f9860d35d81b84d815280aa4b32d"
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "model_calls": 0,
+  "cases": {
+    "unchanged": {
+      "validator_status": "rejected",
+      "accepted": false,
+      "baseline_static_findings": 1,
+      "retained_static_findings": 1,
+      "introduced_static_findings": 0,
+      "candidate_static_findings": 1,
+      "review_warnings": [],
+      "public": {
+        "Reproduce": {
+          "tests_run": 2,
+          "errors": 2,
+          "failures": 0,
+          "passed": false
+        },
+        "Preserve": {
+          "tests_run": 3,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        }
+      },
+      "independent": {
+        "Target": {
+          "tests_run": 1,
+          "errors": 1,
+          "failures": 0,
+          "passed": false
+        },
+        "Controls": {
+          "tests_run": 1,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        }
+      },
+      "reasons": [
+        "unresolved_static_findings",
+        "public_reproduce_failed",
+        "no_patch"
+      ]
+    },
+    "agent_agg1": {
+      "validator_status": "rejected",
+      "accepted": false,
+      "baseline_static_findings": 1,
+      "retained_static_findings": 1,
+      "introduced_static_findings": 1,
+      "candidate_static_findings": 2,
+      "review_warnings": [
+        {
+          "code": "duplicate_loop_review",
+          "file": "toolz/itertoolz.py",
+          "scope": "<module>.join",
+          "candidate_lines": [
+            908,
+            923
+          ],
+          "baseline_occurrences": 1,
+          "blocking": false,
+          "meaning": "Repeated AST loop; paths may be exclusive. Confirm behavior with tests."
+        },
+        {
+          "code": "duplicate_loop_review",
+          "file": "toolz/itertoolz.py",
+          "scope": "<module>.join",
+          "candidate_lines": [
+            910,
+            925
+          ],
+          "baseline_occurrences": 1,
+          "blocking": false,
+          "meaning": "Repeated AST loop; paths may be exclusive. Confirm behavior with tests."
+        }
+      ],
+      "public": {
+        "Reproduce": {
+          "tests_run": 2,
+          "errors": 2,
+          "failures": 0,
+          "passed": false
+        },
+        "Preserve": {
+          "tests_run": 3,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        }
+      },
+      "independent": {
+        "Target": {
+          "tests_run": 1,
+          "errors": 1,
+          "failures": 0,
+          "passed": false
+        },
+        "Controls": {
+          "tests_run": 1,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        }
+      },
+      "reasons": [
+        "unresolved_static_findings",
+        "public_reproduce_failed"
+      ]
+    },
+    "names_only": {
+      "validator_status": "rejected",
+      "accepted": false,
+      "baseline_static_findings": 1,
+      "retained_static_findings": 0,
+      "introduced_static_findings": 0,
+      "candidate_static_findings": 0,
+      "review_warnings": [
+        {
+          "code": "duplicate_loop_review",
+          "file": "toolz/itertoolz.py",
+          "scope": "<module>.join",
+          "candidate_lines": [
+            908,
+            923
+          ],
+          "baseline_occurrences": 0,
+          "blocking": false,
+          "meaning": "Repeated AST loop; paths may be exclusive. Confirm behavior with tests."
+        },
+        {
+          "code": "duplicate_loop_review",
+          "file": "toolz/itertoolz.py",
+          "scope": "<module>.join",
+          "candidate_lines": [
+            910,
+            925
+          ],
+          "baseline_occurrences": 1,
+          "blocking": false,
+          "meaning": "Repeated AST loop; paths may be exclusive. Confirm behavior with tests."
+        }
+      ],
+      "public": {
+        "Reproduce": {
+          "tests_run": 2,
+          "errors": 0,
+          "failures": 2,
+          "passed": false
+        },
+        "Preserve": {
+          "tests_run": 3,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        }
+      },
+      "independent": {
+        "Target": {
+          "tests_run": 1,
+          "errors": 0,
+          "failures": 1,
+          "passed": false
+        },
+        "Controls": {
+          "tests_run": 1,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        }
+      },
+      "reasons": [
+        "public_reproduce_failed"
+      ]
+    },
+    "names_and_duplicate": {
+      "validator_status": "validated",
+      "accepted": true,
+      "baseline_static_findings": 1,
+      "retained_static_findings": 0,
+      "introduced_static_findings": 0,
+      "candidate_static_findings": 0,
+      "review_warnings": [],
+      "public": {
+        "Reproduce": {
+          "tests_run": 2,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        },
+        "Preserve": {
+          "tests_run": 3,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        }
+      },
+      "independent": {
+        "Target": {
+          "tests_run": 1,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        },
+        "Controls": {
+          "tests_run": 1,
+          "errors": 0,
+          "failures": 0,
+          "passed": true
+        }
+      },
+      "reasons": []
+    }
+  },
+  "previous_packets": {
+    "harness2-autonomous-20261104.json": {
+      "sha256": "8964033c18c82d9d03a419da90dd0896548439c6ff70232be9f820c22fab1d11",
+      "verified_files": 134
+    },
+    "harness2-agg1-failure-20261104.json": {
+      "sha256": "f58c6ffecab1220e471c27cb1cac9fbcfefaec5b5f1a404431017ba011ba102e",
+      "verified_files": 41
+    },
+    "local50-unmetered-20261103.json": {
+      "sha256": "8cbdba27bcc07069d6e7a64cf05cde1ab84f7d8ad3094e0e7bb49635397d41f5",
+      "verified_files": 330
+    }
+  },
+  "public_checks_per_variant": 5,
+  "independent_checks_per_variant": 2,
+  "scope": "Four curated mechanism controls, not model repair results or a general validator accuracy benchmark",
+  "agent_loop_changed": false,
+  "baseline_source_unchanged": true,
+  "hidden_grading_feedback": false
+}

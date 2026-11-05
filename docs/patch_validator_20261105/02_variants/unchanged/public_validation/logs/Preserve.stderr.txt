@@ -1,0 +1,8 @@
+test_inner_join_empty_left (test_admission.Preserve.test_inner_join_empty_left) ... ok
+test_inner_join_many_to_many (test_admission.Preserve.test_inner_join_many_to_many) ... ok
+test_right_join_unmatched (test_admission.Preserve.test_right_join_unmatched) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

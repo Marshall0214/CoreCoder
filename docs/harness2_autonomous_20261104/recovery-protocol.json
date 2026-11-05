@@ -1,0 +1,13 @@
+{
+  "original_protocol_sha256": "58edbf8d50279f9b670630911e0e544b0bd3f3919a7fc90dc2875172f9bc9c91",
+  "adoption_before_recovery_sha256": "9fdfad4064f5923bdb132e2a614b181219327120b56e1997976406e8c4a72e2d",
+  "rollouts_reused": 4,
+  "stages_rerun": [
+    "reflection",
+    "independent_grading",
+    "publication"
+  ],
+  "changed_transport": "lossless whole-file aliases and reversible repeated JSON-token sharing",
+  "implementation_sha256": "cd1491ed088d4976ce47f1c5fd017bbe66f069094c80be2a329abd332cb144e9",
+  "evidence_implementation_sha256": "2eb3520fa849fd8405553d0066835d8c4da19eb62bd04d8e29ec8ee3c09d81e8"
+}

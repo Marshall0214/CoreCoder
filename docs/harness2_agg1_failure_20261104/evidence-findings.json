@@ -1,0 +1,26 @@
+{
+  "original_file_sha256": "a7bce48b8756a7e783eeecb74262f7aaee809d76ca46a4f407ceeba675ec1b6e",
+  "candidate_file_sha256": "fe27a4e9469907dcb4d7395d3ef202c88267d01469e4cba9ccd908726845f41f",
+  "original_join_lines": [
+    813,
+    921
+  ],
+  "candidate_join_lines": [
+    813,
+    926
+  ],
+  "original_iteritems_sites": 1,
+  "candidate_iteritems_sites": 2,
+  "first_read_with_iteritems": 2,
+  "first_effective_request_with_iteritems": 3,
+  "complete_read_step": 10,
+  "patch_generation_step": 11,
+  "candidate_request_contains_exact_complete_original_join": true,
+  "raw_model_edit_reproduces_exact_candidate": true,
+  "current_candidate_ast_equals_prior_diagnostic_candidate": true,
+  "prior_candidate_source_sha256": "e3772c2c2f6897638dd49c7add487eb9b18444e64b5966205a6ad70f8d9a6768",
+  "same_test_sha256": "1846cf741100e848c902b59a27ffd3816db4f9860d35d81b84d815280aa4b32d",
+  "new_model_calls": 0,
+  "new_docker_test_runs": 0,
+  "inference_limits": "Only structured responses are recorded; internal causal reasoning cannot be reconstructed."
+}

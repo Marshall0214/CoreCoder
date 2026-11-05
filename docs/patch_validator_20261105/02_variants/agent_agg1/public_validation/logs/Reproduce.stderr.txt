@@ -1,0 +1,31 @@
+test_empty_right_retains_each_left_once (test_admission.Reproduce.test_empty_right_retains_each_left_once) ... ERROR
+test_unmatched_duplicate_keys_emitted_once_per_row (test_admission.Reproduce.test_unmatched_duplicate_keys_emitted_once_per_row) ... ERROR
+
+======================================================================
+ERROR: test_empty_right_retains_each_left_once (test_admission.Reproduce.test_empty_right_retains_each_left_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 16, in test_empty_right_retains_each_left_once
+    self.assertCountEqual(list(join('id',left,'id',[],right_default='absent')),
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/source/toolz/itertoolz.py", line 908, in join
+    for key, matches in iteritems(d):
+                        ^^^^^^^^^
+NameError: name 'iteritems' is not defined
+
+======================================================================
+ERROR: test_unmatched_duplicate_keys_emitted_once_per_row (test_admission.Reproduce.test_unmatched_duplicate_keys_emitted_once_per_row)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 11, in test_unmatched_duplicate_keys_emitted_once_per_row
+    self.assertCountEqual(list(join(0,left,0,right,right_default=None)),
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/source/toolz/itertoolz.py", line 908, in join
+    for key, matches in iteritems(d):
+                        ^^^^^^^^^
+NameError: name 'iteritems' is not defined
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.008s
+
+FAILED (errors=2)

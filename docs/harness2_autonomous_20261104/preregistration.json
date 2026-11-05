@@ -1,0 +1,39 @@
+{
+  "experiment_id": "harness2-autonomous-20261104",
+  "task_id": "toolz-join-unmatched",
+  "distinct_tasks": 1,
+  "k": 1,
+  "mode": "parallel",
+  "upstream": "6868817518876de8fd170c6a8354daca273b6191",
+  "editable": [
+    "systemprompt.md",
+    "tool_descriptions/tool_guidance.md",
+    "context_policy.json"
+  ],
+  "context_fields": [
+    "deduplicate_reads",
+    "complete_symbols_first",
+    "read_index"
+  ],
+  "primary_comparison": "base1 versus pre-grading adopted agg1",
+  "model": "qwen3.5:27b",
+  "thinking": false,
+  "temperature": 0,
+  "token_budget": null,
+  "num_predict": -1,
+  "max_steps": 20,
+  "wall_seconds": 1200,
+  "grading_after_adoption_and_reflection": true,
+  "manual_guidance_or_answer_injection": false,
+  "new_task_reference_or_review_feedback_to_editor": false,
+  "automatic_whole_run_retry": false,
+  "rollout_attempts_expected": 4,
+  "editor_json_attempts": 2,
+  "initial_experience_library": "fresh empty trial-local library",
+  "reporting": "Retain every rollout/editor failure and all measured usage; no full50 or unseen-task improvement claim",
+  "implementation": {
+    "integrations/harness2.py": "0e2b66920aa8dad4aeb09df29b76ba442d910d1a3036b4c34ddbaff186623abc",
+    "integrations/harness2_context.py": "f0a9847e1c124eaabe03e286dfe9e5a29c109d8733d9eb7b39183c07cb39fc54",
+    "integrations/harness2_runtime.py": "0d4cc3b4215a2099248671285e8cefaebd48f729750be745ea483a429ca282fc"
+  }
+}

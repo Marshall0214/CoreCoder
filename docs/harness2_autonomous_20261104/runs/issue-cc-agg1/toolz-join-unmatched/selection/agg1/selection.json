@@ -1,0 +1,28 @@
+{
+  "task_id": "toolz-join-unmatched",
+  "mode": "agg",
+  "k": 1,
+  "chosen_id": "A",
+  "chosen_label": "agg1",
+  "chosen_run_id": "issue-cc-agg1/toolz-join-unmatched/agg1",
+  "chosen_is_base": false,
+  "why": "trivial pool: single final at k=1; delivered without a selector session",
+  "id_map": {
+    "A": "agg1"
+  },
+  "dropped": [],
+  "n_candidates": 1,
+  "ok": true,
+  "fallback": false,
+  "error": "",
+  "usd": 0.0,
+  "experience": {
+    "cue": "When repairing a defect in a function with multiple conditional branches (e.g., join types), where the bug is a missing code path for a specific branch condition.",
+    "lesson": "Do not add new top-level conditional blocks to handle the missing case if the existing logic structure already supports it via parameter combinations; instead, insert the missing logic directly into the existing branch that handles the relevant parameter state (e.g., inside the `elif right_default != no_default` block for left joins).",
+    "evidence": "The `agg1` candidate inserted the missing left-join logic (`for key, matches in iteritems(d)...`) directly into the existing `elif right_default != no_default` block (specifically under the `if left_default == no_default` sub-branch), which was adopted. The `inv1` candidate attempted to add a new top-level `elif` block and redundant logic outside the main flow, which was rejected. The `dom1` candidate made no code changes.",
+    "confidence": "high"
+  },
+  "trivial": true,
+  "evidence": "deliverable",
+  "chosen_run_dir": "D:\\project_other\\CoreCoder\\.tmp\\harness2-autonomous-20261104\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1"
+}

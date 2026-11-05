@@ -1,0 +1,205 @@
+{
+  "status": "completed",
+  "protocol_sha256": "939a126717be4b72467fc341e38d0761eddd083f75b73b7de6d44342c4e620ae",
+  "runs": [
+    {
+      "pair": 1,
+      "variant": "control",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-1\\control",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 0,
+        "collapsed_observations": 0,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      },
+      "agent_status": "repeated_action_limit",
+      "calls": 7,
+      "tokens": 25600,
+      "agent_seconds": 21.953,
+      "trace_id": "73f85cad0ce4405cffa005ddfbda057b",
+      "nonempty_patch": false,
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_passed": false,
+      "controls_passed": true,
+      "accepted": false,
+      "tool_executions": 6,
+      "tool_errors": 0,
+      "guard_stops": 1
+    },
+    {
+      "pair": 1,
+      "variant": "deduplicate",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-1\\deduplicate",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 2,
+        "collapsed_observations": 3,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      },
+      "agent_status": "repeated_action_limit",
+      "calls": 7,
+      "tokens": 25135,
+      "agent_seconds": 13.25,
+      "trace_id": "81f36bbbbca4f329d46ca62f9fd634c8",
+      "nonempty_patch": false,
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_passed": false,
+      "controls_passed": true,
+      "accepted": false,
+      "tool_executions": 6,
+      "tool_errors": 0,
+      "guard_stops": 1
+    },
+    {
+      "pair": 2,
+      "variant": "deduplicate",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-2\\deduplicate",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 2,
+        "collapsed_observations": 3,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      },
+      "agent_status": "repeated_action_limit",
+      "calls": 7,
+      "tokens": 25135,
+      "agent_seconds": 9.25,
+      "trace_id": "ff69fa1cc42a2dceb3eee45be4498135",
+      "nonempty_patch": false,
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_passed": false,
+      "controls_passed": true,
+      "accepted": false,
+      "tool_executions": 6,
+      "tool_errors": 0,
+      "guard_stops": 1
+    },
+    {
+      "pair": 2,
+      "variant": "control",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-2\\control",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 0,
+        "collapsed_observations": 0,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      },
+      "agent_status": "repeated_action_limit",
+      "calls": 7,
+      "tokens": 25600,
+      "agent_seconds": 9.031,
+      "trace_id": "5b096588fe4616168e77dedec451fac8",
+      "nonempty_patch": false,
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_passed": false,
+      "controls_passed": true,
+      "accepted": false,
+      "tool_executions": 6,
+      "tool_errors": 0,
+      "guard_stops": 1
+    },
+    {
+      "pair": 3,
+      "variant": "control",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-3\\control",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 0,
+        "collapsed_observations": 0,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      },
+      "agent_status": "repeated_action_limit",
+      "calls": 7,
+      "tokens": 25600,
+      "agent_seconds": 9.594,
+      "trace_id": "ae8f26d8d460b414570cd24be8fe495c",
+      "nonempty_patch": false,
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_passed": false,
+      "controls_passed": true,
+      "accepted": false,
+      "tool_executions": 6,
+      "tool_errors": 0,
+      "guard_stops": 1
+    },
+    {
+      "pair": 3,
+      "variant": "deduplicate",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-context-paired-20261104\\executions\\pair-3\\deduplicate",
+      "request_check": {
+        "requests": 7,
+        "changed_requests": 2,
+        "collapsed_observations": 3,
+        "first_request_sha256": "5edd3646001a019dd54facbddf6c0117b0ca047ac73a2a2c982921e97c3f9f50"
+      },
+      "agent_status": "repeated_action_limit",
+      "calls": 7,
+      "tokens": 25135,
+      "agent_seconds": 9.188,
+      "trace_id": "adc0a7601c80f667b941b5a5200dd739",
+      "nonempty_patch": false,
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "target_passed": false,
+      "controls_passed": true,
+      "accepted": false,
+      "tool_executions": 6,
+      "tool_errors": 0,
+      "guard_stops": 1
+    }
+  ],
+  "summary": {
+    "by_variant": {
+      "control": {
+        "runs": 3,
+        "accepted": 0,
+        "nonempty_patches": 0,
+        "target_passed": 0,
+        "controls_passed": 3,
+        "calls": 21,
+        "actual_tokens": 76800,
+        "agent_seconds": 40.578,
+        "tool_executions": 18,
+        "tool_errors": 0,
+        "guard_stops": 3
+      },
+      "deduplicate": {
+        "runs": 3,
+        "accepted": 0,
+        "nonempty_patches": 0,
+        "target_passed": 0,
+        "controls_passed": 3,
+        "calls": 21,
+        "actual_tokens": 75405,
+        "agent_seconds": 31.688,
+        "tool_executions": 18,
+        "tool_errors": 0,
+        "guard_stops": 3
+      }
+    },
+    "pairs": [
+      {
+        "pair": 1,
+        "control_accepted": false,
+        "deduplicate_accepted": false,
+        "token_delta": -465
+      },
+      {
+        "pair": 2,
+        "control_accepted": false,
+        "deduplicate_accepted": false,
+        "token_delta": -465
+      },
+      {
+        "pair": 3,
+        "control_accepted": false,
+        "deduplicate_accepted": false,
+        "token_delta": -465
+      }
+    ],
+    "new_success_pairs": 0,
+    "lost_success_pairs": 0
+  },
+  "seconds_through_grading": 119.25,
+  "baseline_42_percent_unchanged": true,
+  "scope": "Three repeats of one known task, not three independent tasks or Harness2 search efficacy"
+}

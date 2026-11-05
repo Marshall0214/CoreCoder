@@ -1,0 +1,5 @@
+{
+"edits": [
+{"file": "toolz/itertoolz.py", "old": "        if left_default == no_default:\n            # Left Join\n            for item in rightseq:\n                key = rightkey(item)\n                seen(key)\n                if key in d:\n                    for left_match in d[key]:\n                        yield (left_match, item)", "new": "        if left_default == no_default:\n            # Left Join\n            for item in rightseq:\n                key = rightkey(item)\n                seen(key)\n                if key in d:\n                    for left_match in d[key]:\n                        yield (left_match, item)\n            \n            for key, matches in iteritems(d):\n                if key not in seen_keys:\n                    for match in matches:\n                        yield (match, right_default)"}
+]
+}

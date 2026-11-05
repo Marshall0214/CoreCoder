@@ -1,0 +1,17 @@
+{
+  "kind": "record of checks completed before evidence freeze; not a new run",
+  "related_pytest": {
+    "passed": 71,
+    "skipped": 1,
+    "seconds": 3.77,
+    "skip_reason": "existing Python 3.12 controller test under Python 3.11",
+    "command": "python -m pytest tests/test_patch_validator.py tests/test_sandbox.py tests/test_repository_checkpoint.py tests/test_local50_unmetered.py tests/test_local50.py tests/test_harness2.py tests/test_harness2_context.py tests/test_harness2_compare.py tests/test_harness2_evidence.py -q -p no:cacheprovider"
+  },
+  "new_files_ruff": "passed",
+  "new_model_calls": 0,
+  "agent_loop_changed": false,
+  "sandbox_group_runs": 16,
+  "public_test_invocations": 20,
+  "independent_test_invocations": 8,
+  "frozen_baseline_source_files_verified": 14
+}

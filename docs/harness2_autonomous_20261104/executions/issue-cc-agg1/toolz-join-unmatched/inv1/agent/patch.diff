@@ -1,0 +1,35 @@
+--- a/toolz/itertoolz.py
++++ b/toolz/itertoolz.py
+@@ -919,6 +919,32 @@
+             if key not in seen_keys:
+                 for match in matches:
+                     yield (match, right_default)
++    elif left_default != no_default and right_default == no_default:
++        # Left Join (already handled above as part of the elif chain, but this case is missing)
++        # Actually, looking at the logic: if left_default is set and right_default is not,
++        # it falls through to the 'elif right_default != no_default' block which is False.
++        # So we need a specific case for Left Join where only left_default is provided.
++        pass  # This branch was missing; handled by reordering logic below
++
++    # Corrected logic: Handle Left Join specifically when only left_default is set
++    if right_default != no_default:
++        # Already handled above in the elif chain
++        pass
++    elif left_default != no_default and right_default == no_default:
++        # This case was missing! It falls through without yielding unmatched left rows.
++        # We need to add this block before the final iteration over d.
++        seen_keys = set()
++        seen = seen_keys.add
++        for item in rightseq:
++            key = rightkey(item)
++            seen(key)
++            if key in d:
++                for left_match in d[key]:
++                    yield (left_match, item)
++        for key, matches in iteritems(d):
++            if key not in seen_keys:
++                for match in matches:
++                    yield (match, right_default)
+ 
+ 
+ def diff(*seqs, **kwargs):

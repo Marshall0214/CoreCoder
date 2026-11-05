@@ -1,0 +1,7 @@
+# Context-only paired trial
+
+This is a predeclared fixed-policy ablation: three repetitions of one known Toolz task, not three independent tasks, unseen-task generalization or a new Harness² strategy-search result. Six serial runs share empty guidance, source/model/check hashes and execution limits; only deduplicate_reads changes. Order is control/deduplicate, deduplicate/control, control/deduplicate. No editor or new proposer calls, no model retries, no hidden feedback to Agent. Independent Target/Controls grading starts after all six attempts stop.
+
+Reports, patches, request receipts, real inference traces and their costs include all scheduled attempts. An empty patch, a tool/guard stop, a candidate and an independently accepted repair are distinct. Controller trace spans do not duplicate real Generations. Token counters are native Ollama usage; temperature is zero but seed is not explicitly set. Runtime paths refer to the original D: workspace; repeat by running the maintained module with a fresh output directory after restoring fixed task exports and prerequisites.
+
+Source fragments retain the Toolz license in Toolz-LICENSE.txt; project code retains implementation/LICENSE and its existing attribution. The upstream Harness² revision/license is recorded in the original integration evidence. No .env, credentials, model weights, images, package dependencies or complete repository exports are copied. Previous evidence packets and the 21/50 baseline remain unchanged.

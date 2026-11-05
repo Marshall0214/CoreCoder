@@ -1,0 +1,153 @@
+{
+  "status": "passed",
+  "verification_model_calls": 0,
+  "model_calls": 38,
+  "actual_tokens": 256704,
+  "inference_receipts": [
+    {
+      "label": "base1",
+      "phase": "rollout",
+      "trace_id": "018254d38420916d3776786d0aa7a085",
+      "generation_count": 7,
+      "usage_status": "known",
+      "prompt_tokens": 25435,
+      "completion_tokens": 165,
+      "all_operations_ended": true
+    },
+    {
+      "label": "inv1",
+      "phase": "rollout",
+      "trace_id": "3f95dbd5f8ed15b849aa7acb9706d89b",
+      "generation_count": 10,
+      "usage_status": "known",
+      "prompt_tokens": 48188,
+      "completion_tokens": 925,
+      "all_operations_ended": true
+    },
+    {
+      "label": "dom1",
+      "phase": "rollout",
+      "trace_id": "cab77d0f06c68bbebe505106d5e921a5",
+      "generation_count": 6,
+      "usage_status": "known",
+      "prompt_tokens": 24116,
+      "completion_tokens": 147,
+      "all_operations_ended": true
+    },
+    {
+      "label": "agg1",
+      "phase": "rollout",
+      "trace_id": "c8cb739959578588316ebc2a3e1f0de5",
+      "generation_count": 11,
+      "usage_status": "known",
+      "prompt_tokens": 54803,
+      "completion_tokens": 453,
+      "all_operations_ended": true
+    },
+    {
+      "label": "call-001",
+      "phase": "editor",
+      "trace_id": "0e4e351526d806d69a5624718edacb9e",
+      "generation_count": 1,
+      "usage_status": "known",
+      "prompt_tokens": 13457,
+      "completion_tokens": 772,
+      "all_operations_ended": true
+    },
+    {
+      "label": "call-002",
+      "phase": "editor",
+      "trace_id": "583a23250b3a5eb6ef6509b4da80249e",
+      "generation_count": 1,
+      "usage_status": "known",
+      "prompt_tokens": 13564,
+      "completion_tokens": 1001,
+      "all_operations_ended": true
+    },
+    {
+      "label": "call-003",
+      "phase": "editor",
+      "trace_id": "e2fd7e781ad7443d16298bc03f94472f",
+      "generation_count": 1,
+      "usage_status": "known",
+      "prompt_tokens": 42762,
+      "completion_tokens": 624,
+      "all_operations_ended": true
+    },
+    {
+      "label": "call-005",
+      "phase": "editor",
+      "trace_id": "23eea72f480112b73a787d23d4498683",
+      "generation_count": 1,
+      "usage_status": "known",
+      "prompt_tokens": 30085,
+      "completion_tokens": 207,
+      "all_operations_ended": true
+    }
+  ],
+  "request_receipts": [
+    {
+      "label": "base1",
+      "effective_requests": 7,
+      "policy": {
+        "version": 1,
+        "deduplicate_reads": false,
+        "complete_symbols_first": false,
+        "read_index": false
+      },
+      "harness_sha256": "262f17358d52ab7fa3fd8cef027b6ae29ecc3f3f907c03ac3a2f8b8175623f2d"
+    },
+    {
+      "label": "inv1",
+      "effective_requests": 10,
+      "policy": {
+        "version": 1,
+        "deduplicate_reads": true,
+        "complete_symbols_first": false,
+        "read_index": false
+      },
+      "harness_sha256": "b8977a08b9588134b0ed5c10856c08665b0c83f37005be40c81a66def1792a03"
+    },
+    {
+      "label": "dom1",
+      "effective_requests": 6,
+      "policy": {
+        "version": 1,
+        "deduplicate_reads": true,
+        "complete_symbols_first": true,
+        "read_index": true
+      },
+      "harness_sha256": "ca3f2c20af81e9641a26829c03ee442890894fe577e5ed0504a6aa8f07643226"
+    },
+    {
+      "label": "agg1",
+      "effective_requests": 11,
+      "policy": {
+        "version": 1,
+        "deduplicate_reads": true,
+        "complete_symbols_first": true,
+        "read_index": true
+      },
+      "harness_sha256": "f0b86152477fd346dbbeaee81f0cd645028dc85b6e72436642c045b61aad1110"
+    }
+  ],
+  "previous_packets": {
+    "harness2-20261104.json": {
+      "sha256": "dafcc2aec1b8e6293867baa3c085203522cfd76c9136c20cfb2529368e52c88e",
+      "verified_files": 110
+    },
+    "harness2-review-20261104.json": {
+      "sha256": "25f1b41266d932659a303562025a9dc30e1369a3ecf04f62d5edd5ea77c7495c",
+      "verified_files": 64
+    },
+    "harness2-context-paired-20261104.json": {
+      "sha256": "96b41b48131792232c9cf137d0f0e3b4a939ae7de2334ee72b030c1b4e84003d",
+      "verified_files": 147
+    },
+    "local50-unmetered-20261103.json": {
+      "sha256": "8cbdba27bcc07069d6e7a64cf05cde1ab84f7d8ad3094e0e7bb49635397d41f5",
+      "verified_files": 330
+    }
+  },
+  "baseline_source_unchanged": true
+}

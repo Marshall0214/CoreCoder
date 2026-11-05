@@ -1,0 +1,21 @@
+[
+  {
+    "cell": null,
+    "code": "F821",
+    "end_location": {
+      "column": 38,
+      "row": 918
+    },
+    "filename": "D:\\project_other\\CoreCoder\\.tmp\\patch-validator-20261104\\agent_agg1\\validation\\baseline\\toolz\\itertoolz.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 918
+    },
+    "message": "Undefined name `iteritems`",
+    "name": "undefined-name",
+    "noqa_row": 918,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/undefined-name"
+  }
+]

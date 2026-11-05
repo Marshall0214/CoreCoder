@@ -1,0 +1,41 @@
+{
+  "scope": "Offline pre-guidance request replay, not new inference or observed token savings",
+  "new_model_calls": 0,
+  "policy": {
+    "version": 1,
+    "deduplicate_reads": true,
+    "complete_symbols_first": true,
+    "read_index": true
+  },
+  "default_exact_identity": true,
+  "preserved_all_distinct_fragments_and_failures": true,
+  "records": [
+    {
+      "variant": "base1",
+      "requests": 7,
+      "before_request_estimate_sum": 23569,
+      "after_request_estimate_sum": 23763
+    },
+    {
+      "variant": "inv1",
+      "requests": 6,
+      "before_request_estimate_sum": 18367,
+      "after_request_estimate_sum": 18498
+    },
+    {
+      "variant": "dom1",
+      "requests": 5,
+      "before_request_estimate_sum": 12787,
+      "after_request_estimate_sum": 13100
+    },
+    {
+      "variant": "agg1",
+      "requests": 5,
+      "before_request_estimate_sum": 12787,
+      "after_request_estimate_sum": 13100
+    }
+  ],
+  "smoke_effective_requests_verified": 8,
+  "old_packet_files_verified": 110,
+  "baseline_source_unchanged": true
+}

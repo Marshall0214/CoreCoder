@@ -1,0 +1,47 @@
+{
+  "task_id": "toolz-join-unmatched",
+  "domain": "python-repair",
+  "k": 1,
+  "seed": null,
+  "status": "partial",
+  "inputs": "5d02e7e1281fe806",
+  "base": [
+    {
+      "label": "base1",
+      "run_id": "issue-cc-agg1/toolz-join-unmatched/base1",
+      "run_dir": "D:\\project_other\\CoreCoder\\.tmp\\harness2-autonomous-20261104\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+    }
+  ],
+  "modes": {
+    "agg": {
+      "ok": false,
+      "error": "ValueError: Editor evidence exceeds local transport bound; no silent truncation",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\project_other\\CoreCoder\\.tmp\\harness2-source-20261104\\harness2\\core\\schedule.py\", line 698, in run_task\n    _run_one_mode(\n  File \"D:\\project_other\\CoreCoder\\.tmp\\harness2-source-20261104\\harness2\\core\\schedule.py\", line 580, in _run_one_mode\n    selection.reflect_adoption(\n  File \"D:\\project_other\\CoreCoder\\.tmp\\harness2-source-20261104\\harness2\\core\\selection.py\", line 446, in reflect_adoption\n    experience = _distil(\n                 ^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\.tmp\\harness2-source-20261104\\harness2\\core\\selection.py\", line 482, in _distil\n    reply = prop.call(mission, exp_root, f\"experience.{sel.mode}{sel.k}\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\integrations\\harness2.py\", line 379, in call\n    {'role': 'user', 'content': json.dumps({'mission': mission, 'visible_files': evidence(context)})}]\n                                                                                 ^^^^^^^^^^^^^^^^^\n  File \"D:\\project_other\\CoreCoder\\integrations\\harness2.py\", line 258, in evidence\n    raise ValueError('Editor evidence exceeds local transport bound; no silent truncation')\nValueError: Editor evidence exceeds local transport bound; no silent truncation\n"
+    }
+  },
+  "selections": {
+    "agg": {
+      "task_id": "toolz-join-unmatched",
+      "mode": "agg",
+      "k": 1,
+      "chosen_id": "",
+      "chosen_label": "",
+      "chosen_run_id": "",
+      "chosen_is_base": false,
+      "why": "",
+      "id_map": {},
+      "dropped": [],
+      "n_candidates": 0,
+      "ok": false,
+      "fallback": false,
+      "error": "ValueError: Editor evidence exceeds local transport bound; no silent truncation",
+      "usd": 0.0,
+      "experience": {},
+      "trivial": false,
+      "evidence": "deliverable"
+    }
+  },
+  "errors": [
+    "agg: ValueError: Editor evidence exceeds local transport bound; no silent truncation"
+  ]
+}

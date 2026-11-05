@@ -1,0 +1,28 @@
+{
+  "upstream_commit": "6868817518876de8fd170c6a8354daca273b6191",
+  "task": "bridge-smoke",
+  "k": 1,
+  "mode": "parallel",
+  "editor": "scripted",
+  "thinking": false,
+  "token_budget": null,
+  "editor_json_attempts": 2,
+  "editable_files": [
+    "systemprompt.md",
+    "tool_descriptions/tool_guidance.md",
+    "context_policy.json"
+  ],
+  "context_enabled": true,
+  "experiment_id": "harness2-context-smoke-20261104",
+  "grading_after_adoption": true,
+  "is_accuracy_result": false,
+  "baseline_42_percent_unchanged": true,
+  "windows_compatibility": true,
+  "baseline_report_sha256": "dd319b73fc429325367fe33e405bf747a483c69d3246a906bac31de36d37d6e1",
+  "source_files": {
+    "integrations/harness2.py": "109e62987ee59e399ec5b72dc4c00026a5cb7ec30067180ec837d6c9d4462da6",
+    "integrations/harness2_runtime.py": "0d4cc3b4215a2099248671285e8cefaebd48f729750be745ea483a429ca282fc",
+    "integrations/harness2-source.json": "52600358b54b540f83f26661a2d3d50a6160c09dc76dd7426eaeffd59d1a5287",
+    "integrations/harness2_context.py": "f0a9847e1c124eaabe03e286dfe9e5a29c109d8733d9eb7b39183c07cb39fc54"
+  }
+}

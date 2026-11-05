@@ -1,0 +1,27 @@
+test_empty_right_retains_each_left_once (test_admission.Reproduce.test_empty_right_retains_each_left_once) ... FAIL
+test_unmatched_duplicate_keys_emitted_once_per_row (test_admission.Reproduce.test_unmatched_duplicate_keys_emitted_once_per_row) ... FAIL
+
+======================================================================
+FAIL: test_empty_right_retains_each_left_once (test_admission.Reproduce.test_empty_right_retains_each_left_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 16, in test_empty_right_retains_each_left_once
+    self.assertCountEqual(list(join('id',left,'id',[],right_default='absent')),
+AssertionError: Element counts were not equal:
+First has 2, Second has 1:  ({'id': 5, 'value': 'a'}, 'absent')
+First has 2, Second has 1:  ({'id': 8, 'value': 'b'}, 'absent')
+
+======================================================================
+FAIL: test_unmatched_duplicate_keys_emitted_once_per_row (test_admission.Reproduce.test_unmatched_duplicate_keys_emitted_once_per_row)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 11, in test_unmatched_duplicate_keys_emitted_once_per_row
+    self.assertCountEqual(list(join(0,left,0,right,right_default=None)),
+AssertionError: Element counts were not equal:
+First has 2, Second has 1:  ((20, 'orphan-a'), None)
+First has 2, Second has 1:  ((20, 'orphan-b'), None)
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.004s
+
+FAILED (failures=2)
