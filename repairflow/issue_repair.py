@@ -120,10 +120,24 @@ def attempt(llm, workspace, task, root, label, feedback, events, context_policy=
 
 def execute(prepared, configuration, output, *, mode, responses=None, model='qwen3.5:27b', context_policy='baseline',
             workflow='patch-v1', max_steps=20, max_edit_attempts=6, max_consecutive_errors=3, max_repeated_actions=3,
-            observation_policy='full', sandbox_owner=None):
+            observation_policy='full', sandbox_owner=None, execution_profile=None, sandbox_owner_path=None,
+            service_timeout_seconds=None):
     """CLI-only, trusted configuration required; always Docker, never host fallback."""
     if mode not in {'scripted', 'ollama'} or (mode == 'scripted') != (responses is not None):
         raise ValueError('Choose scripted with responses, or ollama without responses')
+    if workflow == 'feedback-actions-v2':
+        from repairflow.issue_feedback import execute as execute_feedback
+
+        if sandbox_owner is not None:
+            raise ValueError('Feedback execution requires an owner path, not a pre-hashed owner')
+        if (context_policy != 'baseline' or observation_policy != 'full'
+                or (max_steps, max_edit_attempts, max_consecutive_errors, max_repeated_actions) != (20, 6, 3, 3)):
+            raise ValueError('Use the explicit feedback execution profile, not legacy workflow overrides')
+        return execute_feedback(prepared, configuration, output, mode=mode, responses=responses, model=model,
+                                execution_profile=execution_profile, sandbox_owner_path=sandbox_owner_path,
+                                service_timeout_seconds=service_timeout_seconds)
+    if execution_profile is not None or sandbox_owner_path is not None:
+        raise ValueError('Execution profile and owner path require feedback-actions-v2')
     if context_policy not in {'baseline', 'module-bindings-v1'}:
         raise ValueError('Unknown prepared Issue context policy')
     from repairflow.issue_agent import RecoveryLimits

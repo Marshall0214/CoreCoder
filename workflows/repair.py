@@ -16,7 +16,7 @@ class RepairPlan(BaseModel):
     task_id: str
     allowed_files: list[str]
     mode: str
-    token_budget: int = Field(gt=0)
+    token_budget: int | None = Field(gt=0)
     attempt_limit: Literal[1] = 1
     actions: tuple[Literal['execute_and_verify'], Literal['review_outcome']] = ('execute_and_verify', 'review_outcome')
 

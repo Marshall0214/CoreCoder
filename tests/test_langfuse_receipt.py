@@ -50,6 +50,25 @@ def test_matching_names_cannot_hide_a_missing_second_operation():
     assert validate(rows, scores, 'trace', counts)['observation_count'] == 5
 
 
+@pytest.mark.parametrize('timed_out', [False, True])
+def test_feedback_timeout_summary_is_accepted_without_content_capture(timed_out):
+    rows, scores = evidence()
+    rows[-1]['output'] = {'Reproduce': {'passed': not timed_out, 'tests_run': 1,
+                                      'errors': 0, 'failures': 0, 'timed_out': timed_out},
+                          'Preserve': {'passed': True, 'tests_run': 1, 'timed_out': False}}
+    assert validate(rows, scores, 'trace')['summary_only_payloads']
+
+
+@pytest.mark.parametrize('extra', [
+    {'timed_out': 'private code'}, {'timed_out': {'content': 'source'}}, {'timed_out': 0},
+    {'timed_out': False, 'source': 'private code'}, {'timed_out': False, 'logs': 'raw log'},
+])
+def test_feedback_timeout_field_cannot_hide_code_or_logs(extra):
+    rows, scores = evidence()
+    rows[-1]['output'] = {'Reproduce': {'passed': True, **extra}}
+    assert validate(rows, scores, 'trace') is None
+
+
 @pytest.mark.parametrize('index,key,value', [
     (1, 'parentObservationId', 'unrelated'), (1, 'endTime', None),
     (1, 'input', 'private prompt'), (2, 'output', {'content': 'source code'}),

@@ -10,6 +10,18 @@
 
 本仓库扩展自 Yufeng He 的 [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder)，保留原始最小 Agent 和双语源码导读，新增修复评测、任务服务、执行隔离及真实 Issue 准备能力。
 
+## 从这里开始：CLI/API 反馈修复
+
+`feedback-actions-v2` 将首轮探索、按需读代码、受约束编辑和反复公开 Docker 验证接入同一条 CLI/API 执行链，复用审批、幂等、重启恢复、取消和制品下载。公开通过只交付**待人工审查的候选补丁**，明确不表示独立验收通过。
+
+使用已有源码环境、Docker Linux containers 及本地 `corecoder-test-sandbox:v1` 镜像：
+
+```powershell
+python -B -m repairflow demo-feedback --output .tmp/feedback-demo-001
+```
+
+输出目录须为新目录。演示自带合成任务和六条录制响应，真实执行工具和 Docker，无需 Ollama、下载 GitHub 仓库或付费 API；核对 CLI/API 补丁一致、审批恢复及重复执行防护。[反馈服务指南](docs/issue-feedback-service.md)说明 D 盘配置、API、实际限制、制品与验收证据。演示验证工程链路，不计算模型修复率。
+
 ## 当前能力
 
 [自有 Agent 本地无 Token 截止评测](docs/local50-unmetered-20261103.md)：50 项已知任务完整运行，独立验收 **21/50**，33 项生成补丁；309 次本地 Qwen 调用、937,866 Token，50 条真实 Trace 与用量回读通过。本轮采用 checkpoint 策略，与旧 DeepSeek 成绩分开记录。
@@ -27,7 +39,7 @@
 | 方向 | 已实现 | 使用边界 |
 | --- | --- | --- |
 | GitHub Issue 流程 | 只读导入、固定版本、候选补丁及 Docker 复现/回归检查 | CLI 与可信配置；公开测试通过后仍需人工审查 |
-| 修复闭环 | 目标/符号检索、受约束补丁、最多一次公开反馈修正、失败回滚、独立评分 | 可信任务包与指定 Python 仓库 |
+| 修复闭环 | 保留旧任务包评测；可选 `feedback-actions-v2` 经 CLI/API 读取、编辑和公开验证 | 指定 Python 仓库；公开 Issue 等待人工审查，独立评分另行管理 |
 | 执行沙箱 | 禁网、非 root、只读输入，限制 CPU、内存、进程数、时间及日志 | 覆盖统一 repairflow 检查，原始 Bash 和旧 evals 尚未迁移 |
 | 本地服务 | FastAPI、幂等提交、SSE、取消、SQLite、LangGraph 审批与重启恢复 | 单服务实例，不宣称多用户生产可用 |
 | 工具与证据 | 只读代码知识 MCP，保存补丁、Trace、用量、输入哈希和报告 | 尚不自动向 GitHub 发布 |

@@ -8,6 +8,37 @@ from repairflow.issue_registry import load
 from repairflow.issue_repair import execute
 
 
+def execution_options(metadata):
+    """Run the administrator-pinned engine through the shared Issue entry point."""
+    options = {'mode': 'scripted', 'model': metadata['model'],
+               'workflow': 'symbol-recovery-v1', 'observation_policy': metadata['observation_policy']}
+    if metadata.get('engine') == 'feedback-actions-v2':
+        options.update(workflow='feedback-actions-v2', execution_profile=metadata['execution_profile'])
+    return options
+
+
+def feedback_evidence(root):
+    """Read actual public validation receipts, never infer success from an action."""
+    root = Path(root).resolve()
+    report = read(root / 'feedback/report.json')
+    sequence = []
+    for attempt in report['validation_attempts']:
+        if not attempt['public_checks_completed']:
+            continue
+        folder = Path(attempt['folder']).resolve()
+        if not folder.is_relative_to(root):
+            raise ValueError('Feedback receipt is outside the demo output')
+        validation = read(folder / 'report.json')
+        if validation.get('independent_grading_used') is not False or validation.get('model_calls') != 0:
+            raise ValueError('Recorded demo validation used a model or independent grading')
+        sequence.append({name: validation['public_checks'][name]['passed'] for name in ('Reproduce', 'Preserve')})
+    counts = report['counts']
+    return {'feedback_counts': counts, 'public_validation_sequence': sequence,
+            'complete_feedback_cycle': bool(counts['applied_patches'] >= 2 and len(sequence) >= 3
+                and not sequence[0]['Reproduce'] and any(not row['Reproduce'] for row in sequence[1:-1])
+                and all(sequence[-1].values()))}
+
+
 def run(entry, output):
     from fastapi.testclient import TestClient
 
@@ -24,6 +55,11 @@ def run(entry, output):
     evidence.mkdir()
     original_registry = os.environ.get('CORECODER_ISSUE_TASKS')
     os.environ['CORECODER_ISSUE_TASKS'] = str(entry.parent)
+    options = execution_options(metadata)
+    timeout = 1200
+    if metadata.get('engine') == 'feedback-actions-v2':
+        profile = metadata['execution_profile']
+        timeout = profile['exploration_seconds'] + profile['feedback_seconds'] + 120
 
     def wait(client, task_id, target=None):
         from service.manager import TERMINAL
@@ -48,21 +84,23 @@ def run(entry, output):
 
     try:
         cli = execute(entry / 'prepared', entry / 'config/task.json', output / 'cli', mode='scripted',
-                      responses=entry / 'responses.json', model=metadata['model'], workflow='symbol-recovery-v1',
-                      observation_policy=metadata['observation_policy'])
-        with TestClient(create_app(output / 'api', timeout=1200)) as client:
+                      responses=entry / 'responses.json', **{key: value for key, value in options.items() if key != 'mode'})
+        with TestClient(create_app(output / 'api', timeout=timeout)) as client:
             task_id = submit(client, 'offline-issue-demo')
             if submit(client, 'offline-issue-demo') != task_id:
                 raise ValueError('Idempotent submission created a duplicate task')
             wait(client, task_id, 'awaiting_approval')
             if (output / 'api' / task_id / 'runs').exists():
                 raise ValueError('Repair executed before approval')
-        with TestClient(create_app(output / 'api', timeout=1200)) as client:
+        with TestClient(create_app(output / 'api', timeout=timeout)) as client:
             if client.get('/tasks/' + task_id).json()['state'] != 'awaiting_approval':
                 raise ValueError('Approval was not restored across restart')
             client.post('/tasks/' + task_id + '/approval', json={'decision': 'approve'}).raise_for_status()
             state = wait(client, task_id)
-            for name in ('report.json', 'patch.diff', 'actions.json', 'trace.jsonl', 'provenance.json', 'observability.json'):
+            artifacts = ['report.json', 'patch.diff', 'actions.json', 'trace.jsonl', 'provenance.json', 'observability.json']
+            if metadata.get('engine') == 'feedback-actions-v2':
+                artifacts.append('context-selection.json')
+            for name in artifacts:
                 response = client.get('/tasks/' + task_id + '/artifacts/' + name)
                 response.raise_for_status()
                 (evidence / name).write_bytes(response.content)
@@ -89,6 +127,9 @@ def run(entry, output):
                       'api_state': state['state'], 'same_patch': True, 'approval_restart': True,
                       'idempotent_submission': True, 'repeated_approval_no_execution': True,
                       'rejection_no_execution': True, 'task_id': task_id, 'rejected_task_id': rejected}
+        if metadata.get('engine') == 'feedback-actions-v2':
+            acceptance.update(engine=metadata['engine'], execution_profile=metadata['execution_profile'],
+                              **feedback_evidence(output / 'cli'))
         write(output / 'acceptance.json', acceptance)
         return acceptance
     finally:

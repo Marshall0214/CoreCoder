@@ -5,6 +5,7 @@ import shutil
 from pathlib import Path
 
 from repairflow.bundles import read, tree_hash, write
+from repairflow.issue_execution import FEEDBACK, LEGACY, profile
 from repairflow.issue_providers import OllamaProvider, ScriptedProvider
 from repairflow.issue_repair import trusted_task
 
@@ -33,7 +34,13 @@ def load(root):
     tree_hash(root)  # Reject linked content before reading metadata or scripted answers.
     entry = read(root / 'entry.json')
     expected = {'schema_version', 'task_id', 'model', 'observation_policy', 'scripted_responses', 'hashes'}
-    if set(entry) != expected or entry['schema_version'] != 1 or type(entry['scripted_responses']) is not bool:
+    if entry.get('schema_version') == 2:
+        expected |= {'engine', 'execution_profile'}
+        if entry.get('engine') != FEEDBACK or entry.get('execution_profile') != profile(entry.get('execution_profile')):
+            raise ValueError('Unsupported Issue execution policy')
+        if entry.get('observation_policy') != 'full':
+            raise ValueError('Feedback execution uses its fixed context contract')
+    if set(entry) != expected or entry['schema_version'] not in {1, 2} or type(entry['scripted_responses']) is not bool:
         raise ValueError('Unsupported Issue registry entry')
     if identity(entry['task_id']) != root.name:
         raise ValueError('Issue entry identity differs from its directory')
@@ -48,7 +55,8 @@ def load(root):
     return dict(entry, entry_sha256=sha(root / 'entry.json')), task
 
 
-def register(prepared, configuration, output, *, model='qwen3.5:27b', observation_policy='full', responses=None):
+def register(prepared, configuration, output, *, model='qwen3.5:27b', observation_policy='full', responses=None,
+             engine=LEGACY, execution_profile=None):
     """Copy verified admission inputs, keeping relative config paths and original hashes."""
     prepared, configuration, output = Path(prepared).resolve(), Path(configuration).resolve(), Path(output).absolute()
     identity(output.name)
@@ -59,6 +67,11 @@ def register(prepared, configuration, output, *, model='qwen3.5:27b', observatio
         raise ValueError('Registry destination overlaps task inputs')
     if observation_policy not in {'full', 'compact-v1'}:
         raise ValueError('Unknown Issue observation policy')
+    if engine not in {LEGACY, FEEDBACK} or engine == LEGACY and execution_profile is not None:
+        raise ValueError('Unsupported Issue execution profile')
+    selected = profile(execution_profile) if engine == FEEDBACK else None
+    if selected is not None and observation_policy != 'full':
+        raise ValueError('Feedback execution uses its fixed context contract')
     OllamaProvider(model, 0)
     _, settings = trusted_task(prepared, configuration)
     if responses is not None:
@@ -76,6 +89,8 @@ def register(prepared, configuration, output, *, model='qwen3.5:27b', observatio
         shutil.copyfile(responses, output / 'responses.json')
     entry = {'schema_version': 1, 'task_id': output.name, 'model': model, 'observation_policy': observation_policy,
              'scripted_responses': responses is not None, 'hashes': hashes(output, responses is not None)}
+    if selected is not None:
+        entry.update(schema_version=2, engine=engine, execution_profile=selected)
     write(output / 'entry.json', entry)
     load(output)
     return output

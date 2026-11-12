@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -37,11 +38,18 @@ No shell, network, test edits or independent grading tools are available.'''
 RETRYABLE_START_FAILURES = {'sandbox_start_failed', 'sandbox_runner_start_failed'}
 
 
+def pinned_image(value):
+    if value is not None and (not isinstance(value, str) or not re.fullmatch(r'sha256:[0-9a-f]{64}', value)):
+        raise ValueError('Require an immutable sandbox image ID')
+    return value
+
+
 def validate(baseline, source, allowed, output, public, package, source_root='.', *,
-             stop_file=None, deadline=None, owner=None):
+             stop_file=None, deadline=None, owner=None, sandbox_image_id=None):
     """Trusted validator worker: cancellation kills its tree and only its containers."""
     output = Path(output)
     owner = inside(owner if owner is not None else output.parent)
+    sandbox_image_id = pinned_image(sandbox_image_id)
 
     def worker_failure(reason, *, status='blocked', **details):
         result = {'status': status, 'accepted': False, 'infrastructure_error': reason, **details}
@@ -58,6 +66,8 @@ def validate(baseline, source, allowed, output, public, package, source_root='.'
     environment = dict(os.environ, CORECODER_TEST_BACKEND='docker',
                        CORECODER_SANDBOX_OWNER=str(owner), PYTHONDONTWRITEBYTECODE='1',
                        PYTHON_DOTENV_DISABLED='1', CORECODER_LANGFUSE_ENABLED='0')
+    if sandbox_image_id is not None:
+        environment['CORECODER_SANDBOX_IMAGE'] = sandbox_image_id
     for key in list(environment):
         if any(word in key.upper() for word in ('API_KEY', 'PASSWORD', 'SECRET', 'AUTH_TOKEN')):
             environment.pop(key)
@@ -91,6 +101,10 @@ def validate(baseline, source, allowed, output, public, package, source_root='.'
         return worker_failure('validator_worker_result_invalid', worker_returncode=process.returncode)
     if process.returncode != expected_code:
         return worker_failure('validator_worker_exit_mismatch', worker_returncode=process.returncode)
+    if (sandbox_image_id is not None and result.get('status') in {'validated', 'rejected'}
+            and (result.get('sandbox') or {}).get('image_id') != sandbox_image_id):
+        return worker_failure('validator_worker_image_mismatch', expected_image_id=sandbox_image_id,
+                              actual_image_id=(result.get('sandbox') or {}).get('image_id'))
     return result
 
 
@@ -146,19 +160,24 @@ class FeedbackTools(LedgerTools):
 
 def run(baseline, candidate, allowed_files, public_checks, package, task, output, *, llm,
         max_feedback_rounds=20, timeout=1200, guidance='', source_root='.', readable_files=None,
-        context_contract=False, context_target_tokens=12000, events=None):
+        context_contract=False, context_target_tokens=12000, events=None, sandbox_owner_path=None,
+        sandbox_image_id=None):
     if type(max_feedback_rounds) is not int or max_feedback_rounds < 1 or type(timeout) is not int or timeout < 1:
         raise ValueError('Require positive integer request and time limits')
     if (type(context_contract) is not bool or type(context_target_tokens) is not int or context_target_tokens < 1):
         raise ValueError('Require a boolean context contract and a positive integer context target')
     if events is not None and not callable(getattr(events, 'emit', None)):
         raise ValueError('Require an explicit event sink')
+    sandbox_image_id = pinned_image(sandbox_image_id)
     if not isinstance(task, dict) or set(task) != PUBLIC_FIELDS or not all(isinstance(v, str) for v in task.values()):
         raise ValueError('Supply only the four public task fields')
     if (not isinstance(source_root, str) or not source_root or Path(source_root).is_absolute()
             or '..' in Path(source_root).parts or any(c in source_root for c in (':', '\\'))):
         raise ValueError('Require a relative source root')
     baseline, candidate, public_checks, output = map(inside, (baseline, candidate, public_checks, output))
+    owner_path = inside(sandbox_owner_path) if sandbox_owner_path is not None else output
+    if not output.is_relative_to(owner_path):
+        raise ValueError('Sandbox owner must be this output or its trusted task ancestor')
     originals = [tree(path) for path in (baseline, candidate, public_checks)]
     if any(a == b or a.is_relative_to(b) or b.is_relative_to(a)
            for i, a in enumerate((baseline, candidate, public_checks, output))
@@ -215,6 +234,7 @@ def run(baseline, candidate, allowed_files, public_checks, package, task, output
          'readable_files': readable, 'max_requests': max_feedback_rounds,
          'request_definition': 'Every chat request, including reads and invalid actions',
          'wall_timeout_seconds': timeout, 'source_root': source_root, 'guidance': guidance,
+         'sandbox_image_id': sandbox_image_id,
          'context_contract': {'enabled': context_contract, 'schema_id': SCHEMA_ID if context_contract else None,
                               'schema_sha256': schema_hash,
                               'target_estimated_tokens': context_target_tokens if context_contract else None,
@@ -245,8 +265,12 @@ def run(baseline, candidate, allowed_files, public_checks, package, task, output
             folder = output / f'validation-{label}-{attempt}'
             counts['public_validations'] += 1
             emit('public_checks_started', stage=f'{label}-{attempt}')
+            image_options = {'sandbox_image_id': sandbox_image_id} if sandbox_image_id is not None else {}
             result = validate(baseline, workspace, allowed, folder, public_checks, package, source_root,
-                              stop_file=cancel_file, deadline=deadline, owner=output)
+                              stop_file=cancel_file, deadline=deadline, owner=owner_path, **image_options)
+            if (sandbox_image_id is not None and result.get('status') in {'validated', 'rejected'}
+                    and (result.get('sandbox') or {}).get('image_id') != sandbox_image_id):
+                raise ValueError('Public validation used a different sandbox image than admission')
             emit('public_checks_finished', passed=result.get('accepted') is True,
                  groups={name: {key: value for key, value in group.items()
                                 if key in {'passed', 'tests_run', 'failures', 'errors', 'timed_out'}}

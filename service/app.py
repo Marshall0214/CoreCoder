@@ -9,11 +9,19 @@ from pathlib import Path
 from typing import Literal
 
 from fastapi import FastAPI, Header, HTTPException, Request
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 
 from evals.schema import load_suite
-from service.manager import ROOT, TERMINAL, TaskManager
+from service.manager import (
+    ISSUE_ARTIFACTS,
+    PARTIAL_ISSUE_STATES,
+    ROOT,
+    TERMINAL,
+    TaskManager,
+    issue_artifact_path,
+    partial_issue_report,
+)
 from service.worker import SUITES
 
 
@@ -174,12 +182,25 @@ def create_app(output=None, concurrency=1, capacity=16, timeout=240, worker_modu
                 raise HTTPException(404, 'No publication diagnostic available')
             return FileResponse(path, filename=name, media_type='application/json')
         repair_artifacts = {'patch.diff', 'report.json', 'context-selection.json', 'trace.jsonl', 'provenance.json'}
-        issue_artifacts = {'patch.diff', 'report.json', 'agent-initial-context.json', 'trace.jsonl', 'provenance.json',
-                           'actions.json', 'observability.json'}
+        issue_artifacts = ISSUE_ARTIFACTS
         allowed = (issue_artifacts if job.request.get('workflow') == 'issue-approval-v1' else repair_artifacts
                    if job.request.get('workflow') == 'repair-approval-v1' else {'patch.diff', 'report.json'})
         if name not in allowed:
             raise HTTPException(404, 'Unknown artifact')
+        if job.request.get('workflow') == 'issue-approval-v1':
+            if job.state not in {'succeeded', 'failed', 'ready_for_review'} | PARTIAL_ISSUE_STATES:
+                raise HTTPException(409, 'No completed report available')
+            try:
+                location = issue_artifact_path(job, name)
+                if location is None:
+                    raise HTTPException(404, 'No Issue artifact available')
+                partial = job.state in PARTIAL_ISSUE_STATES or (job.result or {}).get('partial_result') is True
+                if name == 'report.json' and partial:
+                    return JSONResponse(partial_issue_report(job, job.state))
+            except (OSError, ValueError, TypeError):
+                raise HTTPException(404, 'No complete, unlinked Issue artifact available') from None
+            return FileResponse(location, filename=name,
+                                media_type='text/plain' if name in {'patch.diff', 'trace.jsonl'} else 'application/json')
         if job.state not in {'succeeded', 'failed', 'ready_for_review'} or job.result is None:
             raise HTTPException(409, 'No completed report available')
         report = json.loads((job.root / 'result.json').read_text(encoding='utf-8'))

@@ -19,6 +19,43 @@ from service.store import TaskStore
 ROOT = Path(__file__).resolve().parent.parent
 TERMINAL = {'succeeded', 'ready_for_review', 'failed', 'rejected', 'cancelled', 'timed_out', 'interrupted'}
 APPROVAL_WORKFLOWS = {'langgraph-approval-v1', 'tentative-approval-v1', 'repair-approval-v1', 'issue-approval-v1'}
+ISSUE_ARTIFACTS = frozenset({'patch.diff', 'report.json', 'agent-initial-context.json', 'context-selection.json',
+                             'trace.jsonl', 'provenance.json', 'actions.json', 'observability.json'})
+PARTIAL_ISSUE_STATES = frozenset({'cancelled', 'timed_out', 'interrupted'})
+
+
+def issue_artifact_path(job, name):
+    """Issue executors publish fixed top-level files; never follow linked ancestors."""
+    if job.request.get('workflow') != 'issue-approval-v1' or name not in ISSUE_ARTIFACTS:
+        raise ValueError('Unknown Issue artifact')
+    root = job.root.absolute() / 'runs'
+    path = root / name
+    for part in (path, *path.parents):
+        try:
+            stat = part.lstat()
+        except FileNotFoundError:
+            continue
+        if part.is_symlink() or getattr(stat, 'st_file_attributes', 0) & 1024:
+            raise ValueError('Linked Issue artifacts are unavailable')
+    if not path.is_file():
+        return None
+    if not path.resolve().is_relative_to(root.resolve()):
+        raise ValueError('Issue artifact escaped its output directory')
+    return path
+
+
+def partial_issue_report(job, state):
+    """Lifecycle status is separate from any earlier public-check result."""
+    path = issue_artifact_path(job, 'report.json')
+    if path is None:
+        return None
+    report = json.loads(path.read_text(encoding='utf-8'))
+    if not isinstance(report, dict):
+        raise TypeError('Invalid Issue report')
+    return dict(report, engine_status=report.get('engine_status', report.get('status')), status=state,
+                lifecycle_state=state, accepted=False, public_checks_passed=False, partial_result=True,
+                delivery_status='not_delivered', requires_review=True,
+                independent_verification={'available': False, 'passed': None})
 
 
 def stop_tree(process):
@@ -98,6 +135,7 @@ class TaskManager:
             if job.state in {'running', 'cancelling'}:
                 await asyncio.to_thread(self._stop_orphan, job)
                 await asyncio.to_thread(self._clean_sandbox, job)
+                self._collect_issue_partial(job, 'interrupted')
                 job.transition('interrupted')
             elif job.state == 'queued':
                 job.handle = asyncio.create_task(self._run(job))
@@ -115,6 +153,21 @@ class TaskManager:
             except SandboxError as exc:
                 # Keep cleanup errors observable without blocking unrelated jobs.
                 (job.root / 'sandbox-cleanup-error.txt').write_text(exc.status, encoding='utf-8')
+
+    @staticmethod
+    def _collect_issue_partial(job, state):
+        if job.request.get('workflow') != 'issue-approval-v1':
+            return
+        try:
+            report = partial_issue_report(job, state)
+        except (OSError, ValueError, TypeError):
+            return  # A missing/partial file cannot prevent cancellation or recovery.
+        if report is not None:
+            keys = ('status', 'accepted', 'metrics', 'execution_mode', 'fresh_inference', 'fresh_model_calls',
+                    'original_unchanged', 'public_checks_passed', 'delivery_status', 'requires_review',
+                    'failure_type', 'observability', 'independent_verification', 'partial_result',
+                    'engine_status', 'lifecycle_state')
+            job.result = {key: report.get(key) for key in keys}
 
     @staticmethod
     def _stop_orphan(job):
@@ -197,6 +250,7 @@ class TaskManager:
                 stderr = (job.root / 'stderr.txt').open('wb')
                 env = dict(os.environ, PYTHONPATH=str(ROOT), PYTHONDONTWRITEBYTECODE='1', PYTHONIOENCODING='utf-8')
                 env['CORECODER_SANDBOX_OWNER'] = str(job.root)
+                env['CORECODER_SERVICE_TIMEOUT_SECONDS'] = str(self.timeout)
                 env['CORECODER_HOME'] = str(job.root / 'corecoder-state')
                 if os.environ.get('PYTHONPATH'):
                     env['PYTHONPATH'] += os.pathsep + os.environ['PYTHONPATH']
@@ -227,10 +281,13 @@ class TaskManager:
                         break
                     await asyncio.sleep(0.05)
                 if job.cancel_requested:
+                    self._collect_issue_partial(job, 'cancelled')
                     job.transition('cancelled')
                 elif timed_out:
+                    self._collect_issue_partial(job, 'timed_out')
                     job.transition('timed_out')
                 elif job.process.returncode != 0 or not (job.root / 'result.json').is_file():
+                    self._collect_issue_partial(job, 'failed')
                     job.transition('failed')
                 else:
                     report = json.loads((job.root / 'result.json').read_text(encoding='utf-8'))
@@ -248,10 +305,18 @@ class TaskManager:
                         job.result.update({k: report.get(k) for k in ('execution_mode', 'fresh_inference', 'fresh_model_calls',
                             'original_unchanged', 'public_checks_passed', 'delivery_status', 'requires_review', 'failure_type',
                             'observability')})
+                        job.result.update({key: report[key] for key in
+                            ('engine', 'execution_profile', 'independent_verification',
+                             'pending_candidate_preserved', 'final_candidate_hash') if key in report})
+                        job.result['accepted'] = False
+                        if report.get('status') in {'task_timeout', 'cancelled'}:
+                            state = 'timed_out' if report['status'] == 'task_timeout' else 'cancelled'
+                            self._collect_issue_partial(job, state)
+                            job.transition(state)
+                            return
                         ready = (report.get('status') == 'public_checks_passed' and report.get('public_checks_passed') is True
                                  and report.get('delivery_status') == 'ready_for_review' and report.get('original_unchanged') is True
                                  and bool(report.get('changed_files')))
-                        job.result['accepted'] = False
                         job.transition('ready_for_review' if ready else 'failed')
                         return
                     if job.request.get('workflow') == 'repair-approval-v1':
@@ -267,6 +332,7 @@ class TaskManager:
             except Exception:  # noqa: BLE001 - preserve task state without exposing worker credentials or logs
                 if job.process is not None and job.process.poll() is None:
                     await asyncio.to_thread(stop_tree, job.process)
+                self._collect_issue_partial(job, 'cancelled' if job.cancel_requested else 'failed')
                 job.transition('cancelled' if job.cancel_requested else 'failed')
             finally:
                 await asyncio.to_thread(self._clean_sandbox, job)

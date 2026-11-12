@@ -1,0 +1,240 @@
+{
+  "schema": "engineering-closeout-v1",
+  "checked_at": "2026-11-12T10:00:17.303550+00:00",
+  "scope": "Local zero-inference engineering acceptance; not model accuracy or production qualification",
+  "baseline_commit": "a3da4762787aaf065828ddf0688b3075cfab57e4",
+  "python": "3.11.16",
+  "dependencies": {
+    "pytest": "9.1.1",
+    "ruff": "0.16.9",
+    "fastapi": "0.142.2",
+    "uvicorn": "0.54.0",
+    "httpx": "0.28.1",
+    "psutil": "7.2.2",
+    "langgraph": "1.2.14",
+    "langgraph-checkpoint-sqlite": "3.1.1",
+    "langfuse": "5.0.4",
+    "openai": "3.20.0",
+    "pydantic": "2.14.1"
+  },
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "execution_profile": {
+    "exploration_requests": 20,
+    "feedback_requests": 20,
+    "exploration_seconds": 1200,
+    "feedback_seconds": 1200,
+    "context_target_tokens": 12000
+  },
+  "fresh_model_calls": 0,
+  "thinking_used": false,
+  "paid_api_calls": 0,
+  "full_repository_test_suite_run": false,
+  "test_runs": [
+    {
+      "name": "unit-final",
+      "path": ".tmp/engineering-closeout-20261112/unit-final.xml",
+      "sha256": "e6858e17ff310e4b92175506b8c87035bba2212353cd8cd925bab2a1819f4f91",
+      "tests": 218,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 85.701
+    },
+    {
+      "name": "docker-final",
+      "path": ".tmp/engineering-closeout-20261112/docker-final.xml",
+      "sha256": "61aa8c39af4359d971c764133d9bef7adff6ebbeccc5ddfe9727dbe1f67efa2c",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 85.932
+    }
+  ],
+  "demo": {
+    "path": ".tmp/engineering-closeout-20261112/product-demo-final/demo/acceptance.json",
+    "sha256": "a8c997d54c742256fdca3820a6ac068b5eadc1622a5fda9eedb8882376a248c1",
+    "result": {
+      "status": "passed",
+      "scope": "Offline scripted engineering demonstration, not model repair accuracy",
+      "fresh_model_calls": 0,
+      "independent_acceptance": false,
+      "repair_status": "public_checks_passed",
+      "api_state": "ready_for_review",
+      "same_patch": true,
+      "approval_restart": true,
+      "idempotent_submission": true,
+      "repeated_approval_no_execution": true,
+      "rejection_no_execution": true,
+      "task_id": "2afa7cda8a854d88a9c179626c7a0c2e",
+      "rejected_task_id": "25a00ecefdfe4da9a6dddda0daef1f1d",
+      "engine": "feedback-actions-v2",
+      "execution_profile": {
+        "exploration_requests": 20,
+        "feedback_requests": 20,
+        "exploration_seconds": 1200,
+        "feedback_seconds": 1200,
+        "context_target_tokens": 12000
+      },
+      "feedback_counts": {
+        "requests": 5,
+        "reads": 3,
+        "searches": 0,
+        "patch_attempts": 2,
+        "applied_patches": 2,
+        "public_validations": 3,
+        "environment_retries": 0,
+        "rollbacks": 0
+      },
+      "public_validation_sequence": [
+        {
+          "Reproduce": false,
+          "Preserve": true
+        },
+        {
+          "Reproduce": false,
+          "Preserve": true
+        },
+        {
+          "Reproduce": true,
+          "Preserve": true
+        }
+      ],
+      "complete_feedback_cycle": true
+    }
+  },
+  "langfuse": {
+    "path": ".tmp/engineering-closeout-20261112/langfuse-product-demo-final-receipt.json",
+    "sha256": "a4eda4e63019cc588a52b7f5be3d4acd0de1d0166269cef3a6f0698614ad3c25",
+    "receipt": {
+      "status": "passed",
+      "server_receipt_verified": true,
+      "base_url": "http://127.0.0.1:3300",
+      "scope": "Scripted engineering acceptance; not model accuracy",
+      "fresh_model_calls": 0,
+      "traces": [
+        {
+          "trace_id": "2abe5fca7bc1eadd140c8f1bb3f8ec0f",
+          "root_id": "55791be50556feab",
+          "observation_count": 15,
+          "names": [
+            "apply_patch",
+            "docker-public-checks",
+            "issue-repair",
+            "read_symbol",
+            "scripted-response"
+          ],
+          "all_operations_ended": true,
+          "parent_links_verified": true,
+          "local_operation_counts_verified": true,
+          "summary_only_payloads": true,
+          "scores": {
+            "public_checks_passed": true,
+            "fresh_model_calls": 0,
+            "independent_verification_available": false
+          },
+          "fresh_model_calls": 0,
+          "independent_acceptance": false
+        },
+        {
+          "trace_id": "4ec5f595b6eadf5395739dab4ace368b",
+          "root_id": "f07fb17f620c528e",
+          "observation_count": 15,
+          "names": [
+            "apply_patch",
+            "docker-public-checks",
+            "issue-repair",
+            "read_symbol",
+            "scripted-response"
+          ],
+          "all_operations_ended": true,
+          "parent_links_verified": true,
+          "local_operation_counts_verified": true,
+          "summary_only_payloads": true,
+          "scores": {
+            "public_checks_passed": true,
+            "independent_verification_available": false,
+            "fresh_model_calls": 0
+          },
+          "fresh_model_calls": 0,
+          "independent_acceptance": false
+        }
+      ]
+    }
+  },
+  "cleanup": {
+    "checked_provenance_owner_count": 37,
+    "own_containers_remaining": [],
+    "other_containers_modified": false
+  },
+  "input_identity": {
+    "prepared_task_sha256": "504fcb920d4c144968fc5d3916deaf1769dbfd427ac72e60b96a69091bb2d52c",
+    "config_sha256": "990f7194c431dc3e4a20247259a5b0d39d1be1aed658caefd4a06652d284f7cb",
+    "source_sha256": "dbf35753e16c2e924c9cc0063748889bd83defb47b49a9028f71e40993bb0e4a",
+    "public_checks_sha256": "6b3bfc89804a4de173542b067498dfe9e2f15bfa50879e633e22ad19cad6cbed",
+    "scripted_responses_sha256": "db1d569e1f6dd2e463792e9165eb34c9d8d13d2e9e1f49bfad96319e79f7364a"
+  },
+  "implementation_sha256": {
+    "deploy/langfuse/verify.py": "97ff5e76c5a37369c4709b162a33db8236a522fe8e873b66b37d153b1a577151",
+    "evals/context_policy.py": "0f67a337def78384916524ea6502bfbaa5c6e623ec23e7c626e38d7b4aa38028",
+    "evals/repository_checkpoint.py": "0a0554c45bbe4eb8a17eb2ed61b81ed34267b455ea9d003457fda21d6ba72da4",
+    "pyproject.toml": "72b4bac19f4093deb4d9f2f3fe924da78ee1feb252a45b287a9339d880a43f2f",
+    "repairflow/__main__.py": "3b2dbd344b3315f548c3577659545c019da12fa41269a8836cb27393ff788c7f",
+    "repairflow/feedback_actions.py": "bb93335d0fd76bc817e213cf9a3dfd3f054998e2c8ac9bd246fa3df667eced72",
+    "repairflow/feedback_context.py": "f54a79526daa78523ceff33e5ebd4a5e0c9f03caccedb7832ec8d292b2bb6796",
+    "repairflow/feedback_repair_v2.py": "07337dad0cc566af4f5b20e837b8872884cf080a6ffb6796235d26286de9fa89",
+    "repairflow/issue_demo.py": "220da7e8a3a1043c22bf563483def3c648220884eaa8e241fa4d329243e9be11",
+    "repairflow/issue_demo_fixture.py": "5d81d2263dc25baa8235f3a53f7a854e65664ad9eb5f14fbe4cb6c4c4a761852",
+    "repairflow/issue_execution.py": "d222ddef44109fe5866aeedd5b112c5b1376125549ff93b71a439a30b9ae841a",
+    "repairflow/issue_feedback.py": "36553a026387fabcd8dfb38d19f8c0ff0157e34cdc4edba7e0c92486b9a1186c",
+    "repairflow/issue_providers.py": "4fc324c000703ca0b7f3943d74f18fc44e11d0925b471c0be8d879caa94b4020",
+    "repairflow/issue_registry.py": "61ce46f64018b841a60df3804060a99d295d61818ea36d6710d3c445182150f2",
+    "repairflow/issue_repair.py": "b0c1142611787738dd71d173549ff6380f6cafe7ff4859e7fcd041f31837d12a",
+    "repairflow/issue_tools.py": "edfad7141a3c945b2e4c49e2abcf7c8bc4ec42f09d6c8efcd017a14237f6ae31",
+    "repairflow/patch_validator.py": "c552303210fae352ebe9caed3c82fb501b515489db05a939a5ca1f188e6cb0e3",
+    "repairflow/telemetry.py": "1f4ded916a9f8ed019eb3dddd6116cfc08677ac207a9e32facb8721feda010b5",
+    "sandbox/runner.py": "74ff204b3d6858dc305be1e2e6e83a0f2b91ade5909db13401eb3c0977546f63",
+    "service/app.py": "b44b9033aa3327852f8c975a49f80e73ccabe006d8f8489d59a70edbe1bd84fc",
+    "service/issues.py": "c6ba871729b2a5e942d7bd1da0ee54e77f01be21586ac7e905b2738271beeb35",
+    "service/manager.py": "9a584bd5b7c312d9396f62e549d678deb14bec2f173a0b77ed7e692e2044dfb8",
+    "tests/issue_service_fixture.py": "2e388e76e2ffc44223b9796189397e51e0d305f4896c22cfbd3ff7bb3971c5f1",
+    "tests/test_feedback_validator_worker.py": "eff5881abc685c5a3d6e903b2a59594ca751ab3cb2997932d208d63b9036e23b",
+    "tests/test_issue_demo_fixture.py": "ca19efbb7ed9e1db9eacd05d2cd3e2dc9ef439f50b59ccae29babec9c06ff613",
+    "tests/test_issue_feedback_adapter.py": "0a5e665c3d04aaf96492d5cf19cc0a2ceaf18b90b3be2f213e58cce967a20d91",
+    "tests/test_issue_feedback_demo.py": "24a08ea301c5b7f117f5a24f47bfe102765dc56bcac7f95219cde80e0bdca780",
+    "tests/test_issue_feedback_docker.py": "ec0387fafa5e4c72e1d672f34992847a2adc2baf62bdad63369b3da521931b29",
+    "tests/test_issue_feedback_lifecycle.py": "beaecdad9662062b5d88b778f1faa19a4e5b1c8d2312183c9205e59e12f24a6b",
+    "tests/test_langfuse_receipt.py": "7fdd135eb8c4c163d7a8cc62f7c17de2c3bc6c37755810c7269908cf06a46f6a",
+    "workflows/repair.py": "3d690730b2173a8f8ee3a97757778ad1a067cb79e46262c065f3ea657bcf849a"
+  },
+  "earlier_attempts": [
+    {
+      "artifact": ".tmp/engineering-closeout-20261112/docker.xml",
+      "outcome": "3 passed, 1 test assertion failed (bytes versus string); original retained"
+    },
+    {
+      "artifact": ".tmp/engineering-closeout-20261112/docker-cancel-retry.xml",
+      "outcome": "1 passed after assertion fix"
+    },
+    {
+      "artifact": ".tmp/engineering-closeout-20261112/langfuse-product-demo-output.txt",
+      "outcome": "old receipt checker rejected timed_out boolean; original retained"
+    }
+  ],
+  "known_limits": [
+    "Administrator-registered Python tasks only",
+    "Scripted demo does not measure model repair ability",
+    "Public checks do not imply independent correctness",
+    "Running jobs interrupted by service restart are not automatically resumed",
+    "Historical local model failures remain unresolved"
+  ]
+}

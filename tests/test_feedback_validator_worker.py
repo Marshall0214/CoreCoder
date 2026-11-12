@@ -48,6 +48,57 @@ def test_worker_and_cleanup_failures_are_both_preserved(tmp_path, monkeypatch):
     assert 'sandbox_control_failed' in result['cleanup_error']
 
 
+@pytest.mark.parametrize('reported_image', ['sha256:' + 'a' * 64, 'sha256:' + 'b' * 64, None])
+def test_worker_uses_pinned_image_instead_of_ambient_and_checks_receipt(tmp_path, monkeypatch, reported_image):
+    pinned = 'sha256:' + 'a' * 64
+    output, cleaned = tmp_path / 'validation', []
+    monkeypatch.setenv('CORECODER_SANDBOX_IMAGE', 'ambient-custom:latest')
+
+    def start(command, **kwargs):
+        assert kwargs['env']['CORECODER_SANDBOX_IMAGE'] == pinned
+        output.mkdir()
+        (output / 'report.json').write_text(json.dumps({'status': 'validated', 'accepted': True,
+                                                       'sandbox': {'image_id': reported_image}}), encoding='utf-8')
+        return SimpleNamespace(returncode=0, poll=lambda: 0)
+
+    monkeypatch.setattr(feedback.subprocess, 'Popen', start)
+    monkeypatch.setattr(feedback.runner, 'cleanup', cleaned.append)
+    result = feedback.validate(tmp_path / 'before', tmp_path / 'source', ['code.py'],
+                               output, tmp_path / 'checks', 'pkg', owner=tmp_path, sandbox_image_id=pinned)
+    if reported_image == pinned:
+        assert result['accepted'] is True and not cleaned
+    else:
+        assert result['status'] == 'blocked' and result['accepted'] is False
+        assert result['infrastructure_error'] == 'validator_worker_image_mismatch'
+        assert result['expected_image_id'] == pinned and result['actual_image_id'] == reported_image
+        assert cleaned == [tmp_path]
+
+
+def test_unpinned_worker_retains_legacy_ambient_image(tmp_path, monkeypatch):
+    output = tmp_path / 'validation'
+    monkeypatch.setenv('CORECODER_SANDBOX_IMAGE', 'ambient-custom:latest')
+
+    def start(command, **kwargs):
+        assert kwargs['env']['CORECODER_SANDBOX_IMAGE'] == 'ambient-custom:latest'
+        output.mkdir()
+        (output / 'report.json').write_text(json.dumps({'status': 'validated', 'accepted': True}), encoding='utf-8')
+        return SimpleNamespace(returncode=0, poll=lambda: 0)
+
+    monkeypatch.setattr(feedback.subprocess, 'Popen', start)
+    result = feedback.validate(tmp_path / 'before', tmp_path / 'source', ['code.py'],
+                               output, tmp_path / 'checks', 'pkg', owner=tmp_path)
+    assert result['accepted'] is True
+
+
+@pytest.mark.parametrize('image', ['custom:latest', 'sha256:abc', 123, 'sha256:' + 'A' * 64])
+def test_worker_rejects_mutable_or_invalid_pinned_image_before_start(tmp_path, monkeypatch, image):
+    monkeypatch.setattr(feedback.subprocess, 'Popen', lambda *a, **k: pytest.fail('Must not start a worker'))
+    with pytest.raises(ValueError, match='immutable sandbox image ID'):
+        feedback.validate(tmp_path / 'before', tmp_path / 'source', ['code.py'],
+                          tmp_path / 'validation', tmp_path / 'checks', 'pkg', owner=tmp_path,
+                          sandbox_image_id=image)
+
+
 def test_cancel_terminates_a_real_worker_process_without_contacting_docker(tmp_path, monkeypatch):
     original = feedback.subprocess.Popen
     children, cleaned = [], []

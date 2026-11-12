@@ -34,8 +34,10 @@ def main():
     repair_issue.add_argument('--model', default='qwen3.5:27b', help='Installed local Ollama model; thinking is disabled')
     repair_issue.add_argument('--context-policy', choices=('baseline', 'module-bindings-v1'), default='baseline',
                               help='Keep the original context policy by default; module bindings are experimental')
-    repair_issue.add_argument('--workflow', choices=('patch-v1', 'symbol-recovery-v1'), default='symbol-recovery-v1',
+    repair_issue.add_argument('--workflow', choices=('patch-v1', 'symbol-recovery-v1', 'feedback-actions-v2'),
+                              default='symbol-recovery-v1',
                               help='Symbol actions with recovery by default; patch-v1 retains the two-generation protocol')
+    repair_issue.add_argument('--execution-profile', type=Path, help='Trusted JSON profile for feedback-actions-v2')
     repair_issue.add_argument('--observation-policy', choices=('full', 'compact-v1'), default='full',
                               help='Optional compact history; canonical actions and source evidence remain unchanged')
     repair_issue.add_argument('--max-steps', type=int, default=20)
@@ -47,11 +49,16 @@ def main():
     register_issue.add_argument('--config', type=Path, required=True)
     register_issue.add_argument('--output', type=Path, required=True)
     register_issue.add_argument('--model', default='qwen3.5:27b')
+    register_issue.add_argument('--engine', choices=('symbol-recovery-v1', 'feedback-actions-v2'), default='symbol-recovery-v1')
+    register_issue.add_argument('--execution-profile', type=Path, help='Administrator-owned JSON execution profile')
     register_issue.add_argument('--observation-policy', choices=('full', 'compact-v1'), default='full')
     register_issue.add_argument('--responses', type=Path, help='Optional trusted scripted responses for an offline demo')
     issue_demo = commands.add_parser('demo-issue', help='Offline CLI/API approval demonstration; requires a scripted Issue entry')
     issue_demo.add_argument('--entry', type=Path, required=True)
     issue_demo.add_argument('--output', type=Path, required=True)
+    feedback_demo = commands.add_parser('demo-feedback', help='Self-contained recorded CLI/API feedback demo; requires local Docker')
+    feedback_demo.add_argument('--output', type=Path, required=True)
+    feedback_demo.add_argument('--image', default='corecoder-test-sandbox:v1')
     args = parser.parse_args()
     if args.command == 'prepare':
         print(export(args.task, args.output, args.include_replay))
@@ -63,7 +70,15 @@ def main():
         from repairflow.issue_registry import register
 
         print(register(args.prepared, args.config, args.output, model=args.model,
-                       observation_policy=args.observation_policy, responses=args.responses))
+                       observation_policy=args.observation_policy, responses=args.responses, engine=args.engine,
+                       execution_profile=json.loads(args.execution_profile.read_text(encoding='utf-8'))
+                       if args.execution_profile else None))
+    elif args.command == 'demo-feedback':
+        from repairflow.issue_demo import run as issue_demonstration
+        from repairflow.issue_demo_fixture import prepare as prepare_demo
+
+        entry = prepare_demo(args.output / 'inputs', image=args.image)
+        print(json.dumps(issue_demonstration(entry, args.output / 'demo'), ensure_ascii=False))
     elif args.command == 'demo-issue':
         from repairflow.issue_demo import run as issue_demonstration
 
@@ -88,7 +103,9 @@ def main():
                                      responses=args.responses, model=args.model, context_policy=args.context_policy,
                                      workflow=args.workflow, max_steps=args.max_steps, max_edit_attempts=args.max_edit_attempts,
                                      max_consecutive_errors=args.max_consecutive_errors,
-                                     max_repeated_actions=args.max_repeated_actions, observation_policy=args.observation_policy)
+                                     max_repeated_actions=args.max_repeated_actions, observation_policy=args.observation_policy,
+                                     execution_profile=json.loads(args.execution_profile.read_text(encoding='utf-8'))
+                                     if args.execution_profile else None)
         except (SandboxError, ValueError, OSError, KeyError, TypeError) as exc:
             report = {'status': exc.status if isinstance(exc, SandboxError) else 'invalid_repair_input',
                       'public_checks_passed': False, 'accepted': False, 'fresh_model_calls': 0}

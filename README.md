@@ -10,6 +10,18 @@ A coding agent project for reproducible patch generation, sandboxed testing, and
 
 This fork extends [he-yufeng/CoreCoder](https://github.com/he-yufeng/CoreCoder), by Yufeng He. The original minimal agent and bilingual source-reading series remain available; this repository adds repair evaluation, task services, execution isolation, and public Issue preparation.
 
+## Start here: CLI/API feedback repair
+
+The `feedback-actions-v2` engine connects initial exploration, code reads, constrained edits and repeated public Docker checks to the same CLI/API execution path. Approval, idempotency, restart recovery, cancellation and downloadable evidence remain part of that path. A public pass delivers a candidate for **human review**, with independent acceptance explicitly unavailable.
+
+With the existing source environment, Linux Docker and the prebuilt `corecoder-test-sandbox:v1` image:
+
+```powershell
+python -B -m repairflow demo-feedback --output .tmp/feedback-demo-001
+```
+
+Use a fresh output directory. This self-contained synthetic task uses six recorded responses, real tools and Docker; it needs no Ollama, GitHub download or paid API. It checks CLI/API patch agreement, approval recovery and duplicate-execution prevention. See the [feedback service guide](docs/issue-feedback-service.md) for D-drive setup, API usage, execution limits, artifacts and acceptance evidence. This is an engineering demonstration, not a repair-accuracy experiment.
+
 ## Current capabilities
 
 [Own-agent local evaluation without token cutoffs](docs/local50-unmetered-20261103.md) completed all 50 known tasks: **21/50 accepted**, 33 candidate patches, 309 local Qwen calls and 937,866 measured tokens. Independent grading and all 50 inference traces were verified. This checkpoint-policy run is separate from the historical DeepSeek results.
@@ -37,7 +49,7 @@ An optional [local Langfuse adapter (Chinese)](docs/langfuse-local.md) adds task
 | Area | Implemented | Boundary |
 | --- | --- | --- |
 | Public GitHub Issues | Read-only import, pinned source, candidate patches and Docker reproduction/preservation checks | CLI with trusted configuration; public-test success requires manual review |
-| Repair workflow | Target/symbol retrieval, constrained patches, one public-feedback correction, rollback, independent grading | Trusted task bundles and specified Python repositories |
+| Repair workflow | Legacy bundle evaluation; optional `feedback-actions-v2` read/edit/public-check loop through CLI/API | Specified Python repositories; public Issue checks end in human review, independent grading stays separate |
 | Execution sandbox | Offline, non-root Docker containers with readonly inputs and CPU/memory/PID/time/output limits | Unified repairflow checks; original Bash and legacy evals are not migrated |
 | Local service | FastAPI, idempotency, SSE, cancellation, SQLite, LangGraph approval/restart recovery | One local service owner; no multi-user production claim |
 | Tools and evidence | Read-only code knowledge MCP; patches, traces, usage, input hashes and reports | No automatic GitHub publishing |

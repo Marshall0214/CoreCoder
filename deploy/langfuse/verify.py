@@ -52,7 +52,8 @@ def validate(observations, scores, trace_id, expected_counts=None):
                 if field == 'input' and value is not None:
                     return None
                 if field == 'output' and (not isinstance(value, dict) or any(not isinstance(group, dict)
-                        or set(group) - {'tests_run', 'failures', 'errors', 'skipped', 'passed', 'seconds'}
+                        or set(group) - {'tests_run', 'failures', 'errors', 'skipped', 'passed', 'seconds', 'timed_out'}
+                        or ('timed_out' in group and type(group['timed_out']) is not bool)
                         for group in value.values())):
                     return None
             elif value is not None and (not isinstance(value, dict) or set(value) - tool_keys):
