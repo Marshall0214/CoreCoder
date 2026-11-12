@@ -1,0 +1,31 @@
+{
+  "upstream_commit": "6868817518876de8fd170c6a8354daca273b6191",
+  "strategy_search": false,
+  "kind": "Frozen Harness2 adapter execution with public feedback",
+  "known_development_task": true,
+  "reuse_rollout": "D:\\project_other\\CoreCoder\\.tmp\\harness2-autonomous-20261104\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1",
+  "public_feedback": {
+    "checks": "D:\\project_other\\CoreCoder\\repairflow\\validation_checks\\toolz_join",
+    "package": "toolz",
+    "max_feedback_rounds": 20,
+    "timeout": 1200,
+    "files": {
+      "test_admission.py": "5608c47c64f29f9d8c1641d09540311db15ef5c939f11a58ce3ddf101d820cb6"
+    }
+  },
+  "harness": {
+    "context_policy.json": "{\"version\": 1, \"deduplicate_reads\": true, \"complete_symbols_first\": true, \"read_index\": true}",
+    "systemprompt.md": "# Role\nYou are an expert Python developer repairing software defects using source evidence.\n\n# Procedure\n1. **Locate**: Use `search` to find the function definition immediately. Do not read from offset 0 unless necessary for imports.\n2. **Analyze**: Read the full symbol body. If reading by offset, ensure you capture the complete function scope (start to end).\n3. **Fix**: Apply a minimal patch that resolves the specific defect without altering unrelated logic.\n4. **Verify**: Ensure the fix handles the edge case described in the task.\n\n# Constraints\n- Do not add unverified domain facts; rely on source evidence.\n- The deliverable shape belongs to the request; do not alter output formats unless explicitly required.",
+    "tool_descriptions/tool_guidance.md": "# Tool Usage Guidance\n\n## File Reading Strategy\n- **Search First**: Always use `search` with query `def <function_name>` to locate the target function before reading.\n- **Read Complete Symbols**: When reading a function, ensure you read from the definition line until the end of the function body. Avoid partial reads that miss critical logic (e.g., reading offset 800 when the function starts at 813).\n- **Avoid Redundant Reads**: Do not repeat `read_file` on the same offset without progress. If you receive a `repeated_action_limit`, stop and change strategy.\n\n## Defect Pattern Recognition\n- **Symptom**: `NameError` during a left outer join operation.\n- **Cause**: The code path for unmatched left rows references a variable (likely `right_default`) that is not initialized in the scope of the unmatched branch.\n- **Fix Location**: Inside the loop iterating over left keys, specifically in the conditional handling the case where no right match is found.\n\n## Evidence-Based Repair\n- **Do not guess** the variable name. Inspect the existing code to see what variable holds the default value.\n- **Ensure scope**: The variable must be accessible in the branch where unmatched rows are yielded."
+  },
+  "harness_sha256": "f0b86152477fd346dbbeaee81f0cd645028dc85b6e72436642c045b61aad1110",
+  "source_files": {
+    "integrations/harness2.py": "05036078ccd46dc5bba557bfc053cf92dbbb0a480f0e3709c63dd3f149d06a53",
+    "integrations/harness2_feedback.py": "ec3d41066aeef71dfc56968e300e58d195ca7176892fc9adbef5e94aacb6d9d3",
+    "repairflow/feedback_repair.py": "b30f4d686513adb4123b8d95dc5a8bb6388925620c456239b0d7dd1e6f9800a0",
+    "repairflow/patch_validator.py": "c552303210fae352ebe9caed3c82fb501b515489db05a939a5ca1f188e6cb0e3",
+    "integrations/harness2_context.py": "f0a9847e1c124eaabe03e286dfe9e5a29c109d8733d9eb7b39183c07cb39fc54"
+  },
+  "original_trial_manifest_sha256": "8964033c18c82d9d03a419da90dd0896548439c6ff70232be9f820c22fab1d11",
+  "independent_grading_after_termination": true
+}

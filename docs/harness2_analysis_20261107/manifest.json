@@ -1,0 +1,115 @@
+{
+  "schema": "harness2-analysis-evidence-v1",
+  "stage": "completed post-hoc audit",
+  "source": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106",
+  "scope": "Audits and selected original summaries; raw traces remain in original batch.",
+  "files": [
+    {
+      "path": "analyze_failures.py",
+      "sha256": "c4d1665427cf1459056a1629459a16465ddfac8650a972aae7b8ec43da4f5c07",
+      "bytes": 19492
+    },
+    {
+      "path": "analyze_main.py",
+      "sha256": "00e94ba03779c720db2abe60913e88dc379bd9dc7cba153d2ca46273a615f6a6",
+      "bytes": 8410
+    },
+    {
+      "path": "cost-analysis.json",
+      "sha256": "c7b0509c9aeda611990cff3b62dc31643b899cafd24e3bccd6b48dc05c96e42f",
+      "bytes": 870770
+    },
+    {
+      "path": "cost-notes.md",
+      "sha256": "df7c4ecfbcfee6169ba3489c475e80d5fac927d05eabcd3ecc2ab27719f7a417",
+      "bytes": 9703
+    },
+    {
+      "path": "cost_analysis.py",
+      "sha256": "5054ae391073afa65e0a96f3a5f8c7a3605faa4656d72f11bc90b19781f9ec71",
+      "bytes": 20675
+    },
+    {
+      "path": "failure-analysis.json",
+      "sha256": "b062303ea7e783fc834beaca2db2dfae3150bffca304d30199f8d488133d3922",
+      "bytes": 60620
+    },
+    {
+      "path": "failure-notes.md",
+      "sha256": "2c9f25e4caf3d848b8ae79c4442824366dbe0e1a3de2d528b04fe8647460ba64",
+      "bytes": 20323
+    },
+    {
+      "path": "finalize_analysis.py",
+      "sha256": "e99787df267c70f3439471708071226ae0b57ff7fbf38e3eb3678534b151be4b",
+      "bytes": 7222
+    },
+    {
+      "path": "historical-feedback-audit.json",
+      "sha256": "03f2c41d0aa032c35f75840988e26d063a1b267ccdc9602076ceebeb503a17ca",
+      "bytes": 427240
+    },
+    {
+      "path": "historical-feedback-notes.md",
+      "sha256": "83c3a69511ea440babcdb184907fac6b17d723af66eda18021ac9a1fa58c3a6b",
+      "bytes": 5518
+    },
+    {
+      "path": "historical_feedback_audit.py",
+      "sha256": "83d9b5877d80e0d20e0b24028d228d1a0e94c5fc44d6c1e856833b13c6950f2c",
+      "bytes": 5228
+    },
+    {
+      "path": "main-analysis.json",
+      "sha256": "b5b05c5b7d5350effb0aa3954b9a5bd4b86f35f16e0c05cc5bc1e51b31081dbb",
+      "bytes": 34741
+    },
+    {
+      "path": "original-comparison.json",
+      "sha256": "810e8596ae58056423b19d289d57f2c3f793127522667449cab664bd1367f150",
+      "bytes": 987
+    },
+    {
+      "path": "original-controller.json",
+      "sha256": "265b0cf62f5af3a3c82a5b9c11f495e21967e963b82477fdb49d209500e4f0ba",
+      "bytes": 1230
+    },
+    {
+      "path": "original-report.json",
+      "sha256": "a8a817d848ac8058af70d873022f9e9f4e6824eb8ed4ea0541f464409a2d82f4",
+      "bytes": 1125947
+    },
+    {
+      "path": "provider-truncation-excerpt.json",
+      "sha256": "568b85cbd4c2ea1daee8700abff224b213fc136cd226f13c6c4ab55ad7456819",
+      "bytes": 3498
+    },
+    {
+      "path": "selection-analysis.json",
+      "sha256": "73eceee9156e3ca8b8830e0b5a41fa60a6c0c8757a041b7dcd817c547247ad1e",
+      "bytes": 312065
+    },
+    {
+      "path": "selection-notes.md",
+      "sha256": "23a12ef12291c3d14e8449f119746d7c8e9382b2230e1fa483583d7687bd1d6b",
+      "bytes": 8495
+    },
+    {
+      "path": "selection_analysis.py",
+      "sha256": "4b1dcb33d14082f3bd9ce080e3e0290d4d8b7bb12e0c62de3d26a490cf8dde76",
+      "bytes": 6940
+    },
+    {
+      "path": "summary.json",
+      "sha256": "8bb7a9d7f9093ae23d70ae492a1a291879489e2f41763f733a49289688a5c393",
+      "bytes": 3350
+    },
+    {
+      "path": "verification.json",
+      "sha256": "bf313a4ed36f6deadfadbc7a336d5074182aa425547584e1310273059b8d2711",
+      "bytes": 1503
+    }
+  ],
+  "file_count": 21,
+  "bytes": 2953957
+}

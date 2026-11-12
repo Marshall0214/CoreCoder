@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-permutation-exception",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:0475a94ef39f8431352847627650adabf33f886fab6a962ea611e0319380b448",
+  "problem_statement": "nth_permutation for a requested size greater than the pool length must raise IndexError because no such permutation exists. Negative size remains ValueError; preserve valid indexed permutations."
+}

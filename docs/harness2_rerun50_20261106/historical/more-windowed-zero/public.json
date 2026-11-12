@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-windowed-zero",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:74eaf0190dd3a918dc077316e698219607870704d7edefaac0e6bc39fce354e4",
+  "problem_statement": "windowed must raise ValueError for zero or negative window sizes, including empty sources; preserve positive window padding and step validation."
+}

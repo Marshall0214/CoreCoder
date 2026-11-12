@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "checks": {
+    "fifty_graded_rows": true,
+    "independent_results_reconcile": true,
+    "all_ppc_complete": true,
+    "calls_reconcile": true,
+    "phase_calls_reconcile": true,
+    "known_native_tokens_reconcile": true,
+    "known_unknown_calls_reconcile": true,
+    "feedback_requests_reconcile": true,
+    "feedback_rejections_reconcile": true,
+    "feedback_terminals_reconcile": true,
+    "failures_reconcile": true,
+    "selection_outcomes_reconcile": true,
+    "all_post_apply_checks_unreadable_runner": true,
+    "shared_historical_runner_problem": true,
+    "frozen_execution_code_unchanged": true,
+    "original_inputs_unchanged": true,
+    "native_trace_hashes_match": true,
+    "launch_packet_unchanged": true
+  },
+  "fresh_model_calls": 0,
+  "test_executions": 0,
+  "original_source_hashes": {
+    "report.json": "a8a817d848ac8058af70d873022f9e9f4e6824eb8ed4ea0541f464409a2d82f4",
+    "protocol.json": "5b8f267a0e557b924ddf3a7205172bb5b2463f59fc8dd56f3fcbcc7c6f26d414",
+    "controller.json": "265b0cf62f5af3a3c82a5b9c11f495e21967e963b82477fdb49d209500e4f0ba",
+    "comparison.json": "810e8596ae58056423b19d289d57f2c3f793127522667449cab664bd1367f150",
+    "reuse-verification.json": "8525eda67905a0a57534ac9211aa962b91b5d8137f6971db1494f6ae657c9c25",
+    "historical/report.json": "05fb2ec7727daa545bb5f132f344b19d2bf731e03070b23cde9b16940f61871a"
+  },
+  "native_trace_files_verified": 512,
+  "launch_packet_files_verified": 178
+}

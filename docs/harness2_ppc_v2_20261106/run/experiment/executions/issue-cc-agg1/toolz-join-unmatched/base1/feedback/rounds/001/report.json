@@ -1,0 +1,16 @@
+{
+  "round": 1,
+  "status": "completed",
+  "candidate_hash_before": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+  "usage": {
+    "prompt_tokens": 38578,
+    "completion_tokens": 43
+  },
+  "patch_status": "applied",
+  "changed_files": [
+    "toolz/itertoolz.py"
+  ],
+  "public_accepted": true,
+  "candidate_hash": "6fa6bd1ec8845c57f7e9b300135abb99e1923d1958a72e8f1c4c4597aa5789ff",
+  "seconds": 30.86
+}

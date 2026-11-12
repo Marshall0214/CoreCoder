@@ -1,0 +1,326 @@
+"""Fresh 50-task control versus task-local Harness2 PPC; shared public feedback."""
+import argparse
+import json
+import os
+import shutil
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+from integrations import harness2 as bridge
+from integrations.harness2_feedback import options, summary
+from integrations.harness2_runtime import COMMIT, ROOT, load, workspace
+
+MANIFEST = ROOT / 'docs/repair50_evidence/inputs/manifest.json'
+ARMS = ('no_harness', 'harness2')
+CODE = ('integrations/harness2_batch.py', 'integrations/harness2.py', 'integrations/harness2_feedback.py',
+        'integrations/harness2_selection.py',
+        'integrations/harness2_reader.py',
+        'integrations/harness2_context.py', 'integrations/harness2_evidence.py', 'repairflow/feedback_repair.py',
+        'repairflow/patch_validator.py', 'repairflow/checks.py', 'repairflow/issue_tools.py',
+        'repairflow/issue_providers.py', 'evals/local50_unmetered.py', 'evals/local50.py',
+        'evals/repository_checkpoint.py', 'evals/runtime.py', 'sandbox/runner.py')
+
+
+def run_child(job, *, controller=False, timeout=12000):
+    env = dict(os.environ)
+    for key in list(env):
+        if any(word in key.upper() for word in ('API_KEY', 'TOKEN', 'SECRET', 'PASSWORD', 'GOOGLE_APPLICATION')):
+            env.pop(key)
+    env.update(PYTHONPATH=os.pathsep.join([str(ROOT / '.tmp/langfuse-deps'), str(ROOT / '.tmp/workflow-deps'), str(ROOT)]),
+        PYTHONDONTWRITEBYTECODE='1', PYTHON_DOTENV_DISABLED='1', PYTHONUTF8='1', PYTHONIOENCODING='utf-8',
+        TEMP=str(ROOT / '.tmp'), TMP=str(ROOT / '.tmp'), CORECODER_HOME=str(job.parent / 'state'),
+        CORECODER_TEST_BACKEND='docker', NO_PROXY='127.0.0.1,localhost,::1')
+    python = sys.executable if controller else str(bridge.AGENT_PYTHON)
+    with (job.parent / 'worker.log').open('wb') as stream:
+        result = subprocess.run([python, '-B', '-m', 'integrations.harness2_batch', '--worker', str(job)],
+            cwd=ROOT, env=env, stdout=stream, stderr=subprocess.STDOUT, timeout=timeout, check=False)
+    if result.returncode:
+        raise RuntimeError('Batch worker failed: ' + str(job.parent / 'worker.log'))
+
+
+def collect(root):
+    """Count every new rollout and editor attempt, not just the adopted repair."""
+    phases = []
+    for path in sorted((root / 'executions').rglob('agent/report.json')):
+        folder = path.parent.parent
+        for row in summary(folder)['phases']:
+            phases.append({**row, 'folder': str(folder)})
+    for path in sorted((root / 'editors').glob('call-*/report.json')):
+        row = bridge.read(path)
+        counts = [row.get('metrics', {}).get(key) for key in ('prompt_tokens', 'completion_tokens')]
+        phases.append({'phase': 'editor', 'fresh_model_calls': row['fresh_model_calls'],
+            'tokens': sum(counts) if all(type(n) is int for n in counts) else None,
+            'trace_id': row.get('observability', {}).get('trace_id'), 'folder': str(path.parent)})
+    return {'phases': phases, 'fresh_model_calls': sum(row['fresh_model_calls'] for row in phases),
+        'tokens': sum(row['tokens'] for row in phases) if all(row['tokens'] is not None for row in phases) else None,
+        'known_tokens_minimum': sum(row['tokens'] or 0 for row in phases)}
+
+
+def public_selection(root, rollouts, official_label, public_hash, source_hash, config):
+    """Keep receipt validation in the repair environment, outside the stdlib controller.
+
+    The controller uses Python 3.12 for the upstream core; importing the repair
+    package there would pull in model SDK dependencies it deliberately does not own.
+    This worker receives public receipts only and performs no inference or grading.
+    """
+    path = root / 'public-selection/job.json'
+    bridge.write(path, {'kind': 'public-selection', 'rollouts': rollouts, 'official_label': official_label,
+                        'public_hash': public_hash, 'source_hash': source_hash, 'config': config})
+    run_child(path, timeout=60)
+    return bridge.read(path.parent / 'result.json')
+
+
+def experiment(job, root):
+    load()
+    from harness2.core.schedule import run_domain
+
+    source = root / 'input'
+    shutil.copytree(Path(job['source']), source, ignore=shutil.ignore_patterns('.git', '__pycache__'))
+    config = options(job['public_checks'], job['package'], job['feedback_rounds'], source_root=job['source_root'])
+    Adapter, Editor = bridge.classes(True, config, job.get('editor_evidence', 'inline'))
+    adapter = Adapter(root, job['public_task'], source, job['source_hash'], False)
+    started = time.monotonic()
+    report = {'status': 'running', 'arm': job['arm'], 'task_id': job['public_task']['instance_id'],
+              'strategy_search': job['arm'] == 'harness2', 'independent_grading_available': False}
+    bridge.write(root / 'result.json', report)
+    try:
+        if job['arm'] == 'no_harness':
+            folder = adapter.execute(job['public_task']['instance_id'], adapter.base_harness(),
+                                     'control/' + job['public_task']['instance_id'] + '/base1')
+            chosen = 'base1'
+        else:
+            editor = Editor(adapter.spec.channels['proposer'], root / 'editors', False)
+            # Each task starts with an empty private experiment library. No unreviewed cross-task memory.
+            core = run_domain('python-repair', [job['public_task']['instance_id']], 1, adapter=adapter, prop=editor,
+                runs_root=adapter.spec.runs_root, library_root=root / 'library', modes=('agg',))
+            bridge.write(root / 'core-result.json', core)
+            report['optimization_complete'] = not core['failed']
+            selection = root / 'runs/issue-cc-agg1' / job['public_task']['instance_id'] / 'selection/agg1/selection.json'
+            adopted = bridge.read(selection) if selection.exists() else {}
+            official_label = 'agg1' if adopted.get('ok') and adopted.get('chosen_label') == 'agg1' else None
+            if job.get('candidate_policy', 'official') == 'public-preserve-v1':
+                public_hash = bridge.sha(Path(adapter.rollouts[0]['folder']) / 'public.json') if adapter.rollouts else ''
+                decision = public_selection(root, adapter.rollouts, official_label, public_hash, job['source_hash'], config)
+                bridge.write(root / 'candidate-selection.json', decision)
+                chosen = decision['chosen_label']
+                folder = Path(decision['chosen_folder']) if chosen else None
+                report['delivery_policy'] = decision['policy']
+            else:
+                chosen = official_label
+                folder = next((Path(row['folder']) for row in adapter.rollouts if row['label'] == chosen), None)
+            if folder is None:
+                raise ValueError('No officially adopted final candidate; do not select using independent scores')
+        report.update(status='agent_completed', adopted_label=chosen, final_rollout=str(folder))
+    except Exception as exc:  # noqa: BLE001 - preserve all failures and keep the fixed 50-task denominator
+        report.update(status='agent_error', error_type=type(exc).__name__, error=str(exc))
+    finally:
+        report.update(seconds=round(time.monotonic() - started, 3), rollouts=adapter.rollouts)
+        try:
+            report['usage'] = collect(root)
+        except (OSError, ValueError, KeyError) as exc:
+            report['usage'] = {'tokens': None, 'fresh_model_calls': None, 'incomplete': type(exc).__name__}
+        bridge.write(root / 'result.json', report)
+
+
+def worker(path):
+    job, root = bridge.read(path), path.parent
+    if job['kind'] == 'public-selection':
+        from integrations.harness2_selection import select
+
+        if set(job) != {'kind', 'rollouts', 'official_label', 'public_hash', 'source_hash', 'config'}:
+            raise ValueError('Public selection receives only pinned public receipts')
+        bridge.write(root / 'result.json', select(job['rollouts'], job['official_label'],
+                     job['public_hash'], job['source_hash'], job['config']))
+        return
+    if job['kind'] == 'experiment':
+        experiment(job, root)
+        return
+    if job['kind'] == 'admission':
+        from evals.runner import digest, snapshot
+        from repairflow.checks import groups
+        from repairflow.patch_validator import group_passed
+        from sandbox import runner
+
+        case = job['case']
+        for name in ('before', 'after', 'checks', 'harness'):
+            if digest(snapshot(Path(case[name]))) != case[name + '_hash']:
+                raise ValueError('Frozen input changed: ' + name)
+        runner.ACTIVE_POLICY.set(runner.preflight())
+        public = {}
+        for label in ('before', 'after'):
+            public[label] = groups(case[label], case['harness'], case['package'], case['source_root'],
+                root / label, ('Reproduce', 'Preserve'))
+        passed = (not group_passed(public['before']['Reproduce']) and
+                  group_passed(public['before']['Preserve']) and
+                  all(group_passed(row) for row in public['after'].values()))
+        bridge.write(root / 'result.json', {'passed': passed, 'model_calls': 0, 'public': public})
+        if not passed:
+            raise ValueError('Public checks did not certify the frozen task')
+        return
+    raise ValueError('Unknown batch worker kind')
+
+
+def summarize(report):
+    result = {}
+    for arm in ARMS:
+        rows = list(report['tasks'][arm].values())
+        complete = len(rows) == 50 and all(row['status'] in ('graded', 'error', 'interrupted') for row in rows)
+        graded = [row for row in rows if row['status'] == 'graded']
+        measured = [row.get('usage', {}).get('tokens') for row in rows]
+        result[arm] = {'scheduled': 50, 'attempted': len(rows), 'graded': len(graded),
+            'resolved': sum(row.get('resolved') is True for row in graded), 'complete': complete,
+            'repair_rate': sum(row.get('resolved') is True for row in graded) / 50 if complete else None,
+            'errors': sum(row['status'] in ('error', 'interrupted') for row in rows),
+            'actual_tokens': sum(measured) if complete and all(type(n) is int for n in measured) else None,
+            'known_tokens_minimum': sum(n for n in measured if type(n) is int)}
+    shared = set(report['tasks']['no_harness']) & set(report['tasks']['harness2'])
+    pairs = [key for key in sorted(shared) if all(report['tasks'][arm][key]['status'] == 'graded' for arm in ARMS)]
+    result['pairs'] = {'graded_pairs': len(pairs),
+        'new_successes': [key for key in pairs if not report['tasks']['no_harness'][key]['resolved'] and report['tasks']['harness2'][key]['resolved']],
+        'lost_successes': [key for key in pairs if report['tasks']['no_harness'][key]['resolved'] and not report['tasks']['harness2'][key]['resolved']]}
+    return result
+
+
+def initialize(output, candidate_policy='official', editor_evidence='inline'):
+    if candidate_policy not in ('official', 'public-preserve-v1'):
+        raise ValueError('Unknown delivery policy')
+    if editor_evidence not in ('inline', 'indexed'):
+        raise ValueError('Unknown editor evidence mode')
+    rows = bridge.read(MANIFEST)['cases']
+    if len(rows) != 50 or len({case['task_id'] for case in rows}) != 50:
+        raise ValueError('Require the existing fifty distinct tasks')
+    output.mkdir(parents=True, exist_ok=False)
+    protocol = {'name': 'harness2-public-feedback-50-v1', 'manifest_sha256': bridge.sha(MANIFEST),
+        'upstream_commit': COMMIT, 'model': 'qwen3.5:27b', 'thinking': False, 'feedback_rounds': 20,
+        'token_budget': None, 'exploration_seconds': 1200, 'feedback_seconds': 1200,
+        'arms': ARMS, 'schedule': 'all 50 control, then all 50 task-local PPC',
+        'harness2_k': 1, 'harness2_mode': 'parallel', 'new_rollouts': {'no_harness': 50, 'harness2': 200},
+        'equal_total_compute_budget': False, 'independent_grading': 'after each complete arm/task terminates',
+        'candidate_policy': candidate_policy,
+        'editor_evidence': editor_evidence,
+        'cross_task_memory': False, 'reuse_old_candidates': False, 'same_public_feedback_in_both_arms': True,
+        'public_harness_source': 'existing case.harness with frozen digest; never copied from independent checks',
+        'source_files': {name: bridge.sha(ROOT / name) for name in CODE}, 'cases': rows}
+    bridge.write(output / 'protocol.json', protocol)
+    bridge.write(output / 'report.json', {'status': 'prepared', 'tasks': {arm: {} for arm in ARMS}, 'admission': {}})
+
+
+def execute(output, prepare_only=False):
+    load()
+    protocol, report = bridge.read(output / 'protocol.json'), bridge.read(output / 'report.json')
+    if bridge.sha(MANIFEST) != protocol['manifest_sha256'] or any(
+            bridge.sha(ROOT / name) != value for name, value in protocol['source_files'].items()):
+        raise ValueError('Frozen batch code or data changed; do not mix protocols')
+    cases = protocol['cases']
+    for arm in ARMS:
+        for state in report['tasks'][arm].values():
+            if state['status'] == 'started':
+                state.update(status='interrupted', resolved=False,
+                             reason='Retained interrupted attempt; no automatic model rerun')
+    if not (output / 'identity/identity.json').exists():
+        bridge.write(output / 'identity/job.json', {'kind': 'identity', 'case': cases[0]})
+        bridge.child(output / 'identity/job.json', 60)
+    for index, case in enumerate(cases, 1):
+        key = case['task_id']
+        if key in report['admission']:
+            continue
+        folder = output / 'admission' / key
+        bridge.write(folder / 'job.json', {'kind': 'admission', 'case': case})
+        report.update(status='preflight', current_task=key, current_index=index)
+        bridge.write(output / 'report.json', report)
+        try:
+            run_child(folder / 'job.json', timeout=180)
+        except Exception as exc:  # No inference when preflight is incomplete.
+            report.update(status='preflight_failed', error_type=type(exc).__name__, error=str(exc))
+            bridge.write(output / 'report.json', report)
+            raise
+        report['admission'][key] = bridge.read(folder / 'result.json')
+        bridge.write(output / 'report.json', report)
+        print(f'public preflight [{index}/50] {key}: passed', flush=True)
+    if prepare_only:
+        report['status'] = 'ready'
+        bridge.write(output / 'report.json', report)
+        return report
+    for arm in ARMS:
+        for index, case in enumerate(cases, 1):
+            key = case['task_id']
+            if key in report['tasks'][arm]:
+                continue  # Never replace a failed or interrupted model attempt with an unreported retry.
+            folder = output / 'arms' / arm / key
+            public = {'instance_id': key, 'repo': case['repo'], 'base_commit': 'source-sha256:' + case['before_hash'],
+                      'problem_statement': case['description']}
+            job = {'kind': 'experiment', 'arm': arm, 'source': case['before'], 'source_hash': case['before_hash'],
+                   'public_task': public, 'public_checks': case['harness'], 'package': case['package'],
+                   'source_root': case['source_root'], 'feedback_rounds': protocol['feedback_rounds']}
+            job['candidate_policy'] = protocol.get('candidate_policy', 'official')
+            job['editor_evidence'] = protocol.get('editor_evidence', 'inline')
+            bridge.write(folder / 'job.json', job)  # No private checks, answer source, or grading outcomes.
+            state = {'status': 'started'}
+            report['tasks'][arm][key] = state
+            report.update(status='running', current_arm=arm, current_task=key, current_index=index)
+            bridge.write(output / 'report.json', report)
+            try:
+                # Check model/sandbox identity and all frozen baseline engine files per new task.
+                identity = folder / 'identity'
+                bridge.write(identity / 'job.json', {'kind': 'identity', 'case': case})
+                bridge.child(identity / 'job.json', 60)
+                run_child(folder / 'job.json', controller=True)
+                result = bridge.read(folder / 'result.json')
+                state.update(usage=result.get('usage', {}), result=result)
+                if result['status'] != 'agent_completed':
+                    raise ValueError('Agent task did not produce an adopted final artifact')
+                bridge.write(folder / 'post-termination/job.json', {'kind': 'grade', 'case': case,
+                    'rollouts': [{'label': 'final', 'folder': result['final_rollout']}]})
+                bridge.child(folder / 'post-termination/job.json', 180)
+                grade = bridge.read(folder / 'post-termination/grading.json')['final']
+                state.update(status='graded', resolved=grade['resolved'], grade=grade)
+            except Exception as exc:  # noqa: BLE001 - complete all scheduled tasks and retain errors
+                state.update(status='error', resolved=False, error_type=type(exc).__name__, error=str(exc))
+                if (folder / 'result.json').exists():
+                    state['result'] = bridge.read(folder / 'result.json')
+                    state['usage'] = state['result'].get('usage', {})
+            report['summary'] = summarize(report)
+            bridge.write(output / 'report.json', report)
+            print(f'{arm} [{index}/50] {key}: {state["status"]}, resolved={state.get("resolved")}', flush=True)
+    report.update(status='completed' if all(r['status'] == 'graded' for a in ARMS for r in report['tasks'][a].values())
+                  else 'completed_with_errors', summary=summarize(report))
+    bridge.write(output / 'report.json', report)
+    return report
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('--output', type=Path)
+    group.add_argument('--worker', type=Path)
+    parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--prepare-only', action='store_true')
+    parser.add_argument('--candidate-policy', choices=('official', 'public-preserve-v1'), default='official')
+    parser.add_argument('--editor-evidence', choices=('inline', 'indexed'), default='inline')
+    args = parser.parse_args()
+    if args.worker:
+        worker(workspace(args.worker))
+        return
+    output = workspace(args.output)
+    if not args.resume:
+        initialize(output, args.candidate_policy, args.editor_evidence)
+    elif args.candidate_policy != 'official' and bridge.read(output / 'protocol.json').get('candidate_policy') != args.candidate_policy:
+        parser.error('Cannot change a frozen batch delivery policy on resume')
+    if args.resume and args.editor_evidence != 'inline' and bridge.read(output / 'protocol.json').get('editor_evidence') != args.editor_evidence:
+        parser.error('Cannot change frozen editor evidence mode on resume')
+    with (output / 'batch.lock').open('a+b') as lock:
+        lock.seek(0)
+        if os.name == 'nt':
+            import msvcrt
+            msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        result = execute(output, args.prepare_only)
+        print(json.dumps({'status': result['status'], 'summary': result.get('summary')}), flush=True)
+
+
+if __name__ == '__main__':
+    main()

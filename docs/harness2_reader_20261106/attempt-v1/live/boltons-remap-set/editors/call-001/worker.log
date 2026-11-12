@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 696, in <module>
+    main()
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 682, in main
+    worker(path)
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 177, in worker
+    value = edit(messages, store, llm, out, job['label'], job.get('context_enabled', False), events)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\integrations\harness2_reader.py", line 235, in edit
+    raise RuntimeError(f'Editor reached {max_steps}-step evidence/format limit without a valid final proposal')
+RuntimeError: Editor reached 20-step evidence/format limit without a valid final proposal

@@ -1,0 +1,101 @@
+{
+  "schema": "harness2-fifty-analysis-summary-v1",
+  "date": "2026-11-07",
+  "stage": "completed; read-only post-hoc analysis",
+  "output_directory": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106",
+  "resolved": 25,
+  "tasks": 50,
+  "historical_control_resolved": 24,
+  "historical_harness_resolved": 27,
+  "fresh_evaluation_model_calls": 3417,
+  "fresh_analysis_model_calls": 0,
+  "analysis_test_executions": 0,
+  "wall_seconds": 57122.273503,
+  "original_task_complete_token_lower_bound": 30859536,
+  "native_known_token_lower_bound": 59796366,
+  "actual_total_tokens": null,
+  "missing_usage_calls": 30,
+  "feedback_requests": 1181,
+  "rejected_nochange_requests": 1115,
+  "feedback_applied_patches": 35,
+  "post_apply_runner_io_errors": 35,
+  "old_control_post_apply_io_errors": 11,
+  "old_harness_post_apply_io_errors": 24,
+  "feedback_final_states": {
+    "ready_for_review": 87,
+    "feedback_round_limit": 46,
+    "validation_blocked": 36,
+    "local_provider_failed": 30,
+    "task_timeout": 1
+  },
+  "failure_categories": {
+    "no_final_patch": 11,
+    "regression_and_unfixed_target": 2,
+    "applied_patch_but_target_failed": 12
+  },
+  "repository_counts": {
+    "pallets/click": {
+      "tasks": 10,
+      "control": 2,
+      "old_harness2": 2,
+      "new_harness2": 2
+    },
+    "pallets/itsdangerous": {
+      "tasks": 3,
+      "control": 2,
+      "old_harness2": 3,
+      "new_harness2": 2
+    },
+    "pytoolz/toolz": {
+      "tasks": 6,
+      "control": 6,
+      "old_harness2": 6,
+      "new_harness2": 6
+    },
+    "mahmoud/boltons": {
+      "tasks": 7,
+      "control": 2,
+      "old_harness2": 3,
+      "new_harness2": 2
+    },
+    "more-itertools/more-itertools": {
+      "tasks": 24,
+      "control": 12,
+      "old_harness2": 13,
+      "new_harness2": 13
+    }
+  },
+  "limitations": [
+    "Provider warnings confirm truncation, not which exact portions were retained.",
+    "Overlapping timestamps are corroborating evidence, not unique request identifiers.",
+    "No causal estimate separates prompt changes, repeated sampling and public selection.",
+    "Independent results cover hand-authored Target/Controls, not entire upstream suites.",
+    "Historical controls reused; no equal-compute or held-out generalization claim."
+  ],
+  "remote_langfuse_all_generation_receipts_verified": false,
+  "verification": {
+    "fifty_graded_rows": true,
+    "independent_results_reconcile": true,
+    "all_ppc_complete": true,
+    "calls_reconcile": true,
+    "phase_calls_reconcile": true,
+    "known_native_tokens_reconcile": true,
+    "known_unknown_calls_reconcile": true,
+    "feedback_requests_reconcile": true,
+    "feedback_rejections_reconcile": true,
+    "feedback_terminals_reconcile": true,
+    "failures_reconcile": true,
+    "selection_outcomes_reconcile": true,
+    "all_post_apply_checks_unreadable_runner": true,
+    "shared_historical_runner_problem": true,
+    "frozen_execution_code_unchanged": true,
+    "original_inputs_unchanged": true,
+    "native_trace_hashes_match": true,
+    "launch_packet_unchanged": true
+  },
+  "next_priority": [
+    "sandbox runner transport and error classification",
+    "feedback context and patch schema",
+    "small mechanism acceptance before full rerun"
+  ]
+}

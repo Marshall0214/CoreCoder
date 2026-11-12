@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "model_calls": 0,
+  "controller_python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "controller_did_not_import_model_sdk": true,
+  "candidate_selection": {
+    "policy": "public-preserve-v1",
+    "official_label": null,
+    "chosen_label": "base1",
+    "chosen_folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+    "candidates": {
+      "base1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1\\feedback\\rounds\\001\\validation\\report.json"
+      },
+      "inv1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\rounds\\001\\validation\\report.json"
+      },
+      "dom1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1\\feedback\\rounds\\001\\validation\\report.json"
+      }
+    },
+    "independent_grading_used": false,
+    "model_calls": 0,
+    "changed_delivery": true,
+    "not_upstream_selector_vote": true
+  },
+  "review_files": 16,
+  "public_candidate_summaries": 3,
+  "manifest_sha256": "00822b263d539f7ab474235a2ad8bc3c48473fecbbf3e238a19f2fe4e28e6b02"
+}

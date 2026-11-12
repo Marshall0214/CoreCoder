@@ -1,0 +1,6 @@
+{
+  "instance_id": "boltons-chunked-bytes",
+  "repo": "mahmoud/boltons",
+  "base_commit": "source-sha256:a3d91943feb864ea516075f516a2d70b2f384bcb6984916caace32f04816f394",
+  "problem_statement": "chunked_iter must chunk Python 3 bytes into bytes segments, including the final short segment. Preserve strings and sequence chunking."
+}

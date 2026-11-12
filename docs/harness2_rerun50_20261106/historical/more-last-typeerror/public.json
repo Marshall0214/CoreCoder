@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-last-typeerror",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:6d2ae4652507bea24bec897b31a56f42152e4e99e55b986466131bc1f8f7a293",
+  "problem_statement": "last must propagate TypeError from a user-defined reversed implementation, including when a default is supplied. Preserve default handling for empty iterables and ordinary last items."
+}

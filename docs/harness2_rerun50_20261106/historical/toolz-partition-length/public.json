@@ -1,0 +1,6 @@
+{
+  "instance_id": "toolz-partition-length",
+  "repo": "pytoolz/toolz",
+  "base_commit": "source-sha256:7519d51250b15d191d4c52b625b8ccf1fd927dcdb8b734239fb5bec1648fcbe0",
+  "problem_statement": "partition_all must raise LookupError if a sequence reports a length inconsistent with its contents instead of emitting padding or dropping values. Preserve correct lists and iterators."
+}

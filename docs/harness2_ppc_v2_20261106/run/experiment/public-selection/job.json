@@ -1,0 +1,33 @@
+{
+  "kind": "public-selection",
+  "rollouts": [
+    {
+      "label": "base1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+    },
+    {
+      "label": "dom1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+    },
+    {
+      "label": "inv1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+    },
+    {
+      "label": "agg1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1"
+    }
+  ],
+  "official_label": "agg1",
+  "public_hash": "91ab891d3de64f05940f263289623e32b7aa560e0917c2e9982314ed5d11a7b5",
+  "source_hash": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+  "config": {
+    "checks": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\toolz-join-unmatched\\public",
+    "package": "toolz",
+    "max_feedback_rounds": 20,
+    "timeout": 1200,
+    "files": {
+      "test_admission.py": "2f43c5fa8c35bd0be04d842158264a5c6c82d0b3093f663860a7d74f3c691d07"
+    }
+  }
+}

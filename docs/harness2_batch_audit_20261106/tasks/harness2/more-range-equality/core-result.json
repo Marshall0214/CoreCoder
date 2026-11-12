@@ -1,0 +1,17 @@
+{
+  "domain": "python-repair",
+  "n_tasks": 1,
+  "seed": null,
+  "done": 0,
+  "failed": 1,
+  "tasks": [
+    {
+      "task": "more-range-equality",
+      "status": "partial",
+      "error": "agg: RuntimeError: Local bridge worker failed: D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-range-equality\\editors\\call-001\\worker.log",
+      "library_entries_before": {
+        "agg": 0
+      }
+    }
+  ]
+}

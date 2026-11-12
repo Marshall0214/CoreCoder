@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 652, in <module>
+    main()
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 638, in main
+    worker(path)
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 164, in worker
+    validate_editor(value,job['label'],job.get('context_enabled',False))
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 56, in validate_editor
+    validate_harness(value['files'], context_enabled)
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 38, in validate_harness
+    raise ValueError('Only declared guidance/config files, at most 4000 characters each, are editable')
+ValueError: Only declared guidance/config files, at most 4000 characters each, are editable

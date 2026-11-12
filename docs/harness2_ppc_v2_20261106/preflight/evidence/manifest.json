@@ -1,0 +1,1007 @@
+{
+  "schema": "public-editor-evidence-v2",
+  "files": {
+    "e0001": {
+      "id": "e0001",
+      "path": "decisions/dom1.md",
+      "sha256": "2fc23f7b64b1e635d4938171e40c064b58b4f564acb01b904b6d310f62bda00a",
+      "characters": 650,
+      "bytes": 652,
+      "storage": "e0001.txt",
+      "alias_of": null
+    },
+    "e0002": {
+      "id": "e0002",
+      "path": "decisions/inv1.md",
+      "sha256": "5c3eed89e703118a067589759fa3667948d7a58757c428dee6e74321a49e5356",
+      "characters": 843,
+      "bytes": 843,
+      "storage": "e0002.txt",
+      "alias_of": null
+    },
+    "e0003": {
+      "id": "e0003",
+      "path": "deliverables/base1/candidate.diff.txt",
+      "sha256": "16fd6864632dab8186ed9b920ae7c38fb797c84086ba54607c5d22bf82394aab",
+      "characters": 364,
+      "bytes": 364,
+      "storage": "e0003.txt",
+      "alias_of": null
+    },
+    "e0004": {
+      "id": "e0004",
+      "path": "deliverables/base1/INDEX.md",
+      "sha256": "171030f550952bec28e5f201b1ab56d6ae6b907b03f7da983ce9d8e148c8f531",
+      "characters": 406,
+      "bytes": 406,
+      "storage": "e0004.txt",
+      "alias_of": null
+    },
+    "e0005": {
+      "id": "e0005",
+      "path": "harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+      "characters": 96,
+      "bytes": 96,
+      "storage": "e0005.txt",
+      "alias_of": null
+    },
+    "e0006": {
+      "id": "e0006",
+      "path": "harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "characters": 0,
+      "bytes": 0,
+      "storage": "e0006.txt",
+      "alias_of": null
+    },
+    "e0007": {
+      "id": "e0007",
+      "path": "harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "characters": 0,
+      "bytes": 0,
+      "storage": "e0006.txt",
+      "alias_of": "e0006"
+    },
+    "e0008": {
+      "id": "e0008",
+      "path": "pool/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b",
+      "characters": 93,
+      "bytes": 93,
+      "storage": "e0008.txt",
+      "alias_of": null
+    },
+    "e0009": {
+      "id": "e0009",
+      "path": "pool/dom1/harness/systemprompt.md",
+      "sha256": "3e3b1d8340bcccb9073c6dacd5f2f26d3c242efcc2bc310e26a7d231d8103f14",
+      "characters": 1322,
+      "bytes": 1322,
+      "storage": "e0009.txt",
+      "alias_of": null
+    },
+    "e0010": {
+      "id": "e0010",
+      "path": "pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "d08bd6c3bed528470c44f6d5cbbdb0550079b69e3e8a260830b8900621658bf8",
+      "characters": 1350,
+      "bytes": 1352,
+      "storage": "e0010.txt",
+      "alias_of": null
+    },
+    "e0011": {
+      "id": "e0011",
+      "path": "pool/dom1/harness.diff",
+      "sha256": "336f194ae7432ce7c59b8f5f8b4b084e66895f11ef9fa85472394e301024e6b5",
+      "characters": 3187,
+      "bytes": 3189,
+      "storage": "e0011.txt",
+      "alias_of": null
+    },
+    "e0012": {
+      "id": "e0012",
+      "path": "pool/dom1/produced.md",
+      "sha256": "16fd6864632dab8186ed9b920ae7c38fb797c84086ba54607c5d22bf82394aab",
+      "characters": 364,
+      "bytes": 364,
+      "storage": "e0003.txt",
+      "alias_of": "e0003"
+    },
+    "e0013": {
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "277c11c01cc5f00ac520a8d9667603093fd3ab23bdd06ca7e8d7c34286ec2c9a",
+      "characters": 65595,
+      "bytes": 65595,
+      "storage": "e0013.txt",
+      "alias_of": null,
+      "events": [
+        {
+          "offset": 0,
+          "length": 99,
+          "kind": "ACTION",
+          "step": 1,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 99,
+          "length": 152,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 251,
+          "length": 120,
+          "kind": "ACTION",
+          "step": 2,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 371,
+          "length": 162,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 533,
+          "length": 103,
+          "kind": "ACTION",
+          "step": 3,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 636,
+          "length": 6472,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 7108,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 4,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 7213,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 13702,
+          "length": 121,
+          "kind": "ACTION",
+          "step": 5,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "800"
+          }
+        },
+        {
+          "offset": 13823,
+          "length": 162,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 13985,
+          "length": 106,
+          "kind": "ACTION",
+          "step": 6,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "2000"
+          }
+        },
+        {
+          "offset": 14091,
+          "length": 6523,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 20614,
+          "length": 106,
+          "kind": "ACTION",
+          "step": 7,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "8000"
+          }
+        },
+        {
+          "offset": 20720,
+          "length": 6585,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 27305,
+          "length": 99,
+          "kind": "ACTION",
+          "step": 8,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 27404,
+          "length": 152,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 27556,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 9,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "900"
+          }
+        },
+        {
+          "offset": 27661,
+          "length": 6485,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 34146,
+          "length": 122,
+          "kind": "ACTION",
+          "step": 10,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 34268,
+          "length": 162,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 34430,
+          "length": 106,
+          "kind": "ACTION",
+          "step": 11,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 34536,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 41025,
+          "length": 107,
+          "kind": "ACTION",
+          "step": 12,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "8000"
+          }
+        },
+        {
+          "offset": 41132,
+          "length": 6585,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 47717,
+          "length": 122,
+          "kind": "ACTION",
+          "step": 13,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "900"
+          }
+        },
+        {
+          "offset": 47839,
+          "length": 162,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 48001,
+          "length": 106,
+          "kind": "ACTION",
+          "step": 14,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 48107,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 54596,
+          "length": 100,
+          "kind": "ACTION",
+          "step": 15,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 54696,
+          "length": 152,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 54848,
+          "length": 107,
+          "kind": "ACTION",
+          "step": 16,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "9000"
+          }
+        },
+        {
+          "offset": 54955,
+          "length": 6525,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 61480,
+          "length": 122,
+          "kind": "ACTION",
+          "step": 17,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 61602,
+          "length": 162,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 61764,
+          "length": 106,
+          "kind": "ACTION",
+          "step": 18,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 61870,
+          "length": 39,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 61909,
+          "length": 507,
+          "kind": "PUBLIC FEEDBACK RESULT",
+          "status": "ready_for_review",
+          "accepted": true,
+          "feedback_rounds_attempted": 1
+        },
+        {
+          "offset": 62416,
+          "length": 3179,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false
+        }
+      ],
+      "public_terminal": {
+        "status": "ready_for_review",
+        "accepted": true,
+        "feedback_rounds_attempted": 1
+      }
+    },
+    "e0014": {
+      "id": "e0014",
+      "path": "pool/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b",
+      "characters": 93,
+      "bytes": 93,
+      "storage": "e0008.txt",
+      "alias_of": "e0008"
+    },
+    "e0015": {
+      "id": "e0015",
+      "path": "pool/inv1/harness/systemprompt.md",
+      "sha256": "e0360419b231d2641d97dc7c2abd37000ae3c6244eb4363d079f5453ff3314d0",
+      "characters": 558,
+      "bytes": 558,
+      "storage": "e0015.txt",
+      "alias_of": null
+    },
+    "e0016": {
+      "id": "e0016",
+      "path": "pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "11b59356b96a8a16876a4b39e1fc092b70360ef9eb65bd9224997df19534011b",
+      "characters": 342,
+      "bytes": 342,
+      "storage": "e0016.txt",
+      "alias_of": null
+    },
+    "e0017": {
+      "id": "e0017",
+      "path": "pool/inv1/harness.diff",
+      "sha256": "5c94e479d64fc2aed8d64c2e1c3e6cadabf516146679d8d40aa8e72424cca815",
+      "characters": 1357,
+      "bytes": 1357,
+      "storage": "e0017.txt",
+      "alias_of": null
+    },
+    "e0018": {
+      "id": "e0018",
+      "path": "pool/inv1/produced.md",
+      "sha256": "16fd6864632dab8186ed9b920ae7c38fb797c84086ba54607c5d22bf82394aab",
+      "characters": 364,
+      "bytes": 364,
+      "storage": "e0003.txt",
+      "alias_of": "e0003"
+    },
+    "e0019": {
+      "id": "e0019",
+      "path": "pool/inv1/rollout.md",
+      "sha256": "101d38959fed55124a1b2d455195621a8d914354f44105db54153c0c399a5f1d",
+      "characters": 50224,
+      "bytes": 50224,
+      "storage": "e0019.txt",
+      "alias_of": null,
+      "events": [
+        {
+          "offset": 0,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 1,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "900"
+          }
+        },
+        {
+          "offset": 105,
+          "length": 6485,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 6590,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 2,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "910"
+          }
+        },
+        {
+          "offset": 6695,
+          "length": 6486,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 13181,
+          "length": 99,
+          "kind": "ACTION",
+          "step": 3,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 13280,
+          "length": 152,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 13432,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 4,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 13537,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 20026,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 5,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "900"
+          }
+        },
+        {
+          "offset": 20131,
+          "length": 6485,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 26616,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 6,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 26721,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 33210,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 7,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "900"
+          }
+        },
+        {
+          "offset": 33315,
+          "length": 6485,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 39800,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 8,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "813"
+          }
+        },
+        {
+          "offset": 39905,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 46394,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 9,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "900"
+          }
+        },
+        {
+          "offset": 46499,
+          "length": 39,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 46538,
+          "length": 507,
+          "kind": "PUBLIC FEEDBACK RESULT",
+          "status": "ready_for_review",
+          "accepted": true,
+          "feedback_rounds_attempted": 1
+        },
+        {
+          "offset": 47045,
+          "length": 3179,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false
+        }
+      ],
+      "public_terminal": {
+        "status": "ready_for_review",
+        "accepted": true,
+        "feedback_rounds_attempted": 1
+      }
+    },
+    "e0020": {
+      "id": "e0020",
+      "path": "rollouts/base1.md",
+      "sha256": "56f486257733d731e0b6dd97a9033a084b1606c9b1e079c104a1ea57c572e59a",
+      "characters": 31923,
+      "bytes": 31923,
+      "storage": "e0020.txt",
+      "alias_of": null,
+      "events": [
+        {
+          "offset": 0,
+          "length": 93,
+          "kind": "ACTION",
+          "step": 1,
+          "action": "list_files",
+          "location": {
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 93,
+          "length": 1392,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 1485,
+          "length": 103,
+          "kind": "ACTION",
+          "step": 2,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 1588,
+          "length": 6472,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 8060,
+          "length": 99,
+          "kind": "ACTION",
+          "step": 3,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 8159,
+          "length": 152,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 8311,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 4,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "800"
+          }
+        },
+        {
+          "offset": 8416,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 14905,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 5,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "800"
+          }
+        },
+        {
+          "offset": 15010,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 21499,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 6,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "800"
+          }
+        },
+        {
+          "offset": 21604,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 28093,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 7,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "800"
+          }
+        },
+        {
+          "offset": 28198,
+          "length": 39,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 28237,
+          "length": 507,
+          "kind": "PUBLIC FEEDBACK RESULT",
+          "status": "ready_for_review",
+          "accepted": true,
+          "feedback_rounds_attempted": 1
+        },
+        {
+          "offset": 28744,
+          "length": 3179,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false
+        }
+      ],
+      "public_terminal": {
+        "status": "ready_for_review",
+        "accepted": true,
+        "feedback_rounds_attempted": 1
+      }
+    },
+    "e0021": {
+      "id": "e0021",
+      "path": "task.md",
+      "sha256": "a59197c651480cab8890666c07fca094b8ac15e83bc80efe4b75619cbf0cd9bf",
+      "characters": 146,
+      "bytes": 146,
+      "storage": "e0021.txt",
+      "alias_of": null
+    }
+  },
+  "inline": {
+    "harness/context_policy.json": "{\"version\": 1, \"deduplicate_reads\": false, \"complete_symbols_first\": false, \"read_index\": false}",
+    "harness/systemprompt.md": "",
+    "harness/tool_descriptions/tool_guidance.md": "",
+    "task.md": "join must yield unmatched left rows with right_default for a left outer join, without a NameError. Preserve matched rows and ordinary inner joins."
+  },
+  "review_packet": {
+    "short_files": [
+      {
+        "id": "e0001",
+        "path": "decisions/dom1.md",
+        "sha256": "2fc23f7b64b1e635d4938171e40c064b58b4f564acb01b904b6d310f62bda00a",
+        "characters": 650,
+        "content": "Evidence from rollouts/base1.md (offset 30000) shows the exact failure: NameError at line 918 in toolz/itertoolz.py where &#x27;iteritems&#x27; is undefined. The task requires fixing this while preserving matched rows and ensuring unmatched left rows get right_default. The base harness files were empty, so I created minimal but complete guidance that encodes the verified workspace fact (iteritems → items at line 918) and the decision rules for validation. No skills needed since this is a straightforward defect fix with clear evidence. context_policy.json updated to enable deduplicate_reads, complete_symbols_first, and read_index as specified.",
+        "complete_file": true
+      },
+      {
+        "id": "e0002",
+        "path": "decisions/inv1.md",
+        "sha256": "5c3eed89e703118a067589759fa3667948d7a58757c428dee6e74321a49e5356",
+        "characters": 843,
+        "content": "The base rollout (base1.md) shows the agent repeatedly reading `toolz/itertoolz.py` at offset 800 (steps 4-7), but failing to identify that `iteritems` is undefined in Python 3. The public validation fails with NameError: name &#x27;iteritems&#x27; is not defined at line 918. The candidate.diff.txt shows the correct fix: replacing `iteritems(d)` with `d.items()`. \r\n\r\nThe systemprompt.md now encodes this verified workspace fact directly: the defect location, the undefined name, and the exact fix. This prevents future agents from rediscovering what is already known.\r\n\r\nThe tool_guidance.md adds a specific rule about `iteritems` being Python 2-only, which addresses the root cause of the error.\r\n\r\ncontext_policy.json is updated to enable deduplicate_reads, complete_symbols_first, and read_index as specified in the mission requirements.",
+        "complete_file": true
+      },
+      {
+        "id": "e0003",
+        "path": "deliverables/base1/candidate.diff.txt",
+        "sha256": "16fd6864632dab8186ed9b920ae7c38fb797c84086ba54607c5d22bf82394aab",
+        "characters": 364,
+        "content": "--- a/toolz/itertoolz.py\r\n+++ b/toolz/itertoolz.py\r\n@@ -915,7 +915,7 @@\r\n                 else:\r\n                     yield (left_default, item)\r\n \r\n-        for key, matches in iteritems(d):\r\n+        for key, matches in d.items():\r\n             if key not in seen_keys:\r\n                 for match in matches:\r\n                     yield (match, right_default)\r\n",
+        "complete_file": true
+      },
+      {
+        "id": "e0005",
+        "path": "harness/context_policy.json",
+        "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+        "characters": 96,
+        "content": "{\"version\": 1, \"deduplicate_reads\": false, \"complete_symbols_first\": false, \"read_index\": false}",
+        "complete_file": true
+      },
+      {
+        "id": "e0006",
+        "path": "harness/systemprompt.md",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "characters": 0,
+        "content": "",
+        "complete_file": true
+      },
+      {
+        "id": "e0007",
+        "path": "harness/tool_descriptions/tool_guidance.md",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "characters": 0,
+        "content_alias_of": "e0006",
+        "complete_file": true
+      },
+      {
+        "id": "e0008",
+        "path": "pool/dom1/harness/context_policy.json",
+        "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b",
+        "characters": 93,
+        "content": "{\"version\": 1, \"deduplicate_reads\": true, \"complete_symbols_first\": true, \"read_index\": true}",
+        "complete_file": true
+      },
+      {
+        "id": "e0009",
+        "path": "pool/dom1/harness/systemprompt.md",
+        "sha256": "3e3b1d8340bcccb9073c6dacd5f2f26d3c242efcc2bc310e26a7d231d8103f14",
+        "characters": 1322,
+        "content": "You are a Python developer fixing defects in the toolz library.\r\n\r\n# CORE PRINCIPLES\r\n\r\n- **Evidence-first**: Only change what trajectory evidence shows is broken. Cite the specific moment.\r\n- **No invention**: Never invent an authority, identifier, standard or citation. Point to authorized sources.\r\n- **Deliverable shape**: The task defines the output shape; never add columns, rename headers, or embed reasoning in artifacts.\r\n\r\n# WORKSPACE FACTS (verified for this task)\r\n\r\nIn this workspace:\r\n- The `join` function in `toolz/itertoolz.py` uses `iteritems` at line 918, which is undefined in Python 3 (should be `items`).\r\n- A left outer join must yield unmatched left rows with `right_default`, without raising `NameError`.\r\n- Matched rows and ordinary inner joins must be preserved.\r\n\r\n# DECISION RULES\r\n\r\nBefore finishing, confirm:\r\n1. The fix addresses the exact error shown in trajectories (e.g., `NameError: name 'iteritems' is not defined`).\r\n2. The solution preserves existing behavior for matched rows and inner joins.\r\n3. Unmatched left rows receive `right_default` as specified.\r\n\r\n# TOOL USAGE\r\n\r\n- Use `read_file` with exact offsets to inspect source code.\r\n- Use `search` to locate function definitions before editing.\r\n- Verify fixes by checking that tests pass without introducing new static findings.",
+        "complete_file": true
+      },
+      {
+        "id": "e0010",
+        "path": "pool/dom1/harness/tool_descriptions/tool_guidance.md",
+        "sha256": "d08bd6c3bed528470c44f6d5cbbdb0550079b69e3e8a260830b8900621658bf8",
+        "characters": 1350,
+        "content": "# Tool Guidance for Python Defect Repair\r\n\r\n## read_file\r\n\r\n**When to use**: Inspecting source files, understanding function implementations, locating error sites.\r\n\r\n**Best practices**:\r\n- Always specify exact `offset` and `length` parameters.\r\n- For large files, read in chunks (max 6000 characters per request).\r\n- Use the evidence index to find file IDs before reading.\r\n- Read complete function definitions when analyzing behavior.\r\n\r\n## search\r\n\r\n**When to use**: Locating specific functions, patterns, or error sites across the codebase.\r\n\r\n**Best practices**:\r\n- Use targeted search terms (function names, variable names, error messages).\r\n- Combine with `read_file` to inspect full context of matches.\r\n\r\n## write_file / edit_file\r\n\r\n**When to use**: Applying fixes after evidence-based analysis.\r\n\r\n**Best practices**:\r\n- Only modify what trajectory evidence shows is broken.\r\n- Preserve existing behavior for unaffected code paths.\r\n- Ensure the fix addresses the exact error (e.g., `NameError` → replace undefined name with correct one).\r\n\r\n## Validation Checklist\r\n\r\nBefore submitting:\r\n1. Does the fix resolve the specific error in the trajectory?\r\n2. Are matched rows and inner joins preserved?\r\n3. Do unmatched left rows receive `right_default`?\r\n4. No new static findings introduced (F821, F822, F823)?\r\n5. Tests pass without errors?",
+        "complete_file": true
+      },
+      {
+        "id": "e0011",
+        "path": "pool/dom1/harness.diff",
+        "sha256": "336f194ae7432ce7c59b8f5f8b4b084e66895f11ef9fa85472394e301024e6b5",
+        "characters": 3187,
+        "content": "--- current/context_policy.json\r\n+++ dom1/context_policy.json\r\n@@ -1 +1 @@\r\n-{\"version\": 1, \"deduplicate_reads\": false, \"complete_symbols_first\": false, \"read_index\": false}+{\"version\": 1, \"deduplicate_reads\": true, \"complete_symbols_first\": true, \"read_index\": true}--- current/systemprompt.md\r\n+++ dom1/systemprompt.md\r\n@@ -0,0 +1,27 @@\r\n+You are a Python developer fixing defects in the toolz library.\r\n+\r\n+# CORE PRINCIPLES\r\n+\r\n+- **Evidence-first**: Only change what trajectory evidence shows is broken. Cite the specific moment.\r\n+- **No invention**: Never invent an authority, identifier, standard or citation. Point to authorized sources.\r\n+- **Deliverable shape**: The task defines the output shape; never add columns, rename headers, or embed reasoning in artifacts.\r\n+\r\n+# WORKSPACE FACTS (verified for this task)\r\n+\r\n+In this workspace:\r\n+- The `join` function in `toolz/itertoolz.py` uses `iteritems` at line 918, which is undefined in Python 3 (should be `items`).\r\n+- A left outer join must yield unmatched left rows with `right_default`, without raising `NameError`.\r\n+- Matched rows and ordinary inner joins must be preserved.\r\n+\r\n+# DECISION RULES\r\n+\r\n+Before finishing, confirm:\r\n+1. The fix addresses the exact error shown in trajectories (e.g., `NameError: name 'iteritems' is not defined`).\r\n+2. The solution preserves existing behavior for matched rows and inner joins.\r\n+3. Unmatched left rows receive `right_default` as specified.\r\n+\r\n+# TOOL USAGE\r\n+\r\n+- Use `read_file` with exact offsets to inspect source code.\r\n+- Use `search` to locate function definitions before editing.\r\n+- Verify fixes by checking that tests pass without introducing new static findings.--- current/tool_descriptions/tool_guidance.md\r\n+++ dom1/tool_descriptions/tool_guidance.md\r\n@@ -0,0 +1,37 @@\r\n+# Tool Guidance for Python Defect Repair\r\n+\r\n+## read_file\r\n+\r\n+**When to use**: Inspecting source files, understanding function implementations, locating error sites.\r\n+\r\n+**Best practices**:\r\n+- Always specify exact `offset` and `length` parameters.\r\n+- For large files, read in chunks (max 6000 characters per request).\r\n+- Use the evidence index to find file IDs before reading.\r\n+- Read complete function definitions when analyzing behavior.\r\n+\r\n+## search\r\n+\r\n+**When to use**: Locating specific functions, patterns, or error sites across the codebase.\r\n+\r\n+**Best practices**:\r\n+- Use targeted search terms (function names, variable names, error messages).\r\n+- Combine with `read_file` to inspect full context of matches.\r\n+\r\n+## write_file / edit_file\r\n+\r\n+**When to use**: Applying fixes after evidence-based analysis.\r\n+\r\n+**Best practices**:\r\n+- Only modify what trajectory evidence shows is broken.\r\n+- Preserve existing behavior for unaffected code paths.\r\n+- Ensure the fix addresses the exact error (e.g., `NameError` → replace undefined name with correct one).\r\n+\r\n+## Validation Checklist\r\n+\r\n+Before submitting:\r\n+1. Does the fix resolve the specific error in the trajectory?\r\n+2. Are matched rows and inner joins preserved?\r\n+3. Do unmatched left rows receive `right_default`?\r\n+4. No new static findings introduced (F821, F822, F823)?\r\n+5. Tests pass without errors?",
+        "complete_file": true
+      },
+      {
+        "id": "e0012",
+        "path": "pool/dom1/produced.md",
+        "sha256": "16fd6864632dab8186ed9b920ae7c38fb797c84086ba54607c5d22bf82394aab",
+        "characters": 364,
+        "content_alias_of": "e0003",
+        "complete_file": true
+      },
+      {
+        "id": "e0014",
+        "path": "pool/inv1/harness/context_policy.json",
+        "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b",
+        "characters": 93,
+        "content_alias_of": "e0008",
+        "complete_file": true
+      },
+      {
+        "id": "e0015",
+        "path": "pool/inv1/harness/systemprompt.md",
+        "sha256": "e0360419b231d2641d97dc7c2abd37000ae3c6244eb4363d079f5453ff3314d0",
+        "characters": 558,
+        "content": "You are repairing a Python software defect. The task is to fix the `join` function in `toolz/itertoolz.py` so that it yields unmatched left rows with `right_default` for a left outer join, without raising a NameError.\r\n\r\nIn this workspace, the defect is at line 918 of `toolz/itertoolz.py`: the code uses `iteritems(d)` which is undefined in Python 3. The fix is to replace `iteritems(d)` with `d.items()`.\r\n\r\nPreserve matched rows and ordinary inner joins behavior. Do not change the deliverable shape; only fix the NameError so the function runs correctly.",
+        "complete_file": true
+      },
+      {
+        "id": "e0016",
+        "path": "pool/inv1/harness/tool_descriptions/tool_guidance.md",
+        "sha256": "11b59356b96a8a16876a4b39e1fc092b70360ef9eb65bd9224997df19534011b",
+        "characters": 342,
+        "content": "When editing Python files, ensure all names used are defined in the current scope. In this workspace, `iteritems` is a Python 2 construct that does not exist in Python 3; use `.items()` instead.\r\n\r\nBefore submitting a fix, verify that the change resolves the NameError by checking that the function can be called without raising an exception.",
+        "complete_file": true
+      },
+      {
+        "id": "e0017",
+        "path": "pool/inv1/harness.diff",
+        "sha256": "5c94e479d64fc2aed8d64c2e1c3e6cadabf516146679d8d40aa8e72424cca815",
+        "characters": 1357,
+        "content": "--- current/context_policy.json\r\n+++ inv1/context_policy.json\r\n@@ -1 +1 @@\r\n-{\"version\": 1, \"deduplicate_reads\": false, \"complete_symbols_first\": false, \"read_index\": false}+{\"version\": 1, \"deduplicate_reads\": true, \"complete_symbols_first\": true, \"read_index\": true}--- current/systemprompt.md\r\n+++ inv1/systemprompt.md\r\n@@ -0,0 +1,5 @@\r\n+You are repairing a Python software defect. The task is to fix the `join` function in `toolz/itertoolz.py` so that it yields unmatched left rows with `right_default` for a left outer join, without raising a NameError.\r\n+\r\n+In this workspace, the defect is at line 918 of `toolz/itertoolz.py`: the code uses `iteritems(d)` which is undefined in Python 3. The fix is to replace `iteritems(d)` with `d.items()`.\r\n+\r\n+Preserve matched rows and ordinary inner joins behavior. Do not change the deliverable shape; only fix the NameError so the function runs correctly.--- current/tool_descriptions/tool_guidance.md\r\n+++ inv1/tool_descriptions/tool_guidance.md\r\n@@ -0,0 +1,3 @@\r\n+When editing Python files, ensure all names used are defined in the current scope. In this workspace, `iteritems` is a Python 2 construct that does not exist in Python 3; use `.items()` instead.\r\n+\r\n+Before submitting a fix, verify that the change resolves the NameError by checking that the function can be called without raising an exception.",
+        "complete_file": true
+      },
+      {
+        "id": "e0018",
+        "path": "pool/inv1/produced.md",
+        "sha256": "16fd6864632dab8186ed9b920ae7c38fb797c84086ba54607c5d22bf82394aab",
+        "characters": 364,
+        "content_alias_of": "e0003",
+        "complete_file": true
+      }
+    ],
+    "candidates": [
+      {
+        "rollout_id": "e0013",
+        "path": "pool/dom1/rollout.md",
+        "sha256": "277c11c01cc5f00ac520a8d9667603093fd3ab23bdd06ca7e8d7c34286ec2c9a",
+        "public_terminal": {
+          "status": "ready_for_review",
+          "accepted": true,
+          "feedback_rounds_attempted": 1
+        },
+        "action_counts": {
+          "search": 3,
+          "read_file": 15
+        },
+        "terminal_events": [
+          {
+            "offset": 61909,
+            "length": 507,
+            "kind": "PUBLIC FEEDBACK RESULT",
+            "status": "ready_for_review",
+            "accepted": true,
+            "feedback_rounds_attempted": 1
+          }
+        ]
+      },
+      {
+        "rollout_id": "e0019",
+        "path": "pool/inv1/rollout.md",
+        "sha256": "101d38959fed55124a1b2d455195621a8d914354f44105db54153c0c399a5f1d",
+        "public_terminal": {
+          "status": "ready_for_review",
+          "accepted": true,
+          "feedback_rounds_attempted": 1
+        },
+        "action_counts": {
+          "read_file": 8,
+          "search": 1
+        },
+        "terminal_events": [
+          {
+            "offset": 46538,
+            "length": 507,
+            "kind": "PUBLIC FEEDBACK RESULT",
+            "status": "ready_for_review",
+            "accepted": true,
+            "feedback_rounds_attempted": 1
+          }
+        ]
+      },
+      {
+        "rollout_id": "e0020",
+        "path": "rollouts/base1.md",
+        "sha256": "56f486257733d731e0b6dd97a9033a084b1606c9b1e079c104a1ea57c572e59a",
+        "public_terminal": {
+          "status": "ready_for_review",
+          "accepted": true,
+          "feedback_rounds_attempted": 1
+        },
+        "action_counts": {
+          "list_files": 1,
+          "read_file": 5,
+          "search": 1
+        },
+        "terminal_events": [
+          {
+            "offset": 28237,
+            "length": 507,
+            "kind": "PUBLIC FEEDBACK RESULT",
+            "status": "ready_for_review",
+            "accepted": true,
+            "feedback_rounds_attempted": 1
+          }
+        ]
+      }
+    ],
+    "independent_correctness_established": false,
+    "source": "exact public files and mechanical event fields"
+  },
+  "source_export_accessible": false,
+  "independent_grading_accessible": false,
+  "page_characters": 6000,
+  "offset_unit": "Unicode characters; zero-based"
+}

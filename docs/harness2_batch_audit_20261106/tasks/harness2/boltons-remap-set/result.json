@@ -1,0 +1,93 @@
+{
+  "status": "agent_error",
+  "arm": "harness2",
+  "task_id": "boltons-remap-set",
+  "strategy_search": true,
+  "independent_grading_available": false,
+  "error_type": "ValueError",
+  "error": "No officially adopted final candidate; do not select using independent scores",
+  "seconds": 1568.594,
+  "rollouts": [
+    {
+      "label": "base1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\base1"
+    },
+    {
+      "label": "inv1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\inv1"
+    },
+    {
+      "label": "dom1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\dom1"
+    }
+  ],
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 7,
+        "tokens": 30909,
+        "reused": false,
+        "trace_id": "5180658e3bd8210c9feac5462222aada",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": null,
+        "reused": false,
+        "trace_id": "60c3d139655896f8ea69d35771537dbb",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\base1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 20,
+        "tokens": 137695,
+        "reused": false,
+        "trace_id": "37a5ce9c8ac7dac693453b9c6157f1bf",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\dom1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 20,
+        "tokens": 661707,
+        "reused": false,
+        "trace_id": "8d7ec924ba8da9753a255087f89d0710",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\dom1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 17,
+        "tokens": 126278,
+        "reused": false,
+        "trace_id": "9ed5b63aca352771b75c62b858fb8bcc",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\inv1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 20,
+        "tokens": 661707,
+        "reused": false,
+        "trace_id": "45151934eeabf8a1884a0922126e40f0",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\inv1"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 16629,
+        "trace_id": "745524c891b48faada1a18a7128e9dbf",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\editors\\call-001"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 17296,
+        "trace_id": "2e6b50cda68562bac858da5a98b24ea0",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\editors\\call-002"
+      }
+    ],
+    "fresh_model_calls": 87,
+    "tokens": null,
+    "known_tokens_minimum": 1652221
+  }
+}

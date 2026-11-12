@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "D:\project_other\CoreCoder\sandbox\runner.py", line 48, in preflight
+    info = json.loads(control(['info', '--format', '{{json .OSType}}']))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\sandbox\runner.py", line 41, in control
+    raise SandboxError('sandbox_control_failed')
+sandbox.runner.SandboxError: sandbox_control_failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 652, in <module>
+    main()
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 638, in main
+    worker(path)
+  File "D:\project_other\CoreCoder\integrations\harness2.py", line 198, in worker
+    current = runner.preflight()
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\project_other\CoreCoder\sandbox\runner.py", line 50, in preflight
+    raise SandboxError('sandbox_unavailable') from exc
+sandbox.runner.SandboxError: sandbox_unavailable

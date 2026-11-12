@@ -1,0 +1,206 @@
+{
+  "model_calls": 0,
+  "phases": [
+    {
+      "phase": "candidate",
+      "fresh_model_calls": 10,
+      "tokens": 63175,
+      "reused": false,
+      "trace_id": "31fa04e246332861ec2cdddc5c4471d7",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1",
+      "receipt": {
+        "trace_id": "31fa04e246332861ec2cdddc5c4471d7",
+        "generation_count": 10,
+        "usage_status": "known",
+        "prompt_tokens": 62931,
+        "completion_tokens": 244,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "feedback",
+      "fresh_model_calls": 1,
+      "tokens": 41128,
+      "reused": false,
+      "trace_id": "4dfd722a753dd614556627957a7041e0",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1",
+      "receipt": {
+        "trace_id": "4dfd722a753dd614556627957a7041e0",
+        "generation_count": 1,
+        "usage_status": "known",
+        "prompt_tokens": 41085,
+        "completion_tokens": 43,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "candidate",
+      "fresh_model_calls": 7,
+      "tokens": 25600,
+      "reused": false,
+      "trace_id": "90ca76204ea9ed63370d84ab42c929de",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+      "receipt": {
+        "trace_id": "90ca76204ea9ed63370d84ab42c929de",
+        "generation_count": 7,
+        "usage_status": "known",
+        "prompt_tokens": 25435,
+        "completion_tokens": 165,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "feedback",
+      "fresh_model_calls": 1,
+      "tokens": 38621,
+      "reused": false,
+      "trace_id": "b8c1a120321f64b44693b2105058ab1d",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+      "receipt": {
+        "trace_id": "b8c1a120321f64b44693b2105058ab1d",
+        "generation_count": 1,
+        "usage_status": "known",
+        "prompt_tokens": 38578,
+        "completion_tokens": 43,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "candidate",
+      "fresh_model_calls": 6,
+      "tokens": 25841,
+      "reused": false,
+      "trace_id": "39b2954ea287e6161730844c615e9070",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1",
+      "receipt": {
+        "trace_id": "39b2954ea287e6161730844c615e9070",
+        "generation_count": 6,
+        "usage_status": "known",
+        "prompt_tokens": 25692,
+        "completion_tokens": 149,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "feedback",
+      "fresh_model_calls": 1,
+      "tokens": 39213,
+      "reused": false,
+      "trace_id": "ae6a96b6d89344118253ef3949fd291c",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1",
+      "receipt": {
+        "trace_id": "ae6a96b6d89344118253ef3949fd291c",
+        "generation_count": 1,
+        "usage_status": "known",
+        "prompt_tokens": 39170,
+        "completion_tokens": 43,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "candidate",
+      "fresh_model_calls": 8,
+      "tokens": 47773,
+      "reused": false,
+      "trace_id": "d58da18b4cd902ca8c40d4a21c5a97c4",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1",
+      "receipt": {
+        "trace_id": "d58da18b4cd902ca8c40d4a21c5a97c4",
+        "generation_count": 8,
+        "usage_status": "known",
+        "prompt_tokens": 47568,
+        "completion_tokens": 205,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "feedback",
+      "fresh_model_calls": 1,
+      "tokens": 40839,
+      "reused": false,
+      "trace_id": "c5134162d69f73216dc20fce9f463159",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1",
+      "receipt": {
+        "trace_id": "c5134162d69f73216dc20fce9f463159",
+        "generation_count": 1,
+        "usage_status": "known",
+        "prompt_tokens": 40796,
+        "completion_tokens": 43,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "editor",
+      "fresh_model_calls": 11,
+      "tokens": 92070,
+      "trace_id": "f8b16c2199eaae9b36ce78684c377b70",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\editors\\call-001",
+      "receipt": {
+        "trace_id": "f8b16c2199eaae9b36ce78684c377b70",
+        "generation_count": 11,
+        "usage_status": "known",
+        "prompt_tokens": 91251,
+        "completion_tokens": 819,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "editor",
+      "fresh_model_calls": 2,
+      "tokens": 14619,
+      "trace_id": "630c6c4db07b40df7f55f5bd6036a13d",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\editors\\call-002",
+      "receipt": {
+        "trace_id": "630c6c4db07b40df7f55f5bd6036a13d",
+        "generation_count": 2,
+        "usage_status": "known",
+        "prompt_tokens": 13761,
+        "completion_tokens": 858,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "editor",
+      "fresh_model_calls": 4,
+      "tokens": 60113,
+      "trace_id": "c5aaed573d96ddc6c3279eb106438639",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\editors\\call-003",
+      "receipt": {
+        "trace_id": "c5aaed573d96ddc6c3279eb106438639",
+        "generation_count": 4,
+        "usage_status": "known",
+        "prompt_tokens": 59203,
+        "completion_tokens": 910,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    },
+    {
+      "phase": "editor",
+      "fresh_model_calls": 4,
+      "tokens": 84470,
+      "trace_id": "e2a0514dd4189ea2342f7ffb93addd65",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\editors\\call-004",
+      "receipt": {
+        "trace_id": "e2a0514dd4189ea2342f7ffb93addd65",
+        "generation_count": 4,
+        "usage_status": "known",
+        "prompt_tokens": 84365,
+        "completion_tokens": 105,
+        "all_operations_ended": true
+      },
+      "per_call_usage_verified": true
+    }
+  ],
+  "all_confirmed": true
+}

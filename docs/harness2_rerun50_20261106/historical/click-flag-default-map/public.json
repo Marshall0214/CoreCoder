@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-flag-default-map",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:678ca7b1f70a40d63da6e24fdd3dfd19f1c713602e78565516abe6c4eb71282e",
+  "problem_statement": "When default_map overrides a dual boolean flag, help output must display the effective default flag rather than the decorator default. Actual invocation and help must agree."
+}

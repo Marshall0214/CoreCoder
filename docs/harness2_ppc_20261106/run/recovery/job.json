@@ -1,0 +1,277 @@
+{
+  "kind": "grade",
+  "case": {
+    "task_id": "toolz-join-unmatched",
+    "repo": "pytoolz/toolz",
+    "before_commit": "85326bd35bd9bdda25287fffc3f0dff3fea30ab4",
+    "after_commit": "80ae19783d10852619d435253cfc2e052be7a73c",
+    "package": "toolz",
+    "source_root": ".",
+    "description": "join must yield unmatched left rows with right_default for a left outer join, without a NameError. Preserve matched rows and ordinary inner joins.",
+    "upstream_url": "https://github.com/pytoolz/toolz/commit/80ae19783d10852619d435253cfc2e052be7a73c",
+    "changed_source_files": [
+      "toolz/itertoolz.py"
+    ],
+    "split": "development",
+    "provenance": "Author reviewed public upstream patch to construct tests; heldout is held out from strategy tuning, not from task constructor. Pretraining contamination unknown.",
+    "before": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\expanded-admission-v1-certified-v2\\toolz-join-unmatched\\before",
+    "after": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\expanded-admission-v1-certified-v2\\toolz-join-unmatched\\after",
+    "checks": "D:\\project_other\\CoreCoder\\docs\\experiments\\expanded_suite_v1\\checks\\toolz-join-unmatched",
+    "allowed_files": [
+      "toolz/__init__.py",
+      "toolz/_signatures.py",
+      "toolz/compatibility.py",
+      "toolz/curried/__init__.py",
+      "toolz/curried/exceptions.py",
+      "toolz/curried/operator.py",
+      "toolz/dicttoolz.py",
+      "toolz/functoolz.py",
+      "toolz/itertoolz.py",
+      "toolz/recipes.py",
+      "toolz/sandbox/__init__.py",
+      "toolz/sandbox/core.py",
+      "toolz/sandbox/parallel.py",
+      "toolz/utils.py"
+    ],
+    "previously_inspected": false,
+    "admitted": true,
+    "admission": {
+      "before": {
+        "Target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1021,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Controls": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1047,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "after": {
+        "Target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1024,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        },
+        "Controls": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1042,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      }
+    },
+    "before_hash": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+    "after_hash": "6fa6bd1ec8845c57f7e9b300135abb99e1923d1958a72e8f1c4c4597aa5789ff",
+    "checks_hash": "b4467ab66cf90ffea9a5d8c8ff7fba8a0a2d43350d114cad8f0d922f4711f358",
+    "harness": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\toolz-join-unmatched\\public",
+    "harness_hash": "154afcc856d87bf45b0fc08baf80b77a8d1115a3f5e2b0ced7e3057f113a5b0e",
+    "frozen_harness": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\frozen-assertion-audit-v1-certified\\toolz-join-unmatched\\frozen-checks",
+    "frozen_harness_hash": "b1a5d366896b1a0e0deaa3a43bd6bef691e8ebe7df79ae01e072272a886d1e80",
+    "evidence": [
+      {
+        "path": "toolz/itertoolz.py",
+        "symbol": "join",
+        "start_line": 813,
+        "end_line": 921,
+        "content": "def join(leftkey, leftseq, rightkey, rightseq,\n         left_default=no_default, right_default=no_default):\n    \"\"\" Join two sequences on common attributes\n\n    This is a semi-streaming operation.  The LEFT sequence is fully evaluated\n    and placed into memory.  The RIGHT sequence is evaluated lazily and so can\n    be arbitrarily large.\n    (Note: If right_default is defined, then unique keys of rightseq\n        will also be stored in memory.)\n\n    >>> friends = [('Alice', 'Edith'),\n    ...            ('Alice', 'Zhao'),\n    ...            ('Edith', 'Alice'),\n    ...            ('Zhao', 'Alice'),\n    ...            ('Zhao', 'Edith')]\n\n    >>> cities = [('Alice', 'NYC'),\n    ...           ('Alice', 'Chicago'),\n    ...           ('Dan', 'Syndey'),\n    ...           ('Edith', 'Paris'),\n    ...           ('Edith', 'Berlin'),\n    ...           ('Zhao', 'Shanghai')]\n\n    >>> # Vacation opportunities\n    >>> # In what cities do people have friends?\n    >>> result = join(second, friends,\n    ...               first, cities)\n    >>> for ((a, b), (c, d)) in sorted(unique(result)):\n    ...     print((a, d))\n    ('Alice', 'Berlin')\n    ('Alice', 'Paris')\n    ('Alice', 'Shanghai')\n    ('Edith', 'Chicago')\n    ('Edith', 'NYC')\n    ('Zhao', 'Chicago')\n    ('Zhao', 'NYC')\n    ('Zhao', 'Berlin')\n    ('Zhao', 'Paris')\n\n    Specify outer joins with keyword arguments ``left_default`` and/or\n    ``right_default``.  Here is a full outer join in which unmatched elements\n    are paired with None.\n\n    >>> identity = lambda x: x\n    >>> list(join(identity, [1, 2, 3],\n    ...           identity, [2, 3, 4],\n    ...           left_default=None, right_default=None))\n    [(2, 2), (3, 3), (None, 4), (1, None)]\n\n    Usually the key arguments are callables to be applied to the sequences.  If\n    the keys are not obviously callable then it is assumed that indexing was\n    intended, e.g. the following is a legal change.\n    The join is implemented as a hash join and the keys of leftseq must be\n    hashable. Additionally, if right_default is defined, then keys of rightseq\n    must also be hashable.\n\n    >>> # result = join(second, friends, first, cities)\n    >>> result = join(1, friends, 0, cities)  # doctest: +SKIP\n    \"\"\"\n    if not callable(leftkey):\n        leftkey = getter(leftkey)\n    if not callable(rightkey):\n        rightkey = getter(rightkey)\n\n    d = groupby(leftkey, leftseq)\n\n    if left_default == no_default and right_default == no_default:\n        # Inner Join\n        for item in rightseq:\n            key = rightkey(item)\n            if key in d:\n                for left_match in d[key]:\n                    yield (left_match, item)\n    elif left_default != no_default and right_default == no_default:\n        # Right Join\n        for item in rightseq:\n            key = rightkey(item)\n            if key in d:\n                for left_match in d[key]:\n                    yield (left_match, item)\n            else:\n                yield (left_default, item)\n    elif right_default != no_default:\n        seen_keys = set()\n        seen = seen_keys.add\n\n        if left_default == no_default:\n            # Left Join\n            for item in rightseq:\n                key = rightkey(item)\n                seen(key)\n                if key in d:\n                    for left_match in d[key]:\n                        yield (left_match, item)\n        else:\n            # Full Join\n            for item in rightseq:\n                key = rightkey(item)\n                seen(key)\n                if key in d:\n                    for left_match in d[key]:\n                        yield (left_match, item)\n                else:\n                    yield (left_default, item)\n\n        for key, matches in iteritems(d):\n            if key not in seen_keys:\n                for match in matches:\n                    yield (match, right_default)\n",
+        "content_hash": "a7bce48b8756a7e783eeecb74262f7aaee809d76ca46a4f407ceeba675ec1b6e",
+        "rank": 1,
+        "score": 35.33018997250393,
+        "reason": "explicit_function",
+        "complete_symbol": true
+      },
+      {
+        "path": "toolz/functoolz.py",
+        "symbol": "excepts.__doc__",
+        "start_line": 777,
+        "end_line": 805,
+        "content": "    @instanceproperty(classval=__doc__)\n    def __doc__(self):\n        exc = self.exc\n        try:\n            if isinstance(exc, tuple):\n                exc_name = '(%s)' % ', '.join(\n                    map(attrgetter('__name__'), exc),\n                )\n            else:\n                exc_name = exc.__name__\n\n            return dedent(\n                \"\"\"\\\n                A wrapper around {inst.func.__name__!r} that will except:\n                {exc}\n                and handle any exceptions with {inst.handler.__name__!r}.\n\n                Docs for {inst.func.__name__!r}:\n                {inst.func.__doc__}\n\n                Docs for {inst.handler.__name__!r}:\n                {inst.handler.__doc__}\n                \"\"\"\n            ).format(\n                inst=self,\n                exc=exc_name,\n            )\n        except AttributeError:\n            return type(self).__doc__\n",
+        "content_hash": "131464689c1cea067cb725c03432a786304ec142a6c2f2211902a8fe729df563",
+        "rank": 2,
+        "score": 13.371262469713336,
+        "reason": "qualified_symbol_bm25",
+        "complete_symbol": true
+      },
+      {
+        "path": "toolz/itertoolz.py",
+        "symbol": "diff",
+        "start_line": 924,
+        "end_line": 961,
+        "content": "def diff(*seqs, **kwargs):\n    \"\"\" Return those items that differ between sequences\n\n    >>> list(diff([1, 2, 3], [1, 2, 10, 100]))\n    [(3, 10)]\n\n    Shorter sequences may be padded with a ``default`` value:\n\n    >>> list(diff([1, 2, 3], [1, 2, 10, 100], default=None))\n    [(3, 10), (None, 100)]\n\n    A ``key`` function may also be applied to each item to use during\n    comparisons:\n\n    >>> list(diff(['apples', 'bananas'], ['Apples', 'Oranges'], key=str.lower))\n    [('bananas', 'Oranges')]\n    \"\"\"\n    N = len(seqs)\n    if N == 1 and isinstance(seqs[0], list):\n        seqs = seqs[0]\n        N = len(seqs)\n    if N < 2:\n        raise TypeError('Too few sequences given (min 2 required)')\n    default = kwargs.get('default', no_default)\n    if default == no_default:\n        iters = zip(*seqs)\n    else:\n        iters = itertools.zip_longest(*seqs, fillvalue=default)\n    key = kwargs.get('key', None)\n    if key is None:\n        for items in iters:\n            if items.count(items[0]) != N:\n                yield items\n    else:\n        for items in iters:\n            vals = tuple(map(key, items))\n            if vals.count(vals[0]) != N:\n                yield items\n",
+        "content_hash": "a7bce48b8756a7e783eeecb74262f7aaee809d76ca46a4f407ceeba675ec1b6e",
+        "rank": 4,
+        "score": 11.379163931253995,
+        "reason": "qualified_symbol_bm25",
+        "complete_symbol": true
+      },
+      {
+        "path": "toolz/functoolz.py",
+        "symbol": "curry.__str__",
+        "start_line": 282,
+        "end_line": 283,
+        "content": "    def __str__(self):\n        return str(self.func)\n",
+        "content_hash": "131464689c1cea067cb725c03432a786304ec142a6c2f2211902a8fe729df563",
+        "rank": 123,
+        "score": 0,
+        "reason": "qualified_symbol_bm25",
+        "complete_symbol": true
+      }
+    ],
+    "description_hash": "a59197c651480cab8890666c07fca094b8ac15e83bc80efe4b75619cbf0cd9bf",
+    "public_admission": {
+      "before": {
+        "Reproduce": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.1034,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.0987,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "after": {
+        "Reproduce": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1003,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        },
+        "Preserve": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1106,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      }
+    },
+    "private_admission": {
+      "before": {
+        "Target": {
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.0998,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": false,
+          "passed": false
+        },
+        "Controls": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1028,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      },
+      "after": {
+        "Target": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1053,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        },
+        "Controls": {
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.1044,
+          "tests_run": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "successful": true,
+          "passed": true
+        }
+      }
+    }
+  },
+  "rollouts": [
+    {
+      "label": "final",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+    }
+  ]
+}

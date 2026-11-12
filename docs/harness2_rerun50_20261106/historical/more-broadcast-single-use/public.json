@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-broadcast-single-use",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:4eeacf8dec9d6f258bf4c04f5b861a6fcaa912c4256f28e85dd0ef39bc708f0a",
+  "problem_statement": "zip_broadcast must open a single-use iterable only once, rather than probing iterability then opening it again. Preserve scalar broadcasting and normal zip behavior."
+}

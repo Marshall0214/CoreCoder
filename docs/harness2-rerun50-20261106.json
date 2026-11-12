@@ -1,0 +1,38 @@
+{
+  "schema": "harness2-rerun50-launch-summary-v1",
+  "stage": "completed; see harness2-analysis-20261107.md",
+  "output_directory": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106",
+  "new_harness_tasks": 50,
+  "new_control_tasks": 0,
+  "historical_control_resolved": 24,
+  "historical_harness_resolved": 27,
+  "control_unknown_token_tasks": 7,
+  "protocol_sha256": "5b8f267a0e557b924ddf3a7205172bb5b2463f59fc8dd56f3fcbcc7c6f26d414",
+  "manifest_sha256": "aeb5ff6791cac7097fab734a8905bfcc74fcb2ceb12c24df4e6dfacb45cdd95e",
+  "preparation_verification_passed": true,
+  "zero_model_automated_tests": 3,
+  "launcher": {
+    "pid": 64996,
+    "new_control_tasks": 0,
+    "stderr": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\batch.stderr.log",
+    "stdout": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\batch.stdout.log",
+    "mode": "local Ollama, thinking=false",
+    "started_at": "2026-11-06T05:28:13.0324017Z",
+    "new_harness_tasks": 50,
+    "script": "D:\\project_other\\CoreCoder\\.tmp\\harness2_rerun50_20261106.py"
+  },
+  "evidence_files": 178,
+  "evidence_bytes": 3051967,
+  "launch_stage": "running; final score pending",
+  "completion": {
+    "resolved": 25,
+    "tasks": 50,
+    "full_ppc_completed": 50,
+    "outer_errors": 0,
+    "analysis": "harness2-analysis-20261107.md",
+    "internal_feedback_faults_present": true,
+    "native_known_token_lower_bound": 59796366,
+    "actual_total_tokens": null,
+    "original_launch_archive_unchanged": true
+  }
+}

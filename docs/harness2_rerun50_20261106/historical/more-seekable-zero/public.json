@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-seekable-zero",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:5cf99ac2d54e89a80a72572878860095c8cb0ba47c537dd5659ea60e9bb8d785",
+  "problem_statement": "seekable.peek and bool must not consume or drop the next input item when maxlen=0. Repeated peek must observe the same next value. Preserve normal cached peeking and exhaustion behavior."
+}

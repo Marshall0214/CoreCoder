@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-product-repeat",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:ef714b7afe18a83a6c9fe2056dbe10787734d3911eccad7a73e56dfe57ab6514",
+  "problem_statement": "nth_product and product_index with repeat must handle one-shot iterators like reusable sequences, materializing each input only once. Preserve ordinary product indexing."
+}

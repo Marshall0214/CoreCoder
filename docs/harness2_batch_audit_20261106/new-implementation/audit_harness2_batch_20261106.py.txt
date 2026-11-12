@@ -1,0 +1,96 @@
+"""Controller-only post-hoc audit. No inference and no mutation of the frozen batch."""
+import json
+from pathlib import Path
+
+from integrations import harness2 as bridge
+from integrations.harness2_evidence import unpack
+
+ROOT = Path(__file__).resolve().parents[1]
+BATCH = ROOT / '.tmp/harness2-vs-control-50-20261105'
+ARCHIVE = ROOT / 'docs/harness2_batch_audit_20261106'
+OUTPUT = ROOT / '.tmp/harness2-audit-20261106'
+
+
+def main():
+    frozen = bridge.read(ARCHIVE / 'manifest.json')
+    for row in frozen['files']:
+        if bridge.sha(ARCHIVE / row['path']) != row['sha256']:
+            raise ValueError('Archived evidence changed: ' + row['path'])
+    batch = bridge.read(BATCH / 'report.json')
+    if bridge.sha(BATCH / 'report.json') != bridge.sha(ARCHIVE / 'batch/report.json'):
+        raise ValueError('Original result changed')
+    report = {'schema': 'harness2-posthoc-audit-v1', 'model_calls': 0,
+              'original_report_sha256': bridge.sha(BATCH / 'report.json'),
+              'original_summary': batch['summary'], 'errors': {}, 'transport_replay': {},
+              'selection_replay': {}, 'archived_files_verified': len(frozen['files']),
+              'limitations': ['Post-hoc mechanism replay, not a fresh model benchmark',
+                              'Original 24/50 and 27/50 results remain unchanged',
+                              'Precise total token cost remains unknown']}
+    report['implementation_sha256'] = {name: bridge.sha(ROOT / name) for name in
+        ('integrations/harness2.py', 'integrations/harness2_evidence.py', 'integrations/harness2_batch.py',
+         'integrations/harness2_selection.py', 'tests/test_harness2_selection.py', 'tests/test_harness2_batch.py')}
+    for task, state in batch['tasks']['harness2'].items():
+        if state['status'] != 'error' and task != 'more-combination-index':
+            continue
+        folder = BATCH / 'arms/harness2' / task
+        if state['status'] == 'error':
+            core = bridge.read(folder / 'core-result.json')['tasks'][0]['error']
+            error = {'core_error': core, 'kind': 'evidence_transport' if 'transport bound' in core else 'editor_schema'}
+            report['errors'][task] = error
+            if error['kind'] == 'evidence_transport':
+                context = folder / 'runs/issue-cc-agg1' / task / 'context/agg1'
+                try:
+                    packed = bridge.evidence(context)
+                    restored = unpack(packed) if 'encoding' in packed else packed
+                    # Reconstruct the exact same public file map and whole-file aliases.
+                    original, seen = {}, {}
+                    for path in sorted(context.rglob('*')):
+                        if not path.is_file() or path.relative_to(context).as_posix().startswith('source/') or path.suffix not in ('.md', '.json', '.diff'):
+                            continue
+                        text = path.read_text(encoding='utf-8')
+                        name = path.relative_to(context).as_posix()
+                        original[name] = {'same_verbatim_content_as': seen[text]} if text in seen else text
+                        seen.setdefault(text, name)
+                    if restored != original:
+                        raise ValueError('Not an exact evidence round trip')
+                    row = {'status': 'transport_ready', 'exact_round_trip': True,
+                           'raw_serialized_characters': len(json.dumps(original, ensure_ascii=False)),
+                           'encoded_serialized_characters': len(json.dumps(packed, ensure_ascii=False))}
+                    bridge.write(OUTPUT / task / 'editor-evidence.json', packed)
+                except ValueError as exc:
+                    row = {'status': 'still_blocked', 'error': str(exc), 'no_truncation': True}
+                report['transport_replay'][task] = row
+            else:
+                error['replies'] = []
+                for path in sorted((folder / 'editors/call-001').glob('reply-attempt-*.txt')):
+                    reply = bridge.read(path)
+                    try:
+                        bridge.validate_editor(reply, 'probe', True)
+                        detail = 'accepted'
+                    except (ValueError, TypeError) as exc:
+                        detail = str(exc)
+                    error['replies'].append({'file': str(path.relative_to(BATCH)), 'diagnostic': detail,
+                                            'sha256': bridge.sha(path)})
+        report['selection_replay'][task] = bridge.read(OUTPUT / task / 'selection.json')
+    report['post_selection_independent_grading'] = bridge.read(OUTPUT / 'more-combination-index/post-selection/grading.json')
+    for task in ('more-combination-index',):
+        details = []
+        for row in batch['tasks']['harness2'][task]['result']['rollouts']:
+            folder = Path(row['folder'])
+            feedback = bridge.read(folder / 'feedback/report.json')
+            details.append({'label': row['label'], 'status': feedback['status'],
+                            'public_accepted': feedback['accepted'], 'feedback_rounds': feedback['feedback_rounds_attempted'],
+                            'patch_sha256': bridge.sha(folder / 'feedback/patch.diff'),
+                            'round_statuses': [{key: attempt.get(key) for key in ('round', 'patch_status', 'provider_error')}
+                                               for attempt in feedback['rounds']]})
+        report['lost_success_analysis'] = {'task_id': task, 'rollouts': details,
+            'finding': 'Publicly accepted base1/inv1 existed, but single-final k=1 adoption delivered publicly failed agg1',
+            'separate_failure': 'agg1 had a ranking error, four rejected JSON patches, then a provider failure; no precise cause attributed to truncation'}
+    bridge.write(OUTPUT / 'analysis.json', report)
+    bridge.write(ROOT / 'docs/harness2-batch-audit-20261106.json', report)
+    print(json.dumps({'transport_replay': report['transport_replay'],
+                      'post_selection_resolved': report['post_selection_independent_grading']['public_selected']['resolved']}, ensure_ascii=False))
+
+
+if __name__ == '__main__':
+    main()

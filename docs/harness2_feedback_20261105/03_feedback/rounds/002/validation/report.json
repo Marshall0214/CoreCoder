@@ -1,0 +1,134 @@
+{
+  "schema": "patch-validator-v1",
+  "status": "validated",
+  "accepted": true,
+  "scope": "configured public checks only",
+  "independent_grading_used": false,
+  "model_calls": 0,
+  "baseline_hash": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+  "candidate_hash": "14064721d09dfe3121009cdc81ff2566a715999356f97358f5da5c8977e74093",
+  "changed_files": [
+    "toolz/itertoolz.py"
+  ],
+  "scope_violations": [],
+  "reasons": [],
+  "warnings": [
+    {
+      "code": "duplicate_loop_review",
+      "file": "toolz/itertoolz.py",
+      "scope": "<module>.join",
+      "candidate_lines": [
+        908,
+        923
+      ],
+      "baseline_occurrences": 0,
+      "blocking": false,
+      "meaning": "Repeated AST loop; paths may be exclusive. Confirm behavior with tests."
+    },
+    {
+      "code": "duplicate_loop_review",
+      "file": "toolz/itertoolz.py",
+      "scope": "<module>.join",
+      "candidate_lines": [
+        910,
+        925
+      ],
+      "baseline_occurrences": 1,
+      "blocking": false,
+      "meaning": "Repeated AST loop; paths may be exclusive. Confirm behavior with tests."
+    }
+  ],
+  "public_checks": {
+    "Reproduce": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 2,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.8801,
+      "passed": true
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 3,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 1.8377,
+      "passed": true
+    }
+  },
+  "syntax_errors": [],
+  "static": {
+    "checker": {
+      "version": "0.16.9",
+      "rules": "F821,F822,F823",
+      "target": "py311",
+      "configuration": "isolated; ignore-noqa; no fixes"
+    },
+    "baseline_syntax_unavailable": [],
+    "baseline_findings": [
+      {
+        "file": "toolz/itertoolz.py",
+        "code": "F821",
+        "message": "Undefined name `iteritems`",
+        "line": 918,
+        "column": 29
+      }
+    ],
+    "candidate_findings": [],
+    "retained": [],
+    "introduced": [],
+    "removed_locations": [
+      {
+        "file": "toolz/itertoolz.py",
+        "code": "F821",
+        "message": "Undefined name `iteritems`",
+        "line": 918,
+        "column": 29
+      }
+    ],
+    "limitation": "Exact unchanged-line mapping; moved code may be reported as removed/new, not proven fixed."
+  },
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "public_checks_hash": "a5d8fc53bad46b4a20be3c1223619b6dde1fce7ea8fed4189beec6f991653262"
+}

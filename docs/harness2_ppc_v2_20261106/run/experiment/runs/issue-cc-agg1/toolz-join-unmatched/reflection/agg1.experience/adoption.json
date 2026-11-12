@@ -1,0 +1,7 @@
+{
+  "chosen_label": "agg1",
+  "candidate_ids": {
+    "A": "agg1"
+  },
+  "reason": "trivial pool: single final at k=1; delivered without a selector session"
+}

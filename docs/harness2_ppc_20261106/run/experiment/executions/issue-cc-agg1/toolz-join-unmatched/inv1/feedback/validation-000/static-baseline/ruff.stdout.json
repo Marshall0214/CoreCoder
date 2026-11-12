@@ -1,0 +1,97 @@
+[
+  {
+    "cell": null,
+    "code": "F821",
+    "end_location": {
+      "column": 15,
+      "row": 102
+    },
+    "filename": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\validation-000\\baseline\\toolz\\curried\\__init__.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 102
+    },
+    "message": "Undefined name `exceptions`",
+    "name": "undefined-name",
+    "noqa_row": 102,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/undefined-name"
+  },
+  {
+    "cell": null,
+    "code": "F821",
+    "end_location": {
+      "column": 28,
+      "row": 9
+    },
+    "filename": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\validation-000\\baseline\\toolz\\curried\\operator.py",
+    "fix": null,
+    "location": {
+      "column": 11,
+      "row": 9
+    },
+    "message": "Undefined name `num_required_args`",
+    "name": "undefined-name",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/undefined-name"
+  },
+  {
+    "cell": null,
+    "code": "F821",
+    "end_location": {
+      "column": 63,
+      "row": 10
+    },
+    "filename": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\validation-000\\baseline\\toolz\\curried\\operator.py",
+    "fix": null,
+    "location": {
+      "column": 51,
+      "row": 10
+    },
+    "message": "Undefined name `has_keywords`",
+    "name": "undefined-name",
+    "noqa_row": 10,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/undefined-name"
+  },
+  {
+    "cell": null,
+    "code": "F821",
+    "end_location": {
+      "column": 22,
+      "row": 331
+    },
+    "filename": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\validation-000\\baseline\\toolz\\dicttoolz.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 331
+    },
+    "message": "Undefined name `reduce`",
+    "name": "undefined-name",
+    "noqa_row": 331,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/undefined-name"
+  },
+  {
+    "cell": null,
+    "code": "F821",
+    "end_location": {
+      "column": 38,
+      "row": 918
+    },
+    "filename": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\validation-000\\baseline\\toolz\\itertoolz.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 918
+    },
+    "message": "Undefined name `iteritems`",
+    "name": "undefined-name",
+    "noqa_row": 918,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/undefined-name"
+  }
+]

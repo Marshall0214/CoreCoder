@@ -1,0 +1,6 @@
+{
+  "instance_id": "boltons-xfrange-descending",
+  "repo": "mahmoud/boltons",
+  "base_commit": "source-sha256:f7b7866c7cdc5aeb90d28eacd97aed9f9e6854bb3c3a9023e3a34fcf6c91780c",
+  "problem_statement": "xfrange must support descending ranges and produce the same count as frange for inexact ascending steps. Preserve positive integer-step ranges."
+}

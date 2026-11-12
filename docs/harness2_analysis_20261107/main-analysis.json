@@ -1,0 +1,709 @@
+{
+  "schema": "harness2-fifty-readonly-analysis-v1",
+  "fresh_model_calls": 0,
+  "test_executions": 0,
+  "started_at_beijing": "2026-11-06T13:28:13.032401+08:00",
+  "ended_at_beijing": "2026-11-07T05:20:15.305904+08:00",
+  "wall_seconds": 57122.273503,
+  "results": {
+    "finished": 50,
+    "scheduled": 50,
+    "complete": true,
+    "resolved": 25,
+    "errors": 0,
+    "full_ppc_completed": 50,
+    "public_fallback_deliveries": [
+      "click-flag-envvar",
+      "boltons-backoff-constant",
+      "more-bucket-missing-key"
+    ],
+    "repair_rate": 0.5,
+    "control_reused": true,
+    "control_fresh_model_calls": 0,
+    "tokens": null,
+    "known_tokens_minimum": 30859536,
+    "fresh_model_calls": 3417,
+    "known_fresh_model_calls_minimum": 3417,
+    "historical_control": {
+      "resolved_of_50": 24,
+      "new_successes": [
+        "more-permutation-exception"
+      ],
+      "lost_successes": [],
+      "compared_finished_tasks": 50
+    },
+    "historical_harness": {
+      "resolved_of_50": 27,
+      "new_successes": [
+        "more-combination-index"
+      ],
+      "lost_successes": [
+        "itsdangerous-none-salt",
+        "boltons-split-zero",
+        "more-negative-range-slice"
+      ],
+      "compared_finished_tasks": 50
+    },
+    "source_files_unchanged": true
+  },
+  "repository_counts": {
+    "pallets/click": {
+      "tasks": 10,
+      "control": 2,
+      "old_harness2": 2,
+      "new_harness2": 2
+    },
+    "pallets/itsdangerous": {
+      "tasks": 3,
+      "control": 2,
+      "old_harness2": 3,
+      "new_harness2": 2
+    },
+    "pytoolz/toolz": {
+      "tasks": 6,
+      "control": 6,
+      "old_harness2": 6,
+      "new_harness2": 6
+    },
+    "mahmoud/boltons": {
+      "tasks": 7,
+      "control": 2,
+      "old_harness2": 3,
+      "new_harness2": 2
+    },
+    "more-itertools/more-itertools": {
+      "tasks": 24,
+      "control": 12,
+      "old_harness2": 13,
+      "new_harness2": 13
+    }
+  },
+  "sandbox_counts": [
+    {
+      "phase": "initial_validation",
+      "status": "completed",
+      "count": 191
+    },
+    {
+      "phase": "after_feedback_patch",
+      "status": "sandbox_invalid_result",
+      "count": 35
+    },
+    {
+      "phase": "initial_validation",
+      "status": "sandbox_timeout",
+      "count": 1
+    }
+  ],
+  "post_feedback_sandbox_records": [
+    {
+      "task_id": "click-style-color-validation",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\dom1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "7f70d3753b2ccfb249f48244e3b9ba8cdeed358a543d3ac3158ba8c0ac7eb420",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 220,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\base1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "431939c040a23586909fd987e0d70ae9f6bd0c06d99855373aa87bc19fcd6577",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 209,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\dom1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "54c7a3f7f73c21a4f17e0147a00758b59b4ff58a581cad4e824af0258a5acb32",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 208,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "label": "inv1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\inv1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "df780def5789fa7932033d4f75fcf3312845e448c34384ea178c963ace5449d6",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 208,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "label": "agg1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\agg1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "47b233490a45e2687a007a93079b835f18024c685303453bfda5fd22923c1764",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 208,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-malformed-time\\executions\\issue-cc-agg1\\itsdangerous-malformed-time\\base1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "a3de2043ef77854f2e598df156798cde829f85f3c7e930294311eb8474e0b21d",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 219,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "label": "inv1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-malformed-time\\executions\\issue-cc-agg1\\itsdangerous-malformed-time\\inv1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "63dd73e5e966a412d082ad941a8739323f050db34b2bbeddab0a96d36bd31e2c",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 218,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-malformed-time\\executions\\issue-cc-agg1\\itsdangerous-malformed-time\\dom1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "304bf541baf24f2a1c194429dd806406e50a94f5360291a5d6ce4dca65c218f6",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 218,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "itsdangerous-malformed-time",
+      "label": "agg1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-malformed-time\\executions\\issue-cc-agg1\\itsdangerous-malformed-time\\agg1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "bbf657f787a2b6278ad60931ba939becbee85af535eb8aa3aa6b24a114aa0a3d",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 218,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\base1\\feedback\\rounds\\003\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "92cae5c05aaa50169f90c4bf7d70cb473541936f3a7a1ccbce6873b2ce42303b",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 205,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "click-shared-default",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-shared-default\\executions\\issue-cc-agg1\\click-shared-default\\base1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "bc3e6953d46c4e003cefe965ebbb549ae14b150a69166f7be14d83712870b538",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 205,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "click-shared-default",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-shared-default\\executions\\issue-cc-agg1\\click-shared-default\\dom1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "0c092aabd96109919e5e95b22688943756e7efe2ba8b9f86f21526bdc3f04b62",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 204,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "toolz-join-unmatched",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\toolz-join-unmatched\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1\\feedback\\rounds\\002\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "7508f55a103b269cb9346122821b42b509646d728ce08e27cd0c44eb4ea2c309",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 205,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "boltons-backoff-constant",
+      "label": "agg1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-backoff-constant\\executions\\issue-cc-agg1\\boltons-backoff-constant\\agg1\\feedback\\rounds\\010\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "6500582ec1cc57aa4e0ff7c68090a984512991289587c7d48c5e109482cf64d9",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 212,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-negative-range-slice",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-negative-range-slice\\executions\\issue-cc-agg1\\more-negative-range-slice\\base1\\feedback\\rounds\\006\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "9d7c3c773453681badf706819dda530ec7704ebeb90a5c599081f237dcc3300a",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 215,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-bucket-missing-key",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-bucket-missing-key\\executions\\issue-cc-agg1\\more-bucket-missing-key\\dom1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "48bc11ed4963dd3df45828e461eb5161a9bac77788e003ec5e3a645684288388",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 210,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-bucket-missing-key",
+      "label": "agg1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-bucket-missing-key\\executions\\issue-cc-agg1\\more-bucket-missing-key\\agg1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "08d6b068f6afc85e059cba85ea38edbc649f2bae1da8f22d0388332bc73656c3",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 210,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-range-equality",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-equality\\executions\\issue-cc-agg1\\more-range-equality\\dom1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "02933dffb11b4a2a0205619c4b87f8d42f26e78130013d25585bd585404645cf",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 202,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-predicate-sentinel\\executions\\issue-cc-agg1\\more-predicate-sentinel\\dom1\\feedback\\rounds\\003\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "3637a5482f68bb4e015d6bc3cae43295952d056810173eb737fcd2947942f632",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 210,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "label": "inv1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-predicate-sentinel\\executions\\issue-cc-agg1\\more-predicate-sentinel\\inv1\\feedback\\rounds\\015\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "79ceaa8955ab1bb651749ac4863c1afd35464c9d32cd00ad51bd655edb9a6c77",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 210,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-combination-size",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-combination-size\\executions\\issue-cc-agg1\\more-combination-size\\base1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "b1a6f5bc6ad63f98e27003c27d57100703e16ce3eda4e48d08ba8fb37f65c306",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 207,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-permutation-exception",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-permutation-exception\\executions\\issue-cc-agg1\\more-permutation-exception\\base1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "258669001e38ab293733f94da62286580e0df23f88b0e71087088a1d05dd558a",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 217,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-product-repeat",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\base1\\feedback\\rounds\\003\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "799fe75599ef86a8d8b39b3e556bc25ac3d2cddb2fbddea87c4296b10dd8ab91",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 203,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-product-repeat",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\dom1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "86a49ea2576428517c49f8cd6ab7bd329ecdfa1185abbdb44469adfda64bb944",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 202,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-product-repeat",
+      "label": "agg1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\agg1\\feedback\\rounds\\003\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "9dc84ee0af7ab6ef3ef2d1d3604b59a16a92a0b59d7b334338bb224b0789480a",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 202,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\base1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "15f8ea035e4e864a08d62de29d0259094c8d9f014ca5d31f2aa877c35de30739",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 213,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "label": "inv1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\inv1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "59adc8ddce602e5f791751a945b086a6434171a2ba43f12e57618f761a1210ef",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 212,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\dom1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "2f991fe94ce602b84b4030e0a6192e2e7db74508fe50581b35aaa6e47fb1246a",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 212,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "label": "agg1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\agg1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "d3762719dbeba854a39dc18e7254382eb09a8b90de31013fa93861be343cfa5c",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 212,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-reversed-values",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-reversed-values\\executions\\issue-cc-agg1\\more-reversed-values\\base1\\feedback\\rounds\\009\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "740c94725d7b72b410f67b700082f7560ab0c280cdbd47a68021d8cf5e9bdc76",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 205,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-broadcast-single-use",
+      "label": "base1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\executions\\issue-cc-agg1\\more-broadcast-single-use\\base1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "25ae98f234878459e811cf7798c5eb00d30d55a62c248d897cca43ceaee23639",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 215,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "more-broadcast-single-use",
+      "label": "agg1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\executions\\issue-cc-agg1\\more-broadcast-single-use\\agg1\\feedback\\rounds\\010\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "517db919974f15f77ce547f5a3a50f3ea9e8860310f81314a2bc9e6e00627f28",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 214,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "toolz-partition-length",
+      "label": "inv1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\toolz-partition-length\\executions\\issue-cc-agg1\\toolz-partition-length\\inv1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "e7057052928cf7a9d8f9bc77ba565a2b9cc29d1505b51e8b544278d5d095455b",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 208,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "toolz-merge-mapping",
+      "label": "dom1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\toolz-merge-mapping\\executions\\issue-cc-agg1\\toolz-merge-mapping\\dom1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "4b488bee3d83cdb09494202a30992f7203fa966b7c6b9ed8f12ca792742d5056",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 202,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    },
+    {
+      "task_id": "toolz-merge-mapping",
+      "label": "inv1",
+      "path": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\toolz-merge-mapping\\executions\\issue-cc-agg1\\toolz-merge-mapping\\inv1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce-sandbox.json",
+      "sha256": "d0cb54fc8cf433c539eefd4ad116ad725240c9e4403aeb9ba7e3d6b7b484686d",
+      "status": "sandbox_invalid_result",
+      "returncode": 2,
+      "runner_host_path_characters": 202,
+      "stderr": "python: can't open file '/runner.py': [Errno 5] Input/output error\n",
+      "stderr_sha256": "416da802d6141fcd7ad2913d7b412e509ebaac92b2c588d350aef1cee8e3b18c"
+    }
+  ],
+  "source_files_verified": {
+    "integrations/harness2_batch.py": true,
+    "integrations/harness2.py": true,
+    "integrations/harness2_feedback.py": true,
+    "integrations/harness2_selection.py": true,
+    "integrations/harness2_reader.py": true,
+    "integrations/harness2_context.py": true,
+    "integrations/harness2_evidence.py": true,
+    "repairflow/feedback_repair.py": true,
+    "repairflow/patch_validator.py": true,
+    "repairflow/checks.py": true,
+    "repairflow/issue_tools.py": true,
+    "repairflow/issue_providers.py": true,
+    "evals/local50_unmetered.py": true,
+    "evals/local50.py": true,
+    "evals/repository_checkpoint.py": true,
+    "evals/runtime.py": true,
+    "sandbox/runner.py": true,
+    "integrations/harness2_runtime.py": true,
+    "integrations/harness2-source.json": true,
+    ".tmp/harness2_rerun50_20261106.py": true
+  },
+  "input_hashes": {
+    "report.json": "a8a817d848ac8058af70d873022f9e9f4e6824eb8ed4ea0541f464409a2d82f4",
+    "protocol.json": "5b8f267a0e557b924ddf3a7205172bb5b2463f59fc8dd56f3fcbcc7c6f26d414",
+    "controller.json": "265b0cf62f5af3a3c82a5b9c11f495e21967e963b82477fdb49d209500e4f0ba",
+    "comparison.json": "810e8596ae58056423b19d289d57f2c3f793127522667449cab664bd1367f150",
+    "reuse-verification.json": "8525eda67905a0a57534ac9211aa962b91b5d8137f6971db1494f6ae657c9c25",
+    "historical/report.json": "05fb2ec7727daa545bb5f132f344b19d2bf731e03070b23cde9b16940f61871a"
+  },
+  "provider_log": {
+    "path": "C:\\Users\\admin\\AppData\\Local\\Ollama\\server.log",
+    "sha256_at_analysis": "e57e69343916ad1597d69ed6d119783db950b6610a5b40f8bd07f53198fceccd",
+    "batch_time_window_truncation_warnings": 1167,
+    "attribution": "Server-wide time-window count; not all warnings assigned to unique requests.",
+    "excerpt": "provider-truncation-excerpt.json"
+  },
+  "feedback_input_examples": [
+    {
+      "task_id": "click-style-color-validation",
+      "rollout": "agg1",
+      "folder": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\agg1\\feedback",
+      "call_interval_utc": [
+        1793945179.7911365,
+        1793945208.9980462
+      ],
+      "system_characters": 711,
+      "payload_characters": 493397,
+      "source_characters": 456399,
+      "source_files": 32,
+      "public_feedback_character_offset": 485609,
+      "patch_status": "rejected",
+      "patch_error": {
+        "code": "invalid_patch_schema",
+        "message": "Expected exactly an edits array.",
+        "retryable": true,
+        "next_action": "apply_patch"
+      },
+      "usage": {
+        "prompt_tokens": 32770,
+        "completion_tokens": 651
+      },
+      "call_event": {
+        "run_id": "click-style-color-validation",
+        "sequence": 3,
+        "time": 1793945208.9980462,
+        "event": "llm_finished",
+        "call_id": "llm-1",
+        "seconds": 29.2027,
+        "tools": [],
+        "usage_known": true,
+        "usage_status": "known",
+        "usage_source": "ollama_response",
+        "prompt_tokens": 32770,
+        "completion_tokens": 651
+      },
+      "overlapping_provider_warnings": [
+        {
+          "source_line": 385901,
+          "text": "time=2026-11-06T14:06:20.299+08:00 level=WARN source=llama_server.go:334 msg=\"truncating input prompt\" limit=32770 prompt=125361 keep=4 new=32770",
+          "time_unix": 1793945180.299
+        }
+      ]
+    },
+    {
+      "task_id": "click-flag-envvar",
+      "rollout": "agg1",
+      "folder": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-envvar\\executions\\issue-cc-agg1\\click-flag-envvar\\agg1\\feedback",
+      "call_interval_utc": [
+        1793953532.8284135,
+        1793953794.6390612
+      ],
+      "system_characters": 711,
+      "payload_characters": 428681,
+      "source_characters": 395688,
+      "source_files": 31,
+      "public_feedback_character_offset": 421093,
+      "patch_status": "rejected",
+      "patch_error": {
+        "code": "invalid_patch_schema",
+        "message": "Expected exactly an edits array.",
+        "retryable": true,
+        "next_action": "apply_patch"
+      },
+      "usage": {
+        "prompt_tokens": 32770,
+        "completion_tokens": 10012
+      },
+      "call_event": {
+        "run_id": "click-flag-envvar",
+        "sequence": 3,
+        "time": 1793953794.6390612,
+        "event": "llm_finished",
+        "call_id": "llm-1",
+        "seconds": 261.8096,
+        "tools": [],
+        "usage_known": true,
+        "usage_status": "known",
+        "usage_source": "ollama_response",
+        "prompt_tokens": 32770,
+        "completion_tokens": 10012
+      },
+      "overlapping_provider_warnings": [
+        {
+          "source_line": 438915,
+          "text": "time=2026-11-06T16:25:33.378+08:00 level=WARN source=llama_server.go:334 msg=\"truncating input prompt\" limit=32770 prompt=109278 keep=4 new=32770",
+          "time_unix": 1793953533.378
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-split-zero",
+      "rollout": "agg1",
+      "folder": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-split-zero\\executions\\issue-cc-agg1\\boltons-split-zero\\agg1\\feedback",
+      "call_interval_utc": [
+        1793962636.1135378,
+        1793962658.147531
+      ],
+      "system_characters": 711,
+      "payload_characters": 664067,
+      "source_characters": 623870,
+      "source_files": 34,
+      "public_feedback_character_offset": 655945,
+      "patch_status": "rejected",
+      "patch_error": {
+        "code": "invalid_patch_schema",
+        "message": "Expected exactly an edits array.",
+        "retryable": true,
+        "next_action": "apply_patch"
+      },
+      "usage": {
+        "prompt_tokens": 32770,
+        "completion_tokens": 298
+      },
+      "call_event": {
+        "run_id": "boltons-split-zero",
+        "sequence": 3,
+        "time": 1793962658.147531,
+        "event": "llm_finished",
+        "call_id": "llm-1",
+        "seconds": 22.0308,
+        "tools": [],
+        "usage_known": true,
+        "usage_status": "known",
+        "usage_source": "ollama_response",
+        "prompt_tokens": 32770,
+        "completion_tokens": 298
+      },
+      "overlapping_provider_warnings": [
+        {
+          "source_line": 494159,
+          "text": "time=2026-11-06T18:57:17.107+08:00 level=WARN source=llama_server.go:334 msg=\"truncating input prompt\" limit=32770 prompt=175817 keep=4 new=32770",
+          "time_unix": 1793962637.107
+        }
+      ]
+    },
+    {
+      "task_id": "more-negative-range-slice",
+      "rollout": "agg1",
+      "folder": ".tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-negative-range-slice\\executions\\issue-cc-agg1\\more-negative-range-slice\\agg1\\feedback",
+      "call_interval_utc": [
+        1793977722.529785,
+        1793978202.5481098
+      ],
+      "system_characters": 711,
+      "payload_characters": 232890,
+      "source_characters": 217979,
+      "source_files": 4,
+      "public_feedback_character_offset": 230427,
+      "patch_status": null,
+      "patch_error": null,
+      "usage": {
+        "prompt_tokens": null,
+        "completion_tokens": null
+      },
+      "call_event": {
+        "run_id": "more-negative-range-slice",
+        "sequence": 3,
+        "time": 1793978202.5481098,
+        "event": "llm_failed",
+        "call_id": "llm-1",
+        "error": "ProviderFailure: local_provider_failed",
+        "usage_known": false,
+        "usage_status": "unknown",
+        "usage_source": "ollama_response",
+        "prompt_tokens": null,
+        "completion_tokens": null
+      },
+      "overlapping_provider_warnings": [
+        {
+          "source_line": 575378,
+          "text": "time=2026-11-06T23:08:42.851+08:00 level=WARN source=llama_server.go:334 msg=\"truncating input prompt\" limit=32770 prompt=69424 keep=4 new=32770",
+          "time_unix": 1793977722.851
+        }
+      ]
+    }
+  ],
+  "interpretation_limits": [
+    "Provider warnings confirm truncation, not which exact portions were retained.",
+    "Overlapping timestamps are corroborating evidence, not unique request identifiers.",
+    "No causal estimate separates prompt changes, repeated sampling and public selection.",
+    "Independent results cover hand-authored Target/Controls, not entire upstream suites.",
+    "Historical controls reused; no equal-compute or held-out generalization claim."
+  ]
+}

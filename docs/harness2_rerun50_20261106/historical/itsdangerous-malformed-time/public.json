@@ -1,0 +1,6 @@
+{
+  "instance_id": "itsdangerous-malformed-time",
+  "repo": "pallets/itsdangerous",
+  "base_commit": "source-sha256:afa63ea45c30fcb0cf92159676b04d9253cdd6ed73cc1b91db5dd2ca9c277967",
+  "problem_statement": "TimestampSigner and TimedSerializer must normalize an invalid-signature token with an out-of-range timestamp to BadTimeSignature instead of leaking ValueError or OSError from datetime conversion. Preserve decoded payload metadata and date_signed=None for this malformed timestamp; validate must return False and loads_unsafe must report invalid while recovering a decodable payload. Preserve ordinary timed round-trips, normal invalid-signature timestamp metadata and age expiry. No particular exception message is required."
+}

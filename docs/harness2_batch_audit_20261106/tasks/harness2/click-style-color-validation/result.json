@@ -1,0 +1,93 @@
+{
+  "status": "agent_error",
+  "arm": "harness2",
+  "task_id": "click-style-color-validation",
+  "strategy_search": true,
+  "independent_grading_available": false,
+  "error_type": "ValueError",
+  "error": "No officially adopted final candidate; do not select using independent scores",
+  "seconds": 1148.093,
+  "rollouts": [
+    {
+      "label": "base1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\base1"
+    },
+    {
+      "label": "dom1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\dom1"
+    },
+    {
+      "label": "inv1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\inv1"
+    }
+  ],
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 8,
+        "tokens": 34532,
+        "reused": false,
+        "trace_id": "b0116110e231f470bd5d8773c08cf717",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 10,
+        "tokens": 331740,
+        "reused": false,
+        "trace_id": "ae450f6f528cd6428e96856a24b44663",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\base1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 12,
+        "tokens": 75191,
+        "reused": false,
+        "trace_id": "d8ff854a844d3f8f7d5a87e397e70fd4",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\dom1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 20,
+        "tokens": 665398,
+        "reused": false,
+        "trace_id": "639df10c6a18ca11f8e7ef96506ff388",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\dom1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 13,
+        "tokens": 87235,
+        "reused": false,
+        "trace_id": "7f89178a0d67e0b14b557172010ae640",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\inv1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 20,
+        "tokens": 665398,
+        "reused": false,
+        "trace_id": "02aa68c28182561eed64cf765306b424",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\inv1"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 22735,
+        "trace_id": "760beccde55681b10f861d4098b17f27",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\editors\\call-001"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 22979,
+        "trace_id": "dbce55194fae3ad9e39b64fea0330284",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\editors\\call-002"
+      }
+    ],
+    "fresh_model_calls": 85,
+    "tokens": 1905208,
+    "known_tokens_minimum": 1905208
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "status": "editor_failed",
+  "model_steps": 20,
+  "reads": [
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 124166,
+      "next_offset": 129166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 129166,
+      "next_offset": 134166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 134166,
+      "next_offset": 139166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0009",
+      "path": "pool/dom1/harness/systemprompt.md",
+      "sha256": "36f1ea7a421b26608aa0866a00c5cbdc73536a448d6f491c969b8cf3abaa92c9",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1325,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0010",
+      "path": "pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3d2d677846236b69d3c1881dde6b7c0eea4af7ecd33fc77a98d18aec5624f17",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1048,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0005",
+      "path": "harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 96,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 124166,
+      "next_offset": 129166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0009",
+      "path": "pool/dom1/harness/systemprompt.md",
+      "sha256": "36f1ea7a421b26608aa0866a00c5cbdc73536a448d6f491c969b8cf3abaa92c9",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1325,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0010",
+      "path": "pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3d2d677846236b69d3c1881dde6b7c0eea4af7ecd33fc77a98d18aec5624f17",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1048,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0005",
+      "path": "harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 96,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 124166,
+      "next_offset": 129166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0009",
+      "path": "pool/dom1/harness/systemprompt.md",
+      "sha256": "36f1ea7a421b26608aa0866a00c5cbdc73536a448d6f491c969b8cf3abaa92c9",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1325,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0010",
+      "path": "pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3d2d677846236b69d3c1881dde6b7c0eea4af7ecd33fc77a98d18aec5624f17",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1048,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0005",
+      "path": "harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 96,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 124166,
+      "next_offset": 129166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0009",
+      "path": "pool/dom1/harness/systemprompt.md",
+      "sha256": "36f1ea7a421b26608aa0866a00c5cbdc73536a448d6f491c969b8cf3abaa92c9",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1325,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0010",
+      "path": "pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3d2d677846236b69d3c1881dde6b7c0eea4af7ecd33fc77a98d18aec5624f17",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1048,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0005",
+      "path": "harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 96,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 124166,
+      "next_offset": 129166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0009",
+      "path": "pool/dom1/harness/systemprompt.md",
+      "sha256": "36f1ea7a421b26608aa0866a00c5cbdc73536a448d6f491c969b8cf3abaa92c9",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1325,
+      "eof": true
+    }
+  ],
+  "format_errors": [],
+  "independent_grading_used": false,
+  "recent_read_bodies": 3,
+  "error": "RuntimeError: Editor reached 20-step evidence/format limit without a valid final proposal"
+}

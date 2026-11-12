@@ -1,0 +1,14 @@
+test_public_defect (test_admission.Reproduce.test_public_defect) ... FAIL
+
+======================================================================
+FAIL: test_public_defect (test_admission.Reproduce.test_public_defect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 11, in test_public_defect
+    self.assertEqual(index(value, pool), expected)
+AssertionError: 2 != 1
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (failures=1)

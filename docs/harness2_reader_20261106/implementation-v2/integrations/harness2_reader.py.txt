@@ -1,0 +1,251 @@
+"""Pinned public evidence snapshots and a local editor's read-only JSON action loop."""
+import hashlib
+import json
+import os
+from pathlib import Path
+
+from integrations import harness2 as bridge
+
+MODE = 'indexed'
+MAX_STEPS = 20
+PAGE_CHARACTERS = 6000
+RECENT_READS = 3
+PUBLIC_ROOTS = {'harness', 'base_harness', 'decisions', 'deliverables', 'pool', 'rollouts'}
+PRIVATE_NAMES = {'grading', 'grading.json', 'grades', 'private-checks', 'private_checks',
+                 'reference', 'answers', 'checks', 'hidden', 'post-termination'}
+
+
+class EvidenceIntegrityError(ValueError):
+    """The controller's frozen evidence changed; do not ask a model to repair this."""
+
+
+def _hash(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def _linked(path):
+    return path.is_symlink() or bool(getattr(path.lstat(), 'st_file_attributes', 0) & 1024)
+
+
+def public_paths(root):
+    """Only upstream public-context artifacts; repository exports are not indexed here."""
+    root = Path(root)
+    if _linked(root):
+        raise EvidenceIntegrityError('Linked evidence root')
+    for parent, directories, filenames in os.walk(root, followlinks=False):
+        base = Path(parent)
+        directories.sort()
+        filenames.sort()
+        for name in [*directories, *filenames]:
+            path = base / name
+            relative = path.relative_to(root)
+            if _linked(path):
+                raise EvidenceIntegrityError('Links are forbidden in evidence')
+            if relative.parts[0] == 'source':
+                continue
+            if any(part.casefold() in PRIVATE_NAMES or any(marker in part.casefold()
+                   for marker in ('grading', 'private', 'hidden', 'reference', 'evaluator'))
+                   for part in relative.parts):
+                raise EvidenceIntegrityError('Private grading artifacts are forbidden in editor context')
+        if base == root:
+            directories[:] = [name for name in directories if name in PUBLIC_ROOTS]
+        for name in filenames:
+            path = base / name
+            rel = path.relative_to(root)
+            if rel.parts[0] not in PUBLIC_ROOTS and rel.as_posix() not in {'task.md', 'adoption.json'}:
+                continue
+            if path.suffix in {'.md', '.json', '.diff'} or name == 'candidate.diff.txt':
+                yield path
+
+
+def _events(text):
+    """Exact offsets plus small mechanical facts, without LLM-generated conclusions."""
+    events, offset, terminal = [], 0, None
+    for line in text.splitlines(keepends=True):
+        kind, separator, body = line.partition('] ')
+        if separator and kind.startswith('['):
+            row = {'offset': offset, 'length': len(line), 'kind': kind[1:]}
+            try:
+                value = json.loads(body)
+            except ValueError:
+                value = None
+            if isinstance(value, dict):
+                for key in ('step', 'action', 'status', 'accepted', 'feedback_rounds_attempted'):
+                    if key in value and isinstance(value[key], (str, int, bool, type(None))):
+                        row[key] = value[key] if not isinstance(value[key], str) else value[key][:160]
+                arguments = value.get('arguments')
+                if isinstance(arguments, dict):
+                    row['location'] = {key: str(arguments[key])[:160] for key in ('path', 'symbol', 'offset') if key in arguments}
+                error = value.get('patch_error')
+                if isinstance(error, dict):
+                    row['patch_error_code'] = str(error.get('code'))[:160]
+                if kind == '[PUBLIC FEEDBACK RESULT':
+                    terminal = {key: value.get(key) for key in ('status', 'accepted', 'feedback_rounds_attempted')}
+            events.append(row)
+        offset += len(line)
+    return events, terminal
+
+
+def prepare(context, output):
+    """Copy allowlisted raw UTF-8 bytes; later edits to the live context cannot alter reads."""
+    if _linked(Path(context)):
+        raise EvidenceIntegrityError('Linked evidence root')
+    context, output = Path(context).resolve(), Path(output).resolve()
+    if output.is_relative_to(context) or context.is_relative_to(output):
+        raise ValueError('Evidence snapshot must be outside the live context')
+    paths = sorted(public_paths(context))
+    output.mkdir(parents=True, exist_ok=False)
+    files, seen, inline = {}, {}, {}
+    for i, path in enumerate(paths, 1):
+        raw = path.read_bytes()
+        text, sha = raw.decode('utf-8'), _hash(raw)
+        identifier = f'e{i:04d}'
+        alias = seen.get(sha)
+        storage = (alias or identifier) + '.txt'
+        if alias is None:
+            (output / storage).write_bytes(raw)
+            seen[sha] = identifier
+        name = path.relative_to(context).as_posix()
+        row = {'id': identifier, 'path': name, 'sha256': sha, 'characters': len(text), 'bytes': len(raw),
+               'storage': storage, 'alias_of': alias}
+        if path.name == 'rollout.md' or name.startswith('rollouts/'):
+            row['events'], row['public_terminal'] = _events(text)
+        files[identifier] = row
+        # Large/nonconforming guidance remains accessible through the same paged interface.
+        if len(text) <= 4000 and (name == 'task.md' or name in {'harness/systemprompt.md',
+                'harness/tool_descriptions/tool_guidance.md', 'harness/context_policy.json'}):
+            inline[name] = text
+    manifest = {'schema': 'public-editor-evidence-v1', 'files': files, 'inline': inline,
+                'source_export_accessible': False, 'independent_grading_accessible': False,
+                'page_characters': PAGE_CHARACTERS, 'offset_unit': 'Unicode characters; zero-based'}
+    bridge.write(output / 'manifest.json', manifest)
+    return output / 'manifest.json'
+
+
+class Store:
+    def __init__(self, path, expected_hash):
+        self.path = Path(path)
+        if _linked(self.path) or bridge.sha(self.path) != expected_hash:
+            raise EvidenceIntegrityError('Evidence manifest changed')
+        self.manifest = bridge.read(self.path)
+        self.index = {**self.manifest, 'files': [{key: value for key, value in row.items() if key != 'storage'}
+                                               for row in self.manifest['files'].values()]}
+
+    def read(self, arguments):
+        if not isinstance(arguments, dict) or set(arguments) - {'id', 'offset', 'length'} or 'id' not in arguments:
+            raise ValueError('Use {"id":"e0001","offset":0,"length":6000}; no filesystem paths')
+        identifier, offset, length = arguments['id'], arguments.get('offset', 0), arguments.get('length', PAGE_CHARACTERS)
+        if not isinstance(identifier, str) or identifier not in self.manifest['files']:
+            raise ValueError('Unknown evidence id; select an id from the index')
+        if type(offset) is not int or offset < 0 or type(length) is not int or not 1 <= length <= PAGE_CHARACTERS:
+            raise ValueError('Use a nonnegative character offset and length between 1 and 6000')
+        row = self.manifest['files'][identifier]
+        path = self.path.parent / row['storage']
+        if _linked(path) or path.resolve().parent != self.path.parent.resolve():
+            raise EvidenceIntegrityError('Linked evidence snapshot')
+        raw = path.read_bytes()
+        if _hash(raw) != row['sha256']:
+            raise EvidenceIntegrityError('Evidence snapshot changed')
+        text = raw.decode('utf-8')
+        if offset > len(text):
+            raise ValueError('Offset is past end of evidence')
+        end = min(offset + length, len(text))
+        return {'id': identifier, 'path': row['path'], 'sha256': row['sha256'], 'offset': offset,
+                'content': text[offset:end], 'next_offset': end if end < len(text) else None,
+                'total_characters': len(text), 'eof': end == len(text)}
+
+
+READ_CONTRACT = '''You may inspect evidence before returning your final proposal.
+To read, return exactly {"action":"read_evidence","arguments":{"id":"e0001","offset":0,"length":6000}}.
+Choose actual ids and exact character offsets from the evidence index; long records can be read in multiple pages.
+No shell, arbitrary paths, private tests, network tools or runtime edits are available.
+Before proposing changes, inspect the relevant failures or candidate diffs, using their index references.
+For your final response return the required files/notes or experience object directly, without an action wrapper.
+The index contains mechanical observations, not correctness judgments. Public pass does not prove independent correctness.
+Complete small files remain pinned after reading. Only recent distinct larger pages are kept in context;
+a read ledger remains and any older evidence can be reread. Once evidence is sufficient, return the final proposal.'''
+
+
+def dialogue(messages, turns):
+    """Keep complete small-file receipts durable; a short window holds other pages."""
+    first = json.loads(messages[-1]['content'])
+    first['read_ledger'] = [{key: value for key, value in turn['observation'].items() if key != 'content'}
+                            for turn in turns if turn['kind'] == 'read']
+    pinned = {}
+    for turn in turns:
+        row = turn['observation']
+        if (turn['kind'] == 'read' and row.get('ok') is True and row.get('offset') == 0 and
+                row.get('eof') is True and type(row.get('total_characters')) is int and row['total_characters'] <= 4000):
+            pinned[row['id']] = row
+    first['pinned_complete_files'] = list(pinned.values())
+    result = [messages[0], {'role': 'user', 'content': json.dumps(first, ensure_ascii=False)}]
+    retained, unique = [], set()
+    for turn in reversed(turns):
+        if turn['kind'] == 'read' and turn['observation'].get('ok') is True:
+            if turn['observation']['id'] in pinned:
+                continue
+            key = tuple(turn['observation'].get(name) for name in ('id', 'offset', 'sha256'))
+            if key in unique or len(unique) >= RECENT_READS:
+                continue
+            unique.add(key)
+            retained.append(turn)
+    failures = [turn for turn in turns if turn['kind'] == 'format' or turn['observation'].get('ok') is False]
+    if failures:
+        retained.append(failures[-1])
+    for turn in sorted(retained, key=lambda row: row['step']):
+        reply = turn['assistant']
+        if len(reply) > 16000:
+            reply = json.dumps({'archived_editor_response': {'sha256': _hash(reply.encode()), 'characters': len(reply)}})
+        result += [{'role': 'assistant', 'content': reply},
+                   {'role': 'user', 'content': json.dumps(turn['observation'], ensure_ascii=False)}]
+    return result
+
+
+def edit(messages, store, llm, output, label, context_enabled, events, max_steps=MAX_STEPS):
+    """Real local inference when llm is ObservedLocalLLM; test providers are explicit seams."""
+    if type(max_steps) is not int or not 1 <= max_steps <= MAX_STEPS:
+        raise ValueError('Editor model steps must be between 1 and 20')
+    turns, report = [], {'status': 'running', 'model_steps': 0, 'reads': [], 'format_errors': [],
+                         'independent_grading_used': False, 'recent_read_bodies': RECENT_READS,
+                         'complete_small_files_pinned': True}
+    output = Path(output)
+    try:
+        for step in range(1, max_steps + 1):
+            if (output / 'CANCEL').exists():
+                raise RuntimeError('Editor cancelled')
+            current = dialogue(messages, turns)
+            folder = output / 'steps' / f'{step:03d}'
+            bridge.write(folder / 'messages.json', current)
+            report['model_steps'] = step
+            response = llm.chat(current, tools=[])
+            (folder / 'response.txt').write_text(response.content, encoding='utf-8')
+            if (output / 'CANCEL').exists():
+                raise RuntimeError('Editor cancelled')
+            try:
+                value = json.loads(response.content)
+                if isinstance(value, dict) and value.get('action') == 'read_evidence':
+                    if set(value) != {'action', 'arguments'}:
+                        raise ValueError('A read request must contain only action and arguments')
+                    observation = {'ok': True, **store.read(value['arguments'])}
+                    report['reads'].append({key: item for key, item in observation.items() if key != 'content'})
+                    events.emit('editor_evidence_read', step=step, **report['reads'][-1])
+                    kind = 'read'
+                else:
+                    bridge.validate_editor(value, label, context_enabled)
+                    bridge.write(output / 'reply.json', value)
+                    report['status'] = 'editor_returned'
+                    return value
+            except EvidenceIntegrityError:
+                raise
+            except (ValueError, TypeError, KeyError) as exc:
+                kind, observation = 'format', {'ok': False, 'format_error': str(exc)}
+                report['format_errors'].append({'step': step, **observation})
+                events.emit('editor_format_rejected', step=step, error=str(exc))
+            bridge.write(folder / 'observation.json', observation)
+            turns.append({'step': step, 'kind': kind, 'assistant': response.content, 'observation': observation})
+        raise RuntimeError(f'Editor reached {max_steps}-step evidence/format limit without a valid final proposal')
+    except Exception as exc:
+        report.update(status='editor_failed', error=type(exc).__name__ + ': ' + str(exc))
+        raise
+    finally:
+        bridge.write(output / 'reader-report.json', report)

@@ -1,0 +1,421 @@
+{
+  "schema": "fresh-indexed-ppc-acceptance-summary-v2",
+  "task_id": "toolz-join-unmatched",
+  "status": "completed",
+  "complete_fresh_ppc": true,
+  "independent_resolved": true,
+  "post_termination_recovery": false,
+  "delivered_label": "agg1",
+  "paid_api_calls": 0,
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 10,
+        "tokens": 63175,
+        "reused": false,
+        "trace_id": "31fa04e246332861ec2cdddc5c4471d7",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 41128,
+        "reused": false,
+        "trace_id": "4dfd722a753dd614556627957a7041e0",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 7,
+        "tokens": 25600,
+        "reused": false,
+        "trace_id": "90ca76204ea9ed63370d84ab42c929de",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 38621,
+        "reused": false,
+        "trace_id": "b8c1a120321f64b44693b2105058ab1d",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 6,
+        "tokens": 25841,
+        "reused": false,
+        "trace_id": "39b2954ea287e6161730844c615e9070",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 39213,
+        "reused": false,
+        "trace_id": "ae6a96b6d89344118253ef3949fd291c",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 8,
+        "tokens": 47773,
+        "reused": false,
+        "trace_id": "d58da18b4cd902ca8c40d4a21c5a97c4",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 40839,
+        "reused": false,
+        "trace_id": "c5134162d69f73216dc20fce9f463159",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 11,
+        "tokens": 92070,
+        "trace_id": "f8b16c2199eaae9b36ce78684c377b70",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\editors\\call-001"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 2,
+        "tokens": 14619,
+        "trace_id": "630c6c4db07b40df7f55f5bd6036a13d",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\editors\\call-002"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 4,
+        "tokens": 60113,
+        "trace_id": "c5aaed573d96ddc6c3279eb106438639",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\editors\\call-003"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 4,
+        "tokens": 84470,
+        "trace_id": "e2a0514dd4189ea2342f7ffb93addd65",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\editors\\call-004"
+      }
+    ],
+    "fresh_model_calls": 56,
+    "tokens": 573462,
+    "known_tokens_minimum": 573462
+  },
+  "seconds": 458.969,
+  "audit": {
+    "schema": "indexed-ppc-evidence-audit-v1",
+    "model_calls_in_audit": 0,
+    "checks_passed": true,
+    "complete_fresh_ppc": true,
+    "rollouts": [
+      {
+        "label": "base1",
+        "guidance_sha256": "262f17358d52ab7fa3fd8cef027b6ae29ecc3f3f907c03ac3a2f8b8175623f2d",
+        "effective_requests_verified": 7,
+        "context_policy": {
+          "version": 1,
+          "deduplicate_reads": false,
+          "complete_symbols_first": false,
+          "read_index": false
+        },
+        "feedback_rounds": 1,
+        "public_accepted": true,
+        "fresh_candidate": true,
+        "guidance_applied": true
+      },
+      {
+        "label": "dom1",
+        "guidance_sha256": "c011e964e7a3dffe4f274139ec03e945082af4e9d196cbce961ab0c33134afd3",
+        "effective_requests_verified": 6,
+        "context_policy": {
+          "version": 1,
+          "deduplicate_reads": false,
+          "complete_symbols_first": false,
+          "read_index": false
+        },
+        "feedback_rounds": 1,
+        "public_accepted": true,
+        "fresh_candidate": true,
+        "guidance_applied": true
+      },
+      {
+        "label": "inv1",
+        "guidance_sha256": "c1d1f198489c82383dfafe6a2f4bdc9ae17189c8e7335015fab392d9859c3661",
+        "effective_requests_verified": 8,
+        "context_policy": {
+          "version": 1,
+          "deduplicate_reads": true,
+          "complete_symbols_first": true,
+          "read_index": true
+        },
+        "feedback_rounds": 1,
+        "public_accepted": true,
+        "fresh_candidate": true,
+        "guidance_applied": true
+      },
+      {
+        "label": "agg1",
+        "guidance_sha256": "9e0f1c6b9fb7abd722451886c7ec087d6f282fda1233efa4ef8606bc1ca07b30",
+        "effective_requests_verified": 10,
+        "context_policy": {
+          "version": 1,
+          "deduplicate_reads": true,
+          "complete_symbols_first": true,
+          "read_index": true
+        },
+        "feedback_rounds": 1,
+        "public_accepted": true,
+        "fresh_candidate": true,
+        "guidance_applied": true
+      }
+    ],
+    "editors": [
+      {
+        "label": "inv1.a1",
+        "status": "editor_returned",
+        "valid_output": true,
+        "calls": 11,
+        "reads": 10,
+        "format_errors": 0
+      },
+      {
+        "label": "dom1.a1",
+        "status": "editor_returned",
+        "valid_output": true,
+        "calls": 2,
+        "reads": 1,
+        "format_errors": 0
+      },
+      {
+        "label": "agg1.a1",
+        "status": "editor_returned",
+        "valid_output": true,
+        "calls": 4,
+        "reads": 3,
+        "format_errors": 0
+      },
+      {
+        "label": "experience.agg1",
+        "status": "editor_returned",
+        "valid_output": true,
+        "calls": 4,
+        "reads": 3,
+        "format_errors": 0
+      }
+    ],
+    "delivery": {
+      "policy": "public-preserve-v1",
+      "official_label": "agg1",
+      "chosen_label": "agg1",
+      "chosen_folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1",
+      "candidates": {
+        "base1": {
+          "public_accepted": true,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+          "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1\\feedback\\rounds\\001\\validation\\report.json"
+        },
+        "dom1": {
+          "public_accepted": true,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1",
+          "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1\\feedback\\rounds\\001\\validation\\report.json"
+        },
+        "inv1": {
+          "public_accepted": true,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1",
+          "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\rounds\\001\\validation\\report.json"
+        },
+        "agg1": {
+          "public_accepted": true,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1",
+          "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1\\feedback\\rounds\\001\\validation\\report.json"
+        }
+      },
+      "independent_grading_used": false,
+      "model_calls": 0,
+      "changed_delivery": false,
+      "not_upstream_selector_vote": true
+    },
+    "independent_resolved": true,
+    "post_termination_recovery": false,
+    "experience_reuse": "not_admitted; one task does not establish reusable lessons",
+    "implementation_and_baseline_unchanged": true,
+    "historical_batch_unchanged": true,
+    "review_packet_checks": [
+      {
+        "editor": "inv1.a1",
+        "exact_short_files": 4,
+        "public_candidates": 1,
+        "decision_state_verified": true
+      },
+      {
+        "editor": "dom1.a1",
+        "exact_short_files": 4,
+        "public_candidates": 1,
+        "decision_state_verified": true
+      },
+      {
+        "editor": "agg1.a1",
+        "exact_short_files": 16,
+        "public_candidates": 3,
+        "decision_state_verified": true
+      },
+      {
+        "editor": "experience.agg1",
+        "exact_short_files": 28,
+        "public_candidates": 7,
+        "decision_state_verified": true
+      }
+    ],
+    "public_selection_worker_verified": true
+  },
+  "native_server_receipts_confirmed": true,
+  "overview": {
+    "trace_id": "dcd4fd07735ea291c20525eec9fae0ed",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/dcd4fd07735ea291c20525eec9fae0ed",
+    "observations_confirmed": 14,
+    "generations": 0,
+    "model_calls": 0,
+    "native_usage_verified_separately": true
+  },
+  "automated_checks": {
+    "python311": {
+      "passed": 79,
+      "skipped": 2
+    },
+    "python312_unittest": 24,
+    "real_cross_python_public_selection": {
+      "status": "passed",
+      "model_calls": 0,
+      "controller_python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "controller_did_not_import_model_sdk": true,
+      "candidate_selection": {
+        "policy": "public-preserve-v1",
+        "official_label": null,
+        "chosen_label": "base1",
+        "chosen_folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+        "candidates": {
+          "base1": {
+            "public_accepted": true,
+            "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+            "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1\\feedback\\rounds\\001\\validation\\report.json"
+          },
+          "inv1": {
+            "public_accepted": true,
+            "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1",
+            "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\rounds\\001\\validation\\report.json"
+          },
+          "dom1": {
+            "public_accepted": true,
+            "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1",
+            "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1\\feedback\\rounds\\001\\validation\\report.json"
+          }
+        },
+        "independent_grading_used": false,
+        "model_calls": 0,
+        "changed_delivery": true,
+        "not_upstream_selector_vote": true
+      },
+      "review_files": 16,
+      "public_candidate_summaries": 3,
+      "manifest_sha256": "00822b263d539f7ab474235a2ad8bc3c48473fecbbf3e238a19f2fe4e28e6b02"
+    }
+  },
+  "prior_attempt": {
+    "status": "completed_with_ppc_error",
+    "usage": {
+      "phases": [
+        {
+          "phase": "candidate",
+          "fresh_model_calls": 7,
+          "tokens": 25600,
+          "reused": false,
+          "trace_id": "cc0c47c5b2b409e3aeb0b63afda239a3",
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+        },
+        {
+          "phase": "feedback",
+          "fresh_model_calls": 1,
+          "tokens": 38621,
+          "reused": false,
+          "trace_id": "c4ae6109200e6ca0ce8792d9d8622bda",
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+        },
+        {
+          "phase": "candidate",
+          "fresh_model_calls": 18,
+          "tokens": 122776,
+          "reused": false,
+          "trace_id": "7e3516c3ba70f00c4e280f1e6a490f3c",
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+        },
+        {
+          "phase": "feedback",
+          "fresh_model_calls": 1,
+          "tokens": 41171,
+          "reused": false,
+          "trace_id": "6aaec2f2b47887cfa0a0b541f9c12d85",
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+        },
+        {
+          "phase": "candidate",
+          "fresh_model_calls": 9,
+          "tokens": 54686,
+          "reused": false,
+          "trace_id": "98a3e4c980107aa8a2c17a9cd5fcf58e",
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+        },
+        {
+          "phase": "feedback",
+          "fresh_model_calls": 1,
+          "tokens": 40750,
+          "reused": false,
+          "trace_id": "2827f77252a822c7285126a75cec58b3",
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+        },
+        {
+          "phase": "editor",
+          "fresh_model_calls": 10,
+          "tokens": 104010,
+          "trace_id": "f2f62cdbb0a621b5365193ca3199bfd0",
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\editors\\call-001"
+        },
+        {
+          "phase": "editor",
+          "fresh_model_calls": 9,
+          "tokens": 93408,
+          "trace_id": "bc675170d486c73c5944acf7a59cd106",
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\editors\\call-002"
+        },
+        {
+          "phase": "editor",
+          "fresh_model_calls": 20,
+          "tokens": 310407,
+          "trace_id": "b7c37f415299536061e171a2efe6871f",
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\editors\\call-003"
+        }
+      ],
+      "fresh_model_calls": 76,
+      "tokens": 831429,
+      "known_tokens_minimum": 831429
+    },
+    "report_sha256": "1327b2a18fa2d8804e9ce54f819311953a9b9e2013b7d88213a2a41c5868beee"
+  },
+  "evidence": {
+    "manifest": "docs/harness2_ppc_v2_20261106/manifest.json",
+    "sha256": "b401927ac92710964a471940a57b36898fac1c7a06c726bce56d543331f2913a",
+    "files": 3595,
+    "bytes": 15983054
+  },
+  "limitations": [
+    "One known task; four identical final candidate hashes are not four independent tasks",
+    "Independent grading executed only on delivered agg1",
+    "Prior failed and new completed PPC have different phase counts; no equal-total-compute comparison",
+    "Both interface fixes changed together; no single-factor causal attribution",
+    "No repair-rate improvement claim; historical 24/50 and 27/50 unchanged"
+  ]
+}

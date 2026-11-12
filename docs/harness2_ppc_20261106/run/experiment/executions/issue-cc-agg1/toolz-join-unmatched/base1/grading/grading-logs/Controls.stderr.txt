@@ -1,0 +1,6 @@
+test_preservation (test_admission.Controls.test_preservation) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK

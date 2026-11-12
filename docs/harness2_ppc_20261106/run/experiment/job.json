@@ -1,0 +1,18 @@
+{
+  "kind": "experiment",
+  "arm": "harness2",
+  "source": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\expanded-admission-v1-certified-v2\\toolz-join-unmatched\\before",
+  "source_hash": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+  "public_task": {
+    "instance_id": "toolz-join-unmatched",
+    "repo": "pytoolz/toolz",
+    "base_commit": "source-sha256:ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+    "problem_statement": "join must yield unmatched left rows with right_default for a left outer join, without a NameError. Preserve matched rows and ordinary inner joins."
+  },
+  "public_checks": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\toolz-join-unmatched\\public",
+  "package": "toolz",
+  "source_root": ".",
+  "feedback_rounds": 20,
+  "candidate_policy": "public-preserve-v1",
+  "editor_evidence": "indexed"
+}

@@ -1,0 +1,1236 @@
+{
+  "schema": "harness2-final-failures-audit-v1",
+  "source_report": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\report.json",
+  "source_report_sha256": "a8a817d848ac8058af70d873022f9e9f4e6824eb8ed4ea0541f464409a2d82f4",
+  "classification_rule": "No final patch has priority. A nonempty applied patch is not a correct or useful patch. Regression requires independent Controls failure.",
+  "summary": {
+    "final_failures": 25,
+    "scope": "The 25 delivered unresolved candidates only; not all 200 search candidates.",
+    "categories": {
+      "no_final_patch": 11,
+      "regression_and_unfixed_target": 2,
+      "applied_patch_but_target_failed": 12
+    },
+    "grading_combinations": {
+      "Target=False,Controls=True": 23,
+      "Target=False,Controls=False": 2
+    },
+    "feedback_statuses": {
+      "feedback_round_limit": 14,
+      "validation_blocked": 4,
+      "local_provider_failed": 5,
+      "ready_for_review": 2
+    },
+    "final_feedback_rounds_attempted": 306,
+    "final_feedback_applied_patches": 4,
+    "final_feedback_rejected_patches": 297,
+    "final_feedback_rejection_codes": {
+      "invalid_patch_schema": 237,
+      "anchor_not_found": 48,
+      "syntax_error": 11,
+      "no_change": 1
+    },
+    "public_passed_but_independent_failed": [
+      "click-flag-envvar",
+      "click-prompt-suffix"
+    ],
+    "changed_python_files_ast_parsed": 15,
+    "candidate_code_executed_by_audit": false,
+    "model_calls_by_audit": 0,
+    "independent_test_results_are_not_optimizer_inputs": true
+  },
+  "tasks": [
+    {
+      "task_id": "click-style-color-validation",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 26,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-style-color-validation\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 39,
+        "text": "TypeError: Unknown color 'missing-color'"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 20
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "itsdangerous-none-salt",
+      "category": "regression_and_unfixed_target",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": false,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [
+        "src/itsdangerous/serializer.py",
+        "src/itsdangerous/signer.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "src/itsdangerous/serializer.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\input\\src\\itsdangerous\\serializer.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\agg1\\feedback\\workspace\\src\\itsdangerous\\serializer.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        },
+        {
+          "file": "src/itsdangerous/signer.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\input\\src\\itsdangerous\\signer.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\agg1\\feedback\\workspace\\src\\itsdangerous\\signer.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "24b10e1fd9627dd0af5805f3ef27493370eef2566ef9a52e1bc6bf863b4f2ec7",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 10,
+        "text": "AssertionError: '{\"answer\": 42}.9WWRKr8vB5dt6Eotbpa6PCpeMD0' != '{\"answer\": 42}.pmh1i_cDT8giHjw911701ol0j3g'"
+      },
+      "controls_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\agg1\\grading\\grading-logs\\Controls.stderr.txt",
+        "line": 10,
+        "text": "AssertionError: '[1, \"two\"].JWM5-1A2QQWT2nwDkjlyubwsJTs' != '[1, \"two\"].HNJPPAC-dtbEWBeYjAW8wBCbDdg'"
+      },
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "validation_blocked",
+      "feedback_rounds_attempted": 1,
+      "feedback_applied_patches": 1,
+      "feedback_rejected_patches": 0,
+      "feedback_rejection_codes": {},
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": [
+        {
+          "report": {
+            "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\agg1\\feedback\\rounds\\001\\validation\\report.json",
+            "line": 45
+          },
+          "error": "SandboxError: sandbox_invalid_result",
+          "stderr": {
+            "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\itsdangerous-none-salt\\executions\\issue-cc-agg1\\itsdangerous-none-salt\\agg1\\feedback\\rounds\\001\\validation\\public-logs\\Reproduce.stderr.txt",
+            "line": 1
+          },
+          "stderr_text": "python: can't open file '/runner.py': [Errno 5] Input/output error\n"
+        }
+      ]
+    },
+    {
+      "task_id": "click-help-eagerness",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [
+        "src/click/core.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "src/click/core.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-help-eagerness\\input\\src\\click\\core.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\agg1\\feedback\\workspace\\src\\click\\core.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "ea99ff4d0e5dbe36b7d09b3d7d6722c9f44e579f08de1ec2756c03d1b80d8274",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-help-eagerness\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: 'Usage:' not found in ''"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "local_provider_failed",
+      "feedback_rounds_attempted": 2,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 1,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 1
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "click-flag-default-map",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-default-map\\executions\\issue-cc-agg1\\click-flag-default-map\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-default-map\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-default-map\\executions\\issue-cc-agg1\\click-flag-default-map\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: 'default: enabled' not found in 'Usage: cli [OPTIONS]\\n\\nOptions:\\n  --enabled / --disabled  [default: disabled]\\n  --help                  Show this message and exit.\\n'"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-default-map\\executions\\issue-cc-agg1\\click-flag-default-map\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 12,
+        "anchor_not_found": 8
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "click-resource-exception",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 2,
+      "changed_files": [
+        "src/click/core.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "src/click/core.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-resource-exception\\input\\src\\click\\core.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-resource-exception\\executions\\issue-cc-agg1\\click-resource-exception\\agg1\\feedback\\workspace\\src\\click\\core.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-resource-exception\\executions\\issue-cc-agg1\\click-resource-exception\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "0d3b4e0b0d448e3f140e49b5537cfc63e88573053d1864ff2ce966c5e13bbaed",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-resource-exception\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-resource-exception\\executions\\issue-cc-agg1\\click-resource-exception\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 10,
+        "text": "AssertionError: True is not false"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-resource-exception\\executions\\issue-cc-agg1\\click-resource-exception\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 13,
+        "anchor_not_found": 7
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "click-flag-envvar",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "dom1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 6,
+      "changed_files": [
+        "src/click/core.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "src/click/core.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-envvar\\input\\src\\click\\core.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-envvar\\executions\\issue-cc-agg1\\click-flag-envvar\\dom1\\feedback\\workspace\\src\\click\\core.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-envvar\\executions\\issue-cc-agg1\\click-flag-envvar\\dom1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "42c847b8591aeb1e29792a5191ff54ba359294538c325d2553e6cfbf38a94f4f",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-envvar\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-envvar\\executions\\issue-cc-agg1\\click-flag-envvar\\dom1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 17,
+        "text": "AssertionError: 'None' != \"'False'\""
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-flag-envvar\\executions\\issue-cc-agg1\\click-flag-envvar\\dom1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "ready_for_review",
+      "feedback_rounds_attempted": 0,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 0,
+      "feedback_rejection_codes": {},
+      "initial_public_validation": "validated",
+      "public_accepted": true,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "click-prompt-suffix",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [
+        "src/click/termui.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "src/click/termui.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-prompt-suffix\\input\\src\\click\\termui.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-prompt-suffix\\executions\\issue-cc-agg1\\click-prompt-suffix\\agg1\\feedback\\workspace\\src\\click\\termui.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-prompt-suffix\\executions\\issue-cc-agg1\\click-prompt-suffix\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "62566d9aadfc2680fc15cd43c72bae0309d30a8825208f058ec2561f0b3e1fff",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-prompt-suffix\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-prompt-suffix\\executions\\issue-cc-agg1\\click-prompt-suffix\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 10,
+        "text": "AssertionError: 'Proceed yes\\nvalue=True\\n' != 'Proceedyes\\nvalue=True\\n'"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-prompt-suffix\\executions\\issue-cc-agg1\\click-prompt-suffix\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "ready_for_review",
+      "feedback_rounds_attempted": 0,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 0,
+      "feedback_rejection_codes": {},
+      "initial_public_validation": "validated",
+      "public_accepted": true,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "click-invoke-missing",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 2,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-invoke-missing\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 11,
+        "text": "AssertionError: Sentinel.UNSET is not None"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 19,
+        "anchor_not_found": 1
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "click-shared-default",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-shared-default\\executions\\issue-cc-agg1\\click-shared-default\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-shared-default\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-shared-default\\executions\\issue-cc-agg1\\click-shared-default\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 10,
+        "text": "AssertionError: None != 'safe'"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\click-shared-default\\executions\\issue-cc-agg1\\click-shared-default\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 20
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "boltons-split-zero",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-split-zero\\executions\\issue-cc-agg1\\boltons-split-zero\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-split-zero\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-split-zero\\executions\\issue-cc-agg1\\boltons-split-zero\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: Lists differ: [[[1, None, 3]]] != [[1, None, 3]]"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-split-zero\\executions\\issue-cc-agg1\\boltons-split-zero\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 15,
+        "anchor_not_found": 5
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "boltons-chunked-bytes",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 1,
+      "target_failures": 0,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-chunked-bytes\\executions\\issue-cc-agg1\\boltons-chunked-bytes\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-chunked-bytes\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-chunked-bytes\\executions\\issue-cc-agg1\\boltons-chunked-bytes\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 19,
+        "text": "TypeError: sequence item 0: expected a bytes-like object, int found"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-chunked-bytes\\executions\\issue-cc-agg1\\boltons-chunked-bytes\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 20
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "boltons-remap-set",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-remap-set\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: Items in the first set but not the second:"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 10,
+        "anchor_not_found": 1,
+        "syntax_error": 9
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "more-falsy-exception",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 1,
+      "target_failures": 0,
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "more_itertools/more.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-falsy-exception\\input\\more_itertools\\more.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-falsy-exception\\executions\\issue-cc-agg1\\more-falsy-exception\\agg1\\feedback\\workspace\\more_itertools\\more.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-falsy-exception\\executions\\issue-cc-agg1\\more-falsy-exception\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "1655c93f11beb5d584c9bda0a274738705edc1f802d9a5058628c80e43020136",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-falsy-exception\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-falsy-exception\\executions\\issue-cc-agg1\\more-falsy-exception\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 15,
+        "text": "ValueError: Expected exactly one item in iterable, but got 1, 2, and perhaps more."
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-falsy-exception\\executions\\issue-cc-agg1\\more-falsy-exception\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 11,
+        "anchor_not_found": 9
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "more-seekable-zero",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 1,
+      "target_failures": 0,
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "more_itertools/more.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-seekable-zero\\input\\more_itertools\\more.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-seekable-zero\\executions\\issue-cc-agg1\\more-seekable-zero\\agg1\\feedback\\workspace\\more_itertools\\more.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-seekable-zero\\executions\\issue-cc-agg1\\more-seekable-zero\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "00c0808d5b99c182c407537e775990736d2a7f692b88530362925673acd61d68",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-seekable-zero\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-seekable-zero\\executions\\issue-cc-agg1\\more-seekable-zero\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 13,
+        "text": "IndexError: deque index out of range"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-seekable-zero\\executions\\issue-cc-agg1\\more-seekable-zero\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 11,
+        "anchor_not_found": 8,
+        "no_change": 1
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "more-split-empty",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "more_itertools/more.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-split-empty\\input\\more_itertools\\more.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-split-empty\\executions\\issue-cc-agg1\\more-split-empty\\agg1\\feedback\\workspace\\more_itertools\\more.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-split-empty\\executions\\issue-cc-agg1\\more-split-empty\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "ee141b9baca89e0c498708e3c5cb9cd22fa85da4ed3f2c2e870f14209042e26c",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-split-empty\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-split-empty\\executions\\issue-cc-agg1\\more-split-empty\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: Lists differ: [[]] != []"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-split-empty\\executions\\issue-cc-agg1\\more-split-empty\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 11,
+        "anchor_not_found": 9
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "more-negative-range-slice",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "more_itertools/more.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-negative-range-slice\\input\\more_itertools\\more.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-negative-range-slice\\executions\\issue-cc-agg1\\more-negative-range-slice\\agg1\\feedback\\workspace\\more_itertools\\more.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-negative-range-slice\\executions\\issue-cc-agg1\\more-negative-range-slice\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e54069307242f541309578201ec89c10de505d3b794ae06cd9f210275bbdba8a",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-negative-range-slice\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-negative-range-slice\\executions\\issue-cc-agg1\\more-negative-range-slice\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: Lists differ: [] != [6, 5, 4, 3, 2, 1, 0]"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-negative-range-slice\\executions\\issue-cc-agg1\\more-negative-range-slice\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "local_provider_failed",
+      "feedback_rounds_attempted": 1,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 0,
+      "feedback_rejection_codes": {},
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "more-range-membership",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-membership\\executions\\issue-cc-agg1\\more-range-membership\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-membership\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-membership\\executions\\issue-cc-agg1\\more-range-membership\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: 0.30000000000000004 not found in numeric_range(0.0, 1.0, 0.1)"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-membership\\executions\\issue-cc-agg1\\more-range-membership\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "local_provider_failed",
+      "feedback_rounds_attempted": 3,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 2,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 2
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "more-range-equality",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "more_itertools/more.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-equality\\input\\more_itertools\\more.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-equality\\executions\\issue-cc-agg1\\more-range-equality\\agg1\\feedback\\workspace\\more_itertools\\more.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-equality\\executions\\issue-cc-agg1\\more-range-equality\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "db64dcf5c8639cf5f8fa41d4062e2f15f115007681f7035b16d0246c7cc4a7a5",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-equality\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-equality\\executions\\issue-cc-agg1\\more-range-equality\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: 2550338510997324213 != 1381114582271560203"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-range-equality\\executions\\issue-cc-agg1\\more-range-equality\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 20
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "more-predicate-sentinel",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "more_itertools/more.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-predicate-sentinel\\input\\more_itertools\\more.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-predicate-sentinel\\executions\\issue-cc-agg1\\more-predicate-sentinel\\agg1\\feedback\\workspace\\more_itertools\\more.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-predicate-sentinel\\executions\\issue-cc-agg1\\more-predicate-sentinel\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "32a14a39aca031094f2957cccb337f7e15d3edc4d5f4dbfae8f1eb24217a7529",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-predicate-sentinel\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-predicate-sentinel\\executions\\issue-cc-agg1\\more-predicate-sentinel\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: False is not true"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-predicate-sentinel\\executions\\issue-cc-agg1\\more-predicate-sentinel\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 20
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "more-product-repeat",
+      "category": "regression_and_unfixed_target",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": false,
+      "target_errors": 1,
+      "target_failures": 0,
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "more_itertools/more.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\input\\more_itertools\\more.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\agg1\\feedback\\workspace\\more_itertools\\more.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "766b093aa836121fa99fdbd9123e5f3ebf22a675b3893f3c99188a6af2b21ecb",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 1,
+        "text": "test_contract (test_admission.Target.test_contract) ... ERROR\n\n======================================================================\nERROR: test_contract (test_admission.Target.test_contract)\n----------------------------------------------------------------------\nTraceback (most recent call last):"
+      },
+      "controls_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\agg1\\grading\\grading-logs\\Controls.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: Tuples differ: ('B', 'C') != ('A', 'D')"
+      },
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "validation_blocked",
+      "feedback_rounds_attempted": 3,
+      "feedback_applied_patches": 1,
+      "feedback_rejected_patches": 2,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 2
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": [
+        {
+          "report": {
+            "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\agg1\\feedback\\rounds\\003\\validation\\report.json",
+            "line": 44
+          },
+          "error": "SandboxError: sandbox_invalid_result",
+          "stderr": {
+            "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-product-repeat\\executions\\issue-cc-agg1\\more-product-repeat\\agg1\\feedback\\rounds\\003\\validation\\public-logs\\Reproduce.stderr.txt",
+            "line": 1
+          },
+          "stderr_text": "python: can't open file '/runner.py': [Errno 5] Input/output error\n"
+        }
+      ]
+    },
+    {
+      "task_id": "more-gray-partial-repeat",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 1,
+      "target_failures": 0,
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "more_itertools/more.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\input\\more_itertools\\more.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\agg1\\feedback\\workspace\\more_itertools\\more.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "46a34c84222ee78c2c65b6f47984b557ede0dce5ad9279a3b9ecfc0fb19833b3",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 12,
+        "text": "ValueError: each iterable must have two or more items"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "validation_blocked",
+      "feedback_rounds_attempted": 4,
+      "feedback_applied_patches": 1,
+      "feedback_rejected_patches": 3,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 3
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": [
+        {
+          "report": {
+            "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\agg1\\feedback\\rounds\\004\\validation\\report.json",
+            "line": 69
+          },
+          "error": "SandboxError: sandbox_invalid_result",
+          "stderr": {
+            "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-gray-partial-repeat\\executions\\issue-cc-agg1\\more-gray-partial-repeat\\agg1\\feedback\\rounds\\004\\validation\\public-logs\\Reproduce.stderr.txt",
+            "line": 1
+          },
+          "stderr_text": "python: can't open file '/runner.py': [Errno 5] Input/output error\n"
+        }
+      ]
+    },
+    {
+      "task_id": "more-reversed-values",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-reversed-values\\executions\\issue-cc-agg1\\more-reversed-values\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-reversed-values\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-reversed-values\\executions\\issue-cc-agg1\\more-reversed-values\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: Lists differ: [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.29999999999999993, 0.1[60 chars]9998] != [0.9, 0.8, 0.7000000000000001, 0.6000000000000001, 0.5,[36 chars] 0.0]"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-reversed-values\\executions\\issue-cc-agg1\\more-reversed-values\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "local_provider_failed",
+      "feedback_rounds_attempted": 1,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 0,
+      "feedback_rejection_codes": {},
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "more-broadcast-single-use",
+      "category": "applied_patch_but_target_failed",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 1,
+      "target_failures": 0,
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "changed_evidence": [
+        {
+          "file": "more_itertools/more.py",
+          "before": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\input\\more_itertools\\more.py",
+          "final": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\executions\\issue-cc-agg1\\more-broadcast-single-use\\agg1\\feedback\\workspace\\more_itertools\\more.py",
+          "syntax_parse": "passed_without_executing_candidate"
+        }
+      ],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\executions\\issue-cc-agg1\\more-broadcast-single-use\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "d0d43291cf86079e7b0d6a4b0e2bfa9346b03c2c5c148507336d6c7ab43ff866",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\executions\\issue-cc-agg1\\more-broadcast-single-use\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 16,
+        "text": "RuntimeError: opened twice"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\executions\\issue-cc-agg1\\more-broadcast-single-use\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "validation_blocked",
+      "feedback_rounds_attempted": 10,
+      "feedback_applied_patches": 1,
+      "feedback_rejected_patches": 9,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 9
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": [
+        {
+          "report": {
+            "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\executions\\issue-cc-agg1\\more-broadcast-single-use\\agg1\\feedback\\rounds\\010\\validation\\report.json",
+            "line": 44
+          },
+          "error": "SandboxError: sandbox_invalid_result",
+          "stderr": {
+            "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\more-broadcast-single-use\\executions\\issue-cc-agg1\\more-broadcast-single-use\\agg1\\feedback\\rounds\\010\\validation\\public-logs\\Reproduce.stderr.txt",
+            "line": 1
+          },
+          "stderr_text": "python: can't open file '/runner.py': [Errno 5] Input/output error\n"
+        }
+      ]
+    },
+    {
+      "task_id": "boltons-xfrange-descending",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 0,
+      "target_failures": 1,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-xfrange-descending\\executions\\issue-cc-agg1\\boltons-xfrange-descending\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-xfrange-descending\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-xfrange-descending\\executions\\issue-cc-agg1\\boltons-xfrange-descending\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 9,
+        "text": "AssertionError: Lists differ: [] != [5.0, 3.75, 2.5, 1.25]"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-xfrange-descending\\executions\\issue-cc-agg1\\boltons-xfrange-descending\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "local_provider_failed",
+      "feedback_rounds_attempted": 1,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 0,
+      "feedback_rejection_codes": {},
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    },
+    {
+      "task_id": "boltons-backoff-zero",
+      "category": "no_final_patch",
+      "adopted_label": "agg1",
+      "target_passed": false,
+      "controls_passed": true,
+      "target_errors": 1,
+      "target_failures": 0,
+      "changed_files": [],
+      "changed_evidence": [],
+      "patch": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-backoff-zero\\executions\\issue-cc-agg1\\boltons-backoff-zero\\agg1\\grading\\patch.diff",
+        "line": 1
+      },
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "grading_receipt": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-backoff-zero\\post-termination\\grading.json",
+        "line": 1
+      },
+      "target_error": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-backoff-zero\\executions\\issue-cc-agg1\\boltons-backoff-zero\\agg1\\grading\\grading-logs\\Target.stderr.txt",
+        "line": 15,
+        "text": "ValueError: start must be > 0, not 0"
+      },
+      "controls_error": null,
+      "feedback_report": {
+        "path": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\arms\\harness2\\boltons-backoff-zero\\executions\\issue-cc-agg1\\boltons-backoff-zero\\agg1\\feedback\\report.json",
+        "line": 2
+      },
+      "feedback_status": "feedback_round_limit",
+      "feedback_rounds_attempted": 20,
+      "feedback_applied_patches": 0,
+      "feedback_rejected_patches": 20,
+      "feedback_rejection_codes": {
+        "invalid_patch_schema": 18,
+        "syntax_error": 2
+      },
+      "initial_public_validation": "rejected",
+      "public_accepted": false,
+      "validation_blocks": []
+    }
+  ]
+}

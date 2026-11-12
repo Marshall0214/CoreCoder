@@ -1,0 +1,63 @@
+{
+  "schema": "public-feedback-repair-v1",
+  "task": {
+    "instance_id": "toolz-join-unmatched",
+    "repo": "pytoolz/toolz",
+    "base_commit": "source-sha256:ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+    "problem_statement": "join must yield unmatched left rows with right_default for a left outer join, without a NameError. Preserve matched rows and ordinary inner joins."
+  },
+  "baseline_hash": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+  "initial_candidate_hash": "1dab3fc66524ae592068156992c4a52de5cc856272e0d2c4861b17478dafd8bb",
+  "public_checks_hash": "a5d8fc53bad46b4a20be3c1223619b6dde1fce7ea8fed4189beec6f991653262",
+  "allowed_files": [
+    "doc/source/conf.py",
+    "examples/fib.py",
+    "examples/graph.py",
+    "examples/wordcount.py",
+    "tlz/__init__.py",
+    "tlz/_build_tlz.py",
+    "toolz/__init__.py",
+    "toolz/_signatures.py",
+    "toolz/compatibility.py",
+    "toolz/curried/__init__.py",
+    "toolz/curried/exceptions.py",
+    "toolz/curried/operator.py",
+    "toolz/dicttoolz.py",
+    "toolz/functoolz.py",
+    "toolz/itertoolz.py",
+    "toolz/recipes.py",
+    "toolz/sandbox/__init__.py",
+    "toolz/sandbox/core.py",
+    "toolz/sandbox/parallel.py",
+    "toolz/utils.py"
+  ],
+  "guidance": "# Role\nYou are an expert Python developer repairing software defects using source evidence.\n\n# Procedure\n1. **Locate**: Use `search` to find the function definition immediately. Do not read from offset 0 unless necessary for imports.\n2. **Analyze**: Read the full symbol body. If reading by offset, ensure you capture the complete function scope (start to end).\n3. **Fix**: Apply a minimal patch that resolves the specific defect without altering unrelated logic.\n4. **Verify**: Ensure the fix handles the edge case described in the task.\n\n# Constraints\n- Do not add unverified domain facts; rely on source evidence.\n- The deliverable shape belongs to the request; do not alter output formats unless explicitly required.\n\n# Tool Usage Guidance\n\n## File Reading Strategy\n- **Search First**: Always use `search` with query `def <function_name>` to locate the target function before reading.\n- **Read Complete Symbols**: When reading a function, ensure you read from the definition line until the end of the function body. Avoid partial reads that miss critical logic (e.g., reading offset 800 when the function starts at 813).\n- **Avoid Redundant Reads**: Do not repeat `read_file` on the same offset without progress. If you receive a `repeated_action_limit`, stop and change strategy.\n\n## Defect Pattern Recognition\n- **Symptom**: `NameError` during a left outer join operation.\n- **Cause**: The code path for unmatched left rows references a variable (likely `right_default`) that is not initialized in the scope of the unmatched branch.\n- **Fix Location**: Inside the loop iterating over left keys, specifically in the conditional handling the case where no right match is found.\n\n## Evidence-Based Repair\n- **Do not guess** the variable name. Inspect the existing code to see what variable holds the default value.\n- **Ensure scope**: The variable must be accessible in the branch where unmatched rows are yielded.",
+  "context_policy": {
+    "version": 1,
+    "deduplicate_reads": true,
+    "complete_symbols_first": true,
+    "read_index": true
+  },
+  "trace_metadata": {
+    "experiment_id": "harness2-feedback-20261105-v3",
+    "task_id": "toolz-join-unmatched",
+    "harness_variant": "agg1"
+  },
+  "model": "qwen3.5:27b",
+  "thinking": false,
+  "max_feedback_rounds": 20,
+  "feedback_round_definition": "One correction request; initial validation is round zero",
+  "wall_timeout_seconds": 1200,
+  "token_budget": null,
+  "output_tokens": null,
+  "no_early_stop_for_repeated_failures": true,
+  "source_files": {
+    "repairflow/feedback_repair.py": "b30f4d686513adb4123b8d95dc5a8bb6388925620c456239b0d7dd1e6f9800a0",
+    "repairflow/patch_validator.py": "c552303210fae352ebe9caed3c82fb501b515489db05a939a5ca1f188e6cb0e3",
+    "repairflow/issue_tools.py": "edfad7141a3c945b2e4c49e2abcf7c8bc4ec42f09d6c8efcd017a14237f6ae31",
+    "repairflow/checks.py": "0a32284d352fab13d886a9687555b74ff8f34fe69c10459de13d242f545c50bb",
+    "sandbox/runner.py": "6912daa6c2dd56f82be303f899e6a39430dc52ee8a6da55404b2de83bed97764",
+    "evals/local50_unmetered.py": "712af5947f905bdcf29a31bd6ac42c5c761e6a38058c19808669469a59a509d7",
+    "repairflow/issue_providers.py": "b5782779b2d7fde09d391465741355bb5ee0797923186ac0488bbcc7f24743c6"
+  }
+}

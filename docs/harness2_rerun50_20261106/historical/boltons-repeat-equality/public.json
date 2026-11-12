@@ -1,0 +1,6 @@
+{
+  "instance_id": "boltons-repeat-equality",
+  "repo": "mahmoud/boltons",
+  "base_commit": "source-sha256:401f96f7566a8d9134694d79b6b9f542080034eae4782de919a8a04a014a10bc",
+  "problem_statement": "backoff_iter count repeat must accept a dynamically constructed equal string, without relying on object identity. Preserve finite counts and bounded exponential values."
+}

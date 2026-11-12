@@ -1,0 +1,96 @@
+{
+  "status": "completed",
+  "post_termination_only": true,
+  "model_calls": 0,
+  "original_ppc_status": "completed_with_ppc_error",
+  "does_not_complete_ppc": true,
+  "original_report_sha256": "1327b2a18fa2d8804e9ce54f819311953a9b9e2013b7d88213a2a41c5868beee",
+  "original_result_sha256": "e10efb45164374d2a415072597df296cf8090a03ada2ff313a83eed4b47b7aaf",
+  "delivery_rule": "predeclared public-preserve-v1; no independent scores used",
+  "selection": {
+    "policy": "public-preserve-v1",
+    "official_label": null,
+    "chosen_label": "base1",
+    "chosen_folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+    "candidates": {
+      "base1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1\\feedback\\rounds\\001\\validation\\report.json"
+      },
+      "inv1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\rounds\\001\\validation\\report.json"
+      },
+      "dom1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1\\feedback\\rounds\\001\\validation\\report.json"
+      }
+    },
+    "independent_grading_used": false,
+    "model_calls": 0,
+    "changed_delivery": true,
+    "not_upstream_selector_vote": true
+  },
+  "grading": {
+    "passed": true,
+    "scope_violations": [],
+    "changed_files": [
+      "toolz/itertoolz.py"
+    ],
+    "groups": {
+      "Target": {
+        "returncode": 0,
+        "timed_out": false,
+        "sandbox": {
+          "backend": "docker",
+          "image": "corecoder-test-sandbox:v1",
+          "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+          "network": "none",
+          "cpus": 1,
+          "memory_bytes": 1073741824,
+          "pids": 64,
+          "output_limit_bytes": 1048576
+        },
+        "sandbox_status": "completed",
+        "tests_run": 1,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 0,
+        "successful": true,
+        "seconds": 3.9461,
+        "passed": true
+      },
+      "Controls": {
+        "returncode": 0,
+        "timed_out": false,
+        "sandbox": {
+          "backend": "docker",
+          "image": "corecoder-test-sandbox:v1",
+          "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+          "network": "none",
+          "cpus": 1,
+          "memory_bytes": 1073741824,
+          "pids": 64,
+          "output_limit_bytes": 1048576
+        },
+        "sandbox_status": "completed",
+        "tests_run": 1,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_successes": 0,
+        "errors": 0,
+        "failures": 0,
+        "successful": true,
+        "seconds": 3.2919,
+        "passed": true
+      }
+    },
+    "scope": "hand-authored Target and Controls; not entire upstream suite",
+    "resolved": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "status": "agent_error",
+  "arm": "harness2",
+  "task_id": "click-help-eagerness",
+  "strategy_search": true,
+  "independent_grading_available": false,
+  "error_type": "ValueError",
+  "error": "No officially adopted final candidate; do not select using independent scores",
+  "seconds": 595.89,
+  "rollouts": [
+    {
+      "label": "base1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\base1"
+    }
+  ],
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 10,
+        "tokens": 42960,
+        "reused": false,
+        "trace_id": "7c0e5ba4e286269393a0b05bd1a3ff9d",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 20,
+        "tokens": 662733,
+        "reused": false,
+        "trace_id": "fc751bf829333c83883ba16d7119da6e",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\base1"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 2,
+        "tokens": 62885,
+        "trace_id": "e55012dbbd15e7844c5bddea6d1c1d99",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-help-eagerness\\editors\\call-001"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 30322,
+        "trace_id": "bf609bad4d70acc5720133cd0071d725",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-help-eagerness\\editors\\call-002"
+      }
+    ],
+    "fresh_model_calls": 33,
+    "tokens": 798900,
+    "known_tokens_minimum": 798900
+  }
+}

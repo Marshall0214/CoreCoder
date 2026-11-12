@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0006",
+  "path": "rollouts/base1.md",
+  "sha256": "78b5cf32744eb843e0ed2c9e2596d3a581b3e4b278cd23357b31bd38154983d4",
+  "offset": 29243,
+  "content": "tions`\", \"line\": 102, \"column\": 5}, {\"file\": \"toolz/curried/operator.py\", \"code\": \"F821\", \"message\": \"Undefined name `num_required_args`\", \"line\": 9, \"column\": 11}, {\"file\": \"toolz/curried/operator.py\", \"code\": \"F821\", \"message\": \"Undefined name `has_keywords`\", \"line\": 10, \"column\": 51}, {\"file\": \"toolz/dicttoolz.py\", \"code\": \"F821\", \"message\": \"Undefined name `reduce`\", \"line\": 331, \"column\": 16}, {\"file\": \"toolz/itertoolz.py\", \"code\": \"F821\", \"message\": \"Undefined name `iteritems`\", \"line\": 9",
+  "next_offset": 29743,
+  "total_characters": 31922,
+  "eof": false
+}

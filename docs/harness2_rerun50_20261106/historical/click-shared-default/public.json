@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-shared-default",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:eaf503030d37836b35c742a42ae150612f2d7cb6a79f382fa54246ec2f3144df",
+  "problem_statement": "Flags sharing one parameter name must select the configured default regardless of declaration order. Explicit flags must override the default."
+}

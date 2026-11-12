@@ -1,0 +1,6 @@
+{
+  "instance_id": "toolz-accumulate-empty",
+  "repo": "pytoolz/toolz",
+  "base_commit": "source-sha256:ed1236a04ae0174d663534c1c517236974361ca077897a3ba9d6d0f4fb19b668",
+  "problem_statement": "accumulate must return no elements on empty input without an initial value, and retain an explicitly supplied initial value. Preserve cumulative reduction."
+}

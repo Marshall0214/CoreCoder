@@ -1,0 +1,440 @@
+{
+  "schema": "public-editor-evidence-v1",
+  "files": {
+    "e0001": {
+      "id": "e0001",
+      "path": "deliverables/base1/candidate.diff.txt",
+      "sha256": "4cf377df7f6cdf9749cc7d724a4fe05f4d8cd4dc3873ab64572071dc42fa84aa",
+      "characters": 817,
+      "bytes": 817,
+      "storage": "e0001.txt",
+      "alias_of": null
+    },
+    "e0002": {
+      "id": "e0002",
+      "path": "deliverables/base1/INDEX.md",
+      "sha256": "bcb16d38825240d47097a890e3c961ae213fa6d9807bb3fa8165ab0131a12a37",
+      "characters": 406,
+      "bytes": 406,
+      "storage": "e0002.txt",
+      "alias_of": null
+    },
+    "e0003": {
+      "id": "e0003",
+      "path": "harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+      "characters": 96,
+      "bytes": 96,
+      "storage": "e0003.txt",
+      "alias_of": null
+    },
+    "e0004": {
+      "id": "e0004",
+      "path": "harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "characters": 0,
+      "bytes": 0,
+      "storage": "e0004.txt",
+      "alias_of": null
+    },
+    "e0005": {
+      "id": "e0005",
+      "path": "harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "characters": 0,
+      "bytes": 0,
+      "storage": "e0004.txt",
+      "alias_of": "e0004"
+    },
+    "e0006": {
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "e5b06c823d5ddc7c48d343e6fd4bfa78b986892d1af5846335dbc4219d002c6f",
+      "characters": 124671,
+      "bytes": 124671,
+      "storage": "e0006.txt",
+      "alias_of": null,
+      "events": [
+        {
+          "offset": 0,
+          "length": 93,
+          "kind": "ACTION",
+          "step": 1,
+          "action": "list_files",
+          "location": {
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 93,
+          "length": 229,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 322,
+          "length": 107,
+          "kind": "ACTION",
+          "step": 2,
+          "action": "read_file",
+          "location": {
+            "path": "more_itertools/more.py",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 429,
+          "length": 6500,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 6929,
+          "length": 110,
+          "kind": "ACTION",
+          "step": 3,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 7039,
+          "length": 141,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 7180,
+          "length": 136,
+          "kind": "ACTION",
+          "step": 4,
+          "action": "read_symbol",
+          "location": {
+            "path": "more_itertools/more.py",
+            "symbol": "numeric_range",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 7316,
+          "length": 6578,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 13894,
+          "length": 110,
+          "kind": "ACTION",
+          "step": 5,
+          "action": "read_file",
+          "location": {
+            "path": "more_itertools/more.py",
+            "offset": "2245"
+          }
+        },
+        {
+          "offset": 14004,
+          "length": 6484,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 20488,
+          "length": 110,
+          "kind": "ACTION",
+          "step": 6,
+          "action": "read_file",
+          "location": {
+            "path": "more_itertools/more.py",
+            "offset": "2300"
+          }
+        },
+        {
+          "offset": 20598,
+          "length": 6482,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 27080,
+          "length": 110,
+          "kind": "ACTION",
+          "step": 7,
+          "action": "read_file",
+          "location": {
+            "path": "more_itertools/more.py",
+            "offset": "2350"
+          }
+        },
+        {
+          "offset": 27190,
+          "length": 6480,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 33670,
+          "length": 110,
+          "kind": "ACTION",
+          "step": 8,
+          "action": "read_file",
+          "location": {
+            "path": "more_itertools/more.py",
+            "offset": "2400"
+          }
+        },
+        {
+          "offset": 33780,
+          "length": 6480,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 40260,
+          "length": 107,
+          "kind": "ACTION",
+          "step": 9,
+          "action": "read_file",
+          "location": {
+            "path": "more_itertools/more.py",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 40367,
+          "length": 6500,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 46867,
+          "length": 111,
+          "kind": "ACTION",
+          "step": 10,
+          "action": "read_file",
+          "location": {
+            "path": "more_itertools/more.py",
+            "offset": "2350"
+          }
+        },
+        {
+          "offset": 46978,
+          "length": 6480,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 53458,
+          "length": 144,
+          "kind": "ACTION",
+          "step": 11,
+          "action": "read_symbol",
+          "location": {
+            "path": "more_itertools/more.py",
+            "symbol": "numeric_range.__eq__",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 53602,
+          "length": 956,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 54558,
+          "length": 1699,
+          "kind": "ACTION",
+          "step": 12,
+          "action": "apply_patch",
+          "location": {}
+        },
+        {
+          "offset": 56257,
+          "length": 84,
+          "kind": "OBSERVATION",
+          "status": "completed"
+        },
+        {
+          "offset": 56341,
+          "length": 10624,
+          "kind": "PUBLIC FEEDBACK RESULT",
+          "status": "feedback_round_limit",
+          "accepted": false,
+          "feedback_rounds_attempted": 20
+        },
+        {
+          "offset": 66965,
+          "length": 2718,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false
+        },
+        {
+          "offset": 69683,
+          "length": 2863,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 72546,
+          "length": 2889,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 75435,
+          "length": 2926,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 78361,
+          "length": 2863,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 81224,
+          "length": 2926,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 84150,
+          "length": 2863,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 87013,
+          "length": 2926,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 89939,
+          "length": 2863,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 92802,
+          "length": 2926,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 95728,
+          "length": 2863,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 98591,
+          "length": 2926,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 101517,
+          "length": 2863,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 104380,
+          "length": 2926,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 107306,
+          "length": 2863,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 110169,
+          "length": 2926,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 113095,
+          "length": 2863,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 115958,
+          "length": 2926,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 118884,
+          "length": 2863,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 121747,
+          "length": 2924,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        }
+      ],
+      "public_terminal": {
+        "status": "feedback_round_limit",
+        "accepted": false,
+        "feedback_rounds_attempted": 20
+      }
+    },
+    "e0007": {
+      "id": "e0007",
+      "path": "task.md",
+      "sha256": "fc8b6c4deeff09f88f697578a0c41bffdf1d3f8eabed6b9492db8f7ce247c28b",
+      "characters": 164,
+      "bytes": 164,
+      "storage": "e0007.txt",
+      "alias_of": null
+    }
+  },
+  "inline": {
+    "harness/context_policy.json": "{\"version\": 1, \"deduplicate_reads\": false, \"complete_symbols_first\": false, \"read_index\": false}",
+    "harness/systemprompt.md": "",
+    "harness/tool_descriptions/tool_guidance.md": "",
+    "task.md": "numeric_range objects yielding the same singleton must compare equal regardless of step and have equal hashes. Preserve unequal ranges and equality of empty ranges."
+  },
+  "source_export_accessible": false,
+  "independent_grading_accessible": false,
+  "page_characters": 6000,
+  "offset_unit": "Unicode characters; zero-based"
+}

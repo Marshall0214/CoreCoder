@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0006",
+  "path": "rollouts/base1.md",
+  "sha256": "78b5cf32744eb843e0ed2c9e2596d3a581b3e4b278cd23357b31bd38154983d4",
+  "offset": 29743,
+  "content": "18, \"column\": 29}], \"retained\": [{\"file\": \"toolz/curried/__init__.py\", \"code\": \"F821\", \"message\": \"Undefined name `exceptions`\", \"line\": 102, \"column\": 5, \"baseline_line\": 102}, {\"file\": \"toolz/curried/operator.py\", \"code\": \"F821\", \"message\": \"Undefined name `num_required_args`\", \"line\": 9, \"column\": 11, \"baseline_line\": 9}, {\"file\": \"toolz/curried/operator.py\", \"code\": \"F821\", \"message\": \"Undefined name `has_keywords`\", \"line\": 10, \"column\": 51, \"baseline_line\": 10}, {\"file\": \"toolz/dicttoolz.p",
+  "next_offset": 30243,
+  "total_characters": 31922,
+  "eof": false
+}

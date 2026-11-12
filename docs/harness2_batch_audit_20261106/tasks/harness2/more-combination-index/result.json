@@ -1,0 +1,128 @@
+{
+  "status": "agent_completed",
+  "arm": "harness2",
+  "task_id": "more-combination-index",
+  "strategy_search": true,
+  "independent_grading_available": false,
+  "optimization_complete": true,
+  "adopted_label": "agg1",
+  "final_rollout": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\agg1",
+  "seconds": 1650.187,
+  "rollouts": [
+    {
+      "label": "base1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\base1"
+    },
+    {
+      "label": "inv1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\inv1"
+    },
+    {
+      "label": "dom1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\dom1"
+    },
+    {
+      "label": "agg1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\agg1"
+    }
+  ],
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 3,
+        "tokens": 6377,
+        "reused": false,
+        "trace_id": "aa7a269c3e72ef7f773ebf13095754bc",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\agg1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 5,
+        "tokens": null,
+        "reused": false,
+        "trace_id": "59922d69e68317528be451bd4dc15d1b",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\agg1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 5,
+        "tokens": 10592,
+        "reused": false,
+        "trace_id": "68592fd9d342419a8d8fcf517d7d9403",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 0,
+        "tokens": 0,
+        "reused": false,
+        "trace_id": null,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\base1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 3,
+        "tokens": 6440,
+        "reused": false,
+        "trace_id": "8d28ca9d0f18a1fa1d0d87df78d78161",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\dom1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 9,
+        "tokens": 309894,
+        "reused": false,
+        "trace_id": "47a923367c6121dcc9e1f6b0faa6e3d6",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\dom1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 3,
+        "tokens": 6413,
+        "reused": false,
+        "trace_id": "3778e5d3d801566e7c4d231afc8fe9c5",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\inv1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 0,
+        "tokens": 0,
+        "reused": false,
+        "trace_id": null,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\inv1"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 9114,
+        "trace_id": "ce64a7d946331fae6a6eb5eb1c4eac66",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\editors\\call-001"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 9319,
+        "trace_id": "0e6fd15eee5f5c92c1195111b7e5e940",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\editors\\call-002"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 24530,
+        "trace_id": "425e4da7b16cf1830b20b43100155ed9",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\editors\\call-003"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 29605,
+        "trace_id": "d5649cd431569cf1f4ab934596418961",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\editors\\call-004"
+      }
+    ],
+    "fresh_model_calls": 32,
+    "tokens": null,
+    "known_tokens_minimum": 412284
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "status": "editor_returned",
+  "model_steps": 4,
+  "reads": [
+    {
+      "ok": true,
+      "id": "e0024",
+      "path": "pool/agg1/rollout.md",
+      "sha256": "9fa1c0051250d0b0ea5195bc051e09a7174e9d189776726c80b6d414317a4f5b",
+      "offset": 47922,
+      "next_offset": 49422,
+      "total_characters": 51608,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0030",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "696e60c5066d2e715af563d699bc04c3c5484ddcf9e51a531457d404358983c7",
+      "offset": 26767,
+      "next_offset": 28267,
+      "total_characters": 30453,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0036",
+      "path": "pool/inv1/rollout.md",
+      "sha256": "b2a520d5d08ab11d81d249f7b0edd0864a9afa1bdf787a41d8dddf86559ec94a",
+      "offset": 40366,
+      "next_offset": 41866,
+      "total_characters": 44052,
+      "eof": false
+    }
+  ],
+  "format_errors": [],
+  "independent_grading_used": false,
+  "recent_read_bodies": 3,
+  "complete_small_files_pinned": true,
+  "final_requests_reserved": 2
+}

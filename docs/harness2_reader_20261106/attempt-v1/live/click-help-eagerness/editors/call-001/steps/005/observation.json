@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0001",
+  "path": "deliverables/base1/candidate.diff.txt",
+  "sha256": "5826fb1ad9620d21ecedc370df2abb3e275758dcd21af39a9f72ef9e43fd2cb1",
+  "offset": 0,
+  "content": "--- a/src/click/core.py\r\n+++ b/src/click/core.py\r\n@@ -121,13 +121,13 @@\r\n     a list in the correct order as they should be processed.\r\n     \"\"\"\r\n \r\n-    def sort_key(item: \"Parameter\") -> t.Tuple[bool, float]:\r\n+    def sort_key(item: \"Parameter\") -> t.Tuple[float, bool]:\r\n         try:\r\n             idx: float = invocation_order.index(item)\r\n         except ValueError:\r\n             idx = float(\"inf\")\r\n \r\n-        return not item.is_eager, idx\r\n+        return idx, not item.is_eager\r\n \r\n     return sorted(declaration_order, key=sort_key)\r\n \r\n",
+  "next_offset": null,
+  "total_characters": 550,
+  "eof": true
+}

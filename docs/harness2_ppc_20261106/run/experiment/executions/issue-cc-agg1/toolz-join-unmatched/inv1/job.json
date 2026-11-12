@@ -1,0 +1,26 @@
+{
+  "kind": "rollout",
+  "source": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\input",
+  "source_hash": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+  "public_sha256": "91ab891d3de64f05940f263289623e32b7aa560e0917c2e9982314ed5d11a7b5",
+  "harness": {
+    "context_policy.json": "{\"version\": 1, \"deduplicate_reads\": true, \"complete_symbols_first\": true, \"read_index\": true}",
+    "systemprompt.md": "You are repairing a Python software defect. The task is to fix the `join` function in `toolz/itertoolz.py` so that it yields unmatched left rows with `right_default` for a left outer join, without raising a NameError.\n\nIn this workspace, the defect is at line 918 of `toolz/itertoolz.py`: the code uses `iteritems(d)` which is undefined in Python 3. The fix is to replace `iteritems(d)` with `d.items()`.\n\nPreserve matched rows and ordinary inner joins behavior. Do not change the deliverable shape; only fix the NameError so the function runs correctly.",
+    "tool_descriptions/tool_guidance.md": "When editing Python files, ensure all names used are defined in the current scope. In this workspace, `iteritems` is a Python 2 construct that does not exist in Python 3; use `.items()` instead.\n\nBefore submitting a fix, verify that the change resolves the NameError by checking that the function can be called without raising an exception."
+  },
+  "harness_sha256": "b6d37a304fcd2d3149ac2019ed12d17d6ff642e15b0c8c588019ff1d1ea7b822",
+  "scripted": false,
+  "context_enabled": true,
+  "experiment_id": "experiment",
+  "task_id": "toolz-join-unmatched",
+  "harness_variant": "inv1",
+  "public_feedback": {
+    "checks": "D:\\project_other\\CoreCoder\\.tmp\\real-defects\\system-comparison-v1-rerun\\admission\\toolz-join-unmatched\\public",
+    "package": "toolz",
+    "max_feedback_rounds": 20,
+    "timeout": 1200,
+    "files": {
+      "test_admission.py": "2f43c5fa8c35bd0be04d842158264a5c6c82d0b3093f663860a7d74f3c691d07"
+    }
+  }
+}

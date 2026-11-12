@@ -1,0 +1,225 @@
+{
+  "schema": "fresh-indexed-ppc-acceptance-summary-v1",
+  "task_id": "toolz-join-unmatched",
+  "original_status": "completed_with_ppc_error",
+  "complete_fresh_ppc": false,
+  "independent_resolved": true,
+  "post_termination_recovery": true,
+  "delivered_label": "base1",
+  "paid_api_calls": 0,
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 7,
+        "tokens": 25600,
+        "reused": false,
+        "trace_id": "cc0c47c5b2b409e3aeb0b63afda239a3",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 38621,
+        "reused": false,
+        "trace_id": "c4ae6109200e6ca0ce8792d9d8622bda",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 18,
+        "tokens": 122776,
+        "reused": false,
+        "trace_id": "7e3516c3ba70f00c4e280f1e6a490f3c",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 41171,
+        "reused": false,
+        "trace_id": "6aaec2f2b47887cfa0a0b541f9c12d85",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 9,
+        "tokens": 54686,
+        "reused": false,
+        "trace_id": "98a3e4c980107aa8a2c17a9cd5fcf58e",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 40750,
+        "reused": false,
+        "trace_id": "2827f77252a822c7285126a75cec58b3",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 10,
+        "tokens": 104010,
+        "trace_id": "f2f62cdbb0a621b5365193ca3199bfd0",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\editors\\call-001"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 9,
+        "tokens": 93408,
+        "trace_id": "bc675170d486c73c5944acf7a59cd106",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\editors\\call-002"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 20,
+        "tokens": 310407,
+        "trace_id": "b7c37f415299536061e171a2efe6871f",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\editors\\call-003"
+      }
+    ],
+    "fresh_model_calls": 76,
+    "tokens": 831429,
+    "known_tokens_minimum": 831429
+  },
+  "audit": {
+    "schema": "indexed-ppc-evidence-audit-v1",
+    "model_calls_in_audit": 0,
+    "checks_passed": true,
+    "complete_fresh_ppc": false,
+    "rollouts": [
+      {
+        "label": "base1",
+        "guidance_sha256": "262f17358d52ab7fa3fd8cef027b6ae29ecc3f3f907c03ac3a2f8b8175623f2d",
+        "effective_requests_verified": 7,
+        "context_policy": {
+          "version": 1,
+          "deduplicate_reads": false,
+          "complete_symbols_first": false,
+          "read_index": false
+        },
+        "feedback_rounds": 1,
+        "public_accepted": true,
+        "fresh_candidate": true,
+        "guidance_applied": true
+      },
+      {
+        "label": "inv1",
+        "guidance_sha256": "b6d37a304fcd2d3149ac2019ed12d17d6ff642e15b0c8c588019ff1d1ea7b822",
+        "effective_requests_verified": 9,
+        "context_policy": {
+          "version": 1,
+          "deduplicate_reads": true,
+          "complete_symbols_first": true,
+          "read_index": true
+        },
+        "feedback_rounds": 1,
+        "public_accepted": true,
+        "fresh_candidate": true,
+        "guidance_applied": true
+      },
+      {
+        "label": "dom1",
+        "guidance_sha256": "55f0c85b9486f5c49be9a3a674e88f9e74c37ff4bfc16527221081517af5d78d",
+        "effective_requests_verified": 18,
+        "context_policy": {
+          "version": 1,
+          "deduplicate_reads": true,
+          "complete_symbols_first": true,
+          "read_index": true
+        },
+        "feedback_rounds": 1,
+        "public_accepted": true,
+        "fresh_candidate": true,
+        "guidance_applied": true
+      }
+    ],
+    "editors": [
+      {
+        "label": "inv1.a1",
+        "status": "editor_returned",
+        "valid_output": true,
+        "calls": 10,
+        "reads": 8,
+        "format_errors": 1
+      },
+      {
+        "label": "dom1.a1",
+        "status": "editor_returned",
+        "valid_output": true,
+        "calls": 9,
+        "reads": 7,
+        "format_errors": 1
+      },
+      {
+        "label": "agg1.a1",
+        "status": "editor_failed",
+        "valid_output": false,
+        "calls": 20,
+        "reads": 20,
+        "format_errors": 0
+      }
+    ],
+    "delivery": {
+      "policy": "public-preserve-v1",
+      "official_label": null,
+      "chosen_label": "base1",
+      "chosen_folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+      "candidates": {
+        "base1": {
+          "public_accepted": true,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+          "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1\\feedback\\rounds\\001\\validation\\report.json"
+        },
+        "inv1": {
+          "public_accepted": true,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1",
+          "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\rounds\\001\\validation\\report.json"
+        },
+        "dom1": {
+          "public_accepted": true,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1",
+          "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1\\feedback\\rounds\\001\\validation\\report.json"
+        }
+      },
+      "independent_grading_used": false,
+      "model_calls": 0,
+      "changed_delivery": true,
+      "not_upstream_selector_vote": true
+    },
+    "independent_resolved": true,
+    "post_termination_recovery": true,
+    "experience_reuse": "not_admitted; one task does not establish reusable lessons",
+    "implementation_and_baseline_unchanged": true,
+    "historical_batch_unchanged": true
+  },
+  "native_server_receipts_confirmed": true,
+  "overview": {
+    "trace_id": "dead0d7b2c7362efdc4b42f386ab9422",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/dead0d7b2c7362efdc4b42f386ab9422",
+    "observations_confirmed": 11,
+    "generations": 0,
+    "model_calls": 0,
+    "native_usage_verified_separately": true
+  },
+  "automated_checks": {
+    "python311": {
+      "passed": 75,
+      "skipped": 2
+    },
+    "python312_unittest": 24
+  },
+  "evidence": {
+    "manifest": "docs/harness2_ppc_20261106/manifest.json",
+    "sha256": "d40ccb812f12ca6bda5576daaf28dc6bf6e0ec0199666814b99e35a40bdc76cc",
+    "files": 2727,
+    "bytes": 13280808
+  },
+  "limitations": [
+    "PPC composition failed; no agg1 repair or experience stage",
+    "Python 3.12 delivery import failure; no production fix in this validation",
+    "Only selected base1 graded; identical final probe hashes are not independent tasks",
+    "No repair-rate improvement claim; historical 24/50 and 27/50 unchanged"
+  ]
+}

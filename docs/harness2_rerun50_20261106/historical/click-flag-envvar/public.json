@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-flag-envvar",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:9fcc22855ce366a1b1164229ea761a75cde4e9465e21d293a284bfb07003226e",
+  "problem_statement": "Environment-variable flag values must distinguish activation from deactivation. False-like values must not activate non-boolean flags; true-like values and the exact flag_value activate them. Boolean flag values containing only whitespace represent false. Preserve explicit command-line activation and normal argument conversion."
+}

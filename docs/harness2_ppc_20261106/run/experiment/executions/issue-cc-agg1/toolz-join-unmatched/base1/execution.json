@@ -1,0 +1,10 @@
+{
+  "artifact_directory": "feedback",
+  "phase": "public_feedback",
+  "status": "ready_for_review",
+  "public_accepted": true,
+  "max_feedback_rounds": 20,
+  "feedback_rounds_attempted": 1,
+  "initial_candidate_reused": false,
+  "independent_grading_available": false
+}

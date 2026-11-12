@@ -1,0 +1,1 @@
+{"action":"list_files","arguments":{"pattern":"*.py","offset":0}}

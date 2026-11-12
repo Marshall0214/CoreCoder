@@ -1,0 +1,176 @@
+"""Read-only evidence isolation, exact paging and model-controlled editor execution."""
+import json
+from types import SimpleNamespace
+
+import pytest
+
+from integrations import harness2 as bridge
+from integrations import harness2_reader as reader
+
+
+def context(tmp_path):
+    root = tmp_path / 'context'
+    root.mkdir()
+    (root / 'task.md').write_text('Fix the public issue', encoding='utf-8')
+    bridge.write(root / 'harness/context_policy.json', {'version': 1})
+    path = root / 'rollouts/base1.md'
+    body = '[ACTION] ' + json.dumps({'step': 1, 'action': 'read_symbol', 'arguments': {'path': 'code.py', 'symbol': 'f'}}) + '\r\n'
+    body += '[OBSERVATION] ' + json.dumps({'content': '中\\文\n' * 5000}, ensure_ascii=False) + '\r\n'
+    body += '[PUBLIC FEEDBACK RESULT] ' + json.dumps({'status': 'ready_for_review', 'accepted': True, 'feedback_rounds_attempted': 2})
+    path.parent.mkdir()
+    path.write_bytes(body.encode('utf-8'))
+    patch = root / 'deliverables/base1/candidate.diff.txt'
+    patch.parent.mkdir(parents=True)
+    patch.write_text('--- a/code.py\n+++ b/code.py\n', encoding='utf-8')
+    (root / 'source').mkdir()
+    (root / 'source/secret.py').write_text('SOURCE_EXPORT_SENTINEL', encoding='utf-8')
+    return root, body
+
+
+def store(tmp_path):
+    root, body = context(tmp_path)
+    path = reader.prepare(root, tmp_path / 'snapshot')
+    return reader.Store(path, bridge.sha(path)), root, body
+
+
+def file_id(store, path):
+    return next(row['id'] for row in store.index['files'] if row['path'] == path)
+
+
+def test_index_pins_public_status_and_includes_patch_without_full_observations(tmp_path):
+    saved, _root, body = store(tmp_path)
+    text = json.dumps(saved.index)
+    assert 'SOURCE_EXPORT_SENTINEL' not in text and 'source/secret.py' not in text
+    assert body not in text and len(text) < 6000
+    row = next(row for row in saved.index['files'] if row['path'] == 'rollouts/base1.md')
+    assert row['public_terminal']['accepted'] is True
+    event = row['events'][1]
+    assert body[event['offset']:event['offset'] + event['length']].startswith('[OBSERVATION]')
+    assert file_id(saved, 'deliverables/base1/candidate.diff.txt')
+
+
+def test_exact_unicode_crlf_paging_is_repeatable_and_live_edits_do_not_change_snapshot(tmp_path):
+    saved, root, body = store(tmp_path)
+    identifier = file_id(saved, 'rollouts/base1.md')
+    (root / 'rollouts/base1.md').write_text('live context changed', encoding='utf-8')
+    parts, offset = [], 0
+    while True:
+        page = saved.read({'id': identifier, 'offset': offset, 'length': 5000})
+        parts.append(page['content'])
+        if page['eof']:
+            break
+        offset = page['next_offset']
+    assert ''.join(parts) == body
+    assert saved.read({'id': identifier, 'offset': 5, 'length': 6000})['content'] == body[5:6005]
+
+
+@pytest.mark.parametrize('arguments', [{'path': '../grading.json'}, {'id': '../grading.json'},
+    {'id': 'e0001', 'offset': -1}, {'id': 'e0001', 'offset': True}, {'id': 'e0001', 'length': 6001},
+    {'id': 'e0001', 'offset': 99999999}, {'id': 'e0001', 'length': 0}])
+def test_bad_read_requests_cannot_escape_or_trigger_unbounded_output(tmp_path, arguments):
+    saved, _root, _body = store(tmp_path)
+    with pytest.raises(ValueError):
+        saved.read(arguments)
+
+
+@pytest.mark.parametrize('name', ['grading/result.json', 'pool/agg1/private-checks/result.json'])
+def test_private_files_fail_closed_before_model_input(tmp_path, name):
+    root, _body = context(tmp_path)
+    bridge.write(root / name, {'secret': 'PRIVATE_SENTINEL'})
+    with pytest.raises(reader.EvidenceIntegrityError, match='Private'):
+        reader.prepare(root, tmp_path / 'snapshot')
+
+
+def test_manifest_and_snapshot_tampering_fail_closed(tmp_path):
+    saved, _root, _body = store(tmp_path)
+    identifier = file_id(saved, 'rollouts/base1.md')
+    (saved.path.parent / saved.manifest['files'][identifier]['storage']).write_text('changed', encoding='utf-8')
+    with pytest.raises(reader.EvidenceIntegrityError, match='snapshot changed'):
+        saved.read({'id': identifier})
+    with pytest.raises(reader.EvidenceIntegrityError, match='manifest changed'):
+        reader.Store(saved.path, 'wrong hash')
+
+
+def test_aliases_share_storage_and_source_links_are_rejected(tmp_path):
+    root, body = context(tmp_path)
+    (root / 'rollouts/other.md').write_bytes(body.encode('utf-8'))
+    path = reader.prepare(root, tmp_path / 'snapshot')
+    saved = reader.Store(path, bridge.sha(path))
+    entries = [row for row in saved.manifest['files'].values() if row['path'].startswith('rollouts/')]
+    assert entries[0]['storage'] == entries[1]['storage']
+    # Windows symlink creation may require privileges; the detection seam is portable.
+    original = reader._linked
+    from unittest.mock import patch
+    with (patch.object(reader, '_linked', side_effect=lambda p: p.name == 'source' or original(p)),
+          pytest.raises(reader.EvidenceIntegrityError, match='Links')):
+        reader.prepare(root, tmp_path / 'new-snapshot')
+
+
+class Scripted:
+    def __init__(self, replies):
+        self.replies = iter(replies)
+        self.requests = []
+
+    def chat(self, messages, tools=None):
+        assert tools == []
+        self.requests.append(messages)
+        return SimpleNamespace(content=next(self.replies))
+
+
+def messages(saved):
+    return [{'role': 'system', 'content': reader.READ_CONTRACT},
+            {'role': 'user', 'content': json.dumps({'mission': 'Compare public candidate evidence', 'evidence_index': saved.index})}]
+
+
+def test_model_requests_evidence_then_corrects_format_and_returns_valid_files(tmp_path):
+    saved, _root, _body = store(tmp_path)
+    identifier = file_id(saved, 'rollouts/base1.md')
+    final = {'files': dict.fromkeys(bridge.FILES, 'source-grounded guidance')}
+    llm = Scripted([json.dumps({'action': 'read_evidence', 'arguments': {'id': identifier}}),
+                    '{"files":{"systemprompt.md":"missing file"}}', json.dumps(final)])
+    events = SimpleNamespace(emit=lambda *args, **kwargs: None)
+    output = tmp_path / 'editor'
+    result = reader.edit(messages(saved), saved, llm, output, 'agg1', False, events)
+    assert result == final
+    report = bridge.read(output / 'reader-report.json')
+    assert report['status'] == 'editor_returned' and report['model_steps'] == 3
+    assert len(report['reads']) == 1 and len(report['format_errors']) == 1
+    assert 'content' not in report['reads'][0]
+    assert 'missing=' in llm.requests[2][-1]['content']
+
+
+def test_projection_keeps_all_read_references_and_only_recent_distinct_bodies(tmp_path):
+    saved, _root, _body = store(tmp_path)
+    turns = [{'step': i + 1, 'kind': 'read', 'assistant': '{}', 'observation':
+              {'ok': True, 'id': 'e0001', 'offset': i, 'sha256': 'fixed', 'content': f'BODY-{i}'}}
+             for i in range(8)]
+    projected = reader.dialogue(messages(saved), turns)
+    assert len(json.loads(projected[1]['content'])['read_ledger']) == 8
+    assert 'BODY-0' not in json.dumps(projected) and 'BODY-7' in json.dumps(projected)
+    assert len(projected) == 2 + 2 * reader.RECENT_READS
+
+
+def test_small_complete_guidance_does_not_displace_error_pages_or_get_forgotten(tmp_path):
+    saved, _root, _body = store(tmp_path)
+    turns = [{'step': 1, 'kind': 'read', 'assistant': '{}', 'observation':
+              {'ok': True, 'id': 'error-log', 'offset': 12000, 'sha256': 'frozen', 'content': 'FIRST_FAILURE_PAGE'}}]
+    for i in range(5):
+        turns.append({'step': i + 2, 'kind': 'read', 'assistant': '{}', 'observation':
+             {'ok': True, 'id': f'guidance-{i}', 'offset': 0, 'sha256': 'frozen', 'eof': True,
+              'total_characters': 20, 'content': f'COMPLETE_GUIDANCE_{i}'}})
+    projected = reader.dialogue(messages(saved), turns)
+    payload = json.loads(projected[1]['content'])
+    assert len(payload['pinned_complete_files']) == 5
+    assert 'FIRST_FAILURE_PAGE' in json.dumps(projected)
+    assert all(f'COMPLETE_GUIDANCE_{i}' in json.dumps(projected) for i in range(5))
+
+
+def test_step_exhaustion_is_failure_and_raw_responses_remain_available(tmp_path):
+    saved, _root, _body = store(tmp_path)
+    llm = Scripted(['{"action":"run_shell","command":"never execute"}'] * 2)
+    output = tmp_path / 'editor'
+    with pytest.raises(RuntimeError, match='2-step'):
+        reader.edit(messages(saved), saved, llm, output, 'agg1', False,
+                    SimpleNamespace(emit=lambda *a, **k: None), max_steps=2)
+    assert bridge.read(output / 'reader-report.json')['status'] == 'editor_failed'
+    assert (output / 'steps/001/response.txt').exists() and not (output / 'reply.json').exists()

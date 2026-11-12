@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-bucket-missing-key",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:cfcaed392e40f7dac4ced2ef04a43cf081d48532d5efa0faf16fed4c18102093",
+  "problem_statement": "A missing bucket lookup or membership check must not invent keys when iterating bucket keys. Existing bucket contents and valid keys must remain available."
+}

@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-falsy-exception",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:4eeacf8dec9d6f258bf4c04f5b861a6fcaa912c4256f28e85dd0ef39bc708f0a",
+  "problem_statement": "one and only must raise custom exception instances even if they are falsy. A provided too_long exception must avoid evaluating item repr. Preserve default errors, singleton success and empty defaults."
+}

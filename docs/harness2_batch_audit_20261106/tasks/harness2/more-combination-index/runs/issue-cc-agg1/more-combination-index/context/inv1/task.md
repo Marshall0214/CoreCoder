@@ -1,0 +1,1 @@
+combination_with_replacement_index must match itertools enumeration, including None elements and empty combinations. Reject elements that are not a nondecreasing combination from the pool.

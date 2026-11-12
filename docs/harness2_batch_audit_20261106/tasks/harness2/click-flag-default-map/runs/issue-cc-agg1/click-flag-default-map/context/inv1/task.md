@@ -1,0 +1,1 @@
+When default_map overrides a dual boolean flag, help output must display the effective default flag rather than the decorator default. Actual invocation and help must agree.

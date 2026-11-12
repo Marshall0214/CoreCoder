@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0006",
+  "path": "rollouts/base1.md",
+  "sha256": "78b5cf32744eb843e0ed2c9e2596d3a581b3e4b278cd23357b31bd38154983d4",
+  "offset": 28743,
+  "content": "[PUBLIC VALIDATION OBSERVATION] {\"status\": \"rejected\", \"accepted\": false, \"reasons\": [\"unresolved_static_findings\", \"public_reproduce_failed\", \"no_patch\"], \"scope_violations\": [], \"syntax_errors\": [], \"warnings\": [], \"infrastructure_error\": null, \"static\": {\"checker\": {\"version\": \"0.16.9\", \"rules\": \"F821,F822,F823\", \"target\": \"py311\", \"configuration\": \"isolated; ignore-noqa; no fixes\"}, \"candidate_findings\": [{\"file\": \"toolz/curried/__init__.py\", \"code\": \"F821\", \"message\": \"Undefined name `excep",
+  "next_offset": 29243,
+  "total_characters": 31922,
+  "eof": false
+}

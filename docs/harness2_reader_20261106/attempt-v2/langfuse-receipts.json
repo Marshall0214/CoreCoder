@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "verification_model_calls": 0,
+  "sessions": {
+    "boltons-remap-set": {
+      "trace_id": "5b01ede001d80681b75f089a3244bdb1",
+      "generation_count": 8,
+      "usage_status": "known",
+      "prompt_tokens": 122320,
+      "completion_tokens": 1428,
+      "all_operations_ended": true,
+      "per_call_usage_verified": true,
+      "local_call_seconds": 65.4267,
+      "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/5b01ede001d80681b75f089a3244bdb1"
+    }
+  }
+}

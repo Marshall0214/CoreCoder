@@ -1,0 +1,22 @@
+{
+  "status": "ready_for_review",
+  "max_feedback_rounds": 20,
+  "feedback_rounds_attempted": 0,
+  "applied_patches": 0,
+  "rounds": [],
+  "thinking": false,
+  "token_budget": null,
+  "repetition_stop_enabled": false,
+  "independent_grading_used": false,
+  "independent_verification_available": false,
+  "accepted": true,
+  "fresh_model_calls": 0,
+  "execution_mode": "ollama",
+  "seconds": 8.797,
+  "changed_files": [
+    "more_itertools/more.py"
+  ],
+  "public_checks_passed": true,
+  "final_candidate_hash": "8a5eb2aa164d7b9df2b93d56d35a3b9ae80cdc2267e5c012753abb702fcf40aa",
+  "original_inputs_unchanged": true
+}

@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0005",
+  "path": "harness/context_policy.json",
+  "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+  "offset": 0,
+  "content": "{\"version\": 1, \"deduplicate_reads\": false, \"complete_symbols_first\": false, \"read_index\": false}",
+  "next_offset": null,
+  "total_characters": 96,
+  "eof": true
+}

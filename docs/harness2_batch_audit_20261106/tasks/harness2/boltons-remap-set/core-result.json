@@ -1,0 +1,17 @@
+{
+  "domain": "python-repair",
+  "n_tasks": 1,
+  "seed": null,
+  "done": 0,
+  "failed": 1,
+  "tasks": [
+    {
+      "task": "boltons-remap-set",
+      "status": "partial",
+      "error": "agg: ValueError: Editor evidence exceeds local transport bound after lossless sharing",
+      "library_entries_before": {
+        "agg": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "status": "ready_for_review",
+  "max_feedback_rounds": 20,
+  "feedback_rounds_attempted": 1,
+  "applied_patches": 1,
+  "rounds": [
+    {
+      "round": 1,
+      "status": "completed",
+      "candidate_hash_before": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+      "usage": {
+        "prompt_tokens": 38578,
+        "completion_tokens": 43
+      },
+      "patch_status": "applied",
+      "changed_files": [
+        "toolz/itertoolz.py"
+      ],
+      "public_accepted": true,
+      "candidate_hash": "6fa6bd1ec8845c57f7e9b300135abb99e1923d1958a72e8f1c4c4597aa5789ff",
+      "seconds": 28.656
+    }
+  ],
+  "thinking": false,
+  "token_budget": null,
+  "repetition_stop_enabled": false,
+  "independent_grading_used": false,
+  "independent_verification_available": false,
+  "accepted": true,
+  "fresh_model_calls": 1,
+  "execution_mode": "ollama",
+  "metrics": {
+    "llm_calls": 1,
+    "prompt_tokens": 38578,
+    "completion_tokens": 43,
+    "known_prompt_tokens": 38578,
+    "known_completion_tokens": 43,
+    "missing_usage_calls": 0,
+    "budget_accounted_tokens": 38621,
+    "budget_enforcement": "none; local tokens accounted only",
+    "usage_status": "known",
+    "usage_source": "ollama_response",
+    "failed_calls": 0,
+    "cloud_api_cost_usd": 0.0,
+    "local_compute_cost_usd": null,
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown",
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_preflight_enforced": false,
+    "provider_context_tokens": 65536
+  },
+  "seconds": 38.781,
+  "changed_files": [
+    "toolz/itertoolz.py"
+  ],
+  "public_checks_passed": true,
+  "final_candidate_hash": "6fa6bd1ec8845c57f7e9b300135abb99e1923d1958a72e8f1c4c4597aa5789ff",
+  "observability": {
+    "enabled": true,
+    "status": "submitted_unconfirmed",
+    "content_capture": false,
+    "trace_id": "c4ae6109200e6ca0ce8792d9d8622bda",
+    "base_url": "http://127.0.0.1:3300",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/c4ae6109200e6ca0ce8792d9d8622bda"
+  },
+  "original_inputs_unchanged": true
+}

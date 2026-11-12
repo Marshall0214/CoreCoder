@@ -1,0 +1,21 @@
+[
+  {
+    "cell": null,
+    "code": "F821",
+    "end_location": {
+      "column": 38,
+      "row": 918
+    },
+    "filename": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1\\feedback\\rounds\\001\\validation\\baseline\\toolz\\itertoolz.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 918
+    },
+    "message": "Undefined name `iteritems`",
+    "name": "undefined-name",
+    "noqa_row": 918,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/undefined-name"
+  }
+]

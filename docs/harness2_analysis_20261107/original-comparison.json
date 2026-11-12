@@ -1,0 +1,41 @@
+{
+  "finished": 50,
+  "scheduled": 50,
+  "complete": true,
+  "resolved": 25,
+  "errors": 0,
+  "full_ppc_completed": 50,
+  "public_fallback_deliveries": [
+    "click-flag-envvar",
+    "boltons-backoff-constant",
+    "more-bucket-missing-key"
+  ],
+  "repair_rate": 0.5,
+  "control_reused": true,
+  "control_fresh_model_calls": 0,
+  "tokens": null,
+  "known_tokens_minimum": 30859536,
+  "fresh_model_calls": 3417,
+  "known_fresh_model_calls_minimum": 3417,
+  "historical_control": {
+    "resolved_of_50": 24,
+    "new_successes": [
+      "more-permutation-exception"
+    ],
+    "lost_successes": [],
+    "compared_finished_tasks": 50
+  },
+  "historical_harness": {
+    "resolved_of_50": 27,
+    "new_successes": [
+      "more-combination-index"
+    ],
+    "lost_successes": [
+      "itsdangerous-none-salt",
+      "boltons-split-zero",
+      "more-negative-range-slice"
+    ],
+    "compared_finished_tasks": 50
+  },
+  "source_files_unchanged": true
+}

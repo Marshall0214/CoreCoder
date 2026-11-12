@@ -1,0 +1,6 @@
+{
+  "instance_id": "boltons-backoff-zero",
+  "repo": "mahmoud/boltons",
+  "base_commit": "source-sha256:cfa47f3da5117615b5c0f69359f5f10936cbd65766a044717f70b8b264982b91",
+  "problem_statement": "backoff must accept start zero, advance to one, and then grow exponentially up to stop. Preserve positive-start backoff and explicit counts."
+}

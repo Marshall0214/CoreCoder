@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0001",
+  "path": "deliverables/base1/candidate.diff.txt",
+  "sha256": "16fd6864632dab8186ed9b920ae7c38fb797c84086ba54607c5d22bf82394aab",
+  "offset": 0,
+  "content": "--- a/toolz/itertoolz.py\r\n+++ b/toolz/itertoolz.py\r\n@@ -915,7 +915,7 @@\r\n                 else:\r\n                     yield (left_default, item)\r\n \r\n-        for key, matches in iteritems(d):\r\n+        for key, matches in d.items():\r\n             if key not in seen_keys:\r\n                 for match in matches:\r\n                     yield (match, right_default)\r\n",
+  "next_offset": null,
+  "total_characters": 364,
+  "eof": true
+}

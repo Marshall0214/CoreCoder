@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0006",
+  "path": "rollouts/base1.md",
+  "sha256": "78b5cf32744eb843e0ed2c9e2596d3a581b3e4b278cd23357b31bd38154983d4",
+  "offset": 30243,
+  "content": "y\", \"code\": \"F821\", \"message\": \"Undefined name `reduce`\", \"line\": 331, \"column\": 16, \"baseline_line\": 331}, {\"file\": \"toolz/itertoolz.py\", \"code\": \"F821\", \"message\": \"Undefined name `iteritems`\", \"line\": 918, \"column\": 29, \"baseline_line\": 918}], \"introduced\": []}, \"public_checks\": {\"Reproduce\": {\"tests_run\": 1, \"failures\": 0, \"errors\": 1, \"skipped\": 0, \"passed\": false, \"timed_out\": false, \"stderr_tail\": \"test_public_defect (test_admission.Reproduce.test_public_defect) ... ERROR\\n\\n=============",
+  "next_offset": 30743,
+  "total_characters": 31922,
+  "eof": false
+}

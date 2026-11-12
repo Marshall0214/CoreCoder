@@ -1,0 +1,48 @@
+{
+  "schema": "public-feedback-repair-v1",
+  "task": {
+    "instance_id": "more-combination-index",
+    "repo": "more-itertools/more-itertools",
+    "base_commit": "source-sha256:282e97823fe03c3020cf0d106d87ff524a75682cb5539f4eef290d7bb992e0ef",
+    "problem_statement": "combination_with_replacement_index must match itertools enumeration, including None elements and empty combinations. Reject elements that are not a nondecreasing combination from the pool."
+  },
+  "baseline_hash": "282e97823fe03c3020cf0d106d87ff524a75682cb5539f4eef290d7bb992e0ef",
+  "initial_candidate_hash": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+  "public_checks_hash": "3271dc1a6b0d5ebcf540d389da71ac4bed620ce7139b5edf1f860a39a3a7aa7e",
+  "allowed_files": [
+    "docs/conf.py",
+    "more_itertools/__init__.py",
+    "more_itertools/more.py",
+    "more_itertools/recipes.py"
+  ],
+  "guidance": "# Role\nYou are an expert Python developer repairing software defects using source evidence.\n\n# Core Principles\n- **Evidence First**: Never invent authorities, identifiers, or standards. Point to authorized sources; asserting them requires evidence from the provided context.\n- **Checkable Rules**: State knowledge the agent can APPLY and CHECK. \"Before finishing, confirm X covers each of A, B, C\" beats exposition.\n- **Deliverable Integrity**: The deliverable's shape belongs to the request. Do not add explanatory columns, restate derivations inside artifacts, or rename headers. Guidance for reasoning belongs in the harness text, never the artifact.\n\n# Workspace Facts (This Task)\nIn this workspace, `combination_with_replacement_index` must:\n1. Match `itertools` enumeration exactly, including handling of `None` elements and empty combinations.\n2. Reject elements that are not a non-decreasing combination from the pool.\n3. Validate that every item in the input `element` exists in the `pool` (iterable) before attempting index calculation.\n\n# Procedure\nWhen repairing a defect:\n1. **Trace**: Identify the exact function definition and test cases in the source.\n2. **Reconcile**: Compare the current implementation against the required behavior (e.g., non-decreasing order, existence in pool).\n3. **Draft**: Apply patches that strictly enforce validation logic before calculation.\n4. **Verify**: Ensure the fix handles edge cases like empty inputs or `None` values as per the task requirements.\n\n# Skills\nWhen validating combinatorial indices, load the `combinatorial_validation` skill.\n\n# Tool Usage Guidance\n\n## Reading Source Code\n- Use `read_symbol` to retrieve full function definitions when available. This ensures you have the complete context of the logic being modified.\n- Use `search` to locate all occurrences of a function name, including test cases that define expected behavior.\n\n## Applying Patches\n- When using `apply_patch`, ensure the `old` string matches the source exactly (including whitespace and indentation).\n- The `new` string must implement the fix while preserving the original docstring and structure unless explicitly required to change.\n\n## Validation Logic\n- For functions involving combinatorial logic (e.g., `combination_with_replacement_index`):\n  - **Input Validation**: Explicitly check that every element in the input tuple exists in the pool. Raise `ValueError` if not.\n  - **Order Validation**: Ensure the input elements are in non-decreasing order relative to their indices in the pool. Raise `ValueError` if the sequence is decreasing.\n  - **Edge Cases**: Handle empty inputs (`l == 0`) by returning `0` immediately, as per standard combinatorial definitions.\n\n## Evidence-Based Reasoning\n- Do not assume test outcomes. Cite specific lines from `tests/test_more.py` or the function definition in `more_itertools/more.py` to justify changes.\n- If a trajectory shows a failure (e.g., missing validation), encode that specific check into the guidance.",
+  "context_policy": {
+    "version": 1,
+    "deduplicate_reads": true,
+    "complete_symbols_first": true,
+    "read_index": true
+  },
+  "trace_metadata": {
+    "experiment_id": "more-combination-index",
+    "task_id": "more-combination-index",
+    "harness_variant": "dom1"
+  },
+  "source_root": ".",
+  "model": "qwen3.5:27b",
+  "thinking": false,
+  "max_feedback_rounds": 20,
+  "feedback_round_definition": "One correction request; initial validation is round zero",
+  "wall_timeout_seconds": 1200,
+  "token_budget": null,
+  "output_tokens": null,
+  "no_early_stop_for_repeated_failures": true,
+  "source_files": {
+    "repairflow/feedback_repair.py": "aec8bcc8e6fc55d5ff1fd167602d30f97acc4edfdfbbc67e801854c11496455b",
+    "repairflow/patch_validator.py": "c552303210fae352ebe9caed3c82fb501b515489db05a939a5ca1f188e6cb0e3",
+    "repairflow/issue_tools.py": "edfad7141a3c945b2e4c49e2abcf7c8bc4ec42f09d6c8efcd017a14237f6ae31",
+    "repairflow/checks.py": "0a32284d352fab13d886a9687555b74ff8f34fe69c10459de13d242f545c50bb",
+    "sandbox/runner.py": "6912daa6c2dd56f82be303f899e6a39430dc52ee8a6da55404b2de83bed97764",
+    "evals/local50_unmetered.py": "712af5947f905bdcf29a31bd6ac42c5c761e6a38058c19808669469a59a509d7",
+    "repairflow/issue_providers.py": "b5782779b2d7fde09d391465741355bb5ee0797923186ac0488bbcc7f24743c6"
+  }
+}

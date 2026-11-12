@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-gray-partial-repeat",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:6820768f85ea20d1a8b45cc03cd303a1d8deb15e40985ba758a112a6c4d12332",
+  "problem_statement": "gray_product and partial_product with repeat must preserve output when inputs are one-shot iterators. Preserve ordinary traversal with reusable sequences."
+}

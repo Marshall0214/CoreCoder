@@ -1,0 +1,10 @@
+<clickhouse>
+    <!-- Database diagnostic logs, separate from Langfuse's Agent traces. -->
+    <trace_log remove="1"/>
+    <text_log remove="1"/>
+    <logger>
+        <level>warning</level>
+        <size>20M</size>
+        <count>3</count>
+    </logger>
+</clickhouse>

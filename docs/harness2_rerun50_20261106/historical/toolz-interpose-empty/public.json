@@ -1,0 +1,6 @@
+{
+  "instance_id": "toolz-interpose-empty",
+  "repo": "pytoolz/toolz",
+  "base_commit": "source-sha256:4cb6def2153ffd294dd71536a19d51cfd0b06d8fec13164f6dc5dad57b122642",
+  "problem_statement": "interpose must return an empty iterator for an empty input instead of raising StopIteration. Preserve separation of nonempty inputs."
+}

@@ -1,0 +1,6 @@
+{
+  "instance_id": "itsdangerous-future-age",
+  "repo": "pallets/itsdangerous",
+  "base_commit": "source-sha256:2f608833f29fa4b68d77a3667c4095b7efbae16cf583ffc1782e37356a03f204",
+  "problem_statement": "TimestampSigner and TimedSerializer must reject a correctly signed timestamp in the future with SignatureExpired when max_age is specified. validate must return False. Preserve acceptance for ages 0 and max_age inclusive, rejection for older timestamps, and existing behavior when max_age is None. Preserve payload and UTC date_signed metadata on expiry, ordinary round-trips and tamper rejection."
+}

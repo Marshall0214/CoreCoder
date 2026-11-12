@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-invoke-missing",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:c71960b9cbc406f787f98d541a17872e7e67f6d3b31cb647a938da7e1b01523d",
+  "problem_statement": "Context.invoke must pass None for an omitted optional value, not an internal sentinel. Preserve default type conversion and explicit arguments."
+}

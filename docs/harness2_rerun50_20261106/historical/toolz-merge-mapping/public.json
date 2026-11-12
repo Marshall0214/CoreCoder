@@ -1,0 +1,6 @@
+{
+  "instance_id": "toolz-merge-mapping",
+  "repo": "pytoolz/toolz",
+  "base_commit": "source-sha256:69f1b429bf43582f7578646b1b522612e3abf1ddd6c52bac8190af13c164872a",
+  "problem_statement": "merge_with must accept a single collections.abc Mapping that is not a dict, treating it as a mapping rather than an iterable of mappings. Preserve merging multiple dictionaries."
+}

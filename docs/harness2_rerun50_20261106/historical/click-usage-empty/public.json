@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-usage-empty",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:860c0dd8b407e1d8aa3413b37dfcd92bfc67cd54c5d3c6f514552fd79c23ec30",
+  "problem_statement": "HelpFormatter.write_usage must emit the usage prefix and program name when args is empty, without a trailing separator space or extra blank line. Preserve custom prefixes and normal nonempty argument rendering. Commands with no parameters and empty or None options_metavar must still show their usage line."
+}

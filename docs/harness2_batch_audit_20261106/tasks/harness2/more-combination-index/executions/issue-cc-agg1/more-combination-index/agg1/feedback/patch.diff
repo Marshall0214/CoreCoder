@@ -1,0 +1,40 @@
+--- a/more_itertools/more.py
++++ b/more_itertools/more.py
+@@ -4517,6 +4517,29 @@
+     """
+     element = tuple(element)
+     l = len(element)
++    
++    pool = tuple(iterable)
++    
++    # Validate that every item in element exists in pool
++    for e in element:
++        if e not in pool:
++            raise ValueError(
++                'element is not a combination with replacement of iterable'
++            )
++    
++    # Validate non-decreasing order relative to pool indices
++    prev_idx = -1
++    for e in element:
++        curr_idx = pool.index(e)
++        if curr_idx < prev_idx:
++            raise ValueError(
++                'element is not a combination with replacement of iterable'
++            )
++        prev_idx = curr_idx
++
++    if l == 0:
++        return 0
++
+     element = enumerate(element)
+ 
+     k, y = next(element, (None, None))
+@@ -4524,7 +4547,6 @@
+         return 0
+ 
+     indexes = []
+-    pool = tuple(iterable)
+     for n, x in enumerate(pool):
+         while x == y:
+             indexes.append(n)

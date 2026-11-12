@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-interleave-empty",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:27dca4c8a2e66c89ef5fc38af21c8621dfd35370668bd1bf9e6fc3ff04cc80be",
+  "problem_statement": "interleave_evenly must return an empty iterator for no input iterables, including explicitly empty lengths. Preserve balancing of nonempty iterables."
+}

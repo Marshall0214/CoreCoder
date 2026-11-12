@@ -1,0 +1,76 @@
+{
+  "status": "editor_returned",
+  "model_steps": 8,
+  "reads": [
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 124166,
+      "next_offset": 129166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 129166,
+      "next_offset": 134166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51",
+      "offset": 134166,
+      "next_offset": 139166,
+      "total_characters": 159691,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0009",
+      "path": "pool/dom1/harness/systemprompt.md",
+      "sha256": "36f1ea7a421b26608aa0866a00c5cbdc73536a448d6f491c969b8cf3abaa92c9",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1325,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0010",
+      "path": "pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3d2d677846236b69d3c1881dde6b7c0eea4af7ecd33fc77a98d18aec5624f17",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 1048,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0019",
+      "path": "pool/inv1/rollout.md",
+      "sha256": "dccd3673d420e2c33374fa58b131b30ccb09881d1e16b03b26f407ee8a8d3fe1",
+      "offset": 98505,
+      "next_offset": 104505,
+      "total_characters": 134177,
+      "eof": false
+    }
+  ],
+  "format_errors": [
+    {
+      "step": 7,
+      "ok": false,
+      "format_error": "missing=[], unexpected=['notes']; return every declared file, including unchanged/empty files"
+    }
+  ],
+  "independent_grading_used": false,
+  "recent_read_bodies": 3,
+  "complete_small_files_pinned": true
+}

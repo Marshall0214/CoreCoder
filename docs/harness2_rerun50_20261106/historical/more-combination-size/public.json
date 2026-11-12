@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-combination-size",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:eec4bac6cf50efd76168f8645bcd2b9f1498119700105fdfb2cc3eba7c0e68ed",
+  "problem_statement": "nth_combination_with_replacement must allow r larger than the pool length. Empty pool with r zero has one empty combination; invalid indexes raise IndexError. Preserve ordinary combinations."
+}

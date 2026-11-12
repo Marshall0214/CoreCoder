@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-range-membership",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:ac3bb61e6a0cdfe4d3d39605e72824eded1d35e1b8e4a3dd7d63242adddfe6e8",
+  "problem_statement": "numeric_range with inexact float steps must recognize each item it yields, return its correct index, and report a length matching iteration. Preserve exact integer ranges and nonmember rejection."
+}

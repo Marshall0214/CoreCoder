@@ -1,0 +1,4 @@
+--- current/context_policy.json
++++ dom1/context_policy.json
+@@ -1 +1 @@
+-{"version": 1, "deduplicate_reads": true, "complete_symbols_first": true, "read_index": true}+{"version": 1, "deduplicate_reads": false, "complete_symbols_first": false, "read_index": false}

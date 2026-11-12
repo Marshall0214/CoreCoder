@@ -1,0 +1,137 @@
+"""Seven saved public contexts, plus two predeclared local editor sessions; no repairs."""
+import argparse
+import json
+import shutil
+import urllib.request
+from pathlib import Path
+
+from integrations import harness2 as bridge
+from integrations.harness2_reader import MAX_STEPS, Store, prepare
+from integrations.harness2_runtime import ROOT, load, workspace
+
+BATCH = ROOT / '.tmp/harness2-vs-control-50-20261105'
+LIVE_CASES = ('boltons-remap-set', 'click-help-eagerness')
+CODE = ('integrations/harness2.py', 'integrations/harness2_reader.py',
+        'integrations/harness2_reader_acceptance.py', 'integrations/harness2_batch.py')
+
+
+def offline(output, live_cases=LIVE_CASES):
+    original = bridge.read(BATCH / 'report.json')
+    keys = [key for key, row in original['tasks']['harness2'].items()
+            if row['status'] == 'error' or key == 'more-combination-index']
+    if len(keys) != 7:
+        raise ValueError('Require the six original errors and one lost success')
+    output.mkdir(parents=True, exist_ok=False)
+    bridge.write(output / 'protocol.json', {'schema': 'harness2-indexed-editor-acceptance-v1',
+        'original_report_sha256': bridge.sha(BATCH / 'report.json'), 'cases': keys, 'live_cases': live_cases,
+        'model': 'qwen3.5:27b', 'thinking': False, 'token_budget': None,
+        'editor_model_steps': MAX_STEPS, 'editor_seconds': 300,
+        'new_repairs': 0, 'independent_grading_used': False,
+        'source_files': {name: bridge.sha(ROOT / name) for name in CODE}})
+    report = {'status': 'offline_running', 'cases': {}, 'live': {}, 'new_repairs': 0, 'is_repair_accuracy': False}
+    for task in keys:
+        contexts = BATCH / 'arms/harness2' / task / 'runs/issue-cc-agg1' / task / 'context'
+        context = contexts / ('agg1' if (contexts / 'agg1').exists() else 'dom1')
+        manifest = prepare(context, output / 'offline' / task)
+        store = Store(manifest, bridge.sha(manifest))
+        for identifier, row in store.manifest['files'].items():
+            offset, pieces = 0, []
+            while True:
+                page = store.read({'id': identifier, 'offset': offset})
+                pieces.append(page['content'])
+                if page['eof']:
+                    break
+                offset = page['next_offset']
+            if ''.join(pieces).encode('utf-8') != (context / row['path']).read_bytes():
+                raise ValueError('Exact paged evidence reconstruction failed')
+        initial = json.dumps(store.index, ensure_ascii=False)
+        raw_characters = sum(row['characters'] for row in store.manifest['files'].values())
+        report['cases'][task] = {'context': str(context), 'manifest': str(manifest),
+            'manifest_sha256': bridge.sha(manifest), 'files': len(store.manifest['files']),
+            'raw_characters': raw_characters, 'index_serialized_characters': len(initial),
+            'exact_paging_passed': True, 'model_calls': 0}
+        bridge.write(output / 'report.json', report)
+        print(task, 'exact paging passed;', len(initial), 'index characters;', raw_characters, 'raw characters', flush=True)
+    report['status'] = 'offline_completed'
+    bridge.write(output / 'report.json', report)
+    return report
+
+
+def live(output, report):
+    """Exercise the actual official Editor subclass and local worker on fresh context copies."""
+    protocol = bridge.read(output / 'protocol.json')
+    if any(bridge.sha(ROOT / name) != sha for name, sha in protocol['source_files'].items()):
+        raise ValueError('Acceptance implementation changed')
+    load()
+    from harness2.core.spec import ChannelSpec
+
+    # Local tags only; never read cloud keys or invoke a cloud API.
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    with opener.open('http://127.0.0.1:11434/api/tags', timeout=10) as response:
+        tags = json.load(response)
+    identity = bridge.read(bridge.BASELINE / 'identity.json')
+    digest = next(row['digest'] for row in tags['models'] if row['name'] == protocol['model'])
+    if digest != identity['digest']:
+        raise ValueError('Local model changed from the frozen batch')
+    bridge.write(output / 'local-model.json', {'model': protocol['model'], 'digest': digest, 'thinking': False})
+    _Adapter, Editor = bridge.classes(True, None, 'indexed')
+    for task in protocol['live_cases']:
+        folder = output / 'live' / task
+        saved = report['cases'][task]
+        store = Store(saved['manifest'], saved['manifest_sha256'])
+        context = folder / 'context'
+        for row in store.manifest['files'].values():
+            target = context / row['path']
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(store.path.parent / row['storage'], target)
+        editor = Editor(ChannelSpec('opencode', 'local/qwen3.5:27b'), folder / 'editors', False)
+        report['status'] = 'live_running'
+        report['current_task'] = task
+        bridge.write(output / 'report.json', report)
+        mission = ('Inspect this saved public execution context. Use read_evidence to inspect the relevant failure '
+                   'and candidate changes before proposing concise improvements to the three allowed guidance/config files. '
+                   'Cite the evidence ids in notes. Do not claim a repaired Issue or independent test success. '
+                   'This is a new strategy-editing session over saved executions; no repair rollout will be run.')
+        result = {'status': 'failed'}
+        try:
+            editor.call(mission, context, 'agg1.reader-acceptance')
+            result['status'] = 'returned_valid_guidance'
+        except Exception as exc:  # noqa: BLE001 - preserve failed sessions without an unreported retry
+            result['error'] = type(exc).__name__ + ': ' + str(exc)
+        call = folder / 'editors/call-001'
+        if (call / 'report.json').exists():
+            native = bridge.read(call / 'report.json')
+            result['fresh_model_calls'] = native['fresh_model_calls']
+            result['metrics'] = native['metrics']
+            result['trace_id'] = native.get('observability', {}).get('trace_id')
+        reader = bridge.read(call / 'reader-report.json') if (call / 'reader-report.json').exists() else {}
+        result.update(reads=len(reader.get('reads', [])), format_errors=len(reader.get('format_errors', [])),
+                      reader_report=str(call / 'reader-report.json'),
+                      validated_reader_used=result['status'] == 'returned_valid_guidance' and bool(reader.get('reads')))
+        report['live'][task] = result
+        bridge.write(output / 'report.json', report)
+        print(task, json.dumps(result, ensure_ascii=False), flush=True)
+    report['status'] = 'completed' if all(row['validated_reader_used'] for row in report['live'].values()) else 'completed_with_errors'
+    report['original_batch_report_unchanged'] = bridge.sha(BATCH / 'report.json') == protocol['original_report_sha256']
+    baseline = bridge.read(bridge.BASELINE / 'protocol.json')
+    report['baseline_engine_unchanged'] = all(bridge.sha(ROOT / name) == sha for name, sha in baseline['source_files'].items())
+    bridge.write(output / 'report.json', report)
+    return report
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--live', action='store_true', help='Two fresh local strategy-editor sessions; no repairs')
+    parser.add_argument('--live-cases', nargs='+', choices=LIVE_CASES, default=list(LIVE_CASES),
+                        help='Predeclare native session subset; every attempt remains separate')
+    args = parser.parse_args()
+    output = workspace(args.output)
+    report = offline(output, args.live_cases)
+    if args.live:
+        report = live(output, report)
+    print(json.dumps({'status': report['status'], 'saved_contexts': len(report['cases']), 'new_repairs': 0}), flush=True)
+
+
+if __name__ == '__main__':
+    main()

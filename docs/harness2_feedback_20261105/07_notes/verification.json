@@ -1,0 +1,45 @@
+{
+  "pytest": {
+    "passed": 68,
+    "skipped": 1,
+    "seconds": 4.3
+  },
+  "controller_python312_unittest": {
+    "tests": 10,
+    "passed": true
+  },
+  "ruff": "passed",
+  "baseline_source_files_verified": 14,
+  "public_test_invocations": 15,
+  "independent_test_invocations": 2,
+  "new_model_calls": 2,
+  "startup_attempts_before_inference": 2,
+  "visible_source_receipts_per_round": 20,
+  "not_a_fresh_paired_comparison": true,
+  "previous_packets": {
+    "harness2-autonomous-20261104": {
+      "manifest_sha256": "8964033c18c82d9d03a419da90dd0896548439c6ff70232be9f820c22fab1d11",
+      "verified_files": 134
+    },
+    "harness2-agg1-failure-20261104": {
+      "manifest_sha256": "f58c6ffecab1220e471c27cb1cac9fbcfefaec5b5f1a404431017ba011ba102e",
+      "verified_files": 41
+    },
+    "local50-unmetered-20261103": {
+      "manifest_sha256": "8cbdba27bcc07069d6e7a64cf05cde1ab84f7d8ad3094e0e7bb49635397d41f5",
+      "verified_files": 330
+    },
+    "patch-validator-20261105": {
+      "manifest_sha256": "dfefdccdf708fc35f164cea2f110d9f662232eb92a83b45753a37858281fb4d2",
+      "verified_files": 127
+    },
+    "harness2-context-paired-20261104": {
+      "manifest_sha256": "96b41b48131792232c9cf137d0f0e3b4a939ae7de2334ee72b030c1b4e84003d",
+      "verified_files": 147
+    },
+    "harness2-review-20261104": {
+      "manifest_sha256": "25f1b41266d932659a303562025a9dc30e1369a3ecf04f62d5edd5ea77c7495c",
+      "verified_files": 64
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-help-eagerness",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:61bef399ba42bb67f7e478e37c76ae7da1103638374f1c87b5c37cd3f5eac6d5",
+  "problem_statement": "A custom help flag and another eager option should follow invocation order. Invoking the help flag first must display help without running the later eager callback."
+}

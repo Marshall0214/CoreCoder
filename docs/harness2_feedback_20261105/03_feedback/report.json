@@ -1,0 +1,84 @@
+{
+  "status": "ready_for_review",
+  "max_feedback_rounds": 20,
+  "feedback_rounds_attempted": 2,
+  "applied_patches": 2,
+  "rounds": [
+    {
+      "round": 1,
+      "status": "completed",
+      "candidate_hash_before": "1dab3fc66524ae592068156992c4a52de5cc856272e0d2c4861b17478dafd8bb",
+      "usage": {
+        "prompt_tokens": 41035,
+        "completion_tokens": 480
+      },
+      "patch_status": "applied",
+      "changed_files": [
+        "toolz/itertoolz.py"
+      ],
+      "public_accepted": false,
+      "candidate_hash": "5507c22ef56118645a94776359ca46e27473037c62d030ce5f037433a2e7f1f9",
+      "seconds": 51.969
+    },
+    {
+      "round": 2,
+      "status": "completed",
+      "candidate_hash_before": "5507c22ef56118645a94776359ca46e27473037c62d030ce5f037433a2e7f1f9",
+      "usage": {
+        "prompt_tokens": 40917,
+        "completion_tokens": 480
+      },
+      "patch_status": "applied",
+      "changed_files": [
+        "toolz/itertoolz.py"
+      ],
+      "public_accepted": true,
+      "candidate_hash": "14064721d09dfe3121009cdc81ff2566a715999356f97358f5da5c8977e74093",
+      "seconds": 35.375
+    }
+  ],
+  "thinking": false,
+  "token_budget": null,
+  "repetition_stop_enabled": false,
+  "independent_grading_used": false,
+  "independent_verification_available": false,
+  "accepted": true,
+  "fresh_model_calls": 2,
+  "execution_mode": "ollama",
+  "metrics": {
+    "llm_calls": 2,
+    "prompt_tokens": 81952,
+    "completion_tokens": 960,
+    "known_prompt_tokens": 81952,
+    "known_completion_tokens": 960,
+    "missing_usage_calls": 0,
+    "budget_accounted_tokens": 82912,
+    "budget_enforcement": "none; local tokens accounted only",
+    "usage_status": "known",
+    "usage_source": "ollama_response",
+    "failed_calls": 0,
+    "cloud_api_cost_usd": 0.0,
+    "local_compute_cost_usd": null,
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown",
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_preflight_enforced": false,
+    "provider_context_tokens": 65536
+  },
+  "seconds": 95.453,
+  "changed_files": [
+    "toolz/itertoolz.py"
+  ],
+  "public_checks_passed": true,
+  "final_candidate_hash": "14064721d09dfe3121009cdc81ff2566a715999356f97358f5da5c8977e74093",
+  "observability": {
+    "enabled": true,
+    "status": "submitted_unconfirmed",
+    "content_capture": false,
+    "trace_id": "62c72148ebfd45ad9f13a8f08497fba3",
+    "base_url": "http://127.0.0.1:3300",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/62c72148ebfd45ad9f13a8f08497fba3"
+  },
+  "original_inputs_unchanged": true
+}

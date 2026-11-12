@@ -1,0 +1,2079 @@
+{
+  "schema": "harness2-batch-audit-evidence-v1",
+  "original_status": "completed_with_errors",
+  "model_calls": 0,
+  "files": [
+    {
+      "path": "original-implementation/integrations/harness2_batch.py.txt",
+      "source": "integrations/harness2_batch.py",
+      "sha256": "a42a172d6da666b8f0fdea10aba031d98f7fe8ab9b63586ed789e1e6510e5d5b"
+    },
+    {
+      "path": "original-implementation/integrations/harness2.py.txt",
+      "source": "integrations/harness2.py",
+      "sha256": "05036078ccd46dc5bba557bfc053cf92dbbb0a480f0e3709c63dd3f149d06a53"
+    },
+    {
+      "path": "original-implementation/integrations/harness2_feedback.py.txt",
+      "source": "integrations/harness2_feedback.py",
+      "sha256": "10b48b8a8b35348eb98789d128f6b10ba437977fb87ee22d7b8d823d0aa09ffc"
+    },
+    {
+      "path": "original-implementation/integrations/harness2_context.py.txt",
+      "source": "integrations/harness2_context.py",
+      "sha256": "f0a9847e1c124eaabe03e286dfe9e5a29c109d8733d9eb7b39183c07cb39fc54"
+    },
+    {
+      "path": "original-implementation/integrations/harness2_evidence.py.txt",
+      "source": "integrations/harness2_evidence.py",
+      "sha256": "2eb3520fa849fd8405553d0066835d8c4da19eb62bd04d8e29ec8ee3c09d81e8"
+    },
+    {
+      "path": "original-implementation/repairflow/feedback_repair.py.txt",
+      "source": "repairflow/feedback_repair.py",
+      "sha256": "aec8bcc8e6fc55d5ff1fd167602d30f97acc4edfdfbbc67e801854c11496455b"
+    },
+    {
+      "path": "original-implementation/repairflow/patch_validator.py.txt",
+      "source": "repairflow/patch_validator.py",
+      "sha256": "c552303210fae352ebe9caed3c82fb501b515489db05a939a5ca1f188e6cb0e3"
+    },
+    {
+      "path": "original-implementation/repairflow/checks.py.txt",
+      "source": "repairflow/checks.py",
+      "sha256": "0a32284d352fab13d886a9687555b74ff8f34fe69c10459de13d242f545c50bb"
+    },
+    {
+      "path": "original-implementation/repairflow/issue_tools.py.txt",
+      "source": "repairflow/issue_tools.py",
+      "sha256": "edfad7141a3c945b2e4c49e2abcf7c8bc4ec42f09d6c8efcd017a14237f6ae31"
+    },
+    {
+      "path": "original-implementation/repairflow/issue_providers.py.txt",
+      "source": "repairflow/issue_providers.py",
+      "sha256": "b5782779b2d7fde09d391465741355bb5ee0797923186ac0488bbcc7f24743c6"
+    },
+    {
+      "path": "original-implementation/evals/local50_unmetered.py.txt",
+      "source": "evals/local50_unmetered.py",
+      "sha256": "712af5947f905bdcf29a31bd6ac42c5c761e6a38058c19808669469a59a509d7"
+    },
+    {
+      "path": "original-implementation/evals/local50.py.txt",
+      "source": "evals/local50.py",
+      "sha256": "f47b14b998976f2fda4879cf39dbb69cab9e7e82c266f217655ffbe38936bb26"
+    },
+    {
+      "path": "original-implementation/evals/repository_checkpoint.py.txt",
+      "source": "evals/repository_checkpoint.py",
+      "sha256": "0a0554c45bbe4eb8a17eb2ed61b81ed34267b455ea9d003457fda21d6ba72da4"
+    },
+    {
+      "path": "original-implementation/evals/runtime.py.txt",
+      "source": "evals/runtime.py",
+      "sha256": "ae6a21482a9dbe265e0e44818128319dc78a28bb15016eccfb236aa1279e660f"
+    },
+    {
+      "path": "original-implementation/sandbox/runner.py.txt",
+      "source": "sandbox/runner.py",
+      "sha256": "6912daa6c2dd56f82be303f899e6a39430dc52ee8a6da55404b2de83bed97764"
+    },
+    {
+      "path": "batch/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/report.json",
+      "sha256": "05fb2ec7727daa545bb5f132f344b19d2bf731e03070b23cde9b16940f61871a"
+    },
+    {
+      "path": "batch/protocol.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/protocol.json",
+      "sha256": "550011a03cdb3f5112ac61aca36530abcd182874bd74e37b0b36a02378e1ad17"
+    },
+    {
+      "path": "batch/launcher.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/launcher.json",
+      "sha256": "c86b3a6319563051c666447189ac52ace9dfafc4c424559fa39e01a263e7bd45"
+    },
+    {
+      "path": "batch/batch.stdout.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/batch.stdout.log",
+      "sha256": "079f1d734b2af243f6ffce5c33190e20a3d2af6c3a2d238fda547205dac10a57"
+    },
+    {
+      "path": "batch/batch.stderr.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/batch.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/core-result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/core-result.json",
+      "sha256": "04b7201ceda1a0b7d4460fc1fe1e8844eed96bfc88f834b41c421ebd3472b58c"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/result.json",
+      "sha256": "93f2e63c0f813b35fc35e1fccc7c1dc6f9c0e118f2533574a643617893a98b29"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/worker.log",
+      "sha256": "5ea333bc6ab787bb56afc21a9df16b14570fa4af89a843ac015bd1be8cf06d52"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/editors/call-001/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/editors/call-001/reply-attempt-1.txt",
+      "sha256": "5641d6c3ec83ef03be90b9694d19ea2b20d2de72eb6afdba08f36706b156e05f"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/editors/call-001/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/editors/call-001/report.json",
+      "sha256": "391c5274a50d08442632c8aca8c2219f88ffe8a414c4630aef789af59bfb061e"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/editors/call-001/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/editors/call-001/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/editors/call-002/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/editors/call-002/reply-attempt-1.txt",
+      "sha256": "743f42d3a398c520abca1fd7450aea0d6fc5c98d904a138865d6d9f979aec9ba"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/editors/call-002/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/editors/call-002/report.json",
+      "sha256": "f6362887899823879152455ac2a9fdc6cfa52f5119529ae777da9217dce784a8"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/editors/call-002/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/editors/call-002/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/task.md",
+      "sha256": "313b673490ee6f2dc71d5e734f482c1fa146daf127b852a93a9889ec1f20b12c"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/decisions/dom1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/decisions/dom1.md",
+      "sha256": "744932a48a17de22dde413b4340e382abbfd308c4ddd2b27cda359e7c236f778"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/decisions/inv1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/decisions/inv1.md",
+      "sha256": "bdb5ae712e3cf1beded092a9e016465568e0c0f81016504931a02384878c71d8"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/deliverables/base1/INDEX.md",
+      "sha256": "65cface33be5f3d2fd02dcd98d62d5a2eab42eb978157a4cf1621a257d3a41bd"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/harness.diff",
+      "sha256": "708bdbfe306c3a13e07722843a77dded6fa6dae62b198bd2c99a251bf8ac8490"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/produced.md",
+      "sha256": "6bb65a434f297dd33af067a70a3639a5ae04d0b80a4b9ee0e1c00853f58281f0"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/rollout.md",
+      "sha256": "54c1b36294a26ab4d672ab5f58a4910b52df5658266ea009b0b88c5e9bddb078"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/harness/systemprompt.md",
+      "sha256": "c44501ab52d8069e91ae116934191c1311eab2a67f451fd6e42a459e327bf0f7"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "9dd3b922dc3772583de0aed261d1de1b1a6dcb42aa35d9ce155aa2d827fb4976"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/harness.diff",
+      "sha256": "c6cdf1e24b5ab54a893fa2648d927b56d64c7393a70b25de7d9adbe68901815f"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/produced.md",
+      "sha256": "6bb65a434f297dd33af067a70a3639a5ae04d0b80a4b9ee0e1c00853f58281f0"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/rollout.md",
+      "sha256": "6be611099981ac523156e48e7cf8f5ba369ccdcc53ab5f332476cbcfe1afd20e"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/harness/systemprompt.md",
+      "sha256": "55aed86fb89e84a501529fe767594f4cb5f316ef24a547b2e0e2cd8efee440cc"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "55aed86fb89e84a501529fe767594f4cb5f316ef24a547b2e0e2cd8efee440cc"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/agg1/rollouts/base1.md",
+      "sha256": "97b0318869928ff243a17e68d54415d38f0a4bfc63b6ae6f62400bab234a9723"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/task.md",
+      "sha256": "313b673490ee6f2dc71d5e734f482c1fa146daf127b852a93a9889ec1f20b12c"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/deliverables/base1/INDEX.md",
+      "sha256": "65cface33be5f3d2fd02dcd98d62d5a2eab42eb978157a4cf1621a257d3a41bd"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/harness/systemprompt.md",
+      "sha256": "c44501ab52d8069e91ae116934191c1311eab2a67f451fd6e42a459e327bf0f7"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "9dd3b922dc3772583de0aed261d1de1b1a6dcb42aa35d9ce155aa2d827fb4976"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/dom1/rollouts/base1.md",
+      "sha256": "97b0318869928ff243a17e68d54415d38f0a4bfc63b6ae6f62400bab234a9723"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/task.md",
+      "sha256": "313b673490ee6f2dc71d5e734f482c1fa146daf127b852a93a9889ec1f20b12c"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/deliverables/base1/INDEX.md",
+      "sha256": "65cface33be5f3d2fd02dcd98d62d5a2eab42eb978157a4cf1621a257d3a41bd"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/harness/systemprompt.md",
+      "sha256": "55aed86fb89e84a501529fe767594f4cb5f316ef24a547b2e0e2cd8efee440cc"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "55aed86fb89e84a501529fe767594f4cb5f316ef24a547b2e0e2cd8efee440cc"
+    },
+    {
+      "path": "tasks/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-style-color-validation/runs/issue-cc-agg1/click-style-color-validation/context/inv1/rollouts/base1.md",
+      "sha256": "97b0318869928ff243a17e68d54415d38f0a4bfc63b6ae6f62400bab234a9723"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/core-result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/core-result.json",
+      "sha256": "ac2b0675072429dd7180fd916d7a3f2acf917092fcd4d47863d949b8488705fe"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/result.json",
+      "sha256": "9dce354a6ef88248e322ea1c38f7ce6e0741097248a32568d0c5376551362643"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/worker.log",
+      "sha256": "21b4a586863a5cbf01260e32f8da837fbd6388c169d8dc7a0d082747d2b05ab2"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/editors/call-001/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/editors/call-001/reply-attempt-1.txt",
+      "sha256": "b863bc762c2fbe371db0525e31e225b04f35f45c2e22cc6666503bcc33a5d648"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/editors/call-001/reply-attempt-2.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/editors/call-001/reply-attempt-2.txt",
+      "sha256": "aa7028817203ad82cb324f66bc4b990bd6c2be02a5dac4ebd2f8710e9b28060c"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/editors/call-001/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/editors/call-001/report.json",
+      "sha256": "6c703bd4104f4e33a4554888f193686c70f6e4487902981f2aee58efde49831d"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/editors/call-001/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/editors/call-001/worker.log",
+      "sha256": "e6d0bab82b82a38623714cea383564035e424ae8b138af00f094d5f3fb8737e4"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/editors/call-002/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/editors/call-002/reply-attempt-1.txt",
+      "sha256": "35b08396f509a86f47fd05d49d4975e4b0083c1128ff1a1b2d56a5cd48627cc2"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/editors/call-002/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/editors/call-002/report.json",
+      "sha256": "e2a89260201d236463e73f041464039acbafbb0c3c335b678cafd130226b79e8"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/editors/call-002/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/editors/call-002/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/task.md",
+      "sha256": "360a5fcbc6971d192838b43728dee506cdbf2c7207449835a06a99e679c8e924"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/deliverables/base1/INDEX.md",
+      "sha256": "3e83445a53af27c05e7b79e7696e7f853fafb5e39cce9f1b6ebc65c9884f3727"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/dom1/rollouts/base1.md",
+      "sha256": "ad71ef9e0f8402999a2bb8c5c9418273af4bb65a97f84597ad5c6221201a9fa5"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/task.md",
+      "sha256": "360a5fcbc6971d192838b43728dee506cdbf2c7207449835a06a99e679c8e924"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/deliverables/base1/INDEX.md",
+      "sha256": "3e83445a53af27c05e7b79e7696e7f853fafb5e39cce9f1b6ebc65c9884f3727"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/harness/context_policy.json",
+      "sha256": "62a459caf8184c7a0f7c5020137a0118b4dd189bcb0fe504627b36fb724a4469"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/harness/systemprompt.md",
+      "sha256": "13f85e96070315779b41673ec1594a45b858831addcc0ea98663bf0f90332fdd"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "f32340a2f2a749b2ad23689a844bb6142c1271c8c92504d8161533cd28528cb0"
+    },
+    {
+      "path": "tasks/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-help-eagerness/runs/issue-cc-agg1/click-help-eagerness/context/inv1/rollouts/base1.md",
+      "sha256": "ad71ef9e0f8402999a2bb8c5c9418273af4bb65a97f84597ad5c6221201a9fa5"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/core-result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/core-result.json",
+      "sha256": "13cf93ebc6ab3241df04a1031de556fa8362e731f9bc09e409ca59015548b35e"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/result.json",
+      "sha256": "b95a1d8457269fda900eb6fe51ca524b5bf11c16d23c6d06b0bf39ada2e80a89"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/worker.log",
+      "sha256": "2c9b7c34a029d73f312819aa735833de38a6e2e9e3aad06b1545e37bc25be646"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/editors/call-001/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/editors/call-001/reply-attempt-1.txt",
+      "sha256": "2afb98301986ce20190ac4f89fde6d733e251d8c44f9932c6e01154fb504f458"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/editors/call-001/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/editors/call-001/report.json",
+      "sha256": "af470f64f3fce168a783cb3c84ac6a02f1f9f78669ed0bb841d2fb2b5ecf8f1d"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/editors/call-001/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/editors/call-001/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/editors/call-002/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/editors/call-002/reply-attempt-1.txt",
+      "sha256": "bad74c888db00a6cd2094406419833f5a0b4a564fbb0488616412a6d471c3343"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/editors/call-002/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/editors/call-002/report.json",
+      "sha256": "5b9cf7e9bd916ba007cb9ee1b4f528704a813a068c34e4fc1f1d31dc89c86339"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/editors/call-002/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/editors/call-002/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/task.md",
+      "sha256": "4e5d7d35161e1fef8c348424316784b5b1b77689e25d04c6918c587fbf59fa2b"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/decisions/dom1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/decisions/dom1.md",
+      "sha256": "28256bf873f55a62dbde9150b1bc9abdfc527cde8d3d7bbb9b2826d272eec54b"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/decisions/inv1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/decisions/inv1.md",
+      "sha256": "d723a6c5990f7dd9c352917b3727e1d3e8c258358213b1e04cfbc605c06ad9d8"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/deliverables/base1/INDEX.md",
+      "sha256": "e3f65fd61636c4ef06d4f2a61ec687bb6a25912da441174d9bb3b11e755a87c0"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/harness.diff",
+      "sha256": "8c6057d29e7f8180f9c47f74479cacb0ee160aba95fbbafe8b0c4202475cde06"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/produced.md",
+      "sha256": "6bb65a434f297dd33af067a70a3639a5ae04d0b80a4b9ee0e1c00853f58281f0"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/rollout.md",
+      "sha256": "dee04f9d61b1a7ef1c6a528f28ab7c613b32d3506bd44aa23733ca44d4575cdf"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/harness/systemprompt.md",
+      "sha256": "512cde520c9c2b1819770f01f8a533c56c3818604a25ef9a6fd6a519af4801e2"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "ff8038329b9ce1d047861021c97210794c23d5ae8a39303166493b79a9ed16dd"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/harness.diff",
+      "sha256": "c475e57dc7942c3e9ba9a96ca38316b9efd628b9ff2c6d33acbbb6a1be3df8ff"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/produced.md",
+      "sha256": "6bb65a434f297dd33af067a70a3639a5ae04d0b80a4b9ee0e1c00853f58281f0"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/rollout.md",
+      "sha256": "e20365c90190036b2492c9bf85969f40ca6a26cab52042d011f24408005887fb"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/harness/systemprompt.md",
+      "sha256": "55690ac372862cd7f6d9e125fe522b4b43f38b08ebb94927c6fede1eee7763cd"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "175491efd29eefda2df0476a36f9c185572acd7013d36c38919e0ebb8225212c"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/agg1/rollouts/base1.md",
+      "sha256": "b128547faf696e06432c9cf894baf3eac52dbcd7a730e2603942b6b1f2a71bd9"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/task.md",
+      "sha256": "4e5d7d35161e1fef8c348424316784b5b1b77689e25d04c6918c587fbf59fa2b"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/deliverables/base1/INDEX.md",
+      "sha256": "e3f65fd61636c4ef06d4f2a61ec687bb6a25912da441174d9bb3b11e755a87c0"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/harness/systemprompt.md",
+      "sha256": "512cde520c9c2b1819770f01f8a533c56c3818604a25ef9a6fd6a519af4801e2"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "ff8038329b9ce1d047861021c97210794c23d5ae8a39303166493b79a9ed16dd"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/dom1/rollouts/base1.md",
+      "sha256": "b128547faf696e06432c9cf894baf3eac52dbcd7a730e2603942b6b1f2a71bd9"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/task.md",
+      "sha256": "4e5d7d35161e1fef8c348424316784b5b1b77689e25d04c6918c587fbf59fa2b"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/deliverables/base1/INDEX.md",
+      "sha256": "e3f65fd61636c4ef06d4f2a61ec687bb6a25912da441174d9bb3b11e755a87c0"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/harness/systemprompt.md",
+      "sha256": "55690ac372862cd7f6d9e125fe522b4b43f38b08ebb94927c6fede1eee7763cd"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "175491efd29eefda2df0476a36f9c185572acd7013d36c38919e0ebb8225212c"
+    },
+    {
+      "path": "tasks/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-flag-default-map/runs/issue-cc-agg1/click-flag-default-map/context/inv1/rollouts/base1.md",
+      "sha256": "b128547faf696e06432c9cf894baf3eac52dbcd7a730e2603942b6b1f2a71bd9"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/core-result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/core-result.json",
+      "sha256": "6c7d40853ced8d2f7d944ac2249b6cd6665486c5910d9f10e1a2bf35709e55f8"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/result.json",
+      "sha256": "9aaf5fc3fe7bb8e59e6bed7ecae720a95de97656988ce7bd1dc34354b9205da5"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/worker.log",
+      "sha256": "b68ed7978f2458aa17a6b04334f5510ba02ce2cea1108af6fd38115b5987a5fd"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/editors/call-001/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/editors/call-001/reply-attempt-1.txt",
+      "sha256": "77d395289258ce701914c51e6f40bcbb074eaea1f703864b49b26bd31d9f006a"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/editors/call-001/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/editors/call-001/report.json",
+      "sha256": "479a8cb46c8ae23125d9a50ac5f3203c7c78e52ef844f298993687b193d755db"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/editors/call-001/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/editors/call-001/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/editors/call-002/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/editors/call-002/reply-attempt-1.txt",
+      "sha256": "02aa027b41a99044aee2f3adef8430a56bb750d783ec85a66efde9e8304ea4ed"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/editors/call-002/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/editors/call-002/report.json",
+      "sha256": "a37adc5f6548e68f1f4e39101e757034e9c34f1a359b9310c69f90b23dc0e69f"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/editors/call-002/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/editors/call-002/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/task.md",
+      "sha256": "465aeb2f2aab52ce0b45c7e63ce76c2744108222d8af91a664e9d30a179d5a7d"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/decisions/dom1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/decisions/dom1.md",
+      "sha256": "a620f830c9d8584d6fc554ee2fdd9fe998a69ad63431e8604003eb2ebb37ffeb"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/decisions/inv1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/decisions/inv1.md",
+      "sha256": "7b9ca599e7b901ea968eff502882352899addb8188406ce8d986bee137620b7b"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/deliverables/base1/INDEX.md",
+      "sha256": "e3f65fd61636c4ef06d4f2a61ec687bb6a25912da441174d9bb3b11e755a87c0"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/harness.diff",
+      "sha256": "1d4c7849eb7160e4db8ac9aeb8afee11d7a51cf459fbb36311d9f25278902737"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/produced.md",
+      "sha256": "6bb65a434f297dd33af067a70a3639a5ae04d0b80a4b9ee0e1c00853f58281f0"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/rollout.md",
+      "sha256": "6cb41d79c7f73cbee53be7d8d04a1cd6ab853bfb90c2c9707fd308352b14cebf"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/harness/systemprompt.md",
+      "sha256": "3a41123298950542e1fa54a964a79142c07de3a475dfc9ee399903a7910af95f"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "10feca354c4d5f4ea70d7ac5b1adb815acb2754a2123812faa7c0189d7fe5713"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/harness.diff",
+      "sha256": "e93cb0be7a95fd296956445ac1bcca74b23c1397711adac7f456e4712da6afa3"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/produced.md",
+      "sha256": "6bb65a434f297dd33af067a70a3639a5ae04d0b80a4b9ee0e1c00853f58281f0"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/rollout.md",
+      "sha256": "215adec22fa45e5f0243fba54c9cb4eac5d1083ec677d335b4ff4a35fa11fd50"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/harness/systemprompt.md",
+      "sha256": "dc743f1394216ab3c73d56774527fce24f8388d2e9a50d0e6ec6c5ae40e26aca"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "9d4bd051fbb4e7e906a2cd860e106329d4d9319bce1c31dadae5ae327eae6c22"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/agg1/rollouts/base1.md",
+      "sha256": "2ad63175a6cf11917810ff6c3d6aaff949f96b115f0fe11005356795be0a16bb"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/task.md",
+      "sha256": "465aeb2f2aab52ce0b45c7e63ce76c2744108222d8af91a664e9d30a179d5a7d"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/deliverables/base1/INDEX.md",
+      "sha256": "e3f65fd61636c4ef06d4f2a61ec687bb6a25912da441174d9bb3b11e755a87c0"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/harness/systemprompt.md",
+      "sha256": "3a41123298950542e1fa54a964a79142c07de3a475dfc9ee399903a7910af95f"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "10feca354c4d5f4ea70d7ac5b1adb815acb2754a2123812faa7c0189d7fe5713"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/dom1/rollouts/base1.md",
+      "sha256": "2ad63175a6cf11917810ff6c3d6aaff949f96b115f0fe11005356795be0a16bb"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/task.md",
+      "sha256": "465aeb2f2aab52ce0b45c7e63ce76c2744108222d8af91a664e9d30a179d5a7d"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/deliverables/base1/INDEX.md",
+      "sha256": "e3f65fd61636c4ef06d4f2a61ec687bb6a25912da441174d9bb3b11e755a87c0"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/harness/systemprompt.md",
+      "sha256": "dc743f1394216ab3c73d56774527fce24f8388d2e9a50d0e6ec6c5ae40e26aca"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "9d4bd051fbb4e7e906a2cd860e106329d4d9319bce1c31dadae5ae327eae6c22"
+    },
+    {
+      "path": "tasks/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/click-invoke-missing/runs/issue-cc-agg1/click-invoke-missing/context/inv1/rollouts/base1.md",
+      "sha256": "2ad63175a6cf11917810ff6c3d6aaff949f96b115f0fe11005356795be0a16bb"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/core-result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/core-result.json",
+      "sha256": "4d61a1af0c2312667763848c05b596db851450902cc07f4bc39981836f8770e6"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/result.json",
+      "sha256": "3e9c20ddf56ed77b11a25b462a5f37cc3254ad26f3d93f6c4571b1220c2047c5"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/worker.log",
+      "sha256": "04d0b688bbbffd5cebba64ff252019287691cfed609ac46db6c3a40927ecd802"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/editors/call-001/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/editors/call-001/reply-attempt-1.txt",
+      "sha256": "c9037376f03c43c6bacb9c20ced6a33d3c252ba535f0a31513fb7e1c006a2493"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/editors/call-001/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/editors/call-001/report.json",
+      "sha256": "889a7e2371db83806c9d600efdfc95194f703732503152ab03ff307d3ad5e719"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/editors/call-001/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/editors/call-001/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/editors/call-002/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/editors/call-002/reply-attempt-1.txt",
+      "sha256": "89cc3db089fe1a7e22c315e1ae30b31f6c893179d75e9643548f547625f7d659"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/editors/call-002/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/editors/call-002/report.json",
+      "sha256": "29e715e13df42bdfcaef6b300bd262dd3d9611ad6c1bc9cf7764e54f02425db3"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/editors/call-002/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/editors/call-002/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/task.md",
+      "sha256": "cb245b058a8b26aa28cab2b7fe72b2df001844040106b61c139237a133a484b7"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/decisions/dom1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/decisions/dom1.md",
+      "sha256": "e71f817b6e665faf1655fccdd5491560f2d6eff3d0226780b7257fc263e7c8dc"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/decisions/inv1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/decisions/inv1.md",
+      "sha256": "f8e1a285989e3141570c5ca8b037d783f6dbde5bd2e8fb71d51475082cbd95d4"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/deliverables/base1/INDEX.md",
+      "sha256": "e3f65fd61636c4ef06d4f2a61ec687bb6a25912da441174d9bb3b11e755a87c0"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/harness.diff",
+      "sha256": "9a8209eb79da7a078a90ace9e4811e81f22bbe4a9c79c30a84c49e009271d552"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/produced.md",
+      "sha256": "6bb65a434f297dd33af067a70a3639a5ae04d0b80a4b9ee0e1c00853f58281f0"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/rollout.md",
+      "sha256": "fa4c5c16eeadf3b7593d01fab5ed9c39b2b7061978c16785a915b62ef24aef51"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/harness/systemprompt.md",
+      "sha256": "36f1ea7a421b26608aa0866a00c5cbdc73536a448d6f491c969b8cf3abaa92c9"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3d2d677846236b69d3c1881dde6b7c0eea4af7ecd33fc77a98d18aec5624f17"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/harness.diff",
+      "sha256": "f8062371721c7fbafef3d985b18226953194ab0f419b82f4570277c353a9c93b"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/produced.md",
+      "sha256": "6bb65a434f297dd33af067a70a3639a5ae04d0b80a4b9ee0e1c00853f58281f0"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/rollout.md",
+      "sha256": "dccd3673d420e2c33374fa58b131b30ccb09881d1e16b03b26f407ee8a8d3fe1"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/harness/systemprompt.md",
+      "sha256": "6b9ead75374f4275dc2e911803923fca31ef89f5f887607b7239ced76350fcea"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "3b3046266a3474932541dc5140ce8992a9bb68405971acbb957c558c9c4dbcdc"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/agg1/rollouts/base1.md",
+      "sha256": "383ad577736e13d060294b9de20ed0578cae0829021690d35207b133e59395af"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/task.md",
+      "sha256": "cb245b058a8b26aa28cab2b7fe72b2df001844040106b61c139237a133a484b7"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/deliverables/base1/INDEX.md",
+      "sha256": "e3f65fd61636c4ef06d4f2a61ec687bb6a25912da441174d9bb3b11e755a87c0"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/harness/systemprompt.md",
+      "sha256": "36f1ea7a421b26608aa0866a00c5cbdc73536a448d6f491c969b8cf3abaa92c9"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3d2d677846236b69d3c1881dde6b7c0eea4af7ecd33fc77a98d18aec5624f17"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/dom1/rollouts/base1.md",
+      "sha256": "383ad577736e13d060294b9de20ed0578cae0829021690d35207b133e59395af"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/task.md",
+      "sha256": "cb245b058a8b26aa28cab2b7fe72b2df001844040106b61c139237a133a484b7"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/deliverables/base1/INDEX.md",
+      "sha256": "e3f65fd61636c4ef06d4f2a61ec687bb6a25912da441174d9bb3b11e755a87c0"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/harness/systemprompt.md",
+      "sha256": "6b9ead75374f4275dc2e911803923fca31ef89f5f887607b7239ced76350fcea"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "3b3046266a3474932541dc5140ce8992a9bb68405971acbb957c558c9c4dbcdc"
+    },
+    {
+      "path": "tasks/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/boltons-remap-set/runs/issue-cc-agg1/boltons-remap-set/context/inv1/rollouts/base1.md",
+      "sha256": "383ad577736e13d060294b9de20ed0578cae0829021690d35207b133e59395af"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/result.json",
+      "sha256": "8fd471d31a606153853428e8d161aefd36b9113748e24e315547eeaa58b4931e"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/patch.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/patch.diff",
+      "sha256": "616b3097d005be7e3150fbb09b737f65493214340d8c4596a2d750b61c1f14b1"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/protocol.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/protocol.json",
+      "sha256": "fc1b34fe5154c890994d76c21ab7e8ad1c625a858e4fc2d4c7488072824d85d8"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/report.json",
+      "sha256": "5b9526b60e49db5a3ba3cf1141f18fcf41c9b5c1556c6e9c95a98fdba9dcbda6"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "sha256": "a3bcddc065c35f218ce6af30b0a723ac4debe114857b41e97bf08c6617346b91"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "sha256": "e3fbdfc6043cbaeb222dda1b7477c2c335a0a04dedd21ad1d67bc67aed0b21f1"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "sha256": "e922668ff6694332514602b3a49137aa14d74e6eeafb6690b2142f3e85202a56"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "sha256": "572f93704b9d15bf2b080f85248b57c71be4fc60bc955ac42b8dd5c492f4035f"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/executions/control/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/no_harness/more-combination-index/post-termination/grading.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/no_harness/more-combination-index/post-termination/grading.json",
+      "sha256": "9aafd2c5f69c76bf191a8bae58253c2682025f2afb35e69f9bd44b83334aa268"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/core-result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/core-result.json",
+      "sha256": "b41457e5204ac7211b818aa705954a3c7408d02de0d18cc515f82695f00e7bbf"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/result.json",
+      "sha256": "fa29568eaebd2b6319c9c4f55bca7cd52c2eb91bb7a8b0cb79be639079d85a52"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/worker.log",
+      "sha256": "75665b10c444dd6448cd90c10e958fc85b8c972a4e182491803c74199b008a96"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-001/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-001/reply-attempt-1.txt",
+      "sha256": "df0263a90cc4e28051debcb4da9a7ca20f00e5cc606708f06edd29fd8ff1d00b"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-001/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-001/report.json",
+      "sha256": "3610e32fac9c87e6acf2986f7ccd2d2414f2ba345054dbab220e910e377c2f13"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-001/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-001/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-002/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-002/reply-attempt-1.txt",
+      "sha256": "a1652a7e9dc4c9ab0a25d8e12782f89f232cee059df28d08bb7267a8672974d9"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-002/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-002/report.json",
+      "sha256": "943fac63b624c385d4f6047c3f2539f591e9bbda3ee7c2c2c8eebed78a7739d8"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-002/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-002/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-003/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-003/reply-attempt-1.txt",
+      "sha256": "9e802512ad1284f4e0651c607ea7e70b5cddca41a697eb6177ebcebf680e7444"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-003/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-003/report.json",
+      "sha256": "e1b2ca11f58a77e0cc3cb5885b05f4dbff7fe2b041baf8e0d3881e76e805d98c"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-003/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-003/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-004/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-004/reply-attempt-1.txt",
+      "sha256": "8ac2939a1523279f0e5ae83767cb13c89e608cc70f3eb33243f7666c4bc7e9b0"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-004/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-004/report.json",
+      "sha256": "334f186e40c46ab89cc5d7b0a2e485851faedddd0251eead1b90f6590cd6cc8d"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/editors/call-004/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/editors/call-004/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/patch.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/patch.diff",
+      "sha256": "9c47c1cd7b7f52455ecd90e645397de4df45e08ade51435c4ed9a8be86eba2ed"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/protocol.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/protocol.json",
+      "sha256": "14f651f39718be4f889bca2110548e8e86ac8f25cd0dde43bf97ee1a3ea329eb"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/report.json",
+      "sha256": "e9a9b420e23485c766700e456daf138ddf90e62c630e851603b425577e0898d5"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "sha256": "5dfecfb572632bcccaaa3355c8c491a104bbe65c8a43b97703cd0e664b165855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "sha256": "e3fbdfc6043cbaeb222dda1b7477c2c335a0a04dedd21ad1d67bc67aed0b21f1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "sha256": "9b6c875b983c5ead88d8e3acfda7a8179feb0f9d928c192acd5a235244bf053a"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce.json",
+      "sha256": "7b67e27b0830a403b2404d9aababa726099fb0059b7f3ebebeab0f7ac66e78d3"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "sha256": "8b6a60c575495afa04acd1cfb743c016a3ef3cb02b6cffd546a4cb278e3607c1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/agg1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/patch.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/patch.diff",
+      "sha256": "616b3097d005be7e3150fbb09b737f65493214340d8c4596a2d750b61c1f14b1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/protocol.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/protocol.json",
+      "sha256": "fc1b34fe5154c890994d76c21ab7e8ad1c625a858e4fc2d4c7488072824d85d8"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/report.json",
+      "sha256": "a4a85676acd09cc44b2b91ef80f3f73a7cf7cfed80acbf7d2850072f1356e5a9"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "sha256": "240b73658d3f2ab3bb359a7fd02abc4d31f86b037c9b0826172eaac732443903"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "sha256": "e3fbdfc6043cbaeb222dda1b7477c2c335a0a04dedd21ad1d67bc67aed0b21f1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "sha256": "0b8b2944da4c977457119c4f5eeaf671a73a3c5e9345202384bc06a3583aba81"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "sha256": "572f93704b9d15bf2b080f85248b57c71be4fc60bc955ac42b8dd5c492f4035f"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/base1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/patch.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/patch.diff",
+      "sha256": "8f3a07477c07d778cd8a88f5ca4e6b5ba2bd0972c7f05eb559a9c65cb7dd5209"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/protocol.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/protocol.json",
+      "sha256": "7413f52b117750145d0fea62821da3069a0c42658f9500572862fe366d4a956d"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/report.json",
+      "sha256": "08d1cf7a7b5732d034762f9a0794422d2e7e959957255f7fc23f38d1df58c073"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "sha256": "b3c115794df1d135639391353a879244d20b55dc746d408480195f6994362a9e"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "sha256": "e3fbdfc6043cbaeb222dda1b7477c2c335a0a04dedd21ad1d67bc67aed0b21f1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "sha256": "d4718abc95425a89dfe34984d35432a3aabe5fce326c601eb5758b5f4e831dde"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce.json",
+      "sha256": "7b67e27b0830a403b2404d9aababa726099fb0059b7f3ebebeab0f7ac66e78d3"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "sha256": "5c437454ccee7622558db8bc5eeab591ddf9c7ea77073c4eb80d895793d8526a"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/dom1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/patch.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/patch.diff",
+      "sha256": "1d09d7e2c843a43679d7bb002474480c98183bdbe2c9ff6237251197c9db4c38"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/protocol.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/protocol.json",
+      "sha256": "e273d597cb769e80f3281fce6541ee8470282674fb5d54ddb143c296cda12b3d"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/report.json",
+      "sha256": "b80160b3a42efca13d787a7a9d22571ede76b899ce8369d48eb16728919e6071"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve-sandbox.json",
+      "sha256": "4a4e5791f083c7bc295b50a7ddab472316abaa14c29945309ce04c579676603f"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve.stderr.txt",
+      "sha256": "e3fbdfc6043cbaeb222dda1b7477c2c335a0a04dedd21ad1d67bc67aed0b21f1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Preserve.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce-runner.py.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce-sandbox.json",
+      "sha256": "00bea757286d6653611204cdde6baa0d54de7c07a787850ac3f7f5810b9aaa44"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce.stderr.txt",
+      "sha256": "572f93704b9d15bf2b080f85248b57c71be4fc60bc955ac42b8dd5c492f4035f"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/executions/issue-cc-agg1/more-combination-index/inv1/feedback/validation-000/public-logs/Reproduce.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/post-termination/grading.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/post-termination/grading.json",
+      "sha256": "37f61d2fb38e1b7c16abca52391da55830daf69d3cc3a52ad46adf772fea5d64"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/task.md",
+      "sha256": "01b01faf6f4360cc46c2fe7772fcf7802a3559780cc9efe4765d75a976f48427"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/decisions/dom1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/decisions/dom1.md",
+      "sha256": "b22ce4ad03b19e42267637f437d2ab1107411c208000e03c3b82d4c108052c3f"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/decisions/inv1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/decisions/inv1.md",
+      "sha256": "83acf60c19b18d29e8952e750cd4030ee0ebf52831dea51c471d23ea92878656"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/deliverables/base1/INDEX.md",
+      "sha256": "b03975d4e57de6c9439247a80ea4842f664a969e1b3d62dc1750431f55512f35"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/harness/systemprompt.md",
+      "sha256": "03feeedc04aeb7fcad5380c7f29736db7d8e205bf7b528a7c0d13b647c7056ec"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "3c1af5ac1cd1c836e36477f32b0625fa9e9c895284dd5fa6b2046cefae7c4e0e"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/harness.diff",
+      "sha256": "37a112c8c6e0de8c14d68ce1b95832ec8c6f92f4fc5278d5c4fe799e38d7a2cf"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/produced.md",
+      "sha256": "8f3a07477c07d778cd8a88f5ca4e6b5ba2bd0972c7f05eb559a9c65cb7dd5209"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/rollout.md",
+      "sha256": "1965ab620f69496fc947bf3212a88306f5d3a9c7d15950bf46a034898a5bdda2"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/harness/systemprompt.md",
+      "sha256": "7c9012cd3e91818686cf4c28aa9db4ea4a2a726f34169f99fac3129fc5bb4401"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "3c1af5ac1cd1c836e36477f32b0625fa9e9c895284dd5fa6b2046cefae7c4e0e"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/harness.diff",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/harness.diff",
+      "sha256": "512f6e56b861517bb0b4c5b81230ee2b1d898cbdb7a245809e38a41a11edff2b"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/produced.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/produced.md",
+      "sha256": "1d09d7e2c843a43679d7bb002474480c98183bdbe2c9ff6237251197c9db4c38"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/rollout.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/rollout.md",
+      "sha256": "67a1bcc72ac30de6668d9984c139fc35bd2d1531d55539d0998516ae20954f52"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/harness/systemprompt.md",
+      "sha256": "f0f0e963285f26908093077c79db480f84d490da10f7d47d94574c90beb71aee"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "b29af0c88fe6c23fbf1f7bb4827a23d38857348cbdbcc4513cad15b0e990842d"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/agg1/rollouts/base1.md",
+      "sha256": "5a9e8f88136575d6e8bdf0b9615469f446533a87ffe6b92a805f23038b988f0f"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/task.md",
+      "sha256": "01b01faf6f4360cc46c2fe7772fcf7802a3559780cc9efe4765d75a976f48427"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/deliverables/base1/INDEX.md",
+      "sha256": "b03975d4e57de6c9439247a80ea4842f664a969e1b3d62dc1750431f55512f35"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/harness/systemprompt.md",
+      "sha256": "7c9012cd3e91818686cf4c28aa9db4ea4a2a726f34169f99fac3129fc5bb4401"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "3c1af5ac1cd1c836e36477f32b0625fa9e9c895284dd5fa6b2046cefae7c4e0e"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/dom1/rollouts/base1.md",
+      "sha256": "5a9e8f88136575d6e8bdf0b9615469f446533a87ffe6b92a805f23038b988f0f"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/task.md",
+      "sha256": "01b01faf6f4360cc46c2fe7772fcf7802a3559780cc9efe4765d75a976f48427"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/deliverables/base1/INDEX.md",
+      "sha256": "b03975d4e57de6c9439247a80ea4842f664a969e1b3d62dc1750431f55512f35"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/harness/systemprompt.md",
+      "sha256": "f0f0e963285f26908093077c79db480f84d490da10f7d47d94574c90beb71aee"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "b29af0c88fe6c23fbf1f7bb4827a23d38857348cbdbcc4513cad15b0e990842d"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/context/inv1/rollouts/base1.md",
+      "sha256": "5a9e8f88136575d6e8bdf0b9615469f446533a87ffe6b92a805f23038b988f0f"
+    },
+    {
+      "path": "tasks/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/selection/agg1/selection.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-combination-index/runs/issue-cc-agg1/more-combination-index/selection/agg1/selection.json",
+      "sha256": "67b6d8ff8966eb670c2589bbff0c670d17495692015e80ae862a6f94fe8b87cb"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/core-result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/core-result.json",
+      "sha256": "8370d57430060104c17ec6e2be488f7e260ed2c8e82a8f83effc7b95ded2d187"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/result.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/result.json",
+      "sha256": "8d8f8a87adc1164705ff32b7a352fbcc33456068f58e063188dbd5361972b5d5"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/worker.log",
+      "sha256": "ce37bb3aae681171f36ad0d598bfc311d9e6a259790c205ab214def8d8cb0754"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/editors/call-001/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/editors/call-001/reply-attempt-1.txt",
+      "sha256": "2ef950577c1e04b5bed167284d52999fab214a3cd4ab617c7d97994cfe4960fd"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/editors/call-001/reply-attempt-2.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/editors/call-001/reply-attempt-2.txt",
+      "sha256": "87008f3bd8709966ed6d2e6a207ee266123ffa17394245552ed4d2d35c5c08a7"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/editors/call-001/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/editors/call-001/report.json",
+      "sha256": "89af39335b8e1d0caa1d4c7a78c5ba13df48bbb2df0f3955f5a123e98e25edda"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/editors/call-001/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/editors/call-001/worker.log",
+      "sha256": "e6d0bab82b82a38623714cea383564035e424ae8b138af00f094d5f3fb8737e4"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/editors/call-002/reply-attempt-1.txt",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/editors/call-002/reply-attempt-1.txt",
+      "sha256": "de5e2ff8aeb88be9c93347d0789a78fa1aee85d9cfa909254d7af6de3b96d86a"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/editors/call-002/report.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/editors/call-002/report.json",
+      "sha256": "dea8f85b7a3acfd696feb21f41cac6b91333e1311479dfe73603e064d53096a5"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/editors/call-002/worker.log",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/editors/call-002/worker.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/task.md",
+      "sha256": "fc8b6c4deeff09f88f697578a0c41bffdf1d3f8eabed6b9492db8f7ce247c28b"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/deliverables/base1/INDEX.md",
+      "sha256": "bcb16d38825240d47097a890e3c961ae213fa6d9807bb3fa8165ab0131a12a37"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/dom1/rollouts/base1.md",
+      "sha256": "e5b06c823d5ddc7c48d343e6fd4bfa78b986892d1af5846335dbc4219d002c6f"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/task.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/task.md",
+      "sha256": "fc8b6c4deeff09f88f697578a0c41bffdf1d3f8eabed6b9492db8f7ce247c28b"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/deliverables/base1/INDEX.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/deliverables/base1/INDEX.md",
+      "sha256": "bcb16d38825240d47097a890e3c961ae213fa6d9807bb3fa8165ab0131a12a37"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/harness/context_policy.json",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/harness/context_policy.json",
+      "sha256": "62a459caf8184c7a0f7c5020137a0118b4dd189bcb0fe504627b36fb724a4469"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/harness/systemprompt.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/harness/systemprompt.md",
+      "sha256": "08be95e88973408bdb1acef4403ac48d20ec5ddd16705e0557b6f4fcb784c90a"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "fbdb5df5ee7383c92579a17f3b80a208b9ff757a394a4c5aa6e83addfc838ad6"
+    },
+    {
+      "path": "tasks/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/rollouts/base1.md",
+      "source": ".tmp/harness2-vs-control-50-20261105/arms/harness2/more-range-equality/runs/issue-cc-agg1/more-range-equality/context/inv1/rollouts/base1.md",
+      "sha256": "e5b06c823d5ddc7c48d343e6fd4bfa78b986892d1af5846335dbc4219d002c6f"
+    }
+  ],
+  "posthoc_files": [
+    {
+      "path": "new-implementation/integrations/harness2.py.txt",
+      "source": "integrations/harness2.py",
+      "sha256": "b07aa0fda1cd65220bef66c77b464e02384043a4eab5f3eef9d19da2c2ce9ccf"
+    },
+    {
+      "path": "new-implementation/integrations/harness2_evidence.py.txt",
+      "source": "integrations/harness2_evidence.py",
+      "sha256": "b2a6fdd4ca536d2de24563a7809f95b5be6da93d88e1bc85f8842e279d576b18"
+    },
+    {
+      "path": "new-implementation/integrations/harness2_batch.py.txt",
+      "source": "integrations/harness2_batch.py",
+      "sha256": "3e84f40db86f898f5f167a19afd2e85c63e5d43e636b86fe4da680991c95a980"
+    },
+    {
+      "path": "new-implementation/integrations/harness2_selection.py.txt",
+      "source": "integrations/harness2_selection.py",
+      "sha256": "680bfb875735637c7eeeb25f0e4ce8ff9d73bb4ad783b870ec0aa1122d00e6bb"
+    },
+    {
+      "path": "new-implementation/tests/test_harness2.py.txt",
+      "source": "tests/test_harness2.py",
+      "sha256": "f57ce8f1beb2d6a856bc117d3bbe991e765922105a61f9128fae877a9cf577e0"
+    },
+    {
+      "path": "new-implementation/tests/test_harness2_evidence.py.txt",
+      "source": "tests/test_harness2_evidence.py",
+      "sha256": "0b0979c76856b4131781b420bcbfeacf391c6f0cd28a172cd31eda6aeea101d2"
+    },
+    {
+      "path": "new-implementation/tests/test_harness2_selection.py.txt",
+      "source": "tests/test_harness2_selection.py",
+      "sha256": "5ade46d4fe8f72521ce67116069931a55bb2e3aa3c3080a0e46558ccc5b3dcc5"
+    },
+    {
+      "path": "new-implementation/tests/test_harness2_batch.py.txt",
+      "source": "tests/test_harness2_batch.py",
+      "sha256": "a24ef8da29f5e7af3de1c04f94ded56efd1bd2f5da5f8b0a914c62f7fe565be4"
+    },
+    {
+      "path": "new-implementation/audit_harness2_batch_20261106.py.txt",
+      "source": ".tmp/audit_harness2_batch_20261106.py",
+      "sha256": "11c483a6178512e02804f3c15e4e3d4abb3144826b98a78ffae049774cb7f148"
+    },
+    {
+      "path": "audit-report.json",
+      "source": "docs/harness2-batch-audit-20261106.json",
+      "sha256": "4721e591094f2dc1e83e49764954a6eed456cb37ebb60542f4df453af6267121"
+    },
+    {
+      "path": "post-hoc/boltons-remap-set/selection.json",
+      "source": ".tmp/harness2-audit-20261106/boltons-remap-set/selection.json",
+      "sha256": "725aeada622ebc37c1bbd95ea45d10e4ad6996b48aa3996796ba92395b6a14a4"
+    },
+    {
+      "path": "post-hoc/click-flag-default-map/selection.json",
+      "source": ".tmp/harness2-audit-20261106/click-flag-default-map/selection.json",
+      "sha256": "dc570e2a432997e31b3892d199cfbf45e9933fb1d0d7889f64cd23a3fa7475ac"
+    },
+    {
+      "path": "post-hoc/click-help-eagerness/selection.json",
+      "source": ".tmp/harness2-audit-20261106/click-help-eagerness/selection.json",
+      "sha256": "ea74c3f1d8f57f33b182361bac7a5551760b8583b8c3800cabc796f9091826d2"
+    },
+    {
+      "path": "post-hoc/click-invoke-missing/selection.json",
+      "source": ".tmp/harness2-audit-20261106/click-invoke-missing/selection.json",
+      "sha256": "cb493aebb106680bbda0cf6860c4bb7c3173c8d422114d4614d8ef93dfd3939a"
+    },
+    {
+      "path": "post-hoc/click-style-color-validation/selection.json",
+      "source": ".tmp/harness2-audit-20261106/click-style-color-validation/selection.json",
+      "sha256": "7aafd2733b3f4a6667d42a78a93b3b5861411f9cf481daf508cb118c37666068"
+    },
+    {
+      "path": "post-hoc/more-combination-index/selection.json",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/selection.json",
+      "sha256": "88d777b14261f6062f25066037df0e52766e42c2988fb542219665bd37be8678"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading.json",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading.json",
+      "sha256": "36d28e144b5c555d79bb6afb5423abd9b42406ff27b0b3c66d192b20572c9e6d"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/patch.diff",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/patch.diff",
+      "sha256": "616b3097d005be7e3150fbb09b737f65493214340d8c4596a2d750b61c1f14b1"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/report.json",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/report.json",
+      "sha256": "96c93b08f1c23ed449a43205a009b9440ecb8b4802a3e1ec421f3ac4c84562f6"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/.gitattributes",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/.gitattributes",
+      "sha256": "8e0056260cb5f4479f0ab03770e7b8d43e3403462a12d665641ff5b99e3d6de4"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/.gitignore",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/.gitignore",
+      "sha256": "961f3588d7b5752df4ed52e61ab79e4046989268edf29462d89f2c0e143041d0"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/.readthedocs.yaml",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/.readthedocs.yaml",
+      "sha256": "ccd84b50bf3b8792d7eeb2500470e0c3d0ead95c12fbca11bead3ae5ad01b550"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/LICENSE",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/LICENSE",
+      "sha256": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/Makefile",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/Makefile",
+      "sha256": "fd825cb050af1d7399fb28257b3591baf5d14f8ddd94d4d0bbcbc777690305db"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/MANIFEST.in",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/MANIFEST.in",
+      "sha256": "6994da7bced1d690bd5175528fdd79df0185c269c7b1dde739f719254d4e70d4"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/pyproject.toml",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/pyproject.toml",
+      "sha256": "cf131f8e1bffabdfdfc9f610ae08da753ed111c460188b5c221697bc0f526b4a"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/README.rst",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/README.rst",
+      "sha256": "915536006377f4d757b51139877feadd2af1798735671e4948910e6dbc028322"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/setup.cfg",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/setup.cfg",
+      "sha256": "309de2d8409ea9c61b8cd1509a70ef7727184a549f8bd86562fd7ff8ff74b67f"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/tox.ini",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/tox.ini",
+      "sha256": "fc9173081557ba89093d617b5e082bd9cf278717dbf3e8cb8d50bf571aa1e9d2"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/.github/PULL_REQUEST_TEMPLATE.md",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/.github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "8b82e360cd409afddd1f7f08a240f5c4f40e2e9f8d807f275efe7f33eb446ef4"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/.github/ISSUE_TEMPLATE/other-issues.md",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/.github/ISSUE_TEMPLATE/other-issues.md",
+      "sha256": "e21f2c602f76e451b79a728e394e5195ada112c0555ded517f5f758d5009f41e"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/.github/ISSUE_TEMPLATE/propose-a-new-itertool.md",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/.github/ISSUE_TEMPLATE/propose-a-new-itertool.md",
+      "sha256": "6f0f79660cbd5ef98afe03f80e4c281e5016e71ec4d65aed68b3cbe4009a78d3"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/.github/workflows/python-app.yml",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/.github/workflows/python-app.yml",
+      "sha256": "b53c972e7b5badf8b380360158f25f1275d58eaf3a4ed8d33c3a91059e8ef7ad"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/api.rst",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/api.rst",
+      "sha256": "3136e73b774d9c33b15136e68ec9f40129a7153310d8f6296c3c3d198af9d1a8"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/conf.py",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/conf.py",
+      "sha256": "2d0c0ec85ded2644cd2f6b48997aa722c7f5e729c398ccc0163b6be3c7819c08"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/index.rst",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/index.rst",
+      "sha256": "9c4321710f0df7cb20f9a4f5d598e86309a82224fc166eb25b9b3fafebe85908"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/license.rst",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/license.rst",
+      "sha256": "f4a8d4c0f47ec36904fba4fb1f7be3fcaa045cc3fdd4766200ba755d892f0d18"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/make.bat",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/make.bat",
+      "sha256": "1e37476b6c285fb58fae433c13361f82f1720e43fcb499b42b9c718a7ae1d5d7"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/Makefile",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/Makefile",
+      "sha256": "95f4fa50d01692b423c545d9fad53fc977ce116433c67f627d003fc441486a28"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/requirements.txt",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/requirements.txt",
+      "sha256": "7d9f9b3c25e96ddc47c2680ba57563df6a1ac3496bb6a2e5f9cfb01c76bff4c6"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/testing.rst",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/testing.rst",
+      "sha256": "d6bce97abf158183c0f853a64b68b170a567474331f02b20bcd9797ae6f8a80c"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/toctree.rst",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/toctree.rst",
+      "sha256": "278cb4e971ef7920c9fff534c75eb847fd7ae2ee424e70347d1cef2fce367cd7"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/versions.rst",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/versions.rst",
+      "sha256": "5e26bc0ffc50b1624dd11f44baff3898ced08fdf182890757b27220e2bbfef5e"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/docs/_static/theme_overrides.css",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/docs/_static/theme_overrides.css",
+      "sha256": "b78b73585650d7960a0552c33c2d3220fd65217e8223c7701f35f1f778b1f6b0"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/more_itertools/more.py",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/more_itertools/more.py",
+      "sha256": "a3247d1980c51a2fe733d4bbca5bfab355eaf3f4e0ff25e333723f120ec149e4"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/more_itertools/more.pyi",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/more_itertools/more.pyi",
+      "sha256": "68a80754717728996043ad56500342dc06b07a4c0bf99051ab3200aca95a79c9"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/more_itertools/py.typed",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/more_itertools/py.typed",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/more_itertools/recipes.py",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/more_itertools/recipes.py",
+      "sha256": "e73ba8f1d785f6e3c3b5222bf5ec499977c53555b85970f625cf986d5f4be4db"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/more_itertools/recipes.pyi",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/more_itertools/recipes.pyi",
+      "sha256": "2dd48ac5ef0b502f989bd2e13923c402994244ee50a4187e2f0d59c348bf2583"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/more_itertools/__init__.py",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/more_itertools/__init__.py",
+      "sha256": "19cb2d318e8d45eb7d56136a55f1452c9469d21597571c31d752aa8232a2c07b"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/more_itertools/__init__.pyi",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/more_itertools/__init__.pyi",
+      "sha256": "e41dde4f338dd4106e38ba1bd6f09f97211bda549deaeb17410f82bfe85791e0"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/requirements/development.txt",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/requirements/development.txt",
+      "sha256": "ea11594e2c832b2e83248bbb1626b61a42805b87dbcbcfe5fa8a20de5b71dcb9"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/requirements/packaging.txt",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/requirements/packaging.txt",
+      "sha256": "6215d3e6c190b4f8e7c76fb03ae579b2419cea3a3ad742c4e52510ccd86e0282"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/requirements/testing.txt",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/requirements/testing.txt",
+      "sha256": "cd26741c111c100de91fa68c6e9ba865348645da9b70c0b6672ff0f17f87ec6f"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/requirements/typechecks.txt",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/requirements/typechecks.txt",
+      "sha256": "33eff4300845d30859eace31f902fc365134650e4521b5c9cd299db7d426133e"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/tests/test_more.py",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/tests/test_more.py",
+      "sha256": "55c54999b160276c519e2c3090f67a19ff6d393cc651c35fa0717b86193fc077"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/tests/test_recipes.py",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/tests/test_recipes.py",
+      "sha256": "7fc5821bf9b074c01ce4c3515a2fc2cd6f3b7cb949aa731410509df76c077fc6"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading/tests/__init__.py",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading/tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Controls-runner.py",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Controls-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Controls-sandbox.json",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Controls-sandbox.json",
+      "sha256": "f099d0f69c81f2961d3db3ee6aaaf9c920103676070212191febb736f37839d7"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Controls.json",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Controls.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Controls.stderr.txt",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Controls.stderr.txt",
+      "sha256": "92f8aab112d6bd04973dd8b1257600fd3bd74e11504a9a809e9668b1c5188e60"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Controls.stdout.txt",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Controls.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Target-runner.py",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Target-runner.py",
+      "sha256": "e08e79ade4aa4307acc69db0e526bb1a0b2a909f69aae2ddf7cd8b06c0c614d0"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Target-sandbox.json",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Target-sandbox.json",
+      "sha256": "7ff5f88f0027f6032f716444a84a71461c214ae2c35951df73fb0c9d0efe8f92"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Target.json",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Target.json",
+      "sha256": "8b2d2cc286bbb9b635d0e7b9a6685349d3515f56316b7afa562dccf39dd6e5a1"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Target.stderr.txt",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Target.stderr.txt",
+      "sha256": "a0740e52579dddf146686ded5241c20bdfdf66441be4c618ca855e60ad8ad6dc"
+    },
+    {
+      "path": "post-hoc/more-combination-index/post-selection/grading-details/grading-logs/Target.stdout.txt",
+      "source": ".tmp/harness2-audit-20261106/more-combination-index/post-selection/grading-details/grading-logs/Target.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "post-hoc/more-range-equality/selection.json",
+      "source": ".tmp/harness2-audit-20261106/more-range-equality/selection.json",
+      "sha256": "af91f267fe43aef463605c17abfb489bb002449bf03c7be1719647cf43d9b923"
+    }
+  ]
+}

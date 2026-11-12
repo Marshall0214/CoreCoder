@@ -1,0 +1,1 @@
+style and secho must honor palette index 0 for both foreground and background. Invalid colors must raise ValueError: unknown names, booleans, out-of-range palette indices, and RGB sequences without exactly three non-boolean integer components in 0..255. Preserve named colors, valid palette/RGB colors, reset behavior and plain output when color is disabled.

@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-negative-range-slice",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:70b375dfcbc98b39e932776a99fb18d592a3d801ac2aa03d54bff91442e7ed5e",
+  "problem_statement": "numeric_range slicing with a negative step must agree with slicing a materialized range, including omitted and negative endpoints. Preserve positive slicing and integer indexing."
+}

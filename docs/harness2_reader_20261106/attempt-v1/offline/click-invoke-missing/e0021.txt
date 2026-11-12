@@ -1,0 +1,1 @@
+Context.invoke must pass None for an omitted optional value, not an internal sentinel. Preserve default type conversion and explicit arguments.

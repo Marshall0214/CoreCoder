@@ -1,0 +1,3 @@
+revised -&gt; systemprompt.md -&gt; base1 (e0020), dom1 (e0013), inv1 (e0019) all failed with NameError at line 918 due to undefined iteritems; the fix is verified as d.items() replacement in candidate.diff.txt (e0003)
+revised -&gt; tool_descriptions/tool_guidance.md -&gt; base1 (e0020), dom1 (e0013), inv1 (e0019) all failed to apply the fix correctly; explicit guidance on replacing iteritems with .items() is needed
+revised -&gt; context_policy.json -&gt; inv1 candidate (e0014) enabled deduplicate_reads, complete_symbols_first, read_index which improved efficiency; adopting these settings

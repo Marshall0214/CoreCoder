@@ -1,0 +1,93 @@
+{
+  "status": "agent_error",
+  "arm": "harness2",
+  "task_id": "click-invoke-missing",
+  "strategy_search": true,
+  "independent_grading_available": false,
+  "error_type": "ValueError",
+  "error": "No officially adopted final candidate; do not select using independent scores",
+  "seconds": 921.89,
+  "rollouts": [
+    {
+      "label": "base1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\base1"
+    },
+    {
+      "label": "dom1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\dom1"
+    },
+    {
+      "label": "inv1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\inv1"
+    }
+  ],
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 8,
+        "tokens": 26107,
+        "reused": false,
+        "trace_id": "ce310bde3dc4d44487c0bc2d7e691cb7",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 20,
+        "tokens": 659761,
+        "reused": false,
+        "trace_id": "4601d830a77bb96cf281190085755056",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\base1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 9,
+        "tokens": 45814,
+        "reused": false,
+        "trace_id": "677676d4369fa00e6002cbc1599b2c37",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\dom1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 20,
+        "tokens": 658593,
+        "reused": false,
+        "trace_id": "33796a55b7a30f138c9e28cd73f3eb8b",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\dom1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 10,
+        "tokens": 40590,
+        "reused": false,
+        "trace_id": "cb27601bf6868ee830e5c5e0d38d3d89",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\inv1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 20,
+        "tokens": 658593,
+        "reused": false,
+        "trace_id": "3705c873eeb77af371a2501fe18956ce",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\inv1"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 27051,
+        "trace_id": "f0b36feb261ac61fd059708b86a8eb06",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\editors\\call-001"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 27238,
+        "trace_id": "d9711c60cd2d6d36d38e4a9268949551",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\editors\\call-002"
+      }
+    ],
+    "fresh_model_calls": 89,
+    "tokens": 2143747,
+    "known_tokens_minimum": 2143747
+  }
+}

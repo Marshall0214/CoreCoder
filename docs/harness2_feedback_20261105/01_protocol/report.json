@@ -1,0 +1,97 @@
+{
+  "status": "completed",
+  "scope": "One saved-strategy chain, not new PPC or a repair-rate estimate",
+  "execution": {
+    "artifact_directory": "feedback",
+    "phase": "public_feedback",
+    "status": "ready_for_review",
+    "public_accepted": true,
+    "max_feedback_rounds": 20,
+    "feedback_rounds_attempted": 2,
+    "initial_candidate_reused": true,
+    "independent_grading_available": false
+  },
+  "usage": {
+    "fresh_model_calls": 2,
+    "actual_tokens": 82912,
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 0,
+        "tokens": 0,
+        "reused": true,
+        "trace_id": "c8cb739959578588316ebc2a3e1f0de5"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 2,
+        "tokens": 82912,
+        "reused": false,
+        "trace_id": "62c72148ebfd45ad9f13a8f08497fba3"
+      }
+    ],
+    "artifact_directory": "feedback"
+  },
+  "grading": {
+    "agg1": {
+      "passed": true,
+      "scope_violations": [],
+      "changed_files": [
+        "toolz/itertoolz.py"
+      ],
+      "groups": {
+        "Target": {
+          "returncode": 0,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 0,
+          "failures": 0,
+          "successful": true,
+          "seconds": 1.8899,
+          "passed": true
+        },
+        "Controls": {
+          "returncode": 0,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 0,
+          "failures": 0,
+          "successful": true,
+          "seconds": 1.8242,
+          "passed": true
+        }
+      },
+      "scope": "hand-authored Target and Controls; not entire upstream suite",
+      "resolved": true
+    }
+  },
+  "rollout": "D:\\project_other\\CoreCoder\\.tmp\\harness2-feedback-20261105-v3\\executions\\feedback-validation\\toolz-join-unmatched\\agg1"
+}

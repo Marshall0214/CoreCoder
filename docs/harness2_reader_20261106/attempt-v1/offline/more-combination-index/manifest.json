@@ -1,0 +1,483 @@
+{
+  "schema": "public-editor-evidence-v1",
+  "files": {
+    "e0001": {
+      "id": "e0001",
+      "path": "decisions/dom1.md",
+      "sha256": "b22ce4ad03b19e42267637f437d2ab1107411c208000e03c3b82d4c108052c3f",
+      "characters": 1314,
+      "bytes": 1314,
+      "storage": "e0001.txt",
+      "alias_of": null
+    },
+    "e0002": {
+      "id": "e0002",
+      "path": "decisions/inv1.md",
+      "sha256": "83acf60c19b18d29e8952e750cd4030ee0ebf52831dea51c471d23ea92878656",
+      "characters": 778,
+      "bytes": 778,
+      "storage": "e0002.txt",
+      "alias_of": null
+    },
+    "e0003": {
+      "id": "e0003",
+      "path": "deliverables/base1/candidate.diff.txt",
+      "sha256": "616b3097d005be7e3150fbb09b737f65493214340d8c4596a2d750b61c1f14b1",
+      "characters": 1595,
+      "bytes": 1595,
+      "storage": "e0003.txt",
+      "alias_of": null
+    },
+    "e0004": {
+      "id": "e0004",
+      "path": "deliverables/base1/INDEX.md",
+      "sha256": "b03975d4e57de6c9439247a80ea4842f664a969e1b3d62dc1750431f55512f35",
+      "characters": 408,
+      "bytes": 408,
+      "storage": "e0004.txt",
+      "alias_of": null
+    },
+    "e0005": {
+      "id": "e0005",
+      "path": "harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b",
+      "characters": 93,
+      "bytes": 93,
+      "storage": "e0005.txt",
+      "alias_of": null
+    },
+    "e0006": {
+      "id": "e0006",
+      "path": "harness/systemprompt.md",
+      "sha256": "03feeedc04aeb7fcad5380c7f29736db7d8e205bf7b528a7c0d13b647c7056ec",
+      "characters": 1519,
+      "bytes": 1519,
+      "storage": "e0006.txt",
+      "alias_of": null
+    },
+    "e0007": {
+      "id": "e0007",
+      "path": "harness/tool_descriptions/tool_guidance.md",
+      "sha256": "3c1af5ac1cd1c836e36477f32b0625fa9e9c895284dd5fa6b2046cefae7c4e0e",
+      "characters": 1419,
+      "bytes": 1419,
+      "storage": "e0007.txt",
+      "alias_of": null
+    },
+    "e0008": {
+      "id": "e0008",
+      "path": "pool/dom1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b",
+      "characters": 93,
+      "bytes": 93,
+      "storage": "e0005.txt",
+      "alias_of": "e0005"
+    },
+    "e0009": {
+      "id": "e0009",
+      "path": "pool/dom1/harness/systemprompt.md",
+      "sha256": "7c9012cd3e91818686cf4c28aa9db4ea4a2a726f34169f99fac3129fc5bb4401",
+      "characters": 1614,
+      "bytes": 1614,
+      "storage": "e0009.txt",
+      "alias_of": null
+    },
+    "e0010": {
+      "id": "e0010",
+      "path": "pool/dom1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "3c1af5ac1cd1c836e36477f32b0625fa9e9c895284dd5fa6b2046cefae7c4e0e",
+      "characters": 1419,
+      "bytes": 1419,
+      "storage": "e0007.txt",
+      "alias_of": "e0007"
+    },
+    "e0011": {
+      "id": "e0011",
+      "path": "pool/dom1/harness.diff",
+      "sha256": "37a112c8c6e0de8c14d68ce1b95832ec8c6f92f4fc5278d5c4fe799e38d7a2cf",
+      "characters": 3526,
+      "bytes": 3526,
+      "storage": "e0011.txt",
+      "alias_of": null
+    },
+    "e0012": {
+      "id": "e0012",
+      "path": "pool/dom1/produced.md",
+      "sha256": "8f3a07477c07d778cd8a88f5ca4e6b5ba2bd0972c7f05eb559a9c65cb7dd5209",
+      "characters": 2954,
+      "bytes": 2954,
+      "storage": "e0012.txt",
+      "alias_of": null
+    },
+    "e0013": {
+      "id": "e0013",
+      "path": "pool/dom1/rollout.md",
+      "sha256": "1965ab620f69496fc947bf3212a88306f5d3a9c7d15950bf46a034898a5bdda2",
+      "characters": 27465,
+      "bytes": 27465,
+      "storage": "e0013.txt",
+      "alias_of": null,
+      "events": [
+        {
+          "offset": 0,
+          "length": 125,
+          "kind": "ACTION",
+          "step": 1,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 125,
+          "length": 1572,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 1697,
+          "length": 157,
+          "kind": "ACTION",
+          "step": 2,
+          "action": "read_symbol",
+          "location": {
+            "path": "more_itertools/more.py",
+            "symbol": "combination_with_replacement_index",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 1854,
+          "length": 2026,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 3880,
+          "length": 3961,
+          "kind": "ACTION",
+          "step": 3,
+          "action": "apply_patch",
+          "location": {}
+        },
+        {
+          "offset": 7841,
+          "length": 84,
+          "kind": "OBSERVATION",
+          "status": "completed"
+        },
+        {
+          "offset": 7925,
+          "length": 4589,
+          "kind": "PUBLIC FEEDBACK RESULT",
+          "status": "validation_blocked",
+          "accepted": false,
+          "feedback_rounds_attempted": 9
+        },
+        {
+          "offset": 12514,
+          "length": 1521,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false
+        },
+        {
+          "offset": 14035,
+          "length": 1666,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 15701,
+          "length": 1692,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 17393,
+          "length": 1666,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 19059,
+          "length": 1692,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 20751,
+          "length": 1666,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 22417,
+          "length": 1692,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 24109,
+          "length": 1666,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 25775,
+          "length": 1690,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        }
+      ],
+      "public_terminal": {
+        "status": "validation_blocked",
+        "accepted": false,
+        "feedback_rounds_attempted": 9
+      }
+    },
+    "e0014": {
+      "id": "e0014",
+      "path": "pool/inv1/harness/context_policy.json",
+      "sha256": "e67cd98c3fc71472b70aa1f10ad980d27a589fc892545e3a31b742a10883a79b",
+      "characters": 93,
+      "bytes": 93,
+      "storage": "e0005.txt",
+      "alias_of": "e0005"
+    },
+    "e0015": {
+      "id": "e0015",
+      "path": "pool/inv1/harness/systemprompt.md",
+      "sha256": "f0f0e963285f26908093077c79db480f84d490da10f7d47d94574c90beb71aee",
+      "characters": 1684,
+      "bytes": 1684,
+      "storage": "e0015.txt",
+      "alias_of": null
+    },
+    "e0016": {
+      "id": "e0016",
+      "path": "pool/inv1/harness/tool_descriptions/tool_guidance.md",
+      "sha256": "b29af0c88fe6c23fbf1f7bb4827a23d38857348cbdbcc4513cad15b0e990842d",
+      "characters": 1422,
+      "bytes": 1422,
+      "storage": "e0016.txt",
+      "alias_of": null
+    },
+    "e0017": {
+      "id": "e0017",
+      "path": "pool/inv1/harness.diff",
+      "sha256": "512f6e56b861517bb0b4c5b81230ee2b1d898cbdb7a245809e38a41a11edff2b",
+      "characters": 3607,
+      "bytes": 3607,
+      "storage": "e0017.txt",
+      "alias_of": null
+    },
+    "e0018": {
+      "id": "e0018",
+      "path": "pool/inv1/produced.md",
+      "sha256": "1d09d7e2c843a43679d7bb002474480c98183bdbe2c9ff6237251197c9db4c38",
+      "characters": 1783,
+      "bytes": 1783,
+      "storage": "e0018.txt",
+      "alias_of": null
+    },
+    "e0019": {
+      "id": "e0019",
+      "path": "pool/inv1/rollout.md",
+      "sha256": "67a1bcc72ac30de6668d9984c139fc35bd2d1531d55539d0998516ae20954f52",
+      "characters": 7838,
+      "bytes": 7838,
+      "storage": "e0019.txt",
+      "alias_of": null,
+      "events": [
+        {
+          "offset": 0,
+          "length": 125,
+          "kind": "ACTION",
+          "step": 1,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 125,
+          "length": 1572,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 1697,
+          "length": 157,
+          "kind": "ACTION",
+          "step": 2,
+          "action": "read_symbol",
+          "location": {
+            "path": "more_itertools/more.py",
+            "symbol": "combination_with_replacement_index",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 1854,
+          "length": 2026,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 3880,
+          "length": 3755,
+          "kind": "ACTION",
+          "step": 3,
+          "action": "apply_patch",
+          "location": {}
+        },
+        {
+          "offset": 7635,
+          "length": 84,
+          "kind": "OBSERVATION",
+          "status": "completed"
+        },
+        {
+          "offset": 7719,
+          "length": 119,
+          "kind": "PUBLIC FEEDBACK RESULT",
+          "status": "ready_for_review",
+          "accepted": true,
+          "feedback_rounds_attempted": 0
+        }
+      ],
+      "public_terminal": {
+        "status": "ready_for_review",
+        "accepted": true,
+        "feedback_rounds_attempted": 0
+      }
+    },
+    "e0020": {
+      "id": "e0020",
+      "path": "rollouts/base1.md",
+      "sha256": "5a9e8f88136575d6e8bdf0b9615469f446533a87ffe6b92a805f23038b988f0f",
+      "characters": 14555,
+      "bytes": 14555,
+      "storage": "e0020.txt",
+      "alias_of": null,
+      "events": [
+        {
+          "offset": 0,
+          "length": 93,
+          "kind": "ACTION",
+          "step": 1,
+          "action": "list_files",
+          "location": {
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 93,
+          "length": 229,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 322,
+          "length": 107,
+          "kind": "ACTION",
+          "step": 2,
+          "action": "read_file",
+          "location": {
+            "path": "more_itertools/more.py",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 429,
+          "length": 6496,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 6925,
+          "length": 125,
+          "kind": "ACTION",
+          "step": 3,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 7050,
+          "length": 1572,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 8622,
+          "length": 157,
+          "kind": "ACTION",
+          "step": 4,
+          "action": "read_symbol",
+          "location": {
+            "path": "more_itertools/more.py",
+            "symbol": "combination_with_replacement_index",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 8779,
+          "length": 2026,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 10805,
+          "length": 3547,
+          "kind": "ACTION",
+          "step": 5,
+          "action": "apply_patch",
+          "location": {}
+        },
+        {
+          "offset": 14352,
+          "length": 84,
+          "kind": "OBSERVATION",
+          "status": "completed"
+        },
+        {
+          "offset": 14436,
+          "length": 119,
+          "kind": "PUBLIC FEEDBACK RESULT",
+          "status": "ready_for_review",
+          "accepted": true,
+          "feedback_rounds_attempted": 0
+        }
+      ],
+      "public_terminal": {
+        "status": "ready_for_review",
+        "accepted": true,
+        "feedback_rounds_attempted": 0
+      }
+    },
+    "e0021": {
+      "id": "e0021",
+      "path": "task.md",
+      "sha256": "01b01faf6f4360cc46c2fe7772fcf7802a3559780cc9efe4765d75a976f48427",
+      "characters": 188,
+      "bytes": 188,
+      "storage": "e0021.txt",
+      "alias_of": null
+    }
+  },
+  "inline": {
+    "harness/context_policy.json": "{\"version\": 1, \"deduplicate_reads\": true, \"complete_symbols_first\": true, \"read_index\": true}",
+    "harness/systemprompt.md": "# Role\r\nYou are an expert Python developer repairing software defects using source evidence.\r\n\r\n# Core Principles\r\n- **Evidence First**: Never invent authorities, identifiers, or standards. Point to authorized sources; asserting them requires evidence from the provided context.\r\n- **Checkable Rules**: State knowledge the agent can APPLY and CHECK. \"Before finishing, confirm X covers each of A, B, C\" beats exposition.\r\n- **Deliverable Integrity**: The deliverable's shape belongs to the request. Do not add explanatory columns, restate derivations inside artifacts, or rename headers. Guidance for reasoning belongs in the harness text, never the artifact.\r\n\r\n# Workspace Facts (This Task)\r\nIn this workspace, `combination_with_replacement_index` must:\r\n1. Match `itertools` enumeration exactly, including handling of `None` elements and empty combinations.\r\n2. Reject elements that are not a non-decreasing combination from the pool.\r\n3. Validate that every item in the input `element` exists in the `pool` (iterable) before attempting index calculation.\r\n\r\n# Procedure\r\nWhen repairing a defect:\r\n1. **Trace**: Identify the exact function definition and test cases in the source.\r\n2. **Reconcile**: Compare the current implementation against the required behavior (e.g., non-decreasing order, existence in pool).\r\n3. **Draft**: Apply patches that strictly enforce validation logic before calculation.\r\n4. **Verify**: Ensure the fix handles edge cases like empty inputs or `None` values as per the task requirements.",
+    "harness/tool_descriptions/tool_guidance.md": "# Tool Usage Guidance\r\n\r\n## Reading Source Code\r\n- Use `read_symbol` to retrieve full function definitions when available. This ensures you have the complete context of the logic being modified.\r\n- Use `search` to locate all occurrences of a function name, including test cases that define expected behavior.\r\n\r\n## Applying Patches\r\n- When using `apply_patch`, ensure the `old` string matches the source exactly (including whitespace and indentation).\r\n- The `new` string must implement the fix while preserving the original docstring and structure unless explicitly required to change.\r\n\r\n## Validation Logic\r\n- For functions involving combinatorial logic (e.g., `combination_with_replacement_index`):\r\n  - **Input Validation**: Explicitly check that every element in the input tuple exists in the pool. Raise `ValueError` if not.\r\n  - **Order Validation**: Ensure the input elements are in non-decreasing order relative to their indices in the pool. Raise `ValueError` if the sequence is decreasing.\r\n  - **Edge Cases**: Handle empty inputs (`l == 0`) by returning `0` immediately, as per standard combinatorial definitions.\r\n\r\n## Evidence-Based Reasoning\r\n- Do not assume test outcomes. Cite specific lines from `tests/test_more.py` or the function definition in `more_itertools/more.py` to justify changes.\r\n- If a trajectory shows a failure (e.g., missing validation), encode that specific check into the guidance.",
+    "task.md": "combination_with_replacement_index must match itertools enumeration, including None elements and empty combinations. Reject elements that are not a nondecreasing combination from the pool."
+  },
+  "source_export_accessible": false,
+  "independent_grading_accessible": false,
+  "page_characters": 6000,
+  "offset_unit": "Unicode characters; zero-based"
+}

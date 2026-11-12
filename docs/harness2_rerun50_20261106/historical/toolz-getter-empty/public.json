@@ -1,0 +1,6 @@
+{
+  "instance_id": "toolz-getter-empty",
+  "repo": "pytoolz/toolz",
+  "base_commit": "source-sha256:501c07aa34db0a9652b8c594d960bb1f1c8e263fbf2058013dade4e5446ec272",
+  "problem_statement": "getter must support an empty list of indexes by returning an empty tuple for any input. Preserve scalar and singleton index behavior."
+}

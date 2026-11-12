@@ -1,0 +1,8 @@
+{
+  "source_rollout": "D:\\project_other\\CoreCoder\\.tmp\\harness2-autonomous-20261104\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1",
+  "fresh_model_calls": 0,
+  "historical_model_calls": 11,
+  "original_report_sha256": "ef4287d904022e4fa02c11a7d2767421b2d051198b90b797c5fd2dc2e5a9a23b",
+  "copied_report_sha256": "ef4287d904022e4fa02c11a7d2767421b2d051198b90b797c5fd2dc2e5a9a23b",
+  "scope": "Saved actual output; no regenerated candidate and no historical calls counted as fresh"
+}

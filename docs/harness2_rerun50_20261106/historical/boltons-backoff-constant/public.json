@@ -1,0 +1,6 @@
+{
+  "instance_id": "boltons-backoff-constant",
+  "repo": "mahmoud/boltons",
+  "base_commit": "source-sha256:689d463aa63cdec0baed45c6be06625b0001db166744c7430c6483f1c6f3941d",
+  "problem_statement": "backoff_iter and backoff must support factor=1 when start equals stop and count is inferred. For unequal endpoints and inferred count raise ValueError rather than arithmetic errors. Preserve explicit-count constant backoff and geometric growth."
+}

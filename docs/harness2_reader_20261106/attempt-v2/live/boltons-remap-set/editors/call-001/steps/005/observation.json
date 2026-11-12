@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0010",
+  "path": "pool/dom1/harness/tool_descriptions/tool_guidance.md",
+  "sha256": "e3d2d677846236b69d3c1881dde6b7c0eea4af7ecd33fc77a98d18aec5624f17",
+  "offset": 0,
+  "content": "# Tool Guidance for Python Repair\r\n\r\n## File Reading Strategy\r\n- **Targeted Reads**: Use `read_file` with specific offsets to locate function definitions. Avoid reading entire files unless necessary.\r\n- **Symbol Navigation**: If available, use symbol-based navigation to jump directly to function definitions (e.g., `def remap`).\r\n\r\n## Evidence Verification\r\n- **Cross-Reference**: Always verify function behavior against the task requirements (e.g., \"preserve set values\", \"preserve frozenset type\").\r\n- **Trace Execution**: Manually trace the logic of the function to identify where it deviates from expected behavior.\r\n\r\n## Repair Actions\r\n- **Minimal Changes**: Modify only the lines necessary to fix the defect. Avoid refactoring unrelated code.\r\n- **Preserve Semantics**: Ensure that changes do not alter the intended behavior for other data types (e.g., lists, dictionaries).\r\n\r\n# Skill Invocation\r\nWhen the task involves repairing `remap` in `boltons/iterutils.py`, invoke the `remap-repair` skill to apply domain-specific checks and fixes.",
+  "next_offset": null,
+  "total_characters": 1048,
+  "eof": true
+}

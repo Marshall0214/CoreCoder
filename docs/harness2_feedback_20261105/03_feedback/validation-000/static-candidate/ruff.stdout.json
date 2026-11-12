@@ -1,0 +1,40 @@
+[
+  {
+    "cell": null,
+    "code": "F821",
+    "end_location": {
+      "column": 42,
+      "row": 908
+    },
+    "filename": "D:\\project_other\\CoreCoder\\.tmp\\harness2-feedback-20261105-v3\\executions\\feedback-validation\\toolz-join-unmatched\\agg1\\feedback\\validation-000\\candidate\\toolz\\itertoolz.py",
+    "fix": null,
+    "location": {
+      "column": 33,
+      "row": 908
+    },
+    "message": "Undefined name `iteritems`",
+    "name": "undefined-name",
+    "noqa_row": 908,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/undefined-name"
+  },
+  {
+    "cell": null,
+    "code": "F821",
+    "end_location": {
+      "column": 38,
+      "row": 923
+    },
+    "filename": "D:\\project_other\\CoreCoder\\.tmp\\harness2-feedback-20261105-v3\\executions\\feedback-validation\\toolz-join-unmatched\\agg1\\feedback\\validation-000\\candidate\\toolz\\itertoolz.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 923
+    },
+    "message": "Undefined name `iteritems`",
+    "name": "undefined-name",
+    "noqa_row": 923,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/undefined-name"
+  }
+]

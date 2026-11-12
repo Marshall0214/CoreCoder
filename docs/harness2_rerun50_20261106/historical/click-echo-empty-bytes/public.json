@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-echo-empty-bytes",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:1deab48d56e54d5bf49d922899b4a988d4dd53a288257abdafce37a97012d55b",
+  "problem_statement": "echo must accept empty bytes and bytearray messages with newline enabled on binary output streams, writing a binary newline without TypeError. Preserve nonempty binary output, nl=False, text output, None messages and string conversion of ordinary objects."
+}

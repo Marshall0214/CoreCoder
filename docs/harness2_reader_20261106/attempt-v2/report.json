@@ -1,0 +1,112 @@
+{
+  "status": "completed",
+  "cases": {
+    "click-style-color-validation": {
+      "context": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\runs\\issue-cc-agg1\\click-style-color-validation\\context\\agg1",
+      "manifest": "D:\\project_other\\CoreCoder\\.tmp\\harness2-reader-pinned-20261106\\offline\\click-style-color-validation\\manifest.json",
+      "manifest_sha256": "59f39c0085b8c9cd22a7ed2d9a21606ab35a39652b0bc041a2eb664b6c4422b8",
+      "files": 21,
+      "raw_characters": 304482,
+      "index_serialized_characters": 20079,
+      "exact_paging_passed": true,
+      "model_calls": 0
+    },
+    "click-help-eagerness": {
+      "context": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-help-eagerness\\runs\\issue-cc-agg1\\click-help-eagerness\\context\\dom1",
+      "manifest": "D:\\project_other\\CoreCoder\\.tmp\\harness2-reader-pinned-20261106\\offline\\click-help-eagerness\\manifest.json",
+      "manifest_sha256": "54e44a12e60c22fa4d30443d9a671a8b5099d7db7e72aef41da759d7ea9da6e7",
+      "files": 7,
+      "raw_characters": 86374,
+      "index_serialized_characters": 7268,
+      "exact_paging_passed": true,
+      "model_calls": 0
+    },
+    "click-flag-default-map": {
+      "context": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-flag-default-map\\runs\\issue-cc-agg1\\click-flag-default-map\\context\\agg1",
+      "manifest": "D:\\project_other\\CoreCoder\\.tmp\\harness2-reader-pinned-20261106\\offline\\click-flag-default-map\\manifest.json",
+      "manifest_sha256": "71e8950ea04f8f17fcf06beaa3b7138ed95cd78d6638ac356ef8955b8dbd63e3",
+      "files": 21,
+      "raw_characters": 345839,
+      "index_serialized_characters": 22438,
+      "exact_paging_passed": true,
+      "model_calls": 0
+    },
+    "click-invoke-missing": {
+      "context": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\runs\\issue-cc-agg1\\click-invoke-missing\\context\\agg1",
+      "manifest": "D:\\project_other\\CoreCoder\\.tmp\\harness2-reader-pinned-20261106\\offline\\click-invoke-missing\\manifest.json",
+      "manifest_sha256": "a5fb4d06829645b71dd0cf09e1aa0fe079917e8b5edc7fe74dac1ee966274d95",
+      "files": 21,
+      "raw_characters": 252088,
+      "index_serialized_characters": 20104,
+      "exact_paging_passed": true,
+      "model_calls": 0
+    },
+    "boltons-remap-set": {
+      "context": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\runs\\issue-cc-agg1\\boltons-remap-set\\context\\agg1",
+      "manifest": "D:\\project_other\\CoreCoder\\.tmp\\harness2-reader-pinned-20261106\\offline\\boltons-remap-set\\manifest.json",
+      "manifest_sha256": "b8a4b64fe331f6bf6176e45812beae937e82692f22fa36bebf9bfc11f76b8e75",
+      "files": 21,
+      "raw_characters": 350076,
+      "index_serialized_characters": 20764,
+      "exact_paging_passed": true,
+      "model_calls": 0
+    },
+    "more-combination-index": {
+      "context": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\runs\\issue-cc-agg1\\more-combination-index\\context\\agg1",
+      "manifest": "D:\\project_other\\CoreCoder\\.tmp\\harness2-reader-pinned-20261106\\offline\\more-combination-index\\manifest.json",
+      "manifest_sha256": "7fc75cd37dd7e3bf090683adc344ce4eab98eee52f17fd94b899519071bda5ba",
+      "files": 21,
+      "raw_characters": 75367,
+      "index_serialized_characters": 11916,
+      "exact_paging_passed": true,
+      "model_calls": 0
+    },
+    "more-range-equality": {
+      "context": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-range-equality\\runs\\issue-cc-agg1\\more-range-equality\\context\\dom1",
+      "manifest": "D:\\project_other\\CoreCoder\\.tmp\\harness2-reader-pinned-20261106\\offline\\more-range-equality\\manifest.json",
+      "manifest_sha256": "05e9397c2a7bc3ec6ea34924fe9854b646a46da70e9b871568f5248b32e25c75",
+      "files": 7,
+      "raw_characters": 126154,
+      "index_serialized_characters": 7761,
+      "exact_paging_passed": true,
+      "model_calls": 0
+    }
+  },
+  "live": {
+    "boltons-remap-set": {
+      "status": "returned_valid_guidance",
+      "fresh_model_calls": 8,
+      "metrics": {
+        "llm_calls": 8,
+        "prompt_tokens": 122320,
+        "completion_tokens": 1428,
+        "known_prompt_tokens": 122320,
+        "known_completion_tokens": 1428,
+        "missing_usage_calls": 0,
+        "budget_accounted_tokens": 123748,
+        "budget_enforcement": "none; local tokens accounted only",
+        "usage_status": "known",
+        "usage_source": "ollama_response",
+        "failed_calls": 0,
+        "cloud_api_cost_usd": 0.0,
+        "local_compute_cost_usd": null,
+        "cost_usd": null,
+        "failed_provider_attempt_usage": "unknown",
+        "token_budget": null,
+        "max_output_tokens": null,
+        "context_preflight_enforced": false,
+        "provider_context_tokens": 65536
+      },
+      "trace_id": "5b01ede001d80681b75f089a3244bdb1",
+      "reads": 6,
+      "format_errors": 1,
+      "reader_report": "D:\\project_other\\CoreCoder\\.tmp\\harness2-reader-pinned-20261106\\live\\boltons-remap-set\\editors\\call-001\\reader-report.json",
+      "validated_reader_used": true
+    }
+  },
+  "new_repairs": 0,
+  "is_repair_accuracy": false,
+  "current_task": "boltons-remap-set",
+  "original_batch_report_unchanged": true,
+  "baseline_engine_unchanged": true
+}

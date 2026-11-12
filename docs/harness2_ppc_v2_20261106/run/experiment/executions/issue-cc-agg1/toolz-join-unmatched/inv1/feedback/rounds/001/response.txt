@@ -1,0 +1,1 @@
+{"edits":[{"file":"toolz/itertoolz.py","old":"        for key, matches in iteritems(d):","new":"        for key, matches in d.items():"}]}

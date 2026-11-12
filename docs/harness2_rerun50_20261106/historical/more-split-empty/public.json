@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-split-empty",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:b9b5e66bd5e5913b7f446933950dd97843b311a4ae13ff9b980c4adb13fc0edd",
+  "problem_statement": "split_before, split_after and split_when must emit no groups for an empty input when maxsplit=0. Preserve one unsplit group for nonempty input and normal predicate splitting."
+}

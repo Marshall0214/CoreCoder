@@ -1,0 +1,39 @@
+{
+  "status": "agent_completed",
+  "arm": "no_harness",
+  "task_id": "more-combination-index",
+  "strategy_search": false,
+  "independent_grading_available": false,
+  "adopted_label": "base1",
+  "final_rollout": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\no_harness\\more-combination-index\\executions\\control\\more-combination-index\\base1",
+  "seconds": 34.422,
+  "rollouts": [
+    {
+      "label": "base1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\no_harness\\more-combination-index\\executions\\control\\more-combination-index\\base1"
+    }
+  ],
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 5,
+        "tokens": 10592,
+        "reused": false,
+        "trace_id": "1e3547d9e351e8342ac7e723fcc4793e",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\no_harness\\more-combination-index\\executions\\control\\more-combination-index\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 0,
+        "tokens": 0,
+        "reused": false,
+        "trace_id": null,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\no_harness\\more-combination-index\\executions\\control\\more-combination-index\\base1"
+      }
+    ],
+    "fresh_model_calls": 5,
+    "tokens": 10592,
+    "known_tokens_minimum": 10592
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "status": "editor_returned",
+  "changed_files": [],
+  "metrics": {
+    "llm_calls": 1,
+    "prompt_tokens": 8337,
+    "completion_tokens": 982,
+    "known_prompt_tokens": 8337,
+    "known_completion_tokens": 982,
+    "missing_usage_calls": 0,
+    "budget_accounted_tokens": 9319,
+    "budget_enforcement": "none; local tokens accounted only",
+    "usage_status": "known",
+    "usage_source": "ollama_response",
+    "failed_calls": 0,
+    "cloud_api_cost_usd": 0.0,
+    "local_compute_cost_usd": null,
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown",
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_preflight_enforced": false,
+    "provider_context_tokens": 65536
+  },
+  "fresh_model_calls": 1,
+  "observability": {
+    "enabled": true,
+    "status": "submitted_unconfirmed",
+    "content_capture": false,
+    "trace_id": "0e6fd15eee5f5c92c1195111b7e5e940",
+    "base_url": "http://127.0.0.1:3300",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/0e6fd15eee5f5c92c1195111b7e5e940"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "instance_id": "boltons-remap-set",
+  "repo": "mahmoud/boltons",
+  "base_commit": "source-sha256:2e13c43e7f52cc89926f18805b3cebfa7c95b05114c1d479d4f4ac97a64f9c80",
+  "problem_statement": "remap must preserve set values under default traversal and preserve frozenset type and values. Do not insert key-value pairs into the reconstructed set. Preserve list and dictionary traversal."
+}

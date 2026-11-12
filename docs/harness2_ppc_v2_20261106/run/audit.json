@@ -1,0 +1,166 @@
+{
+  "schema": "indexed-ppc-evidence-audit-v1",
+  "model_calls_in_audit": 0,
+  "checks_passed": true,
+  "complete_fresh_ppc": true,
+  "rollouts": [
+    {
+      "label": "base1",
+      "guidance_sha256": "262f17358d52ab7fa3fd8cef027b6ae29ecc3f3f907c03ac3a2f8b8175623f2d",
+      "effective_requests_verified": 7,
+      "context_policy": {
+        "version": 1,
+        "deduplicate_reads": false,
+        "complete_symbols_first": false,
+        "read_index": false
+      },
+      "feedback_rounds": 1,
+      "public_accepted": true,
+      "fresh_candidate": true,
+      "guidance_applied": true
+    },
+    {
+      "label": "dom1",
+      "guidance_sha256": "c011e964e7a3dffe4f274139ec03e945082af4e9d196cbce961ab0c33134afd3",
+      "effective_requests_verified": 6,
+      "context_policy": {
+        "version": 1,
+        "deduplicate_reads": false,
+        "complete_symbols_first": false,
+        "read_index": false
+      },
+      "feedback_rounds": 1,
+      "public_accepted": true,
+      "fresh_candidate": true,
+      "guidance_applied": true
+    },
+    {
+      "label": "inv1",
+      "guidance_sha256": "c1d1f198489c82383dfafe6a2f4bdc9ae17189c8e7335015fab392d9859c3661",
+      "effective_requests_verified": 8,
+      "context_policy": {
+        "version": 1,
+        "deduplicate_reads": true,
+        "complete_symbols_first": true,
+        "read_index": true
+      },
+      "feedback_rounds": 1,
+      "public_accepted": true,
+      "fresh_candidate": true,
+      "guidance_applied": true
+    },
+    {
+      "label": "agg1",
+      "guidance_sha256": "9e0f1c6b9fb7abd722451886c7ec087d6f282fda1233efa4ef8606bc1ca07b30",
+      "effective_requests_verified": 10,
+      "context_policy": {
+        "version": 1,
+        "deduplicate_reads": true,
+        "complete_symbols_first": true,
+        "read_index": true
+      },
+      "feedback_rounds": 1,
+      "public_accepted": true,
+      "fresh_candidate": true,
+      "guidance_applied": true
+    }
+  ],
+  "editors": [
+    {
+      "label": "inv1.a1",
+      "status": "editor_returned",
+      "valid_output": true,
+      "calls": 11,
+      "reads": 10,
+      "format_errors": 0
+    },
+    {
+      "label": "dom1.a1",
+      "status": "editor_returned",
+      "valid_output": true,
+      "calls": 2,
+      "reads": 1,
+      "format_errors": 0
+    },
+    {
+      "label": "agg1.a1",
+      "status": "editor_returned",
+      "valid_output": true,
+      "calls": 4,
+      "reads": 3,
+      "format_errors": 0
+    },
+    {
+      "label": "experience.agg1",
+      "status": "editor_returned",
+      "valid_output": true,
+      "calls": 4,
+      "reads": 3,
+      "format_errors": 0
+    }
+  ],
+  "delivery": {
+    "policy": "public-preserve-v1",
+    "official_label": "agg1",
+    "chosen_label": "agg1",
+    "chosen_folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1",
+    "candidates": {
+      "base1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1\\feedback\\rounds\\001\\validation\\report.json"
+      },
+      "dom1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1\\feedback\\rounds\\001\\validation\\report.json"
+      },
+      "inv1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1\\feedback\\rounds\\001\\validation\\report.json"
+      },
+      "agg1": {
+        "public_accepted": true,
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1",
+        "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-v2-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\agg1\\feedback\\rounds\\001\\validation\\report.json"
+      }
+    },
+    "independent_grading_used": false,
+    "model_calls": 0,
+    "changed_delivery": false,
+    "not_upstream_selector_vote": true
+  },
+  "independent_resolved": true,
+  "post_termination_recovery": false,
+  "experience_reuse": "not_admitted; one task does not establish reusable lessons",
+  "implementation_and_baseline_unchanged": true,
+  "historical_batch_unchanged": true,
+  "review_packet_checks": [
+    {
+      "editor": "inv1.a1",
+      "exact_short_files": 4,
+      "public_candidates": 1,
+      "decision_state_verified": true
+    },
+    {
+      "editor": "dom1.a1",
+      "exact_short_files": 4,
+      "public_candidates": 1,
+      "decision_state_verified": true
+    },
+    {
+      "editor": "agg1.a1",
+      "exact_short_files": 16,
+      "public_candidates": 3,
+      "decision_state_verified": true
+    },
+    {
+      "editor": "experience.agg1",
+      "exact_short_files": 28,
+      "public_candidates": 7,
+      "decision_state_verified": true
+    }
+  ],
+  "public_selection_worker_verified": true
+}

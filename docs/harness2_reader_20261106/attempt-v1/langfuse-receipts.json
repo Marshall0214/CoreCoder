@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "verification_model_calls": 0,
+  "sessions": {
+    "boltons-remap-set": {
+      "trace_id": "a900403a7ad31545b807e9ec7b35fc38",
+      "generation_count": 20,
+      "usage_status": "known",
+      "prompt_tokens": 263765,
+      "completion_tokens": 611,
+      "all_operations_ended": true,
+      "per_call_usage_verified": true,
+      "local_call_seconds": 97.2401,
+      "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/a900403a7ad31545b807e9ec7b35fc38"
+    },
+    "click-help-eagerness": {
+      "trace_id": "7ac4adb1b8ae4079f8af4d318aa7bb6c",
+      "generation_count": 6,
+      "usage_status": "known",
+      "prompt_tokens": 30810,
+      "completion_tokens": 639,
+      "all_operations_ended": true,
+      "per_call_usage_verified": true,
+      "local_call_seconds": 26.6888,
+      "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/7ac4adb1b8ae4079f8af4d318aa7bb6c"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-prompt-suffix",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:b080e15990b7a74c4625af1d58fa8634dab3cb8b138cc727b955fe23fe6b4d86",
+  "problem_statement": "Empty prompt_suffix must not append a space to prompt or confirm. Preserve normal suffix rendering and input conversion."
+}

@@ -1,0 +1,1 @@
+join must yield unmatched left rows with right_default for a left outer join, without a NameError. Preserve matched rows and ordinary inner joins.

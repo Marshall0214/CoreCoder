@@ -1,0 +1,59 @@
+{
+  "status": "editor_returned",
+  "model_steps": 6,
+  "reads": [
+    {
+      "ok": true,
+      "id": "e0001",
+      "path": "deliverables/base1/candidate.diff.txt",
+      "sha256": "5826fb1ad9620d21ecedc370df2abb3e275758dcd21af39a9f72ef9e43fd2cb1",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 550,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "ad71ef9e0f8402999a2bb8c5c9418273af4bb65a97f84597ad5c6221201a9fa5",
+      "offset": 38198,
+      "next_offset": 40198,
+      "total_characters": 85158,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "ad71ef9e0f8402999a2bb8c5c9418273af4bb65a97f84597ad5c6221201a9fa5",
+      "offset": 40198,
+      "next_offset": 42198,
+      "total_characters": 85158,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "ad71ef9e0f8402999a2bb8c5c9418273af4bb65a97f84597ad5c6221201a9fa5",
+      "offset": 42198,
+      "next_offset": 44198,
+      "total_characters": 85158,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0001",
+      "path": "deliverables/base1/candidate.diff.txt",
+      "sha256": "5826fb1ad9620d21ecedc370df2abb3e275758dcd21af39a9f72ef9e43fd2cb1",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 550,
+      "eof": true
+    }
+  ],
+  "format_errors": [],
+  "independent_grading_used": false,
+  "recent_read_bodies": 3
+}

@@ -1,0 +1,5 @@
+Changes trace to base1 trajectory:
+- **Step 2-7**: Agent repeatedly read `boltons/iterutils.py` at offset 7000 without progress, leading to `repeated_action_limit`. This indicates a need for mechanical repetition guidance (script) and triggered workflow (skill) to avoid redundant reads.
+- **Validation Failure**: `base1` produced `candidate.diff` with syntax errors in unrelated files (`misc/bench_omd.py`, `misc/linkify_changelog.py`). This suggests the agent did not validate the deliverable shape or usability after writing. Added guidance to verify artifact conversion and avoid altering unrelated files.
+- **Workspace Facts**: Encoded verified facts about `remap` defect (frozenset preservation, set semantics) into `systemprompt.md` to prevent rediscovery.
+- **Component Structure**: Introduced skill trigger line for `fix_remap_defect` (to be created in future edits) and script guidance for deterministic validation. Updated `context_policy.json` to enable deduplication, symbol completion, and index reading based on repeated read failures.

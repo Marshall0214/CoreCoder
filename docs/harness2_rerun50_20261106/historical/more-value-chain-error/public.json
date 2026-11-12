@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-value-chain-error",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:29812bf515d847dc0a8f6cef66f3ee83fb4473a6b0ca7841e0443ac3e63082d1",
+  "problem_statement": "value_chain must propagate TypeError raised while consuming an iterable, rather than treating the iterable as a scalar. Continue treating objects whose iter() raises TypeError as scalar values."
+}

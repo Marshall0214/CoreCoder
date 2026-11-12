@@ -1,0 +1,45 @@
+"""Read back native Langfuse observations; never emits new model requests."""
+import json
+from pathlib import Path
+
+import httpx
+
+from deploy.langfuse.swebench_agent import inference_receipt
+from integrations import harness2 as bridge
+from repairflow.telemetry import configuration
+
+ROOT = Path(__file__).resolve().parents[1]
+RUNS = ('harness2-reader-20261106', 'harness2-reader-pinned-20261106')
+settings = configuration()
+if settings is None:
+    raise ValueError('Local Langfuse configuration is unavailable')
+with httpx.Client(base_url=settings['base_url'], auth=(settings['public_key'], settings['secret_key']),
+                  timeout=15, trust_env=False) as client:
+    for name in RUNS:
+        output = ROOT / '.tmp' / name
+        report = bridge.read(output / 'report.json')
+        receipts = {}
+        for task in report['live']:
+            folder = output / 'live' / task / 'editors/call-001'
+            native = bridge.read(folder / 'report.json')
+            trace = native['observability']['trace_id']
+            response = client.get('/api/public/v2/observations', params={'traceId': trace, 'limit': 1000, 'fields': 'basic,usage'})
+            response.raise_for_status()
+            rows = response.json()['data']
+            receipt = inference_receipt(rows, {**native, 'inference_trace_id': trace})
+            if receipt is None:
+                raise ValueError('Langfuse native usage readback mismatch: ' + task)
+            # Each inference trace is distinct; compare every actual call's native usage multiset.
+            local_events = [json.loads(line) for line in (folder / 'trace.jsonl').read_text(encoding='utf-8').splitlines()]
+            finished = [row for row in local_events if row['event'] == 'llm_finished']
+            actual = sorted((row.get('usageDetails', {}).get('input'), row.get('usageDetails', {}).get('output'))
+                            for row in rows if row.get('type') == 'GENERATION')
+            expected = sorted((row['prompt_tokens'], row['completion_tokens']) for row in finished)
+            if actual != expected:
+                raise ValueError('Per-call native usage mismatch: ' + task)
+            receipt['per_call_usage_verified'] = True
+            receipt['local_call_seconds'] = round(sum(row['seconds'] for row in finished), 4)
+            receipt['trace_url'] = native['observability']['trace_url']
+            receipts[task] = receipt
+        bridge.write(output / 'langfuse-receipts.json', {'status': 'passed', 'verification_model_calls': 0, 'sessions': receipts})
+        print(name, json.dumps(receipts, ensure_ascii=False))

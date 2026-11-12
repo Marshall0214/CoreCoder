@@ -1,0 +1,29 @@
+{
+  "schema": "harness2-indexed-editor-acceptance-v1",
+  "original_report_sha256": "05fb2ec7727daa545bb5f132f344b19d2bf731e03070b23cde9b16940f61871a",
+  "cases": [
+    "click-style-color-validation",
+    "click-help-eagerness",
+    "click-flag-default-map",
+    "click-invoke-missing",
+    "boltons-remap-set",
+    "more-combination-index",
+    "more-range-equality"
+  ],
+  "live_cases": [
+    "boltons-remap-set"
+  ],
+  "model": "qwen3.5:27b",
+  "thinking": false,
+  "token_budget": null,
+  "editor_model_steps": 20,
+  "editor_seconds": 300,
+  "new_repairs": 0,
+  "independent_grading_used": false,
+  "source_files": {
+    "integrations/harness2.py": "bb2b619bdf1172de76fc02431b89bd667495748a6425fcf65a83bf9be913b5f8",
+    "integrations/harness2_reader.py": "a7d89dd7358621aa65f99b09009d81896cee402e55e1a9aac18a7a7d0b77d85e",
+    "integrations/harness2_reader_acceptance.py": "72df43fd926037b501468b7770eda8457d5f213113d023a03491a921122f1c25",
+    "integrations/harness2_batch.py": "e09c5f7965630116950cc19b292004588a97adb4645d3d6188a355d864ce7032"
+  }
+}

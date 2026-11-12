@@ -1,0 +1,17 @@
+{
+  "policy": "public-preserve-v1",
+  "official_label": null,
+  "chosen_label": null,
+  "chosen_folder": null,
+  "candidates": {
+    "base1": {
+      "public_accepted": false,
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\base1",
+      "reason": "Public checks not accepted at termination"
+    }
+  },
+  "independent_grading_used": false,
+  "model_calls": 0,
+  "changed_delivery": false,
+  "not_upstream_selector_vote": true
+}

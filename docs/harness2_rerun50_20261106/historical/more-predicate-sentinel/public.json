@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-predicate-sentinel",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:20687a33e2a0c53469e3d893421d99fb4b2395d852d7274a6eb80945fc0efe98",
+  "problem_statement": "locate and replace with window_size must never pass internal padding sentinels to user predicates. Tail calls may contain fewer actual items; preserve window matching and replacement."
+}

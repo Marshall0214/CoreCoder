@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-batch-count",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:3f5fb28f9a05503a84918c4ab42ad66de4204e9008b93a2899e6061f62c755a0",
+  "problem_statement": "constrained_batches must reject nonpositive max_count with ValueError. Preserve positive count limits, optional count, and maximum-size limits."
+}

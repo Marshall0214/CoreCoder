@@ -1,0 +1,6 @@
+{
+  "instance_id": "itsdangerous-none-salt",
+  "repo": "pallets/itsdangerous",
+  "base_commit": "source-sha256:7d55dcaae748827c64a4b25da0d25c37032972a15589718548e35584f8cfa9c4",
+  "problem_statement": "Serializer and Signer must accept salt=None, using the Signer default salt rather than the Serializer default. Signed values must round-trip, Serializer salt=None signatures must match explicit itsdangerous.Signer salt, and Signer salt=None must match its default. Preserve explicit string and bytes salts, the Serializer default salt, wrong-salt rejection and tamper detection."
+}

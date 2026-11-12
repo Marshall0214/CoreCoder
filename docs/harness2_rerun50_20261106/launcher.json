@@ -1,0 +1,10 @@
+{
+  "pid": 64996,
+  "new_control_tasks": 0,
+  "stderr": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\batch.stderr.log",
+  "stdout": "D:\\project_other\\CoreCoder\\.tmp\\harness2-v2-50-20261106\\batch.stdout.log",
+  "mode": "local Ollama, thinking=false",
+  "started_at": "2026-11-06T05:28:13.0324017Z",
+  "new_harness_tasks": 50,
+  "script": "D:\\project_other\\CoreCoder\\.tmp\\harness2_rerun50_20261106.py"
+}

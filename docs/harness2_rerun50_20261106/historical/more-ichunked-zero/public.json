@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-ichunked-zero",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:d8a26b06487cbbb6b4994f27471bbc24e701f6ed3ce2b376d6bed79bb06c1315",
+  "problem_statement": "ichunked with zero size must produce no chunks without consuming input; negative size must raise ValueError mentioning n must be at least 0. Preserve positive chunking."
+}

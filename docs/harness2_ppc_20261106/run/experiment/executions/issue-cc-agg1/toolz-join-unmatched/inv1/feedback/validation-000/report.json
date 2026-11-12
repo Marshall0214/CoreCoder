@@ -1,0 +1,208 @@
+{
+  "schema": "patch-validator-v1",
+  "status": "rejected",
+  "accepted": false,
+  "scope": "configured public checks only",
+  "independent_grading_used": false,
+  "model_calls": 0,
+  "baseline_hash": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+  "candidate_hash": "ace1522781ddf6f05292aade6473051dae78d3b606158feed1b305c5a9b892c0",
+  "changed_files": [],
+  "scope_violations": [],
+  "reasons": [
+    "unresolved_static_findings",
+    "public_reproduce_failed",
+    "no_patch"
+  ],
+  "warnings": [],
+  "public_checks": {
+    "Reproduce": {
+      "returncode": 1,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 1,
+      "failures": 0,
+      "successful": false,
+      "seconds": 3.6405,
+      "passed": false
+    },
+    "Preserve": {
+      "returncode": 0,
+      "timed_out": false,
+      "sandbox": {
+        "backend": "docker",
+        "image": "corecoder-test-sandbox:v1",
+        "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+        "network": "none",
+        "cpus": 1,
+        "memory_bytes": 1073741824,
+        "pids": 64,
+        "output_limit_bytes": 1048576
+      },
+      "sandbox_status": "completed",
+      "tests_run": 1,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0,
+      "errors": 0,
+      "failures": 0,
+      "successful": true,
+      "seconds": 3.3017,
+      "passed": true
+    }
+  },
+  "syntax_errors": [],
+  "static": {
+    "checker": {
+      "version": "0.16.9",
+      "rules": "F821,F822,F823",
+      "target": "py311",
+      "configuration": "isolated; ignore-noqa; no fixes"
+    },
+    "baseline_syntax_unavailable": [],
+    "baseline_findings": [
+      {
+        "file": "toolz/curried/__init__.py",
+        "code": "F821",
+        "message": "Undefined name `exceptions`",
+        "line": 102,
+        "column": 5
+      },
+      {
+        "file": "toolz/curried/operator.py",
+        "code": "F821",
+        "message": "Undefined name `num_required_args`",
+        "line": 9,
+        "column": 11
+      },
+      {
+        "file": "toolz/curried/operator.py",
+        "code": "F821",
+        "message": "Undefined name `has_keywords`",
+        "line": 10,
+        "column": 51
+      },
+      {
+        "file": "toolz/dicttoolz.py",
+        "code": "F821",
+        "message": "Undefined name `reduce`",
+        "line": 331,
+        "column": 16
+      },
+      {
+        "file": "toolz/itertoolz.py",
+        "code": "F821",
+        "message": "Undefined name `iteritems`",
+        "line": 918,
+        "column": 29
+      }
+    ],
+    "candidate_findings": [
+      {
+        "file": "toolz/curried/__init__.py",
+        "code": "F821",
+        "message": "Undefined name `exceptions`",
+        "line": 102,
+        "column": 5
+      },
+      {
+        "file": "toolz/curried/operator.py",
+        "code": "F821",
+        "message": "Undefined name `num_required_args`",
+        "line": 9,
+        "column": 11
+      },
+      {
+        "file": "toolz/curried/operator.py",
+        "code": "F821",
+        "message": "Undefined name `has_keywords`",
+        "line": 10,
+        "column": 51
+      },
+      {
+        "file": "toolz/dicttoolz.py",
+        "code": "F821",
+        "message": "Undefined name `reduce`",
+        "line": 331,
+        "column": 16
+      },
+      {
+        "file": "toolz/itertoolz.py",
+        "code": "F821",
+        "message": "Undefined name `iteritems`",
+        "line": 918,
+        "column": 29
+      }
+    ],
+    "retained": [
+      {
+        "file": "toolz/curried/__init__.py",
+        "code": "F821",
+        "message": "Undefined name `exceptions`",
+        "line": 102,
+        "column": 5,
+        "baseline_line": 102
+      },
+      {
+        "file": "toolz/curried/operator.py",
+        "code": "F821",
+        "message": "Undefined name `num_required_args`",
+        "line": 9,
+        "column": 11,
+        "baseline_line": 9
+      },
+      {
+        "file": "toolz/curried/operator.py",
+        "code": "F821",
+        "message": "Undefined name `has_keywords`",
+        "line": 10,
+        "column": 51,
+        "baseline_line": 10
+      },
+      {
+        "file": "toolz/dicttoolz.py",
+        "code": "F821",
+        "message": "Undefined name `reduce`",
+        "line": 331,
+        "column": 16,
+        "baseline_line": 331
+      },
+      {
+        "file": "toolz/itertoolz.py",
+        "code": "F821",
+        "message": "Undefined name `iteritems`",
+        "line": 918,
+        "column": 29,
+        "baseline_line": 918
+      }
+    ],
+    "introduced": [],
+    "removed_locations": [],
+    "limitation": "Exact unchanged-line mapping; moved code may be reported as removed/new, not proven fixed."
+  },
+  "sandbox": {
+    "backend": "docker",
+    "image": "corecoder-test-sandbox:v1",
+    "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+    "network": "none",
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids": 64,
+    "output_limit_bytes": 1048576
+  },
+  "public_checks_hash": "154afcc856d87bf45b0fc08baf80b77a8d1115a3f5e2b0ced7e3057f113a5b0e"
+}

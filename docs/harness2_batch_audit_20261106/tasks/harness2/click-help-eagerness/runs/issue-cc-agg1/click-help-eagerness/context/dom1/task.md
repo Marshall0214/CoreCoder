@@ -1,0 +1,1 @@
+A custom help flag and another eager option should follow invocation order. Invoking the help flag first must display help without running the later eager callback.

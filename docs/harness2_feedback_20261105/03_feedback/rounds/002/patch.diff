@@ -1,0 +1,17 @@
+--- a/toolz/itertoolz.py
++++ b/toolz/itertoolz.py
+@@ -920,10 +920,10 @@
+                 else:
+                     yield (left_default, item)
+ 
+-        for key, matches in d.items():
+-            if key not in seen_keys:
+-                for match in matches:
+-                    yield (match, right_default)
++            for key, matches in d.items():
++                if key not in seen_keys:
++                    for match in matches:
++                        yield (match, right_default)
+ 
+ 
+ def diff(*seqs, **kwargs):

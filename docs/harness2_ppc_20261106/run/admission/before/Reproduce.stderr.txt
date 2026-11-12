@@ -1,0 +1,18 @@
+test_public_defect (test_admission.Reproduce.test_public_defect) ... ERROR
+
+======================================================================
+ERROR: test_public_defect (test_admission.Reproduce.test_public_defect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/checks/test_admission.py", line 7, in test_public_defect
+    self.assertEqual(list(join(lambda x: x, [2], lambda x: x, [3], right_default='absent')), [(2, 'absent')])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/source/toolz/itertoolz.py", line 918, in join
+    for key, matches in iteritems(d):
+                        ^^^^^^^^^
+NameError: name 'iteritems' is not defined
+
+----------------------------------------------------------------------
+Ran 1 test in 0.018s
+
+FAILED (errors=1)

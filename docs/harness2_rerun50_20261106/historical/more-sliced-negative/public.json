@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-sliced-negative",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:97a0a2ec75fb54398f67fc84a72fea1d633bc74947c3cc444a165da2fbf74964",
+  "problem_statement": "sliced must reject negative slice sizes with ValueError under both strict modes, rather than silently yielding incorrect slices. Preserve positive slicing."
+}

@@ -1,0 +1,78 @@
+"""Freeze all three native editor sessions, including the failed first session."""
+import json
+import shutil
+from pathlib import Path
+
+from integrations import harness2 as bridge
+
+ROOT = Path(__file__).resolve().parents[1]
+PACKET = ROOT / 'docs/harness2_reader_20261106'
+RUNS = ('harness2-reader-20261106', 'harness2-reader-pinned-20261106')
+PACKET.mkdir(exist_ok=False)
+files, sessions = [], []
+
+
+def copy(path, relative):
+    target = PACKET / relative
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(path, target)
+    files.append({'path': relative, 'sha256': bridge.sha(target), 'bytes': target.stat().st_size})
+
+
+for index, name in enumerate(RUNS, 1):
+    root = ROOT / '.tmp' / name
+    report, protocol = bridge.read(root / 'report.json'), bridge.read(root / 'protocol.json')
+    for path, sha in protocol['source_files'].items():
+        saved = root / 'implementation' / (path + '.txt') if index == 1 else ROOT / path
+        if bridge.sha(saved) != sha:
+            raise ValueError('Experiment source mismatch: ' + path)
+        copy(saved, f'implementation-v{index}/' + path + '.txt')
+    receipts = bridge.read(root / 'langfuse-receipts.json')
+    for task, row in report['live'].items():
+        sessions.append({'run': name, 'task': task, **row, 'server_receipt': receipts['sessions'][task]})
+    for path in sorted(root.rglob('*')):
+        if not path.is_file():
+            continue
+        rel = path.relative_to(root)
+        if rel.parts[0] not in {'offline', 'live'} and rel.as_posix() not in {
+                'protocol.json', 'report.json', 'local-model.json', 'langfuse-receipts.json'}:
+            continue
+        if any(part in {'__pycache__', 'state', '.git'} for part in rel.parts) or path.name == '.env':
+            continue
+        copy(path, f'attempt-v{index}/' + rel.as_posix())
+
+baseline = bridge.read(bridge.BASELINE / 'protocol.json')
+if any(bridge.sha(ROOT / name) != sha for name, sha in baseline['source_files'].items()):
+    raise ValueError('Baseline engine changed')
+old = ROOT / 'docs/harness2_batch_audit_20261106'
+manifest = bridge.read(old / 'manifest.json')
+for row in manifest['files'] + manifest['posthoc_files']:
+    if bridge.sha(old / row['path']) != row['sha256']:
+        raise ValueError('Previous audit evidence changed: ' + row['path'])
+batch = ROOT / '.tmp/harness2-vs-control-50-20261105/report.json'
+if bridge.sha(batch) != bridge.sha(old / 'batch/report.json'):
+    raise ValueError('Original 50+50 results changed')
+
+summary = {'schema': 'harness2-indexed-reader-results-v1', 'offline_contexts_passed': 7,
+           'sessions': sessions, 'all_attempts_reported': True, 'fresh_model_calls': sum(row['fresh_model_calls'] for row in sessions),
+           'prompt_tokens': sum(row['metrics']['prompt_tokens'] for row in sessions),
+           'completion_tokens': sum(row['metrics']['completion_tokens'] for row in sessions),
+           'new_repair_executions': 0, 'is_repair_accuracy': False, 'original_batch_report_unchanged': True,
+           'baseline_engine_files_unchanged': len(baseline['source_files']),
+           'previous_audit_files_verified': len(manifest['files']) + len(manifest['posthoc_files']),
+           'tests': {'python311': '75 passed, 2 skipped', 'python312_controller': '12 tests OK'},
+           'limitations': ['Two implementations and a single targeted repeat; no same-config aggregate success rate',
+                           'Valid guidance has not been tested in a fresh complete PPC repair',
+                           'Initial index length does not measure total Token savings']}
+summary['actual_tokens'] = summary['prompt_tokens'] + summary['completion_tokens']
+bridge.write(ROOT / 'docs/harness2-reader-20261106.json', summary)
+copy(ROOT / 'docs/harness2-reader-20261106.json', 'results.json')
+for name in ('tests/test_harness2_reader.py', 'tests/test_harness2.py', '.tmp/verify_harness2_reader_20261106.py',
+             '.tmp/freeze_harness2_reader_20261106.py'):
+    copy(ROOT / name, 'verification/' + name.replace('.tmp/', '') + '.txt')
+bridge.write(PACKET / 'manifest.json', {'schema': 'harness2-reader-evidence-v1', 'files': files})
+for row in files:
+    assert bridge.sha(PACKET / row['path']) == row['sha256']
+print(json.dumps({'archived_files': len(files), 'bytes': sum(row['bytes'] for row in files),
+                  'fresh_model_calls': summary['fresh_model_calls'], 'actual_tokens': summary['actual_tokens'],
+                  'baseline_engine_unchanged': True, 'previous_audit_unchanged': True}))

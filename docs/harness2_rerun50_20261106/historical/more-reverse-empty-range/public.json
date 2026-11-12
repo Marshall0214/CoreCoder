@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-reverse-empty-range",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:12f90792e0877279a77fc805dbe7f4ac210f21afa4da36f0a80a74656ad41f0c",
+  "problem_statement": "numeric_range.__reversed__ must yield no values for an empty range rather than raising IndexError. Preserve nonempty reverse iteration and normal forward iteration."
+}

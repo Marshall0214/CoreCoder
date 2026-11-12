@@ -1,0 +1,100 @@
+{
+  "status": "agent_error",
+  "arm": "harness2",
+  "task_id": "toolz-join-unmatched",
+  "strategy_search": true,
+  "independent_grading_available": false,
+  "error_type": "ModuleNotFoundError",
+  "error": "No module named 'openai'",
+  "seconds": 433.984,
+  "rollouts": [
+    {
+      "label": "base1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+    },
+    {
+      "label": "inv1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+    },
+    {
+      "label": "dom1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+    }
+  ],
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 7,
+        "tokens": 25600,
+        "reused": false,
+        "trace_id": "cc0c47c5b2b409e3aeb0b63afda239a3",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 38621,
+        "reused": false,
+        "trace_id": "c4ae6109200e6ca0ce8792d9d8622bda",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\base1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 18,
+        "tokens": 122776,
+        "reused": false,
+        "trace_id": "7e3516c3ba70f00c4e280f1e6a490f3c",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 41171,
+        "reused": false,
+        "trace_id": "6aaec2f2b47887cfa0a0b541f9c12d85",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\dom1"
+      },
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 9,
+        "tokens": 54686,
+        "reused": false,
+        "trace_id": "98a3e4c980107aa8a2c17a9cd5fcf58e",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 1,
+        "tokens": 40750,
+        "reused": false,
+        "trace_id": "2827f77252a822c7285126a75cec58b3",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\executions\\issue-cc-agg1\\toolz-join-unmatched\\inv1"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 10,
+        "tokens": 104010,
+        "trace_id": "f2f62cdbb0a621b5365193ca3199bfd0",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\editors\\call-001"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 9,
+        "tokens": 93408,
+        "trace_id": "bc675170d486c73c5944acf7a59cd106",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\editors\\call-002"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 20,
+        "tokens": 310407,
+        "trace_id": "b7c37f415299536061e171a2efe6871f",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-indexed-ppc-20261106\\experiment\\editors\\call-003"
+      }
+    ],
+    "fresh_model_calls": 76,
+    "tokens": 831429,
+    "known_tokens_minimum": 831429
+  }
+}

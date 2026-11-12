@@ -1,0 +1,53 @@
+{
+  "status": "agent_error",
+  "arm": "harness2",
+  "task_id": "more-range-equality",
+  "strategy_search": true,
+  "independent_grading_available": false,
+  "error_type": "ValueError",
+  "error": "No officially adopted final candidate; do not select using independent scores",
+  "seconds": 764.813,
+  "rollouts": [
+    {
+      "label": "base1",
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-range-equality\\executions\\issue-cc-agg1\\more-range-equality\\base1"
+    }
+  ],
+  "usage": {
+    "phases": [
+      {
+        "phase": "candidate",
+        "fresh_model_calls": 12,
+        "tokens": 59896,
+        "reused": false,
+        "trace_id": "35d85f7500ba243c336980addb9e693c",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-range-equality\\executions\\issue-cc-agg1\\more-range-equality\\base1"
+      },
+      {
+        "phase": "feedback",
+        "fresh_model_calls": 20,
+        "tokens": 662652,
+        "reused": false,
+        "trace_id": "97e6f195f55c79a78259af5a465415c3",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-range-equality\\executions\\issue-cc-agg1\\more-range-equality\\base1"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 2,
+        "tokens": 95604,
+        "trace_id": "d2db6d97250003050c2cb79eced3c341",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-range-equality\\editors\\call-001"
+      },
+      {
+        "phase": "editor",
+        "fresh_model_calls": 1,
+        "tokens": 44947,
+        "trace_id": "024a5f792495693b89d585b7fc3c5a45",
+        "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-range-equality\\editors\\call-002"
+      }
+    ],
+    "fresh_model_calls": 35,
+    "tokens": 863099,
+    "known_tokens_minimum": 863099
+  }
+}

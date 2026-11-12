@@ -1,0 +1,208 @@
+{
+  "schema": "public-editor-evidence-v1",
+  "files": {
+    "e0001": {
+      "id": "e0001",
+      "path": "deliverables/base1/candidate.diff.txt",
+      "sha256": "16fd6864632dab8186ed9b920ae7c38fb797c84086ba54607c5d22bf82394aab",
+      "characters": 364,
+      "bytes": 364,
+      "storage": "e0001.txt",
+      "alias_of": null
+    },
+    "e0002": {
+      "id": "e0002",
+      "path": "deliverables/base1/INDEX.md",
+      "sha256": "171030f550952bec28e5f201b1ab56d6ae6b907b03f7da983ce9d8e148c8f531",
+      "characters": 406,
+      "bytes": 406,
+      "storage": "e0002.txt",
+      "alias_of": null
+    },
+    "e0003": {
+      "id": "e0003",
+      "path": "harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+      "characters": 96,
+      "bytes": 96,
+      "storage": "e0003.txt",
+      "alias_of": null
+    },
+    "e0004": {
+      "id": "e0004",
+      "path": "harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "characters": 0,
+      "bytes": 0,
+      "storage": "e0004.txt",
+      "alias_of": null
+    },
+    "e0005": {
+      "id": "e0005",
+      "path": "harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "characters": 0,
+      "bytes": 0,
+      "storage": "e0004.txt",
+      "alias_of": "e0004"
+    },
+    "e0006": {
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "56f486257733d731e0b6dd97a9033a084b1606c9b1e079c104a1ea57c572e59a",
+      "characters": 31923,
+      "bytes": 31923,
+      "storage": "e0006.txt",
+      "alias_of": null,
+      "events": [
+        {
+          "offset": 0,
+          "length": 93,
+          "kind": "ACTION",
+          "step": 1,
+          "action": "list_files",
+          "location": {
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 93,
+          "length": 1392,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 1485,
+          "length": 103,
+          "kind": "ACTION",
+          "step": 2,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 1588,
+          "length": 6472,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 8060,
+          "length": 99,
+          "kind": "ACTION",
+          "step": 3,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 8159,
+          "length": 152,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 8311,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 4,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "800"
+          }
+        },
+        {
+          "offset": 8416,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 14905,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 5,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "800"
+          }
+        },
+        {
+          "offset": 15010,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 21499,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 6,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "800"
+          }
+        },
+        {
+          "offset": 21604,
+          "length": 6489,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 28093,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 7,
+          "action": "read_file",
+          "location": {
+            "path": "toolz/itertoolz.py",
+            "offset": "800"
+          }
+        },
+        {
+          "offset": 28198,
+          "length": 39,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 28237,
+          "length": 507,
+          "kind": "PUBLIC FEEDBACK RESULT",
+          "status": "ready_for_review",
+          "accepted": true,
+          "feedback_rounds_attempted": 1
+        },
+        {
+          "offset": 28744,
+          "length": 3179,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false
+        }
+      ],
+      "public_terminal": {
+        "status": "ready_for_review",
+        "accepted": true,
+        "feedback_rounds_attempted": 1
+      }
+    },
+    "e0007": {
+      "id": "e0007",
+      "path": "task.md",
+      "sha256": "a59197c651480cab8890666c07fca094b8ac15e83bc80efe4b75619cbf0cd9bf",
+      "characters": 146,
+      "bytes": 146,
+      "storage": "e0007.txt",
+      "alias_of": null
+    }
+  },
+  "inline": {
+    "harness/context_policy.json": "{\"version\": 1, \"deduplicate_reads\": false, \"complete_symbols_first\": false, \"read_index\": false}",
+    "harness/systemprompt.md": "",
+    "harness/tool_descriptions/tool_guidance.md": "",
+    "task.md": "join must yield unmatched left rows with right_default for a left outer join, without a NameError. Preserve matched rows and ordinary inner joins."
+  },
+  "source_export_accessible": false,
+  "independent_grading_accessible": false,
+  "page_characters": 6000,
+  "offset_unit": "Unicode characters; zero-based"
+}

@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-style-color-validation",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:afab17c48fb24fdceed8cd93539be799ed9c19075ec1236fa334d96139e2a4da",
+  "problem_statement": "style and secho must honor palette index 0 for both foreground and background. Invalid colors must raise ValueError: unknown names, booleans, out-of-range palette indices, and RGB sequences without exactly three non-boolean integer components in 0..255. Preserve named colors, valid palette/RGB colors, reset behavior and plain output when color is disabled."
+}

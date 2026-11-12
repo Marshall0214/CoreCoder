@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0006",
+  "path": "rollouts/base1.md",
+  "sha256": "78b5cf32744eb843e0ed2c9e2596d3a581b3e4b278cd23357b31bd38154983d4",
+  "offset": 30743,
+  "content": "=========================================================\\nERROR: test_public_defect (test_admission.Reproduce.test_public_defect)\\n----------------------------------------------------------------------\\nTraceback (most recent call last):\\n  File \\\"/checks/test_admission.py\\\", line 7, in test_public_defect\\n    self.assertEqual(list(join(lambda x: x, [2], lambda x: x, [3], right_default='absent')), [(2, 'absent')])\\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+  "next_offset": 31243,
+  "total_characters": 31922,
+  "eof": false
+}

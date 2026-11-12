@@ -1,0 +1,6 @@
+{
+  "instance_id": "boltons-split-zero",
+  "repo": "mahmoud/boltons",
+  "base_commit": "source-sha256:78cb21355a51c581259dac3bf027a6c4d87230f0956944c4868ce5f7d8dc4c33",
+  "problem_statement": "split_iter with maxsplit=0 must emit one unsplit list of source values, not a nested source object. Support both lists and iterators. Preserve normal separator splitting."
+}

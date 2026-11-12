@@ -1,0 +1,32 @@
+{
+  "policy": "public-preserve-v1",
+  "official_label": "agg1",
+  "chosen_label": "base1",
+  "chosen_folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\base1",
+  "candidates": {
+    "base1": {
+      "public_accepted": true,
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\base1",
+      "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\base1\\feedback\\validation-000\\report.json"
+    },
+    "inv1": {
+      "public_accepted": true,
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\inv1",
+      "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\inv1\\feedback\\validation-000\\report.json"
+    },
+    "dom1": {
+      "public_accepted": false,
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\dom1",
+      "reason": "Public checks not accepted at termination"
+    },
+    "agg1": {
+      "public_accepted": false,
+      "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\agg1",
+      "reason": "Public checks not accepted at termination"
+    }
+  },
+  "independent_grading_used": false,
+  "model_calls": 0,
+  "changed_delivery": true,
+  "not_upstream_selector_vote": true
+}

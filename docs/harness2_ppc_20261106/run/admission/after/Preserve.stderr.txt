@@ -1,0 +1,6 @@
+test_public_normal_behavior (test_admission.Preserve.test_public_normal_behavior) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK

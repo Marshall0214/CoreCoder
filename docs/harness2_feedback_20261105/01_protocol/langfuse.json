@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "trace_id": "2c3238182c1843dc060ca399c6931eb9",
+  "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/2c3238182c1843dc060ca399c6931eb9",
+  "controller_observations": 4,
+  "controller_generations": 0,
+  "publication_model_calls": 0,
+  "inference_receipt": {
+    "trace_id": "62c72148ebfd45ad9f13a8f08497fba3",
+    "generation_count": 2,
+    "usage_status": "known",
+    "prompt_tokens": 81952,
+    "completion_tokens": 960,
+    "all_operations_ended": true
+  },
+  "inference_observations": 5,
+  "per_round_usage_verified": true,
+  "publisher_sha256": "6344ebd1458d6d4f7478ea8ac1b4335fddba99065fdc202566343ff675b55151"
+}

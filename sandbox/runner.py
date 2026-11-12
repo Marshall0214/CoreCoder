@@ -13,6 +13,7 @@ from contextvars import ContextVar
 from pathlib import Path
 
 ACTIVE_POLICY = ContextVar('repair_sandbox_policy', default=None)
+RUNNER_START_MARKER = b'CORECODER_SANDBOX_RUNNER_STARTED\n'
 
 
 class SandboxError(RuntimeError):
@@ -70,14 +71,22 @@ def cleanup(root):
         control(['rm', '-f', *ids])
 
 
-def bounded(args, timeout, limit=1048576):
-    """Bound both CLI streams in memory; stop log floods without filling a disk."""
+def bounded(args, timeout, limit=1048576, *, input_data=None):
+    """Drain output while feeding trusted stdin; timeout also bounds blocked input."""
+    if input_data is not None and not isinstance(input_data, bytes):
+        raise TypeError('Docker stdin must be bytes')
     proc = subprocess.Popen(['docker', *args], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                            stdin=subprocess.DEVNULL)
+                            stdin=subprocess.PIPE if input_data is not None else subprocess.DEVNULL)
     buffers = [bytearray(), bytearray()]
     total = 0
     exceeded = threading.Event()
     lock = threading.Lock()
+
+    def stop():
+        try:
+            proc.kill()
+        except OSError:  # It can exit between the output reader and timeout handler.
+            pass
 
     def drain(stream, index):
         nonlocal total
@@ -88,18 +97,34 @@ def bounded(args, timeout, limit=1048576):
                 total += len(chunk)
                 if total > limit:
                     exceeded.set()
-                    proc.kill()
+                    stop()
+
+    def feed():
+        try:
+            proc.stdin.write(input_data)
+            proc.stdin.flush()
+        except (BrokenPipeError, OSError):
+            pass  # The command's exit status/output still describe an early exit.
+        finally:
+            try:
+                proc.stdin.close()
+            except OSError:
+                pass
 
     threads = [threading.Thread(target=drain, args=(stream, i), daemon=True)
                for i, stream in enumerate((proc.stdout, proc.stderr))]
     for thread in threads:
         thread.start()
+    if input_data is not None:
+        writer = threading.Thread(target=feed, daemon=True)
+        threads.append(writer)
+        writer.start()
     timed_out = False
     try:
         proc.wait(timeout=timeout)
     except subprocess.TimeoutExpired:
         timed_out = True
-        proc.kill()
+        stop()
         proc.wait()
     finally:
         for thread in threads:
@@ -129,7 +154,9 @@ def command(image_id, name, task_owner, source, harness, entry, source_root, pac
     if relative.is_absolute() or source_root.startswith('/') or '..' in relative.parts or '\\' in source_root or ':' in source_root:
         raise ValueError('Unsafe source root')
     mounts = []
-    for path, target in ((source, '/source'), (harness, '/checks'), (entry, '/runner.py')):
+    # A generated single-file bind mount can become unreadable on Desktop/WSL.
+    # Keep source/checks read-only; transmit the trusted runner through stdin.
+    for path, target in ((source, '/source'), (harness, '/checks')):
         path = Path(path).resolve()
         if ',' in str(path):
             raise ValueError('Comma in Docker mount path')
@@ -147,19 +174,30 @@ def command(image_id, name, task_owner, source, harness, entry, source_root, pac
 def run(source, harness, package, source_root, logs, group, boot, policy, task_owner):
     name = 'corecoder-test-' + uuid.uuid4().hex
     entry = logs / (group + '-runner.py')
-    entry.write_text('import signal\nsignal.alarm(15)\n' + boot, encoding='utf-8')
+    code_text = ('import os, signal\nsignal.alarm(15)\n'
+                 f'os.write(2, {RUNNER_START_MARKER!r})\n' + boot)
+    runner_input = code_text.encode('utf-8')
+    entry.write_bytes(runner_input)  # Evidence only; this path is never mounted.
     started = time.perf_counter()
-    result = {'returncode': None, 'timed_out': False, 'sandbox': dict(policy), 'sandbox_status': 'sandbox_start_failed'}
+    result = {'returncode': None, 'timed_out': False, 'sandbox': dict(policy),
+              'sandbox_status': 'sandbox_start_failed', 'phase': 'create',
+              'runner_transport': 'stdin', 'runner_sha256': hashlib.sha256(runner_input).hexdigest(),
+              'runner_bytes': len(runner_input), 'runner_started': False, 'result_collected': False}
     try:
         control(command(policy['image_id'], name, task_owner, source, harness, entry, source_root, package, group))
         # Keep tmpfs mounted until results have been copied. A stopped container
         # loses /tmp even though its readonly root filesystem still exists.
+        result['phase'] = 'start'
         control(['start', name])
-        code, out, err, timeout, overflow = bounded(['exec', name, 'python', '-I', '-B', '/runner.py',
+        result['phase'] = 'execute'
+        code, out, err, timeout, overflow = bounded(['exec', '-i', name, 'python', '-I', '-B', '-',
                                                    '/source/' + source_root, '/checks', package,
-                                                   group, '/tmp/result.json'], 20)
+                                                   group, '/tmp/result.json'], 20, input_data=runner_input)
         (logs / (group + '.stdout.txt')).write_bytes(out)
         (logs / (group + '.stderr.txt')).write_bytes(err)
+        # Diagnostic only, never an attestation of candidate/test correctness.
+        result['runner_started'] = err.startswith(RUNNER_START_MARKER)
+        result['phase'] = 'inspect'
         state = json.loads(control(['inspect', '--format', '{{json .State}}', name]))
         timeout = timeout or code == 142  # SIGALRM: original 15-second test deadline.
         oom = state.get('OOMKilled', False)
@@ -168,28 +206,42 @@ def run(source, harness, package, source_root, logs, group, boot, policy, task_o
             oom = oom or any(line.startswith(b'oom_kill ') and int(line.split()[1]) > 0 for line in memory.splitlines())
         result.update(returncode=code, timed_out=timeout,
                       sandbox_status='sandbox_timeout' if timeout else 'sandbox_output_limit' if overflow
-                      else 'sandbox_oom' if oom else 'completed')
+                      else 'sandbox_oom' if oom else 'sandbox_runner_start_failed'
+                      if not result['runner_started'] else 'completed')
         if result['sandbox_status'] == 'completed':
             # Docker's archive API does not expose this tmpfs mount. Stream
             # the one result file while the container is alive instead.
-            code, archive, _, copy_timeout, copy_overflow = bounded(
+            result['phase'] = 'collect_result'
+            copy_code, archive, copy_err, copy_timeout, copy_overflow = bounded(
                 ['exec', name, 'tar', '-C', '/tmp', '-cf', '-', 'result.json'], 10, 131072)
-            if code or copy_timeout or copy_overflow:
+            (logs / (group + '-result.stderr.txt')).write_bytes(copy_err)
+            result['result_read'] = {'returncode': copy_code, 'timed_out': copy_timeout,
+                                     'output_limit_exceeded': copy_overflow}
+            if copy_timeout:
+                result['sandbox_status'] = 'sandbox_result_timeout'
+            elif copy_overflow:
                 result['sandbox_status'] = 'sandbox_invalid_result'
+            elif copy_code:
+                result['sandbox_status'] = 'sandbox_result_missing'
             else:
                 try:
                     score = parse_archive(archive)
-                    result.update(score)
+                    result.update(score, result_collected=True)
                     (logs / (group + '.json')).write_text(json.dumps(score), encoding='utf-8')
                 except (ValueError, KeyError, TypeError, AttributeError, tarfile.TarError, UnicodeError):
                     result['sandbox_status'] = 'sandbox_invalid_result'
+        else:
+            result['phase'] = 'execute'
     except SandboxError as exc:
         result['sandbox_status'] = exc.status
     finally:
+        if result['sandbox_status'] != 'completed':
+            result['failure_phase'] = result['phase']
         try:
             control(['rm', '-f', name])
         except SandboxError:
             result['cleanup_failed'] = True
+            result['status_before_cleanup'] = result['sandbox_status']
             result['sandbox_status'] = 'sandbox_cleanup_failed'
         result['seconds'] = round(time.perf_counter() - started, 4)
         (logs / (group + '-sandbox.json')).write_text(json.dumps(result), encoding='utf-8')

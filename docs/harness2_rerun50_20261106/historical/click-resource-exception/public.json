@@ -1,0 +1,6 @@
+{
+  "instance_id": "click-resource-exception",
+  "repo": "pallets/click",
+  "base_commit": "source-sha256:b22a7915c2db12b0ef79442efb80f745eadf93f85d3110b39b7f7db3989f7bfb",
+  "problem_statement": "Context-managed resources registered with with_resource must receive the real exception type, value and traceback on exit, and their exception suppression behavior must be respected."
+}

@@ -1,0 +1,143 @@
+"""Freeze completed single-chain evidence; no model, Docker or network calls."""
+import hashlib
+import json
+import re
+import shutil
+from pathlib import Path
+
+from evals.runner import digest, snapshot
+
+ROOT = Path(r'D:\project_other\CoreCoder')
+RUN = ROOT / '.tmp/harness2-feedback-20261105-v3'
+PACKET = ROOT / 'docs/harness2_feedback_20261105'
+MANIFEST = ROOT / 'docs/harness2-feedback-20261105.json'
+
+
+def read(path):
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def copy(source, name):
+    assert source.is_file() and not source.is_symlink(), source
+    target = PACKET / name
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, target)
+
+
+report, protocol, receipt = [read(RUN / name) for name in ('report.json', 'protocol.json', 'langfuse.json')]
+rollout = Path(report['rollout'])
+feedback = rollout / 'feedback'
+result = read(feedback / 'report.json')
+assert report['status'] == 'completed' and receipt['status'] == 'passed'
+assert report['execution']['initial_candidate_reused'] and protocol['strategy_search'] is False
+assert result['feedback_rounds_attempted'] == result['fresh_model_calls'] == 2
+assert result['accepted'] and result['original_inputs_unchanged']
+assert report['usage']['actual_tokens'] == 82912
+assert result['metrics']['prompt_tokens'] == 81952 and result['metrics']['completion_tokens'] == 960
+assert report['grading']['agg1']['resolved'] and receipt['per_round_usage_verified']
+assert all(sha(ROOT / name) == value for name, value in protocol['source_files'].items())
+inner = read(feedback / 'protocol.json')
+assert all(sha(ROOT / name) == value for name, value in inner['source_files'].items())
+assert sha(ROOT / 'deploy/langfuse/harness2_feedback.py') == receipt['publisher_sha256']
+reuse = read(rollout / 'reuse.json')
+assert sha(Path(reuse['source_rollout']) / 'agent/report.json') == reuse['original_report_sha256']
+assert sha(rollout / 'agent/report.json') == reuse['copied_report_sha256'] == reuse['original_report_sha256']
+assert digest(snapshot(feedback / 'workspace')) == result['final_candidate_hash']
+frozen = read(ROOT / '.tmp/local50-unmetered-checkpoint-20261103-v2/protocol.json')['source_files']
+assert all(sha(ROOT / name) == value for name, value in frozen.items())
+previous = {}
+for name in ('harness2-autonomous-20261104', 'harness2-agg1-failure-20261104',
+             'local50-unmetered-20261103', 'patch-validator-20261105',
+             'harness2-context-paired-20261104', 'harness2-review-20261104'):
+    manifest = ROOT / 'docs' / (name + '.json')
+    packet = ROOT / 'docs' / name.replace('-', '_')
+    data = read(manifest)
+    assert all(sha(packet / file) == value for file, value in data['files'].items()), name
+    previous[name] = {'manifest_sha256': sha(manifest), 'verified_files': len(data['files'])}
+for number in (1, 2):
+    messages = read(feedback / 'rounds' / f'{number:03d}' / 'messages.json')
+    payload = json.loads(messages[-1]['content'])
+    assert set(payload['task']) == {'instance_id', 'repo', 'base_commit', 'problem_statement'}
+    assert set(payload['public_feedback']['public_checks']) == {'Reproduce', 'Preserve'}
+    assert sorted(row['path'] for row in payload['current_fragments']) == sorted(inner['allowed_files'])
+    assert not any('test' in Path(row['path']).parts for row in payload['current_fragments'])
+assert not PACKET.exists() and not MANIFEST.exists()
+PACKET.mkdir()
+for name in ('protocol.json', 'report.json', 'langfuse.json', 'identity/identity.json', 'identity-final/identity.json',
+             'grading/grading.json'):
+    copy(RUN / name, '01_protocol/' + name)
+for name in ('job.json', 'public.json', 'execution.json', 'reuse.json', 'worker.log',
+             'agent/report.json', 'agent/patch.diff', 'agent/baseline-files.json'):
+    copy(rollout / name, '02_rollout/' + name)
+for name in ('protocol.json', 'report.json', 'patch.diff', 'trace.jsonl', 'sandbox.json'):
+    copy(feedback / name, '03_feedback/' + name)
+
+
+def validation(path, target):
+    for name in ('report.json', 'patch.diff'):
+        copy(path / name, target + '/' + name)
+    for folder in ('static-baseline', 'static-candidate', 'public-logs'):
+        for file in sorted((path / folder).iterdir()):
+            if file.is_file() and file.suffix in ('.json', '.txt', '.py'):
+                copy(file, target + '/' + folder + '/' + file.name)
+
+
+validation(feedback / 'validation-000', '03_feedback/validation-000')
+for number in (1, 2):
+    folder = feedback / 'rounds' / f'{number:03d}'
+    prefix = '03_feedback/rounds/' + f'{number:03d}'
+    for name in ('messages.json', 'response.txt', 'report.json', 'patch.diff'):
+        copy(folder / name, prefix + '/' + name)
+    validation(folder / 'validation', prefix + '/validation')
+for name in ('report.json', 'patch.diff'):
+    copy(rollout / 'grading' / name, '04_independent/' + name)
+for file in sorted((rollout / 'grading/grading-logs').iterdir()):
+    if file.is_file():
+        copy(file, '04_independent/logs/' + file.name)
+for label, folder in (('original', RUN / 'input'), ('initial_candidate', rollout / 'candidate-input'),
+                      ('final_candidate', feedback / 'workspace')):
+    copy(folder / 'toolz/itertoolz.py', '05_source/' + label + '-itertoolz.py.txt')
+copy(RUN / 'input/LICENSE.txt', '05_source/toolz-LICENSE.txt')
+source_files = set(protocol['source_files']) | set(inner['source_files']) | {
+    'deploy/langfuse/harness2_feedback.py', 'tests/test_harness2_feedback.py', 'tests/test_feedback_repair.py'}
+for name in sorted(source_files):
+    copy(ROOT / name, '06_implementation/' + name + '.txt')
+copy(ROOT / 'repairflow/validation_checks/toolz_join/test_admission.py', '06_implementation/public-test-admission.py.txt')
+copy(ROOT / 'docs/harness2-feedback-20261105.md', '07_notes/acceptance.md')
+copy(Path(__file__), '07_notes/freeze.py.txt')
+for attempt, names in (('harness2-feedback-20261105', ('identity/job.json', 'identity/worker.log')),
+                       ('harness2-feedback-20261105-v2', ('protocol.json',
+                        'executions/feedback-validation/toolz-join-unmatched/agg1/worker.log'))):
+    for name in names:
+        copy(ROOT / '.tmp' / attempt / name, '08_startup_failures/' + attempt + '/' + name)
+verification = {'pytest': {'passed': 68, 'skipped': 1, 'seconds': 4.30},
+    'controller_python312_unittest': {'tests': 10, 'passed': True}, 'ruff': 'passed',
+    'baseline_source_files_verified': len(frozen),
+    'public_test_invocations': 15, 'independent_test_invocations': 2,
+    'new_model_calls': 2, 'startup_attempts_before_inference': 2,
+    'visible_source_receipts_per_round': len(inner['allowed_files']),
+    'not_a_fresh_paired_comparison': True, 'previous_packets': previous}
+(PACKET / '07_notes/verification.json').write_text(json.dumps(verification, indent=2) + '\n', encoding='utf-8')
+files = {file.relative_to(PACKET).as_posix(): sha(file) for file in sorted(PACKET.rglob('*')) if file.is_file()}
+manifest = {'scope': 'One known saved-Harness candidate repaired through the real adapter; no fresh PPC or accuracy benchmark',
+    'model': 'qwen3.5:27b', 'thinking': False, 'new_model_calls': 2, 'new_tokens': 82912,
+    'feedback_rounds': 2, 'max_feedback_rounds': 20, 'public_passed': '5/5',
+    'independent': {'Target': '1/1', 'Controls': '1/1', 'feedback_to_model': False},
+    'historical_candidate_generation_reused': True, 'historical_model_calls_counted_again': False,
+    'baseline_21_of_50_unchanged': True, 'previous_packets': previous, 'files': files}
+MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+assert all(sha(PACKET / name) == value for name, value in read(MANIFEST)['files'].items())
+assert not any(path.name.startswith('.env') for path in PACKET.rglob('*'))
+for name in ('docs/harness2-feedback-20261105.md', 'docs/patch-feedback-20261105.md'):
+    doc = ROOT / name
+    for target in re.findall(r'\]\(([^)]+)\)', doc.read_text(encoding='utf-8')):
+        if not target.startswith(('http:', 'https:', '#')):
+            assert (doc.parent / target).exists(), target
+print(json.dumps({'status': 'passed', 'evidence_files': len(files),
+    'bytes': sum(path.stat().st_size for path in PACKET.rglob('*') if path.is_file()),
+    'previous_evidence_files_verified': sum(row['verified_files'] for row in previous.values()),
+    'baseline_source_files_verified': len(frozen), 'manifest_sha256': sha(MANIFEST)}, indent=2))

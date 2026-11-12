@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "D:\project_other\CoreCoder\integrations\harness2_selection.py", line 4, in <module>
+    from evals.runner import digest, snapshot
+  File "D:\project_other\CoreCoder\evals\runner.py", line 17, in <module>
+    from .runtime import Events
+  File "D:\project_other\CoreCoder\evals\runtime.py", line 12, in <module>
+    from corecoder.tools.base import Tool
+  File "D:\project_other\CoreCoder\corecoder\__init__.py", line 5, in <module>
+    from corecoder.agent import Agent
+  File "D:\project_other\CoreCoder\corecoder\agent.py", line 16, in <module>
+    from .llm import LLM
+  File "D:\project_other\CoreCoder\corecoder\llm.py", line 16, in <module>
+    from openai import APIConnectionError, APIError, APITimeoutError, BadRequestError, OpenAI, RateLimitError
+ModuleNotFoundError: No module named 'openai'

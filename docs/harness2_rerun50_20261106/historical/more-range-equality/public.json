@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-range-equality",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:07aa42a116de2df670d7eaa21b587bc18f96b0b5029640857e8f00ec2b6fa177",
+  "problem_statement": "numeric_range objects yielding the same singleton must compare equal regardless of step and have equal hashes. Preserve unequal ranges and equality of empty ranges."
+}

@@ -1,0 +1,478 @@
+{
+  "schema": "harness2-posthoc-audit-v1",
+  "model_calls": 0,
+  "original_report_sha256": "05fb2ec7727daa545bb5f132f344b19d2bf731e03070b23cde9b16940f61871a",
+  "original_summary": {
+    "no_harness": {
+      "scheduled": 50,
+      "attempted": 50,
+      "graded": 50,
+      "resolved": 24,
+      "complete": true,
+      "repair_rate": 0.48,
+      "errors": 0,
+      "actual_tokens": null,
+      "known_tokens_minimum": 8795691
+    },
+    "harness2": {
+      "scheduled": 50,
+      "attempted": 50,
+      "graded": 44,
+      "resolved": 27,
+      "complete": true,
+      "repair_rate": 0.54,
+      "errors": 6,
+      "actual_tokens": null,
+      "known_tokens_minimum": 23181327
+    },
+    "pairs": {
+      "graded_pairs": 44,
+      "new_successes": [
+        "boltons-split-zero",
+        "itsdangerous-none-salt",
+        "more-negative-range-slice",
+        "more-permutation-exception"
+      ],
+      "lost_successes": [
+        "more-combination-index"
+      ]
+    }
+  },
+  "errors": {
+    "click-style-color-validation": {
+      "core_error": "agg: ValueError: Editor evidence exceeds local transport bound after lossless sharing",
+      "kind": "evidence_transport"
+    },
+    "click-help-eagerness": {
+      "core_error": "agg: RuntimeError: Local bridge worker failed: D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-help-eagerness\\editors\\call-001\\worker.log",
+      "kind": "editor_schema",
+      "replies": [
+        {
+          "file": "arms\\harness2\\click-help-eagerness\\editors\\call-001\\reply-attempt-1.txt",
+          "diagnostic": "missing=['context_policy.json', 'tool_descriptions/tool_guidance.md'], unexpected=[]; systemprompt.md: 4754 characters; maximum 4000; shorten this field; return every declared file, including unchanged/empty files",
+          "sha256": "b863bc762c2fbe371db0525e31e225b04f35f45c2e22cc6666503bcc33a5d648"
+        },
+        {
+          "file": "arms\\harness2\\click-help-eagerness\\editors\\call-001\\reply-attempt-2.txt",
+          "diagnostic": "missing=['context_policy.json', 'tool_descriptions/tool_guidance.md'], unexpected=[]; systemprompt.md: 5905 characters; maximum 4000; shorten this field; return every declared file, including unchanged/empty files",
+          "sha256": "aa7028817203ad82cb324f66bc4b990bd6c2be02a5dac4ebd2f8710e9b28060c"
+        }
+      ]
+    },
+    "click-flag-default-map": {
+      "core_error": "agg: ValueError: Editor evidence exceeds local transport bound after lossless sharing",
+      "kind": "evidence_transport"
+    },
+    "click-invoke-missing": {
+      "core_error": "agg: ValueError: Editor evidence exceeds local transport bound after lossless sharing",
+      "kind": "evidence_transport"
+    },
+    "boltons-remap-set": {
+      "core_error": "agg: ValueError: Editor evidence exceeds local transport bound after lossless sharing",
+      "kind": "evidence_transport"
+    },
+    "more-range-equality": {
+      "core_error": "agg: RuntimeError: Local bridge worker failed: D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-range-equality\\editors\\call-001\\worker.log",
+      "kind": "editor_schema",
+      "replies": [
+        {
+          "file": "arms\\harness2\\more-range-equality\\editors\\call-001\\reply-attempt-1.txt",
+          "diagnostic": "systemprompt.md: 4951 characters; maximum 4000; shorten this field; tool_descriptions/tool_guidance.md: 4908 characters; maximum 4000; shorten this field; return every declared file, including unchanged/empty files",
+          "sha256": "2ef950577c1e04b5bed167284d52999fab214a3cd4ab617c7d97994cfe4960fd"
+        },
+        {
+          "file": "arms\\harness2\\more-range-equality\\editors\\call-001\\reply-attempt-2.txt",
+          "diagnostic": "systemprompt.md: 4235 characters; maximum 4000; shorten this field; tool_descriptions/tool_guidance.md: 4908 characters; maximum 4000; shorten this field; return every declared file, including unchanged/empty files",
+          "sha256": "87008f3bd8709966ed6d2e6a207ee266123ffa17394245552ed4d2d35c5c08a7"
+        }
+      ]
+    }
+  },
+  "transport_replay": {
+    "click-style-color-validation": {
+      "status": "transport_ready",
+      "exact_round_trip": true,
+      "raw_serialized_characters": 320813,
+      "encoded_serialized_characters": 139093
+    },
+    "click-flag-default-map": {
+      "status": "transport_ready",
+      "exact_round_trip": true,
+      "raw_serialized_characters": 370561,
+      "encoded_serialized_characters": 156046
+    },
+    "click-invoke-missing": {
+      "status": "transport_ready",
+      "exact_round_trip": true,
+      "raw_serialized_characters": 269277,
+      "encoded_serialized_characters": 93531
+    },
+    "boltons-remap-set": {
+      "status": "still_blocked",
+      "error": "Editor evidence exceeds local transport bound after nested lossless sharing",
+      "no_truncation": true
+    }
+  },
+  "selection_replay": {
+    "click-style-color-validation": {
+      "policy": "public-preserve-v1",
+      "official_label": null,
+      "chosen_label": null,
+      "chosen_folder": null,
+      "candidates": {
+        "base1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\base1",
+          "reason": "Public checks not accepted at termination"
+        },
+        "dom1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\dom1",
+          "reason": "Public checks not accepted at termination"
+        },
+        "inv1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-style-color-validation\\executions\\issue-cc-agg1\\click-style-color-validation\\inv1",
+          "reason": "Public checks not accepted at termination"
+        }
+      },
+      "independent_grading_used": false,
+      "model_calls": 0,
+      "changed_delivery": false,
+      "not_upstream_selector_vote": true
+    },
+    "click-help-eagerness": {
+      "policy": "public-preserve-v1",
+      "official_label": null,
+      "chosen_label": null,
+      "chosen_folder": null,
+      "candidates": {
+        "base1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-help-eagerness\\executions\\issue-cc-agg1\\click-help-eagerness\\base1",
+          "reason": "Public checks not accepted at termination"
+        }
+      },
+      "independent_grading_used": false,
+      "model_calls": 0,
+      "changed_delivery": false,
+      "not_upstream_selector_vote": true
+    },
+    "click-flag-default-map": {
+      "policy": "public-preserve-v1",
+      "official_label": null,
+      "chosen_label": null,
+      "chosen_folder": null,
+      "candidates": {
+        "base1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-flag-default-map\\executions\\issue-cc-agg1\\click-flag-default-map\\base1",
+          "reason": "Public checks not accepted at termination"
+        },
+        "inv1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-flag-default-map\\executions\\issue-cc-agg1\\click-flag-default-map\\inv1",
+          "reason": "Public checks not accepted at termination"
+        },
+        "dom1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-flag-default-map\\executions\\issue-cc-agg1\\click-flag-default-map\\dom1",
+          "reason": "Public checks not accepted at termination"
+        }
+      },
+      "independent_grading_used": false,
+      "model_calls": 0,
+      "changed_delivery": false,
+      "not_upstream_selector_vote": true
+    },
+    "click-invoke-missing": {
+      "policy": "public-preserve-v1",
+      "official_label": null,
+      "chosen_label": null,
+      "chosen_folder": null,
+      "candidates": {
+        "base1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\base1",
+          "reason": "Public checks not accepted at termination"
+        },
+        "dom1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\dom1",
+          "reason": "Public checks not accepted at termination"
+        },
+        "inv1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\click-invoke-missing\\executions\\issue-cc-agg1\\click-invoke-missing\\inv1",
+          "reason": "Public checks not accepted at termination"
+        }
+      },
+      "independent_grading_used": false,
+      "model_calls": 0,
+      "changed_delivery": false,
+      "not_upstream_selector_vote": true
+    },
+    "boltons-remap-set": {
+      "policy": "public-preserve-v1",
+      "official_label": null,
+      "chosen_label": null,
+      "chosen_folder": null,
+      "candidates": {
+        "base1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\base1",
+          "reason": "Public checks not accepted at termination"
+        },
+        "inv1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\inv1",
+          "reason": "Public checks not accepted at termination"
+        },
+        "dom1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\boltons-remap-set\\executions\\issue-cc-agg1\\boltons-remap-set\\dom1",
+          "reason": "Public checks not accepted at termination"
+        }
+      },
+      "independent_grading_used": false,
+      "model_calls": 0,
+      "changed_delivery": false,
+      "not_upstream_selector_vote": true
+    },
+    "more-combination-index": {
+      "policy": "public-preserve-v1",
+      "official_label": "agg1",
+      "chosen_label": "base1",
+      "chosen_folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\base1",
+      "candidates": {
+        "base1": {
+          "public_accepted": true,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\base1",
+          "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\base1\\feedback\\validation-000\\report.json"
+        },
+        "inv1": {
+          "public_accepted": true,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\inv1",
+          "validation_receipt": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\inv1\\feedback\\validation-000\\report.json"
+        },
+        "dom1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\dom1",
+          "reason": "Public checks not accepted at termination"
+        },
+        "agg1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\agg1",
+          "reason": "Public checks not accepted at termination"
+        }
+      },
+      "independent_grading_used": false,
+      "model_calls": 0,
+      "changed_delivery": true,
+      "not_upstream_selector_vote": true
+    },
+    "more-range-equality": {
+      "policy": "public-preserve-v1",
+      "official_label": null,
+      "chosen_label": null,
+      "chosen_folder": null,
+      "candidates": {
+        "base1": {
+          "public_accepted": false,
+          "folder": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-range-equality\\executions\\issue-cc-agg1\\more-range-equality\\base1",
+          "reason": "Public checks not accepted at termination"
+        }
+      },
+      "independent_grading_used": false,
+      "model_calls": 0,
+      "changed_delivery": false,
+      "not_upstream_selector_vote": true
+    }
+  },
+  "archived_files_verified": 345,
+  "limitations": [
+    "Post-hoc mechanism replay, not a fresh model benchmark",
+    "Original 24/50 and 27/50 results remain unchanged",
+    "Precise total token cost remains unknown"
+  ],
+  "implementation_sha256": {
+    "integrations/harness2.py": "b07aa0fda1cd65220bef66c77b464e02384043a4eab5f3eef9d19da2c2ce9ccf",
+    "integrations/harness2_evidence.py": "b2a6fdd4ca536d2de24563a7809f95b5be6da93d88e1bc85f8842e279d576b18",
+    "integrations/harness2_batch.py": "3e84f40db86f898f5f167a19afd2e85c63e5d43e636b86fe4da680991c95a980",
+    "integrations/harness2_selection.py": "680bfb875735637c7eeeb25f0e4ce8ff9d73bb4ad783b870ec0aa1122d00e6bb",
+    "tests/test_harness2_selection.py": "5ade46d4fe8f72521ce67116069931a55bb2e3aa3c3080a0e46558ccc5b3dcc5",
+    "tests/test_harness2_batch.py": "a24ef8da29f5e7af3de1c04f94ded56efd1bd2f5da5f8b0a914c62f7fe565be4"
+  },
+  "post_selection_independent_grading": {
+    "public_selected": {
+      "passed": true,
+      "scope_violations": [],
+      "changed_files": [
+        "more_itertools/more.py"
+      ],
+      "groups": {
+        "Target": {
+          "returncode": 0,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 0,
+          "failures": 0,
+          "successful": true,
+          "seconds": 3.0612,
+          "passed": true
+        },
+        "Controls": {
+          "returncode": 0,
+          "timed_out": false,
+          "sandbox": {
+            "backend": "docker",
+            "image": "corecoder-test-sandbox:v1",
+            "image_id": "sha256:b26ab495fcf2ae0473cd4a9a7430700697e9041cdbe3fd4c6d2238274319b219",
+            "network": "none",
+            "cpus": 1,
+            "memory_bytes": 1073741824,
+            "pids": 64,
+            "output_limit_bytes": 1048576
+          },
+          "sandbox_status": "completed",
+          "tests_run": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_successes": 0,
+          "errors": 0,
+          "failures": 0,
+          "successful": true,
+          "seconds": 3.4769,
+          "passed": true
+        }
+      },
+      "scope": "hand-authored Target and Controls; not entire upstream suite",
+      "resolved": true
+    }
+  },
+  "lost_success_analysis": {
+    "task_id": "more-combination-index",
+    "rollouts": [
+      {
+        "label": "base1",
+        "status": "ready_for_review",
+        "public_accepted": true,
+        "feedback_rounds": 0,
+        "patch_sha256": "616b3097d005be7e3150fbb09b737f65493214340d8c4596a2d750b61c1f14b1",
+        "round_statuses": []
+      },
+      {
+        "label": "inv1",
+        "status": "ready_for_review",
+        "public_accepted": true,
+        "feedback_rounds": 0,
+        "patch_sha256": "1d09d7e2c843a43679d7bb002474480c98183bdbe2c9ff6237251197c9db4c38",
+        "round_statuses": []
+      },
+      {
+        "label": "dom1",
+        "status": "validation_blocked",
+        "public_accepted": false,
+        "feedback_rounds": 9,
+        "patch_sha256": "8f3a07477c07d778cd8a88f5ca4e6b5ba2bd0972c7f05eb559a9c65cb7dd5209",
+        "round_statuses": [
+          {
+            "round": 1,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 2,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 3,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 4,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 5,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 6,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 7,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 8,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 9,
+            "patch_status": "applied",
+            "provider_error": null
+          }
+        ]
+      },
+      {
+        "label": "agg1",
+        "status": "local_provider_failed",
+        "public_accepted": false,
+        "feedback_rounds": 5,
+        "patch_sha256": "9c47c1cd7b7f52455ecd90e645397de4df45e08ade51435c4ed9a8be86eba2ed",
+        "round_statuses": [
+          {
+            "round": 1,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 2,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 3,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 4,
+            "patch_status": "rejected",
+            "provider_error": null
+          },
+          {
+            "round": 5,
+            "patch_status": null,
+            "provider_error": "local_provider_failed"
+          }
+        ]
+      }
+    ],
+    "finding": "Publicly accepted base1/inv1 existed, but single-final k=1 adoption delivered publicly failed agg1",
+    "separate_failure": "agg1 had a ranking error, four rejected JSON patches, then a provider failure; no precise cause attributed to truncation"
+  }
+}

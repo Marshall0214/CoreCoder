@@ -1,0 +1,28 @@
+{
+  "task_id": "more-combination-index",
+  "mode": "agg",
+  "k": 1,
+  "chosen_id": "A",
+  "chosen_label": "agg1",
+  "chosen_run_id": "issue-cc-agg1/more-combination-index/agg1",
+  "chosen_is_base": false,
+  "why": "trivial pool: single final at k=1; delivered without a selector session",
+  "id_map": {
+    "A": "agg1"
+  },
+  "dropped": [],
+  "n_candidates": 1,
+  "ok": true,
+  "fallback": false,
+  "error": "",
+  "usd": 0.0,
+  "experience": {
+    "cue": "When repairing a function that computes combinatorial indices or validates input sequences against a reference pool, where the original implementation relies on implicit iterator consumption to detect errors.",
+    "lesson": "In `tool_descriptions/tool_guidance.md`, explicitly mandate pre-computation of the reference pool and explicit validation loops for existence and non-decreasing order before any index calculation logic is executed.",
+    "evidence": "The base rollout (base1) and candidate rollouts (agg1, dom1, inv1) all produced patches that failed the `Reproduce` test (`AssertionError: 2 != 1`). The failure occurred because the original iterator-based logic in `combination_with_replacement_index` did not correctly validate non-decreasing order or existence before attempting calculation. The successful adoption of `agg1` (which contained the correct validation logic) was based on the text quality of the deliverable, but the execution evidence shows that *all* candidates failed to pass the test suite in their initial rollout attempts due to this specific logic flaw. The edit rows for `tool_descriptions/tool_guidance.md` in all candidates added explicit validation rules (existence, order, edge cases) which were necessary to correct the behavior, yet the rollouts themselves did not demonstrate a passing execution state for any candidate before adoption.",
+    "confidence": "medium"
+  },
+  "trivial": true,
+  "evidence": "deliverable",
+  "chosen_run_dir": "D:\\project_other\\CoreCoder\\.tmp\\harness2-vs-control-50-20261105\\arms\\harness2\\more-combination-index\\executions\\issue-cc-agg1\\more-combination-index\\agg1"
+}

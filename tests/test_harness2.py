@@ -31,6 +31,10 @@ class BoundaryTests(unittest.TestCase):
         bridge.validate_editor({'files':dict.fromkeys(bridge.FILES,''),'notes':'visible evidence'},'inv1')
         bridge.validate_editor({'experience':None},'experience.agg1')
 
+    def test_format_feedback_identifies_missing_files_and_exact_overlength_fields(self):
+        with self.assertRaisesRegex(ValueError, 'missing=.*tool_guidance.*4001 characters; maximum 4000'):
+            bridge.validate_harness({'systemprompt.md': 'x' * 4001})
+
     def test_multiline_experience_metadata_is_rejected(self):
         with self.assertRaises(ValueError):
             bridge.validate_editor({'experience':dict.fromkeys(('cue','lesson','evidence','confidence'),'a\nb')},'experience.agg1')
@@ -74,6 +78,39 @@ class BoundaryTests(unittest.TestCase):
 
 @unittest.skipUnless((3, 12) <= sys.version_info[:2] < (3, 14), 'Upstream controller requires 3.12/3.13')
 class ControllerTests(unittest.TestCase):
+    def test_indexed_editor_bypasses_eager_packing_and_returns_validated_files(self):
+        from unittest.mock import patch
+
+        from integrations.harness2_context import DEFAULT, POLICY_FILE
+        from integrations.harness2_reader import Store
+
+        load()
+        from harness2.core.spec import ChannelSpec
+
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            root = Path(directory)
+            context = root / 'context'
+            context.mkdir()
+            (context / 'task.md').write_text('Read public evidence', encoding='utf-8')
+            values = {**dict.fromkeys(bridge.FILES, 'concise guidance'), POLICY_FILE: json.dumps(DEFAULT)}
+
+            def child(path, *args):
+                job = bridge.read(path)
+                self.assertEqual(job['evidence_mode'], 'indexed')
+                saved = Store(job['evidence_manifest'], job['evidence_manifest_sha256'])
+                payload = json.loads(job['messages'][-1]['content'])
+                self.assertEqual(payload['evidence_index'], saved.index)
+                self.assertNotIn('visible_files', payload)
+                bridge.write(path.parent / 'reply.json', {'files': values})
+
+            _, Editor = bridge.classes(True, None, 'indexed')
+            editor = Editor(ChannelSpec('opencode', 'local/deterministic'), root / 'editors', False)
+            with (patch.object(bridge, 'child', side_effect=child),
+                  patch.object(bridge, 'evidence', side_effect=AssertionError('Eager evidence packing was called'))):
+                reply = editor.call('Inspect source evidence', context, 'agg1')
+            self.assertTrue(reply.ok)
+            self.assertEqual((context / 'harness/systemprompt.md').read_text(encoding='utf-8'), 'concise guidance')
+
     def test_parallel_editors_have_distinct_artifact_directories(self):
         load()
         from harness2.core.spec import ChannelSpec

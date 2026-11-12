@@ -1,0 +1,4 @@
+{
+  "ok": false,
+  "format_error": "missing=[], unexpected=['notes']; return every declared file, including unchanged/empty files"
+}

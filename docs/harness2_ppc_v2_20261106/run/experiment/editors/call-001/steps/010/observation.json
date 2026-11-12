@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0006",
+  "path": "rollouts/base1.md",
+  "sha256": "78b5cf32744eb843e0ed2c9e2596d3a581b3e4b278cd23357b31bd38154983d4",
+  "offset": 31243,
+  "content": "^^^^^^^^^^^\\n  File \\\"/source/toolz/itertoolz.py\\\", line 918, in join\\n    for key, matches in iteritems(d):\\n                        ^^^^^^^^^\\nNameError: name 'iteritems' is not defined\\n\\n----------------------------------------------------------------------\\nRan 1 test in 0.012s\\n\\nFAILED (errors=1)\\n\", \"omitted_characters\": 0}, \"Preserve\": {\"tests_run\": 1, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"passed\": true, \"timed_out\": false, \"stderr_tail\": \"test_public_normal_behavior (test_admissio",
+  "next_offset": 31743,
+  "total_characters": 31922,
+  "eof": false
+}

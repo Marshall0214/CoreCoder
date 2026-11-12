@@ -1,0 +1,1 @@
+numeric_range objects yielding the same singleton must compare equal regardless of step and have equal hashes. Preserve unequal ranges and equality of empty ranges.

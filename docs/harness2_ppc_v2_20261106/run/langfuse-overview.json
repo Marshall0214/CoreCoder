@@ -1,0 +1,8 @@
+{
+  "trace_id": "dcd4fd07735ea291c20525eec9fae0ed",
+  "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/dcd4fd07735ea291c20525eec9fae0ed",
+  "observations_confirmed": 14,
+  "generations": 0,
+  "model_calls": 0,
+  "native_usage_verified_separately": true
+}

@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "id": "e0021",
+  "path": "task.md",
+  "sha256": "a59197c651480cab8890666c07fca094b8ac15e83bc80efe4b75619cbf0cd9bf",
+  "offset": 0,
+  "content": "join must yield unmatched left rows with right_default for a left outer join, without a NameError. Preserve matched rows and ordinary inner joins.",
+  "next_offset": null,
+  "total_characters": 146,
+  "eof": true
+}

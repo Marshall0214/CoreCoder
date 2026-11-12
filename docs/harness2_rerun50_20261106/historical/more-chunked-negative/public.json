@@ -1,0 +1,6 @@
+{
+  "instance_id": "more-chunked-negative",
+  "repo": "more-itertools/more-itertools",
+  "base_commit": "source-sha256:6dff91d1320761e32c44355b0c3cea387f9d009403359bae0e934ddb17007f6e",
+  "problem_statement": "chunked must reject negative sizes with a clear ValueError containing n must be at least 0, for empty and nonempty inputs. Preserve positive and None sizes."
+}

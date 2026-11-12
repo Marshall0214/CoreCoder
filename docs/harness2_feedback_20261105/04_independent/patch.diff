@@ -1,0 +1,29 @@
+--- a/toolz/itertoolz.py
++++ b/toolz/itertoolz.py
+@@ -904,6 +904,11 @@
+                 if key in d:
+                     for left_match in d[key]:
+                         yield (left_match, item)
++            
++            for key, matches in d.items():
++                if key not in seen_keys:
++                    for match in matches:
++                        yield (match, right_default)
+         else:
+             # Full Join
+             for item in rightseq:
+@@ -915,10 +920,10 @@
+                 else:
+                     yield (left_default, item)
+ 
+-        for key, matches in iteritems(d):
+-            if key not in seen_keys:
+-                for match in matches:
+-                    yield (match, right_default)
++            for key, matches in d.items():
++                if key not in seen_keys:
++                    for match in matches:
++                        yield (match, right_default)
+ 
+ 
+ def diff(*seqs, **kwargs):

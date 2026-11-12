@@ -1,0 +1,96 @@
+{
+  "status": "editor_returned",
+  "model_steps": 10,
+  "reads": [
+    {
+      "ok": true,
+      "id": "e0007",
+      "path": "task.md",
+      "sha256": "a59197c651480cab8890666c07fca094b8ac15e83bc80efe4b75619cbf0cd9bf",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 146,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "56f486257733d731e0b6dd97a9033a084b1606c9b1e079c104a1ea57c572e59a",
+      "offset": 0,
+      "next_offset": 6000,
+      "total_characters": 31923,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "56f486257733d731e0b6dd97a9033a084b1606c9b1e079c104a1ea57c572e59a",
+      "offset": 6000,
+      "next_offset": 12000,
+      "total_characters": 31923,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "56f486257733d731e0b6dd97a9033a084b1606c9b1e079c104a1ea57c572e59a",
+      "offset": 12000,
+      "next_offset": 18000,
+      "total_characters": 31923,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "56f486257733d731e0b6dd97a9033a084b1606c9b1e079c104a1ea57c572e59a",
+      "offset": 18000,
+      "next_offset": 24000,
+      "total_characters": 31923,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "56f486257733d731e0b6dd97a9033a084b1606c9b1e079c104a1ea57c572e59a",
+      "offset": 24000,
+      "next_offset": 30000,
+      "total_characters": 31923,
+      "eof": false
+    },
+    {
+      "ok": true,
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "56f486257733d731e0b6dd97a9033a084b1606c9b1e079c104a1ea57c572e59a",
+      "offset": 30000,
+      "next_offset": null,
+      "total_characters": 31923,
+      "eof": true
+    },
+    {
+      "ok": true,
+      "id": "e0001",
+      "path": "deliverables/base1/candidate.diff.txt",
+      "sha256": "16fd6864632dab8186ed9b920ae7c38fb797c84086ba54607c5d22bf82394aab",
+      "offset": 0,
+      "next_offset": null,
+      "total_characters": 364,
+      "eof": true
+    }
+  ],
+  "format_errors": [
+    {
+      "step": 6,
+      "ok": false,
+      "format_error": "Use a nonnegative character offset and length between 1 and 6000"
+    }
+  ],
+  "independent_grading_used": false,
+  "recent_read_bodies": 3,
+  "complete_small_files_pinned": true
+}

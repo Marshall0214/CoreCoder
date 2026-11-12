@@ -1,4 +1,5 @@
 """Explicit scripted responses or loopback-only Ollama; no cloud credentials."""
+import hashlib
 import json
 import time
 import urllib.request
@@ -56,15 +57,26 @@ class OllamaProvider:
             raise ValueError('Require an installed local Ollama model name; cloud models are disabled')
         self.model, self.deadline, self.calls = model, deadline, []
 
-    def chat(self, messages, tools=None, max_tokens=32768):
+    def chat(self, messages, tools=None, max_tokens=32768, *, response_schema=None):
         if tools:
             raise ValueError('Prepared Issue repair accepts structured patches, not tool requests')
+        if response_schema is not None:
+            if not isinstance(response_schema, dict) or not response_schema:
+                raise ValueError('Require a nonempty JSON Schema object')
+            try:
+                response_schema = json.loads(json.dumps(response_schema, allow_nan=False))
+            except (ValueError, TypeError, RecursionError) as exc:
+                raise ValueError('Require a finite serializable JSON Schema object') from exc
         remaining = self.deadline - time.monotonic()
         if remaining <= 0:
             raise ProviderFailure('task_timeout')
         payload = {'model': self.model, 'messages': messages, 'stream': False, 'think': False,
-                   'format': 'json', 'options': {'temperature': 0, 'num_predict': max_tokens, 'num_ctx': 65536}}
+                   'format': 'json' if response_schema is None else response_schema,
+                   'options': {'temperature': 0, 'num_predict': max_tokens, 'num_ctx': 65536}}
         record = {'scripted': False, 'thinking_requested': False, 'usage_known': False}
+        if response_schema is not None:
+            record.update(schema_sha256=hashlib.sha256(json.dumps(response_schema, sort_keys=True).encode()).hexdigest(),
+                          request_characters=len(json.dumps(payload)), input_truncation='not_verified')
         usage = {}
         self.calls.append(record)
         request = urllib.request.Request('http://127.0.0.1:11434/api/chat',

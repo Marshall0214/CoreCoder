@@ -1,0 +1,406 @@
+{
+  "schema": "public-editor-evidence-v1",
+  "files": {
+    "e0001": {
+      "id": "e0001",
+      "path": "deliverables/base1/candidate.diff.txt",
+      "sha256": "5826fb1ad9620d21ecedc370df2abb3e275758dcd21af39a9f72ef9e43fd2cb1",
+      "characters": 550,
+      "bytes": 550,
+      "storage": "e0001.txt",
+      "alias_of": null
+    },
+    "e0002": {
+      "id": "e0002",
+      "path": "deliverables/base1/INDEX.md",
+      "sha256": "3e83445a53af27c05e7b79e7696e7f853fafb5e39cce9f1b6ebc65c9884f3727",
+      "characters": 406,
+      "bytes": 406,
+      "storage": "e0002.txt",
+      "alias_of": null
+    },
+    "e0003": {
+      "id": "e0003",
+      "path": "harness/context_policy.json",
+      "sha256": "a043ec6913d97791cd960434f1c80673bfc7258831d3bb8f50cb5721a8743790",
+      "characters": 96,
+      "bytes": 96,
+      "storage": "e0003.txt",
+      "alias_of": null
+    },
+    "e0004": {
+      "id": "e0004",
+      "path": "harness/systemprompt.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "characters": 0,
+      "bytes": 0,
+      "storage": "e0004.txt",
+      "alias_of": null
+    },
+    "e0005": {
+      "id": "e0005",
+      "path": "harness/tool_descriptions/tool_guidance.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "characters": 0,
+      "bytes": 0,
+      "storage": "e0004.txt",
+      "alias_of": "e0004"
+    },
+    "e0006": {
+      "id": "e0006",
+      "path": "rollouts/base1.md",
+      "sha256": "ad71ef9e0f8402999a2bb8c5c9418273af4bb65a97f84597ad5c6221201a9fa5",
+      "characters": 85158,
+      "bytes": 85158,
+      "storage": "e0006.txt",
+      "alias_of": null,
+      "events": [
+        {
+          "offset": 0,
+          "length": 93,
+          "kind": "ACTION",
+          "step": 1,
+          "action": "list_files",
+          "location": {
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 93,
+          "length": 2149,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 2242,
+          "length": 102,
+          "kind": "ACTION",
+          "step": 2,
+          "action": "read_file",
+          "location": {
+            "path": "src/click/core.py",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 2344,
+          "length": 6492,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 8836,
+          "length": 105,
+          "kind": "ACTION",
+          "step": 3,
+          "action": "read_file",
+          "location": {
+            "path": "src/click/core.py",
+            "offset": "6000"
+          }
+        },
+        {
+          "offset": 8941,
+          "length": 6340,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 15281,
+          "length": 99,
+          "kind": "ACTION",
+          "step": 4,
+          "action": "search",
+          "location": {}
+        },
+        {
+          "offset": 15380,
+          "length": 1695,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 17075,
+          "length": 106,
+          "kind": "ACTION",
+          "step": 5,
+          "action": "read_file",
+          "location": {
+            "path": "src/click/core.py",
+            "offset": "12000"
+          }
+        },
+        {
+          "offset": 17181,
+          "length": 6393,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 23574,
+          "length": 106,
+          "kind": "ACTION",
+          "step": 6,
+          "action": "read_file",
+          "location": {
+            "path": "src/click/core.py",
+            "offset": "18000"
+          }
+        },
+        {
+          "offset": 23680,
+          "length": 6430,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 30110,
+          "length": 102,
+          "kind": "ACTION",
+          "step": 7,
+          "action": "read_file",
+          "location": {
+            "path": "src/click/core.py",
+            "offset": "0"
+          }
+        },
+        {
+          "offset": 30212,
+          "length": 6492,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 36704,
+          "length": 121,
+          "kind": "ACTION",
+          "step": 8,
+          "action": "read_file",
+          "location": {
+            "path": "src/click/core.py",
+            "offset": "100"
+          }
+        },
+        {
+          "offset": 36825,
+          "length": 162,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 36987,
+          "length": 131,
+          "kind": "ACTION",
+          "step": 9,
+          "action": "read_symbol",
+          "location": {
+            "path": "src/click/core.py",
+            "symbol": "iter_params_for_processing"
+          }
+        },
+        {
+          "offset": 37118,
+          "length": 1080,
+          "kind": "OBSERVATION"
+        },
+        {
+          "offset": 38198,
+          "length": 595,
+          "kind": "ACTION",
+          "step": 10,
+          "action": "apply_patch",
+          "location": {}
+        },
+        {
+          "offset": 38793,
+          "length": 79,
+          "kind": "OBSERVATION",
+          "status": "completed"
+        },
+        {
+          "offset": 38872,
+          "length": 10523,
+          "kind": "PUBLIC FEEDBACK RESULT",
+          "status": "feedback_round_limit",
+          "accepted": false,
+          "feedback_rounds_attempted": 20
+        },
+        {
+          "offset": 49395,
+          "length": 1626,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false
+        },
+        {
+          "offset": 51021,
+          "length": 1771,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 52792,
+          "length": 1797,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 54589,
+          "length": 1771,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 56360,
+          "length": 1829,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 58189,
+          "length": 1771,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 59960,
+          "length": 1829,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 61789,
+          "length": 1771,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 63560,
+          "length": 1829,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 65389,
+          "length": 1771,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 67160,
+          "length": 1829,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 68989,
+          "length": 1771,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 70760,
+          "length": 1829,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 72589,
+          "length": 1771,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 74360,
+          "length": 1829,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 76189,
+          "length": 1771,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 77960,
+          "length": 1829,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 79789,
+          "length": 1771,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        },
+        {
+          "offset": 81560,
+          "length": 1829,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "anchor_not_found"
+        },
+        {
+          "offset": 83389,
+          "length": 1769,
+          "kind": "PUBLIC VALIDATION OBSERVATION",
+          "status": "rejected",
+          "accepted": false,
+          "patch_error_code": "invalid_patch_schema"
+        }
+      ],
+      "public_terminal": {
+        "status": "feedback_round_limit",
+        "accepted": false,
+        "feedback_rounds_attempted": 20
+      }
+    },
+    "e0007": {
+      "id": "e0007",
+      "path": "task.md",
+      "sha256": "360a5fcbc6971d192838b43728dee506cdbf2c7207449835a06a99e679c8e924",
+      "characters": 164,
+      "bytes": 164,
+      "storage": "e0007.txt",
+      "alias_of": null
+    }
+  },
+  "inline": {
+    "harness/context_policy.json": "{\"version\": 1, \"deduplicate_reads\": false, \"complete_symbols_first\": false, \"read_index\": false}",
+    "harness/systemprompt.md": "",
+    "harness/tool_descriptions/tool_guidance.md": "",
+    "task.md": "A custom help flag and another eager option should follow invocation order. Invoking the help flag first must display help without running the later eager callback."
+  },
+  "source_export_accessible": false,
+  "independent_grading_accessible": false,
+  "page_characters": 6000,
+  "offset_unit": "Unicode characters; zero-based"
+}

@@ -1,0 +1,139 @@
+{
+  "status": "local_provider_failed",
+  "max_feedback_rounds": 20,
+  "feedback_rounds_attempted": 5,
+  "applied_patches": 0,
+  "rounds": [
+    {
+      "round": 1,
+      "status": "completed",
+      "candidate_hash_before": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+      "usage": {
+        "prompt_tokens": 32770,
+        "completion_tokens": 8407
+      },
+      "patch_status": "rejected",
+      "patch_error": {
+        "code": "invalid_patch_schema",
+        "message": "Expected exactly an edits array.",
+        "retryable": true,
+        "next_action": "apply_patch"
+      },
+      "public_accepted": false,
+      "candidate_hash": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+      "seconds": 226.5
+    },
+    {
+      "round": 2,
+      "status": "completed",
+      "candidate_hash_before": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+      "usage": {
+        "prompt_tokens": 32770,
+        "completion_tokens": 2655
+      },
+      "patch_status": "rejected",
+      "patch_error": {
+        "code": "invalid_patch_schema",
+        "message": "Each edit needs string file, nonempty old, and string new.",
+        "retryable": true,
+        "next_action": "apply_patch"
+      },
+      "public_accepted": false,
+      "candidate_hash": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+      "seconds": 80.344
+    },
+    {
+      "round": 3,
+      "status": "completed",
+      "candidate_hash_before": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+      "usage": {
+        "prompt_tokens": 32770,
+        "completion_tokens": 1181
+      },
+      "patch_status": "rejected",
+      "patch_error": {
+        "code": "invalid_patch_schema",
+        "message": "Expected exactly an edits array.",
+        "retryable": true,
+        "next_action": "apply_patch"
+      },
+      "public_accepted": false,
+      "candidate_hash": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+      "seconds": 43.828
+    },
+    {
+      "round": 4,
+      "status": "completed",
+      "candidate_hash_before": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+      "usage": {
+        "prompt_tokens": 32770,
+        "completion_tokens": 1066
+      },
+      "patch_status": "rejected",
+      "patch_error": {
+        "code": "invalid_patch_schema",
+        "message": "Each edit needs string file, nonempty old, and string new.",
+        "retryable": true,
+        "next_action": "apply_patch"
+      },
+      "public_accepted": false,
+      "candidate_hash": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+      "seconds": 41.204
+    },
+    {
+      "round": 5,
+      "status": "provider_failed",
+      "candidate_hash_before": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+      "provider_error": "local_provider_failed",
+      "usage": {
+        "prompt_tokens": null,
+        "completion_tokens": null
+      },
+      "seconds": 480.078
+    }
+  ],
+  "thinking": false,
+  "token_budget": null,
+  "repetition_stop_enabled": false,
+  "independent_grading_used": false,
+  "independent_verification_available": false,
+  "accepted": false,
+  "fresh_model_calls": 5,
+  "execution_mode": "ollama",
+  "metrics": {
+    "llm_calls": 5,
+    "prompt_tokens": null,
+    "completion_tokens": null,
+    "known_prompt_tokens": 131080,
+    "known_completion_tokens": 13309,
+    "missing_usage_calls": 1,
+    "budget_accounted_tokens": 217560,
+    "budget_enforcement": "none; local tokens accounted only",
+    "usage_status": "partial",
+    "usage_source": "ollama_response",
+    "failed_calls": 1,
+    "cloud_api_cost_usd": 0.0,
+    "local_compute_cost_usd": null,
+    "cost_usd": null,
+    "failed_provider_attempt_usage": "unknown",
+    "token_budget": null,
+    "max_output_tokens": null,
+    "context_preflight_enforced": false,
+    "provider_context_tokens": 65536
+  },
+  "seconds": 881.188,
+  "changed_files": [
+    "more_itertools/more.py"
+  ],
+  "public_checks_passed": false,
+  "final_candidate_hash": "18a7c48db8bd05a22bcfb31a348a3ca3f385652fbb5fd31c6664318e9ede0590",
+  "observability": {
+    "enabled": true,
+    "status": "submitted_unconfirmed",
+    "content_capture": false,
+    "trace_id": "59922d69e68317528be451bd4dc15d1b",
+    "base_url": "http://127.0.0.1:3300",
+    "trace_url": "http://127.0.0.1:3300/project/corecoder-issues/traces/59922d69e68317528be451bd4dc15d1b"
+  },
+  "original_inputs_unchanged": true
+}

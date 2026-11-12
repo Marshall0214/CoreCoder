@@ -1,0 +1,19 @@
+--- a/src/click/termui.py
++++ b/src/click/termui.py
+@@ -571,10 +571,16 @@
+ 
+ def _interpret_color(color: int | tuple[int, int, int] | str, offset: int = 0) -> str:
+     if isinstance(color, int):
++        # Ensure the color value is within the valid range [0, 255]
++        if not (0 <= color <= 255):
++            raise ValueError(f"Color integer must be between 0 and 255, got {color}")
+         return f"{38 + offset};5;{color:d}"
+ 
+     if isinstance(color, (tuple, list)):
+         r, g, b = color
++        # Ensure RGB values are within the valid range [0, 255]
++        if not all(0 <= c <= 255 for c in (r, g, b)):
++            raise ValueError(f"RGB color values must be between 0 and 255, got ({r}, {g}, {b})")
+         return f"{38 + offset};2;{r:d};{g:d};{b:d}"
+ 
+     return str(_ansi_colors[color] + offset)
